@@ -1,2 +1,2 @@
-# EvolucionAprendizajeTDD
-Datos para analisis de evolución de aprendizaje de TDD
+# Análisis de evolución de aprendizaje de TDD
+Archivos utilizados para realizar un análisis de evolución de aprendizaje de TDD
