@@ -1,0 +1,3212 @@
+
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'CR 12/10/2020 17:30:08'!
+PASSED!
+
+Object subclass: #Room
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 17:33:45'!
+Object subclass: #Room
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+TestCase subclass: #RoomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #RoomTest category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 17:33:59'!
+TestCase subclass: #RoomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+Object subclass: #Room
+	instanceVariableNames: 'cellAt roomWidth roomHeight'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 17:38:31'!
+Object subclass: #Room
+	instanceVariableNames: 'cellAt roomWidth roomHeight'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room class methodsFor: 'nil' stamp: 'CR 12/10/2020 17:40:44'!
+width: aRoomWidth height: aRoomHeight
+	! !
+!Room class methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 17:41:21' prior: 50966342!
+width: aRoomWidth height: aRoomHeight
+	^self new width: aRoomWidth height: aRoomHeight.! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:42:25'!
+width: aRoomWidth height: aRoomHeight
+	roomWidth := aRoomWidth.
+	roomHeight := aRoomHeight.
+	cellAt := Dictionary new.! !
+!RoomTest methodsFor: 'nil' stamp: 'CR 12/10/2020 17:45:18'!
+test01CanNotCreateRoomWithNonPositiveWidth
+
+	self
+		should: [ Room width:  0 height: 3]
+		raise: Error
+		withMessageText: Room invalidWidthErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 17:45:45'!
+test02CanNotCreateRoomWithNonPositiveHeight
+
+	self
+		should: [ Room width:  3 height: 0]
+		raise: Error
+		withMessageText: Room invalidHeightErrorDescription.
+! !
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 17:46:00'!
+ERROR!
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 17:46:00'!
+ERROR!
+!Room class methodsFor: 'error messages' stamp: 'CR 12/10/2020 17:46:17'!
+invalidWidthErrorDescription
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'error messages' stamp: 'CR 12/10/2020 17:46:41' prior: 50966380!
+invalidWidthErrorDescription
+	^ 'Cant create room with non positive width'! !
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 17:46:46'!
+ERROR!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 17:46:46'!
+ERROR!
+!Room class methodsFor: 'error messages' stamp: 'CR 12/10/2020 17:46:54'!
+invalidHeightErrorDescription
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'error messages' stamp: 'CR 12/10/2020 17:47:01' prior: 50966397!
+invalidHeightErrorDescription
+	^ 'Cant create room with non positive height'! !
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 17:47:06'!
+FAILURE!
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 17:47:06'!
+FAILURE!
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:49:26' prior: 50966352!
+width: aRoomWidth height: aRoomHeight
+	self assertWidthIsPositive: aRoomWidth.
+	self assertHeightIsPositive: aRoomHeight.
+
+	roomWidth := aRoomWidth.
+	roomHeight := aRoomHeight.
+	cellAt := Dictionary new.! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:50:47' prior: 50966414!
+width: aRoomWidth height: aRoomHeight
+	self assertThat: aRoomWidth IsPositiveIfNot: [self signalNonPositiveWidth].
+	self assertThat: aRoomHeight IsPositiveIfNot: [self signalNonPositiveHeight].
+
+	roomWidth := aRoomWidth.
+	roomHeight := aRoomHeight.
+	cellAt := Dictionary new.! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:51:37'!
+assertThat: aRoomMeasure IsPositiveIfNot: codeToExecuteIfNonPositive
+	(aRoomMeasure > 0) ifFalse: codeToExecuteIfNonPositive.! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:53:18'!
+signalNonPositiveWidth
+	self error: self class invalidWidthErrorDescription. ! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:53:34'!
+signalNonPositiveHeight
+	self error: self class invalidHeightErrorDescription.! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:54:25'!
+verifyWidth: aRoomHeight andHeightArePositive: aRoomWidth
+
+	self assertThat: aRoomWidth IsPositiveIfNot: [self signalNonPositiveWidth].
+	self assertThat: aRoomHeight IsPositiveIfNot: [self signalNonPositiveHeight]! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 17:54:25' prior: 50966424!
+width: aRoomWidth height: aRoomHeight
+	self verifyWidth: aRoomHeight andHeightArePositive: aRoomWidth.
+
+	roomWidth := aRoomWidth.
+	roomHeight := aRoomHeight.
+	cellAt := Dictionary new.! !
+
+----SNAPSHOT----(10 December 2020 17:54:43) CuisUniversity-4384.image priorSource: 18699925!
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 17:54:45'!
+PASSED!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 17:54:47'!
+PASSED!
+
+Object subclass: #RoomCell
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #RoomCell category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 17:59:09'!
+Object subclass: #RoomCell
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+Object subclass: #RoomCell
+	instanceVariableNames: 'cellState'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #RoomCell category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 17:59:51'!
+Object subclass: #RoomCell
+	instanceVariableNames: 'cellState'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+Object subclass: #RoomCellState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #RoomCellState category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 17:59:59'!
+Object subclass: #RoomCellState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+RoomCellState subclass: #EmptyCell
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #EmptyCell category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 18:00:12'!
+RoomCellState subclass: #EmptyCell
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+RoomCellState subclass: #OcuppiedCell
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #OcuppiedCell category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 18:00:23'!
+RoomCellState subclass: #OcuppiedCell
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!RoomCell class methodsFor: 'nil' stamp: 'CR 12/10/2020 18:01:02'!
+empty
+	^self new initializeEmpty. ! !
+!RoomCell class methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:02:17'!
+with: aStageObject
+	^self new initializeWith: aStageObject.! !
+!RoomCell methodsFor: 'nil' stamp: 'CR 12/10/2020 18:03:06'!
+with: aStageObject
+	cellState := EmptyCell new.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:04:06' prior: 50966549!
+with: aStageObject
+	cellState := OcuppiedCell with: aStageObject.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:05:26'!
+initializeEmpty
+	cellState := EmptyCell new.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:05:56'!
+put: aStageObject
+	cellState put: aStageObject.! !
+!RoomCellState methodsFor: 'nil' stamp: 'CR 12/10/2020 18:06:34'!
+put: aStageObjectOrCharacter
+	self subclassResponsibility ! !
+!EmptyCell methodsFor: 'nil' stamp: 'CR 12/10/2020 18:06:46' overrides: 50966567!
+put: aStageObjectOrCharacter
+	! !
+!OcuppiedCell methodsFor: 'nil' stamp: 'CR 12/10/2020 18:07:23' overrides: 50966567!
+put: aStageObjectOrCharacter
+	self error: self class alreadyOccupiedCell.! !
+!OcuppiedCell class methodsFor: 'nil' stamp: 'CR 12/10/2020 18:07:51'!
+alreadyOccupiedCell
+	^'Cell already occupied'.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:08:58' prior: 50966563!
+put: aStageObject
+	cellState verifyNotOccupied.
+	! !
+
+!classRenamed: #OcuppiedCell as: #OcupiedCell stamp: 'CR 12/10/2020 18:09:08'!
+Smalltalk renameClassNamed: #OcuppiedCell as: #OcupiedCell!
+!RoomCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:09:08' prior: 50966554!
+with: aStageObject
+	cellState := OcupiedCell with: aStageObject.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:09:20' prior: 50966595!
+with: aStageObject
+	cellState := OcupiedCell with: aStageObject.! !
+
+!classRenamed: #OcupiedCell as: #OccupiedCell stamp: 'CR 12/10/2020 18:09:32'!
+Smalltalk renameClassNamed: #OcupiedCell as: #OccupiedCell!
+!RoomCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:09:32' prior: 50966600!
+with: aStageObject
+	cellState := OccupiedCell with: aStageObject.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:10:24' prior: 50966586!
+put: aStageObjectOrPlayer
+	cellState verifyNotOccupied.
+	self with: aStageObjectOrPlayer.! !
+!RoomCell methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:10:35' prior: 50966610!
+with: aStageObjectOrPlayer
+	cellState := OccupiedCell with: aStageObjectOrPlayer.! !
+!EmptyCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:10:55'!
+verifyNotOccupied 
+	
+	! !
+
+!methodRemoval: EmptyCell #put: stamp: 'CR 12/10/2020 18:10:59'!
+put: aStageObjectOrCharacter
+	!
+!OccupiedCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:11:08'!
+verifyNotOccupied
+	self error: self class alreadyOccupiedCell.! !
+
+!methodRemoval: OccupiedCell #put: stamp: 'CR 12/10/2020 18:11:11'!
+put: aStageObjectOrCharacter
+	self error: self class alreadyOccupiedCell.!
+!RoomCellState methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:11:19'!
+verifyNotOccupied 
+	self subclassResponsibility ! !
+
+!methodRemoval: RoomCellState #put: stamp: 'CR 12/10/2020 18:11:22'!
+put: aStageObjectOrCharacter
+	self subclassResponsibility !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:11:58' prior: 50966462!
+width: aRoomWidth height: aRoomHeight
+	self verifyWidth: aRoomHeight andHeightArePositive: aRoomWidth.
+
+	roomWidth := aRoomWidth.
+	roomHeight := aRoomHeight.
+	
+	self initializeCells.! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:12:23'!
+initializeCells
+	
+	1 for: roomWidth ! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:17:46' prior: 50966661!
+initializeCells
+	| xPosition yPosition |
+	xPosition := 0.
+	yPosition := 0.
+	1 to: roomWidth do: [	self fillRoomRow: xPosition	.
+					xPosition := xPosition + 1.		]! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:18:13' prior: 50966665!
+initializeCells
+	| row |
+	row := 0.
+	1 to: roomWidth do: [	self fillRoomRow: row	.
+					row := row + 1.		]! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:18:49'!
+fillRoomRow: rowNumber
+	"cellAt at: xPosition@yPosition  put: RoomCell empty."
+		! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:19:56' prior: 50966679!
+fillRoomRow: row
+	| column |
+	column := 0.
+	"cellAt at: xPosition@yPosition  put: RoomCell empty."
+	1 to: roomHeight do: [cellAt at: row@column  put: RoomCell empty.
+					  column := column + 1.	]
+		! !
+
+1 to: 3 do: [3 print]!
+
+1 to: 3 do: [3.]!
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:22:50' prior: 50966673!
+initializeCells
+	
+	0 to: roomWidth-1 do: [:	row | self fillRoomRow: row	.		]! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:23:29' prior: 50966685!
+fillRoomRow: row
+	0 to: roomWidth-1 do: [:	column | cellAt at: row@column  put: RoomCell empty.]! !
+
+----SNAPSHOT----(10 December 2020 18:23:50) CuisUniversity-4384.image priorSource: 20314235!
+!Room methodsFor: 'nil' stamp: 'CR 12/10/2020 18:25:34'!
+put: aStageObjectOrPlayer at: aCellPosition
+! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:26:17' prior: 50966702!
+fillRoomRow: row
+	0 to: roomHeight-1 do: [:	column | cellAt at: row@column  put: RoomCell empty.]! !
+!Room methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:26:47' prior: 50966653!
+width: aRoomWidth height: aRoomHeight
+	self verifyWidth: aRoomHeight andHeightArePositive: aRoomWidth.
+
+	roomWidth := aRoomWidth.
+	roomHeight := aRoomHeight.
+	cellAt := Dictionary new.
+	self initializeCells.! !
+!Room methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:27:46' prior: 50966710!
+put: aStageObjectOrPlayer at: aCellPosition
+	
+	cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].! !
+!Room methodsFor: 'signals' stamp: 'CR 12/10/2020 18:28:08'!
+signalPositionOutOfBounds
+	self error: self class positionOutOfBoundsErrorDescription.! !
+!Room class methodsFor: 'error messages' stamp: 'CR 12/10/2020 18:28:42'!
+positionOutOfBoundsErrorDescription
+	^ 'Position is out of bounds of room!!'! !
+!Room class methodsFor: 'error messages' stamp: 'CR 12/10/2020 18:28:53' prior: 50966743!
+positionOutOfBoundsErrorDescription
+	^ 'Position is out of bounds of room measures!!!!'! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:31:22'!
+test03WhenCreatingRoomAllCellsAreEmpty
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4
+	! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:31:44' prior: 50966754!
+test03WhenCreatingRoomAllCellsAreEmpty
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	self assert: aRoom isEmpty. ! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:31:50'!
+test03WhenCreatingValidRoomAllCellsAreEmpty
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	self assert: aRoom isEmpty. ! !
+
+!methodRemoval: RoomTest #test03WhenCreatingRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 18:31:53'!
+test03WhenCreatingRoomAllCellsAreEmpty
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	self assert: aRoom isEmpty. !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:32:57'!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: NoPointsPortableObject new at: 2@2.
+	
+	self assert: aRoom isEmpty. ! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:33:00' prior: 50966779!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: NoPointsPortableObject new at: 2@2.
+	! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:34:01' prior: 50966787!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: (NoPointsPortableObject named: 'bufanda' weighing: 2) at: 2@2.
+	! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:34:24' prior: 50966794!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: (NoPointsPortableObject named: 'bufanda' weighing: 2) at: 2@2.
+	
+	! !
+!RoomTest methodsFor: 'nil' stamp: 'CR 12/10/2020 18:34:29'!
+setup
+	! !
+
+!classDefinition: #RoomTest category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 18:35:22'!
+TestCase subclass: #RoomTest
+	instanceVariableNames: 'noPointsScarf'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:35:18' prior: 50966810!
+setup
+	noPointsScarf := NoPointsPortableObject named: 'bufanda' weighing: 2.
+	! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:35:40' prior: 50966802!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	
+	! !
+!RoomTest methodsFor: 'setup' stamp: 'CR 12/10/2020 18:35:46' prior: 50966822!
+setup
+	noPointsScarf := NoPointsPortableObject named: 'scarf' weighing: 2.
+	! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:36:06' prior: 50966828!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	
+	
+	! !
+
+!classDefinition: #RoomTest category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 18:36:29'!
+TestCase subclass: #RoomTest
+	instanceVariableNames: 'noPointsScarf noPointsCoke'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!RoomTest methodsFor: 'setup' stamp: 'CR 12/10/2020 18:36:27' prior: 50966835!
+setup
+	noPointsScarf := NoPointsPortableObject named: 'scarf' weighing: 2.
+	noPointsCoke := NoPointsPortableObject named: 'coke' weighing: 4.! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:37:36' prior: 50966841!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	self
+		should: [ aRoom put: noPointsCoke at: 2@2]
+		raise: Error
+		withMessageText:  Room .
+
+	
+	
+	! !
+!OccupiedCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:37:55' prior: 50966634 overrides: 50966644!
+verifyNotOccupied
+	self error: self RoomCell alreadyOccupiedCell.! !
+
+!methodRemoval: OccupiedCell class #alreadyOccupiedCell stamp: 'CR 12/10/2020 18:38:04'!
+alreadyOccupiedCell
+	^'Cell already occupied'.!
+!RoomCell class methodsFor: 'nil' stamp: 'CR 12/10/2020 18:38:09'!
+alreadyOccupiedCell
+	^'Cell already occupied'.! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:38:25' prior: 50966864!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	self
+		should: [ aRoom put: noPointsCoke at: 2@2]
+		raise: Error
+		withMessageText:  Room alreadyOccupiedCell.
+
+	
+	
+	! !
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:38:33'!
+ERROR!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:38:33'!
+ERROR!
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:38:41' prior: 50966889!
+test04OccupyNonEmptyRoomCellRaisesError
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	self
+		should: [ aRoom put: noPointsCoke at: 2@2]
+		raise: Error
+		withMessageText:  RoomCell alreadyOccupiedCell.
+
+	
+	
+	! !
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:38:42'!
+FAILURE!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:38:42'!
+FAILURE!
+!Room methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:40:01' prior: 50966731!
+put: aStageObjectOrPlayer at: aCellPosition
+	
+	| cellToPutObjectOn |
+	cellToPutObjectOn := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].
+	! !
+!Room methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:40:19' prior: 50966924!
+put: aStageObjectOrPlayer at: aCellPosition
+	| cellToPutObjectOn |
+	
+	cellToPutObjectOn := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].
+	cellToPutObjectOn put: aStageObjectOrPlayer.! !
+
+----SNAPSHOT----(10 December 2020 18:40:51) CuisUniversity-4384.image priorSource: 20321827!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:41:01'!
+ERROR!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:41:01'!
+ERROR!
+
+!classDefinition: #OccupiedCell category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 18:41:51'!
+RoomCellState subclass: #OccupiedCell
+	instanceVariableNames: 'objectOnCell'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!OccupiedCell methodsFor: 'nil' stamp: 'CR 12/10/2020 18:41:49'!
+with: aStageObjectOrPlayer
+	objectOnCell := aStageObjectOrPlayer.! !
+!OccupiedCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 18:41:56' prior: 50966959!
+with: aStageObjectOrPlayer
+
+	objectOnCell := aStageObjectOrPlayer.! !
+!OccupiedCell class methodsFor: 'nil' stamp: 'CR 12/10/2020 18:42:22'!
+with: aStageObjectOrPlayer
+	^self new with: aStageObjectOrPlayer.! !
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 18:43:23'!
+PASSED!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 18:43:23'!
+PASSED!
+
+!testRun: #RoomTest #test03WhenCreatingValidRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 18:43:23'!
+ERROR!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:43:23'!
+FAILURE!
+!Room methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:46:28'!
+isEmpty
+	^cellAt allSatisfy: [: cell | cell isEmpty].! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:46:55'!
+isEmpty
+	^false.! !
+!RoomCellState methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:47:12'!
+isEmpty
+	self subclassResponsibility ! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:47:28' prior: 50966992!
+isEmpty
+	^cellState isEmpty.! !
+!EmptyCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:47:40' overrides: 50966995!
+isEmpty
+	^true. 
+	
+	! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:47:51' overrides: 50966995!
+isEmpty
+	^false.! !
+
+!testRun: #RoomTest #test03WhenCreatingValidRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 18:48:01'!
+PASSED!
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:49:01'!
+test05OccupyCellWorksCorrectly
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	self assert: (aRoom at:  2@2) = noPointsScarf.
+	
+	
+	! !
+!Room methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:50:02' overrides: 16880774!
+at: aCellPosition
+	| cellAtCellPosition |
+	cellAtCellPosition := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].! !
+!Room methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:50:51' prior: 50967022 overrides: 16880774!
+at: aCellPosition
+	| cellAtCellPosition |
+	cellAtCellPosition := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].
+	^ cellAtCellPosition objectOnIt.! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:52:42'!
+objectOnIt
+	^cellState objectOnIt.! !
+!Room methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:53:34'!
+is: anObject at: aCellPosition
+	| cellAtCellPosition |
+	cellAtCellPosition := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].
+	^ cellAtCellPosition has: anObject.! !
+
+!methodRemoval: Room #at: stamp: 'CR 12/10/2020 18:53:39'!
+at: aCellPosition
+	| cellAtCellPosition |
+	cellAtCellPosition := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].
+	^ cellAtCellPosition objectOnIt.!
+
+!methodRemoval: RoomCell #objectOnIt stamp: 'CR 12/10/2020 18:53:46'!
+objectOnIt
+	^cellState objectOnIt.!
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:54:03'!
+has: anObject
+	^cellState has: anObject.! !
+!RoomCellState methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:54:13'!
+has: anObject
+	self subclassResponsibility ! !
+!EmptyCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:54:22' overrides: 50967065!
+has: anObject
+	^false 
+	
+	! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:54:35' overrides: 50967065!
+has: anObject
+	^objectOnCell = anObject.! !
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 18:54:41'!
+ERROR!
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 18:54:41'!
+ERROR!
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:55:22' prior: 50967014!
+test05OccupyCellWorksCorrectly
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	self assert: (aRoom at:  2@2 is: noPointsScarf).
+	
+	
+	! !
+!RoomTest methodsFor: 'creation' stamp: 'CR 12/10/2020 18:55:42' prior: 50967084!
+test05OccupyCellWorksCorrectly
+
+	| aRoom |
+	aRoom := Room width:  3 height: 4.
+	aRoom put: noPointsScarf at: 2@2.
+	self assert: (aRoom is: noPointsScarf at:  2@2).
+	
+	
+	! !
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 18:55:43'!
+PASSED!
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 18:55:46'!
+PASSED!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 18:55:46'!
+PASSED!
+
+!testRun: #RoomTest #test03WhenCreatingValidRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 18:55:46'!
+PASSED!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:55:46'!
+FAILURE!
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 18:55:46'!
+PASSED!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:55:46'!
+FAILURE!
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 18:55:50'!
+PASSED!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 18:55:50'!
+PASSED!
+
+!testRun: #RoomTest #test03WhenCreatingValidRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 18:55:50'!
+PASSED!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:55:50'!
+FAILURE!
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 18:55:50'!
+PASSED!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:55:50'!
+FAILURE!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:56:01'!
+FAILURE!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:56:01'!
+FAILURE!
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:56:48' prior: 50966875 overrides: 50966644!
+verifyNotOccupied
+	self error: RoomCell alreadyOccupiedCell.! !
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 18:56:52'!
+PASSED!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 18:56:52'!
+PASSED!
+
+!testRun: #RoomTest #test03WhenCreatingValidRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 18:56:52'!
+PASSED!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 18:56:52'!
+PASSED!
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 18:56:52'!
+PASSED!
+
+----SNAPSHOT----(10 December 2020 18:56:58) CuisUniversity-4384.image priorSource: 20329296!
+
+!classDefinition: #PlayableCharacter category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 18:59:00'!
+Object subclass: #PlayableCharacter
+	instanceVariableNames: 'position heading backpack name room'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacter methodsFor: 'initialization' stamp: 'CR 12/10/2020 18:58:58'!
+initializeNamed: aName using: aBackpack at: aPosition heading: aMarsRoverHeading in: aRoom
+
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aMarsRoverHeading.
+	room := aRoom.! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:00:37'!
+defaultRoom
+
+	^ Backpack containingUpTo: 100 limitingPointsTo: 100 ! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:01:04' prior: 50967193!
+defaultRoom
+	| aRoom |
+	aRoom := Backpack containingUpTo: 100 limitingPointsTo: 100 
+	! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:01:30' prior: 50967199!
+defaultRoom
+	| aRoom |
+	aRoom := Room width: 20 height: 20.
+	^aRoom.
+	! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:02:25' prior: 50967206!
+defaultRoom
+	| aRoom |
+	aRoom := Room width: 20 height: 20.
+	
+	^aRoom.
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:03:10' prior: 50962653!
+test09_canTakePortableObjects
+
+	| playableCharacter paper |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West .
+	"paper := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	playableCharacter take: paper.
+	
+	self assert: (playableCharacter backpackIncludes: paper)"! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:04:20' prior: 50962552!
+test01_forwardWhenHeadingNorthIncrementsYCoordinate
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North.
+
+	playableCharacter moveForward.
+
+	self assert: (playableCharacter isAt: 1@3 heading: #North)! !
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'CR 12/10/2020 19:04:37'!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint in: aRoom
+	
+	| newHeading |
+
+	newHeading := self headingFor: aCardinalPoint.
+	
+	^self new initializeNamed: aName using: aBackpack at: aPosition heading: newHeading in: aRoom.! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:07:17'!
+newPositionIfMovingBackwards
+
+	^ position - heading forwardPoint! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:07:17' prior: 50962907!
+moveBackward
+	
+	position := self newPositionIfMovingBackwards ! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:07:52'!
+newPositionIfMovingForward
+
+	^ position + heading forwardPoint! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:07:52' prior: 50962912!
+moveForward
+	
+	position := self newPositionIfMovingForward! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:08:36'!
+positionOfCellToTakeObjectsOf
+	^self newPositionIfMovingForward.
+! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'CR 12/10/2020 19:09:11' prior: 50967183!
+initializeNamed: aName using: aBackpack at: aPosition heading: aMarsRoverHeading in: aRoom
+
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aMarsRoverHeading.
+	room := aRoom.
+	self positionOfCellToTakeObjectsOf.! !
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'CR 12/10/2020 19:09:22'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:11:15' prior: 50967232!
+test01_forwardWhenHeadingNorthIncrementsYCoordinate
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: self defaultRoom.
+
+	playableCharacter moveForward.
+
+	self assert: (playableCharacter isAt: 1@3 heading: #North)
+	! !
+
+self positionOfCellToTakeObjectsOf.!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:13:19' prior: 50962564!
+test02_backwardWhenHeadingNorthDecrementsYCoordinate
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: self defaultRoom.
+	playableCharacter moveBackward.
+
+	self assert: (playableCharacter isAt: 1@1 heading: #North)! !
+
+!methodRemoval: PlayableCharacter #initializeNamed:using:at:heading: stamp: 'CR 12/10/2020 19:14:00'!
+initializeNamed: aName using: aBackpack at: aPosition heading: aMarsRoverHeading 
+
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aMarsRoverHeading!
+
+!methodRemoval: PlayableCharacter class #named:using:at:heading: stamp: 'CR 12/10/2020 19:14:11'!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint 
+	
+	| newHeading |
+
+	newHeading := self headingFor: aCardinalPoint.
+	
+	^self new initializeNamed: aName using: aBackpack at: aPosition heading: newHeading !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:20' prior: 50962576!
+test03_rotateRightWhenHeadingNorthHeadsEast
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: self defaultRoom..
+
+	playableCharacter rotateRight.
+
+	self assert: (playableCharacter isAt: 1@2 heading: #East)! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:24' prior: 50962587!
+test04_rotateLeftWhenHeadingNorthHeadsWest
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: self defaultRoom..
+
+	playableCharacter rotateLeft.
+
+	self assert: (playableCharacter isAt: 1@2 heading: #West)! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:25' prior: 50967354!
+test04_rotateLeftWhenHeadingNorthHeadsWest
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: self defaultRoom.
+
+	playableCharacter rotateLeft.
+
+	self assert: (playableCharacter isAt: 1@2 heading: #West)! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:30' prior: 50962598!
+test05_movingWhenHeadingEastWorksAsExpected
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #East in: self defaultRoom.
+
+	playableCharacter
+		moveForward;
+		moveForward;
+		moveBackward;
+		rotateRight;
+		rotateLeft;
+		rotateLeft.
+
+	self assert: (playableCharacter isAt: 2@2 heading: #North)! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:36' prior: 50962612!
+test06_movingWhenHeadingSouthWorksAsExpected
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #South in: self defaultRoom.
+
+	playableCharacter
+		moveForward;
+		moveForward;
+		moveBackward;
+		rotateRight;
+		rotateLeft;
+		rotateLeft.
+
+	self assert: (playableCharacter isAt: 1@1 heading: #East)! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:41' prior: 50962626!
+test07_movingWhenHeadingWestWorksAsExpected
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+
+	playableCharacter
+		moveForward;
+		moveForward;
+		moveBackward;
+		rotateRight;
+		rotateLeft;
+		rotateLeft.
+
+	self assert: (playableCharacter isAt: 1@2 heading: #South)! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:51' prior: 50962640!
+test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid
+
+	self
+		should: [PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #X in: self defaultRoom.]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: PlayableCharacter invalidCardinalPointErrorDescription equals: anError messageText ]! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:14:57' prior: 50967218!
+test09_canTakePortableObjects
+
+	| playableCharacter paper |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	"paper := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	playableCharacter take: paper.
+	
+	self assert: (playableCharacter backpackIncludes: paper)"! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:15:09' prior: 50962666!
+test10_canNotTakeMoreObjectsThanTheBackpackCanCarry
+
+	| playableCharacter paper key |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	
+	playableCharacter take: paper.
+	self 
+		should: [ playableCharacter take: key ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assert: (playableCharacter backpackIncludes: paper).
+			self deny: (playableCharacter backpackIncludes: key) ]
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'CR 12/10/2020 19:15:18'!
+PASSED!
+
+----SNAPSHOT----(10 December 2020 19:15:21) CuisUniversity-4384.image priorSource: 20336644!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:25:11'!
+test11_takeWhen
+
+	| playableCharacter paper key |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	
+	playableCharacter take: paper.
+	self 
+		should: [ playableCharacter take: key ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assert: (playableCharacter backpackIncludes: paper).
+			self deny: (playableCharacter backpackIncludes: key) ]
+	
+	! !
+
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'objectsInside'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #NonPortableObject category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 19:26:36'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'objectsInside'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:29:03'!
+test11_movingToCellWithObjectRaisesError
+	| player |
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: self defaultRoom.
+	
+	self
+		should: [PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #X in: self defaultRoom.]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: PlayableCharacter invalidCardinalPointErrorDescription equals: anError messageText ]! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:30:54' prior: 50967555!
+test11_movingToCellWithObjectRaisesError
+	| player room |
+	room := self defaultRoom.
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: room.
+	room at: 1@3 put: false.
+	self
+		should: [player moveForward]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: PlayableCharacter invalidCardinalPointErrorDescription equals: anError messageText ].! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:31:39'!
+noPointsScarf
+	^ NoPointsPortableObject named: 'scarf' weighing: 2.
+! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:32:26' prior: 50967572!
+test11_movingToCellWithObjectRaisesError
+	| player room |
+	room := self defaultRoom.
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: room.
+	room at: 1@3 put: self noPointsScarf.
+	self
+		should: [player moveForward]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: RoomCell errorCategoryName].! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:32:46' prior: 50967594!
+test11_movingToCellWithObjectRaisesError
+	| player room |
+	room := self defaultRoom.
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: room.
+	room at: 1@3 put: self noPointsScarf.
+	self
+		should: [player moveForward]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: RoomCell alreadyOccupiedCell].! !
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:32:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:32:48'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:33:24' prior: 50967609!
+test11_movingToCellWithObjectRaisesError
+	| player room |
+	room := self defaultRoom.
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: room.
+	room put: self noPointsScarf at: 1@3.
+	self
+		should: [player moveForward]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: RoomCell alreadyOccupiedCell].! !
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:33:26'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:33:26'!
+FAILURE!
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:34:57' prior: 50967259!
+moveBackward
+	| newPosition |
+	newPosition := self newPositionIfMovingBackwards.
+	room put: self at: newPosition.
+	position := newPosition.! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'CR 12/10/2020 19:35:13' prior: 50967269!
+moveForward
+	| newPosition |
+	newPosition := self newPositionIfMovingForward.
+	room put: self at: newPosition.
+	position := newPosition.! !
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:35:33'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:35:33'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:35:56' prior: 50967631!
+test11_movingToCellWithObjectRaisesError
+	| player room |
+	room := self defaultRoom.
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: room.
+	room put: self noPointsScarf at: 1@3.
+	self
+		should: [player moveForward]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: anError messageText = RoomCell alreadyOccupiedCell].! !
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:35:57'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:38:16' prior: 50967676!
+test11_movingToCellWithObjectRaisesError
+	| player room |
+	room := self defaultRoom.
+	player := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North in: room.
+	room put: self noPointsScarf at: 1@3.
+	self
+		should: [player moveForward]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: anError messageText = RoomCell alreadyOccupiedCell.
+			self assert: (player isAt: 1@2 heading: #North)].! !
+
+!testRun: #PlayableCharacterTest #test11_movingToCellWithObjectRaisesError stamp: 'CR 12/10/2020 19:38:18'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 19:38:59'!
+test12_takeWhenEmptyCellForwardWorksCorrectly
+
+	| playableCharacter paper key |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	
+	playableCharacter take: paper.
+	self 
+		should: [ playableCharacter take: key ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assert: (playableCharacter backpackIncludes: paper).
+			self deny: (playableCharacter backpackIncludes: key) ]
+	
+	! !
+
+!methodRemoval: PlayableCharacterTest #test11_takeWhen stamp: 'CR 12/10/2020 19:39:01'!
+test11_takeWhen
+
+	| playableCharacter paper key |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	
+	playableCharacter take: paper.
+	self 
+		should: [ playableCharacter take: key ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assert: (playableCharacter backpackIncludes: paper).
+			self deny: (playableCharacter backpackIncludes: key) ]
+	
+	!
+!NonPortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 19:46:14'!
+takeAllObjectsBy: aPlayableCharacter
+	| objects |
+	
+	objects := OrderedCollection new.
+	objectsInside do: [ :anAccount | anAccount addTransactionsTo: objects ].
+	
+	^objects ! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:54:05' prior: 50967763!
+takeAllObjectsBy: aPlayableCharacter
+	
+	objectsInside do: [ :aStageObject | aStageObject takeIfPossibleFrom: self by: aPlayableCharacter].! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 19:55:50'!
+takeIfPossibleFrom: aNonPortableObjectThatHasMe by: aPlayableCharacter
+	self takeAllObjectsBy: aPlayableCharacter.! !
+!StageObject methodsFor: 'nil' stamp: 'CR 12/10/2020 19:56:26'!
+takeAllObjectsBy: aPlayableCharacter
+	self subclassResponsibility! !
+!PortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 19:57:12' overrides: 50967786!
+takeAllObjectsBy: aPlayableCharacter
+	aPlayableCharacter take: self.
+	! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 19:58:56'!
+takeBy: aPlayableCharacter
+
+	^(cellState objectOnCell) takeAllObjectsBy: aPlayableCharacter.! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 19:59:07' prior: 50967796!
+takeBy: aPlayableCharacter
+
+	(cellState objectOnCell) takeAllObjectsBy: aPlayableCharacter.
+	! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:00:53' prior: 50967802!
+takeBy: aPlayableCharacter
+
+	(cellState objectOnCell) takeAllObjectsFrom: self By: aPlayableCharacter.
+	! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:01:11' prior: 50967808!
+takeBy: aPlayableCharacter
+
+	(cellState objectOnCell) takeObjectFrom: self By: aPlayableCharacter.
+	! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:02:47'!
+takeObjectFrom: cellWhereObjectIsOn By: aPlayableCharacter
+	aPlayableCharacter take: self.
+	cellWhereObjectIsOn freeCell.
+	! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:03:09'!
+takeObjectFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	aPlayableCharacter take: self.
+	cellWhereObjectIsOn freeCell.
+	! !
+
+!methodRemoval: PortableObject #takeObjectFrom:By: stamp: 'CR 12/10/2020 20:03:12'!
+takeObjectFrom: cellWhereObjectIsOn By: aPlayableCharacter
+	aPlayableCharacter take: self.
+	cellWhereObjectIsOn freeCell.
+	!
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:03:15' prior: 50967814!
+takeBy: aPlayableCharacter
+
+	(cellState objectOnCell) takeObjectFromCell: self By: aPlayableCharacter.
+	! !
+!OccupiedCell methodsFor: 'nil' stamp: 'CR 12/10/2020 20:03:48'!
+objectOnCell
+	^objectOnCell.! !
+!RoomCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:04:23' prior: 50967841!
+takeBy: aPlayableCharacter
+
+	(cellState objectOnCell) takeObjectsFromCell: self By: aPlayableCharacter.
+	! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:04:45'!
+takeObjectsFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	aPlayableCharacter take: self.
+	cellWhereObjectIsOn freeCell.
+	! !
+
+!methodRemoval: PortableObject #takeObjectFromCell:By: stamp: 'CR 12/10/2020 20:04:47'!
+takeObjectFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	aPlayableCharacter take: self.
+	cellWhereObjectIsOn freeCell.
+	!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:05:46'!
+takeObjectsFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	
+	objectsInside do: [ :aStageObject | aStageObject takeIfPossibleFrom: self by: aPlayableCharacter].! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:06:55' prior: 50967871!
+takeObjectsFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	
+	self takeAllObjectsBy: aPlayableCharacter.! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:11:11'!
+takeIfPossibleFrom: aNonPortableObjectThatHasMe by: aPlayableCharacter
+	aPlayableCharacter take: self.
+	aNonPortableObjectThatHasMe objectTaken: self.
+	! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:12:57'!
+takeAllObjectsInsideMeBy: aPlayableCharacter
+	
+	objectsInside do: [ :aStageObject | aStageObject takeIfPossibleFrom: self by: aPlayableCharacter].! !
+
+!methodRemoval: NonPortableObject #takeAllObjectsBy: stamp: 'CR 12/10/2020 20:13:05'!
+takeAllObjectsBy: aPlayableCharacter
+	
+	objectsInside do: [ :aStageObject | aStageObject takeIfPossibleFrom: self by: aPlayableCharacter].!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:13:11' prior: 50967780!
+takeIfPossibleFrom: aNonPortableObjectThatHasMe by: aPlayableCharacter
+	self takeAllObjectsInsideMeBy: aPlayableCharacter.! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:13:15' prior: 50967880!
+takeObjectsFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	
+	self takeAllObjectsInsideMeBy: aPlayableCharacter.! !
+
+!methodRemoval: PortableObject #takeAllObjectsBy: stamp: 'CR 12/10/2020 20:14:18'!
+takeAllObjectsBy: aPlayableCharacter
+	aPlayableCharacter take: self.
+	!
+!StageObject methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:15:18'!
+takeObjectsFromCell: cellWhereObjectIsOn By: aPlayableCharacter
+	self subclassResponsibility! !
+
+!methodRemoval: StageObject #takeAllObjectsBy: stamp: 'CR 12/10/2020 20:15:20'!
+takeAllObjectsBy: aPlayableCharacter
+	self subclassResponsibility!
+!StageObject methodsFor: 'nil' stamp: 'CR 12/10/2020 20:15:48'!
+takeIfPossibleFrom: aNonPortableObjectThatHasMe by: aPlayableCharacter
+	self subclassResponsibility ! !
+!NonPortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 20:16:26'!
+objectTaken: aPortableObjectInsideMe
+	objectsInside remove: aPortableObjectInsideMe.! !
+!NonPortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 20:17:39' overrides: 16896425!
+initialize
+	objectsInside := OrderedCollection new.! !
+!RoomCell methodsFor: 'nil' stamp: 'CR 12/10/2020 20:19:28'!
+freeCell
+	! !
+!RoomCell methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:19:40' prior: 50967956!
+freeCell
+	cellState := EmptyCell new.! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:22:11'!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter paper key |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	
+	playableCharacter take: paper.
+	self 
+		should: [ playableCharacter take: key ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assert: (playableCharacter backpackIncludes: paper).
+			self deny: (playableCharacter backpackIncludes: key) ]
+	
+	! !
+
+!methodRemoval: PlayableCharacterTest #test12_takeWhenEmptyCellForwardWorksCorrectly stamp: 'CR 12/10/2020 20:22:13'!
+test12_takeWhenEmptyCellForwardWorksCorrectly
+
+	| playableCharacter paper key |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: self defaultRoom.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	
+	playableCharacter take: paper.
+	self 
+		should: [ playableCharacter take: key ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assert: (playableCharacter backpackIncludes: paper).
+			self deny: (playableCharacter backpackIncludes: key) ]
+	
+	!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:24:59' prior: 50967964!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter paper key room coke scarf |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 5.
+	
+	room put: paper at: 2@2.
+	room put: key at: 2@3.
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:26:43' prior: 50968015!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter paper key room coke scarf |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 3.
+	
+	room put: paper at: 2@2.
+	room put: key at: 2@3.
+	room put: key at: 2@3.
+	room put: key at: 2@3.
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:28:49' prior: 50968035!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter paper key room coke scarf |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 3.
+	
+	room put: paper at: 2@2.
+	room put: key at: 2@3.
+	room put: scarf at: 2@1.
+	room put: coke at: 3@2.
+	playableCharacter take.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacter methodsFor: 'taking objects' stamp: 'CR 12/10/2020 20:30:57'!
+take
+	room takeObjectsFromCell: self positionOfCellToTakeObjectsOf.! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:32:13'!
+takeObjectsFromCell: aCellPosition
+	cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds]. ! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:32:26'!
+getCellIfValid: aCellPosition
+
+	^ cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds]! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:32:26' prior: 50968085!
+takeObjectsFromCell: aCellPosition
+	self getCellIfValid: aCellPosition. ! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:32:47' prior: 50968098!
+takeObjectsFromCell: aCellPosition
+	| cellToTakeObjectsFrom |
+	self getCellIfValidCellPosition: aCellPosition. ! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:32:54' prior: 50968104!
+takeObjectsFromCell: aCellPosition
+	| cellToTakeObjectsFrom |
+	cellToTakeObjectsFrom := self getCellIfValidCellPosition: aCellPosition. ! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:32:59'!
+getCellIfValidCellPosition: aCellPosition
+
+	^ cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds]! !
+
+!methodRemoval: Room #getCellIfValid: stamp: 'CR 12/10/2020 20:33:01'!
+getCellIfValid: aCellPosition
+
+	^ cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds]!
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:33:21' prior: 50968111!
+takeObjectsFromCell: aCellPosition
+	| cellToTakeObjectsFrom |
+	cellToTakeObjectsFrom := self getCellIfValidCellPosition: aCellPosition. 
+	cellToTakeObjectsFrom take.! !
+!Room methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:33:45'!
+takeObjectsFromCell: aCellPosition by: aPlayableCharacter
+	| cellToTakeObjectsFrom |
+	cellToTakeObjectsFrom := self getCellIfValidCellPosition: aCellPosition. 
+	cellToTakeObjectsFrom takeBy: aPlayableCharacter.! !
+
+!methodRemoval: Room #takeObjectsFromCell: stamp: 'CR 12/10/2020 20:33:48'!
+takeObjectsFromCell: aCellPosition
+	| cellToTakeObjectsFrom |
+	cellToTakeObjectsFrom := self getCellIfValidCellPosition: aCellPosition. 
+	cellToTakeObjectsFrom take.!
+!PlayableCharacter methodsFor: 'taking objects' stamp: 'CR 12/10/2020 20:33:59' prior: 50968080!
+take
+	room takeObjectsFromCell: self positionOfCellToTakeObjectsOf by: self.! !
+!PlayableCharacter methodsFor: 'taking objects' stamp: 'CR 12/10/2020 20:34:10' prior: 50968156!
+take
+	room takeObjectsFromCell: (self positionOfCellToTakeObjectsOf) by: self.! !
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 20:34:25'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 20:34:25'!
+ERROR!
+!OccupiedCell methodsFor: 'nil' stamp: 'CR 12/10/2020 20:35:36' prior: 50967847!
+objectOnCell
+	self signalCellIsEmpty.! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:36:26'!
+signalCellIsEmpty
+	self error: RoomCell emptyCellErrorDescription.! !
+!RoomCell class methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:36:41'!
+emptyCellErrorDescription
+	^'Cell is empty'.! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:37:32' prior: 50968175!
+objectOnCell! !
+
+!methodRemoval: OccupiedCell #signalCellIsEmpty stamp: 'CR 12/10/2020 20:37:38'!
+signalCellIsEmpty
+	self error: RoomCell emptyCellErrorDescription.!
+
+!methodRemoval: RoomCell class #emptyCellErrorDescription stamp: 'CR 12/10/2020 20:37:49'!
+emptyCellErrorDescription
+	^'Cell is empty'.!
+!PlayableCharacter methodsFor: 'testing' stamp: 'CR 12/10/2020 20:38:44'!
+backpackIsEmpty
+	
+	^backpack isEmpty.! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:39:09' prior: 50968057!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter paper key room coke scarf |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 3.
+	
+	room put: paper at: 2@2.
+	room put: key at: 2@3.
+	room put: scarf at: 2@1.
+	room put: coke at: 3@2.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:40:39' prior: 50968206!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter paper key room coke scarf |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 3.
+	
+	self addItemsAround: room.
+	room put: paper at: 2@2.
+	room put: key at: 2@3.
+	room put: scarf at: 2@1.
+	room put: coke at: 3@2.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:41:18'!
+addItemsAround: aRoom
+
+	| paper key coke scarf |
+	
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 3.
+	
+	aRoom put: paper at: 2@2.
+	aRoom put: key at: 2@3.
+	aRoom put: scarf at: 2@1.
+	aRoom put: coke at: 3@2.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:42:55'!
+fourItems
+
+^ {
+		(PointsPortableObject named: 'left-handed hammer' weighing: 40 worth: 5).
+		(NoPointsPortableObject named: 'help-wanted sign' weighing: 1) }! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:43:56' prior: 50968272!
+fourItems
+
+^ {
+		(NoPointsPortableObject named: 'Paper' weighing: 100).
+		(NoPointsPortableObject named: 'Key' weighing: 1).
+		(NoPointsPortableObject named: 'scarf' weighing: 5).
+		(NoPointsPortableObject named: 'coke' weighing: 3) }! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:45:03' prior: 50968231!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	itemsToPutOnRoom := self fourItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:45:58'!
+addItems: items around: aRoom
+
+	| paper key coke scarf |
+	
+	paper := items at: 1.
+	key := items at: 2.
+	scarf := items at: 3.
+	coke := items at: 4.
+	
+	aRoom put: paper at: 2@2.
+	aRoom put: key at: 2@3.
+	aRoom put: scarf at: 2@1.
+	aRoom put: coke at: 3@2.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: PlayableCharacterTest #addItemsAround: stamp: 'CR 12/10/2020 20:46:01'!
+addItemsAround: aRoom
+
+	| paper key coke scarf |
+	
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	key := NoPointsPortableObject named: 'Key' weighing: 1.
+	scarf := NoPointsPortableObject named: 'scarf' weighing: 5.
+	coke := NoPointsPortableObject named: 'coke' weighing: 3.
+	
+	aRoom put: paper at: 2@2.
+	aRoom put: key at: 2@3.
+	aRoom put: scarf at: 2@1.
+	aRoom put: coke at: 3@2.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:47:41' prior: 50968292!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	itemsToPutOnRoom := self fourItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	self assertThatItemsStillInTheRoom: itemsToPutOnRoom.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:47:51'!
+assertThatItemsStillInTheRoom: itemsToPutOnRoom
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:48:22'!
+assertThatItems: items stillInTheRoom: room
+	
+	| paper key coke scarf |
+	
+	paper := items at: 1.
+	key := items at: 2.
+	scarf := items at: 3.
+	coke := items at: 4.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: PlayableCharacterTest #assertThatItemsStillInTheRoom: stamp: 'CR 12/10/2020 20:48:31'!
+assertThatItemsStillInTheRoom: itemsToPutOnRoom
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:48:42' prior: 50968336!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	itemsToPutOnRoom := self fourItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	self assertThatItems: itemsToPutOnRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:49:34' prior: 50968359!
+assertThatItems: items stillInTheRoom: room
+	
+	| paper key coke scarf |
+	
+	paper := items at: 1.
+	key := items at: 2.
+	scarf := items at: 3.
+	coke := items at: 4.
+	
+	self assert: (room is: paper at: 2@2).
+	self assert: (room is: key at: 2@2).
+	self assert: (room is: scarf at: 2@2).
+	self assert: (room is: coke at: 2@2).
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:50:40' prior: 50968392!
+assertThatItems: items stillInTheRoom: room
+	
+	| key coke scarf |
+	
+	key := items at: 1.
+	scarf := items at: 2.
+	coke := items at: 3.
+	
+	self assert: (room is: key at: 2@3).
+	self assert: (room is: scarf at: 2@1).
+	self assert: (room is: coke at: 3@2).
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:51:01' prior: 50968308!
+addItems: items around: aRoom
+
+	|  key coke scarf |
+	
+	key := items at: 1.
+	scarf := items at: 2.
+	coke := items at: 3.
+	
+	aRoom put: key at: 2@3.
+	aRoom put: scarf at: 2@1.
+	aRoom put: coke at: 3@2.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:51:13' prior: 50968374!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	itemsToPutOnRoom := self threeItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	self assertThatItems: itemsToPutOnRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'CR 12/10/2020 20:51:37'!
+threeItems
+
+^ {
+		(NoPointsPortableObject named: 'Key' weighing: 1).
+		(NoPointsPortableObject named: 'scarf' weighing: 5).
+		(NoPointsPortableObject named: 'coke' weighing: 3) }! !
+
+!methodRemoval: PlayableCharacterTest #fourItems stamp: 'CR 12/10/2020 20:51:40'!
+fourItems
+
+^ {
+		(NoPointsPortableObject named: 'Paper' weighing: 100).
+		(NoPointsPortableObject named: 'Key' weighing: 1).
+		(NoPointsPortableObject named: 'scarf' weighing: 5).
+		(NoPointsPortableObject named: 'coke' weighing: 3) }!
+
+----SNAPSHOT----(10 December 2020 20:51:46) CuisUniversity-4384.image priorSource: 20347654!
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 20:51:52'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 20:51:52'!
+ERROR!
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:52:11' prior: 50968189!
+objectOnCell
+	^objectOnCell.! !
+!EmptyCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 20:52:20'!
+objectOnCell! !
+!RoomCell methodsFor: 'player interaction' stamp: 'CR 12/10/2020 20:53:57' prior: 50967851!
+takeBy: aPlayableCharacter
+
+	cellState takeObjectsFromCell: self By: aPlayableCharacter.
+	! !
+!EmptyCell methodsFor: 'nil' stamp: 'CR 12/10/2020 20:54:43'!
+takeObjectsFromCell: cellToTakeObjectsFrom By: aPlayableCharacter! !
+
+!methodRemoval: EmptyCell #objectOnCell stamp: 'CR 12/10/2020 20:54:48'!
+objectOnCell!
+!OccupiedCell methodsFor: 'nil' stamp: 'CR 12/10/2020 20:55:09'!
+takeObjectsFromCell: cellToTakeObjectsFrom By: aPlayableCharacter
+	objectOnCell takeObjectsFromCell: cellToTakeObjectsFrom By: aPlayableCharacter.! !
+
+!methodRemoval: OccupiedCell #objectOnCell stamp: 'CR 12/10/2020 20:55:55'!
+objectOnCell
+	^objectOnCell.!
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 20:56:23'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:57:08'!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	itemsToPutOnRoom := self threeItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	self assertThatItems: itemsToPutOnRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 20:57:38' prior: 50968510!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	itemsToPutOnRoom := self threeItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assertThatItems: itemsToPutOnRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:01:06' prior: 50968528!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutOnRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	itemsToPutOnRoom := self threeItems.
+	self addItems: itemsToPutOnRoom around: room.
+	playableCharacter take.
+	self assertThatItems: itemsToPutOnRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:01:53' prior: 50968545!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:02:07' prior: 50968428!
+test12_takeWhenEmptyCellIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	self assert: playableCharacter backpackIsEmpty.
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:02:23' prior: 50968564!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: room.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!Room methodsFor: 'accessing' stamp: 'CR 12/10/2020 21:03:16'!
+isCellEmpty: aCellPosition
+	| cellAtCellPosition |
+	cellAtCellPosition := cellAt at: aCellPosition ifAbsent: [self signalPositionOutOfBounds].
+	^ cellAtCellPosition isEmpty.! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:06:36' prior: 50968603!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room isCellEmpty: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper).
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:07:14'!
+test13_takeWhenOnePortableItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room isCellEmpty: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper).
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: PlayableCharacterTest #test13_takeWhenOneItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:07:17'!
+test13_takeWhenOneItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room isCellEmpty: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper).
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:08:03'!
+test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 100.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: paper at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:08:29' prior: 50968700!
+test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NonPortableObject new.
+	
+	room put: paper at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: paper at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!NonPortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 21:09:24'!
+put: anObjectToPutInside
+	objectsInside add: anObjectToPutInside.! !
+
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name objectsInside'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #NonPortableObject category: 'ISW1-2020-2C-2doParcial' stamp: 'CR 12/10/2020 21:10:03'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name objectsInside'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!NonPortableObject class methodsFor: 'nil' stamp: 'CR 12/10/2020 21:10:27'!
+named: aName
+	
+	^ self new initializeNamed: aName.! !
+!NonPortableObject methodsFor: 'initialization' stamp: 'CR 12/10/2020 21:10:43'!
+initializeNamed: aName.
+	objectsInside := OrderedCollection new.
+	name := aName.! !
+
+!methodRemoval: NonPortableObject #initialize stamp: 'CR 12/10/2020 21:10:48'!
+initialize
+	objectsInside := OrderedCollection new.!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:11:30' prior: 50968723!
+test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	closet := NonPortableObject named: 'Closet'.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:11:35'!
+PASSED!
+
+----SNAPSHOT----(10 December 2020 21:11:43) CuisUniversity-4384.image priorSource: 20378036!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:12:39'!
+test14_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	closet := NonPortableObject named: 'Closet'.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:12:44'!
+test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	closet := NonPortableObject named: 'Closet'.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: PlayableCharacterTest #test14_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:12:46'!
+test14_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	closet := NonPortableObject named: 'Closet'.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:14:19' prior: 50968830!
+test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := false.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: paper.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:16:16' prior: 50968878!
+test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: paper.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:16:28' prior: 50968903!
+test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: playableCharacter backpackIsEmpty.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:17:41' prior: 50968931!
+test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:17:43'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:17:43'!
+FAILURE!
+
+(room is: closet at: 1@2).!
+
+(playableCharacter backpackIncludes: paper). !
+
+(playableCharacter backpackIncludes: sheet).!
+
+self totalWeight + aPortableObject weight!
+
+weightCapacity!
+
+self totalWeight!
+
+self totalWeight + aPortableObject weight - weightCapacity!
+
+playableCharacter backpackIncludes: sheet!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:12'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:18'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:18'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:21'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:21'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:24'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:27:24'!
+FAILURE!
+
+playableCharacter backpackIncludes: sheet!
+
+playableCharacter backpackIncludes: sheet!
+
+playableCharacter backpackIncludes: sheet!
+!NonPortableObject methodsFor: 'remove inside object' stamp: 'CR 12/10/2020 21:32:57' prior: 50967946!
+objectTaken: aPortableObjectInsideMe
+	objectsInside removeAllSuchThat: [:stageObject| stageObject = aPortableObjectInsideMe].! !
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:33:07'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:33:07'!
+FAILURE!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:34:27'!
+test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:34:40'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:34:40'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:34:43'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:34:43'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:34:46'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:34:46'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:38:09'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:38:09'!
+FAILURE!
+!NonPortableObject methodsFor: 'roomcell interaction' stamp: 'CR 12/10/2020 21:44:21' prior: 50967895!
+takeAllObjectsInsideMeBy: aPlayableCharacter
+	| objectsCopy |
+	objectsCopy := objectsInside copy.
+	objectsCopy do: [ :aStageObject | aStageObject takeIfPossibleFrom: self by: aPlayableCharacter].! !
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:45:11'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:46:01' prior: 50969066!
+test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	
+	box := NonPortableObject named: 'Closet'.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'CR 12/10/2020 21:46:14' prior: 50969151!
+test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	
+	box := NonPortableObject named: 'Closet'.
+	box put: sheet.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 21:47:34' prior: 50969184!
+test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: sheet.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:48:11'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 21:49:03' prior: 50969218!
+test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	phone := PointsPortableObject named: 'Phone' weighing: 7 worth: 23.
+	box := NonPortableObject named: 'Box'.
+	box put: sheet.
+	
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 21:49:38' prior: 50969257!
+test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	phone := PointsPortableObject named: 'Phone' weighing: 7 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	self assert: (playableCharacter backpackIncludes: phone). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly stamp: 'CR 12/10/2020 21:49:40'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 21:57:39'!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 3.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 2.
+	phone := PointsPortableObject named: 'Phone' weighing: 7 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: sheet). 
+	self assert: (playableCharacter backpackIncludes: phone). 
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 21:58:40' prior: 50969336!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: phone). 
+	self deny: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 21:59:37' prior: 50969373!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (room is: sheet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: phone). 
+	self deny: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 22:01:19' prior: 50967074 overrides: 50967065!
+has: anObject
+	^ (objectOnCell = anObject) or: [objectOnCell has: anObject].! !
+!PortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 22:01:34'!
+has: anObject
+	^false.! !
+!NonPortableObject methodsFor: 'nil' stamp: 'CR 12/10/2020 22:03:28'!
+has: stageObject
+	
+	(self = stageObject) or: [objectsInside anySatisfy: [:stageObjectInside | stageObjectInside has: stageObject ]].! !
+!PortableObject methodsFor: 'accessing' stamp: 'CR 12/10/2020 22:03:54' prior: 50969453!
+has: stageObject
+	^self = stageObject.! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 22:04:15' prior: 50969448 overrides: 50967065!
+has: anObject
+	^ objectOnCell has: anObject.! !
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 22:04:27' prior: 50969469 overrides: 50967065!
+has: stageObject
+	^ objectOnCell has: stageObject.! !
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:04:45'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:04:45'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 22:04:56' prior: 50969410!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	self 
+	playableCharacter take.
+	
+	self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+	self assert: (room is: closet at: 1@2).
+	self assert: (room is: sheet at: 1@2).
+	self assert: (playableCharacter backpackIncludes: paper). 
+	self assert: (playableCharacter backpackIncludes: phone). 
+	self deny: (playableCharacter backpackIncludes: sheet). 
+	
+	
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 22:06:19' prior: 50969487!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	self 
+	self 
+		should: [ playableCharacter take]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+			self assert: (room is: closet at: 1@2).
+			self assert: (room is: sheet at: 1@2).
+			self assert: (playableCharacter backpackIncludes: paper). 
+			self assert: (playableCharacter backpackIncludes: phone). 
+			self deny: (playableCharacter backpackIncludes: sheet). ]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:06:22'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:06:22'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 22:06:34' prior: 50969525!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	self 
+		should: [ playableCharacter take]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+			self assert: (room is: closet at: 1@2).
+			self assert: (room is: sheet at: 1@2).
+			self assert: (playableCharacter backpackIncludes: paper). 
+			self assert: (playableCharacter backpackIncludes: phone). 
+			self deny: (playableCharacter backpackIncludes: sheet). ]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:06:36'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:06:36'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:06:45'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:06:45'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 22:07:10' prior: 50969577!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	self 
+		should: [ playableCharacter take]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+			self assert: (room is: closet at: 1@2).
+			self assert: (room is: sheet at: 1@2).
+			self assert: (playableCharacter backpackIncludes: paper). 
+			self assert: (playableCharacter backpackIncludes: phone). 
+			self deny: (playableCharacter backpackIncludes: sheet). ]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:07:16'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:07:20'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:07:20'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:07:24'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_takeWhenOnePortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:07:24'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:07:24'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:07:24'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:07:24'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:07:24'!
+ERROR!
+!OccupiedCell methodsFor: 'accessing' stamp: 'CR 12/10/2020 18:54:35' prior: 50969474 overrides: 50967065!
+has: anObject
+	^objectOnCell = anObject.! !
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_takeWhenOnePortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:08:16'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:08:16'!
+FAILURE!
+!PlayableCharacterTest methodsFor: 'take' stamp: 'CR 12/10/2020 22:08:31' prior: 50969637!
+test17_takeWhenItemsGetTheBackpackFilledRaisesError
+
+	| playableCharacter room itemsToPutInRoom closet paper sheet box phone |
+	room := self defaultRoom.
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 2@2 heading: #West in: room.
+	paper := NoPointsPortableObject named: 'Paper' weighing: 20.
+	sheet := NoPointsPortableObject named: 'Sheet' weighing: 10.
+	phone := PointsPortableObject named: 'Phone' weighing: 75 worth: 23.
+	
+	box := NonPortableObject named: 'Box'.
+	box put: phone.
+	closet := NonPortableObject named: 'Closet'.
+	closet put: box.
+	closet put: paper.
+	closet put: sheet.
+	
+	room put: closet at: 1@2.
+	itemsToPutInRoom := self threeItems.
+	self addItems: itemsToPutInRoom around: room.
+	"
+	self 
+		should: [ playableCharacter take]
+		raise: Error
+		withExceptionDo: [:anError |
+			self assert: Backpack maxWeightExceededErrorDescription equals: anError messageText.
+			self assertThatItems: itemsToPutInRoom stillInTheRoom: room.
+			self assert: (room is: closet at: 1@2).
+			self assert: (room is: sheet at: 1@2).
+			self assert: (playableCharacter backpackIncludes: paper). 
+			self assert: (playableCharacter backpackIncludes: phone). 
+			self deny: (playableCharacter backpackIncludes: sheet). ]
+	
+	
+	"
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test12_takeWhenEmptyCellIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:40'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_takeWhenOnePortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:40'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_takeWhenOneNonPortableItemIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:40'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_takeWhenOneNonPortableWithManyPortableItemsInsideIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:40'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_takeWhenOneNonPortableWithManyPortableItemsInsideOtherNonPortableIsForwardWorksCorrectly stamp: 'CR 12/10/2020 22:08:40'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_takeWhenItemsGetTheBackpackFilledRaisesError stamp: 'CR 12/10/2020 22:08:40'!
+PASSED!
+
+!testRun: #RoomTest #test01CanNotCreateRoomWithNonPositiveWidth stamp: 'CR 12/10/2020 22:08:49'!
+PASSED!
+
+!testRun: #RoomTest #test02CanNotCreateRoomWithNonPositiveHeight stamp: 'CR 12/10/2020 22:08:49'!
+PASSED!
+
+!testRun: #RoomTest #test03WhenCreatingValidRoomAllCellsAreEmpty stamp: 'CR 12/10/2020 22:08:49'!
+PASSED!
+
+!testRun: #RoomTest #test04OccupyNonEmptyRoomCellRaisesError stamp: 'CR 12/10/2020 22:08:51'!
+PASSED!
+
+!testRun: #RoomTest #test05OccupyCellWorksCorrectly stamp: 'CR 12/10/2020 22:08:51'!
+PASSED!

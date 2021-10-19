@@ -1,0 +1,2307 @@
+
+
+----STARTUP---- (9 November 2020 15:07:17) as /home/leandro/Documents/Ingeniería de Software 1/CleanCuis/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Downloads/Portfolio-Ejercicio.st----!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:10:16' prior: 50867938!
+test11
+	
+	| secondChildPortfolio  childPortfolio grandParentPortfolio|
+	
+	secondChildPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	grandParentPortfolio := Portfolio new.
+	
+	grandParentPortfolio register: childPortfolio.
+	grandParentPortfolio  register: secondChildPortfolio.	
+
+	self 
+		should: [secondChildPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:10:51' prior: 50868397!
+test11
+	
+	| childPortfolio secondChildPortfolio parentPortfolio|
+	
+	secondChildPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	parentPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	parentPortfolio  register: secondChildPortfolio.	
+
+	self 
+		should: [secondChildPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!testRun: #PortafolioTest #test01 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test09 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test11 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test12 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test13 stamp: 'LNB 11/9/2020 15:10:54'!
+PASSED!
+!AccountTransaction methodsFor: 'operation' stamp: 'LNB 11/9/2020 15:17:55'!
+logTo: accountValue
+	self subclassResponsibility.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:17:55' overrides: 50868465!
+logTo: accountValue
+ 	^ accountValue - value.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:17:55' overrides: 50868465!
+logTo: accountValue
+	^ accountValue + value.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:17:55' prior: 50868382 overrides: 50868205!
+balance
+
+	|balance|
+	balance := 0.
+	transactions do: [ :aTransaction | balance := aTransaction logTo: balance ].
+	^balance.! !
+
+!methodRemoval: AccountTransaction #operation: stamp: 'LNB 11/9/2020 15:17:55'!
+operation: accountValue
+	self subclassResponsibility.!
+
+!methodRemoval: Withdraw #operation: stamp: 'LNB 11/9/2020 15:17:55'!
+operation: accountValue
+ 	^ accountValue - value.!
+
+!methodRemoval: Deposit #operation: stamp: 'LNB 11/9/2020 15:17:55'!
+operation: accountValue
+	^ accountValue + value.!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:20:44'!
+test01BalanceIsZeroWhenCreatingAPortfolio
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+!OtherTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825614!
+test08ReRunTheWholeAnalysis
+	| result changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA
+	].
+		
+	result _ tddGuru run.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	].
+
+	result _ tddGuru rerun.
+	changes := result changes.
+	self assert: changes size equals: 4.
+
+	! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825900!
+test11WhenATestClassIsAddedIsStillInRed
+	| result |
+		
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #TestSomethingB subclassOf: TestCase. ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!NotStartedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825450!
+test12WhenATestIsChangedThenIsWritingAFailingTest
+	| result |
+	
+	self newClassNamed: #TestSomething subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomething.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomething}.
+	
+	self logChangesWhile: [ self compileMethod: 'test01 self assert: false' in: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test01BalanceIsZeroWhenCreatingAPortfolio.! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825815!
+test08WhenATestIsAddedIsNotDoingTDD
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'test02 self assert: false.' in: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assert: tddGuru currentState equals: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedErrorMessage: #test02 class: #TestSomething).! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825739!
+test05WhenAProductionMethodIsChangedIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self compileMethod: 'm1 ^ 2' in: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826842!
+test19AnotherTestIsRemovedAnErrorIsReportedAndIsStillWritingAFailingTest
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self newClassNamed: #TestClassB subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true.' in: #TestClassA.
+	self compileMethod: 'test01 self assert: true.' in: #TestClassB.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA . self classNamed: #TestClassB }.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test02 self assert: false.' in: #TestClassA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestClassB ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru methodRemovedWhileWritingATest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassB).
+	self assert: tddGuru currentState equals: WritingAFailingTest.! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825720!
+test04WhenTheTestFailsIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 2' in: #ModelClass.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826537!
+test04WhenATestFailsThenIsInRedState
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826691!
+test12WhenADifferentTestIsChangedThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestSomethingA.
+	self compileMethod: 'test02 self assert: false' in: #TestSomethingA.
+	tddGuru initialState: (WritingAFailingTest currentTest: (UninstalledMethodReference selector: #test02 class: #TestSomethingA)).
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA}.
+	
+	self logChangesWhile: [ 	
+		self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testChangedWhileThisTestWasBeingWritten: #test01BalanceIsZeroWhenCreatingAPortfolio in: #TestSomethingA)
+	! !
+!OtherTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825580!
+test06WhenATestHasAnErrorThisTestDoesNotFail
+	| result changes |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 ^ self error: ''An error''' in: #TestClassA.
+	
+	self logChangesWhile: [ 
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA
+	].
+		
+	result _ tddGuru run.
+	changes := result changes.
+	self assert: changes size equals: 1.
+	self assert: changes first category equals: #testRun.
+	self assert: changes first testSelector equals: #test01BalanceIsZeroWhenCreatingAPortfolio.
+	! !
+!NotStartedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825470!
+test13WhenATestIsRenamedThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomething subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomething.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomething}.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01A self assert: false' in: #TestSomething. 
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assert: tddGuru currentState equals: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testRenamedBeforeRunningTheTests: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething)! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826887!
+test21WhenAModelMethodIsAddedBeforeRunningTestsThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: #test01BalanceIsZeroWhenCreatingAPortfolio in: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru modelMethodAddedBeforeRunningTests: #m1 class: #ModelClass).
+	self assert: tddGuru currentState equals: NotDoingTDD.! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825954!
+test14WhenATestIsRemovedResultShouldHaveAnErrorAndIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomething subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true.' in: #TestSomething.
+	tddGuru initialTestClasses: { self classNamed: #TestSomething }.
+		
+	self logChangesWhile: [ 
+		self compileMethod: 'test02 self assert: false.' in: #TestSomething. 
+		self runTest: #test02 class: #TestSomething.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testRemovedWhileInRed: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething)! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825701!
+test03WhenTheTestPassesThenIsInGreen
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Green.! !
+!NotDoingTDDTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825189!
+test11WhenATestIsRenamedIsStillNotDoingTDD
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClassA.
+	tddGuru initialState: NotDoingTDD new.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01bla self assert: false' in: #TestClassA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestClassA ].
+	
+	tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD ! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826719!
+test13WhenATestWithTheSameNameIsAddedInOtherClassThenIsInMoreThanOneTestWritten
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self newClassNamed: #TestSomethingB subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA. self classNamed: #TestSomethingB }.
+	tddGuru initialState: (WritingAFailingTest currentTest: (UninstalledMethodReference selector: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomethingA)).
+	
+	self logChangesWhile: [ 	
+		self compileMethod: 'test01 self assert: false' in: #TestSomethingB.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: MoreThanOneTestWritten .
+	self assertHasNoErrors: result.
+! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825884!
+test11WhenAModelClassIsRemovedIsStillInRed
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object. 
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self removeClass: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!RefactorTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826059!
+test05WhenATestIsRenamedIsStillRefactoring
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClassA.
+	tddGuru initialState: Refactor new.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA}.
+	
+	self logChangesWhile: [  
+		self compileMethod: 'test01A self assert: true' in: #TestClassA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestClassA ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Refactor.! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50826824!
+test18WhenTheTestPassesAnErrorIsReportedAndGoesToGreen
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething).
+	self assert: tddGuru currentState equals: Green.! !
+!GreenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50824554!
+test10WhenATestIsRenamedThenIsRefactoring
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClass.
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01A self assert: true' in: #TestClass.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Refactor.! !
+!OtherTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825500!
+test02ResultKnowsTheChangesThatWereDone
+	| result changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClass subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestClass. 
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass.
+	].
+		
+	result _ tddGuru run.
+	
+	changes := result changes.
+	self assert: changes size equals: 3.
+	self assert: changes first category equals: #newTestClass.
+	self assert: changes second category equals: #newTest.
+	self assert: changes third category equals: #testRun.! !
+!OtherTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:44' prior: 50825598!
+test07RunFromASpecificChange
+	| result changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #ExampleClass subclassOf: Object.
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 ^ self error: ''An error''' in: #TestClassA.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA
+	].
+		
+	tddGuru startingFromChange: 2.
+	result _ tddGuru run.
+	changes := result changes.
+	self assert: changes size equals: 3.
+
+	! !
+!RefactorTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50826449!
+test23WhenATestClassIsRenamedThoseTestsAreStillTakenIntoAccount
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: ModelClassA new m1 equals: 1' in: #TestClassA.
+		self runAllTestsOf: #TestClassA.
+		self newClassNamed: #ModelClassA subclassOf: Object.
+		self compileMethod: 'm1 ^ 1' in: #ModelClassA.
+		self runAllTestsOf: #TestClassA.
+		self renameClass: #TestClassA to: #TestClassB.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassB
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Green.
+	self assertHasNoErrors: result ! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50826782!
+test16WhenATestIsRenamedThenIsStillWritingAFailingTest
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA }.
+
+	self logChangesWhile: [ 	
+		self compileMethod: 'test02 self assert: false' in: #TestSomethingA.
+		self compileMethod: 'test01A self assert: true' in: #TestSomethingA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestSomethingA.
+		self compileMethod: 'test02 self assert: false' in: #TestSomethingA.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assertHasNoErrors: result.
+! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824966!
+test15WhenAllOfTheTestsPassErrorsAreReportedAndGoesToGreen
+	| result |
+	
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+		self compileMethod: 'test02 self assert: true' in: #TestClassA.
+		self runAllTestsOf: #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: Green.
+	self assert: result hasNErrors: 3.
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA).
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test02 class: #TestClassA).
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test02 class: #TestClassA)! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824922!
+test13WhenATestFailsAnErrorIsReportedAndGoesToRed
+	| result |
+	
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self compileMethod: 'test02 self assert: false' in: #TestClassA.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: Red.
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test02 class: #TestClassA)! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825011!
+test17WhenAnotherTestIsRenamedIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	
+	self logChangesWhile: [
+		self compileMethod: 'test02 self assert: true' in: #TestClassA.
+		self compileMethod: 'test03 self assert: true' in: #TestClassA.
+		self compileMethod: 'test01bla self assert: true' in: #TestClassA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test03 class: #TestClassA)! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825785!
+test07WhenAllTestsPassThenIsInGreen
+	| result |
+	self newClassNamed: #ModelClass subclassOf: Object.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'test02 self assert: (ModelClass new m2) equals: 2.' in: #TestSomething.
+		self runTest: #test02 class: #TestSomething.
+		self compileMethod: 'm1 ^ 2' in: #ModelClass.
+		self compileMethod: 'm2 ^ 2' in: #ModelClass.
+		self runAllTestsOf: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runAllTestsOf: #TestSomething ].
+
+	result _ tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: Green.! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50826871!
+test20WhenAFirstTestIsAddedIsStillWritingAFailingTest
+	| result |
+	
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true.' in: #TestClassA. ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test01BalanceIsZeroWhenCreatingAPortfolio.! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825758!
+test06WhenTheNewTestPassesButAnotherTestFailsThenIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'test02 self assert: (ModelClass new m1) equals: 2.' in: #TestSomething.
+		self runTest: #test02 class: #TestSomething.
+		self compileMethod: 'm1 ^ 2' in: #ModelClass.
+		self runAllTestsOf: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!OtherTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825519!
+test03TDDStateForEachChange
+	| result firstChange secondChange thirdChange changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClass subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestClass.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass
+	].
+		
+	result _ tddGuru run.
+		
+	changes := result changes.
+	firstChange := changes first.
+	secondChange := changes second.
+	thirdChange := changes third.
+	
+	self assert: (result stateAfter: firstChange) equals: WritingAFailingTest .
+	self assert: (result stateAfter: secondChange) equals: WritingAFailingTest .
+	self assert: (result stateAfter: thirdChange) equals: Red .! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824705!
+test03WhenTheFirstOfTheTestsIsRemovedIsBackToWritingAFailingTest
+	| result |
+
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self compileMethod: 'test02 self assert: false' in: #TestClassA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from:  #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test02
+	! !
+!GreenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824533!
+test09WhenATestHasAnErrorAnErrorIsReportedAndTransitionsToRed
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self error' in: #TestClass. 
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testUnexpectedlyFailedErrorMessage: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass).
+	self assert: tddGuru currentState equals: Red.
+	! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825916!
+test12WhenTheTestIsChangedIsStillInRed
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object. 
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'test01 self assert: true.' in: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!GreenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824574!
+test11WhenATestFailsAnErrorIsReportedAndTransitionsToRed
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClass.
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testUnexpectedlyFailedErrorMessage: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass).
+	self assert: tddGuru currentState equals: Red.! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824725!
+test04WhenAnotherTestIsRemovedIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+
+	self logChangesWhile: [
+		self newClassNamed: #TestClassB subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassB.
+		self compileMethod: 'test02 self assert: false' in: #TestClassB.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from:  #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasNErrors: 1. 
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother:  #test02 class: #TestClassB).! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824942!
+test14WhenOneOfTheTestsPassesTwoErrorsAreReported
+	| result |
+	
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+		self compileMethod: 'test02 self assert: true' in: #TestClassA.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: MoreThanOneTestWritten.
+	self assert: result hasNErrors: 2.
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA).
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test02 class: #TestClassA)! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825865!
+test10WhenAModelMethodIsRemovedIsStillInRed
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object. 
+	self compileMethod: 'm1 ^ 1.' in: #ModelClass.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self removeMethodWithSelector: #m1 from: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!OtherTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825631!
+test09ReRunFromASpecificChange
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #ModelClassA subclassOf: Object.
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA
+	].
+		
+	tddGuru startingFromChange: 2.
+	tddGuru run.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	].
+
+	result _ tddGuru rerun.
+	self assert: result changes size equals: 4.
+
+	! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825668!
+test01WhenAProductionClassIsAddedIsStillInRed
+	| result  |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #ProductionClass subclassOf: Object ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825684!
+test02WhenAProductionMethodIsAddedIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50826767!
+test15WhenTheTestIsRemovedThenIsInGreen
+	| result |
+
+	self logChangesWhile: [ 	
+		self newClassNamed: #TestSomethingA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+		self removeMethodWithSelector: #test01BalanceIsZeroWhenCreatingAPortfolio from: #TestSomethingA.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Green.
+	self assertHasNoErrors: result.
+! !
+!WritingAFailingTestTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50826661!
+test11WhenATestWithTheSameNameIsChangedInOtherClassThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self newClassNamed: #TestSomethingB subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingB.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA. self classNamed: #TestSomethingB }.
+	tddGuru initialState: (WritingAFailingTest currentTest: (UninstalledMethodReference selector: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomethingA)).
+	
+	self logChangesWhile: [ 	
+		self compileMethod: 'test01 self assert: false' in: #TestSomethingB.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testChangedWhileThisTestWasBeingWritten:  #test01BalanceIsZeroWhenCreatingAPortfolio in: #TestSomethingB)! !
+!RedTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825834!
+test09WhenATestIsRenamedAndAllTestsPassThenIsInGreen
+	| result |
+	self newClassNamed: #ModelClass subclassOf: Object.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestSomething.
+		self compileMethod: 'test02 self assert: (ModelClass new m2) equals: 2.' in: #TestSomething.
+		self runTest: #test02 class: #TestSomething.
+		self compileMethod: 'test02A self assert: (ModelClass new m2) equals: 2.' in: #TestSomething.
+		self removeMethodWithSelector: #test02 from: #TestSomething.
+		self compileMethod: 'm2 ^ 2' in: #ModelClass.
+		self runAllTestsOf: #TestSomething ].
+
+	result _ tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: Green.! !
+!RefactorTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50826202!
+test13WhenATestIsRemovedIsNoLongerTakenIntoAccount
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	self compileMethod: 'test02 self assert: true' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	
+	tddGuru initialState: Refactor new.
+	
+	self logChangesWhile: [ 
+		self removeMethodWithSelector: #test02 from: #TestClassA.
+		self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Green.! !
+!GreenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824502!
+test07WhenATestPassesNothingHappens
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClass.
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Green.! !
+!NotDoingTDDTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825139!
+test08WhenThereIsOneTestAndPassesThenIsInGreen
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA}.
+	tddGuru initialState: (NotDoingTDD new).
+	
+	self logChangesWhile: [ self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA ].
+	
+	tddGuru run.
+	
+	self assertCurrentStateIs: Green ! !
+!MoreThanOneTestWrittenTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50824685!
+test02WhenTheLastOfTheTestsIsRemovedIsBackToWritingAFailingTest
+	| result |
+
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self compileMethod: 'test02 self assert: false' in: #TestClassA.
+		self removeMethodWithSelector: #test02 from:  #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test01BalanceIsZeroWhenCreatingAPortfolio
+	! !
+!NotDoingTDDTest methodsFor: 'as yet unclassified' stamp: 'LNB 11/9/2020 15:20:45' prior: 50825171!
+test10WhenOneOfTheTestIsNotRunThenIsStillNotDoingTDD
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 ^ self assert: true' in: #TestClassA.
+	self compileMethod: 'test02 ^ self assert: true' in: #TestClassA.
+
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	tddGuru initialState: NotDoingTDD new.
+	
+	self logChangesWhile: [ self runTest: #test01BalanceIsZeroWhenCreatingAPortfolio class: #TestClassA ].
+	
+	tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD ! !
+
+!methodRemoval: PortafolioTest #test01 stamp: 'LNB 11/9/2020 15:20:45'!
+test01
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.!
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 3/3/2020 18:47:29' prior: 50868754!
+test21WhenAModelMethodIsAddedBeforeRunningTestsThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: #test01 in: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru modelMethodAddedBeforeRunningTests: #m1 class: #ModelClass).
+	self assert: tddGuru currentState equals: NotDoingTDD.! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 3/3/2020 15:54:11' prior: 50869158!
+test20WhenAFirstTestIsAddedIsStillWritingAFailingTest
+	| result |
+	
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true.' in: #TestClassA. ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test01.! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/15/2019 21:00:10' prior: 50868609!
+test19AnotherTestIsRemovedAnErrorIsReportedAndIsStillWritingAFailingTest
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self newClassNamed: #TestClassB subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true.' in: #TestClassA.
+	self compileMethod: 'test01 self assert: true.' in: #TestClassB.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA . self classNamed: #TestClassB }.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test02 self assert: false.' in: #TestClassA.
+		self removeMethodWithSelector: #test01 from: #TestClassB ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru methodRemovedWhileWritingATest: #test01 class: #TestClassB).
+	self assert: tddGuru currentState equals: WritingAFailingTest.! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:08:20' prior: 50868913!
+test18WhenTheTestPassesAnErrorIsReportedAndGoesToGreen
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test01 class: #TestSomething).
+	self assert: tddGuru currentState equals: Green.! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/2/2019 21:36:22' prior: 50869019!
+test16WhenATestIsRenamedThenIsStillWritingAFailingTest
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA }.
+
+	self logChangesWhile: [ 	
+		self compileMethod: 'test02 self assert: false' in: #TestSomethingA.
+		self compileMethod: 'test01A self assert: true' in: #TestSomethingA.
+		self removeMethodWithSelector: #test01 from: #TestSomethingA.
+		self compileMethod: 'test02 self assert: false' in: #TestSomethingA.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assertHasNoErrors: result.
+! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 19:16:14' prior: 50869455!
+test15WhenTheTestIsRemovedThenIsInGreen
+	| result |
+
+	self logChangesWhile: [ 	
+		self newClassNamed: #TestSomethingA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+		self removeMethodWithSelector: #test01 from: #TestSomethingA.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Green.
+	self assertHasNoErrors: result.
+! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/6/2019 18:11:46' prior: 50868845!
+test13WhenATestWithTheSameNameIsAddedInOtherClassThenIsInMoreThanOneTestWritten
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self newClassNamed: #TestSomethingB subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA. self classNamed: #TestSomethingB }.
+	tddGuru initialState: (WritingAFailingTest currentTest: (UninstalledMethodReference selector: #test01 class: #TestSomethingA)).
+	
+	self logChangesWhile: [ 	
+		self compileMethod: 'test01 self assert: false' in: #TestSomethingB.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: MoreThanOneTestWritten .
+	self assertHasNoErrors: result.
+! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:07:45' prior: 50868679!
+test12WhenADifferentTestIsChangedThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestSomethingA.
+	self compileMethod: 'test02 self assert: false' in: #TestSomethingA.
+	tddGuru initialState: (WritingAFailingTest currentTest: (UninstalledMethodReference selector: #test02 class: #TestSomethingA)).
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA}.
+	
+	self logChangesWhile: [ 	
+		self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testChangedWhileThisTestWasBeingWritten: #test01 in: #TestSomethingA)
+	! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:07:38' prior: 50869472!
+test11WhenATestWithTheSameNameIsChangedInOtherClassThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomethingA subclassOf: TestCase.
+	self newClassNamed: #TestSomethingB subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingA.
+	self compileMethod: 'test01 self assert: true' in: #TestSomethingB.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomethingA. self classNamed: #TestSomethingB }.
+	tddGuru initialState: (WritingAFailingTest currentTest: (UninstalledMethodReference selector: #test01 class: #TestSomethingA)).
+	
+	self logChangesWhile: [ 	
+		self compileMethod: 'test01 self assert: false' in: #TestSomethingB.
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testChangedWhileThisTestWasBeingWritten:  #test01 in: #TestSomethingB)! !
+!WritingAFailingTestTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:39:14' prior: 50868663!
+test04WhenATestFailsThenIsInRedState
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!RefactorTest methodsFor: 'tests' stamp: 'MGD 12/19/2019 20:08:26' prior: 50868995!
+test23WhenATestClassIsRenamedThoseTestsAreStillTakenIntoAccount
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: ModelClassA new m1 equals: 1' in: #TestClassA.
+		self runAllTestsOf: #TestClassA.
+		self newClassNamed: #ModelClassA subclassOf: Object.
+		self compileMethod: 'm1 ^ 1' in: #ModelClassA.
+		self runAllTestsOf: #TestClassA.
+		self renameClass: #TestClassA to: #TestClassB.
+		self runTest: #test01 class: #TestClassB
+	].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Green.
+	self assertHasNoErrors: result ! !
+!RefactorTest methodsFor: 'tests' stamp: 'MGD 10/14/2019 18:52:49' prior: 50869540!
+test13WhenATestIsRemovedIsNoLongerTakenIntoAccount
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	self compileMethod: 'test02 self assert: true' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	
+	tddGuru initialState: Refactor new.
+	
+	self logChangesWhile: [ 
+		self removeMethodWithSelector: #test02 from: #TestClassA.
+		self runTest: #test01 class: #TestClassA ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Green.! !
+!RefactorTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:33:49' prior: 50868891!
+test05WhenATestIsRenamedIsStillRefactoring
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClassA.
+	tddGuru initialState: Refactor new.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA}.
+	
+	self logChangesWhile: [  
+		self compileMethod: 'test01A self assert: true' in: #TestClassA.
+		self removeMethodWithSelector: #test01 from: #TestClassA ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Refactor.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 3/8/2020 14:47:39' prior: 50868776!
+test14WhenATestIsRemovedResultShouldHaveAnErrorAndIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomething subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true.' in: #TestSomething.
+	tddGuru initialTestClasses: { self classNamed: #TestSomething }.
+		
+	self logChangesWhile: [ 
+		self compileMethod: 'test02 self assert: false.' in: #TestSomething. 
+		self runTest: #test02 class: #TestSomething.
+		self removeMethodWithSelector: #test01 from: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testRemovedWhileInRed: #test01 class: #TestSomething)! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 10/14/2019 14:51:26' prior: 50869276!
+test12WhenTheTestIsChangedIsStillInRed
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object. 
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'test01 self assert: true.' in: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 11/2/2019 16:44:19' prior: 50868526!
+test11WhenATestClassIsAddedIsStillInRed
+	| result |
+		
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #TestSomethingB subclassOf: TestCase. ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 10/3/2019 20:21:32' prior: 50868872!
+test11WhenAModelClassIsRemovedIsStillInRed
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object. 
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self removeClass: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 10/3/2019 20:20:27' prior: 50869375!
+test10WhenAModelMethodIsRemovedIsStillInRed
+	| result |
+	
+	self newClassNamed: #ModelClass subclassOf: Object. 
+	self compileMethod: 'm1 ^ 1.' in: #ModelClass.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self removeMethodWithSelector: #m1 from: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertCurrentStateIs: Red.
+	self assertHasNoErrors: result.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:30:16' prior: 50869505!
+test09WhenATestIsRenamedAndAllTestsPassThenIsInGreen
+	| result |
+	self newClassNamed: #ModelClass subclassOf: Object.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'test02 self assert: (ModelClass new m2) equals: 2.' in: #TestSomething.
+		self runTest: #test02 class: #TestSomething.
+		self compileMethod: 'test02A self assert: (ModelClass new m2) equals: 2.' in: #TestSomething.
+		self removeMethodWithSelector: #test02 from: #TestSomething.
+		self compileMethod: 'm2 ^ 2' in: #ModelClass.
+		self runAllTestsOf: #TestSomething ].
+
+	result _ tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: Green.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:04:52' prior: 50868566!
+test08WhenATestIsAddedIsNotDoingTDD
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'test02 self assert: false.' in: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assert: tddGuru currentState equals: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedErrorMessage: #test02 class: #TestSomething).! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:30:42' prior: 50869124!
+test07WhenAllTestsPassThenIsInGreen
+	| result |
+	self newClassNamed: #ModelClass subclassOf: Object.
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'test02 self assert: (ModelClass new m2) equals: 2.' in: #TestSomething.
+		self runTest: #test02 class: #TestSomething.
+		self compileMethod: 'm1 ^ 2' in: #ModelClass.
+		self compileMethod: 'm2 ^ 2' in: #ModelClass.
+		self runAllTestsOf: #TestSomething.
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runAllTestsOf: #TestSomething ].
+
+	result _ tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: Green.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:21:33' prior: 50869175!
+test06WhenTheNewTestPassesButAnotherTestFailsThenIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01 class: #TestSomething.
+		self compileMethod: 'test02 self assert: (ModelClass new m1) equals: 2.' in: #TestSomething.
+		self runTest: #test02 class: #TestSomething.
+		self compileMethod: 'm1 ^ 2' in: #ModelClass.
+		self runAllTestsOf: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:19:22' prior: 50868587!
+test05WhenAProductionMethodIsChangedIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self compileMethod: 'm1 ^ 2' in: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:18:13' prior: 50868640!
+test04WhenTheTestFailsIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 2' in: #ModelClass.
+		self runTest: #test01 class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:15:01' prior: 50868802!
+test03WhenTheTestPassesThenIsInGreen
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: (ModelClass new m1) equals: 1.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass.
+		self runTest: #test01 class: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Green.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:06:46' prior: 50869435!
+test02WhenAProductionMethodIsAddedIsStillInRed
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #ModelClass subclassOf: Object. 
+		self compileMethod: 'm1 ^ 1' in: #ModelClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!RedTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 12:05:49' prior: 50869417!
+test01WhenAProductionClassIsAddedIsStillInRed
+	| result  |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestSomething subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestSomething.
+		self runTest: #test01 class: #TestSomething.
+		self newClassNamed: #ProductionClass subclassOf: Object ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Red.! !
+!OtherTest methodsFor: 'tests' stamp: 'MGD 11/7/2019 20:55:58' prior: 50869396!
+test09ReRunFromASpecificChange
+	| result |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #ModelClassA subclassOf: Object.
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self runTest: #test01 class: #TestClassA
+	].
+		
+	tddGuru startingFromChange: 2.
+	tddGuru run.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	].
+
+	result _ tddGuru rerun.
+	self assert: result changes size equals: 4.
+
+	! !
+!OtherTest methodsFor: 'tests' stamp: 'MGD 11/7/2019 20:42:21' prior: 50868507!
+test08ReRunTheWholeAnalysis
+	| result changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self runTest: #test01 class: #TestClassA
+	].
+		
+	result _ tddGuru run.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	].
+
+	result _ tddGuru rerun.
+	changes := result changes.
+	self assert: changes size equals: 4.
+
+	! !
+!OtherTest methodsFor: 'tests' stamp: 'MGD 9/26/2019 20:44:32' prior: 50868977!
+test07RunFromASpecificChange
+	| result changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #ExampleClass subclassOf: Object.
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 ^ self error: ''An error''' in: #TestClassA.
+		self runTest: #test01 class: #TestClassA
+	].
+		
+	tddGuru startingFromChange: 2.
+	result _ tddGuru run.
+	changes := result changes.
+	self assert: changes size equals: 3.
+
+	! !
+!OtherTest methodsFor: 'tests' stamp: 'MGD 9/9/2019 20:17:40' prior: 50868708!
+test06WhenATestHasAnErrorThisTestDoesNotFail
+	| result changes |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 ^ self error: ''An error''' in: #TestClassA.
+	
+	self logChangesWhile: [ 
+		self runTest: #test01 class: #TestClassA
+	].
+		
+	result _ tddGuru run.
+	changes := result changes.
+	self assert: changes size equals: 1.
+	self assert: changes first category equals: #testRun.
+	self assert: changes first testSelector equals: #test01.
+	! !
+!OtherTest methodsFor: 'tests' stamp: 'MGD 9/9/2019 20:19:34' prior: 50869205!
+test03TDDStateForEachChange
+	| result firstChange secondChange thirdChange changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClass subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestClass.
+		self runTest: #test01 class: #TestClass
+	].
+		
+	result _ tddGuru run.
+		
+	changes := result changes.
+	firstChange := changes first.
+	secondChange := changes second.
+	thirdChange := changes third.
+	
+	self assert: (result stateAfter: firstChange) equals: WritingAFailingTest .
+	self assert: (result stateAfter: secondChange) equals: WritingAFailingTest .
+	self assert: (result stateAfter: thirdChange) equals: Red .! !
+!OtherTest methodsFor: 'tests' stamp: 'MGD 9/9/2019 20:18:37' prior: 50868956!
+test02ResultKnowsTheChangesThatWereDone
+	| result changes |
+	
+	self logChangesWhile: [ 
+		self newClassNamed: #TestClass subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false.' in: #TestClass. 
+		self runTest: #test01 class: #TestClass.
+	].
+		
+	result _ tddGuru run.
+	
+	changes := result changes.
+	self assert: changes size equals: 3.
+	self assert: changes first category equals: #newTestClass.
+	self assert: changes second category equals: #newTest.
+	self assert: changes third category equals: #testRun.! !
+!NotStartedTest methodsFor: 'tests' stamp: 'MGD 10/14/2019 11:17:15' prior: 50868729!
+test13WhenATestIsRenamedThenIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestSomething subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomething.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomething}.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01A self assert: false' in: #TestSomething. 
+		self removeMethodWithSelector: #test01 from: #TestSomething ].
+		
+	result _ tddGuru run.
+		
+	self assert: tddGuru currentState equals: NotDoingTDD.
+	self assert: result hasErrorWithDescription: (TDDGuru testRenamedBeforeRunningTheTests: #test01 class: #TestSomething)! !
+!NotStartedTest methodsFor: 'tests' stamp: 'MGD 3/2/2020 16:58:26' prior: 50868544!
+test12WhenATestIsChangedThenIsWritingAFailingTest
+	| result |
+	
+	self newClassNamed: #TestSomething subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestSomething.
+	
+	tddGuru initialTestClasses: { self classNamed: #TestSomething}.
+	
+	self logChangesWhile: [ self compileMethod: 'test01 self assert: false' in: #TestSomething. ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test01.! !
+!NotDoingTDDTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 11:38:21' prior: 50868825!
+test11WhenATestIsRenamedIsStillNotDoingTDD
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClassA.
+	tddGuru initialState: NotDoingTDD new.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01bla self assert: false' in: #TestClassA.
+		self removeMethodWithSelector: #test01 from: #TestClassA ].
+	
+	tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD ! !
+!NotDoingTDDTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 11:37:13' prior: 50869622!
+test10WhenOneOfTheTestIsNotRunThenIsStillNotDoingTDD
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 ^ self assert: true' in: #TestClassA.
+	self compileMethod: 'test02 ^ self assert: true' in: #TestClassA.
+
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	tddGuru initialState: NotDoingTDD new.
+	
+	self logChangesWhile: [ self runTest: #test01 class: #TestClassA ].
+	
+	tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD ! !
+!NotDoingTDDTest methodsFor: 'tests' stamp: 'MGD 9/14/2019 11:33:26' prior: 50869582!
+test08WhenThereIsOneTestAndPassesThenIsInGreen
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA}.
+	tddGuru initialState: (NotDoingTDD new).
+	
+	self logChangesWhile: [ self runTest: #test01 class: #TestClassA ].
+	
+	tddGuru run.
+	
+	self assertCurrentStateIs: Green ! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 18:42:10' prior: 50869096!
+test17WhenAnotherTestIsRenamedIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+	
+	self logChangesWhile: [
+		self compileMethod: 'test02 self assert: true' in: #TestClassA.
+		self compileMethod: 'test03 self assert: true' in: #TestClassA.
+		self compileMethod: 'test01bla self assert: true' in: #TestClassA.
+		self removeMethodWithSelector: #test01 from: #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test03 class: #TestClassA)! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:13:22' prior: 50869046!
+test15WhenAllOfTheTestsPassErrorsAreReportedAndGoesToGreen
+	| result |
+	
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+		self compileMethod: 'test02 self assert: true' in: #TestClassA.
+		self runAllTestsOf: #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: Green.
+	self assert: result hasNErrors: 3.
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test01 class: #TestClassA).
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test02 class: #TestClassA).
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test02 class: #TestClassA)! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:08:13' prior: 50869349!
+test14WhenOneOfTheTestsPassesTwoErrorsAreReported
+	| result |
+	
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: true' in: #TestClassA.
+		self compileMethod: 'test02 self assert: true' in: #TestClassA.
+		self runTest: #test01 class: #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: MoreThanOneTestWritten.
+	self assert: result hasNErrors: 2.
+	self assert: result hasErrorWithDescription: (TDDGuru testDidNotFail: #test01 class: #TestClassA).
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test02 class: #TestClassA)! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:00:55' prior: 50869074!
+test13WhenATestFailsAnErrorIsReportedAndGoesToRed
+	| result |
+	
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self compileMethod: 'test02 self assert: false' in: #TestClassA.
+		self runTest: #test01 class: #TestClassA
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: Red.
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother: #test02 class: #TestClassA)! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 17:00:28' prior: 50869321!
+test04WhenAnotherTestIsRemovedIsNotDoingTDD
+	| result |
+	
+	self newClassNamed: #TestClassA subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClassA.
+	tddGuru initialTestClasses: { self classNamed: #TestClassA }.
+
+	self logChangesWhile: [
+		self newClassNamed: #TestClassB subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassB.
+		self compileMethod: 'test02 self assert: false' in: #TestClassB.
+		self removeMethodWithSelector: #test01 from:  #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertCurrentStateIs: NotDoingTDD.
+	self assert: result hasNErrors: 1. 
+	self assert: result hasErrorWithDescription: (TDDGuru testAddedWhileWritingAnother:  #test02 class: #TestClassB).! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/6/2019 18:44:57' prior: 50869230!
+test03WhenTheFirstOfTheTestsIsRemovedIsBackToWritingAFailingTest
+	| result |
+
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self compileMethod: 'test02 self assert: false' in: #TestClassA.
+		self removeMethodWithSelector: #test01 from:  #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test02
+	! !
+!MoreThanOneTestWrittenTest methodsFor: 'tests' stamp: 'MGD 10/6/2019 18:45:03' prior: 50869600!
+test02WhenTheLastOfTheTestsIsRemovedIsBackToWritingAFailingTest
+	| result |
+
+	self logChangesWhile: [
+		self newClassNamed: #TestClassA subclassOf: TestCase.
+		self compileMethod: 'test01 self assert: false' in: #TestClassA.
+		self compileMethod: 'test02 self assert: false' in: #TestClassA.
+		self removeMethodWithSelector: #test02 from:  #TestClassA.
+	].
+
+	result := tddGuru run.
+	
+	self assertHasNoErrors: result.
+	self assertCurrentStateIs: WritingAFailingTest.
+	self assert: tddGuru currentState currentTest selector equals: #test01
+	! !
+!GreenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 16:58:26' prior: 50869296!
+test11WhenATestFailsAnErrorIsReportedAndTransitionsToRed
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClass.
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ self runTest: #test01 class: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testUnexpectedlyFailedErrorMessage: #test01 class: #TestClass).
+	self assert: tddGuru currentState equals: Red.! !
+!GreenTest methodsFor: 'tests' stamp: 'MGD 9/9/2019 20:36:04' prior: 50868934!
+test10WhenATestIsRenamedThenIsRefactoring
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: false' in: #TestClass.
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ 
+		self compileMethod: 'test01A self assert: true' in: #TestClass.
+		self removeMethodWithSelector: #test01 from: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Refactor.! !
+!GreenTest methodsFor: 'tests' stamp: 'MGD 10/10/2019 16:58:19' prior: 50869252!
+test09WhenATestHasAnErrorAnErrorIsReportedAndTransitionsToRed
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self error' in: #TestClass. 
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ self runTest: #test01 class: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assert: result hasNErrors: 1.
+	self assert: result hasErrorWithDescription: (TDDGuru testUnexpectedlyFailedErrorMessage: #test01 class: #TestClass).
+	self assert: tddGuru currentState equals: Red.
+	! !
+!GreenTest methodsFor: 'tests' stamp: 'MGD 9/9/2019 20:32:03' prior: 50869563!
+test07WhenATestPassesNothingHappens
+	| result |
+	
+	self newClassNamed: #TestClass subclassOf: TestCase.
+	self compileMethod: 'test01 self assert: true' in: #TestClass.
+	tddGuru initialState: Green new.
+	tddGuru initialTestClasses: { self classNamed: #TestClass }.
+	
+	self logChangesWhile: [ self runTest: #test01 class: #TestClass ].
+		
+	result _ tddGuru run.
+		
+	self assertHasNoErrors: result.
+	self assert: tddGuru currentState equals: Green.! !
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:31:49'!
+test02BalanceChangesAfterRegisteringTransactionsInAChildAccount
+
+	| portfolio receptiveAccount|
+	
+	portfolio := Portfolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portfolio register: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portfolio balance equals: 100.! !
+
+!methodRemoval: PortafolioTest #test02 stamp: 'LNB 11/9/2020 15:31:49'!
+test02
+
+	| portfolio receptiveAccount|
+	
+	portfolio := Portfolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portfolio register: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portfolio balance equals: 100.!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:35:55'!
+test03BalanceIncludesAllTransactionsFoundInChildrenAccounts
+
+	"Test repetido"
+	
+	| portfolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portfolio := Portfolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portfolio register: firstReceptiveAccount.
+	portfolio register: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portfolio balance equals: 600.! !
+
+!methodRemoval: PortafolioTest #test03 stamp: 'LNB 11/9/2020 15:35:55'!
+test03
+
+	"Test repetido"
+	
+	| portfolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portfolio := Portfolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portfolio register: firstReceptiveAccount.
+	portfolio register: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portfolio balance equals: 600.!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:36:29'!
+test04BalanceChangesWhenAnyDescendantAccountRegistersTransactions
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  register: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio register: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	! !
+
+!methodRemoval: PortafolioTest #test04 stamp: 'LNB 11/9/2020 15:36:29'!
+test04
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  register: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio register: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:37:22'!
+test05PortfoliosAreAbleToFindAnyTransactionRegisteredByAnyDescendant
+	
+	| parentPortfolio childPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPortfolio.
+	childPortfolio register: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	! !
+
+!methodRemoval: PortafolioTest #test05 stamp: 'LNB 11/9/2020 15:37:22'!
+test05
+	
+	| parentPortfolio childPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPortfolio.
+	childPortfolio register: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:38:04'!
+test06PortfoliosCreatedWithAnEmptyTransactionLog
+	
+	| portfolio|
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions size equals: 0.	
+
+	! !
+
+!methodRemoval: PortafolioTest #test06 stamp: 'LNB 11/9/2020 15:38:04'!
+test06
+	
+	| portfolio|
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions size equals: 0.	
+
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:38:33'!
+test07TransactionsAreLoggedProperlyFromChildrenAccounts
+	
+	| portfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio register: receptiveAccount.
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: portfolio transactions size equals: 1.
+	self assert: portfolio  transactions includes: 	transaction.
+
+	! !
+
+!methodRemoval: PortafolioTest #test07 stamp: 'LNB 11/9/2020 15:38:33'!
+test07
+	
+	| portfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio register: receptiveAccount.
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: portfolio transactions size equals: 1.
+	self assert: portfolio  transactions includes: 	transaction.
+
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:39:02'!
+test08TransactionsAreLoggedProperlyFFromDescendantAccounts
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPorfolio.
+	parentPortfolio register: parentReceptiveAccount.
+	childPorfolio  register: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	! !
+
+!methodRemoval: PortafolioTest #test08 stamp: 'LNB 11/9/2020 15:39:02'!
+test08
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPorfolio.
+	parentPortfolio register: parentReceptiveAccount.
+	childPorfolio  register: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:39:17'!
+test08TransactionsAreLoggedProperlyFromDescendantAccounts
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPorfolio.
+	parentPortfolio register: parentReceptiveAccount.
+	childPorfolio  register: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	! !
+
+!methodRemoval: PortafolioTest #test08TransactionsAreLoggedProperlyFFromDescendantAccounts stamp: 'LNB 11/9/2020 15:39:17'!
+test08TransactionsAreLoggedProperlyFFromDescendantAccounts
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPorfolio.
+	parentPortfolio register: parentReceptiveAccount.
+	childPorfolio  register: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:40:08'!
+test09APortfolioCantRegisterToItselfAsAnAsset
+	
+	| parentPortfolio  |
+	
+	parentPortfolio := Portfolio new.
+
+	self 
+		should: [parentPortfolio register: parentPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!methodRemoval: PortafolioTest #test09 stamp: 'LNB 11/9/2020 15:40:08'!
+test09
+	
+	| parentPortfolio  |
+	
+	parentPortfolio := Portfolio new.
+
+	self 
+		should: [parentPortfolio register: parentPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:41:38'!
+test10CantRegisterAPortfolioThatADescendantAlreadyOwns
+	
+	| parentPortfolio  childPortfolio grandParentPortfolio|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	grandParentPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	grandParentPortfolio  register: parentPortfolio.	
+
+	self 
+		should: [grandParentPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!methodRemoval: PortafolioTest #test10 stamp: 'LNB 11/9/2020 15:41:38'!
+test10
+	
+	| parentPortfolio  childPortfolio grandParentPortfolio|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	grandParentPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	grandParentPortfolio  register: parentPortfolio.	
+
+	self 
+		should: [grandParentPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:52:22'!
+test11CantRegisterAnAlreadyAscendantPortfolio
+	
+	| childPortfolio secondChildPortfolio parentPortfolio|
+	
+	secondChildPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	parentPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	parentPortfolio  register: secondChildPortfolio.	
+
+	self 
+		should: [secondChildPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!methodRemoval: PortafolioTest #test11 stamp: 'LNB 11/9/2020 15:52:22'!
+test11
+	
+	| childPortfolio secondChildPortfolio parentPortfolio|
+	
+	secondChildPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	parentPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	parentPortfolio  register: secondChildPortfolio.	
+
+	self 
+		should: [secondChildPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:53:39'!
+test12CantRegisterAReceptiveAccountThatADescendantAlreadyOwns
+	
+	| parentPortfolio childPortfolio  receptiveAccount |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio  register: childPortfolio.
+	childPortfolio  register: receptiveAccount.
+		
+	self 
+		should: [parentPortfolio register: receptiveAccount ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!methodRemoval: PortafolioTest #test12 stamp: 'LNB 11/9/2020 15:53:39'!
+test12
+	
+	| parentPortfolio childPortfolio  receptiveAccount |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio  register: childPortfolio.
+	childPortfolio  register: receptiveAccount.
+		
+	self 
+		should: [parentPortfolio register: receptiveAccount ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	!
+!PortafolioTest methodsFor: 'tests' stamp: 'LNB 11/9/2020 15:54:36'!
+test13CantRegisterAReceptiveAccountThatAnAscendantAlreadyOwns
+	
+	| parentPortfolio childPortfolio receptiveAccount |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio  register: childPortfolio.
+	parentPortfolio  register: receptiveAccount.
+		
+	self 
+		should: [childPortfolio register: receptiveAccount ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!methodRemoval: PortafolioTest #test13 stamp: 'LNB 11/9/2020 15:54:36'!
+test13
+	
+	| parentPortfolio childPortfolio receptiveAccount |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio  register: childPortfolio.
+	parentPortfolio  register: receptiveAccount.
+		
+	self 
+		should: [childPortfolio register: receptiveAccount ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	!
+
+!testRun: #PortafolioTest #test01BalanceIsZeroWhenCreatingAPortfolio stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test02BalanceChangesAfterRegisteringTransactionsInAChildAccount stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test03BalanceIncludesAllTransactionsFoundInChildrenAccounts stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test04BalanceChangesWhenAnyDescendantAccountRegistersTransactions stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test05PortfoliosAreAbleToFindAnyTransactionRegisteredByAnyDescendant stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test06PortfoliosCreatedWithAnEmptyTransactionLog stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test07TransactionsAreLoggedProperlyFromChildrenAccounts stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test08TransactionsAreLoggedProperlyFromDescendantAccounts stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test09APortfolioCantRegisterToItselfAsAnAsset stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test10CantRegisterAPortfolioThatADescendantAlreadyOwns stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test11CantRegisterAnAlreadyAscendantPortfolio stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test12CantRegisterAReceptiveAccountThatADescendantAlreadyOwns stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test13CantRegisterAReceptiveAccountThatAnAscendantAlreadyOwns stamp: 'LNB 11/9/2020 15:55:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LNB 11/9/2020 15:55:07'!
+PASSED!

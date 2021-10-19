@@ -1,0 +1,2542 @@
+
+
+----SNAPSHOT----(15 May 2021 08:58:29) MarsRover.image priorSource: 17236496!
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverTest category: 'MarsRover' stamp: 'JPF 5/15/2021 09:12:34'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'JPF 5/15/2021 09:15:10'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:14:55'!
+test01
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'JPF 5/15/2021 09:15:23'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'JPF 5/15/2021 09:15:34'!
+startingAt: aPoint facing: aSymbol 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeStartingAt: aPoint facing: aSymbol ! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'JPF 5/15/2021 09:16:26' prior: 50870608!
+startingAt: aCoordenate facing: aDirection
+	
+	
+	^self new initializeStartingAt: aCoordenate facing: aDirection.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'JPF 5/15/2021 09:16:31'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'JPF 5/15/2021 09:16:52'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'coordenate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'JPF 5/15/2021 09:16:52'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'coordenate direction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 09:16:52'!
+initializeStartingAt: aCoordenate facing: aDirection 
+	self shouldBeImplemented.
+	coordenate := aCoordenate.
+	direction := aDirection.! !
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 09:17:34' prior: 50870641!
+initializeStartingAt: aCoordenates facing: aDirection 
+	
+	coordenate := aCoordenates.
+	direction := aDirection.! !
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'JPF 5/15/2021 09:17:40'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'coordenates direction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 09:17:40' prior: 50870649!
+initializeStartingAt: aCoordenates facing: aDirection 
+	
+	coordenates := aCoordenates.
+	direction := aDirection.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'JPF 5/15/2021 09:17:48'!
+ERROR!
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 09:18:05'!
+isAt: aPoint facing: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 09:19:49' prior: 50870671!
+isAt: aCoordenates facing: aDirection
+
+	^ coordenates = aCoordenates and: [ direction = aDirection ].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'JPF 5/15/2021 09:19:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'JPF 5/15/2021 09:19:54'!
+PASSED!
+!MarsRover class methodsFor: 'instance creation' stamp: 'JPF 5/15/2021 09:20:27' prior: 50870618!
+startingAt: aCoordenates facing: aDirection
+	
+	
+	^self new initializeStartingAt: aCoordenates facing: aDirection.! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:22:59'!
+test01MarsRoverStaysInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTest #test01 stamp: 'JPF 5/15/2021 09:22:59'!
+test01
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:25:37'!
+test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: ''.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:25:45'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:25:45'!
+ERROR!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:26:15'!
+processCommands: aString 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:26:42' prior: 50870726!
+processCommands: aStringOfCommands! !
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:26:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01MarsRoverStaysInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:26:52'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:27:20'!
+test01ShouldStayInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+
+!methodRemoval: MarsRoverTest #test01MarsRoverStaysInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:27:20'!
+test01MarsRoverStaysInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:27:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:27:23'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:29:41'!
+test03ShouldFaceWestWhenProcessLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #West).! !
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:29:46'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:31:12' prior: 50870731!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ direction _ #West ].! !
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:31:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:31:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:31:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:31:18'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:32:00'!
+test04ShouldFaceEastWhenProcessRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #East).! !
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:32:03'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:32:03'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:32:45' prior: 50870784!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ direction _ #West ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].! !
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:32:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:32:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:32:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:32:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:32:51'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:34:34'!
+test04ShouldMoveForwardWhenProcessFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'f'.
+	
+	self assert: (marsRover isAt: 0@1 facing: #North).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:34:51'!
+test05ShouldMoveForwardWhenProcessFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'f'.
+	
+	self assert: (marsRover isAt: 0@1 facing: #North).! !
+
+!methodRemoval: MarsRoverTest #test04ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:34:51'!
+test04ShouldMoveForwardWhenProcessFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'f'.
+	
+	self assert: (marsRover isAt: 0@1 facing: #North).!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:35:05'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:36:55' prior: 50870820!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ direction _ #West ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].! !
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:37:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:37:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:37:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:37:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:37:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:37:19'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:38:07'!
+test06ShouldMoveBackwardsWhenProcessBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'b'.
+	
+	self assert: (marsRover isAt: 0@-1 facing: #North).! !
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:38:10'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:39:00' prior: 50870877!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ direction _ #West ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:39:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:39:30'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:42:30'!
+test07ShouldFaceOppositeDirectionWhenProcessLLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'll'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #South).! !
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:42:32'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:43:50' prior: 50870921!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ direction _ #West ].
+	aStringOfCommands = 'll' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:44:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:44:09'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 09:44:42'!
+test08ShouldFaceOppositeDirectionWhenProcessRRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'rr'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #South).! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:44:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:44:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:44:51'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:45:26' prior: 50870997!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ direction _ #West ].
+	aStringOfCommands = 'll' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].
+	aStringOfCommands = 'rr' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:49:14'!
+turnLeft
+
+	^ direction _ #West! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:49:15' prior: 50871083!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ self turnLeft ].
+	aStringOfCommands = 'll' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].
+	aStringOfCommands = 'rr' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:51:51' prior: 50871098!
+turnLeft
+
+	direction = #North ifTrue: [ direction _ #West ].
+	direction = #West ifTrue: [ direction _ #South ].
+	direction = #South ifTrue: [ direction _ #East ].
+	direction = #East ifTrue: [ direction _ #North ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:51:58'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:51:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:51:58'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:53:20' prior: 50871118!
+turnLeft
+
+	direction = #North ifTrue: [^ direction _ #West ].
+	direction = #West ifTrue: [^ direction _ #South ].
+	direction = #South ifTrue: [^ direction _ #East ].
+	direction = #East ifTrue: [^ direction _ #North ].! !
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:53:24'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:55:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:55:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:55:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:55:11'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:55:55' prior: 50871102!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ self turnLeft ].
+	aStringOfCommands = 'll' ifTrue: [ self turnLeft. self turnLeft ].
+	aStringOfCommands = 'r' ifTrue: [ direction _ #East ].
+	aStringOfCommands = 'rr' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:55:58'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:56:11'!
+turnRight
+
+	^ direction _ #East! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:56:11' prior: 50871213!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ self turnLeft ].
+	aStringOfCommands = 'll' ifTrue: [ self turnLeft. self turnLeft ].
+	aStringOfCommands = 'r' ifTrue: [ self turnRight ].
+	aStringOfCommands = 'rr' ifTrue: [ direction _ #South ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:56:25' prior: 50871258!
+turnRight
+
+	 direction _ #East! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:57:52' prior: 50871278!
+turnRight
+
+	direction = #North ifTrue: [^ direction _ #East ].
+	direction = #East ifTrue: [^ direction _ #South ].
+	direction = #South ifTrue: [^ direction _ #West ].
+	direction = #West ifTrue: [^ direction _ #North ].
+	
+	! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:58:12'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 09:58:25' prior: 50871262!
+processCommands: aStringOfCommands
+
+	aStringOfCommands = 'l' ifTrue: [ self turnLeft ].
+	aStringOfCommands = 'll' ifTrue: [ self turnLeft. self turnLeft ].
+	aStringOfCommands = 'r' ifTrue: [ self turnRight ].
+	aStringOfCommands = 'rr' ifTrue: [ self turnRight. self turnRight. ].
+	aStringOfCommands = 'f' ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aStringOfCommands = 'b' ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 09:58:29'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:00:39'!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [ self turnLeft ].
+	aCommand = 'll' ifTrue: [ self turnLeft. self turnLeft ].
+	aCommand = $r ifTrue: [ self turnRight ].
+	aCommand = 'rr' ifTrue: [ self turnRight. self turnRight. ].
+	aCommand = $f ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aCommand = $b ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:00:51' prior: 50871366!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [ self turnLeft ].
+	aCommand = $r ifTrue: [ self turnRight ].
+	aCommand = $f ifTrue: [ coordenates _ coordenates + (0@1) ].
+	aCommand = $b ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:02:00' prior: 50871321!
+processCommands: aStringOfCommands
+
+	aStringOfCommands do: [:aCommand | self processSingleCommand: aCommand ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:02:13'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:04:47'!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:04:49'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:07:13' prior: 50871380!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [ self turnLeft ].
+	aCommand = $r ifTrue: [ self turnRight ].
+	aCommand = $f ifTrue: [ 
+		direction = #North ifTrue: [ coordenates _ coordenates + (0@1) ].
+		direction = #West ifTrue: [ coordenates _ coordenates + (-1@0) ].
+		].
+	aCommand = $b ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:07:29'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:07:29'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:08:05' prior: 50871441!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [ self turnLeft ].
+	aCommand = $r ifTrue: [ self turnRight ].
+	aCommand = $f ifTrue: [ 
+		direction = #North ifTrue: [^ coordenates _ coordenates + (0@1) ].
+		direction = #West ifTrue: [^ coordenates _ coordenates + (-1@0) ].
+		].
+	aCommand = $b ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:08:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:08:08'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:08:08'!
+FAILURE!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:09:11'!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+
+!methodRemoval: MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:09:20'!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:09:33'!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+
+!methodRemoval: MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:09:33'!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessRFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:09:38' prior: 50871535!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:09:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:09:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:09:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:09:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:09:43'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:10:21' prior: 50871463!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [ self turnLeft ].
+	aCommand = $r ifTrue: [ self turnRight ].
+	aCommand = $f ifTrue: [ 
+		direction = #North ifTrue: [^ coordenates _ coordenates + (0@1) ].
+		direction = #West ifTrue: [^ coordenates _ coordenates + (-1@0) ].
+		].
+	aCommand = $b ifTrue: [ coordenates _ coordenates + (0@-1) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:10:41'!
+moveForward
+	
+	direction = #North ifTrue: [^ coordenates _ coordenates + (0@1) ].
+	direction = #West ifTrue: [^ coordenates _ coordenates + (-1@0) ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:11:25' prior: 50871600!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [^ self turnLeft ].
+	aCommand = $r ifTrue: [^ self turnRight ].
+	aCommand = $f ifTrue: [^ self moveForward ].
+	aCommand = $b ifTrue: [^ coordenates _ coordenates + (0@-1) ].! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:11:58'!
+test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isAt: 1@0 facing: #East).! !
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:12:00'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:15:05' prior: 50871614!
+moveForward
+	
+	direction = #North ifTrue: [^ coordenates _ coordenates + (0@1) ].
+	direction = #West ifTrue: [^ coordenates _ coordenates + (-1@0) ].
+	direction = #East ifTrue: [^ coordenates _ coordenates + (1@0) ].
+	direction = #South ifTrue: [^ coordenates _ coordenates + (0@-1) ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:15:10'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:17:25'!
+test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lb'.
+	
+	self assert: (marsRover isAt: 1@0 facing: #West).! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:17:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 10:17:34'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 10:17:34'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:18:20' prior: 50871622!
+processSingleCommand: aCommand
+
+	aCommand = $l ifTrue: [^ self turnLeft ].
+	aCommand = $r ifTrue: [^ self turnRight ].
+	aCommand = $f ifTrue: [^ self moveForward ].
+	aCommand = $b ifTrue: [^ self moveBackwards ].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:18:57'!
+moveBackwards
+	
+	direction = #North ifTrue: [^ coordenates _ coordenates + (0@-1) ].
+	direction = #West ifTrue: [^ coordenates _ coordenates + (1@0) ].
+	direction = #East ifTrue: [^ coordenates _ coordenates + (-1@0) ].
+	direction = #South ifTrue: [^ coordenates _ coordenates + (0@1) ].! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 10:19:15'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:22:11'!
+test11ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lflf'.
+	
+	self assert: (marsRover isAt: -1@-1 facing: #South).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:22:25'!
+test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lflf'.
+	
+	self assert: (marsRover isAt: -1@-1 facing: #South).! !
+
+!methodRemoval: MarsRoverTest #test11ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 10:22:25'!
+test11ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lflf'.
+	
+	self assert: (marsRover isAt: -1@-1 facing: #South).!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 10:22:44'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 10:24:41'!
+test13ShouldProcessCommandsUntilStrangeCommandCharacter
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 facing: #North.
+	
+	marsRover processCommands: 'lfalf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 10:24:50'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:27:19' prior: 50871391!
+processCommands: aStringOfCommands
+
+	aStringOfCommands do: [:aCommand |
+		(self isInvalidCommand: aCommand) ifTrue: [^ nil].
+		self processSingleCommand: aCommand.
+		].! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 10:43:47'!
+isInvalidCommand: aCommand
+
+	aCommand ~= $l and: [
+		aCommand ~= $r and: [
+			aCommand ~= $f and: [ aCommand ~= $b ]. ]. 
+		].
+	
+	! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 10:44:15' prior: 50871876!
+isInvalidCommand: aCommand
+
+	aCommand ~= $l and: [
+		aCommand ~= $r and: [
+			aCommand ~= $f and: [
+				aCommand ~= $b] ]. 
+		].
+	
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:44:59' prior: 50871868!
+processCommands: aStringOfCommands
+
+	aStringOfCommands do: [:aCommand |
+		(self isInvalidCommand: aCommand) ifTrue: [^ self].
+		self processSingleCommand: aCommand.
+		].! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:45:06' prior: 50871890!
+processCommands: aStringOfCommands
+
+	aStringOfCommands do: [:aCommand |
+		(self isInvalidCommand: aCommand) ifTrue: [^ self ].
+		self processSingleCommand: aCommand.
+		].! !
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 10:45:14'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 10:45:14'!
+ERROR!
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 10:45:53' prior: 50871883!
+isInvalidCommand: aCommand
+
+	^ aCommand ~= $l and: [
+		aCommand ~= $r and: [
+			aCommand ~= $f and: [
+				aCommand ~= $b] ]. 
+		].
+	
+	! !
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 10:45:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 10:45:59'!
+PASSED!
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 10:46:15' prior: 50871914!
+isInvalidCommand: aCommand
+
+	^ aCommand ~= $l and: [
+		aCommand ~= $r and: [
+			aCommand ~= $f and: [
+				aCommand ~= $b] ] ].
+	
+	! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 10:46:18'!
+PASSED!
+
+Object subclass: #CardinalDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #CardinalDirection category: 'MarsRover' stamp: 'JPF 5/15/2021 10:50:57'!
+Object subclass: #CardinalDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalDirection subclass: #NorthDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #NorthDirection category: 'MarsRover' stamp: 'JPF 5/15/2021 10:54:22'!
+CardinalDirection subclass: #NorthDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+Object subclass: #CardinalDirection
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #CardinalDirection category: 'MarsRover' stamp: 'JPF 5/15/2021 10:54:31'!
+Object subclass: #CardinalDirection
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalDirection subclass: #WestDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #WestDirection category: 'MarsRover' stamp: 'JPF 5/15/2021 10:54:39'!
+CardinalDirection subclass: #WestDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalDirection subclass: #EastDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #EastDirection category: 'MarsRover' stamp: 'JPF 5/15/2021 10:54:45'!
+CardinalDirection subclass: #EastDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalDirection subclass: #SouthDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #SouthDirection category: 'MarsRover' stamp: 'JPF 5/15/2021 10:54:52'!
+CardinalDirection subclass: #SouthDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:55:18'!
+turnLeft
+	
+	self subclassResponsibility ! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:55:32'!
+turnRight
+	
+	self subclassResponsibility ! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:55:43'!
+moveForward
+	
+	self subclassResponsibility ! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:55:50'!
+moveBackwards
+	
+	self subclassResponsibility ! !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:29' overrides: 50872115!
+moveBackwards
+	
+	self subclassResponsibility ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:29' overrides: 50872115!
+moveBackwards
+	
+	self subclassResponsibility ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:29' overrides: 50872115!
+moveBackwards
+	
+	self subclassResponsibility ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:29' overrides: 50872115!
+moveBackwards
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: CardinalDirection #moveBackwards stamp: 'JPF 5/15/2021 10:58:29'!
+moveBackwards
+	
+	self subclassResponsibility !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:43' overrides: 50872111!
+moveForward
+	
+	self subclassResponsibility ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:43' overrides: 50872111!
+moveForward
+	
+	self subclassResponsibility ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:43' overrides: 50872111!
+moveForward
+	
+	self subclassResponsibility ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:43' overrides: 50872111!
+moveForward
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: CardinalDirection #moveForward stamp: 'JPF 5/15/2021 10:58:43'!
+moveForward
+	
+	self subclassResponsibility !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:48' overrides: 50872103!
+turnLeft
+	
+	self subclassResponsibility ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:48' overrides: 50872103!
+turnLeft
+	
+	self subclassResponsibility ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:48' overrides: 50872103!
+turnLeft
+	
+	self subclassResponsibility ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:48' overrides: 50872103!
+turnLeft
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: CardinalDirection #turnLeft stamp: 'JPF 5/15/2021 10:58:48'!
+turnLeft
+	
+	self subclassResponsibility !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:59' overrides: 50872107!
+turnRight
+	
+	self subclassResponsibility ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:59' overrides: 50872107!
+turnRight
+	
+	self subclassResponsibility ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:59' overrides: 50872107!
+turnRight
+	
+	self subclassResponsibility ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:58:59' overrides: 50872107!
+turnRight
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: CardinalDirection #turnRight stamp: 'JPF 5/15/2021 10:58:59'!
+turnRight
+	
+	self subclassResponsibility !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:59:19'!
+turnLeft
+	
+	self subclassResponsibility.! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:59:20' prior: 50872214!
+turnLeft
+	
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:59:26'!
+turnRight
+	
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:59:33'!
+moveForward
+	
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 10:59:40'!
+moveBackwards
+	
+	self subclassResponsibility! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:01:01' prior: 50872178 overrides: 50872219!
+turnLeft
+	
+	marsRover faceToSouth. ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:01:56' prior: 50872236 overrides: 50872219!
+turnLeft
+	
+	marsRover turnLeftWhenFacingEast. ! !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:02:19' prior: 50872168 overrides: 50872219!
+turnLeft
+	
+	marsRover turnLeftWhenFacingNorth. ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:02:38' prior: 50872183 overrides: 50872219!
+turnLeft
+	
+	marsRover turnLeftWhenFacingSouth. ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:02:59' prior: 50872173 overrides: 50872219!
+turnLeft
+	
+	marsRover turnLeftWhenFacingWest. ! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:04:54'!
+turnLeftWhenFacingWest
+	
+	direction _ SouthDirection new.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:05:20'!
+turnLeftWhenFacingNorth
+	
+	direction _ WestDirection new.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:05:33'!
+turnLeftWhenFacingSouth
+	
+	direction _ EastDirection new.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:06:30' prior: 50872265!
+turnLeftWhenFacingNorth
+	
+	direction _ WestDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:06:40' prior: 50872270!
+turnLeftWhenFacingSouth
+	
+	direction _ EastDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:06:49' prior: 50872260!
+turnLeftWhenFacingWest
+	
+	direction _ SouthDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:07:04'!
+turnLeftWhenFacingEast
+	
+	direction _ NorthDirection for: self.! !
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:14:19' prior: 50870663!
+initializeStartingAt: aCoordenates facing: aDirection 
+	
+	coordenates := aCoordenates.
+	direction := NorthDirection for: self.! !
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:15:06'!
+initializeStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := NorthDirection for: self.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:06' prior: 50870688!
+startingAt: aCoordenates facing: aDirection
+	
+	
+	^self new initializeStartingAt: aCoordenates .! !
+
+!methodRemoval: MarsRover #initializeStartingAt:facing: stamp: 'JPF 5/15/2021 11:15:06'!
+initializeStartingAt: aCoordenates facing: aDirection 
+	
+	coordenates := aCoordenates.
+	direction := NorthDirection for: self.!
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:15:24'!
+initializeFacingNorthStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := NorthDirection for: self.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:24' prior: 50872309!
+startingAt: aCoordenates facing: aDirection
+	
+	
+	^self new initializeFacingNorthStartingAt: aCoordenates .! !
+
+!methodRemoval: MarsRover #initializeStartingAt: stamp: 'JPF 5/15/2021 11:15:24'!
+initializeStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := NorthDirection for: self.!
+!MarsRover class methodsFor: 'instance creation' stamp: 'JPF 5/15/2021 11:15:56'!
+startingAt: aCoordenates 
+	
+	
+	^self new initializeFacingNorthStartingAt: aCoordenates .! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870709!
+test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: ''.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870908!
+test06ShouldMoveBackwardsWhenProcessBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'b'.
+	
+	self assert: (marsRover isAt: 0@-1 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870854!
+test05ShouldMoveForwardWhenProcessFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'f'.
+	
+	self assert: (marsRover isAt: 0@1 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870983!
+test07ShouldFaceOppositeDirectionWhenProcessLLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'll'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #South).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50871040!
+test08ShouldFaceOppositeDirectionWhenProcessRRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'rr'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #South).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50871696!
+test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'lb'.
+	
+	self assert: (marsRover isAt: 1@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870804!
+test04ShouldFaceEastWhenProcessRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #East).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50871557!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'lf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50871632!
+test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isAt: 1@0 facing: #East).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870746!
+test01ShouldStayInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50871825!
+test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'lflf'.
+	
+	self assert: (marsRover isAt: -1@-1 facing: #South).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50871854!
+test13ShouldProcessCommandsUntilStrangeCommandCharacter
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'lfalf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:15:56' prior: 50870771!
+test03ShouldFaceWestWhenProcessLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover startingAt: 0@0 .
+	
+	marsRover processCommands: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #West).! !
+
+!methodRemoval: MarsRover class #startingAt:facing: stamp: 'JPF 5/15/2021 11:15:56'!
+startingAt: aCoordenates facing: aDirection
+	
+	
+	^self new initializeFacingNorthStartingAt: aCoordenates .!
+!MarsRover class methodsFor: 'instance creation' stamp: 'JPF 5/15/2021 11:16:25'!
+facingNorthStartingAt: aCoordenates 
+	
+	
+	^self new initializeFacingNorthStartingAt: aCoordenates .! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:25' prior: 50872428!
+test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isAt: 1@0 facing: #East).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:25' prior: 50872438!
+test01ShouldStayInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:25' prior: 50872368!
+test05ShouldMoveForwardWhenProcessFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'f'.
+	
+	self assert: (marsRover isAt: 0@1 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:25' prior: 50872458!
+test13ShouldProcessCommandsUntilStrangeCommandCharacter
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lfalf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872468!
+test03ShouldFaceWestWhenProcessLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872378!
+test07ShouldFaceOppositeDirectionWhenProcessLLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'll'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #South).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872358!
+test06ShouldMoveBackwardsWhenProcessBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'b'.
+	
+	self assert: (marsRover isAt: 0@-1 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872388!
+test08ShouldFaceOppositeDirectionWhenProcessRRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'rr'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #South).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872408!
+test04ShouldFaceEastWhenProcessRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 facing: #East).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872418!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lf'.
+	
+	self assert: (marsRover isAt: -1@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872348!
+test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: ''.
+	
+	self assert: (marsRover isAt: 0@0 facing: #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872398!
+test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lb'.
+	
+	self assert: (marsRover isAt: 1@0 facing: #West).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JPF 5/15/2021 11:16:26' prior: 50872447!
+test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lflf'.
+	
+	self assert: (marsRover isAt: -1@-1 facing: #South).! !
+
+!methodRemoval: MarsRover class #startingAt: stamp: 'JPF 5/15/2021 11:16:26'!
+startingAt: aCoordenates 
+	
+	
+	^self new initializeFacingNorthStartingAt: aCoordenates .!
+!CardinalDirection class methodsFor: 'instance creation' stamp: 'JPF 5/15/2021 11:18:14'!
+for: aMarsRover
+	
+	^ self new initializeFor: aMarsRover.! !
+!CardinalDirection methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:19:36'!
+initializeFor: aMarsRover	
+	
+	marsRover _ aMarsRover.! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:20:42' prior: 50872201 overrides: 50872223!
+turnRight
+	
+	marsRover turnRightWhenFacingEast.! !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:21:03' prior: 50872191 overrides: 50872223!
+turnRight
+	
+	marsRover turnRightWhenFacingNorth. ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:21:23' prior: 50872206 overrides: 50872223!
+turnRight
+	
+	marsRover turnRightWhenFacingSouth. ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:21:41' prior: 50872196 overrides: 50872223!
+turnRight
+	
+	marsRover turnRightWhenFacingWest. ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:25:06' prior: 50872149 overrides: 50872227!
+moveForward
+	
+	marsRover addDisplacement: -1@0. ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:25:38' prior: 50872159 overrides: 50872227!
+moveForward
+	
+	marsRover addDisplacement: 0@-1. ! !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:25:54' prior: 50872144 overrides: 50872227!
+moveForward
+	
+	marsRover addDisplacement: 0@1. ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:26:09' prior: 50872154 overrides: 50872227!
+moveForward
+	
+	marsRover addDisplacement: 1@0.  ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:27:22' prior: 50872676 overrides: 50872227!
+moveForward
+	
+	marsRover addDisplacement: 1@0. ! !
+!EastDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:27:50' prior: 50872130 overrides: 50872231!
+moveBackwards
+	
+	marsRover addDisplacement: -1@0.! !
+!NorthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:28:09' prior: 50872120 overrides: 50872231!
+moveBackwards
+	
+	marsRover addDisplacement: 0@-1. ! !
+!SouthDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:28:24' prior: 50872135 overrides: 50872231!
+moveBackwards
+	
+	marsRover addDisplacement: 0@1.  ! !
+!WestDirection methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:28:39' prior: 50872125 overrides: 50872231!
+moveBackwards
+	
+	marsRover addDisplacement: 1@0.   ! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:29:26'!
+turnRightWhenFacingEast
+	
+	direction _ SouthDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:29:41'!
+turnRightWhenFacingNorth
+	
+	direction _ EastDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:29:56'!
+turnRightWhenFacingSouth
+	
+	direction _ WestDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:30:16'!
+turnRightWhenFacingWest
+	
+	direction _ NorthDirection for: self.! !
+!MarsRover methodsFor: 'private actions' stamp: 'JPF 5/15/2021 11:31:09'!
+addDisplacement: aDisplacementCoordenates
+	
+	coordenates _ coordenates + aDisplacementCoordenates.! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:32:04' prior: 50871761!
+moveBackwards
+	
+	direction moveBackwards.
+	"direction = #North ifTrue: [^ coordenates _ coordenates + (0@-1) ].
+	direction = #West ifTrue: [^ coordenates _ coordenates + (1@0) ].
+	direction = #East ifTrue: [^ coordenates _ coordenates + (-1@0) ].
+	direction = #South ifTrue: [^ coordenates _ coordenates + (0@1) ]."! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:32:26' prior: 50871647!
+moveForward
+	
+	direction moveForward.
+	"direction = #North ifTrue: [^ coordenates _ coordenates + (0@1) ].
+	direction = #West ifTrue: [^ coordenates _ coordenates + (-1@0) ].
+	direction = #East ifTrue: [^ coordenates _ coordenates + (1@0) ].
+	direction = #South ifTrue: [^ coordenates _ coordenates + (0@-1) ]."! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:32:48' prior: 50871160!
+turnLeft
+
+	direction turnLeft.
+	"direction = #North ifTrue: [^ direction _ #West ].
+	direction = #West ifTrue: [^ direction _ #South ].
+	direction = #South ifTrue: [^ direction _ #East ].
+	direction = #East ifTrue: [^ direction _ #North ]."! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:33:11' prior: 50871282!
+turnRight
+
+	direction turnRight.
+	"direction = #North ifTrue: [^ direction _ #East ].
+	direction = #East ifTrue: [^ direction _ #South ].
+	direction = #South ifTrue: [^ direction _ #West ].
+	direction = #West ifTrue: [^ direction _ #North ]."
+	
+	! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 11:33:26'!
+FAILURE!
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:09'!
+facingAt: aCardinalPoint
+	
+	self subclassResponsibility.! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:15' prior: 50872831!
+facingAt: aCardinalPoint! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:22' overrides: 50872836!
+facingAt: aCardinalPoint! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:22' overrides: 50872836!
+facingAt: aCardinalPoint! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:22' overrides: 50872836!
+facingAt: aCardinalPoint! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:22' overrides: 50872836!
+facingAt: aCardinalPoint! !
+
+!methodRemoval: CardinalDirection #facingAt: stamp: 'JPF 5/15/2021 11:37:22'!
+facingAt: aCardinalPoint!
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:42'!
+facingAt: aCardinalPoint
+	
+	self subclassResponsibility.! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:37:44' prior: 50872859!
+facingAt: aCardinalPoint
+	
+	self subclassResponsibility! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:38:00' prior: 50872848 overrides: 50872864!
+facingAt: aCardinalPoint
+
+	^ aCardinalPoint = #East.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:38:14' prior: 50872870 overrides: 50872864!
+facingAt: aCardinalPoint
+
+	^ aCardinalPoint = #East.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:39:50'!
+facingNorth
+
+	^ false.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:39:59'!
+facingEast
+
+	^ true.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:40:09'!
+facingWest
+
+	^ false.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:40:16'!
+facingSouth
+
+	^ false.! !
+
+!methodRemoval: EastDirection #facingAt: stamp: 'JPF 5/15/2021 11:40:22'!
+facingAt: aCardinalPoint
+
+	^ aCardinalPoint = #East.!
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:40:49'!
+facingSouth
+
+	^ false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:40:56'!
+facingWest
+
+	^ false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:41:01'!
+facingEast
+
+	^ false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:41:10'!
+facingNorth
+
+	^ true.! !
+
+!methodRemoval: NorthDirection #facingAt: stamp: 'JPF 5/15/2021 11:41:20'!
+facingAt: aCardinalPoint!
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:41:37'!
+facingWest
+
+	^ false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:41:41'!
+facingNorth
+
+	^ false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:41:49'!
+facingEast
+
+	^ false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:41:56'!
+facingSouth
+
+	^ true.! !
+
+!methodRemoval: SouthDirection #facingAt: stamp: 'JPF 5/15/2021 11:42:02'!
+facingAt: aCardinalPoint!
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:42:21'!
+facingNorth
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:42:25'!
+facingEast
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:42:31'!
+facingSouth
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:42:35'!
+facingWest
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:42:41' prior: 50872940!
+facingWest
+
+	^ true.! !
+
+!methodRemoval: WestDirection #facingWest stamp: 'JPF 5/15/2021 11:43:01'!
+facingWest
+
+	^ true.!
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:43:18'!
+facingWest
+
+	^ true.! !
+
+!methodRemoval: WestDirection #facingAt: stamp: 'JPF 5/15/2021 11:43:22'!
+facingAt: aCardinalPoint!
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:45:04'!
+isFacingNorthAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction facingNorth ].! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:45:38'!
+isFacingEast
+
+	^ true.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:45:46'!
+isFacingNorth
+
+	^ false.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:45:56'!
+isFacingSouth
+
+	^ false.! !
+!EastDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:46:02'!
+isFacingWest
+
+	^ false.! !
+
+!methodRemoval: EastDirection #facingEast stamp: 'JPF 5/15/2021 11:46:12'!
+facingEast
+
+	^ true.!
+
+!methodRemoval: EastDirection #facingNorth stamp: 'JPF 5/15/2021 11:46:17'!
+facingNorth
+
+	^ false.!
+
+!methodRemoval: EastDirection #facingSouth stamp: 'JPF 5/15/2021 11:46:18'!
+facingSouth
+
+	^ false.!
+
+!methodRemoval: EastDirection #facingWest stamp: 'JPF 5/15/2021 11:46:19'!
+facingWest
+
+	^ false.!
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:46:29'!
+isFacingEast
+
+	^ false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:46:36'!
+isFacingNorth
+
+	^ true.! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:46:42'!
+isFacingSouth
+
+	^ false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:46:47'!
+isFacingWest
+
+	^ false.! !
+
+!methodRemoval: NorthDirection #facingEast stamp: 'JPF 5/15/2021 11:46:50'!
+facingEast
+
+	^ false.!
+
+!methodRemoval: NorthDirection #facingNorth stamp: 'JPF 5/15/2021 11:46:52'!
+facingNorth
+
+	^ true.!
+
+!methodRemoval: NorthDirection #facingSouth stamp: 'JPF 5/15/2021 11:46:53'!
+facingSouth
+
+	^ false.!
+
+!methodRemoval: NorthDirection #facingWest stamp: 'JPF 5/15/2021 11:46:54'!
+facingWest
+
+	^ false.!
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:46:59'!
+isFacingEast
+
+	^ false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:05'!
+isFacingNorth
+
+	^ false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:13'!
+isFacingSouth
+
+	^ true.! !
+!SouthDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:19'!
+isFacingWest
+
+	^ false.! !
+
+!methodRemoval: SouthDirection #facingEast stamp: 'JPF 5/15/2021 11:47:21'!
+facingEast
+
+	^ false.!
+
+!methodRemoval: SouthDirection #facingNorth stamp: 'JPF 5/15/2021 11:47:23'!
+facingNorth
+
+	^ false.!
+
+!methodRemoval: SouthDirection #facingSouth stamp: 'JPF 5/15/2021 11:47:24'!
+facingSouth
+
+	^ true.!
+
+!methodRemoval: SouthDirection #facingWest stamp: 'JPF 5/15/2021 11:47:25'!
+facingWest
+
+	^ false.!
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:32'!
+isFacingEast
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:37'!
+isFacingNorth
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:43'!
+isFacingSouth
+
+	^ false.! !
+!WestDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:47:49'!
+isFacingWest
+
+	^ true.! !
+
+!methodRemoval: WestDirection #facingEast stamp: 'JPF 5/15/2021 11:47:52'!
+facingEast
+
+	^ false.!
+
+!methodRemoval: WestDirection #facingNorth stamp: 'JPF 5/15/2021 11:47:55'!
+facingNorth
+
+	^ false.!
+
+!methodRemoval: WestDirection #facingSouth stamp: 'JPF 5/15/2021 11:47:56'!
+facingSouth
+
+	^ false.!
+
+!methodRemoval: WestDirection #facingWest stamp: 'JPF 5/15/2021 11:47:57'!
+facingWest
+
+	^ true.!
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:48:21' prior: 50872956!
+isFacingNorthAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction isFacingNorth ].! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:48:34'!
+isFacingSouthAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction isFacingNorth ].! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:48:39' prior: 50873079!
+isFacingSouthAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction isFacingSouth ].! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:48:45'!
+isFacingWestAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction isFacingSouth ].! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:48:49' prior: 50873091!
+isFacingWestAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction isFacingWest ].! !
+!MarsRover methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:49:03'!
+isFacingEastAt: aCoordenates
+
+	^ coordenates = aCoordenates and: [ direction isFacingEast ].! !
+
+!methodRemoval: MarsRover #isAt:facing: stamp: 'JPF 5/15/2021 11:49:12'!
+isAt: aCoordenates facing: aDirection
+
+	^ coordenates = aCoordenates and: [ direction = aDirection ].!
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:49:31' prior: 50872501!
+test01ShouldStayInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	self assert: (marsRover isFacingNorthAt: 0@0 ).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:49:56' prior: 50873115!
+test01ShouldStayInTheSamePositionThatWasCreated
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	self assert: (marsRover isFacingNorthAt: 0@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:50:08' prior: 50872592!
+test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: ''.
+	
+	self assert: (marsRover isFacingNorthAt: 0@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:50:25' prior: 50872531!
+test03ShouldFaceWestWhenProcessLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'l'.
+	
+	self assert: (marsRover isFacingWestAt: 0@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:50:41' prior: 50872571!
+test04ShouldFaceEastWhenProcessRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'r'.
+	
+	self assert: (marsRover isFacingEastAt: 0@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:50:58' prior: 50872510!
+test05ShouldMoveForwardWhenProcessFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'f'.
+	
+	self assert: (marsRover isFacingNorthAt: 0@1).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:51:18' prior: 50872551!
+test06ShouldMoveBackwardsWhenProcessBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'b'.
+	
+	self assert: (marsRover isFacingNorthAt: 0@-1).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:51:34' prior: 50872541!
+test07ShouldFaceOppositeDirectionWhenProcessLLCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'll'.
+	
+	self assert: (marsRover isFacingSouthAt: 0@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:51:47' prior: 50872561!
+test08ShouldFaceOppositeDirectionWhenProcessRRCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'rr'.
+	
+	self assert: (marsRover isFacingSouthAt: 0@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:52:03' prior: 50872581!
+test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lf'.
+	
+	self assert: (marsRover isFacingWestAt: -1@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:52:21' prior: 50872490!
+test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'rf'.
+	
+	self assert: (marsRover isFacingEastAt: 1@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:52:39' prior: 50872602!
+test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lb'.
+	
+	self assert: (marsRover isFacingWestAt: 1@0).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:52:56' prior: 50872613!
+test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lflf'.
+	
+	self assert: (marsRover isFacingSouthAt: -1@-1).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'JPF 5/15/2021 11:53:11' prior: 50872520!
+test13ShouldProcessCommandsUntilStrangeCommandCharacter
+	
+	| marsRover |
+	
+	marsRover _ MarsRover facingNorthStartingAt: 0@0 .
+	
+	marsRover processCommands: 'lfalf'.
+	
+	self assert: (marsRover isFacingWestAt: -1@0).! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 11:53:20'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:55:08' prior: 50872759!
+turnLeft
+
+	direction turnLeft.! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:55:15' prior: 50872770!
+turnRight
+
+	direction turnRight.
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:55:22' prior: 50872746!
+moveForward
+	
+	direction moveForward.! !
+!MarsRover methodsFor: 'actions' stamp: 'JPF 5/15/2021 11:55:28' prior: 50872733!
+moveBackwards
+	
+	direction moveBackwards.! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:57:10'!
+isFacingEast
+
+	self subclassResponsibility.! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:57:12' prior: 50873316!
+isFacingEast
+
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:57:18'!
+isFacingWest
+
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:57:21' prior: 50873321!
+isFacingEast
+
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:57:26'!
+isFacingNorth
+
+	self subclassResponsibility! !
+!CardinalDirection methodsFor: 'testing' stamp: 'JPF 5/15/2021 11:57:31'!
+isFacingSouth
+
+	self subclassResponsibility! !
+
+!methodRemoval: CardinalDirection #facingAt: stamp: 'JPF 5/15/2021 11:57:34'!
+facingAt: aCardinalPoint
+	
+	self subclassResponsibility!
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:58:25'!
+initializeFacingSouthStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := SouthDirection for: self.! !
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:58:29'!
+initializeFacingWestStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := SouthDirection for: self.! !
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:58:36' prior: 50873353!
+initializeFacingWestStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := WestDirection for: self.! !
+!MarsRover methodsFor: 'initialization' stamp: 'JPF 5/15/2021 11:58:46'!
+initializeFacingEastStartingAt: aCoordenates  
+	
+	coordenates := aCoordenates.
+	direction := EastDirection for: self.! !
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 11:59:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ShouldStayInTheSamePositionThatWasCreated stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02ShouldStayInTheSamePositionWhenCommandStringIsEmpty stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ShouldFaceWestWhenProcessLCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ShouldFaceEastWhenProcessRCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ShouldMoveForwardWhenProcessFCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ShouldMoveBackwardsWhenProcessBCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ShouldFaceOppositeDirectionWhenProcessLLCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ShouldFaceOppositeDirectionWhenProcessRRCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ShouldFaceWestAndAdvance1PositionToWestWhenProcessLFCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ShouldFaceEastAndAdvance1PositionToEastWhenProcessRFCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ShouldFaceWestAndAdvance1PositionToEastWhenProcessLBCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ShouldFaceSouthAndAdvance1PositionToWestAndOnePositionToSouthWhenProcessLFLFCommand stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13ShouldProcessCommandsUntilStrangeCommandCharacter stamp: 'JPF 5/15/2021 12:01:35'!
+PASSED!
+
+----QUIT----(15 May 2021 12:02:14) MarsRover.image priorSource: 17245690!

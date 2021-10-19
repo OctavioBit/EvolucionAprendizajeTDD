@@ -1,0 +1,1489 @@
+----End fileIn of /home/kali/exactas/ing1/ejercicios-isw1/20-TusLibros/20-TusLibros.st----!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:29:43' prior: 50952037!
+test02CartWithProductsIsNotEmpty
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 1.
+
+	self deny: cart isEmpty.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:29:49' prior: 50952045!
+test03CartKnowsQuantityPerBook
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 3.
+
+	self assert: 3 equals: (cart quantityOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:29:54' prior: 50952054!
+test04CartStacksQuantityPerBook
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 3.
+	cart add: book quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:31:37'!
+test05BookQuantityMustBeAtLeast1
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 3.
+	cart add: book quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:31:50' prior: 50952138!
+test03CartKnowsQuantityPerBook
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 1.
+
+	self assert: 1 equals: (cart quantityOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:33:51' prior: 50952157!
+test05BookQuantityMustBeAtLeast1
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	self
+		should: [ cart add: book quantity: 0. ]
+		raise: Error
+		withMessageText: Cart bookQuantityMustBeAtLeast1ErrorDescription.! !
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:33:55'!
+ERROR!
+!Cart class methodsFor: 'error handling' stamp: 'CJ 11/17/2020 16:34:04'!
+bookQuantityMustBeAtLeast1ErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error handling' stamp: 'CJ 11/17/2020 16:34:40' prior: 50952189!
+bookQuantityMustBeAtLeast1ErrorDescription
+	
+	^ 'Cannot add less than 1 book to cart'! !
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:34:46'!
+FAILURE!
+!Cart methodsFor: 'evaluating' stamp: 'CJ 11/17/2020 16:35:32' prior: 50952113!
+quantityOf: aBook
+
+	^ books at: aBook! !
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:35:40' prior: 50952117!
+add: aBook quantity: aSmallInteger
+
+	empty := false.! !
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:36:04' prior: 50952208!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	empty := false.! !
+!Cart methodsFor: 'initialization' stamp: 'CJ 11/17/2020 16:36:18' prior: 50952122 overrides: 16896425!
+initialize
+
+	empty := true! !
+!Cart methodsFor: 'evaluating' stamp: 'CJ 11/17/2020 16:36:24' prior: 50952110!
+isEmpty
+
+	^ empty! !
+!Cart methodsFor: 'initialization' stamp: 'CJ 11/17/2020 16:36:52' prior: 50952219 overrides: 16896425!
+initialize
+
+	empty := true.! !
+!Cart methodsFor: 'evaluating' stamp: 'CJ 11/17/2020 16:37:22' prior: 50952204!
+quantityOf: aBook
+
+	^ books at: aBook.! !
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:37:48'!
+ERROR!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:37:48'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'CJ 11/17/2020 16:38:40' prior: 50952227 overrides: 16896425!
+initialize
+
+	empty := true.
+	books := Dictionary new.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:38:57' prior: 50952147!
+test04CartStacksQuantityPerBook
+	
+	"| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 3.
+	cart add: book quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: book)."! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:39:08' prior: 50952176!
+test05BookQuantityMustBeAtLeast1
+	
+	"| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	self
+		should: [ cart add: book quantity: 0. ]
+		raise: Error
+		withMessageText: Cart bookQuantityMustBeAtLeast1ErrorDescription."! !
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:39:13'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:39:13'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:39:13'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:39:13'!
+ERROR!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:39:13'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:39:13'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:39:13'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:39:13'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:40:17' prior: 50952213!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	empty := false.
+	books at: bookToAdd put: copiesOfBookToAdd.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:40:27'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:40:27'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:40:27'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:40:27'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:40:27'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:40:27'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:40:43' prior: 50952247!
+test04CartStacksQuantityPerBook
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 3.
+	cart add: book quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: book).! !
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:40:44'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:45:00' prior: 50952290!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	| currentCopiesInCart |
+	empty := false.
+	currentCopiesInCart := books at: bookToAdd ifAbsent: 0.! !
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:45:31' prior: 50952326!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	| currentCopiesInCart |
+	
+	empty := false.
+	currentCopiesInCart := books at: bookToAdd ifAbsent: 0.
+	books at: bookToAdd put: currentCopiesInCart + copiesOfBookToAdd.! !
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:45:37'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:45:45' prior: 50952257!
+test05BookQuantityMustBeAtLeast1
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	self
+		should: [ cart add: book quantity: 0. ]
+		raise: Error
+		withMessageText: Cart bookQuantityMustBeAtLeast1ErrorDescription.! !
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:45:46'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:48:05' prior: 50952333!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	| currentCopiesInCart |
+	
+	copiesOfBookToAdd > self minimumCopiesToAddAtATime
+		ifTrue: [
+			empty := false.
+			currentCopiesInCart := books at: bookToAdd ifAbsent: 0.
+			books at: bookToAdd put: currentCopiesInCart + copiesOfBookToAdd.
+			]
+		ifFalse: [
+			self error: self class bookQuantityMustBeAtLeast1ErrorDescription.
+			].
+	! !
+!Cart class methodsFor: 'error handling' stamp: 'CJ 11/17/2020 16:48:42'!
+bookQuantityUnderMinimumErrorDescription
+	
+	^ 'Cannot add less than 1 book to cart'! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:48:42' prior: 50952363!
+test05BookQuantityMustBeAtLeast1
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	self
+		should: [ cart add: book quantity: 0. ]
+		raise: Error
+		withMessageText: Cart bookQuantityUnderMinimumErrorDescription.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:48:42' prior: 50952377!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	| currentCopiesInCart |
+	
+	copiesOfBookToAdd > self minimumCopiesToAddAtATime
+		ifTrue: [
+			empty := false.
+			currentCopiesInCart := books at: bookToAdd ifAbsent: 0.
+			books at: bookToAdd put: currentCopiesInCart + copiesOfBookToAdd.
+			]
+		ifFalse: [
+			self error: self class bookQuantityUnderMinimumErrorDescription.
+			].
+	! !
+
+!methodRemoval: Cart class #bookQuantityMustBeAtLeast1ErrorDescription stamp: 'CJ 11/17/2020 16:48:42'!
+bookQuantityMustBeAtLeast1ErrorDescription
+	
+	^ 'Cannot add less than 1 book to cart'!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:48:58'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:48:58'!
+ERROR!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:48:58'!
+ERROR!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:48:58'!
+ERROR!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:48:58'!
+FAILURE!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:48:58'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:49:00'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:49:12'!
+minimumCopiesToAddAtATime
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:49:17' prior: 50952449!
+minimumCopiesToAddAtATime
+	
+	^ 1! !
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:49:19'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 16:49:50' prior: 50952409!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	| currentCopiesInCart |
+	
+	copiesOfBookToAdd >= self minimumCopiesToAddAtATime
+		ifTrue: [
+			empty := false.
+			currentCopiesInCart := books at: bookToAdd ifAbsent: 0.
+			books at: bookToAdd put: currentCopiesInCart + copiesOfBookToAdd.
+			]
+		ifFalse: [
+			self error: self class bookQuantityUnderMinimumErrorDescription.
+			].
+	! !
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:49:58'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:50:02'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:50:02'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:50:02'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:50:02'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:50:02'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:50:02'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:51:57'!
+test06
+	
+	| book cart |
+	
+	cart := Cart new.
+	book := Book withISBN: '9780553801477'.
+
+	cart add: book quantity: 3.
+	cart add: book quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:54:01' prior: 50952495!
+test06
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 3 equals: (cart quantityOf: firstBook).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:54:12' prior: 50952505!
+test06
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 3 equals: (cart quantityOf: firstBook).
+	self assert: 5 equals: (cart quantityOf: secondBook).! !
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:54:13'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 16:54:16' prior: 50952517!
+test06
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 3 equals: (cart quantityOf: firstBook).
+	self assert: 5 equals: (cart quantityOf: secondBook).! !
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 16:54:18'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 17:00:50' prior: 50952552!
+test06
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801478'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 3 equals: (cart quantityOf: firstBook).
+	self assert: 5 equals: (cart quantityOf: secondBook).! !
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:00:51'!
+PASSED!
+!Cart methodsFor: 'initialization' stamp: 'CJ 11/17/2020 17:26:29' prior: 50952242 overrides: 16896425!
+initialize
+
+	empty := true.
+	books := Bag new.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:26:30'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:26:30'!
+ERROR!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:26:30'!
+ERROR!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:26:30'!
+ERROR!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:26:30'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:26:30'!
+ERROR!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:26:30'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:26:32'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 17:29:29' prior: 50952461!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	copiesOfBookToAdd >= self minimumCopiesToAddAtATime
+		ifTrue: [
+			books add: bookToAdd withOccurrences: copiesOfBookToAdd.
+			]
+		ifFalse: [
+			self error: self class bookQuantityUnderMinimumErrorDescription.
+			].
+	! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:29:31'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:29:31'!
+FAILURE!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:29:31'!
+ERROR!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:29:31'!
+ERROR!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:29:31'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:29:31'!
+ERROR!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:29:31'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:29:35'!
+ERROR!
+!Cart methodsFor: 'evaluating' stamp: 'CJ 11/17/2020 17:30:41' prior: 50952231!
+quantityOf: aBook
+
+	^ books contents at: aBook.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:30:42'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:30:42'!
+FAILURE!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:30:42'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:30:42'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:30:42'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:30:42'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:30:42'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:30:42'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/17/2020 17:31:02' prior: 50952648!
+add: bookToAdd quantity: copiesOfBookToAdd
+
+	copiesOfBookToAdd >= self minimumCopiesToAddAtATime
+		ifTrue: [
+			empty := false.
+			books add: bookToAdd withOccurrences: copiesOfBookToAdd.
+			]
+		ifFalse: [
+			self error: self class bookQuantityUnderMinimumErrorDescription.
+			].
+	! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:31:08'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 17:35:27' prior: 50952587!
+test06
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: firstBook).
+	self assert: 8 equals: (cart quantityOf: secondBook).! !
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:35:31'!
+FAILURE!
+!Book methodsFor: 'nil' stamp: 'CJ 11/17/2020 17:36:16' overrides: 16881029!
+= anotherBook
+	
+	^ self isbn == anotherBook isbn.! !
+
+!classDefinition: #Book category: '20-TusLibros' stamp: 'CJ 11/17/2020 17:36:31'!
+Object subclass: #Book
+	instanceVariableNames: 'isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+!Book methodsFor: 'nil' stamp: 'CJ 11/17/2020 17:36:28'!
+isbn
+
+	^ isbn! !
+!Book class methodsFor: 'instance creation' stamp: 'CJ 11/17/2020 17:37:04' prior: 50952095!
+withISBN: anISBN
+
+	^ self new initializeWithISBN: anISBN.! !
+!Book methodsFor: 'nil' stamp: 'CJ 11/17/2020 17:37:32'!
+initializeWithISBN: anISBN
+
+	isbn := anISBN.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:37:33'!
+FAILURE!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:37:33'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+
+!testRun: #CartTest #test03CartKnowsQuantityPerBook stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksQuantityPerBook stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+
+!testRun: #CartTest #testX stamp: 'CJ 11/17/2020 17:37:37'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CJ 11/17/2020 17:38:11'!
+test06BooksWithSameISBNAreTheSameBook
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: firstBook).
+	self assert: 8 equals: (cart quantityOf: secondBook).! !
+
+!methodRemoval: CartTest #test06 stamp: 'CJ 11/17/2020 17:38:11'!
+test06
+	
+	| firstBook secondBook cart |
+	
+	cart := Cart new.
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+	
+	self assert: 8 equals: (cart quantityOf: firstBook).
+	self assert: 8 equals: (cart quantityOf: secondBook).!
+
+----End fileIn of /home/kali/exactas/ing1/ejercicios-isw1/20-TusLibros/20-TusLibros.st----!
+
+!classRemoval: #Cart stamp: 'CJ 11/18/2020 17:37:54'!
+Object subclass: #Cart
+	instanceVariableNames: 'empty books catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+
+!classRemoval: #Book stamp: 'CJ 11/18/2020 17:37:55'!
+Object subclass: #Book
+	instanceVariableNames: 'isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+
+!classRemoval: #CartTest stamp: 'CJ 11/18/2020 17:37:55'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+
+----End fileIn of /home/kali/exactas/ing1/ejercicios-isw1/20-TusLibros/20-TusLibros.st----!
+!Cart methodsFor: 'initialization' stamp: 'CJ 11/18/2020 17:40:31' prior: 50953275!
+initializeWithCatalog: aCatalog
+
+	self initialize.
+	catalog := aCatalog.! !
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 17:40:33'!
+PASSED!
+!Cart methodsFor: 'evaluating' stamp: 'CJ 11/18/2020 17:40:45' prior: 50953247!
+books
+
+	^ books copy! !
+!Cart methodsFor: 'initialization' stamp: 'CJ 11/18/2020 17:45:27' prior: 50953309!
+initializeWithCatalog: aCatalog
+
+	catalog := aCatalog.! !
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 17:45:33'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 17:46:08'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:12:24' prior: 50953131!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog firstBook secondBook |
+
+	firstBook := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+	catalog := Set with: firstBook." with: secondBook."
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstBook quantity: 3.
+	cart add: secondBook quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: firstBook).
+	self assert: 8 equals: (cart quantityOf: secondBook).! !
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:12:25'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:26:16' prior: 50953104!
+test02CartWithProductsIsNotEmpty
+	
+	| isbn cart catalog |
+	
+	isbn := '9780553801477'.
+	catalog := Set with: isbn.
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn quantity: 1.
+
+	self deny: cart isEmpty.! !
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:26:22'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:27:49' prior: 50953114!
+test03CartStoresMultipleBooksWithAQuantity
+	
+	| cart catalog firstIsbn secondIsbn |
+
+	firstIsbn := '9780553801477'.
+	secondIsbn := '9780575081406'.
+	catalog := Set with: firstIsbn with: secondIsbn.
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: secondIsbn quantity: 5.
+
+	self assert: 3 equals: (cart quantityOf: firstIsbn).
+	self assert: 5 equals: (cart quantityOf: secondIsbn).! !
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:27:51'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:27:54' prior: 50953444!
+test03CartStoresMultipleBooksWithAQuantity
+	
+	| cart catalog firstIsbn secondIsbn |
+
+	firstIsbn := '9780553801477'.
+	secondIsbn := '9780575081406'.
+	catalog := Set with: firstIsbn with: secondIsbn.
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: secondIsbn quantity: 5.
+
+	self assert: 3 equals: (cart quantityOf: firstIsbn).
+	self assert: 5 equals: (cart quantityOf: secondIsbn).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:32:28' prior: 50953369!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog firstIsbn secondBook |
+
+	firstIsbn := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+	catalog := Set with: firstIsbn." with: secondBook."
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: secondBook quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: firstIsbn).
+	self assert: 8 equals: (cart quantityOf: secondBook).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:32:38' prior: 50953501!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog firstIsbn secondBook |
+
+	firstIsbn := Book withISBN: '9780553801477'.
+	secondBook := Book withISBN: '9780553801477'.
+	catalog := Set with: firstIsbn." with: secondBook."
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: secondBook quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: firstIsbn).
+	self assert: 8 equals: (cart quantityOf: secondBook).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:32:56' prior: 50953518!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog firstIsbn secondIsbn |
+
+	firstIsbn := Book withISBN: '9780553801477'.
+	secondIsbn := Book withISBN: '9780553801477'.
+	catalog := Set with: firstIsbn." with: secondBook."
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: secondIsbn quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: firstIsbn).
+	self assert: 8 equals: (cart quantityOf: secondIsbn).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:33:10' prior: 50953535!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog firstIsbn secondIsbn |
+
+	firstIsbn := Book withISBN: '9780553801477'.
+	secondIsbn := Book withISBN: '9780553801477'.
+	catalog := Set with: firstIsbn.
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: secondIsbn quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: firstIsbn).
+	self assert: 8 equals: (cart quantityOf: secondIsbn).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:34:17' prior: 50953552!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog firstIsbn |
+
+	firstIsbn := Book withISBN: '9780553801477'.
+	catalog := Set with: firstIsbn.
+	cart := Cart withCatalog: catalog.
+	
+	cart add: firstIsbn quantity: 3.
+	cart add: firstIsbn quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: firstIsbn).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:34:32' prior: 50953568!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog isbn |
+
+	isbn := Book withISBN: '9780553801477'.
+	catalog := Set with: isbn.
+	cart := Cart withCatalog: catalog.
+	
+	cart add: isbn quantity: 3.
+	cart add: isbn quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: isbn).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:35:17' prior: 50953148!
+test05BookQuantityMustBeAtLeast1
+	
+	| isbn cart catalog |
+
+	isbn := Book withISBN: '9780553801477'.
+	catalog := Set with: isbn.
+	cart := Cart withCatalog: catalog.
+
+	self
+		should: [ cart add: isbn quantity: 0. ]
+		raise: Error
+		withMessageText: Cart bookQuantityUnderMinimumErrorDescription.
+
+	self assert: cart isEmpty.! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:35:24' prior: 50953593!
+test05BookQuantityMustBeAtLeast1
+	
+	| isbn cart catalog |
+
+	isbn := '9780553801477'.
+	catalog := Set with: isbn.
+	cart := Cart withCatalog: catalog.
+
+	self
+		should: [ cart add: isbn quantity: 0. ]
+		raise: Error
+		withMessageText: Cart bookQuantityUnderMinimumErrorDescription.
+
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:35:31'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:36:08' prior: 50953161!
+test06CartCantAddBooksNotInCatalog
+	
+	| cart |
+	
+	cart := Cart withCatalog: (Set new).
+
+	self
+		should: [ cart add: '9780553801477' quantity: 3. ]
+		raise: Error
+		withMessageText: Cart bookNotInCatalogErrorDescription.
+
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:36:12'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:36:40' prior: 50953172!
+test07CartStoresBagOfBooks
+	
+	| cart catalog books |
+	
+	catalog := Set
+		with: '9780553801477'
+		with: '9780575081406'
+		with: '9780553278224'.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: (Book withISBN: '9780553801477') quantity: 3.
+	cart add: (Book withISBN: '9780575081406') quantity: 2.
+	cart add: (Book withISBN: '9780553278224') quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: (Book withISBN: '9780553801477')).
+	self assert: 2 equals: (books occurrencesOf: (Book withISBN: '9780575081406')).
+	self assert: 1 equals: (books occurrencesOf: (Book withISBN: '9780553278224')).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:37:27' prior: 50953678!
+test07CartStoresBagOfBooks
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set
+		with: '9780553801477'
+		with: '9780575081406'
+		with: '9780553278224'.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: (Book withISBN: '9780553801477') quantity: 3.
+	cart add: (Book withISBN: '9780575081406') quantity: 2.
+	cart add: (Book withISBN: '9780553278224') quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: (Book withISBN: '9780553801477')).
+	self assert: 2 equals: (books occurrencesOf: (Book withISBN: '9780575081406')).
+	self assert: 1 equals: (books occurrencesOf: (Book withISBN: '9780553278224')).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:38:09' prior: 50953702!
+test07CartStoresBagOfBooks
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set with: isbn1 with: isbn2 with: isbn3.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: (Book withISBN: '9780553801477') quantity: 3.
+	cart add: (Book withISBN: '9780575081406') quantity: 2.
+	cart add: (Book withISBN: '9780553278224') quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: (Book withISBN: '9780553801477')).
+	self assert: 2 equals: (books occurrencesOf: (Book withISBN: '9780575081406')).
+	self assert: 1 equals: (books occurrencesOf: (Book withISBN: '9780553278224')).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:38:33' prior: 50953729!
+test07CartStoresBagOfBooks
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set with: isbn1 with: isbn2 with: isbn3.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	cart add: isbn2 quantity: 2.
+	cart add: isbn3 quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: (Book withISBN: '9780553801477')).
+	self assert: 2 equals: (books occurrencesOf: (Book withISBN: '9780575081406')).
+	self assert: 1 equals: (books occurrencesOf: (Book withISBN: '9780553278224')).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:38:56' prior: 50953755!
+test07CartStoresBagOfBooks
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set with: isbn1 with: isbn2 with: isbn3.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	cart add: isbn2 quantity: 2.
+	cart add: isbn3 quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: isbn1).
+	self assert: 2 equals: (books occurrencesOf: isbn2).
+	self assert: 1 equals: (books occurrencesOf: isbn3).! !
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/18/2020 18:39:00'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/18/2020 18:39:30' prior: 50953581!
+test04CartStacksBooksWithSameISBN
+	
+	| cart catalog isbn |
+
+	isbn := '9780553801477'.
+	catalog := Set with: isbn.
+	cart := Cart withCatalog: catalog.
+	
+	cart add: isbn quantity: 3.
+	cart add: isbn quantity: 5.
+
+	self assert: 8 equals: (cart quantityOf: isbn).! !
+
+!classRemoval: #Book stamp: 'CJ 11/18/2020 18:42:13'!
+Object subclass: #Book
+	instanceVariableNames: 'isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+!Cart methodsFor: 'adding' stamp: 'CJ 11/19/2020 14:54:50' prior: 50953257!
+add: isbnToAdd quantity: copiesOfBookToAdd
+
+	copiesOfBookToAdd >= self minQuantityPerBook ifFalse: [ self error: self class bookQuantityUnderMinimumErrorDescription. ].
+	(catalog includes: isbnToAdd) ifFalse: [ self error: self class bookNotInCatalogErrorDescription . ].
+
+	books add: isbnToAdd withOccurrences: copiesOfBookToAdd.! !
+!Cart methodsFor: 'adding' stamp: 'CJ 11/19/2020 14:55:17' prior: 50953840!
+add: bookToAddISBN quantity: copiesOfBookToAdd
+
+	copiesOfBookToAdd >= self minQuantityPerBook ifFalse: [ self error: self class bookQuantityUnderMinimumErrorDescription. ].
+	(catalog includes: bookToAddISBN) ifFalse: [ self error: self class bookNotInCatalogErrorDescription . ].
+
+	books add: bookToAddISBN withOccurrences: copiesOfBookToAdd.! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/19/2020 14:56:33'!
+test08
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set with: isbn1 with: isbn2 with: isbn3.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	cart add: isbn2 quantity: 2.
+	cart add: isbn3 quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: isbn1).
+	self assert: 2 equals: (books occurrencesOf: isbn2).
+	self assert: 1 equals: (books occurrencesOf: isbn3).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/19/2020 14:56:54' prior: 50953866!
+test08
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set with: isbn1 with: isbn2 with: isbn3.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	cart add: isbn2 quantity: 2.
+	cart add: isbn3 quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: isbn1).
+	self assert: 2 equals: (books occurrencesOf: isbn2).
+	self assert: 1 equals: (books occurrencesOf: isbn3).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/19/2020 14:58:23'!
+test08BooksReturnsCopy
+	
+	| cart catalog books isbn1 |
+	
+	isbn1 := '9780553801477'.
+	
+	catalog := Set with: isbn1.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	
+	books := cart books.
+	books add: isbn1 withOccurrences: 1.
+
+	self assert: 3 equals: (books occurrencesOf: isbn1).! !
+
+!testRun: #CartTest #test08BooksReturnsCopy stamp: 'CJ 11/19/2020 14:58:30'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/19/2020 14:58:46' prior: 50953905!
+test08BooksReturnsCopy
+	
+	| cart catalog books isbn1 |
+	
+	isbn1 := '9780553801477'.
+	
+	catalog := Set with: isbn1.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	
+	books := cart books.
+	books add: isbn1 withOccurrences: 1.
+
+	self assert: 3 equals: (cart quantityOf: isbn1).! !
+
+!testRun: #CartTest #test08BooksReturnsCopy stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test01CartWithoutProductsIsEmpty stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithProductsIsNotEmpty stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test03CartStoresMultipleBooksWithAQuantity stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test04CartStacksBooksWithSameISBN stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test05BookQuantityMustBeAtLeast1 stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test06CartCantAddBooksNotInCatalog stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test07CartStoresBagOfBooks stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test08 stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!testRun: #CartTest #test08BooksReturnsCopy stamp: 'CJ 11/19/2020 14:58:47'!
+PASSED!
+
+!methodRemoval: CartTest #test08 stamp: 'CJ 11/19/2020 14:58:53'!
+test08
+	
+	| cart catalog books isbn1 isbn2 isbn3 |
+	
+	isbn1 := '9780553801477'.
+	isbn2 := '9780575081406'.
+	isbn3 := '9780553278224'.
+	
+	catalog := Set with: isbn1 with: isbn2 with: isbn3.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	cart add: isbn2 quantity: 2.
+	cart add: isbn3 quantity: 1.
+	
+	books := cart books.
+	
+	self assert: 6 equals: books size.
+	self assert: 3 equals: (books occurrencesOf: isbn1).
+	self assert: 2 equals: (books occurrencesOf: isbn2).
+	self assert: 1 equals: (books occurrencesOf: isbn3).!
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/19/2020 15:12:51'!
+test09
+	
+	| cart catalog books isbn1 |
+	
+	isbn1 := '9780553801477'.
+	
+	catalog := Set with: isbn1.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 3.
+	
+	books := cart books.
+	books add: isbn1 withOccurrences: 1.
+
+	self assert: 3 equals: (cart quantityOf: isbn1).! !
+!CartTest methodsFor: 'tests' stamp: 'CJ 11/19/2020 15:13:18' prior: 50953980!
+test09
+	
+	| cart catalog isbn1 |
+	
+	isbn1 := '9780553801477'.
+	
+	catalog := Set with: isbn1.
+
+	cart := Cart withCatalog: catalog.
+
+	cart add: isbn1 quantity: 1.5.
+
+	"self assert: 3 equals: (cart quantityOf: isbn1)."! !
+
+!testRun: #CartTest #test09 stamp: 'CJ 11/19/2020 15:15:10'!
+PASSED!

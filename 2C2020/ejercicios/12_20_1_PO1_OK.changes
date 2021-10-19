@@ -1,0 +1,2462 @@
+
+
+----STARTUP---- (2 November 2020 19:21:01) as C:\Users\Claudia\Desktop\Prueba\windows64\CuisUniversity-4384.image!
+
+
+----End fileIn of C:\Users\Claudia\Desktop\Prueba\windows64\Portfolio-Ejercicio.st----!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'nt 11/2/2020 19:51:47' prior: 50872633!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue:[aTransaction value]
+		 ifFalse:[(aTransaction value) * -1 ] ] 
+		 ifEmpty: [ 0 ] ! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'nt 11/2/2020 19:52:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'nt 11/2/2020 19:54:16'!
+PASSED!
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'nt 11/2/2020 20:01:01'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Portfolio class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Ejercicio' stamp: 'nt 11/2/2020 20:01:01'!
+Portfolio class
+	instanceVariableNames: ''!
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/2/2020 20:01:01' overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/2/2020 20:01:01'!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/2/2020 20:01:01'!
+transactions 
+
+	^ transactions copy! !
+!Portfolio methodsFor: 'balance' stamp: 'nt 11/2/2020 20:01:01'!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue:[aTransaction value]
+		 ifFalse:[(aTransaction value) * -1 ] ] 
+		 ifEmpty: [ 0 ] ! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/2/2020 20:01:01'!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'nt 11/2/2020 20:02:32'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'nt 11/2/2020 20:03:30'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:03:30' prior: 50872712!
+transactions 
+
+	^ accountsAndPortfolios copy! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:03:30' prior: 50872703 overrides: 16896425!
+initialize
+
+	accountsAndPortfolios := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:03:30' prior: 50872724!
+hasRegistered: aTransaction
+
+	^ accountsAndPortfolios includes: aTransaction 
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:03:30' prior: 50872716!
+balance
+
+	^accountsAndPortfolios sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue:[aTransaction value]
+		 ifFalse:[(aTransaction value) * -1 ] ] 
+		 ifEmpty: [ 0 ] ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:03:30' prior: 50872707!
+register: aTransaction
+
+	accountsAndPortfolios add: aTransaction 
+! !
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'nt 11/2/2020 20:33:53'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Deposit methodsFor: 'nil' stamp: 'nt 11/2/2020 20:40:45'!
+XXX
+	! !
+!Withdraw methodsFor: 'nil' stamp: 'nt 11/2/2020 20:41:13'!
+XXX
+	! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:42:15' prior: 50872793!
+XXX
+	^value! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:42:52' prior: 50872796!
+XXX
+	^(value * -1)! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'nt 11/2/2020 20:47:48' prior: 50872646!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction XXX]
+		 ifEmpty: [ 0 ] ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:50:00'!
+calculateBalance
+	^value! !
+
+!methodRemoval: Deposit #XXX stamp: 'nt 11/2/2020 20:50:00'!
+XXX
+	^value!
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:51:14'!
+calculateBalance
+	^(value * -1)! !
+
+!methodRemoval: Withdraw #XXX stamp: 'nt 11/2/2020 20:51:14'!
+XXX
+	^(value * -1)!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'nt 11/2/2020 20:51:50' prior: 50872808!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction calculateBalance]
+		 ifEmpty: [ 0 ] ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'nt 11/2/2020 20:53:41'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'nt 11/2/2020 20:54:05'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'nt 11/2/2020 20:55:56'!
+test01EmptyPortfolioBalanceEqual0
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 20:58:24' prior: 50872871!
+test01EmptyPortfolioBalanceEqual0
+	|portfolio|
+	portfolio:=Portfolio new.
+	self assert:(portfolio balance=0)! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/2/2020 20:59:42'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/2/2020 21:01:50'!
+addXXX: aTransaction
+
+	accountsAndPortfolios add: aTransaction 
+! !
+
+!methodRemoval: Portfolio #register: stamp: 'nt 11/2/2020 21:01:50'!
+register: aTransaction
+
+	accountsAndPortfolios add: aTransaction 
+!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/2/2020 21:02:29' prior: 50872885!
+addXXX: aTransaction
+
+	accountsAndPortfolios add: aTransaction 
+! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/2/2020 21:03:41' prior: 50872895!
+addXXX: anAccountOrPortfolio
+
+	accountsAndPortfolios add: anAccountOrPortfolio 
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 21:08:13'!
+test02AddAnAccountToAPortfolio
+	|portfolio|
+	portfolio:=Portfolio new.
+	self assert:(portfolio balance=0)! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 21:09:53' prior: 50872906!
+test02AddAnAccountToAPortfolio
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	account
+	self assert:(portfolio balance=0)! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/2/2020 21:11:24' prior: 50872913!
+test02AddAnAccountToAPortfolio
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/2/2020 21:11:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/2/2020 21:11:36'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/2/2020 21:11:36'!
+FAILURE!
+
+----QUIT----(2 November 2020 22:01:38) CuisUniversity-4384.image priorSource: 17304408!
+
+----STARTUP---- (2 November 2020 22:02:01) as C:\Users\Claudia\Desktop\Prueba\windows64\CuisUniversity-4384.image!
+
+
+----QUIT----(2 November 2020 22:02:19) CuisUniversity-4384.image priorSource: 17321236!
+
+----STARTUP---- (3 November 2020 21:30:53) as C:\Users\Claudia\Desktop\Prueba\windows64\CuisUniversity-4384.image!
+
+
+| transaction aValue |
+	aValue:=100.
+	transaction := self for: aValue!
+
+transaction := self for: aValue.!
+
+ transaction |
+	Deposit new.
+	transaction := self for: 100.!
+
+----STARTUP---- (7 November 2020 15:07:50) as C:\Users\Claudia\Desktop\ISW1TPS\windows64\CuisUniversity-4384.image!
+
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:17:23'!
+balance
+	^(value * -1)! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:17:23'!
+balance
+	^value! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:17:23' prior: 50872827!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction balance]
+		 ifEmpty: [ 0 ] ! !
+
+!methodRemoval: Withdraw #calculateBalance stamp: 'nt 11/7/2020 15:17:23'!
+calculateBalance
+	^(value * -1)!
+
+!methodRemoval: Deposit #calculateBalance stamp: 'nt 11/7/2020 15:17:23'!
+calculateBalance
+	^value!
+!Portfolio methodsFor: 'balance' stamp: 'nt 11/7/2020 15:20:45' prior: 50872767!
+balance
+
+	^accountsAndPortfolios sum: [ :aPortfolio | aPortfolio balance ]  
+		 ifEmpty: [ 0 ] ! !
+!Portfolio methodsFor: 'balance' stamp: 'nt 11/7/2020 15:21:18' prior: 50872981!
+balance
+
+	^accountsAndPortfolios sum: [ :anAccountOrPortfolio | anAccountOrPortfolio balance ]  
+		 ifEmpty: [ 0 ] ! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 15:23:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/7/2020 15:23:00'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/7/2020 15:23:00'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:24:46' prior: 50872921!
+test02AddAnAccountToAPortfolio
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio addXXX:
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 15:25:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/7/2020 15:25:45'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/7/2020 15:25:45'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:26:12' prior: 50873004!
+test02AddAnAccountToAPortfolio
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio addXXX:account.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/7/2020 15:26:18'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:27:23'!
+test02AddAnAccountToAPortfolioAndCalculateBalance
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio addXXX:account.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+
+!methodRemoval: PortfolioTest #test02AddAnAccountToAPortfolio stamp: 'nt 11/7/2020 15:27:33'!
+test02AddAnAccountToAPortfolio
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio addXXX:account.
+		
+	self assert: 100 equals: portfolio balance.
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:29:01'!
+test03AddAPortfolioToAPortfolioAndCalculateBalance
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio addXXX:account.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:30:46' prior: 50873061!
+test03AddAPortfolioToAPortfolioAndCalculateBalance
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:31:03' prior: 50873072!
+test03AddAPortfolioToAPortfolioAndCalculateBalance
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 15:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAPortfolioToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:31:13'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:32:08'!
+test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	! !
+
+!methodRemoval: PortfolioTest #test03AddAPortfolioToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:32:16'!
+test03AddAPortfolioToAPortfolioAndCalculateBalance
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:34:19'!
+test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalanceEqual0
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:35:06'!
+test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	! !
+
+!methodRemoval: PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 15:35:20'!
+test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalanceEqual0
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:39:25' prior: 50873132!
+test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance
+	|portfolio portfolio1 account|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	account:=ReceptiveAccount new.
+	portfolio1 addXXX:account.
+	Deposit register:100 on:account.
+	
+	portfolio addXXX:portfolio1.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 15:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 15:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:39:38'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 15:45:01'!
+test05PortfolioKnowsRegisteredTransactions 
+
+	| portfolio account deposit withdraw |
+	portfolio:=Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addXXX:account.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (portfolio hasRegistered: deposit).
+	self assert: (portfolio hasRegistered: withdraw).
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 15:45:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:45:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 15:45:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 15:45:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 15:45:25'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 15:45:25'!
+FAILURE!
+
+----End fileIn of C:\Users\Claudia\Desktop\ISW1TPS\windows64\Packages\TerseGuide.pck.st----!
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 15:52:23' prior: 50872761!
+hasRegistered: aTransaction
+
+
+	^ accountsAndPortfolios do: [:anAccountOrPortfolio|anAccountOrPortfolio hasRegistered: aTransaction] 
+! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 15:54:39' prior: 50876154!
+hasRegistered: aTransaction
+|flag|
+flag:=false.
+ accountsAndPortfolios do: [:anAccountOrPortfolio|flag:= flag and:( anAccountOrPortfolio hasRegistered: aTransaction)] 
+! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 15:55:15' prior: 50876161!
+hasRegistered: aTransaction
+|flag|
+flag:=false.
+ accountsAndPortfolios do: [:anAccountOrPortfolio|flag:= flag or:( anAccountOrPortfolio hasRegistered: aTransaction)] 
+^flag! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 15:55:41' prior: 50876169!
+hasRegistered: aTransaction
+|flag|
+flag:=false.
+ accountsAndPortfolios do: [:anAccountOrPortfolio|flag:= flag or:( anAccountOrPortfolio hasRegistered: aTransaction)].
+^flag.! !
+
+----SNAPSHOT----(7 November 2020 15:55:58) CuisUniversity-4384.image priorSource: 17321442!
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 15:58:59' prior: 50876178!
+hasRegistered: aTransaction
+
+ ^accountsAndPortfolios allSatisfy: [:anAccountOrPortfolio|anAccountOrPortfolio hasRegistered: aTransaction].
+! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 16:04:13' prior: 50876189!
+hasRegistered: aTransaction
+
+ ^(accountsAndPortfolios noneSatisfy: [:anAccountOrPortfolio|anAccountOrPortfolio hasRegistered: aTransaction])not.
+! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 16:06:07' prior: 50876196!
+hasRegistered: aTransaction
+
+ accountsAndPortfolios anySatisfy: [:anAccountOrPortfolio|anAccountOrPortfolio hasRegistered: aTransaction]
+! !
+!Portfolio methodsFor: 'testing' stamp: 'nt 11/7/2020 16:06:17' prior: 50876204!
+hasRegistered: aTransaction
+
+ ^accountsAndPortfolios anySatisfy: [:anAccountOrPortfolio|anAccountOrPortfolio hasRegistered: aTransaction]
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:08:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:08:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:08:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:08:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:08:30'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:13:08'!
+test06PortfolioDoNotKnowNotRegisteredAccounts
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 100.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:15:16' prior: 50876237!
+test06PortfolioDoNotKnowNotRegisteredAccounts
+
+	| portfolio account deposit withdraw |
+	portfolio:=Portfolio new.
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+	
+	self deny: (portfolio hasRegistered:deposit).
+	self deny: (portfolio hasRegistered:withdraw).
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:15:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:15:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:15:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:15:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:15:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:15:26'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:22:09'!
+test07PortfolioKnowsItsAccountsTransactions 
+
+	| portfolio account1 deposit1 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:22:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:22:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:22:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:22:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:22:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:22:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactions stamp: 'nt 11/7/2020 16:22:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactions stamp: 'nt 11/7/2020 16:22:15'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 16:23:30' prior: 50872750!
+transactions 
+
+	^ accountsAndPortfolios transactions.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:23:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:23:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:23:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:23:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:23:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:23:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactions stamp: 'nt 11/7/2020 16:23:45'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactions stamp: 'nt 11/7/2020 16:23:45'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 16:24:28' prior: 50876328!
+transactions 
+
+	^ accountsAndPortfolios transactions.! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 16:27:01' prior: 50876362!
+transactions 
+
+	accountsAndPortfolios do: [:anAccountOrPortfolio| ^ anAccountOrPortfolio transactions ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactions stamp: 'nt 11/7/2020 16:27:29'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:29:07'!
+test07PortfolioKnowsItsAccountsTransactionsWithOneAccount 
+
+	| portfolio account1 deposit1 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:31:18'!
+test07PortfolioKnowsItsAccountsTransactionsWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit1 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit1).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:31:39' prior: 50876413!
+test07PortfolioKnowsItsAccountsTransactionsWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit1).
+! !
+
+!methodRemoval: PortfolioTest #test07PortfolioKnowsItsAccountsTransactions stamp: 'nt 11/7/2020 16:31:54'!
+test07PortfolioKnowsItsAccountsTransactions 
+
+	| portfolio account1 deposit1 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:32:17'!
+test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit1).
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:32:33'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 16:32:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:32:33'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:32:56'!
+test07PortfolioKnowsItsAccountsTransactionsWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit1).
+!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 16:33:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:33:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:33:08'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 16:38:31' prior: 50876367!
+transactions 
+	|totalTransacctions|
+	totalTransacctions:=OrderedCollection new.
+	accountsAndPortfolios do: [:anAccountOrPortfolio| totalTransacctions addAll: anAccountOrPortfolio transactions ].
+	^totalTransacctions.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:39:23'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:39:43' prior: 50876467!
+test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit2).
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:39:49'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:42:48'!
+test09PortfolioBalanceWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit2).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:43:34' prior: 50876665!
+test09PortfolioBalanceWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit2).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:43:56' prior: 50876685!
+test09PortfolioBalanceWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 100 equals: portfolio balance.
+	
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 16:44:21'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:46:24'!
+test10PortfolioDoesNotAcceptRepeatedAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 100 equals: portfolio balance.
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:51:07' prior: 50876754!
+test10PortfolioDoesNotAcceptRepeatedAccounts
+
+	| portfolio account1  |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio addXXX:account1.
+			
+	
+	
+! !
+
+----SNAPSHOT----(7 November 2020 16:51:32) CuisUniversity-4384.image priorSource: 17425136!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:53:45' prior: 50876770!
+test10PortfolioDoesNotAcceptRepeatedAccounts
+
+	| portfolio account1  |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+	
+			
+	self should:[portfolio addXXX:account1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountMessageError]
+	
+! !
+!Portfolio class methodsFor: 'no messages' stamp: 'nt 11/7/2020 16:54:52'!
+duplicateAccountMessageError
+	'La cuenta que quiere agregar ya existe en el portfolio'! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 16:56:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 16:56:03'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 16:56:03'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 16:57:09' prior: 50876783!
+test10PortfolioDoesNotAcceptRepeatedAccounts
+
+	| portfolio account1  |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+				
+	self should:[portfolio addXXX:account1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountMessageError]
+	
+! !
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 16:59:21'!
+validateAccountOrPortfolio:anAccountOrPortfolio
+	! !
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 17:01:53' prior: 50876856!
+validateAccountOrPortfolio:anAccountOrPortfolio
+	(accountsAndPortfolios includes: anAccountOrPortfolio ) ifTrue: [self error: Portfolio duplicateAccountMessageError ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:02:58' prior: 50872900!
+addXXX: anAccountOrPortfolio
+	self validateAccountOrPortfolio:anAccountOrPortfolio.
+	accountsAndPortfolios add: anAccountOrPortfolio 
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 17:03:04'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:03:46'!
+test11PortfolioDoesNotAcceptRepeatedPortfolio
+
+	| portfolio account1  |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+				
+	self should:[portfolio addXXX:account1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountMessageError]
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:05:58' prior: 50876913!
+test11PortfolioDoesNotAcceptRepeatedPortfolio
+
+	| portfolio portfolio1 account1  |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	portfolio addXXX:portfolio1.
+			
+	self should:[portfolio addXXX:portfolio1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountMessageError]
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:06:23' prior: 50876927!
+test11PortfolioDoesNotAcceptRepeatedPortfolio
+
+	| portfolio portfolio1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	portfolio addXXX:portfolio1.
+			
+	self should:[portfolio addXXX:portfolio1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountMessageError]
+	
+! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:07:37'!
+duplicateAccountorPortfolioMessageError
+	'La cuenta que quiere agregar ya existe en el portfolio'! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:07:37' prior: 50876843!
+test10PortfolioDoesNotAcceptRepeatedAccounts
+
+	| portfolio account1  |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addXXX:account1.
+				
+	self should:[portfolio addXXX:account1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:07:37' prior: 50876861!
+validateAccountOrPortfolio:anAccountOrPortfolio
+	(accountsAndPortfolios includes: anAccountOrPortfolio ) ifTrue: [self error: Portfolio duplicateAccountorPortfolioMessageError ]! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:07:37' prior: 50876941!
+test11PortfolioDoesNotAcceptRepeatedPortfolio
+
+	| portfolio portfolio1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	portfolio addXXX:portfolio1.
+			
+	self should:[portfolio addXXX:portfolio1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+
+!methodRemoval: Portfolio class #duplicateAccountMessageError stamp: 'nt 11/7/2020 17:07:37'!
+duplicateAccountMessageError
+	'La cuenta que quiere agregar ya existe en el portfolio'!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:07:58' prior: 50876954!
+duplicateAccountorPortfolioMessageError
+	'La cuenta o portfolio que quiere agregar ya existe en el portfolio'! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 17:08:24'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:11:54'!
+test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount
+
+	| portfolio portfolio1 account1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	account1:=ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio1 addXXX:account1.
+			
+	self should:[portfolio addXXX:portfolio1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+
+----SNAPSHOT----(7 November 2020 17:12:00) CuisUniversity-4384.image priorSource: 17444106!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 17:12:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 17:12:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 17:12:06'!
+FAILURE!
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 17:21:15'!
+hasAccountOrPortfolio:anAccountOrPortfolio
+	^(accountsAndPortfolios includes: anAccountOrPortfolio ) ! !
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 17:25:03' prior: 50876975!
+validateAccountOrPortfolio:anAccountOrPortfolio
+	(self hasAccountOrPortfolio: anAccountOrPortfolio ) ifTrue: [self error: Portfolio duplicateAccountorPortfolioMessageError ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 17:26:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 17:26:17'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 17:26:17'!
+FAILURE!
+
+Object subclass: #RootPortfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #RootPortfolio category: 'Portfolio-Ejercicio' stamp: 'nt 11/7/2020 17:29:26'!
+Object subclass: #RootPortfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!RootPortfolio methodsFor: 'no messages' stamp: 'nt 11/7/2020 17:29:58'!
+parentPortfolio
+	! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios parentPortfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'nt 11/7/2020 17:30:26'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios parentPortfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 17:31:19' prior: 50872756 overrides: 16896425!
+initialize
+
+	accountsAndPortfolios := OrderedCollection new.
+	parentPortfolio:=RootPortfolio new.! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:32:59' prior: 50876869!
+addXXX: anAccountOrPortfolio
+	self validateAccountOrPortfolio:anAccountOrPortfolio.
+	accountsAndPortfolios add: anAccountOrPortfolio.
+	anAccountOrPortfolio assignParent:self.
+! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:34:27'!
+assignParent: aPortfolio
+	parentPortfolio:=aPortfolio
+! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'nt 11/7/2020 17:36:10'!
+assignParent:aPortfolio
+	! !
+
+----SNAPSHOT----(7 November 2020 17:40:08) CuisUniversity-4384.image priorSource: 17453317!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:41:55'!
+rootSearch
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:42:49' prior: 50877236!
+rootSearch
+parentPortfolio rootSearch 
+	! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:44:34'!
+rootSearch
+	! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:46:22' prior: 50877244!
+rootSearch
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=OrderedCollection new.
+	! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:46:55'!
+rootSearch:childPortfolio
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=OrderedCollection new.
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:47:25'!
+rootSearch:childPortfolio
+parentPortfolio rootSearch 
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:47:39' prior: 50877260!
+rootSearch:childPortfolio
+parentPortfolio rootSearch:self
+	! !
+
+!methodRemoval: Portfolio #rootSearch stamp: 'nt 11/7/2020 17:47:48'!
+rootSearch
+parentPortfolio rootSearch 
+	!
+
+!methodRemoval: RootPortfolio #rootSearch stamp: 'nt 11/7/2020 17:48:16'!
+rootSearch
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=OrderedCollection new.
+	!
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:49:46' prior: 50877254!
+rootSearch:childPortfolio
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=OrderedCollection new.
+childPortfolio allAccountsAndPortfolios:allAccountsAndPortfolios.
+^allAccountsAndPortfolios.
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:56:28'!
+allAccountsAndPortfolios:allAccountsAndPortfolios
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfolios. 
+		anAccountOrPortfolio allAccountsAndPortfolios:allAccountsAndPortfolios ]
+! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:57:21' prior: 50877288!
+allAccountsAndPortfolios:allAccountsAndPortfolios
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfolios. 
+		anAccountOrPortfolio allAccountsAndPortfolios:allAccountsAndPortfolios ]
+! !
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:58:08'!
+findAllAccountsAndPortfolios:allAccountsAndPortfolios
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfolios. 
+		anAccountOrPortfolio allAccountsAndPortfolios:allAccountsAndPortfolios ]
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:58:08' prior: 50877298!
+allAccountsAndPortfolios:allAccountsAndPortfolios
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfolios. 
+		anAccountOrPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios ]
+! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:58:08' prior: 50877279!
+rootSearch:childPortfolio
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=OrderedCollection new.
+childPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios.
+^allAccountsAndPortfolios.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 17:58:08' prior: 50877308!
+findAllAccountsAndPortfolios:allAccountsAndPortfolios
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfolios. 
+		anAccountOrPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios ]
+! !
+
+!methodRemoval: Portfolio #allAccountsAndPortfolios: stamp: 'nt 11/7/2020 17:58:08'!
+allAccountsAndPortfolios:allAccountsAndPortfolios
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfolios. 
+		anAccountOrPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios ]
+!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 17:58:51' prior: 50877340!
+findAllAccountsAndPortfolios:allAccountsAndPortfoliosCollection
+	accountsAndPortfolios do:[:anAccountOrPortfolio| anAccountOrPortfolio add:allAccountsAndPortfoliosCollection. 
+		anAccountOrPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfoliosCollection ]
+! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'nt 11/7/2020 17:59:43'!
+findAllAccountsAndPortfolios:allAccountsAndPortfoliosCollection! !
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 18:01:49' prior: 50877125!
+validateAccountOrPortfolio:anAccountOrPortfolio
+	"(self hasAccountOrPortfolio: anAccountOrPortfolio ) 
+	ifTrue: [self error: Portfolio duplicateAccountorPortfolioMessageError ]"! !
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 18:05:49' prior: 50877377!
+validateAccountOrPortfolio:anAccountOrPortfolio
+|myAccountsAndPortfoliosCollection theirAccountsAndPortfoliosCollection|
+myAccountsAndPortfoliosCollection:=self rootSearch:self.
+theirAccountsAndPortfoliosCollection:=anAccountOrPortfolio rootSearch: anAccountOrPortfolio.
+
+	"(self hasAccountOrPortfolio: anAccountOrPortfolio ) 
+	ifTrue: [self error: Portfolio duplicateAccountorPortfolioMessageError ]"! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'nt 11/7/2020 18:07:39'!
+rootSearch:childPortfolio
+	! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'nt 11/7/2020 18:09:25' prior: 50877401!
+rootSearch:childPortfolio
+	^OrderedCollection new.! !
+
+----SNAPSHOT----(7 November 2020 18:10:57) CuisUniversity-4384.image priorSource: 17458652!
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 18:16:05' prior: 50877386!
+validateAccountOrPortfolio:anAccountOrPortfolio
+|myAccountsAndPortfoliosCollection theirAccountsAndPortfoliosCollection|
+myAccountsAndPortfoliosCollection:=self rootSearch:self.
+theirAccountsAndPortfoliosCollection:=anAccountOrPortfolio rootSearch: anAccountOrPortfolio.
+(myAccountsAndPortfoliosCollection noneSatisfy: [:myAccountOrPortfolio|theirAccountsAndPortfoliosCollection includes:myAccountOrPortfolio ] ) ifFalse: [self error:Portfolio duplicateAccountorPortfolioMessageError].
+	
+	
+	
+	"(self hasAccountOrPortfolio: anAccountOrPortfolio ) 
+	ifTrue: [self error: Portfolio duplicateAccountorPortfolioMessageError ]"! !
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 18:16:19' prior: 50877413!
+validateAccountOrPortfolio:anAccountOrPortfolio
+|myAccountsAndPortfoliosCollection theirAccountsAndPortfoliosCollection|
+myAccountsAndPortfoliosCollection:=self rootSearch:self.
+theirAccountsAndPortfoliosCollection:=anAccountOrPortfolio rootSearch: anAccountOrPortfolio.
+(myAccountsAndPortfoliosCollection noneSatisfy: [:myAccountOrPortfolio|theirAccountsAndPortfoliosCollection includes:myAccountOrPortfolio ] ) ifFalse: [self error:Portfolio duplicateAccountorPortfolioMessageError].
+	
+	
+	
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:16:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:16:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:16:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:17:12'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:17:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:17:59'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 18:20:12' prior: 50877265!
+rootSearch:childPortfolio
+^parentPortfolio rootSearch:self
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:20:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:20:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:20:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:20:22'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:20:22'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:20:22'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:20:35'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/7/2020 18:22:56' prior: 50877361!
+findAllAccountsAndPortfolios:allAccountsAndPortfoliosCollection
+	accountsAndPortfolios do:[:anAccountOrPortfolio| allAccountsAndPortfoliosCollection add:anAccountOrPortfolio . 
+		anAccountOrPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfoliosCollection ]
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:23:04'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:23:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:23:04'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:23:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:23:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:23:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:23:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:23:39'!
+FAILURE!
+
+----QUIT----(7 November 2020 18:24:22) CuisUniversity-4384.image priorSource: 17464277!
+
+----STARTUP---- (7 November 2020 18:25:31) as C:\Users\Claudia\Desktop\ISW1TPS\windows64\CuisUniversity-4384.image!
+
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:26:09'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:26:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:26:09'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'private' stamp: 'nt 11/7/2020 18:28:17' prior: 50877405!
+rootSearch:childPortfolio
+	^OrderedCollection new add:self.! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 18:29:18' prior: 50877330!
+rootSearch:childPortfolio
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=OrderedCollection new add:childPortfolio .
+childPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios.
+^allAccountsAndPortfolios.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:29:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:29:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:29:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:29:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:32:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:32:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:32:16'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:32:41'!
+ERROR!
+!ReceptiveAccount methodsFor: 'private' stamp: 'nt 11/7/2020 18:34:51' prior: 50877772!
+rootSearch:childPortfolio
+	^(OrderedCollection new) add:self.! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 18:35:28' prior: 50877777!
+rootSearch:childPortfolio
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=(OrderedCollection new) add:childPortfolio .
+childPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios.
+^allAccountsAndPortfolios.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:35:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:35:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:35:35'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:35:46'!
+ERROR!
+!ReceptiveAccount methodsFor: 'private' stamp: 'nt 11/7/2020 18:37:02' prior: 50877882!
+rootSearch:childPortfolio
+	^OrderedCollection new.! !
+!RootPortfolio methodsFor: 'as yet unclassified' stamp: 'nt 11/7/2020 18:37:29' prior: 50877888!
+rootSearch:childPortfolio
+|allAccountsAndPortfolios |
+allAccountsAndPortfolios :=(OrderedCollection new).
+childPortfolio findAllAccountsAndPortfolios:allAccountsAndPortfolios.
+^allAccountsAndPortfolios.
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:37:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:37:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:37:39'!
+FAILURE!
+!Portfolio methodsFor: 'initialization' stamp: 'nt 11/7/2020 18:41:33' prior: 50877436!
+validateAccountOrPortfolio:anAccountOrPortfolio
+|myAccountsAndPortfoliosCollection theirAccountsAndPortfoliosCollection|
+myAccountsAndPortfoliosCollection:=self rootSearch:self.
+theirAccountsAndPortfoliosCollection:=anAccountOrPortfolio rootSearch: anAccountOrPortfolio.
+(myAccountsAndPortfoliosCollection noneSatisfy: [:myAccountOrPortfolio|theirAccountsAndPortfoliosCollection includes:myAccountOrPortfolio ] ) ifFalse: [self error:Portfolio duplicateAccountorPortfolioMessageError].
+(myAccountsAndPortfoliosCollection includes: anAccountOrPortfolio ) ifTrue: [self error:Portfolio duplicateAccountorPortfolioMessageError].
+
+	
+	
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/7/2020 18:41:41'!
+PASSED!
+
+----SNAPSHOT----(7 November 2020 18:45:08) CuisUniversity-4384.image priorSource: 17474118!
+
+----QUIT----(7 November 2020 18:45:32) CuisUniversity-4384.image priorSource: 17485564!
+
+----STARTUP---- (8 November 2020 15:38:31) as C:\Users\Claudia\Desktop\ISW1TPS\windows64\CuisUniversity-4384.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:43:36'!
+test13PortfolioDoesNotAcceptPortfolioCycle
+
+	| portfolio portfolio1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	portfolio addXXX:portfolio1.
+			
+	self should:[portfolio1 addXXX:portfolio]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioDoesNotAcceptPortfolioCycle stamp: 'nt 11/8/2020 15:43:50'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:51:02'!
+test14PortfoliosBalanceWithSharedAccount
+
+	| portfolio portfolio1 account1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	account1:=ReceptiveAccount new.
+	portfolio addXXX:account1.
+	portfolio1 addXXX:account1.
+	Deposit register:100 on:account1.
+			
+	self assert: portfolio balance equals: portfolio1 balance.
+	self assert: portfolio balance equals: account1 balance
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioDoesNotAcceptPortfolioCycle stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfoliosBalanceWithSharedAccount stamp: 'nt 11/8/2020 15:51:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioDoesNotAcceptPortfolioCycle stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfoliosBalanceWithSharedAccount stamp: 'nt 11/8/2020 15:51:27'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'nt 11/8/2020 15:52:28'!
+addAccountOrPortfolio: anAccountOrPortfolio
+	self validateAccountOrPortfolio:anAccountOrPortfolio.
+	accountsAndPortfolios add: anAccountOrPortfolio.
+	anAccountOrPortfolio assignParent:self.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50873182!
+test05PortfolioKnowsRegisteredTransactions 
+
+	| portfolio account deposit withdraw |
+	portfolio:=Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (portfolio hasRegistered: deposit).
+	self assert: (portfolio hasRegistered: withdraw).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50873040!
+test02AddAnAccountToAPortfolioAndCalculateBalance
+	|portfolio account|
+	portfolio:=Portfolio new.
+	account:=ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio addAccountOrPortfolio:account.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50878145!
+test14PortfoliosBalanceWithSharedAccount
+
+	| portfolio portfolio1 account1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	account1:=ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account1.
+	portfolio1 addAccountOrPortfolio:account1.
+	Deposit register:100 on:account1.
+			
+	self assert: portfolio balance equals: portfolio1 balance.
+	self assert: portfolio balance equals: account1 balance
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50873102!
+test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0
+	|portfolio portfolio1|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new..
+	
+	portfolio addAccountOrPortfolio:portfolio1.
+		
+	self assert: 0 equals: portfolio balance.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50877051!
+test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount
+
+	| portfolio portfolio1 account1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	account1:=ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account1.
+	portfolio1 addAccountOrPortfolio:account1.
+			
+	self should:[portfolio addAccountOrPortfolio:portfolio1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50876961!
+test10PortfolioDoesNotAcceptRepeatedAccounts
+
+	| portfolio account1  |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account1.
+				
+	self should:[portfolio addAccountOrPortfolio:account1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50876705!
+test09PortfolioBalanceWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account1.
+	portfolio addAccountOrPortfolio:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 100 equals: portfolio balance.
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50876984!
+test11PortfolioDoesNotAcceptRepeatedPortfolio
+
+	| portfolio portfolio1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	portfolio addAccountOrPortfolio:portfolio1.
+			
+	self should:[portfolio addAccountOrPortfolio:portfolio1]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50873154!
+test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance
+	|portfolio portfolio1 account|
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	account:=ReceptiveAccount new.
+	portfolio1 addAccountOrPortfolio:account.
+	Deposit register:100 on:account.
+	
+	portfolio addAccountOrPortfolio:portfolio1.
+		
+	self assert: 100 equals: portfolio balance.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50876615!
+test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts
+
+	| portfolio account1 account2 deposit1 deposit2 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account1.
+	portfolio addAccountOrPortfolio:account2.
+	deposit1 := Deposit register: 50 on: account1.
+	deposit2 := Deposit register: 50 on: account2.
+		
+	self assert: 2 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit2).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50878084!
+test13PortfolioDoesNotAcceptPortfolioCycle
+
+	| portfolio portfolio1 |
+	
+	portfolio:=Portfolio new.
+	portfolio1:=Portfolio new.
+	portfolio addAccountOrPortfolio:portfolio1.
+			
+	self should:[portfolio1 addAccountOrPortfolio:portfolio]
+	raise:Error
+	withExceptionDo:[:anError| 
+		self assert: anError  messageText=Portfolio duplicateAccountorPortfolioMessageError]
+	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'nt 11/8/2020 15:52:28' prior: 50876399!
+test07PortfolioKnowsItsAccountsTransactionsWithOneAccount 
+
+	| portfolio account1 deposit1 |
+	
+	portfolio:=Portfolio new.
+	account1 := ReceptiveAccount new.
+	portfolio addAccountOrPortfolio:account1.
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+! !
+
+!methodRemoval: Portfolio #addXXX: stamp: 'nt 11/8/2020 15:52:28'!
+addXXX: anAccountOrPortfolio
+	self validateAccountOrPortfolio:anAccountOrPortfolio.
+	accountsAndPortfolios add: anAccountOrPortfolio.
+	anAccountOrPortfolio assignParent:self.
+!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceEqual0 stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03AddAnEmptyPortfolioToAPortfolioAndCalculateBalanceEqual0 stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AddAPortfolioWithAnAccountToAPortfolioAndCalculateBalance stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactions stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoNotKnowNotRegisteredAccounts stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioKnowsItsAccountsTransactionsWithOneAccount stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioKnowsItsAccountsTransactionsWithManyAccounts stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBalanceWithManyAccounts stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioDoesNotAcceptRepeatedAccounts stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioDoesNotAcceptRepeatedPortfolio stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfoliosDoesNotAcceptPortfoliosThatSharesAccount stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioDoesNotAcceptPortfolioCycle stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfoliosBalanceWithSharedAccount stamp: 'nt 11/8/2020 15:52:46'!
+PASSED!
+
+----SNAPSHOT----(8 November 2020 15:54:29) CuisUniversity-4384.image priorSource: 17485657!
+
+----SNAPSHOT----(8 November 2020 16:00:20) CuisUniversity-4384.image priorSource: 17499646!
+
+----SNAPSHOT----(8 November 2020 16:02:15) CuisUniversity-4384.image priorSource: 17499739!
+
+----SNAPSHOT----(8 November 2020 16:03:54) CuisUniversity-4384.image priorSource: 17499832!

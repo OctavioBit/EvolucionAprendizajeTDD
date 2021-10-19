@@ -1,0 +1,3339 @@
+----STARTUP---- (16 November 2020 20:36:39) as /home/leandro/Documents/Ingeniería de Software 1/CleanCuis/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Downloads/grupo-is1-master-19-Portfolio2/19-Portfolio2/Portfolio2-Solucion.st----!
+
+----STARTUP---- (18 November 2020 21:42:07) as /home/leandro/Documents/Ingeniería de Software 1/CleanCuis/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Downloads/grupo-is1-master-20-TusLibros/20-TusLibros/Ejercicio_-_TusLibros.com.st----!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'sdfsadf 11/18/2020 21:46:48'!
+PASSED!
+
+----STARTUP---- (19 November 2020 17:05:50) as /home/leandro/Documents/Ingeniería de Software 1/CleanCuis/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Documents/Ingeniería de Software 1/CleanCuis/Ejercicio_-_TusLibros.com.st----!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/19/2020 17:46:36'!
+test10CartCantAddANonIntegerAmmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 2.5 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonIntegerAmmountOfBooks. ].	
+! !
+!Cart class methodsFor: 'error checking' stamp: 'LNB 11/19/2020 17:47:17'!
+cantAddANonIntegerAmountOfBooks
+	^ 'Cant add a non integer amount of books'.! !
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/19/2020 17:47:25'!
+test10CartCantAddANonIntegerAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 2.5 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonIntegerAmmountOfBooks. ].	
+! !
+
+!methodRemoval: CartTests #test10CartCantAddANonIntegerAmmountOfBooks stamp: 'LNB 11/19/2020 17:47:28'!
+test10CartCantAddANonIntegerAmmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 2.5 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonIntegerAmmountOfBooks. ].	
+!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/19/2020 17:48:53' prior: 50867964!
+test10CartCantAddANonIntegerAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 2.5 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonIntegerAmountOfBooks. ].	
+! !
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 17:49:08'!
+FAILURE!
+
+----End fileIn of /home/leandro/Downloads/Iteracion1/TusLibros-18.st----!
+
+!classRemoval: #CartTest stamp: 'LNB 11/19/2020 18:49:45'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 18:50:05'!
+test06CartShouldAnswerQuantityOfAnAddedBook
+
+	| cart catalogue historyBook mathBook|
+	
+	historyBook := 'HistoryBook'.
+	mathBook := 'MathBook'.
+	catalogue := Set with: mathBook with: historyBook.
+	
+	cart := Cart with: catalogue.
+		
+	cart add: 100 of: historyBook.
+	cart add: 50 of: mathBook. 
+	
+	self assert: (cart quantityOf: historyBook) equals: 100.
+	self assert: (cart quantityOf: mathBook) equals: 50.
+	!
+
+!methodRemoval: CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 18:50:06'!
+test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook
+
+	| cart catalogue book|
+	
+	book := 'Book'.
+	catalogue := Set with: book.
+	
+	cart := Cart with: catalogue .
+		
+	cart add: 50 of: book. 
+	cart add: 150 of: book.
+		
+	self assert: (cart quantityOf: book) equals: 200.!
+
+!methodRemoval: CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 18:50:06'!
+test03EmptyCartDoesntHasABook
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Set with: book.
+	
+	cart := Cart with: catalogue.
+	
+	self assert: (cart has: book) not.!
+
+!methodRemoval: CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 18:50:06'!
+test04CartShouldHaveAddedBook
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Set with: book.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: book. 
+	
+	self assert: (cart has: book).!
+
+!methodRemoval: CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 18:50:06'!
+test05CartShouldNotHaveNonAddedBook
+
+	| cart catalogue historyBook mathBook |
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.
+	catalogue := Set with: mathBook with: historyBook.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: historyBook. 
+	
+	self assert: (cart has: mathBook) not.
+	!
+
+!methodRemoval: CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 18:50:07'!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Set with: book.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: book.
+	
+	self assert: cart isEmpty not. !
+
+!methodRemoval: CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 18:50:07'!
+test10CartCantAddANonIntegerAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 2.5 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonIntegerAmountOfBooks. ].	
+!
+
+!methodRemoval: CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 18:50:07'!
+test08CartShouldBeAbleToAnswerWhatBooksItHas
+
+	| cart catalogue mathBook historyBook|
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.		
+	
+	catalogue := Set with: mathBook with: historyBook.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 50 of: mathBook.
+		
+	self assert: cart books size equals: 50.
+	self assert: (cart books includes: mathBook).
+	
+	cart add: 100 of: historyBook.
+	
+	self assert: cart books size equals: 150.
+	self assert: (cart books includes: historyBook).
+	!
+
+!methodRemoval: CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 18:50:07'!
+test09CartCantAddBookThatAreNotInTheCatalogue
+
+	| cart catalogue mathBook historyBook|
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.	
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 100 of: historyBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddBooksThatAreNotInTheCatalogue. ].	
+!
+
+!methodRemoval: CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 18:50:07'!
+test01NewCartShouldBeEmpty
+
+	| cart catalogue |
+	
+	catalogue := Set new.
+	cart := Cart with: catalogue.
+	
+	self assert: cart isEmpty. !
+
+!classRemoval: #Cart stamp: 'LNB 11/19/2020 18:50:11'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/leandro/Downloads/Iteracion1/TusLibros-18.st----!
+
+----STARTUP---- (19 November 2020 18:52:33) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Cuis en progreso/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Cuis en progreso/linux64/Ejercicio - TusLibros.com.st----!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 18:53:08'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:54:38' prior: 50867911!
+add: aQuantity of: aBook 
+
+	(catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue].
+	aQuantity isInteger ifFalse: [self error: Cart cantAddANonIntegerAmountOfBooks].
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 18:54:59'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/19/2020 18:55:32'!
+test11CartCantAddANonPositiveAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	[cart add: 0 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonPositiveAmountOfBooks. ].	
+! !
+!Cart class methodsFor: 'error checking' stamp: 'LNB 11/19/2020 18:55:50'!
+cantAddANonPositiveAmountOfBooks
+	^ 'Cant add a non positive amount of books'.! !
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 18:55:57'!
+FAILURE!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 18:55:57'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:57:52' prior: 50867970!
+add: aQuantity of: aBook 
+
+	(catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue].
+	aQuantity isInteger ifFalse: [self error: Cart cantAddANonIntegerAmountOfBooks].
+	aQuantity strictlyPositive ifFalse: [self error: Cart cantAddANonIntegerAmountOfBooks].
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 18:57:55'!
+FAILURE!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 18:57:55'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:58:10' prior: 50868042!
+add: aQuantity of: aBook 
+
+	(catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue].
+	aQuantity isInteger ifFalse: [self error: Cart cantAddANonIntegerAmountOfBooks].
+	aQuantity strictlyPositive ifFalse: [self error: Cart cantAddANonPositiveAmountOfBooks ].
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 18:58:12'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:58:41'!
+assertIsValidQuantity: aQuantity
+
+	^ aQuantity strictlyPositive ifFalse: [self error: Cart cantAddANonPositiveAmountOfBooks ]! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:58:41' prior: 50868063!
+add: aQuantity of: aBook 
+
+	(catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue].
+	aQuantity isInteger ifFalse: [self error: Cart cantAddANonIntegerAmountOfBooks].
+	self assertIsValidQuantity: aQuantity.
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:58:52' prior: 50868087!
+add: aQuantity of: aBook 
+
+	(catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue].
+	self assertIsValidQuantity: aQuantity.
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 18:59:07' prior: 50868080!
+assertIsValidQuantity: aQuantity
+
+	aQuantity isInteger ifFalse: [self error: Cart cantAddANonIntegerAmountOfBooks].
+	aQuantity strictlyPositive ifFalse: [self error: Cart cantAddANonPositiveAmountOfBooks ]! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 19:00:24'!
+assertIsInCatalog: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue]! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 19:00:24' prior: 50868099!
+add: aQuantity of: aBook 
+
+	self assertIsInCatalog: aBook.
+	self assertIsValidQuantity: aQuantity.
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 19:01:32'!
+assertIsInCatalogue: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue]! !
+
+!methodRemoval: Cart #assertIsInCatalog: stamp: 'LNB 11/19/2020 19:01:37'!
+assertIsInCatalog: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue]!
+!Cart methodsFor: 'adding' stamp: 'LNB 11/19/2020 19:01:59' prior: 50868125!
+add: aQuantity of: aBook 
+
+	self assertIsInCatalogue: aBook.
+	self assertIsValidQuantity: aQuantity.
+	
+	^ books add: aBook withOccurrences: aQuantity.! !
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:02:04'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:02:06'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:02:08'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:02:12'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:02:16'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:02:28'!
+PASSED!
+
+TestCase subclass: #CashierTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+!classDefinition: #CashierTests category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/19/2020 19:05:03'!
+TestCase subclass: #CashierTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+!CashierTests methodsFor: 'nil' stamp: 'LNB 11/19/2020 19:06:17'!
+test01
+	| cart cashier |
+	cart := cart with:
+	cashier.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:06:23' prior: 50868381!
+test01
+	| cart cashier |
+	cart := Cart with:
+	cashier.! !
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:07:23'!
+PASSED!
+
+!classDefinition: #Cashier category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/19/2020 19:11:15'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:11:04' prior: 50868386!
+test01
+	| cart cashier |
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	cashier checkout: cart.! !
+
+TestCase subclass: #TusLibrosExerciseTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+!classDefinition: #TusLibrosExerciseTests category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/19/2020 19:11:55'!
+TestCase subclass: #TusLibrosExerciseTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+TusLibrosExerciseTests subclass: #CashierTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+!classDefinition: #CashierTests category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/19/2020 19:12:06'!
+TusLibrosExerciseTests subclass: #CashierTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+TusLibrosExerciseTests subclass: #CartTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+!classDefinition: #CartTests category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/19/2020 19:12:10'!
+TusLibrosExerciseTests subclass: #CartTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+!TusLibrosExerciseTests methodsFor: 'nil' stamp: 'LNB 11/19/2020 19:14:41'!
+should: aBlockThatShouldFail raisingAnErrorAndAsserting: aVerificationBlock
+	
+	[aBlockThatShouldFail value. self fail.]
+		on: Error
+		do: aVerificationBlock.! !
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/19/2020 19:15:54' prior: 50868017!
+test11CartCantAddANonPositiveAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Set with: mathBook.
+	cart := Cart with: catalogue.
+	
+	
+	self should: [cart add: 0 of: mathBook] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cart cantAddANonPositiveAmountOfBooks. ]
+	! !
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/19/2020 19:15:58'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:17:03' prior: 50868435!
+test01
+	| cart cashier |
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	
+	self should: [cashier checkout: cart.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!Cashier class methodsFor: 'nil' stamp: 'LNB 11/19/2020 19:17:50'!
+cantCheckoutWithAnEmptyCart
+	^'Cant checkout with an empty cart'! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:17:59'!
+cannottCheckoutWithAnEmptyCart
+	^'Cannot checkout with an empty cart'! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:18:02'!
+cannotCheckoutWithAnEmptyCart
+	^'Cannot checkout with an empty cart'! !
+
+!methodRemoval: Cashier class #cannottCheckoutWithAnEmptyCart stamp: 'LNB 11/19/2020 19:18:11'!
+cannottCheckoutWithAnEmptyCart
+	^'Cannot checkout with an empty cart'!
+
+!methodRemoval: Cashier class #cantCheckoutWithAnEmptyCart stamp: 'LNB 11/19/2020 19:18:12'!
+cantCheckoutWithAnEmptyCart
+	^'Cant checkout with an empty cart'!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:18:20' prior: 50868539!
+test01
+	| cart cashier |
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	
+	self should: [cashier checkout: cart.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cannotCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:18:29' prior: 50868575!
+test01
+	| cart cashier |
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	
+	self should: [cashier checkout: cart.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:18:38'!
+cantCheckoutWithAnEmptyCart
+	^'Cant checkout with an empty cart'! !
+
+!methodRemoval: Cashier class #cannotCheckoutWithAnEmptyCart stamp: 'LNB 11/19/2020 19:18:46'!
+cannotCheckoutWithAnEmptyCart
+	^'Cannot checkout with an empty cart'!
+!Cashier methodsFor: 'no messages' stamp: 'LNB 11/19/2020 19:19:50'!
+checkout
+	self error: Cashier cantCheckoutWithAnEmptyCart.! !
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/19/2020 19:19:53'!
+FAILURE!
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/19/2020 19:19:53'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:20:18'!
+checkout: aCart
+	self error: Cashier cantCheckoutWithAnEmptyCart.! !
+
+!methodRemoval: Cashier #checkout stamp: 'LNB 11/19/2020 19:20:20'!
+checkout
+	self error: Cashier cantCheckoutWithAnEmptyCart.!
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/19/2020 19:20:23'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:46:26'!
+test02
+	| cart cashier catalogue mathBook|
+	catalogue := Set new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 'Operaci�n realizada con �xito'.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:46:46' prior: 50868617!
+checkout: aCart
+	self error: Cashier cantCheckoutWithAnEmptyCart.
+	
+	^'Operaci�n realizada con �xito'.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/19/2020 19:48:04' prior: 50868641!
+checkout: aCart
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	^'Operaci�n realizada con �xito'.! !
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/19/2020 19:48:11'!
+PASSED!
+
+----QUIT----(19 November 2020 21:06:23) CuisUniversity-4384.image priorSource: 17155564!
+
+----STARTUP---- (21 November 2020 18:14:16) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Cuis en progreso/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Cuis en progreso/linux64/Packages/TerseGuide.pck.st----!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:28:17' prior: 50868629!
+test02
+	| cart cashier catalogue mathBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 100.! !
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/21/2020 18:28:24'!
+ERROR!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/21/2020 18:28:24'!
+ERROR!
+!Cart methodsFor: 'asserting' stamp: 'LNB 11/21/2020 18:30:01' prior: 50868132!
+assertIsInCatalogue: aBook
+
+	^ (catalogue includesKey: aBook) ifFalse: [self error: Cart cantAddBooksThatAreNotInTheCatalogue]! !
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/21/2020 18:30:07'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:30:07'!
+ERROR!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/21/2020 18:30:07'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/21/2020 18:30:07'!
+ERROR!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/21/2020 18:30:07'!
+ERROR!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:30:07'!
+ERROR!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/21/2020 18:30:07'!
+ERROR!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:30:07'!
+ERROR!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/21/2020 18:30:07'!
+FAILURE!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/21/2020 18:30:07'!
+FAILURE!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:30:07'!
+FAILURE!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/21/2020 18:30:15'!
+FAILURE!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/21/2020 18:30:15'!
+FAILURE!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:30:33' prior: 50867782!
+test01NewCartShouldBeEmpty
+
+	| cart catalogue |
+	
+	catalogue := Dictionary new.
+	cart := Cart with: catalogue.
+	
+	self assert: cart isEmpty. ! !
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:30:39' prior: 50867789!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Dictionary with: book.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: book.
+	
+	self assert: cart isEmpty not. ! !
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:31:09'!
+ERROR!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:32:44' prior: 50871675!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Dictionary new.
+	catalogue add: book -> 100.
+		
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: book.
+	
+	self assert: cart isEmpty not. ! !
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:32:45'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/21/2020 18:32:45'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:32:45'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/21/2020 18:32:45'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/21/2020 18:32:45'!
+ERROR!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/21/2020 18:32:45'!
+ERROR!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:32:45'!
+ERROR!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/21/2020 18:32:45'!
+ERROR!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:32:45'!
+ERROR!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/21/2020 18:32:45'!
+FAILURE!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/21/2020 18:32:45'!
+FAILURE!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:32:45'!
+FAILURE!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:32:51'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:33:06' prior: 50867798!
+test03EmptyCartDoesntHasABook
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Dictionary new.
+	catalogue add: book -> 100.
+	
+	cart := Cart with: catalogue.
+	
+	self assert: (cart has: book) not.! !
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/21/2020 18:33:09'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:33:22' prior: 50867806!
+test04CartShouldHaveAddedBook
+
+	| cart catalogue book |
+	
+	book := 'Book'.
+	catalogue := Dictionary new.
+	catalogue add: book -> 100.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: book. 
+	
+	self assert: (cart has: book).! !
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/21/2020 18:33:24'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:34:10' prior: 50867815!
+test05CartShouldNotHaveNonAddedBook
+
+	| cart catalogue historyBook mathBook |
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 100.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 10 of: historyBook. 
+	
+	self assert: (cart has: mathBook) not.
+	! !
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/21/2020 18:34:12'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:34:33' prior: 50867827!
+test06CartShouldAnswerQuantityOfAnAddedBook
+
+	| cart catalogue historyBook mathBook|
+	
+	historyBook := 'HistoryBook'.
+	mathBook := 'MathBook'.
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 100.
+	
+	cart := Cart with: catalogue.
+		
+	cart add: 100 of: historyBook.
+	cart add: 50 of: mathBook. 
+	
+	self assert: (cart quantityOf: historyBook) equals: 100.
+	self assert: (cart quantityOf: mathBook) equals: 50.
+	! !
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:34:34'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/21/2020 18:34:34'!
+ERROR!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:34:34'!
+ERROR!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/21/2020 18:34:34'!
+FAILURE!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/21/2020 18:34:34'!
+FAILURE!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:34:34'!
+FAILURE!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:34:38'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:35:08' prior: 50867842!
+test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook
+
+	| cart catalogue book|
+	
+	book := 'Book'.
+	catalogue := Dictionary new.
+	catalogue add: book -> 100.
+	
+	cart := Cart with: catalogue .
+		
+	cart add: 50 of: book. 
+	cart add: 150 of: book.
+		
+	self assert: (cart quantityOf: book) equals: 200.! !
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:35:13' prior: 50871844!
+test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook
+
+	| cart catalogue book|
+	
+	book := 'Book'.
+	catalogue := Dictionary new.
+	catalogue add: book -> 100.
+	
+	cart := Cart with: catalogue .
+		
+	cart add: 50 of: book. 
+	cart add: 150 of: book.
+		
+	self assert: (cart quantityOf: book) equals: 200.! !
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/21/2020 18:35:14'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:35:32' prior: 50867853!
+test08CartShouldBeAbleToAnswerWhatBooksItHas
+
+	| cart catalogue mathBook historyBook|
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.		
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 100.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 50 of: mathBook.
+		
+	self assert: cart books size equals: 50.
+	self assert: (cart books includes: mathBook).
+	
+	cart add: 100 of: historyBook.
+	
+	self assert: cart books size equals: 150.
+	self assert: (cart books includes: historyBook).
+	! !
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:35:39' prior: 50871874!
+test08CartShouldBeAbleToAnswerWhatBooksItHas
+
+	| cart catalogue mathBook historyBook|
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.		
+	
+	catalogue := Set with: mathBook with: historyBook.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 50 of: mathBook.
+		
+	self assert: cart books size equals: 50.
+	self assert: (cart books includes: mathBook).
+	
+	cart add: 100 of: historyBook.
+	
+	self assert: cart books size equals: 150.
+	self assert: (cart books includes: historyBook).
+	! !
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:35:39'!
+ERROR!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:35:48' prior: 50871894!
+test08CartShouldBeAbleToAnswerWhatBooksItHas
+
+	| cart catalogue mathBook historyBook|
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.		
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 100.
+	
+	cart := Cart with: catalogue.
+	
+	cart add: 50 of: mathBook.
+		
+	self assert: cart books size equals: 50.
+	self assert: (cart books includes: mathBook).
+	
+	cart add: 100 of: historyBook.
+	
+	self assert: cart books size equals: 150.
+	self assert: (cart books includes: historyBook).
+	! !
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:35:51'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:36:06' prior: 50867871!
+test09CartCantAddBookThatAreNotInTheCatalogue
+
+	| cart catalogue mathBook historyBook|
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	
+	[cart add: 100 of: historyBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddBooksThatAreNotInTheCatalogue. ].	
+! !
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/21/2020 18:36:10'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:36:23' prior: 50867886!
+test10CartCantAddANonIntegerAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	
+	[cart add: 2.5 of: mathBook. self fail]
+		on: Error
+		do: [:anError | self assert: anError messageText equals: Cart cantAddANonIntegerAmountOfBooks. ].	
+! !
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/21/2020 18:36:26'!
+PASSED!
+!CartTests methodsFor: 'cart tests' stamp: 'LNB 11/21/2020 18:36:35' prior: 50868489!
+test11CartCantAddANonPositiveAmountOfBooks
+
+	| cart catalogue mathBook|
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	
+	
+	self should: [cart add: 0 of: mathBook] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cart cantAddANonPositiveAmountOfBooks. ]
+	! !
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:36:36'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/21/2020 18:36:41'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:37:03' prior: 50868648!
+checkout: aCart
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	^100.! !
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/21/2020 18:37:40'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:37:43'!
+test03
+	| cart cashier catalogue mathBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 100.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:38:01' prior: 50872079!
+test03
+	| cart cashier catalogue mathBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 100.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:38:03' prior: 50872091!
+test03
+	| cart cashier catalogue mathBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 300.! !
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:38:05'!
+FAILURE!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:38:05'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:42:58' prior: 50872070!
+checkout: aCart
+	| total |
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:44:24' prior: 50872103!
+test03
+	| cart cashier catalogue mathBook historyBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 175.! !
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:44:28'!
+ERROR!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:44:28'!
+ERROR!
+!Cart methodsFor: 'accesing' stamp: 'LNB 11/21/2020 18:47:15'!
+catalogue
+	^ catalogue copy.! !
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:47:32'!
+ERROR!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:47:32'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:48:01' prior: 50872120!
+checkout: aCart
+	| total |
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:48:03'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:48:34'!
+test04
+	| cart cashier catalogue mathBook historyBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 300.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 18:48:40' prior: 50872169!
+test04
+	| cart cashier catalogue mathBook|
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 300.! !
+
+!testRun: #CashierTests #test04 stamp: 'LNB 11/21/2020 18:48:42'!
+PASSED!
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/21/2020 18:48:42'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/21/2020 18:48:42'!
+PASSED!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/21/2020 18:48:42'!
+PASSED!
+
+!testRun: #CashierTests #test04 stamp: 'LNB 11/21/2020 18:48:42'!
+PASSED!
+
+bolsa := Bag new!
+
+bolsa add: 5 withOccurrences: 10.!
+
+bolsa!
+
+TusLibrosExerciseTests subclass: #CreditCardTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+!classDefinition: #CreditCardTests category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/21/2020 19:01:04'!
+TusLibrosExerciseTests subclass: #CreditCardTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+numero := 000000000!
+
+numero!
+!CreditCardTests methodsFor: 'nil' stamp: 'LNB 11/21/2020 19:17:40'!
+test01
+	| numeroTarjeta tarjeta |
+	
+	numeroTarjeta := 'no es n�mero'.
+	tarjeta := 'aguas'.! !
+
+!classDefinition: #CreditCard category: 'Ejercicio - TusLibros.com' stamp: 'LNB 11/21/2020 19:20:50'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:20:30' prior: 50872220!
+test01
+	| creditCardNumber creditCard |
+	
+	creditCardNumber := 'no es n�mero'.
+	creditCard := CreditCard plasticNumber: creditCardNumber.
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:23:29' prior: 50872234!
+test01
+	| creditCardNumber creditCard |
+	
+	creditCardNumber := 'no es n�mero'.
+	self should: [creditCard := CreditCard withPlasticNumber: creditCardNumber.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCard class methodsFor: 'no messages' stamp: 'LNB 11/21/2020 19:27:45'!
+withPlasticNumber: aCreditCardNumber
+	self basicNew initializeWithPlasticNumber: aCreditCardNumber.! !
+
+!classDefinition: #CreditCard category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/21/2020 19:28:24'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'plasticNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!CreditCard methodsFor: 'no messages' stamp: 'LNB 11/21/2020 19:28:18'!
+initializeWithPlasticNumber: aCreditCardNumber
+	plasticNumber := aCreditCardNumber.! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 19:28:38'!
+FAILURE!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:36:09' prior: 50872268!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isNotMadeOfDigits |
+	isNotMadeOfDigits := false.
+	aCreditCardNumber do: [:aCharacter | isNotMadeOfDigits := isNotMadeOfDigits or: [aCharacter isDigit not]].
+	isNotMadeOfDigits ifTrue: [ self error: CreditCard].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:37:35' prior: 50872277!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isNotMadeOfDigits |
+	isNotMadeOfDigits := false.
+	aCreditCardNumber do: [:aCharacter | isNotMadeOfDigits := isNotMadeOfDigits or: [aCharacter isDigit not]].
+	isNotMadeOfDigits ifTrue: [ self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:38:02'!
+plasticNumberMustBeMadeOfDigits
+	'Credit Card number must be made of digits.'.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:38:05' prior: 50872304!
+plasticNumberMustBeMadeOfDigits
+	^'Credit Card number must be made of digits.'.! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 19:38:11'!
+PASSED!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:38:28' prior: 50872290!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isNotMadeOfDigits |
+	isNotMadeOfDigits := false.
+	aCreditCardNumber do: [:aCharacter | isNotMadeOfDigits := isNotMadeOfDigits or: [aCharacter isDigit not]].
+	isNotMadeOfDigits ifTrue: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:38:49' prior: 50872242!
+test01
+	| creditCardNumber |
+	
+	creditCardNumber := 'no es n�mero'.
+	self should: [CreditCard withPlasticNumber: creditCardNumber.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:42:11' prior: 50872319!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	plasticNumber := aCreditCardNumber.! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 19:42:16'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:44:49'!
+test02
+	| creditCardNumber |
+	
+	creditCardNumber := '000000000900000'.
+	self should: [CreditCard withPlasticNumber: creditCardNumber.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeSixteenDigits. ].	! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:45:32'!
+plasticNumberMustHaveSixteenDigits
+	^'Credit Card number must have 16 digits.'.! !
+
+!methodRemoval: CreditCard class #plasticNumberMustBeMadeOfDigits stamp: 'LNB 11/21/2020 19:45:36'!
+plasticNumberMustBeMadeOfDigits
+	^'Credit Card number must be made of digits.'.!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:45:44' prior: 50872360!
+test02
+	| creditCardNumber |
+	
+	creditCardNumber := '000000000900000'.
+	self should: [CreditCard withPlasticNumber: creditCardNumber.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:47:52' prior: 50872345!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits ].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:48:35' prior: 50872384!
+test02
+
+	self should: [CreditCard withPlasticNumber: '000000000900000'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [CreditCard withPlasticNumber: '00000000090000000'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 19:48:36'!
+FAILURE!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:50:23' prior: 50872396!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:50:47'!
+plasticNumberMustBeMadeOfDigits
+	^'Credit Card number must be made of digits.'.! !
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 19:51:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 19:51:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 19:51:09'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:56:25'!
+test03
+
+	self should: [CreditCard withPlasticNumber: '0000000009000000' name: ''.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 19:56:34'!
+ERROR!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:56:57'!
+plasticOwnerMustHaveAName
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:57:17' prior: 50872473!
+plasticOwnerMustHaveAName
+	'Plastic owner must have a name.'.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:57:19' prior: 50872478!
+plasticOwnerMustHaveAName
+	'Plastic owner must have a name'.! !
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 19:57:23'!
+FAILURE!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 19:57:58'!
+FAILURE!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 19:57:58'!
+FAILURE!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 19:59:43'!
+withPlasticNumber: aCreditCardNumber namedAfter: anOwnerName.
+	self basicNew initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName.! !
+
+!methodRemoval: CreditCard class #withPlasticNumber: stamp: 'LNB 11/21/2020 19:59:49'!
+withPlasticNumber: aCreditCardNumber
+	self basicNew initializeWithPlasticNumber: aCreditCardNumber.!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:00:39'!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:00:52' prior: 50872511!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	plasticNumber := aCreditCardNumber.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:01:25' prior: 50872531!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.! !
+
+!classDefinition: #CreditCard category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/21/2020 20:01:42'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'plasticNumber name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:01:40' prior: 50872551!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	name := anOwnerName.! !
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:01:50'!
+FAILURE!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:01:50'!
+FAILURE!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:02:02' prior: 50872461!
+test03
+
+	self should: [CreditCard withPlasticNumber: '0000000009000000' namedAfter: ''.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:02:13'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:02:30' prior: 50872333!
+test01
+	| creditCardNumber |
+	
+	creditCardNumber := 'no es n�mero'.
+	self should: [CreditCard withPlasticNumber: creditCardNumber namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:02:43' prior: 50872413!
+test02
+
+	self should: [CreditCard withPlasticNumber: '000000000900000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [CreditCard withPlasticNumber: '00000000090000000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:02:54' prior: 50872618!
+test01
+	
+	self should: [CreditCard withPlasticNumber: 'no es n�mero' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:02:56' prior: 50872649!
+test01
+	self should: [CreditCard withPlasticNumber: 'no es n�mero' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:03:00' prior: 50872631!
+test02
+	self should: [CreditCard withPlasticNumber: '000000000900000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [CreditCard withPlasticNumber: '00000000090000000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:03:03' prior: 50872671!
+test02
+
+	self should: [CreditCard withPlasticNumber: '000000000900000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [CreditCard withPlasticNumber: '00000000090000000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:03:06' prior: 50872660!
+test01
+
+	self should: [CreditCard withPlasticNumber: 'no es n�mero' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:03:16'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:03:16'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:03:16'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:06:35'!
+test04
+	| ownerName |
+	
+	ownerName := 'Pepito'.
+	
+	self assert: (CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName) ownerName equals: ownerName .
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:06:45' prior: 50872725!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	self assert: (creditCard) ownerName equals: ownerName .
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:06:52' prior: 50872734!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: (creditCard) ownerName equals: ownerName .
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:06:57' prior: 50872744!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: ownerName .
+	
+	
+	! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:07:24'!
+ownerName
+
+	^ name copy.! !
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:07:45'!
+ERROR!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:07:45'!
+ERROR!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:07:55'!
+ERROR!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:08:26' prior: 50872497!
+withPlasticNumber: aCreditCardNumber namedAfter: anOwnerName.
+	^self basicNew initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName.! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:08:32'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:08:32'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:08:32'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:08:32'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:08:43' prior: 50872754!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:11:30' prior: 50872794!
+test04
+	| ownerName cuttedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	cuttedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: cuttedOwnerName.
+	
+	
+	! !
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:11:33'!
+FAILURE!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:12:50' prior: 50872804!
+test04
+	| ownerName cuttedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	cuttedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: cuttedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:13:05' prior: 50872820!
+test04
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:13:14'!
+FAILURE!
+
+!methodRemoval: CreditCard #initializeWithPlasticNumber: stamp: 'LNB 11/21/2020 20:13:30'!
+initializeWithPlasticNumber: aCreditCardNumber
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	plasticNumber := aCreditCardNumber.!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:13:33'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:13:33'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:13:33'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:13:33'!
+FAILURE!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:13:33'!
+FAILURE!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:14:52'!
+test05
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:08:43' prior: 50872834!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:15:38'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:15:38'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:15:38'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:15:38'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:15:38'!
+FAILURE!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:15:38'!
+FAILURE!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:15:40'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:15:42'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:15:43'!
+PASSED!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:20:12' prior: 50872579!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	name := anOwnerName copyFrom: 0 to: 29.! !
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:20:14'!
+ERROR!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:20:14'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:20:27' prior: 50872924!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	name := anOwnerName copyFrom: 1 to: 30.! !
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:20:30'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:20:36'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:20:36'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:20:36'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:20:36'!
+ERROR!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:20:36'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:20:36'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:22:53' prior: 50872950!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ name := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [name := anOwnerName].! !
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:23:01'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:23:07'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:23:08'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:23:08'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:23:08'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:23:08'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:23:08'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:23:14'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:23:14'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:23:14'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:23:14'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:23:14'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:24:33'!
+test06
+	| ownerName creditCard creditCardNumber |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000009000000' namedAfter: ownerName.
+	
+	
+	
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:25:40' prior: 50873040!
+test06
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard withPlasticNumber: creditCardNumber namedAfter: 'Pepito'.
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:26:11'!
+plasticNumber
+
+	^ plasticNumber copy.! !
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/21/2020 20:26:21'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:26:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:26:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:26:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:26:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:26:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/21/2020 20:26:24'!
+PASSED!
+
+August/2020!
+
+20/August/2020!
+
+20/08/2020!
+
+August/20/2020!
+
+August/2020!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:43:49'!
+test07
+	| creditCard creditCardExpirationMonth creditCardExpirationYear |
+	
+	creditCardExpirationMonth := November.
+	creditCardExpirationYear := 2024.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		withExpirationMonth: creditCardExpirationMonth 
+		andExpirationYear: creditCardExpirationYear.
+	
+	self assert: creditCard expirationDate equals: creditCardExpirationMonth/01/creditCardExpirationYear.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:46:39'!
+withPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth andExpirationYear: creditCardExpirationYear.
+
+	^self basicNew initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth  andExpirationYear: 	creditCardExpirationYear.! !
+
+!methodRemoval: CreditCard class #withPlasticNumber:namedAfter: stamp: 'LNB 11/21/2020 20:46:45'!
+withPlasticNumber: aCreditCardNumber namedAfter: anOwnerName.
+	^self basicNew initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName.!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:47:04'!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth  andExpirationYear: 	creditCardExpirationYear
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ name := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [name := anOwnerName].! !
+
+!classDefinition: #CreditCard category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/21/2020 20:47:33'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'plasticNumber name expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:47:32' prior: 50873122!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth  andExpirationYear: 	creditCardExpirationYear
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ name := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [name := anOwnerName].
+	expirationDate := creditCardExpirationMonth/01/creditCardExpirationYear. ! !
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/21/2020 20:47:40'!
+ERROR!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/21/2020 20:47:40'!
+ERROR!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:48:14'!
+expirationDate
+
+	^ expirationDate copy.! !
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/21/2020 20:48:45'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:50:46' prior: 50873049!
+test06
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		withExpirationMonth: November 
+		andExpirationYear: 2024.
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:51:23' prior: 50872878!
+test05
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		withExpirationMonth: November 
+		andExpirationYear: 2024.
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:51:50' prior: 50872892!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		withExpirationMonth: November 
+		andExpirationYear: 2024.
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:52:37' prior: 50872605!
+test03
+
+	self should: [	CreditCard 
+				withPlasticNumber: '0000000009000000' 
+				namedAfter: ''
+				withExpirationMonth: November 
+				andExpirationYear: 2024.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:53:01' prior: 50872689!
+test02
+
+	self should: [	CreditCard 
+				withPlasticNumber: '000000000900000' 
+				namedAfter: 'Pepito'
+				withExpirationMonth: November 
+				andExpirationYear: 2024.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [CreditCard withPlasticNumber: '00000000090000000' namedAfter: 'Pepito'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:53:24' prior: 50873251!
+test02
+
+	self should: [	CreditCard 
+				withPlasticNumber: '000000000900000' 
+				namedAfter: 'Pepito'
+				withExpirationMonth: November 
+				andExpirationYear: 2024.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [	CreditCard 
+				withPlasticNumber: '00000000090000000'
+				namedAfter: 'Pepito'
+				withExpirationMonth: November 
+				andExpirationYear: 2024.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/21/2020 20:53:49' prior: 50872707!
+test01
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'no es n�mero' 
+				namedAfter: 'Pepito'
+				withExpirationMonth: November 
+				andExpirationYear: 2024.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/21/2020 20:56:26'!
+PASSED!
+
+----QUIT----(21 November 2020 20:58:27) CuisUniversity-4384.image priorSource: 17184204!
+
+----STARTUP---- (23 November 2020 17:16:59) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Cuis en progreso/linux64/CuisUniversity-4384.image!
+
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:28:32' prior: 50873293!
+test01
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'no es n�mero' 
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: 2024).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:30:02'!
+withPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: creditCardExpiration
+
+	^self basicNew initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: creditCardExpiration.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:31:26'!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ name := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [name := anOwnerName].
+	
+	expirationDate := creditCardExpiration . ! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 17:31:39'!
+PASSED!
+
+!methodRemoval: CreditCard #initializeWithPlasticNumber:namedAfter:withExpirationMonth:andExpirationYear: stamp: 'LNB 11/23/2020 17:31:46'!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth  andExpirationYear: 	creditCardExpirationYear
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ name := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [name := anOwnerName].
+	expirationDate := creditCardExpirationMonth/01/creditCardExpirationYear. !
+
+!methodRemoval: CreditCard class #withPlasticNumber:namedAfter:withExpirationMonth:andExpirationYear: stamp: 'LNB 11/23/2020 17:31:56'!
+withPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth andExpirationYear: creditCardExpirationYear.
+
+	^self basicNew initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName withExpirationMonth: creditCardExpirationMonth  andExpirationYear: 	creditCardExpirationYear.!
+
+!methodRemoval: CreditCard #initializeWithPlasticNumber:namedAfter: stamp: 'LNB 11/23/2020 17:32:46'!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ name := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [name := anOwnerName].!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 17:32:59'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 17:32:59'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 17:32:59'!
+FAILURE!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 17:32:59'!
+FAILURE!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 17:32:59'!
+ERROR!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 17:32:59'!
+ERROR!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 17:32:59'!
+ERROR!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 17:32:59'!
+ERROR!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:33:46' prior: 50873271!
+test02
+
+	self should: [	CreditCard 
+				withPlasticNumber: '000000000900000' 
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: 2024).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [	CreditCard 
+				withPlasticNumber: '00000000090000000'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: 2024).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:33:51' prior: 50873238!
+test03
+
+	self should: [	CreditCard 
+				withPlasticNumber: '0000000009000000' 
+				namedAfter: ''
+				validThrough: (GregorianMonthOfYear novemberOf: 2024).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:34:11' prior: 50873226!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: 2024).
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:34:25' prior: 50873210!
+test05
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: 2024).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:34:28' prior: 50873197!
+test06
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: 2024).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:35:32' prior: 50873084!
+test07
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: 2024.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expirationDate equals: creditCardExpiration.! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 17:35:34'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:36:59'!
+checkout: aCart withCreditCard: aCreditCard
+	| total |
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:40:30'!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard hola: (GregorianMonthOfYear decemberOf: 2019)
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:42:45' prior: 50873584!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: 2019).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [].
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:43:57' prior: 50873597!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: 2019).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier CreditCardHasExpired. ].	
+	
+	! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:44:32'!
+creditCardHasExpired
+	^'Cant checkout with an expired Credit Card'! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:44:44' prior: 50873616!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: 2019).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:44:54'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:44:54'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:51:14' prior: 50873574!
+checkout: aCart withCreditCard: aCreditCard
+	| total |
+	
+	(aCreditCard expiration < GregorianMonthOfYear today) ifTrue: [self error: Cashier creditCardHasExpired ].
+	
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:52:24'!
+expiration
+
+	^ expirationDate copy.! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:52:24' prior: 50873544!
+test07
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: 2024.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expiration equals: creditCardExpiration.! !
+
+!methodRemoval: CreditCard #expirationDate stamp: 'LNB 11/23/2020 17:52:24'!
+expirationDate
+
+	^ expirationDate copy.!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:39'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:39'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:42'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:42'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:43'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:43'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:55'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:52:55'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 17:57:32' prior: 50873669!
+checkout: aCart withCreditCard: aCreditCard
+	| total |
+	
+	(aCreditCard expiration < GregorianMonthOfYear current) ifTrue: [self error: Cashier creditCardHasExpired ].
+	
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:57:35'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:58:08'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 17:58:08'!
+FAILURE!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:00:30'!
+FAILURE!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:01:43' prior: 50873643!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: 2019).
+	
+	cashier checkout: cart withCreditCard: creditCard.
+	
+	"self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	"
+	
+	! !
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:01:45'!
+ERROR!
+
+^year < aGregorianMonth year 
+		or: [ year = aGregorianMonth year and: [ self month < aGregorianMonth month ] ]!
+
+aCreditCard expiration!
+
+GregorianMonthOfYear current!
+
+aCreditCard expiration!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:04:27'!
+ERROR!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:05:12'!
+ERROR!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:06:39'!
+ERROR!
+
+hoy := GregorianMonthOfYear novemberOf: 2020!
+
+anioPasado := GregorianMonthOfYear decemberOf: 2019!
+
+anioPasado := GregorianMonthOfYear decemberOf: 2019!
+
+hoy year < anioPasado year.!
+
+hoy < anioPasado.!
+
+hoy < anioPasado.!
+
+hoy := GregorianMonthOfYear current.!
+
+anioPasado := GregorianMonthOfYear decemberOf: 2019!
+
+hoy < anioPasado. !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:16:03' prior: 50873748!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: 2019).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+
+esteMes:= GregorianMonth current. !
+
+esteAnio:= GregorianYear current. !
+
+estemesanio := GregorianMonthOfYear year: 2020 month: November!
+
+estemesanio := GregorianMonthOfYear year: 2020 monthNumber: 11!
+
+esteanio:= GregorianYear yearNumber: 2020!
+
+esteanio:= GregorianYear createYear: 2020!
+
+hoy := GregorianMonthOfYear current. 
+anioPasado := GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2019)!
+
+hoy < anioPasado.!
+
+hoy := GregorianMonthOfYear current. !
+
+anioPasado := GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2019)!
+
+hoy < anioPasado.!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:27:23' prior: 50873331!
+test01
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'no es n�mero' 
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:27:24'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:27:41' prior: 50873468!
+test02
+
+	self should: [	CreditCard 
+				withPlasticNumber: '000000000900000' 
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [	CreditCard 
+				withPlasticNumber: '00000000090000000'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:27:41'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:27:46' prior: 50873490!
+test03
+
+	self should: [	CreditCard 
+				withPlasticNumber: '0000000009000000' 
+				namedAfter: ''
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:27:47'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:27:52' prior: 50873503!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:27:53'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:27:57' prior: 50873515!
+test05
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Michael de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Michael de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:27:58'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:28:02' prior: 50873531!
+test06
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	! !
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:28:04'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:28:08' prior: 50873688!
+test07
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024).
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expiration equals: creditCardExpiration.! !
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'LNB 11/23/2020 18:28:12'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:28:39' prior: 50873797!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2019)).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:28:41'!
+PASSED!
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/23/2020 18:28:41'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/23/2020 18:28:41'!
+PASSED!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/23/2020 18:28:41'!
+PASSED!
+
+!testRun: #CashierTests #test04 stamp: 'LNB 11/23/2020 18:28:41'!
+PASSED!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:28:41'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:31:24' prior: 50868586!
+test01
+	| cart cashier creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+		
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	
+	self should: [cashier checkout: cart.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:32:01' prior: 50874118!
+test01
+	| cart cashier creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+		
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	
+	self should: [cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:32:47' prior: 50871603!
+test02
+	| cart cashier catalogue mathBook creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart withCreditCard: creditCard ) equals: 100.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:32:56' prior: 50872129!
+test03
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart) equals: 175.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:33:12' prior: 50874173!
+test03
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart withCreditCard: creditCard ) equals: 175.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:33:33' prior: 50872181!
+test04
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart withCreditCard: creditCard ) equals: 300.! !
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/23/2020 18:34:31'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/23/2020 18:34:31'!
+PASSED!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/23/2020 18:34:31'!
+PASSED!
+
+!testRun: #CashierTests #test04 stamp: 'LNB 11/23/2020 18:34:31'!
+PASSED!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:34:31'!
+PASSED!
+
+!methodRemoval: Cashier #checkout: stamp: 'LNB 11/23/2020 18:34:50'!
+checkout: aCart
+	| total |
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:36:20'!
+test06
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2020)).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+
+!testRun: #CashierTests #test06 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+
+!testRun: #CashierTests #test01 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+
+!testRun: #CashierTests #test03 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+
+!testRun: #CashierTests #test04 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+
+!testRun: #CashierTests #test05 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+
+!testRun: #CashierTests #test06 stamp: 'LNB 11/23/2020 18:36:21'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:36:48' prior: 50874256!
+test06
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	self should: [ cashier checkout: cart withCreditCard: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/23/2020 18:37:07' prior: 50874294!
+test06
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	self assert: (cashier checkout: cart withCreditCard: creditCard ) equals: 100.
+	
+	! !
+
+----QUIT----(23 November 2020 18:49:22) CuisUniversity-4384.image priorSource: 17333485!
+
+----STARTUP---- (25 November 2020 17:42:27) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Cuis en progreso/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Downloads/Ejercicio-TusLibros.com.st----!
+
+----QUIT----(25 November 2020 18:42:07) CuisUniversity-4384.image priorSource: 17365861!

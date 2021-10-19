@@ -1,0 +1,3361 @@
+
+
+----STARTUP---- (7 June 2021 20:33:09) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibros category: 'TusLibros' stamp: 'ENC 6/7/2021 20:34:55'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----QUIT----(7 June 2021 22:24:41) CuisUniversity-4532.image priorSource: 18810490!
+
+----STARTUP---- (9 June 2021 23:32:35) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+
+----QUIT----(9 June 2021 23:51:59) CuisUniversity-4532.image priorSource: 18811016!
+
+----STARTUP---- (10 June 2021 19:31:15) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+
+!classRemoval: #TusLibros stamp: 'ENC 6/10/2021 19:31:25'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /Users/ecerdeira/git/inge1/2021-1c/20-TusLibros/Iteracion 1/TusLibros-18.st----!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/10/2021 19:56:54'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:00:40'!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := Cart new.! !
+!CartTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:01:09' prior: 50919677!
+itemNotSellByTheStore
+	
+	^ 'invalidBook'! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:01:45' prior: 50919709!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := CartTest! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:02:18' prior: 50919718!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := self createCart.! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:02:44'!
+createCart
+
+	^ CartTest new createCart.! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/10/2021 20:03:32'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'cajero'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:03:30' prior: 50919723!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := self createCart.
+	cajero := self createCashier.
+	! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'ENC 6/10/2021 20:04:45'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:04:37' prior: 50919739!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := self createCart.
+	cajero := self createCashier.
+	
+	self 
+		should: [ cajero checkout: carrito ]
+	 	raise:  Error
+		withMessageText: Cashier signalChechoutEmptyCartError
+	! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:05:09'!
+createCartshier
+
+	^ Cashier new.! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:05:25'!
+createCashier
+
+	^ Cashier new.! !
+
+!methodRemoval: CashierTest #createCartshier stamp: 'ENC 6/10/2021 20:05:27'!
+createCartshier
+
+	^ Cashier new.!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:05:31'!
+ERROR!
+!Cashier class methodsFor: 'signaling' stamp: 'ENC 6/10/2021 20:05:51'!
+signalChechoutEmptyCartError
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'signaling' stamp: 'ENC 6/10/2021 20:06:08' prior: 50919776!
+signalChechoutEmptyCartError
+	
+	self error: self class chechoutEmptyCartError.! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:06:14'!
+ERROR!
+!Cashier class methodsFor: 'signaling' stamp: 'ENC 6/10/2021 20:07:20'!
+checkoutEmptyCartError
+	
+	^ 'No se puede procesar un carrito vacío.'! !
+
+!methodRemoval: Cashier class #signalChechoutEmptyCartError stamp: 'ENC 6/10/2021 20:07:47'!
+signalChechoutEmptyCartError
+	
+	self error: self class chechoutEmptyCartError.!
+!Cashier methodsFor: 'signaling' stamp: 'ENC 6/10/2021 20:08:01'!
+signalChechoutEmptyCartError
+	
+	self error: self class checkoutEmptyCartError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:08:29' prior: 50919752!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := self createCart.
+	cajero := self createCashier.
+	
+	self 
+		should: [ cajero checkout: carrito ]
+	 	raise:  Error
+		withMessageText: Cashier chechoutEmptyCartError.
+	! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:08:30'!
+ERROR!
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/10/2021 20:09:30'!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self signalChechoutEmptyCartError ].
+	
+	
+
+	! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:09:35'!
+ERROR!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:09:35'!
+ERROR!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:09:41' prior: 50919805!
+test01cannotCheckoutAnEmptyCart
+
+	| carrito |
+	
+	carrito := self createCart.
+	cajero := self createCashier.
+	
+	self 
+		should: [ cajero checkout: carrito ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:09:42'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:09:42'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:10:06' prior: 50919830!
+test01cannotCheckoutAnEmptyCart
+
+	
+	cajero := self createCashier.
+	
+	self 
+		should: [ cajero checkout: self createCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/10/2021 20:10:11'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:11:34' prior: 50919846!
+test01cannotCheckoutAnEmptyCart
+
+	| cajero emptyCart |
+	
+	emptyCart := self createCart.
+	cajero := self createCashier.
+	
+	self 
+		should: [ cajero checkout: emptyCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:11:42' prior: 50919866!
+test01cannotCheckoutAnEmptyCart
+
+	| cashier emptyCart |
+	
+	emptyCart := self createCart.
+	cashier := self createCashier.
+	
+	self 
+		should: [ cashier checkout: emptyCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:11:48'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:11:48'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:13:47'!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier emptyCart |
+	
+	emptyCart := self createCart.
+	cashier := self createCashier.
+	
+	self 
+		should: [ cashier checkout: emptyCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:14:05' prior: 50919893!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier emptyCart |
+	
+	emptyCart := self createCart.
+	emptyCart.
+	cashier := self createCashier.
+	
+	self 
+		should: [ cashier checkout: emptyCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:17:13'!
+itemSellByTheStore
+	
+	^ 'validBook'! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:18:00' prior: 50919904!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier emptyCart |
+	
+	emptyCart := self createCart.
+	emptyCart add: self itemSellByTheStore.
+	cashier := self createCashier.
+	
+	self 
+		should: [ cashier checkout: emptyCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:18:07' prior: 50919919!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart |
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	cashier := self createCashier.
+	
+	self 
+		should: [ cashier checkout: cart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:19:42' prior: 50919931!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart price |
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	cashier := self createCashier.
+	
+	self assert: price equals: (cart checkout: cart).! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'ENC 6/10/2021 20:25:20'!
+Object subclass: #Cashier
+	instanceVariableNames: 'checkout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'ENC 6/10/2021 20:25:21'!
+Object subclass: #Cashier
+	instanceVariableNames: 'checkout priceList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'ENC 6/10/2021 20:25:19'!
+initializeValuingItemsWith: aPriceList
+
+	checkout := 0.
+	priceList := aPriceList.! !
+!Cashier class methodsFor: 'instance creation' stamp: 'ENC 6/10/2021 20:25:50'!
+valuingItemsWith: aPriceList
+
+	^ self new initializeValuingItemsWith: aPriceList.! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:26:38' prior: 50919766!
+createCashier
+
+	^ Cashier valuingItemsWith: {self itemSellByTheStore -> 10}.! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 20:26:57'!
+ERROR!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 20:27:14'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 20:27:16'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 20:27:16'!
+ERROR!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:27:34' prior: 50919943!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart price |
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	cashier := self createCashier.
+	
+	self assert: price equals: (cashier checkout: cart).! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 20:27:38'!
+FAILURE!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:28:14' prior: 50919997!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart price |
+	
+	cart := self createCart.
+	cart add: self itemSellByTheStore.
+	cashier := self createCashier.
+	price := self itemSellByTheStorePrice.
+	
+	self assert: price equals: (cashier checkout: cart).! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:28:26'!
+itemSellByTheStorePrice
+	
+	^ 10.! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:28:46' prior: 50919978!
+createCashier
+
+	^ Cashier valuingItemsWith: {self itemSellByTheStore -> self itemSellByTheStorePrice }.! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 20:28:59'!
+FAILURE!
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 20:33:47'!
+createCartWith: aBook
+
+	^ CartTest new createCart add: aBook.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:34:02' prior: 50920010!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart price |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	price := self itemSellByTheStorePrice.
+	
+	self assert: price equals: (cashier checkout: cart).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/10/2021 20:34:49' prior: 50920039!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart).! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 22:32:10' prior: 50920025!
+createCashier
+
+	^ Cashier new.! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 22:32:58' prior: 50919728!
+createCart
+
+	^ Cart acceptingItemsOf: self defaultCatalog.! !
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 22:34:07'!
+defaultCatalog
+
+	^ { self itemSellByTheStore -> self itemSellByTheStorePrice }.! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 22:35:14'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:35:16'!
+FAILURE!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:35:16'!
+FAILURE!
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/10/2021 22:36:06' prior: 50919818!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self signalChechoutEmptyCartError ].
+	
+	^ aCart checkout.
+	
+	
+
+	! !
+
+Object subclass: #Cashier
+	instanceVariableNames: 'checkout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'ENC 6/10/2021 22:36:20'!
+Object subclass: #Cashier
+	instanceVariableNames: 'checkout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/10/2021 22:36:42' prior: 50920084!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self signalChechoutEmptyCartError ].
+	
+	checkout := aCart checkout.
+	
+	^ checkout
+	
+	
+
+	! !
+!Cart methodsFor: 'checkout' stamp: 'ENC 6/10/2021 22:37:13'!
+checkout
+
+	! !
+!Cart methodsFor: 'checkout' stamp: 'ENC 6/10/2021 22:39:18' prior: 50920108!
+checkout
+
+	^ items inject: 0 into: [ :partialCheckout :item | partialCheckout + catalog associationAt: item ].! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:39:23'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:39:23'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 22:41:41' prior: 50920034!
+createCartWith: aBook
+
+	^ self createCart add: aBook.! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:41:45'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:41:45'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:41:58'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:42:06'!
+ERROR!
+
+self createCartWith: self itemSellByTheStore!
+
+self itemSellByTheStore!
+
+self defaultCatalog!
+!Cart methodsFor: 'assertions' stamp: 'ENC 6/10/2021 22:45:14' prior: 50919534!
+assertIsValidItem: anItem
+
+	catalog associationAt: anItem ifAbsent: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:45:19'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:45:19'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/10/2021 22:46:17' prior: 50920064!
+createCart
+
+	^ Cart acceptingItemsOf: (Dictionary newFrom: self defaultCatalog).! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:46:24'!
+FAILURE!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:46:24'!
+FAILURE!
+
+catalog associationAt: item!
+!Cart methodsFor: 'checkout' stamp: 'ENC 6/10/2021 22:47:06' prior: 50920111!
+checkout
+
+	^ items inject: 0 into: [ :partialCheckout :item | partialCheckout + catalog associationAt: item value ].! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:47:07'!
+FAILURE!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:47:11'!
+FAILURE!
+!Cart methodsFor: 'checkout' stamp: 'ENC 6/10/2021 22:47:56' prior: 50920171!
+checkout
+
+	^ items inject: 0 into: [ :partialCheckout :item | partialCheckout + catalog at: item ].! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:47:59'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/10/2021 22:48:05'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/10/2021 22:48:05'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/10/2021 22:48:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/10/2021 22:48:06'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/10/2021 22:48:06'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/10/2021 22:48:06'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/10/2021 22:48:06'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/10/2021 22:48:06'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/10/2021 22:48:06'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/10/2021 22:48:06'!
+ERROR!
+
+----QUIT----(10 June 2021 22:48:17) CuisUniversity-4532.image priorSource: 18811207!
+
+----STARTUP---- (12 June 2021 23:08:15) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+
+Object subclass: #TestFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TestFactory category: 'TusLibros' stamp: 'ENC 6/12/2021 23:14:44'!
+Object subclass: #TestFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/12/2021 23:17:38'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/12/2021 23:17:57'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:17:57'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/12/2021 23:17:57'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/12/2021 23:17:57'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/12/2021 23:17:57'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/12/2021 23:17:57'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/12/2021 23:17:57'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/12/2021 23:17:57'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/12/2021 23:18:05'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:18:06'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:18:06'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:18:19'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:18:19'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'ENC 6/12/2021 23:18:50' prior: 50920145!
+assertIsValidItem: anItem
+
+	catalog at: anItem ifAbsent: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:18:51'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:20:14'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:20:14'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 'ENC 6/12/2021 23:20:49' prior: 50919686!
+defaultCatalog
+	
+	^ { self itemSellByTheStore -> 10 }.! !
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:20:55'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:20:55'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'ENC 6/12/2021 23:22:37' prior: 50920287!
+assertIsValidItem: anItem
+
+	catalog at: anItem ifAbsent: [ ^ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:22:42'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:22:42'!
+ERROR!
+
+self defaultCatalog!
+!CartTest methodsFor: 'support' stamp: 'ENC 6/12/2021 23:24:23' prior: 50919681!
+createCart
+	
+	^Cart acceptingItemsOf: (Dictionary newFrom: self defaultCatalog).! !
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/12/2021 23:24:28'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/12/2021 23:24:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/12/2021 23:24:32'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/12/2021 23:24:33'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/12/2021 23:24:35'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/12/2021 23:24:36'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/12/2021 23:24:36'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/12/2021 23:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/12/2021 23:24:39'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:26:11'!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart).! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ENC 6/12/2021 23:28:28'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:28:21' prior: 50920362!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := CreditCard new.
+	
+	cashier checkout: cart
+	
+	self assert: (cashier payWith: card).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:28:36' prior: 50920379!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := CreditCard new.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+
+12/January/2000!
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/12/2021 23:32:26'!
+expiredCard
+
+	^ CreditCard date: '01/20' owner: 'an owner' number: '4509950000000000' cvv: '123'.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'ENC 6/12/2021 23:33:33'!
+date: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	^ self new initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode! !
+
+'01/20' asMonth !
+
+'01/20' asDate!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ENC 6/12/2021 23:38:40'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ENC 6/12/2021 23:38:41'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ENC 6/12/2021 23:38:42'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number cvv'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ENC 6/12/2021 23:38:43'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number cvv date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/12/2021 23:38:39'!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	date := aDate asMonth.! !
+
+'01/19' asMonth!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/12/2021 23:39:07' prior: 50920445!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	date := aDate asMonth.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:39:41' prior: 50920390!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/12/2021 23:49:39'!
+payWith: aCreditCard
+
+	aCreditCard isExpired ifTrue: [ self signalCheckoutExpiredCard ].
+	
+	checkout := 0.
+	
+	^ true
+	
+	
+
+	! !
+!Cashier methodsFor: 'signaling' stamp: 'ENC 6/12/2021 23:49:54'!
+signalCheckoutEmptyCartError
+	
+	self error: self class checkoutEmptyCartError.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ENC 6/12/2021 23:49:54' prior: 50920101!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self signalCheckoutEmptyCartError ].
+	
+	checkout := aCart checkout.
+	
+	^ checkout
+	
+	
+
+	! !
+
+!methodRemoval: Cashier #signalChechoutEmptyCartError stamp: 'ENC 6/12/2021 23:49:54'!
+signalChechoutEmptyCartError
+	
+	self error: self class checkoutEmptyCartError.!
+!Cashier methodsFor: 'signaling' stamp: 'ENC 6/12/2021 23:50:08'!
+signalCheckoutExpiredCard
+	
+	self error: self class checkoutExpiredCard.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'ENC 6/12/2021 23:50:30'!
+checkoutExpiredCard
+	
+	^ 'No se puede pagar con una tarjeta vencida.'! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'ENC 6/12/2021 23:50:36' prior: 50920505!
+checkoutExpiredCard
+	
+	^ 'No se puede pagar con una tarjeta vencida.'! !
+
+!methodRemoval: Cashier class #valuingItemsWith: stamp: 'ENC 6/12/2021 23:50:46'!
+valuingItemsWith: aPriceList
+
+	^ self new initializeValuingItemsWith: aPriceList.!
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/12/2021 23:51:19'!
+isExpired
+
+	^ true! !
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/12/2021 23:51:33' prior: 50920521!
+isExpired
+
+	^ false! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/12/2021 23:51:39'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:51:45' prior: 50920464!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).
+	self ! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:52:09' prior: 50920532!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:52:30' prior: 50920544!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).
+	self assert: 0 equals: (cashier checkout: cart).! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/12/2021 23:52:30'!
+FAILURE!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:52:37' prior: 50920555!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/12/2021 23:52:39'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/12/2021 23:52:39'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/12/2021 23:52:39'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/12/2021 23:52:39'!
+PASSED!
+
+Object subclass: #MPInterfaceSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MPInterfaceSimulator category: 'TusLibros' stamp: 'ENC 6/12/2021 23:55:30'!
+Object subclass: #MPInterfaceSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:55:46' prior: 50920571!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new validCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:56:01' prior: 50920607!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:57:33'!
+test04checkoutACartWithValidCreditCardProcessPayment
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:58:28' prior: 50920618!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self should: [ cashier payWith: card ] raise: Error withMessageText: Cashier checkoutExpiredCard ! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/12/2021 23:58:31'!
+FAILURE!
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/12/2021 23:58:45' prior: 50920525!
+isExpired
+
+	^ true! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/12/2021 23:58:49'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/12/2021 23:58:52'!
+ERROR!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/12/2021 23:58:52'!
+ERROR!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/12/2021 23:59:00' prior: 50920629!
+test04checkoutACartWithValidCreditCardProcessPayment
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new validCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/12/2021 23:59:17'!
+validCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '4509950000000000' cvv: '123'.! !
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/13/2021 00:00:44' prior: 50920658!
+isExpired
+
+	| actualDate |
+
+	actualDate := January/01/2022.
+
+	^ date < actualDate.! !
+
+January/01/2022!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:00:56'!
+FAILURE!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:00:56'!
+FAILURE!
+
+date < actualDate!
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/13/2021 00:02:15' prior: 50920690!
+isExpired
+
+	| actualDate |
+
+	actualDate := January/2022.
+
+	^ date < actualDate.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:02:18'!
+FAILURE!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:02:35'!
+FAILURE!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:02:35'!
+FAILURE!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:02:49'!
+FAILURE!
+
+January/2022!
+
+Month month: 1 year: 2022!
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/13/2021 00:03:54' prior: 50920704!
+isExpired
+
+	| actualDate |
+
+	actualDate := Month month: 1 year: 2022.
+
+	^ date < actualDate.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:03:59'!
+FAILURE!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:03:59'!
+FAILURE!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/13/2021 00:06:49' prior: 50920455!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := aDate asMonth.
+	
+	date := month monthName / 01 / month year.! !
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/13/2021 00:07:03' prior: 50920725!
+isExpired
+
+	| actualDate |
+
+	actualDate := January / 01 / 2022.
+
+	^ date < actualDate.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:07:07'!
+ERROR!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:07:07'!
+ERROR!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/13/2021 00:07:47' prior: 50920738!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := aDate asMonth.
+	
+	date := (month month) / 01 / (month year).! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:07:57'!
+ERROR!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:07:57'!
+ERROR!
+
+self month!
+
+self monthName!
+
+self class monthName!
+
+self class month!
+
+02/03/2020!
+
+self monthName.!
+
+(self monthName) / 02 / 2020!
+
+self monthIndex!
+
+self year!
+
+self yearNumber!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/13/2021 00:11:25' prior: 50920762!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := aDate asMonth.
+	
+	date := Date year: month yearNumber month: month monthIndex day: 1.! !
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/13/2021 00:12:53' prior: 50920749!
+isExpired
+
+	| actualDate |
+
+	actualDate := Date year: 2022 month: 01 day: 01.
+
+	^ date < actualDate.! !
+
+date < actualDate!
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/13/2021 00:13:13' prior: 50920797!
+isExpired
+
+	| actualDate |
+
+	actualDate := Date year: 2022 month: 01 day: 01.
+
+	^ date < actualDate.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:13:14'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 00:13:17'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 00:13:18'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/13/2021 00:13:19'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 00:13:27'!
+PASSED!
+
+----QUIT----(13 June 2021 00:16:51) CuisUniversity-4532.image priorSource: 18834378!
+
+----STARTUP---- (13 June 2021 20:27:37) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/13/2021 20:32:36' prior: 50920785!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+	
+	(anOwnerName isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(number length = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := aDate asMonth.
+	
+	date := Date year: month yearNumber month: month monthIndex day: 1.! !
+!CreditCard methodsFor: 'signaling' stamp: 'ENC 6/13/2021 20:33:11'!
+signalEmptyOwnerName
+
+	self error: self class emptyOwnerNameError ! !
+!CreditCard class methodsFor: 'error description' stamp: 'ENC 6/13/2021 20:33:43'!
+emptyOwnerNameError
+
+	^ 'No puede crearse una tarjeta con nombre vacío'! !
+!CreditCard methodsFor: 'signaling' stamp: 'ENC 6/13/2021 20:34:06'!
+signalInvalidCreditCardNumber
+
+	self error: self class invalidCreditCardNumberError ! !
+!CreditCard class methodsFor: 'error description' stamp: 'ENC 6/13/2021 20:34:25'!
+invalidCreditCardNumberError
+
+	^ 'La tarjeta debe tener número de longitud 16'! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/13/2021 20:34:34'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 20:34:34'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 20:34:34'!
+ERROR!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 20:34:34'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 20:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 20:34:40'!
+ERROR!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 20:34:40'!
+ERROR!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/13/2021 20:35:18' prior: 50920833!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+	
+	(anOwnerName isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(aCreditCardNumber length = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := aDate asMonth.
+	
+	date := Date year: month yearNumber month: month monthIndex day: 1.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 20:35:19'!
+ERROR!
+
+self size !
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/13/2021 20:36:03' prior: 50920893!
+initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+	
+	(anOwnerName isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(aCreditCardNumber size = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := aDate asMonth.
+	
+	date := Date year: month yearNumber month: month monthIndex day: 1.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 20:36:03'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 20:36:08'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 20:36:09'!
+PASSED!
+
+!classRenamed: #MPInterfaceSimulator as: #MPInnerInterfaceSimulator stamp: 'ENC 6/13/2021 20:54:22'!
+Smalltalk renameClassNamed: #MPInterfaceSimulator as: #MPInnerInterfaceSimulator!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/13/2021 20:57:23'!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new falseCard.
+	
+	cashier checkout: cart.
+	
+	self should: [ cashier payWith: card ] raise: Error withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 20:57:34'!
+ERROR!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 20:57:41'!
+ERROR!
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/13/2021 20:58:13'!
+falseCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000001' cvv: '123'.! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 20:58:26'!
+ERROR!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 20:58:26'!
+ERROR!
+!MPInnerInterfaceSimulator class methodsFor: 'error description' stamp: 'ENC 6/13/2021 20:58:42'!
+falseCardError
+	self shouldBeImplemented.! !
+!MPInnerInterfaceSimulator class methodsFor: 'error description' stamp: 'ENC 6/13/2021 20:58:54' prior: 50920978!
+falseCardError
+	
+	^ 'La tarjeta provista es falsa'.! !
+!MPInnerInterfaceSimulator class methodsFor: 'error description' stamp: 'ENC 6/13/2021 20:58:57' prior: 50920983!
+falseCardError
+	
+	^ 'La tarjeta provista es falsa'.! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 20:58:59'!
+FAILURE!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'ENC 6/13/2021 20:59:54'!
+Object subclass: #Cashier
+	instanceVariableNames: 'checkout merchantProcessorInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/13/2021 20:59:52' prior: 50920475!
+payWith: aCreditCard
+
+	aCreditCard isExpired ifTrue: [ self signalCheckoutExpiredCard ].
+	
+	merchantProcessorInterface creditPaymentWith: aCreditCard of: checkout.
+	
+	checkout := 0.
+	
+	^ true
+	
+	
+
+	! !
+!Cashier methodsFor: 'initialization' stamp: 'ENC 6/13/2021 21:00:32' overrides: 16896425!
+initialize
+	
+	checkout := 0.
+	merchantProcessorInterface := MPInnerInterfaceSimulator new.! !
+
+!methodRemoval: Cashier #initializeValuingItemsWith: stamp: 'ENC 6/13/2021 21:00:39'!
+initializeValuingItemsWith: aPriceList
+
+	checkout := 0.
+	priceList := aPriceList.!
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:01:38'!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self error: self class ! !
+!MPInnerInterfaceSimulator methodsFor: 'signaling' stamp: 'ENC 6/13/2021 21:02:04'!
+signalFalseCardError
+
+	self error: self class falseCardError! !
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:02:12' prior: 50921026!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self signalFalseCardError. ! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 21:02:16'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/13/2021 21:02:20'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 21:02:20'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 21:02:20'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 21:02:20'!
+ERROR!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 21:02:20'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 21:02:20'!
+ERROR!
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:03:19' prior: 50921038!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	(aCreditCard cardNumber = '0000000000000001') ifTrue: [ self signalFalseCardError ]
+	! !
+!CreditCard methodsFor: 'accessing' stamp: 'ENC 6/13/2021 21:03:40'!
+cardNumber
+
+	^ number ! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 21:03:44'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 21:03:45'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 21:03:46'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 21:03:47'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/13/2021 21:03:47'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/13/2021 21:04:00' prior: 50920945!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new falseCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/13/2021 21:04:47'!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new stolenCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/13/2021 21:05:00'!
+stolenCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000002' cvv: '123'.! !
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:05:15' prior: 50921068!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	(aCreditCard cardNumber = '0000000000000001') ifTrue: [ self signalFalseCardError ].
+	(aCreditCard cardNumber = '0000000000000002') ifTrue: [ self signalStolenCardError ].
+	! !
+!MPInnerInterfaceSimulator methodsFor: 'signaling' stamp: 'ENC 6/13/2021 21:05:28'!
+signalStolenCardError
+
+	self error: self class stolenCardError! !
+!MPInnerInterfaceSimulator class methodsFor: 'error description' stamp: 'ENC 6/13/2021 21:05:39'!
+stolenCardError
+	
+	^ 'La tarjeta provista es robada'.! !
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/13/2021 21:05:46'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/13/2021 21:05:50'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 21:05:50'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 21:05:50'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 21:05:50'!
+PASSED!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 21:05:50'!
+PASSED!
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/13/2021 21:05:50'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/13/2021 21:07:35'!
+test07cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestFactory new insufficientAmountCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/13/2021 21:07:57'!
+insufficientAmountCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000003' cvv: '123'.! !
+!MPInnerInterfaceSimulator methodsFor: 'signaling' stamp: 'ENC 6/13/2021 21:08:12'!
+signalInsufficientAmountCardError
+
+	self error: self class insufficientAmountCardError! !
+!MPInnerInterfaceSimulator class methodsFor: 'error description' stamp: 'ENC 6/13/2021 21:08:25'!
+insufficientAmountCardError
+	
+	^ 'La tarjeta provista no tiene monto disponible'.! !
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:08:48' prior: 50921130!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	(aCreditCard cardNumber = '0000000000000001') ifTrue: [ self signalFalseCardError ].
+	(aCreditCard cardNumber = '0000000000000002') ifTrue: [ self signalStolenCardError ].
+	(aCreditCard cardNumber = '0000000000000003') ifTrue: [ self signalInsufficientAmountCardError ].
+	! !
+
+!testRun: #CashierTest #test07cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/13/2021 21:08:58'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+
+!testRun: #CashierTest #test07cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/13/2021 21:09:01'!
+PASSED!
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:09:37' prior: 50921208!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	(aCreditCard cardNumber = '0000000000000001') ifTrue: [ self signalFalseCardError ].
+	(aCreditCard cardNumber = '0000000000000002') ifTrue: [ self signalStolenCardError ].
+	(aCreditCard cardNumber = '0000000000000003') ifTrue: [ self signalInsufficientAmountCardError ].
+	
+	^ true! !
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/13/2021 21:09:50' prior: 50921250!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	(aCreditCard cardNumber = '0000000000000001') ifTrue: [ self signalFalseCardError ].
+	(aCreditCard cardNumber = '0000000000000002') ifTrue: [ self signalStolenCardError ].
+	(aCreditCard cardNumber = '0000000000000003') ifTrue: [ self signalInsufficientAmountCardError ].! !
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/13/2021 21:11:18' prior: 50920401!
+expiredCard
+
+	^ CreditCard date: '01/20' owner: 'an owner' number: '0000000000000000' cvv: '123'.! !
+!TestFactory methodsFor: 'credit cards' stamp: 'ENC 6/13/2021 21:11:22' prior: 50920684!
+validCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000000' cvv: '123'.! !
+
+----QUIT----(13 June 2021 21:19:01) CuisUniversity-4532.image priorSource: 18853632!
+
+----STARTUP---- (14 June 2021 18:33:56) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+
+!classRenamed: #TestFactory as: #TestObjectFactory stamp: 'ENC 6/14/2021 18:47:23'!
+Smalltalk renameClassNamed: #TestFactory as: #TestObjectFactory!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/14/2021 18:47:23' prior: 50921174!
+test07cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new insufficientAmountCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/14/2021 18:47:23' prior: 50921096!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new falseCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/14/2021 18:47:23' prior: 50921109!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new stolenCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/14/2021 18:47:23' prior: 50920673!
+test04checkoutACartWithValidCreditCardProcessPayment
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new validCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/14/2021 18:47:23' prior: 50920641!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new expiredCard.
+	
+	cashier checkout: cart.
+	
+	self should: [ cashier payWith: card ] raise: Error withMessageText: Cashier checkoutExpiredCard ! !
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/14/2021 18:48:37' prior: 50920913!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+	
+	(anOwnerName isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(aCreditCardNumber size = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := anExpirationDate asMonth.
+	
+	date := Date year: month yearNumber month: month monthIndex day: 1.! !
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/14/2021 18:54:43' prior: 50921370!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	| month |
+	
+	(anOwnerName withBlanksTrimmed isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(aCreditCardNumber numberOfDigitsInBase: 10 = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	month := anExpirationDate asMonth.
+	
+	date := Date year: month yearNumber month: month monthIndex day: 1.! !
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/14/2021 18:55:05' prior: 50921387!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	
+	
+	(anOwnerName withBlanksTrimmed isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(aCreditCardNumber numberOfDigitsInBase: 10 = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	date := anExpirationDate.! !
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/14/2021 18:55:09' prior: 50921405!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+	
+	(anOwnerName withBlanksTrimmed isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	(aCreditCardNumber numberOfDigitsInBase: 10 = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	date := anExpirationDate.! !
+!CreditCard methodsFor: 'validation' stamp: 'ENC 6/14/2021 18:55:59'!
+isExpiredOn: actualDate
+
+	^ date < actualDate.! !
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/14/2021 18:56:38' prior: 50921005!
+payWith: aCreditCard
+	
+	merchantProcessorInterface creditPaymentWith: aCreditCard of: checkout.
+	
+	checkout := 0.
+	
+	^ true
+	
+	
+
+	! !
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/14/2021 18:57:30'!
+checkout: aCart with: aCreditCard on: aDate
+
+	aCart isEmpty ifTrue: [ self signalCheckoutEmptyCartError ].
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self signalCheckoutExpiredCard ].
+	
+	checkout := aCart checkout.
+	
+	^ checkout
+	
+	
+
+	! !
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/14/2021 18:59:48' prior: 50921447!
+checkout: aCart with: aCreditCard on: aDate
+
+	| checkout2 |
+
+	aCart isEmpty ifTrue: [ self signalCheckoutEmptyCartError ].
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self signalCheckoutExpiredCard ].
+		
+	checkout := aCart checkout
+		
+	merchantProcessorInterface creditPaymentWith: aCreditCard of: checkout.
+		
+	^ checkout 
+	
+	
+
+	! !
+!Cashier methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:00:05' prior: 50921458!
+checkout: aCart with: aCreditCard on: aDate
+
+	| totalPrice |
+
+	aCart isEmpty ifTrue: [ self signalCheckoutEmptyCartError ].
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self signalCheckoutExpiredCard ].
+		
+	totalPrice := aCart checkout.
+		
+	merchantProcessorInterface creditPaymentWith: aCreditCard of: totalPrice.
+		
+	^ totalPrice 
+	
+	
+
+	! !
+
+Object subclass: #Cashier
+	instanceVariableNames: 'merchantProcessorInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'ENC 6/14/2021 19:00:22'!
+Object subclass: #Cashier
+	instanceVariableNames: 'merchantProcessorInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: Cashier #checkout: stamp: 'ENC 6/14/2021 19:00:27'!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self signalCheckoutEmptyCartError ].
+	
+	checkout := aCart checkout.
+	
+	^ checkout
+	
+	
+
+	!
+
+!methodRemoval: Cashier #payWith: stamp: 'ENC 6/14/2021 19:00:32'!
+payWith: aCreditCard
+	
+	merchantProcessorInterface creditPaymentWith: aCreditCard of: checkout.
+	
+	checkout := 0.
+	
+	^ true
+	
+	
+
+	!
+!Cashier methodsFor: 'initialization' stamp: 'ENC 6/14/2021 19:00:38' prior: 50921015 overrides: 16896425!
+initialize
+	
+	merchantProcessorInterface := MPInnerInterfaceSimulator new.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:01:21' prior: 50919877!
+test01cannotCheckoutAnEmptyCart
+
+	| cashier emptyCart |
+	
+	emptyCart := self createCart.
+	cashier := self createCashier.
+	
+	self 
+		should: [ cashier checkout: emptyCart ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:01:41'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testingObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:01:40' overrides: 16927572!
+setUp
+
+	testingObjectFactory := TestObjectFactory new.! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:02:18'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testingObjectFactory date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:02:11' prior: 50921517!
+test01cannotCheckoutAnEmptyCart
+
+	| cashier emptyCart card |
+	
+	emptyCart := self createCart.
+	cashier := self createCashier.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: emptyCart with: card on: date]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:02:54' prior: 50921535 overrides: 16927572!
+setUp
+
+	testingObjectFactory := TestObjectFactory new.
+	date := GregorianMonthOfYear year: 2021 month: June.! !
+
+GregorianMonthOfYear year: 2021 month: June!
+
+GregorianMonthOfYear year: 2021 month: June!
+
+self < (GregorianMonthOfYear year: 2021 month: April).!
+
+self < (GregorianMonthOfYear year: 2021 month: July).!
+
+GregorianMonthOfYear year: 2021 month: June!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:04:12' prior: 50921547!
+test01cannotCheckoutAnEmptyCart
+
+	| cashier emptyCart card |
+	
+	emptyCart := self createCart.
+	cashier := self createCashier.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: emptyCart with: card on: date ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:04:14'!
+ERROR!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:04:14'!
+ERROR!
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/14/2021 19:04:56' prior: 50921283!
+validCard
+
+	^ CreditCard date: (GregorianMonthOfYear year: 2025 month: June) owner: 'an owner' number: 1234567812345678 cvv: '123'.! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:05:01'!
+ERROR!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:05:01'!
+ERROR!
+
+aCreditCardNumber numberOfDigitsInBase: 10!
+
+(aCreditCardNumber numberOfDigitsInBase: 10) = 16!
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/14/2021 19:05:45' prior: 50921420!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+	
+	(anOwnerName withBlanksTrimmed isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	((aCreditCardNumber numberOfDigitsInBase: 10) = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	date := anExpirationDate.! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:05:46'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:05:48'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:06:07' prior: 50920050!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := testingObjectFactory validCard.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:06:19' prior: 50921631!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := testingObjectFactory validCard.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart with: card on: date).! !
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/14/2021 19:06:21'!
+PASSED!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:06:21'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/14/2021 19:06:21'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/14/2021 19:06:21'!
+ERROR!
+
+!testRun: #CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/14/2021 19:06:21'!
+ERROR!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:06:21'!
+ERROR!
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/14/2021 19:06:21'!
+ERROR!
+
+!testRun: #CashierTest #test07cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:06:21'!
+ERROR!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:06:46' prior: 50921356!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new expiredCard.
+	
+	self should: [ cashier checkout: cart with: card on: date ] raise: Error withMessageText: Cashier checkoutExpiredCard ! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/14/2021 19:06:47'!
+ERROR!
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/14/2021 19:07:20' prior: 50921277!
+expiredCard
+
+	^ CreditCard date: (GregorianMonthOfYear year: 2020 month: June) owner: 'an owner' number: 1234567812345678 cvv: '123'.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/14/2021 19:07:25'!
+PASSED!
+
+!methodRemoval: CashierTest #test04checkoutACartWithValidCreditCardProcessPayment stamp: 'ENC 6/14/2021 19:10:34'!
+test04checkoutACartWithValidCreditCardProcessPayment
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new validCard.
+	
+	cashier checkout: cart.
+	
+	self assert: (cashier payWith: card).!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:10:53' prior: 50921682!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new expiredCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: Cashier checkoutExpiredCard ! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:11:51'!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new insufficientAmountCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+
+!methodRemoval: CashierTest #test07cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:11:51'!
+test07cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier.
+	card := TestObjectFactory new insufficientAmountCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.!
+
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorFalseCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MPInnerInterfaceSimulatorFalseCard category: 'TusLibros' stamp: 'ENC 6/14/2021 19:17:35'!
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorFalseCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MPInnerInterfaceSimulatorFalseCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:18:00' overrides: 50921264!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self signalFalseCardError! !
+
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorStolenCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MPInnerInterfaceSimulatorStolenCard category: 'TusLibros' stamp: 'ENC 6/14/2021 19:18:14'!
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorStolenCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MPInnerInterfaceSimulatorStolenCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:18:31' overrides: 50921264!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self signalStolenCardError! !
+
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorInsufficientAmountCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MPInnerInterfaceSimulatorInsufficientAmountCard category: 'TusLibros' stamp: 'ENC 6/14/2021 19:18:44'!
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorInsufficientAmountCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MPInnerInterfaceSimulatorInsufficientAmountCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:19:03' overrides: 50921264!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self signalInsufficientAmountCardError! !
+
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorValidCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MPInnerInterfaceSimulatorValidCard category: 'TusLibros' stamp: 'ENC 6/14/2021 19:19:13'!
+MPInnerInterfaceSimulator subclass: #MPInnerInterfaceSimulatorValidCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MPInnerInterfaceSimulatorValidCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:19:29' overrides: 50921264!
+creditPaymentWith: aCreditCard of: anAmountOfMoney! !
+!MPInnerInterfaceSimulator methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:19:43' prior: 50921264!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self subclassResponsibility ! !
+!Cashier methodsFor: 'initialization' stamp: 'ENC 6/14/2021 19:20:23'!
+initializeWith: aMPInnerInterface
+	
+	merchantProcessorInterface := aMPInnerInterface.! !
+!Cashier class methodsFor: 'instance creation' stamp: 'ENC 6/14/2021 19:20:46'!
+with: aMPInnerInterfaceSimulator
+
+	^ self new initializeWith: aMPInnerInterfaceSimulator.! !
+
+!methodRemoval: Cashier #initialize stamp: 'ENC 6/14/2021 19:20:56'!
+initialize
+	
+	merchantProcessorInterface := MPInnerInterfaceSimulator new.!
+!CashierTest methodsFor: 'support' stamp: 'ENC 6/14/2021 19:22:05'!
+createCashier: aMPInnerInterfaceSimulator
+
+	^ Cashier with: aMPInnerInterfaceSimulator.! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:24:09'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testingObjectFactory date mpInnerInterfaceSimulatorValidCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:24:12'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testingObjectFactory date mpInnerInterfaceSimulatorValidCard mpInnerInterfaceSimulatorFalseCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:24:13'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testingObjectFactory date mpInnerInterfaceSimulatorValidCard mpInnerInterfaceSimulatorFalseCard mpInnerInterfaceSimulatorStolenCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:24:14'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testingObjectFactory date mpInnerInterfaceSimulatorValidCard mpInnerInterfaceSimulatorFalseCard mpInnerInterfaceSimulatorStolenCard mpInnerInterfaceSimulatorInsufficientAmountCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:24:11' prior: 50921560 overrides: 16927572!
+setUp
+
+	testingObjectFactory := TestObjectFactory new.
+	date := GregorianMonthOfYear year: 2021 month: June.
+	
+	mpInnerInterfaceSimulatorValidCard := MPInnerInterfaceSimulatorValidCard. 
+	mpInnerInterfaceSimulatorFalseCard := MPInnerInterfaceSimulatorFalseCard.
+	mpInnerInterfaceSimulatorStolenCard := MPInnerInterfaceSimulatorStolenCard.
+	mpInnerInterfaceSimulatorInsufficientAmountCard := MPInnerInterfaceSimulatorInsufficientAmountCard.
+! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:24:34' prior: 50921574!
+test01cannotCheckoutAnEmptyCart
+
+	| cashier emptyCart card |
+	
+	emptyCart := self createCart.
+	cashier := self createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: emptyCart with: card on: date ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:24:41' prior: 50921643!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart with: card on: date).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:24:47' prior: 50921722!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := TestObjectFactory new expiredCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: Cashier checkoutExpiredCard ! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:24:59' prior: 50921735!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorInsufficientAmountCard.
+	card := TestObjectFactory new insufficientAmountCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:25:10' prior: 50921316!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorFalseCard.
+	card := TestObjectFactory new falseCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:25:19' prior: 50921330!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorStolenCard.
+	card := TestObjectFactory new stolenCard.
+	
+	cashier checkout: cart.
+	
+	self 
+		should: [ cashier payWith: card ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:25:54' prior: 50921979!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorInsufficientAmountCard.
+	card := TestObjectFactory new insufficientAmountCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:26:11' prior: 50921996!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorFalseCard.
+	card := TestObjectFactory new falseCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:26:21' prior: 50922011!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorStolenCard.
+	card := TestObjectFactory new stolenCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:26:24'!
+ERROR!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:26:24'!
+ERROR!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:26:41' prior: 50922026!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorInsufficientAmountCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:26:52' prior: 50922043!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorFalseCard.
+	card := card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:26:59' prior: 50922058!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := self createCartWith: self itemSellByTheStore.
+	cashier := self createCashier: mpInnerInterfaceSimulatorStolenCard.
+	card := card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:27:04'!
+FAILURE!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:27:04'!
+FAILURE!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:28:35'!
+FAILURE!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:28:35'!
+FAILURE!
+!MPInnerInterfaceSimulator methodsFor: 'signaling' stamp: 'ENC 6/14/2021 19:29:56' prior: 50921032!
+signalFalseCardError
+
+	self error: MPInnerInterfaceSimulator falseCardError! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:30:02'!
+FAILURE!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:30:02'!
+FAILURE!
+!MPInnerInterfaceSimulatorFalseCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:30:42' prior: 50921781 overrides: 50921850!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self error: self class falseCardError! !
+!MPInnerInterfaceSimulatorInsufficientAmountCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:30:57' prior: 50921824 overrides: 50921850!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self error: self class insufficientAmountCardError! !
+!MPInnerInterfaceSimulatorStolenCard methodsFor: 'processing' stamp: 'ENC 6/14/2021 19:31:07' prior: 50921802 overrides: 50921850!
+creditPaymentWith: aCreditCard of: anAmountOfMoney
+
+	self error: self class stolenCardError! !
+
+!methodRemoval: MPInnerInterfaceSimulator #signalFalseCardError stamp: 'ENC 6/14/2021 19:31:13'!
+signalFalseCardError
+
+	self error: MPInnerInterfaceSimulator falseCardError!
+
+!methodRemoval: MPInnerInterfaceSimulator #signalInsufficientAmountCardError stamp: 'ENC 6/14/2021 19:31:14'!
+signalInsufficientAmountCardError
+
+	self error: self class insufficientAmountCardError!
+
+!methodRemoval: MPInnerInterfaceSimulator #signalStolenCardError stamp: 'ENC 6/14/2021 19:31:15'!
+signalStolenCardError
+
+	self error: self class stolenCardError!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:31:27'!
+FAILURE!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:31:27'!
+FAILURE!
+
+!methodRemoval: TestObjectFactory #falseCard stamp: 'ENC 6/14/2021 19:32:14'!
+falseCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000001' cvv: '123'.!
+
+!methodRemoval: TestObjectFactory #insufficientAmountCard stamp: 'ENC 6/14/2021 19:32:15'!
+insufficientAmountCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000003' cvv: '123'.!
+
+!methodRemoval: TestObjectFactory #stolenCard stamp: 'ENC 6/14/2021 19:32:16'!
+stolenCard
+
+	^ CreditCard date: '01/25' owner: 'an owner' number: '0000000000000002' cvv: '123'.!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/14/2021 19:32:25'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/14/2021 19:32:27'!
+ERROR!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/14/2021 19:32:27'!
+ERROR!
+
+----QUIT----(14 June 2021 19:32:42) CuisUniversity-4532.image priorSource: 18868418!
+
+----STARTUP---- (14 June 2021 19:32:49) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:33:11'!
+FAILURE!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:33:11'!
+FAILURE!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:33:56' prior: 50921919 overrides: 16927572!
+setUp
+
+	testingObjectFactory := TestObjectFactory new.
+	date := GregorianMonthOfYear year: 2021 month: June.
+	
+	mpInnerInterfaceSimulatorValidCard := MPInnerInterfaceSimulatorValidCard new. 
+	mpInnerInterfaceSimulatorFalseCard := MPInnerInterfaceSimulatorFalseCard new.
+	mpInnerInterfaceSimulatorStolenCard := MPInnerInterfaceSimulatorStolenCard new.
+	mpInnerInterfaceSimulatorInsufficientAmountCard := MPInnerInterfaceSimulatorInsufficientAmountCard new.
+! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:33:59'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/14/2021 19:34:00'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/14/2021 19:34:01'!
+PASSED!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:34:02'!
+PASSED!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:34:03'!
+PASSED!
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/14/2021 19:34:04'!
+PASSED!
+
+!methodRemoval: CashierTest #createCashier stamp: 'ENC 6/14/2021 19:34:57'!
+createCashier
+
+	^ Cashier new.!
+!TestObjectFactory methodsFor: 'cart' stamp: 'ENC 6/14/2021 19:35:19'!
+defaultCatalog
+
+	^ { self itemSellByTheStore -> self itemSellByTheStorePrice }.! !
+!TestObjectFactory methodsFor: 'cart' stamp: 'ENC 6/14/2021 19:35:33'!
+itemSellByTheStore
+	
+	^ 'validBook'! !
+!TestObjectFactory methodsFor: 'cart' stamp: 'ENC 6/14/2021 19:35:41'!
+itemSellByTheStorePrice
+	
+	^ 10.! !
+!TestObjectFactory methodsFor: 'cashier' stamp: 'ENC 6/14/2021 19:35:56'!
+createCashier: aMPInnerInterfaceSimulator
+
+	^ Cashier with: aMPInnerInterfaceSimulator.! !
+!TestObjectFactory methodsFor: 'cashier' stamp: 'ENC 6/14/2021 19:36:08'!
+createCartWith: aBook
+
+	^ self createCart add: aBook.! !
+!TestObjectFactory methodsFor: 'cashier' stamp: 'ENC 6/14/2021 19:36:20'!
+createCart
+
+	^ Cart acceptingItemsOf: (Dictionary newFrom: self defaultCatalog).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:37:10' prior: 50921936!
+test01cannotCheckoutAnEmptyCart
+
+	| cashier emptyCart card |
+	
+	emptyCart := testingObjectFactory createCart.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: emptyCart with: card on: date ]
+	 	raise:  Error
+		withMessageText: Cashier checkoutEmptyCartError.
+	! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:37:21' prior: 50921950!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart with: card on: date).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:37:27' prior: 50921964!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := TestObjectFactory new expiredCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: Cashier checkoutExpiredCard ! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:37:34' prior: 50922081!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorInsufficientAmountCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:37:41' prior: 50922097!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorFalseCard.
+	card := card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:37:48' prior: 50922112!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorStolenCard.
+	card := card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+!TestObjectFactory methodsFor: 'cart' stamp: 'ENC 6/14/2021 19:38:17'!
+createCartWithValidBook
+
+	^ self createCart add: self itemSellByTheStore.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:38:33' prior: 50922330!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+		
+	self assert: self itemSellByTheStorePrice equals: (cashier checkout: cart with: card on: date).! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:38:39' prior: 50922345!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := TestObjectFactory new expiredCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: Cashier checkoutExpiredCard ! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:38:46' prior: 50922361!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorInsufficientAmountCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator insufficientAmountCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:38:51' prior: 50922379!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorFalseCard.
+	card := card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:38:55' prior: 50922396!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorStolenCard.
+	card := card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:39:08' prior: 50922480!
+test06cannotCheckoutACartWithStolenCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorStolenCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator stolenCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:39:14' prior: 50922464!
+test05cannotCheckoutACartWithFalseCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorFalseCard.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: MPInnerInterfaceSimulator falseCardError.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:39:24' prior: 50922432!
+test03cannotCheckoutACartWithExpiredCard
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory expiredCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: Cashier checkoutExpiredCard ! !
+
+!methodRemoval: CashierTest #createCart stamp: 'ENC 6/14/2021 19:39:54'!
+createCart
+
+	^ Cart acceptingItemsOf: (Dictionary newFrom: self defaultCatalog).!
+
+!methodRemoval: CashierTest #createCartWith: stamp: 'ENC 6/14/2021 19:39:55'!
+createCartWith: aBook
+
+	^ self createCart add: aBook.!
+
+!methodRemoval: CashierTest #createCashier: stamp: 'ENC 6/14/2021 19:39:57'!
+createCashier: aMPInnerInterfaceSimulator
+
+	^ Cashier with: aMPInnerInterfaceSimulator.!
+
+!methodRemoval: CashierTest #defaultCatalog stamp: 'ENC 6/14/2021 19:39:59'!
+defaultCatalog
+
+	^ { self itemSellByTheStore -> self itemSellByTheStorePrice }.!
+
+!methodRemoval: CashierTest #itemSellByTheStore stamp: 'ENC 6/14/2021 19:40:01'!
+itemSellByTheStore
+	
+	^ 'validBook'!
+
+!methodRemoval: CashierTest #itemSellByTheStorePrice stamp: 'ENC 6/14/2021 19:40:03'!
+itemSellByTheStorePrice
+	
+	^ 10.!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/14/2021 19:40:32' prior: 50922418!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+		
+	self assert: testingObjectFactory itemSellByTheStorePrice equals: (cashier checkout: cart with: card on: date).! !
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'ENC 6/14/2021 19:42:03'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testingObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:02' overrides: 16927572!
+setUp
+
+	testingObjectFactory := TestObjectFactory new.! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:11' prior: 50919636!
+test01NewCartsAreCreatedEmpty
+
+	self assert: testingObjectFactory createCart isEmpty! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:17' prior: 50919614!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:28' prior: 50919641!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	cart add: testingObjectFactory itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:41' prior: 50922614!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:47' prior: 50919601!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: self itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:50' prior: 50922631!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: testingObjectFactory itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:42:59' prior: 50919656!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: testingObjectFactory itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:43:14' prior: 50919669!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	self assert: (cart includes: self itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:43:16' prior: 50922672!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCartWith: testingObjectFactory itemSellByTheStore.
+	self assert: (cart includes: testingObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:43:22' prior: 50919649!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	self deny: (cart includes: testingObjectFactory itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:43:28' prior: 50919627!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	cart add: 2 of: self itemSellByTheStore.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:43:29' prior: 50922698!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	cart add: 2 of: testingObjectFactory itemSellByTheStore.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:43:31' prior: 50922707!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	cart add: 2 of: testingObjectFactory itemSellByTheStore.
+	self assert: (cart occurrencesOf: testingObjectFactory itemSellByTheStore) = 2! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/14/2021 19:43:36'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/14/2021 19:43:36'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/14/2021 19:43:36'!
+ERROR!
+!TestObjectFactory methodsFor: 'cart' stamp: 'ENC 6/14/2021 19:43:50'!
+itemNotSellByTheStore
+	
+	^ 'invalidBook'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/14/2021 19:43:54'!
+PASSED!
+
+!methodRemoval: CartTest #itemSellByTheStore stamp: 'ENC 6/14/2021 19:43:59'!
+itemSellByTheStore
+	
+	^ 'validBook'!
+
+!methodRemoval: CartTest #itemNotSellByTheStore stamp: 'ENC 6/14/2021 19:44:01'!
+itemNotSellByTheStore
+	
+	^ 'invalidBook'!
+
+!methodRemoval: CartTest #defaultCatalog stamp: 'ENC 6/14/2021 19:44:03'!
+defaultCatalog
+	
+	^ { self itemSellByTheStore -> 10 }.!
+
+!methodRemoval: CartTest #createCart stamp: 'ENC 6/14/2021 19:44:03'!
+createCart
+	
+	^Cart acceptingItemsOf: (Dictionary newFrom: self defaultCatalog).!
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/14/2021 19:44:23'!
+PASSED!
+
+!testRun: #CashierTest #test02checkoutACartReturnsTheTotalPrice stamp: 'ENC 6/14/2021 19:44:23'!
+PASSED!
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/14/2021 19:44:23'!
+PASSED!
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/14/2021 19:44:23'!
+PASSED!
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/14/2021 19:44:23'!
+PASSED!
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/14/2021 19:44:23'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/14/2021 19:44:26'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/14/2021 19:44:26'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/14/2021 19:44:26'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'ENC 6/14/2021 19:44:36' prior: 50922601!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := testingObjectFactory createCart.
+	
+	self 
+		should: [ cart add: testingObjectFactory itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ENC 6/14/2021 19:44:38'!
+PASSED!
+
+!methodRemoval: CreditCard #isExpired stamp: 'ENC 6/14/2021 19:45:05'!
+isExpired
+
+	| actualDate |
+
+	actualDate := Date year: 2022 month: 01 day: 01.
+
+	^ date < actualDate.!
+!CreditCard class methodsFor: 'instance creation' stamp: 'ENC 6/14/2021 19:45:24'!
+date: aDate owner: anOwnerName number: aCreditCardNumber
+
+	^ self new initializeDate: aDate owner: anOwnerName number: aCreditCardNumber! !
+!CreditCard methodsFor: 'initialization' stamp: 'ENC 6/14/2021 19:45:35'!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber
+	
+	(anOwnerName withBlanksTrimmed isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	((aCreditCardNumber numberOfDigitsInBase: 10) = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	date := anExpirationDate.! !
+
+!methodRemoval: CreditCard #initializeDate:owner:number:cvv: stamp: 'ENC 6/14/2021 19:45:49'!
+initializeDate: anExpirationDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+	
+	(anOwnerName withBlanksTrimmed isEmpty) ifTrue: [ self signalEmptyOwnerName ].
+	((aCreditCardNumber numberOfDigitsInBase: 10) = 16) ifFalse: [ self signalInvalidCreditCardNumber ].
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	cvv := aSecurityCode.
+	date := anExpirationDate.!
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/14/2021 19:46:02' prior: 50921699!
+expiredCard
+
+	^ CreditCard date: (GregorianMonthOfYear year: 2020 month: June) owner: 'an owner' number: 1234567812345678.! !
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/14/2021 19:46:07' prior: 50921593!
+validCard
+
+	^ CreditCard date: (GregorianMonthOfYear year: 2025 month: June) owner: 'an owner' number: 1234567812345678.! !
+
+!methodRemoval: CreditCard class #date:owner:number:cvv: stamp: 'ENC 6/14/2021 19:46:11'!
+date: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode
+
+	^ self new initializeDate: aDate owner: anOwnerName number: aCreditCardNumber cvv: aSecurityCode!
+
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ENC 6/14/2021 19:46:17'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'ENC 6/14/2021 20:39:33'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCardTest stamp: 'ENC 6/14/2021 20:39:48'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----QUIT----(15 June 2021 12:22:05) CuisUniversity-4532.image priorSource: 18898518!
+
+----STARTUP---- (17 June 2021 00:41:49) as /Users/ecerdeira/Desktop/ST limpio/CuisUniversity-4532.image!
+
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:48:08'!
+shouldRaiseError: anErrorMessage while: aBlock for: anInnerInterfaceSimulator
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: aBlock 
+		raise: Error 
+		withMessageText: anErrorMessage.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:48:50' prior: 50922989!
+shouldRaiseError: anErrorMessage while: aBlock for: anInnerInterfaceSimulator
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ aBlock value: cashier ]
+		raise: Error 
+		withMessageText: anErrorMessage.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:49:44'!
+checkoutShouldRaiseError: anErrorMessage for: anInnerInterfaceSimulator
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: anErrorMessage.! !
+
+!methodRemoval: CashierTest #shouldRaiseError:while:for: stamp: 'ENC 6/17/2021 00:49:46'!
+shouldRaiseError: anErrorMessage while: aBlock for: anInnerInterfaceSimulator
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ aBlock value: cashier ]
+		raise: Error 
+		withMessageText: anErrorMessage.!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:52:45' prior: 50922447!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	self checkoutShouldRaiseError: MPInnerInterfaceSimulator insufficientAmountCardError for: mpInnerInterfaceSimulatorInsufficientAmountCard.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:53:03' prior: 50923047!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	self 
+		checkoutShouldRaiseError: MPInnerInterfaceSimulator insufficientAmountCardError 
+		for: mpInnerInterfaceSimulatorInsufficientAmountCard.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:53:57'!
+checkoutShouldRaiseError: anErrorMessage for: anInnerInterfaceSimulator with: aCreditCard
+
+	| cashier cart |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	
+	self 
+		should: [ cashier checkout: cart with: aCreditCard on: date ] 
+		raise: Error 
+		withMessageText: anErrorMessage.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:54:19' prior: 50923056!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	self 
+		checkoutShouldRaiseError: MPInnerInterfaceSimulator insufficientAmountCardError 
+		for: mpInnerInterfaceSimulatorInsufficientAmountCard
+		with: testingObjectFactory validCard.
+		! !
+
+!testRun: #CashierTest #test04cannotCheckoutACartWithCardWithInsufficientAmount stamp: 'ENC 6/17/2021 00:54:22'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:55:10' prior: 50922511!
+test05cannotCheckoutACartWithFalseCard
+
+	self 
+		checkoutShouldRaiseError: MPInnerInterfaceSimulator falseCardError 
+		for: mpInnerInterfaceSimulatorFalseCard
+		with: testingObjectFactory validCard.! !
+
+!testRun: #CashierTest #test05cannotCheckoutACartWithFalseCard stamp: 'ENC 6/17/2021 00:55:12'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:55:38' prior: 50922496!
+test06cannotCheckoutACartWithStolenCard
+	
+	self 
+		checkoutShouldRaiseError: MPInnerInterfaceSimulator stolenCardError 
+		for: mpInnerInterfaceSimulatorStolenCard
+		with: testingObjectFactory validCard.! !
+
+!testRun: #CashierTest #test06cannotCheckoutACartWithStolenCard stamp: 'ENC 6/17/2021 00:55:41'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 00:56:33' prior: 50922526!
+test03cannotCheckoutACartWithExpiredCard
+
+	self 
+		checkoutShouldRaiseError: Cashier checkoutExpiredCard 
+		for: mpInnerInterfaceSimulatorValidCard 
+		with: testingObjectFactory expiredCard.! !
+
+!testRun: #CashierTest #test03cannotCheckoutACartWithExpiredCard stamp: 'ENC 6/17/2021 00:56:39'!
+PASSED!
+
+!methodRemoval: CashierTest #checkoutShouldRaiseError:for: stamp: 'ENC 6/17/2021 00:56:58'!
+checkoutShouldRaiseError: anErrorMessage for: anInnerInterfaceSimulator
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	card := testingObjectFactory validCard.
+	
+	self 
+		should: [ cashier checkout: cart with: card on: date ] 
+		raise: Error 
+		withMessageText: anErrorMessage.!
+!CashierTest methodsFor: 'testing - private' stamp: 'ENC 6/17/2021 00:59:14'!
+shouldRaiseError: anErrorMessage whileTryingToCheckout: aCart for: anInnerInterfaceSimulator with: aCreditCard
+
+	| cashier |
+	
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	
+	self 
+		should: [ cashier checkout: aCart with: aCreditCard on: date ] 
+		raise: Error 
+		withMessageText: anErrorMessage.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:00:15' prior: 50922315!
+test01cannotCheckoutAnEmptyCart
+	
+	self 
+		shouldRaiseError: Cashier checkoutEmptyCartError 
+		whileTryingToCheckout: testingObjectFactory createCart 
+		for: mpInnerInterfaceSimulatorValidCard 
+		with: testingObjectFactory validCard.
+	! !
+
+!testRun: #CashierTest #test01cannotCheckoutAnEmptyCart stamp: 'ENC 6/17/2021 01:00:18'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:00:55' prior: 50923121!
+test03cannotCheckoutACartWithExpiredCard
+
+	self 
+		shouldRaiseError: Cashier checkoutExpiredCard 
+		whileTryingToCheckout: testingObjectFactory createCartWithValidBook
+		for: mpInnerInterfaceSimulatorValidCard 
+		with: testingObjectFactory expiredCard.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:01:07' prior: 50923080!
+test04cannotCheckoutACartWithCardWithInsufficientAmount
+
+	self 
+		shouldRaiseError: MPInnerInterfaceSimulator insufficientAmountCardError 
+		whileTryingToCheckout: testingObjectFactory createCartWithValidBook
+		for: mpInnerInterfaceSimulatorInsufficientAmountCard
+		with: testingObjectFactory validCard.
+		! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:01:16' prior: 50923095!
+test05cannotCheckoutACartWithFalseCard
+
+	self 
+		shouldRaiseError: MPInnerInterfaceSimulator falseCardError 
+		whileTryingToCheckout: testingObjectFactory createCartWithValidBook
+		for: mpInnerInterfaceSimulatorFalseCard
+		with: testingObjectFactory validCard.! !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:01:23' prior: 50923108!
+test06cannotCheckoutACartWithStolenCard
+	
+	self 
+		shouldRaiseError: MPInnerInterfaceSimulator stolenCardError 
+		whileTryingToCheckout: testingObjectFactory createCartWithValidBook
+		for: mpInnerInterfaceSimulatorStolenCard
+		with: testingObjectFactory validCard.! !
+
+!methodRemoval: CashierTest #checkoutShouldRaiseError:for:with: stamp: 'ENC 6/17/2021 01:01:27'!
+checkoutShouldRaiseError: anErrorMessage for: anInnerInterfaceSimulator with: aCreditCard
+
+	| cashier cart |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashier: anInnerInterfaceSimulator.
+	
+	self 
+		should: [ cashier checkout: cart with: aCreditCard on: date ] 
+		raise: Error 
+		withMessageText: anErrorMessage.!
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/17/2021 01:03:03'!
+createACardExpiredAt: anExpirationMonthOfYear
+
+	^ CreditCard date: anExpirationMonthOfYear owner: 'an owner' number: 1234567812345678.! !
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/17/2021 01:03:25' prior: 50922932!
+expiredCard
+
+	^ self createACardExpiredAt: (GregorianMonthOfYear year: 2020 month: June)! !
+!TestObjectFactory methodsFor: 'credit cards' stamp: 'ENC 6/17/2021 01:03:40' prior: 50922939!
+validCard
+
+	^ self createACardExpiredAt: (GregorianMonthOfYear year: 2025 month: June)! !
+!TestObjectFactory methodsFor: 'cashier' stamp: 'ENC 6/17/2021 01:04:17'!
+createCashierWith: aMPInnerInterfaceSimulator
+
+	^ Cashier with: aMPInnerInterfaceSimulator.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/17/2021 01:04:17' prior: 50922568!
+test02checkoutACartReturnsTheTotalPrice
+
+	| cashier cart card |
+	
+	cart := testingObjectFactory createCartWithValidBook.
+	cashier := testingObjectFactory createCashierWith: mpInnerInterfaceSimulatorValidCard.
+	card := testingObjectFactory validCard.
+		
+	self assert: testingObjectFactory itemSellByTheStorePrice equals: (cashier checkout: cart with: card on: date).! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ENC 6/17/2021 01:04:17' prior: 50923148!
+shouldRaiseError: anErrorMessage whileTryingToCheckout: aCart for: anInnerInterfaceSimulator with: aCreditCard
+
+	| cashier |
+	
+	cashier := testingObjectFactory createCashierWith: anInnerInterfaceSimulator.
+	
+	self 
+		should: [ cashier checkout: aCart with: aCreditCard on: date ] 
+		raise: Error 
+		withMessageText: anErrorMessage.! !
+
+!methodRemoval: TestObjectFactory #createCashier: stamp: 'ENC 6/17/2021 01:04:17'!
+createCashier: aMPInnerInterfaceSimulator
+
+	^ Cashier with: aMPInnerInterfaceSimulator.!
+
+!methodRemoval: CreditCard #cardNumber stamp: 'ENC 6/17/2021 01:05:02'!
+cardNumber
+
+	^ number !
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:06:53'!
+test07cannotCreateACardWithEmptyOwner
+	
+	self 
+		should: [ CreditCard date: date owner: ' ' number: 1234567812345678 ]  
+		raise: Error 
+		withMessageText: CreditCard emptyOwnerNameError ! !
+
+!testRun: #CashierTest #test07cannotCreateACardWithEmptyOwner stamp: 'ENC 6/17/2021 01:06:55'!
+PASSED!
+!CashierTest methodsFor: 'testing' stamp: 'ENC 6/17/2021 01:07:40'!
+test08cannotCreateACardWithNonSixteenLengthNumber
+	
+	self 
+		should: [ CreditCard date: date owner: 'an owner' number: 1234 ]  
+		raise: Error 
+		withMessageText: CreditCard invalidCreditCardNumberError ! !
+
+!testRun: #CashierTest #test08cannotCreateACardWithNonSixteenLengthNumber stamp: 'ENC 6/17/2021 01:07:44'!
+PASSED!
+
+!methodRemoval: CashierTest #test08cannotCreateACardWithNonSixteenLengthNumber stamp: 'ENC 6/17/2021 01:11:04'!
+test08cannotCreateACardWithNonSixteenLengthNumber
+	
+	self 
+		should: [ CreditCard date: date owner: 'an owner' number: 1234 ]  
+		raise: Error 
+		withMessageText: CreditCard invalidCreditCardNumberError !
+
+!methodRemoval: CashierTest #test07cannotCreateACardWithEmptyOwner stamp: 'ENC 6/17/2021 01:11:05'!
+test07cannotCreateACardWithEmptyOwner
+	
+	self 
+		should: [ CreditCard date: date owner: ' ' number: 1234567812345678 ]  
+		raise: Error 
+		withMessageText: CreditCard emptyOwnerNameError !
+
+----QUIT----(17 June 2021 01:11:54) CuisUniversity-4532.image priorSource: 18922627!

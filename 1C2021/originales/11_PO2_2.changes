@@ -1,0 +1,1797 @@
+
+
+----STARTUP---- (2 June 2021 23:01:43) as /Users/edgardo.mosqueira/Desktop/ISW/CuisUniversity/CuisUniversity-4532.image!
+
+
+!classRemoval: #Transfer stamp: 'ERMC 6/2/2021 23:02:08'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdrawLeg depositLeg'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #WithdrawTransfer stamp: 'ERMC 6/2/2021 23:02:08'!
+AccountTransaction subclass: #WithdrawTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'ERMC 6/2/2021 23:02:08'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #DepositTransfer stamp: 'ERMC 6/2/2021 23:02:08'!
+AccountTransaction subclass: #DepositTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'ERMC 6/2/2021 23:02:08'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'ERMC 6/2/2021 23:02:09'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'ERMC 6/2/2021 23:02:09'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'ERMC 6/2/2021 23:02:09'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'ERMC 6/2/2021 23:02:09'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'ERMC 6/2/2021 23:02:10'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'ERMC 6/2/2021 23:02:10'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of /Users/edgardo.mosqueira/Desktop/isw1-ejercicios/18-Portfolio 2/Portfolio-Solucion.st----!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:09:19'!
+test08ATransferWithZeroAmountIsInvalid
+	| account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	self 
+		should: [ account1 transfer: 0 to:account2 ]
+		raise: Error 
+		withMessageText: ReceptiveAccount canNotTrasferirMontoMenorOIgualaACero.
+		
+	
+! !
+
+!methodRemoval: ReceptiveAccountTest #test08UnaTransferenciaConMontoCeroEsInvalida stamp: 'ERMC 6/2/2021 23:09:19'!
+test08UnaTransferenciaConMontoCeroEsInvalida
+	| account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	self 
+		should: [ account1 transfer: 0 to:account2 ]
+		raise: Error 
+		withMessageText: ReceptiveAccount canNotTrasferirMontoMenorOIgualaACero.
+		
+	
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:11:10'!
+test09ATransferWithNegativeAmountIsInvalid
+	| account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	
+	account2 := ReceptiveAccount new.	
+	
+	self 
+		should: [ account1 transfer: -1000 to:account2 ]
+		raise: Error 
+		withMessageText: ReceptiveAccount canNotTrasferirMontoMenorOIgualaACero.
+		
+	
+! !
+
+!methodRemoval: ReceptiveAccountTest #test09UnaTransferenciaConMontoNegativoEsInvalida stamp: 'ERMC 6/2/2021 23:11:10'!
+test09UnaTransferenciaConMontoNegativoEsInvalida
+	| account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	
+	account2 := ReceptiveAccount new.	
+	
+	self 
+		should: [ account1 transfer: -1000 to:account2 ]
+		raise: Error 
+		withMessageText: ReceptiveAccount canNotTrasferirMontoMenorOIgualaACero.
+		
+	
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:11:17' prior: 50892891!
+test09ATransferWithNegativeAmountIsInvalid
+	| account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	self 
+		should: [ account1 transfer: -1000 to:account2 ]
+		raise: Error 
+		withMessageText: ReceptiveAccount canNotTrasferirMontoMenorOIgualaACero.
+		
+	
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:12:43'!
+test10ATransferBetweenAccountAffectsBalance
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+
+	Deposit register: 100 on: account1.
+	
+	account1 transfer: 50 to: account2.
+	
+	self assert: 50 equals: account1 balance .
+	self assert: 50 equals: account2 balance .
+
+	
+! !
+
+!methodRemoval: ReceptiveAccountTest #test10 stamp: 'ERMC 6/2/2021 23:12:43'!
+test10
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+
+	Deposit register: 100 on: account1.
+	
+	account1 transfer: 50 to: account2.
+	
+	self assert: 50 equals: account1 balance .
+	self assert: 50 equals: account2 balance .
+
+	
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:14:22'!
+test11CanMakeATransferWithAmountBelow
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	account1 transfer: 50 to: account2.
+	
+	self assert: -50 equals: account1 balance .
+	self assert: 50 equals: account2 balance .
+
+	
+! !
+
+!methodRemoval: ReceptiveAccountTest #test11SePuedeHacerTransferenciaEnDescubierto stamp: 'ERMC 6/2/2021 23:14:22'!
+test11SePuedeHacerTransferenciaEnDescubierto
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	account1 transfer: 50 to: account2.
+	
+	self assert: -50 equals: account1 balance .
+	self assert: 50 equals: account2 balance .
+
+	
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:15:36'!
+test12ATransferBetweenAccountsSaveTheTransactionInBothAccounts
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (account1 hasRegistered: transfer withdrawLeg).
+	self assert: (account2 hasRegistered: transfer depositLeg).
+
+	
+! !
+
+!methodRemoval: ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 6/2/2021 23:15:36'!
+test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (account1 hasRegistered: transfer withdrawLeg).
+	self assert: (account2 hasRegistered: transfer depositLeg).
+
+	
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:15:48'!
+test12TransferBetweenAccountsSaveTheTransactionInBothAccounts
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (account1 hasRegistered: transfer withdrawLeg).
+	self assert: (account2 hasRegistered: transfer depositLeg).
+
+	
+! !
+
+!methodRemoval: ReceptiveAccountTest #test12ATransferBetweenAccountsSaveTheTransactionInBothAccounts stamp: 'ERMC 6/2/2021 23:15:49'!
+test12ATransferBetweenAccountsSaveTheTransactionInBothAccounts
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (account1 hasRegistered: transfer withdrawLeg).
+	self assert: (account2 hasRegistered: transfer depositLeg).
+
+	
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:17:38'!
+test13ASourceAccountKnowsHisTransferLeg
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (transfer withdrawLeg transferLeg) equals: (transfer depositLeg).
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 6/2/2021 23:17:38'!
+test13EnUnaTransferenciaAmbasCuentasConocenSusPatas
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	self assert: (transfer withdrawLeg transferLeg) equals: (transfer depositLeg).
+	!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 6/2/2021 23:17:55'!
+test14ADestinyAccountKnowsHisTransferLeg
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	
+	self assert: (transfer depositLeg transferLeg) equals: (transfer withdrawLeg).! !
+
+!methodRemoval: ReceptiveAccountTest #test14 stamp: 'ERMC 6/2/2021 23:17:55'!
+test14
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.	
+	
+	transfer _ Transfer register: 50 from: account1 to: account2.
+	
+	
+	self assert: (transfer depositLeg transferLeg) equals: (transfer withdrawLeg).!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:22:20'!
+test01AnEmptyAccountReturnsEmptyReport
+
+	| account  accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+
+	accountSummary _ AccountSummary from: account.
+
+	expectiveReport _ OrderedCollection with:  'Balance = 0'.
+	
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+
+!methodRemoval: AccountSummaryTest #test01UnaCuentaConBalanceCero stamp: 'ERMC 6/2/2021 23:22:20'!
+test01UnaCuentaConBalanceCero
+
+	| account  accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+
+	accountSummary _ AccountSummary from: account.
+
+	expectiveReport _ OrderedCollection with:  'Balance = 0'.
+	
+	self assert: accountSummary report  equals: expectiveReport.
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:22:58'!
+test02AnAccountWithOneDepositReturnsCorrectAccountSummary
+
+	| account  expectiveReport accountSummary |
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+
+	accountSummary _ AccountSummary from: account.
+
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+
+!methodRemoval: AccountSummaryTest #test02UnaCuentaConUnDeposito stamp: 'ERMC 6/2/2021 23:22:58'!
+test02UnaCuentaConUnDeposito
+
+	| account  expectiveReport accountSummary |
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+
+	accountSummary _ AccountSummary from: account.
+
+	self assert: accountSummary report  equals: expectiveReport.
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:23:08'!
+test01AnEmptyAccountReturnsEmptyAccountSummary
+
+	| account  accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+
+	accountSummary _ AccountSummary from: account.
+
+	expectiveReport _ OrderedCollection with:  'Balance = 0'.
+	
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+
+!methodRemoval: AccountSummaryTest #test01AnEmptyAccountReturnsEmptyReport stamp: 'ERMC 6/2/2021 23:23:08'!
+test01AnEmptyAccountReturnsEmptyReport
+
+	| account  accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+
+	accountSummary _ AccountSummary from: account.
+
+	expectiveReport _ OrderedCollection with:  'Balance = 0'.
+	
+	self assert: accountSummary report  equals: expectiveReport.
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:23:47'!
+test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport
+
+	| account  expectiveReport accountSummary |
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Withdraw  register: 50 on: account.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	
+	accountSummary _ AccountSummary from: account.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+! !
+
+!methodRemoval: AccountSummaryTest #test03UnaCuentaConUnaExtraccion stamp: 'ERMC 6/2/2021 23:23:47'!
+test03UnaCuentaConUnaExtraccion
+
+	| account  expectiveReport accountSummary |
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Withdraw  register: 50 on: account.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	
+	accountSummary _ AccountSummary from: account.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:25:23'!
+test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectRepor
+
+	| account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	
+	accountSummary _ AccountSummary from: account1.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+! !
+
+!methodRemoval: AccountSummaryTest #test04 stamp: 'ERMC 6/2/2021 23:25:23'!
+test04
+
+	| account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	
+	accountSummary _ AccountSummary from: account1.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:25:27'!
+test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport
+
+	| account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	
+	accountSummary _ AccountSummary from: account1.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+! !
+
+!methodRemoval: AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectRepor stamp: 'ERMC 6/2/2021 23:25:27'!
+test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectRepor
+
+	| account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	
+	accountSummary _ AccountSummary from: account1.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:25:52'!
+test05AnAccountWithMoreThanOneTransferReturnsCorrectReport
+
+	| account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 30 from: account2 to: account1.
+	
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+
+	accountSummary _ AccountSummary from: account1.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+! !
+
+!methodRemoval: AccountSummaryTest #test05 stamp: 'ERMC 6/2/2021 23:25:52'!
+test05
+
+	| account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 30 from: account2 to: account1.
+	
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+
+	accountSummary _ AccountSummary from: account1.
+
+	self assert: accountSummary report  equals: expectiveReport.
+
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:26:18'!
+test06AnEmptyPortfolioHasEmptyAccountSummary
+
+	| portfolio   expectiveReport accountSummary |
+	
+	portfolio := Portfolio new.
+
+	expectiveReport _ OrderedCollection with: 'Balance = 0' .
+
+	accountSummary _ AccountSummary from: portfolio .
+
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+
+!methodRemoval: AccountSummaryTest #test06ConUnPortfolioVacio stamp: 'ERMC 6/2/2021 23:26:18'!
+test06ConUnPortfolioVacio
+
+	| portfolio   expectiveReport accountSummary |
+	
+	portfolio := Portfolio new.
+
+	expectiveReport _ OrderedCollection with: 'Balance = 0' .
+
+	accountSummary _ AccountSummary from: portfolio .
+
+	self assert: accountSummary report  equals: expectiveReport.
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:26:51'!
+test07APortfolioWithOneAccountReturnsCorrectAccountSummary
+
+	| portfolio account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	portfolio _ Portfolio with: account1 .
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 30 from: account2 to: account1.
+	
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+
+	accountSummary _ AccountSummary from: portfolio .
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+
+!methodRemoval: AccountSummaryTest #test07PortfolioConUnaCuenta stamp: 'ERMC 6/2/2021 23:26:51'!
+test07PortfolioConUnaCuenta
+
+	| portfolio account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	portfolio _ Portfolio with: account1 .
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 30 from: account2 to: account1.
+	
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+
+	accountSummary _ AccountSummary from: portfolio .
+	self assert: accountSummary report  equals: expectiveReport.
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:27:10'!
+test08APortfolioWithMoreThanOneAccountReturnsCorrectReport
+
+	| portfolio account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	portfolio _ Portfolio with: account1 .
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 30 from: account2 to: account1.
+	
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
+	expectiveReport add: 'Entrada por transferencia de 20.'.
+	expectiveReport  add: 'Salida por transferencia de 30.'.
+	expectiveReport  add: 'Balance = 50' .
+
+	portfolio add: account2.
+	
+	accountSummary _ AccountSummary from: portfolio .
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+
+!methodRemoval: AccountSummaryTest #test08PortfolioConMasDeUnaCuenta stamp: 'ERMC 6/2/2021 23:27:10'!
+test08PortfolioConMasDeUnaCuenta
+
+	| portfolio account1 account2  expectiveReport accountSummary |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw  register: 50 on: account1.
+	portfolio _ Portfolio with: account1 .
+	
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 30 from: account2 to: account1.
+	
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
+	expectiveReport add: 'Entrada por transferencia de 20.'.
+	expectiveReport  add: 'Salida por transferencia de 30.'.
+	expectiveReport  add: 'Balance = 50' .
+
+	portfolio add: account2.
+	
+	accountSummary _ AccountSummary from: portfolio .
+	self assert: accountSummary report  equals: expectiveReport.
+!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:27:27' prior: 50893140!
+test01AnEmptyAccountReturnsEmptyAccountSummary
+
+	| account  accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+	accountSummary _ AccountSummary from: account.
+
+	expectiveReport _ OrderedCollection with:  'Balance = 0'.
+	
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:27:45' prior: 50893111!
+test02AnAccountWithOneDepositReturnsCorrectAccountSummary
+
+	| account  expectiveReport accountSummary |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+	accountSummary _ AccountSummary from: account.
+
+	self assert: accountSummary report  equals: expectiveReport.
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:30:07' prior: 50892440!
+accountSummary: aReport
+	
+	
+	transactions do:[:aTransaction |aTransaction addToAccountSummary: aReport].
+		
+	^aReport .
+	
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:31:04' prior: 50893499!
+accountSummary: aReport
+	
+	
+	transactions do:[:aTransaction |aTransaction afectReport: aReport].
+		
+	^aReport .
+	
+	
+	! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:31:27'!
+affectReport: aReportSummary
+	
+	^aReportSummary add: 'Depósito por ', value asString, '.'! !
+
+!methodRemoval: Deposit #addToAccountSummary: stamp: 'ERMC 6/2/2021 23:31:27'!
+addToAccountSummary: aReportSummary
+	
+	^aReportSummary add: 'Depósito por ', value asString, '.'!
+!WithdrawTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:31:51'!
+affectReport: aReportSummary
+	
+	^aReportSummary add: 'Salida por transferencia de ', transfer value asString, '.'! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:31:51'!
+affectReport: aReportSummary
+	
+	^aReportSummary add: 'Extracción por ', value asString, '.'! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:31:51'!
+affectReport: aReportSummary
+
+	self subclassResponsibility .! !
+!DepositTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:31:51' overrides: 50893539!
+affectReport: aReportSummary
+	
+	^aReportSummary add: 'Entrada por transferencia de ', transfer value asString, '.'! !
+
+!methodRemoval: WithdrawTransfer #addToAccountSummary: stamp: 'ERMC 6/2/2021 23:31:51'!
+addToAccountSummary: aReportSummary
+	
+	^aReportSummary add: 'Salida por transferencia de ', transfer value asString, '.'!
+
+!methodRemoval: Withdraw #addToAccountSummary: stamp: 'ERMC 6/2/2021 23:31:51'!
+addToAccountSummary: aReportSummary
+	
+	^aReportSummary add: 'Extracción por ', value asString, '.'!
+
+!methodRemoval: AccountTransaction #addToAccountSummary: stamp: 'ERMC 6/2/2021 23:31:51'!
+addToAccountSummary: aReportSummary
+
+	self subclassResponsibility .!
+
+!methodRemoval: DepositTransfer #addToAccountSummary: stamp: 'ERMC 6/2/2021 23:31:51'!
+addToAccountSummary: aReportSummary
+	
+	^aReportSummary add: 'Entrada por transferencia de ', transfer value asString, '.'!
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:32:12'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:32:12'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:12'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:12'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:12'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:32:12'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:32:12'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:12'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:32:16'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:32:32' prior: 50893507!
+accountSummary: aReport
+	
+	
+	transactions do:[:aTransaction |aTransaction affectReport: aReport].
+		
+	^aReport .
+	
+	
+	! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:32:35'!
+PASSED!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'ERMC 6/2/2021 23:35:17' prior: 50893613!
+accountSummary: aReport
+	
+	transactions do:[:aTransaction |aTransaction affectReport: aReport].
+	
+	
+	! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:35:20'!
+PASSED!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:36:13' prior: 50893514 overrides: 50893539!
+affectReport: aReport
+	
+	^aReport add: 'Depósito por ', value asString, '.'! !
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:37:09'!
+FAILURE!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:37:09'!
+FAILURE!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:37:16'!
+FAILURE!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:37:16'!
+FAILURE!
+
+	^aTransferNet + (transfer value).!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:42:45'!
+FAILURE!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:46:56' prior: 50893693 overrides: 50893539!
+affectReport: aReport
+	
+	^aReport addFromDeposit: value! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:48:36'!
+addFromDeposit: anAmount
+	
+	^report add: 'Depósito por ', anAmount asString, '.'
+	
+	! !
+!DepositTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:49:44' prior: 50893545 overrides: 50893539!
+affectReport: aReport
+	
+	^aReport addFromDepositTransfer: transfer value.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:50:10'!
+addFromDepositTransfer: anAmount
+	
+	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'
+	
+	! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:50:33' prior: 50893533 overrides: 50893539!
+affectReport: aReportSummary
+	
+	^aReportSummary addFromWithDraw: value ! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:50:40' prior: 50893746 overrides: 50893539!
+affectReport: aReport
+	
+	^aReport addFromWithDraw: value ! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:51:13'!
+addFromWithdraw: anAmount
+	
+	^report add: 'Extracción por ', anAmount asString, '.'
+	
+	! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:51:16'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:51:16'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:51:16'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:51:16'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:51:16'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:51:16'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:51:16'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:51:16'!
+ERROR!
+!WithdrawTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:51:59' prior: 50893526 overrides: 50893539!
+affectReport: aReportSummary
+	
+	^aReportSummary addFromWithdrawTransfer: transfer value! !
+!WithdrawTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:52:05' prior: 50893797 overrides: 50893539!
+affectReport: aReport
+	
+	^aReport addFromWithdrawTransfer: transfer value! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:52:43'!
+addFromWithdrawTransfer: anAmount
+	
+	^report add: 'Salida por transferencia de ', anAmount value asString, '.'
+	
+	! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:52:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:52:46'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:52:46'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:52:46'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:52:46'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:52:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:52:46'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:52:46'!
+ERROR!
+!AccountSummary methodsFor: 'initialization' stamp: 'ERMC 6/2/2021 23:54:00' prior: 50892503!
+initializeFrom:anAccount
+
+	report _ OrderedCollection new.
+	anAccount accountSummary: self.
+	report add: 'Balance = ', anAccount balance asString.
+	
+	! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:54:05'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:54:05'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:05'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:05'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:05'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:54:05'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:54:05'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:05'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:10'!
+ERROR!
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:54:30' prior: 50893752 overrides: 50893539!
+affectReport: aReport
+	
+	^aReport addFromWithdraw: value ! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/2/2021 23:54:33'!
+PASSED!
+!TransferNet methodsFor: 'initialization' stamp: 'ERMC 6/2/2021 23:55:06' prior: 50892843!
+initializeWith: anAccount 
+	
+	transferNet _ 0.
+	
+	anAccount calcualteReportFor: transferNet.
+	
+	^transferNet 
+! !
+!TransferNet methodsFor: 'initialization' stamp: 'ERMC 6/2/2021 23:55:12' prior: 50893933!
+initializeWith: anAccount 
+	
+	transferNet _ 0.
+	
+	anAccount calcualteReportFor: self.
+	
+	^transferNet 
+! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'ERMC 6/2/2021 23:55:41'!
+calcualteReportFor: aTransferNet
+ 
+	transactions  do: [:aTransaction | 
+		(aTransaction isKindOf: DepositTransfer) ifTrue: [aTransaction affectTransferNet: aTransferNet].
+		(aTransaction isKindOf: WithdrawTransfer) ifTrue: [aTransaction affectTransferNet: aTransferNet]
+		]
+	! !
+
+!methodRemoval: ReceptiveAccount #calcualteTransferNetReport: stamp: 'ERMC 6/2/2021 23:55:41'!
+calcualteTransferNetReport: aTransferNet
+ 
+	transactions  do: [:aTransaction | 
+		(aTransaction isKindOf: DepositTransfer) ifTrue: [aTransaction affectTransferNet: aTransferNet].
+		(aTransaction isKindOf: WithdrawTransfer) ifTrue: [aTransaction affectTransferNet: aTransferNet]
+		]
+	!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'ERMC 6/2/2021 23:56:02' prior: 50893946!
+calcualteReportFor: aTransferNet
+ 
+	transactions  do: [:aTransaction | 
+		(aTransaction isKindOf: DepositTransfer) ifTrue: [aTransaction affectReport: aTransferNet].
+		(aTransaction isKindOf: WithdrawTransfer) ifTrue: [aTransaction affectReport: aTransferNet]
+		]
+	! !
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:56:15'!
+ERROR!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:56:15'!
+ERROR!
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:56:21'!
+addFromDepositTransfer: aSmallInteger 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:57:37' prior: 50893989!
+addFromDepositTransfer: anAmount
+	
+	 transferNet _ transferNet + anAmount.
+! !
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/2/2021 23:57:38'!
+PASSED!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/2/2021 23:59:44'!
+test03AnAccountWithManyTransfersReturnsCorrectTransferNet
+
+	| anAccount anotherAccount expectedTransferNet |
+	anAccount _ ReceptiveAccount new.
+	anotherAccount _ ReceptiveAccount new.
+	
+	Deposit register: 200 on: anAccount.
+	
+	Transfer register: 50 from: anAccount to: anotherAccount.
+	Transfer register: 20 from: anAccount to: anotherAccount.
+	Transfer register: 30 from: anAccount to: anotherAccount.
+	Transfer register: 20 from: anAccount to: anotherAccount.
+	
+	expectedTransferNet _ 120.
+	
+	self assert: expectedTransferNet equals: (TransferNet from: anotherAccount).! !
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:00:35' prior: 50894005!
+test03AnAccountWithManyTransfersReturnsCorrectTransferNet
+
+	| anAccount anotherAccount |
+	anAccount _ ReceptiveAccount new.
+	anotherAccount _ ReceptiveAccount new.
+	
+	Deposit register: 200 on: anAccount.
+	
+	Transfer register: 50 from: anAccount to: anotherAccount.
+	Transfer register: 20 from: anAccount to: anotherAccount.
+	Transfer register: 30 from: anAccount to: anotherAccount.
+	Transfer register: 20 from: anAccount to: anotherAccount.
+	
+	
+	self assert: 120 equals: (TransferNet from: anotherAccount).
+	self assert: 80 equals: (TransferNet from: anotherAccount).! !
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:00:40'!
+FAILURE!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:00:56' prior: 50894027!
+test03AnAccountWithManyTransfersReturnsCorrectTransferNet
+
+	| anAccount anotherAccount |
+	anAccount _ ReceptiveAccount new.
+	anotherAccount _ ReceptiveAccount new.
+	
+	Deposit register: 200 on: anAccount.
+	
+	Transfer register: 50 from: anAccount to: anotherAccount.
+	Transfer register: 20 from: anAccount to: anotherAccount.
+	Transfer register: 30 from: anAccount to: anotherAccount.
+	Transfer register: 20 from: anAccount to: anotherAccount.
+	
+	
+	self assert: 120 equals: (TransferNet from: anotherAccount).
+	self assert: 80 equals: (TransferNet from: anAccount).! !
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:00:58'!
+ERROR!
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:01:03'!
+addFromWithdrawTransfer: aSmallInteger 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:01:28' prior: 50894078!
+addFromWithdrawTransfer: anAmount 
+		
+	transferNet _ transferNet - anAmount ! !
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:01:29'!
+FAILURE!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:02:39'!
+FAILURE!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:04:06' prior: 50894053!
+test03AnAccountWithManyTransfersReturnsCorrectTransferNet
+
+	| srcAccount anotherAccount |
+	srcAccount _ ReceptiveAccount new.
+	anotherAccount _ ReceptiveAccount new.
+	
+	Deposit register: 200 on: srcAccount.
+	
+	Transfer register: 50 from: srcAccount to: anotherAccount.
+	Transfer register: 20 from: srcAccount to: anotherAccount.
+	Transfer register: 30 from: srcAccount to: anotherAccount.
+	Transfer register: 20 from: srcAccount to: anotherAccount.
+	
+	
+	self assert: 120 equals: (TransferNet from: anotherAccount).
+	self assert: 80 equals: (TransferNet from: srcAccount).! !
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:04:12' prior: 50894098!
+test03AnAccountWithManyTransfersReturnsCorrectTransferNet
+
+	| srcAccount dstAccount |
+	srcAccount _ ReceptiveAccount new.
+	dstAccount _ ReceptiveAccount new.
+	
+	Deposit register: 200 on: srcAccount.
+	
+	Transfer register: 50 from: srcAccount to: dstAccount.
+	Transfer register: 20 from: srcAccount to: dstAccount.
+	Transfer register: 30 from: srcAccount to: dstAccount.
+	Transfer register: 20 from: srcAccount to: dstAccount.
+	
+	
+	self assert: 120 equals: (TransferNet from: dstAccount).
+	self assert: 80 equals: (TransferNet from: srcAccount).! !
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:04:45' prior: 50894120!
+test03AnAccountWithManyTransfersReturnsCorrectTransferNet
+
+	| srcAccount dstAccount |
+	srcAccount _ ReceptiveAccount new.
+	dstAccount _ ReceptiveAccount new.
+	
+	Deposit register: 200 on: srcAccount.
+	
+	Transfer register: 50 from: srcAccount to: dstAccount.
+	Transfer register: 20 from: srcAccount to: dstAccount.
+	Transfer register: 30 from: srcAccount to: dstAccount.
+	Transfer register: 20 from: srcAccount to: dstAccount.
+	
+	
+	self assert: 120 equals: (TransferNet from: dstAccount).
+	self assert: -120 equals: (TransferNet from: srcAccount).! !
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:04:47'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:04:47'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:04:47'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:04:47'!
+PASSED!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:05:58'!
+test04AnEmptyPortfolioReturnsZeroTransferNet
+
+	| portfolio |
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: (TransferNet from: portfolio)! !
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:06:01'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:06:20'!
+calcualteReportFor: aTransferNet 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:07:27' prior: 50894188!
+calcualteReportFor: aReport 
+	
+	accounts do: [:anAccount |anAccount accountSummary: aReport.]! !
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:07:29'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:07:29'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:07:29'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:07:29'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:07:29'!
+PASSED!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:08:08'!
+test05APortfolioWithOneAccountReportsCorrectTransferNet
+
+	| portfolio |
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: (TransferNet from: portfolio)! !
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:10:58' prior: 50894218!
+test05APortfolioWithOneAccountReportsCorrectTransferNet
+
+	| portfolio dstAccount srcAccount |
+	
+	srcAccount _ ReceptiveAccount new.
+	dstAccount _ ReceptiveAccount new.
+	
+	Transfer register: 50 from: srcAccount to: dstAccount.
+	
+	portfolio _ Portfolio with: srcAccount with: dstAccount.
+	
+	self assert: 0 equals: (TransferNet from: portfolio)! !
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:11:21'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:11:21'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:11:21'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:11:21'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:11:21'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:11:21'!
+PASSED!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:13:32'!
+test05APortfolioWithOneAccountsReportsCorrectTransferNet
+
+	| portfolio dstAccount srcAccount |
+	
+	srcAccount _ ReceptiveAccount new.
+	dstAccount _ ReceptiveAccount new.
+	
+	Transfer register: 50 from: srcAccount to: dstAccount.
+	
+	portfolio _ Portfolio with: srcAccount.
+	
+	self assert: -50 equals: (TransferNet from: portfolio)! !
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountsReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountsReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:33'!
+PASSED!
+!TransferNetTest methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:13:48'!
+test06APortfolioWithManyAccountReportsCorrectTransferNet
+
+	| portfolio dstAccount srcAccount |
+	
+	srcAccount _ ReceptiveAccount new.
+	dstAccount _ ReceptiveAccount new.
+	
+	Transfer register: 50 from: srcAccount to: dstAccount.
+	
+	portfolio _ Portfolio with: srcAccount with: dstAccount.
+	
+	self assert: 0 equals: (TransferNet from: portfolio)! !
+
+!methodRemoval: TransferNetTest #test05APortfolioWithOneAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:48'!
+test05APortfolioWithOneAccountReportsCorrectTransferNet
+
+	| portfolio dstAccount srcAccount |
+	
+	srcAccount _ ReceptiveAccount new.
+	dstAccount _ ReceptiveAccount new.
+	
+	Transfer register: 50 from: srcAccount to: dstAccount.
+	
+	portfolio _ Portfolio with: srcAccount with: dstAccount.
+	
+	self assert: 0 equals: (TransferNet from: portfolio)!
+
+!testRun: #TransferNetTest #test06APortfolioWithManyAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountsReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+!testRun: #TransferNetTest #test06APortfolioWithManyAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:13:58'!
+PASSED!
+
+Object subclass: #AccountOperationsReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountOperationsReport category: 'Portfolio-Solucion' stamp: 'ERMC 6/3/2021 00:16:18'!
+Object subclass: #AccountOperationsReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountOperationsReport subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'ERMC 6/3/2021 00:16:30'!
+AccountOperationsReport subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountOperationsReport subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'ERMC 6/3/2021 00:16:42'!
+AccountOperationsReport subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:16:44'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:16:49'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:16:49'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:16:49'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:16:49'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountsReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:16:49'!
+PASSED!
+
+!testRun: #TransferNetTest #test06APortfolioWithManyAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:16:49'!
+PASSED!
+!AccountOperationsReport methodsFor: 'nil' stamp: 'ERMC 6/3/2021 00:17:28'!
+addFromDeposit
+
+	self subclassResponsibility ! !
+!AccountOperationsReport methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:17:36'!
+addFromWithdraw
+
+	self subclassResponsibility ! !
+!AccountOperationsReport methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:17:46'!
+addFromDeposit: anAmount
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountOperationsReport #addFromDeposit stamp: 'ERMC 6/3/2021 00:17:50'!
+addFromDeposit
+
+	self subclassResponsibility !
+!AccountOperationsReport methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:17:58'!
+addFromWithdraw: anAmount
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountOperationsReport #addFromWithdraw stamp: 'ERMC 6/3/2021 00:18:00'!
+addFromWithdraw
+
+	self subclassResponsibility !
+!AccountOperationsReport methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:18:06'!
+addFromWithdrawTransfer: anAmount
+
+	self subclassResponsibility ! !
+!AccountOperationsReport methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:18:13'!
+addFromDepositTransfer: anAmount
+
+	self subclassResponsibility ! !
+!AccountOperationsReport methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:18:36'!
+initializeFor: anAmount
+
+	self subclassResponsibility ! !
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:19:37' overrides: 50894465!
+addFromDeposit: anAmount
+! !
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:19:44' overrides: 50894474!
+addFromWithdraw: anAmount
+! !
+!DepositTransfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 6/3/2021 00:22:25' prior: 50892670!
+for: aTransfer 
+	
+	^ self new initializeFor: aTransfer ! !
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08ATransferWithZeroAmountIsInvalid stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ATransferWithNegativeAmountIsInvalid stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferBetweenAccountAffectsBalance stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CanMakeATransferWithAmountBelow stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12TransferBetweenAccountsSaveTheTransactionInBothAccounts stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13ASourceAccountKnowsHisTransferLeg stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14ADestinyAccountKnowsHisTransferLeg stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountsReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!testRun: #TransferNetTest #test06APortfolioWithManyAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:22:52'!
+PASSED!
+
+!methodRemoval: DepositTransfer #affectTransferNet: stamp: 'ERMC 6/3/2021 00:24:36'!
+affectTransferNet: aTransferNet
+	
+	^aTransferNet + (transfer value)!
+
+!methodRemoval: WithdrawTransfer #affectTransferNet: stamp: 'ERMC 6/3/2021 00:24:55'!
+affectTransferNet: aTransferNet 
+	
+	^ aTransferNet - (transfer value)!
+
+!testRun: #AccountSummaryTest #test01AnEmptyAccountReturnsEmptyAccountSummary stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AnAccountWithOneDepositReturnsCorrectAccountSummary stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AnAccountWithDepositAndWithdrawTransactionReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AnAccountWithOneTransferAndMoreThanOneTransactionReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AnAccountWithMoreThanOneTransferReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AnEmptyPortfolioHasEmptyAccountSummary stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07APortfolioWithOneAccountReturnsCorrectAccountSummary stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test08APortfolioWithMoreThanOneAccountReturnsCorrectReport stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08ATransferWithZeroAmountIsInvalid stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ATransferWithNegativeAmountIsInvalid stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10ATransferBetweenAccountAffectsBalance stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CanMakeATransferWithAmountBelow stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12TransferBetweenAccountsSaveTheTransactionInBothAccounts stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13ASourceAccountKnowsHisTransferLeg stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14ADestinyAccountKnowsHisTransferLeg stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #TransferNetTest #test01AccountWithoutTransferReturnZeroReport stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #TransferNetTest #test02AnAccountWithOneTransferReturnsCorrenctTransferNet stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #TransferNetTest #test03AnAccountWithManyTransfersReturnsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #TransferNetTest #test04AnEmptyPortfolioReturnsZeroTransferNet stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #TransferNetTest #test05APortfolioWithOneAccountsReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!
+
+!testRun: #TransferNetTest #test06APortfolioWithManyAccountReportsCorrectTransferNet stamp: 'ERMC 6/3/2021 00:26:02'!
+PASSED!

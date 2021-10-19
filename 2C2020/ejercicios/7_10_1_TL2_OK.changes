@@ -1,0 +1,1273 @@
+----End fileIn of /home/jampuero/Documentos/isw1/linux64/TusLibros-1.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ja 11/19/2020 19:18:40'!
+PASSED!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: #TusLibros stamp: 'ja 11/19/2020 19:23:41'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'no messages' stamp: 'ja 11/19/2020 19:24:50'!
+test01CashierCantCheckoutEmptyCart! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:24:53' prior: 50972099!
+test01CashierCantCheckoutEmptyCart
+
+! !
+
+!classDefinition: #Cashier category: #TusLibros stamp: 'ja 11/19/2020 19:33:54'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:33:41'!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier |
+	
+	cashier _ Cashier new.
+	
+	self should: [cashier checkout. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart! !
+
+!methodRemoval: CashierTest #test01CashierCantCheckoutEmptyCart stamp: 'ja 11/19/2020 19:34:07'!
+test01CashierCantCheckoutEmptyCart
+
+!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:34:12' prior: 50972115!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier |
+	
+	cashier _ Cashier new.
+	
+	self should: [cashier checkout. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:35:55' prior: 50972129!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart |
+	
+	cashier _ Cashier new.
+	cart _ Cart new
+	
+	self should: [cashier checkout. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:36:02' prior: 50972139!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart |
+	
+	cashier _ Cashier new.
+	cart _ Cart new.
+	
+	self should: [cashier checkout. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:37:11' prior: 50972149!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog |
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/19/2020 19:50:29' prior: 50972159!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog |
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.! !
+
+----QUIT----(19 November 2020 21:53:28) CuisUniversity-4365.image priorSource: 20486703!
+
+----STARTUP---- (21 November 2020 16:01:16) as /home/jampuero/Documentos/isw1/linux64/CuisUniversity-4365.image!
+
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ja 11/21/2020 16:02:30'!
+PASSED!
+!CashierTest methodsFor: 'nil' stamp: 'ja 11/21/2020 16:20:06' prior: 50972171!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog |
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+		
+	"
+	como obtengo el precio de cada producto??
+	el merchant processor tiene dos caras, 
+	
+	"! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 16:43:10' prior: 50972215!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog |
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+! !
+
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: #TusLibros stamp: 'ja 11/21/2020 16:46:41'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #CreditCard
+	instanceVariableNames: 'number expiration owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: #TusLibros stamp: 'ja 11/21/2020 16:47:57'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'number expiration owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 16:49:04' prior: 50972230!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard new.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 16:51:08' prior: 50972265!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011 andExpiration: GregorianDateTime .
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 16:52:33' prior: 50972279!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard merchantProcessor|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011 andExpiration: GregorianDateTime .
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 16:54:45' prior: 50972295!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard merchantProcessor|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 16:55:56' prior: 50972313!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard merchantProcessor|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 012345678901 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCart.
+! !
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: #TusLibros stamp: 'ja 11/21/2020 16:56:46'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'no messages' stamp: 'ja 11/21/2020 16:57:52'!
+test01
+
+	"self should:[ CreditCard of]"! !
+!CreditCard class methodsFor: 'no messages' stamp: 'ja 11/21/2020 16:58:21'!
+of: anOwner withNumber: aNumber andExpiration: anExpiration! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:01:25'!
+test01CreditCardOwnerNameCanNotEmpty
+
+	self should:[ CreditCard of: '' withNumber: 012345678901 andExpiration: FixedGregorianDate today. self fail]
+		raise: Error
+		withMessageText: CreditCard ownerNameCanNotEmpty.! !
+
+!methodRemoval: CreditCardTest #test01 stamp: 'ja 11/21/2020 17:01:32'!
+test01
+
+	"self should:[ CreditCard of]"!
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:01:33'!
+ERROR!
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:01:33'!
+ERROR!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:01:47'!
+ownerNameCanNotEmpty
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:02:06' prior: 50972388!
+ownerNameCanNotEmpty
+	
+	^ 'Owner name can not empty'! !
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:02:08'!
+FAILURE!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:03:16' prior: 50972363!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	^ CreditCard new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:03:38' prior: 50972402!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:03:55'!
+FAILURE!
+!CreditCard methodsFor: 'no messages' stamp: 'ja 11/21/2020 17:04:35'!
+of: anOwner withNumber: aNumber andExpiration: anExpiration 
+
+	number _ aNumber .
+	owner _ anOwner .
+	expiration _ anExpiration .	! !
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:04:47'!
+FAILURE!
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:04:47'!
+FAILURE!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:05:31' prior: 50972410!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self ownerNameCanNotEmpty ].
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:05:34'!
+FAILURE!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:05:56' prior: 50972435!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self error: self ownerNameCanNotEmpty ].
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:05:57'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:06:00'!
+PASSED!
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:07:51'!
+test02CreditCardNumberMustHaveSixteenDigits
+
+	self should:[ CreditCard of: 'Alan Key' withNumber: 0 andExpiration: FixedGregorianDate today. self fail]
+		raise: Error
+		withMessageText: CreditCard numberMustHaveSixteenDigits.! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:08:03' prior: 50972464!
+test02CreditCardNumberMustHaveSixteenDigits
+
+	self should:[ CreditCard of: 'Alan Key' withNumber: 0 andExpiration: FixedGregorianDate today. self fail]
+		raise: Error
+		withMessageText: CreditCard numberMustHaveSixteenDigitsErrorDescription.! !
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:08:10'!
+ERROR!
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:08:10'!
+ERROR!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:08:20'!
+numberMustHaveSixteenDigitsErrorDescription
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:08:56' prior: 50972493!
+numberMustHaveSixteenDigitsErrorDescription
+	
+	^ ' Number must have sixteen digits '! !
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:08:58'!
+FAILURE!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:09:30'!
+ownerNameCanNotEmptyErrorDescription
+	
+	^ 'Owner name can not empty'! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:09:30' prior: 50972448!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self error: self ownerNameCanNotEmptyErrorDescription ].
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+!methodRemoval: CreditCard class #ownerNameCanNotEmpty stamp: 'ja 11/21/2020 17:09:30'!
+ownerNameCanNotEmpty
+	
+	^ 'Owner name can not empty'!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:10:32' prior: 50972514!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self error: self ownerNameCanNotEmptyErrorDescription ].
+	(aNumber size ~= 16) ifTrue: [ self error: self numberMustHaveSixteenDigitsErrorDescription ]
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:10:41' prior: 50972529!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self error: self ownerNameCanNotEmptyErrorDescription ].
+	(aNumber size ~= 16) ifTrue: [ self error: self numberMustHaveSixteenDigitsErrorDescription ].
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:10:51'!
+FAILURE!
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:10:51'!
+FAILURE!
+
+aNumber size!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:11:58' prior: 50972543!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self error: self ownerNameCanNotEmptyErrorDescription ].
+	(aNumber asString size ~= 16) ifTrue: [ self error: self numberMustHaveSixteenDigitsErrorDescription ].
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+aNumber asString size!
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:12:19'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:12:21'!
+PASSED!
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:15:25'!
+test03
+
+	self should:[ CreditCard of: 'Alan Key' withNumber: 123456789101 andExpiration: FixedGregorianDate yesterday. self fail]
+		raise: Error
+		withMessageText: CreditCard numberMustHaveSixteenDigitsErrorDescription.! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:18:11'!
+test03CreditCardDateCanNotLessThanToday
+
+	self should:[ CreditCard of: 'Alan Key' withNumber: 123456789101 andExpiration: FixedGregorianDate yesterday. self fail]
+		raise: Error
+		withMessageText: CreditCard dateCanNotLessThanTodayErrorDescription.! !
+
+!methodRemoval: CreditCardTest #test03 stamp: 'ja 11/21/2020 17:18:21'!
+test03
+
+	self should:[ CreditCard of: 'Alan Key' withNumber: 123456789101 andExpiration: FixedGregorianDate yesterday. self fail]
+		raise: Error
+		withMessageText: CreditCard numberMustHaveSixteenDigitsErrorDescription.!
+
+!testRun: #CreditCardTest #test03CreditCardDateCanNotLessThanToday stamp: 'ja 11/21/2020 17:18:29'!
+ERROR!
+
+!testRun: #CreditCardTest #test03CreditCardDateCanNotLessThanToday stamp: 'ja 11/21/2020 17:18:29'!
+ERROR!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:18:38'!
+dateCanNotLessThanTodayErrorDescription
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:19:26' prior: 50972622!
+dateCanNotLessThanTodayErrorDescription
+	
+	^ 'Date can not less than today'! !
+
+!testRun: #CreditCardTest #test03CreditCardDateCanNotLessThanToday stamp: 'ja 11/21/2020 17:19:31'!
+FAILURE!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:20:33' prior: 50972564!
+of: anOwner withNumber: aNumber andExpiration: anExpiration
+
+	( anOwner isEmpty ) ifTrue: [ self error: self ownerNameCanNotEmptyErrorDescription ].
+	(aNumber asString size ~= 16) ifTrue: [ self error: self numberMustHaveSixteenDigitsErrorDescription ].
+	(anExpiration < FixedGregorianDate today) ifTrue: [ self error: self dateCanNotLessThanTodayErrorDescription ].
+
+	^ self new of: anOwner withNumber: aNumber andExpiration: anExpiration .! !
+
+!testRun: #CreditCardTest #test03CreditCardDateCanNotLessThanToday stamp: 'ja 11/21/2020 17:20:40'!
+FAILURE!
+
+!testRun: #CreditCardTest #test03CreditCardDateCanNotLessThanToday stamp: 'ja 11/21/2020 17:20:40'!
+FAILURE!
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:21:04' prior: 50972595!
+test03CreditCardDateCanNotLessThanToday
+
+	self should:[ CreditCard of: 'Alan Key' withNumber: 1234567891011121 andExpiration: FixedGregorianDate yesterday. self fail]
+		raise: Error
+		withMessageText: CreditCard dateCanNotLessThanTodayErrorDescription.! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:21:19' prior: 50972368!
+test01CreditCardOwnerNameCanNotEmpty
+
+	self should:[ CreditCard of: '' withNumber: 12345678901 andExpiration: FixedGregorianDate today. self fail]
+		raise: Error
+		withMessageText: CreditCard ownerNameCanNotEmpty.! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:21:27' prior: 50972674!
+test01CreditCardOwnerNameCanNotEmpty
+
+	self should:[ CreditCard of: '' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today. self fail]
+		raise: Error
+		withMessageText: CreditCard ownerNameCanNotEmpty.! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:21:34' prior: 50972684!
+test01CreditCardOwnerNameCanNotEmpty
+
+	self should:[ CreditCard of: '' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today. self fail]
+		raise: Error
+		withMessageText: CreditCard ownerNameCanNotEmptyErrorDescription.! !
+
+!testRun: #CreditCardTest #test01CreditCardOwnerNameCanNotEmpty stamp: 'ja 11/21/2020 17:21:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNumberMustHaveSixteenDigits stamp: 'ja 11/21/2020 17:21:38'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardDateCanNotLessThanToday stamp: 'ja 11/21/2020 17:21:40'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:22:14' prior: 50972331!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard merchantProcessor|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 012345678901 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+! !
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:24:16'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:24:30' prior: 50972716!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard merchantProcessor|
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+! !
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:24:35'!
+ERROR!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:24:35'!
+ERROR!
+!Cashier methodsFor: 'no messages' stamp: 'ja 11/21/2020 17:27:36'!
+checkout: aCart with: aCreditCard using: aMerchantProcessor
+
+	| price |
+	
+	price _ aCart price.
+	
+	^ aMerchantProcessor pay: price with: aCreditCard .! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:29:37' prior: 50972762!
+checkout: aCart with: aCreditCard using: aMerchantProcessor
+
+	| price |
+	
+	price _ aCart price.
+	
+	(price = 0) ifTrue: [ self error: self class canNotCheckoutForEmptyCartErrorDescription ].
+	
+	^ aMerchantProcessor pay: price with: aCreditCard .! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: #TusLibros stamp: 'ja 11/21/2020 17:30:50'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:31:22' prior: 50972738!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [ | mm |cashier checkout: cart with: creditCard using: mm. self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: #TusLibros stamp: 'ja 11/21/2020 17:31:31'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:31:43' prior: 50972797!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Set new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [ cashier checkout: cart with: creditCard using: merchantProcessor . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+! !
+
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessor category: #TusLibros stamp: 'ja 11/21/2020 17:31:53'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRenamed: #MerchantProcessor as: #MerchantProcessorSimulator stamp: 'ja 11/21/2020 17:32:20'!
+Smalltalk renameClassNamed: #MerchantProcessor as: #MerchantProcessorSimulator!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:32:44'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:32:53'!
+canNotCheckoutForEmptyCartErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:33:32' prior: 50972865!
+canNotCheckoutForEmptyCartErrorDescription
+	
+	^ 'Can not checkout for empty cart'! !
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:33:33'!
+FAILURE!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:36:26' prior: 50972827!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [ cashier checkout: cart with: creditCard using: merchantProcessor . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:39:17'!
+price
+
+ 	^ 0! !
+!MerchantProcessorSimulator methodsFor: 'no messages' stamp: 'ja 11/21/2020 17:39:44'!
+pay: aPrice with: aCreditCard 
+
+	^ self! !
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:39:50'!
+FAILURE!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:39:50'!
+FAILURE!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:41:07'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:42:11' prior: 50972770!
+checkout: aCart with: aCreditCard using: aMerchantProcessor
+
+	| price |
+	
+	price _ self priceOf: aCart.
+	
+	(price = 0) ifTrue: [ self error: self class canNotCheckoutForEmptyCartErrorDescription ].
+	
+	^ aMerchantProcessor pay: price with: aCreditCard .! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:42:29'!
+priceOf: aCart
+
+ 	^ 0! !
+
+!methodRemoval: Cashier #price stamp: 'ja 11/21/2020 17:42:32'!
+price
+
+ 	^ 0!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 17:42:40'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:49:42'!
+test02CashierCheckoutForCartWithAnElement
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self assert: merchantProcessor lastTransactionId equals: (cashier checkout: cart with: creditCard using: merchantProcessor).! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:51:50' prior: 50972938!
+test02CashierCheckoutForCartWithAnElement
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:54:47' prior: 50972955!
+test02CashierCheckoutForCartWithAnElement
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:55:39' prior: 50972928!
+priceOf: aCart
+
+ 	^ 2! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:56:16' prior: 50972902!
+pay: aPrice with: aCreditCard 
+
+	^ self! !
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'lastTransactionId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: #TusLibros stamp: 'ja 11/21/2020 17:56:37'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'lastTransactionId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:57:24' prior: 50972997!
+pay: aPrice with: aCreditCard 
+	
+	lastTransactionId _ lastTransactionId + 1.
+
+	^ self! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:57:55' prior: 50973015!
+pay: aPrice with: aCreditCard 
+	
+	^ lastTransactionId _ lastTransactionId + 1.
+! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:58:22' prior: 50973022!
+pay: aPrice with: aCreditCard 
+	
+	lastTransactionId _ lastTransactionId + 1.
+	
+	^ lastTransactionId 
+! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:58:24' prior: 50973029!
+pay: aPrice with: aCreditCard 
+	
+	lastTransactionId _ lastTransactionId + 1.
+	
+	^ lastTransactionId .
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:59:08' overrides: 16927572!
+setUp
+
+	merchantProcessor _ MerchantProcessorSimulator new.! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:59:22' overrides: 16896425!
+initialize
+
+	lastTransactionId _ 0! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 17:59:45'!
+lastTransactionId
+
+	^ lastTransactionId! !
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 17:59:58'!
+ERROR!
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 17:59:58'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:00:54' prior: 50972973!
+test02CashierCheckoutForCartWithAnElement
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:01:05'!
+ERROR!
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:01:05'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:02:33' prior: 50973066!
+test02CashierCheckoutForCartWithAnElement
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:03:22'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'ja 11/21/2020 18:04:41' prior: 50971899!
+assertIsValidItem: anItem
+
+	(catalog includesKey: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:04:56'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:05:28'!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:06:01' prior: 50973124!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:06:20' prior: 50973144!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:07:14' prior: 50973164!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	cart add: 'book2' withOccurrences: 2. 
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:08:08' prior: 50973185!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	cart add: 'book2' of: 2. 
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:08:35' prior: 50973207!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	cart add: 2 of: 'book2'. 
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+
+!testRun: #CashierTest #test03CashierCheckoutForCartWithManyElements stamp: 'ja 11/21/2020 18:08:54'!
+PASSED!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 18:08:54'!
+FAILURE!
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:08:54'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCheckoutForCartWithManyElements stamp: 'ja 11/21/2020 18:08:54'!
+PASSED!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 18:08:54'!
+FAILURE!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 18:09:13'!
+FAILURE!
+
+!testRun: #CashierTest #test03CashierCheckoutForCartWithManyElements stamp: 'ja 11/21/2020 18:09:34'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:14:11' prior: 50972992!
+priceOf: aCart
+
+	 ^ aCart price.! !
+!Cart methodsFor: 'queries' stamp: 'ja 11/21/2020 18:17:16'!
+price
+
+	^ items sum:[ :item| catalog at: item ] ifEmpty: [0].! !
+
+!testRun: #CashierTest #test03CashierCheckoutForCartWithManyElements stamp: 'ja 11/21/2020 18:17:25'!
+PASSED!
+
+!testRun: #CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 18:17:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:18:02'!
+PASSED!
+
+!testRun: #CashierTest #test03CashierCheckoutForCartWithManyElements stamp: 'ja 11/21/2020 18:18:05'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:23:09'!
+test04CanNotBuyOnMerchantProcessorError
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:23:43' prior: 50972917!
+checkout: aCart with: aCreditCard using: aMerchantProcessor
+
+	| price |
+	
+	price _ self priceOf: aCart.
+	
+	(price = 0) ifTrue: [ self error: self class canNotCheckoutForEmptyCartErrorDescription ].
+	
+	^ aMerchantProcessor pay: price with: aCreditCard .! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:27:14' prior: 50973297!
+test04CanNotBuyOnMerchantProcessorError
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	
+	self should:  [cashier checkout: cart with: creditCard using: merchantProcessor. self fail]
+		raise: Error  
+		withMessageText: Cashier cashierErrorInMerchantProcessorErrorDescription.
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:27:22' prior: 50973329!
+test04CanNotBuyOnMerchantProcessorError
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail]
+		raise: Error  
+		withMessageText: Cashier cashierErrorInMerchantProcessorErrorDescription.
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:28:41' prior: 50973350!
+test04CanNotBuyOnMerchantProcessorError
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	
+	merchantProcessor invalidate.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail]
+		raise: Error  
+		withMessageText: Cashier cashierErrorInMerchantProcessorErrorDescription.
+! !
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'lastTransactionId valid'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: #TusLibros stamp: 'ja 11/21/2020 18:28:48'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'lastTransactionId valid'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:29:00' prior: 50973049 overrides: 16896425!
+initialize
+
+	lastTransactionId _ 0.
+	valid _ true.! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:29:02' prior: 50973408 overrides: 16896425!
+initialize
+
+	lastTransactionId _ 0.
+	
+	valid _ true.! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:29:13'!
+invalidate
+
+	valid _ false.! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:30:11' prior: 50973036!
+pay: aPrice with: aCreditCard 
+	
+	valid ifFalse: [self error: self class errorDoingTransactionErrorDescription].
+	
+	lastTransactionId _ lastTransactionId + 1.
+	
+	^ lastTransactionId .
+! !
+!MerchantProcessorSimulator class methodsFor: 'no messages' stamp: 'ja 11/21/2020 18:30:50'!
+errorDoingTransactionErrorDescription
+
+	^ 'Error doing transaction error description'! !
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:31:34'!
+ERROR!
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:31:34'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:31:44'!
+cashierErrorInMerchantProcessorErrorDescription
+	self shouldBeImplemented.! !
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:32:54'!
+ERROR!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:33:07'!
+errorInMerchantProcessorErrorDescription
+	
+	^ 'Error in merchant processor'! !
+
+!methodRemoval: Cashier class #cashierErrorInMerchantProcessorErrorDescription stamp: 'ja 11/21/2020 18:33:12'!
+cashierErrorInMerchantProcessorErrorDescription
+	self shouldBeImplemented.!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:33:30' prior: 50973371!
+test04CanNotBuyOnMerchantProcessorError
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	
+	merchantProcessor invalidate.
+	
+	self should: [cashier checkout: cart with: creditCard using: merchantProcessor. self fail]
+		raise: Error  
+		withMessageText: Cashier errorInMerchantProcessorErrorDescription.
+! !
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:33:32'!
+FAILURE!
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:33:32'!
+FAILURE!
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:33:42'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:35:13' prior: 50973318!
+checkout: aCart with: aCreditCard using: aMerchantProcessor
+
+	| price |
+	
+	price _ self priceOf: aCart.
+	
+	(price = 0) ifTrue: [ self error: self class canNotCheckoutForEmptyCartErrorDescription ].
+	
+	^ [ aMerchantProcessor pay: price with: aCreditCard ] on:Error do:[ self error: self class errorInMerchantProcessorErrorDescription ].! !
+
+!testRun: #CashierTest #test04CanNotBuyOnMerchantProcessorError stamp: 'ja 11/21/2020 18:35:22'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:35:55'!
+test01CashierCanNotCheckoutWithEmptyCart
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [ cashier checkout: cart with: creditCard using: merchantProcessor . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+! !
+
+!methodRemoval: CashierTest #test01CashierCanNotCheckoutForEmptyCart stamp: 'ja 11/21/2020 18:35:58'!
+test01CashierCanNotCheckoutForEmptyCart
+
+	| cashier cart aCatalog creditCard |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	self should: [ cashier checkout: cart with: creditCard using: merchantProcessor . self fail] 
+		raise: Error
+		withMessageText: Cashier canNotCheckoutForEmptyCartErrorDescription.
+!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:36:21'!
+test02CashierCheckoutWithCartWithAnElement
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+
+!methodRemoval: CashierTest #test02CashierCheckoutForCartWithAnElement stamp: 'ja 11/21/2020 18:36:21'!
+test02CashierCheckoutForCartWithAnElement
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	cart add: 'book1' .
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'ja 11/21/2020 18:36:31'!
+test03CashierCheckoutWithCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	cart add: 2 of: 'book2'. 
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.! !
+
+!methodRemoval: CashierTest #test03CashierCheckoutForCartWithManyElements stamp: 'ja 11/21/2020 18:36:31'!
+test03CashierCheckoutForCartWithManyElements
+
+	| cashier cart aCatalog creditCard transactionId |
+	
+	cashier _ Cashier new.
+	aCatalog _ Dictionary new.
+	aCatalog add: 'book1' -> 2; add: 'book2' -> 3; add: 'book3' -> 4.
+	creditCard  _ CreditCard of: 'Alan Kay' withNumber: 1234567891011121 andExpiration: FixedGregorianDate today.
+	cart _ Cart acceptingItemsOf: aCatalog.
+	
+	cart add: 'book1'.
+	cart add: 2 of: 'book2'. 
+	
+	transactionId _ cashier checkout: cart with: creditCard using: merchantProcessor.
+	self assert: merchantProcessor lastTransactionId equals: transactionId.!
+
+----QUIT----(21 November 2020 20:55:43) CuisUniversity-4365.image priorSource: 20497017!

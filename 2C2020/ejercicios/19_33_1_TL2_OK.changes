@@ -1,0 +1,1422 @@
+----STARTUP---- (25 November 2020 11:44:00) as C:\Users\FACU PC\Documents\Clases Virtuales\Cosas IS 1\Cuis University\CuisUniversity-4365.image!
+
+
+!classRemoval: #Cart stamp: 'FG 11/25/2020 12:31:10'!
+Object subclass: #Cart
+	instanceVariableNames: 'books catalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+!classRemoval: #CartTests stamp: 'FG 11/25/2020 12:31:10'!
+TestCase subclass: #CartTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio - TusLibros.com'!
+
+----End fileIn of C:\Users\FACU PC\Downloads\Ejercicio-TusLibros.com.st----!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 12:38:53'!
+expirationDate
+
+	^ expirationDate copy.! !
+
+!methodRemoval: CreditCard #expiration stamp: 'FG 11/25/2020 12:38:57'!
+expiration
+
+	^ expirationDate copy.!
+
+!classDefinition: #CreditCard category: #'Ejercicio-TusLibros.com' stamp: 'FG 11/25/2020 12:39:36'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'plasticNumber ownerName expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 12:39:36' prior: 50930748!
+ownerName
+
+	^ ownerName copy.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 12:39:36' prior: 50930723!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	| isMadeOfDigits |
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ ownerName := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [ownerName := anOwnerName].
+	
+	expirationDate := creditCardExpiration . ! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 12:40:31' prior: 50930815!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	| isMadeOfDigits |
+	
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ ownerName := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [ownerName := anOwnerName].
+	
+	expirationDate := creditCardExpiration . ! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 12:43:30' prior: 50930841!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	| isMadeOfDigits |
+	
+	self assertThatIsValidCreditCardNumber: aCreditCardNumber.
+	
+	isMadeOfDigits := true.
+	aCreditCardNumber do: [:aCharacter | isMadeOfDigits := isMadeOfDigits and: [aCharacter isDigit]].
+	
+	isMadeOfDigits ifFalse: [ ^self error: CreditCard plasticNumberMustBeMadeOfDigits].
+	(aCreditCardNumber size = 16) ifFalse: [ ^self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ ownerName := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [ownerName := anOwnerName].
+	
+	expirationDate := creditCardExpiration . ! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 12:55:51'!
+assertThatIsValidCreditCardNumber: aCreditCardNumber
+	
+	(aCreditCardNumber size = 16) ifFalse: [ self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	aCreditCardNumber do: [:aCharacter | (aCharacter isDigit) ifFalse: [self error: CreditCard plasticNumberMustBeMadeOfDigits]].
+	! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 13:05:34' prior: 50930867!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	self assertThatIsValidCreditCardNumber: aCreditCardNumber.
+	self assertThatIsValidOwnerName: anOwnerName.
+	
+	anOwnerName isEmpty ifTrue: [^self error: CreditCard plasticOwnerMustHaveAName ].
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 ifTrue: [ ownerName := anOwnerName copyFrom: 1 to: 30 ] ifFalse: [ownerName := anOwnerName].
+	
+	expirationDate := creditCardExpiration . ! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 13:05:56'!
+assertThatIsValidOwnerName: anOwnerName.
+
+	anOwnerName isEmpty ifTrue: [ self error: CreditCard plasticOwnerMustHaveAName ].! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 13:06:29' prior: 50930907!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	self assertThatIsValidCreditCardNumber: aCreditCardNumber.
+	self assertThatIsValidOwnerName: anOwnerName.
+	
+	plasticNumber := aCreditCardNumber.
+	anOwnerName size > 30 
+		ifTrue: [ ownerName := anOwnerName copyFrom: 1 to: 30 ] 
+		ifFalse: [ownerName := anOwnerName].
+	expirationDate := creditCardExpiration . ! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 13:37:37' prior: 50930933!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	self assertThatIsValidCreditCardNumber: aCreditCardNumber.
+	self assertThatIsValidOwnerName: anOwnerName.
+	
+	plasticNumber := aCreditCardNumber.
+	ownerName := anOwnerName truncateTo: 30.
+	expirationDate := creditCardExpiration . ! !
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:37:51'!
+FAILURE!
+
+!testRun: #CreditCardTests #test02 stamp: 'FG 11/25/2020 13:37:51'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'FG 11/25/2020 13:37:51'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'FG 11/25/2020 13:37:51'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'FG 11/25/2020 13:37:51'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'FG 11/25/2020 13:37:51'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:37:51'!
+ERROR!
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:37:57'!
+ERROR!
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:37:57'!
+ERROR!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:38:04' prior: 50930563!
+test07
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024).
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expirationDate equals: creditCardExpiration.! !
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:38:06'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:38:09'!
+FAILURE!
+
+!testRun: #CreditCardTests #test02 stamp: 'FG 11/25/2020 13:38:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'FG 11/25/2020 13:38:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'FG 11/25/2020 13:38:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'FG 11/25/2020 13:38:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'FG 11/25/2020 13:38:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:38:09'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:38:09'!
+FAILURE!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:38:12'!
+FAILURE!
+
+!testRun: #CreditCardTests #test02 stamp: 'FG 11/25/2020 13:38:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'FG 11/25/2020 13:38:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'FG 11/25/2020 13:38:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'FG 11/25/2020 13:38:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'FG 11/25/2020 13:38:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:38:12'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:38:12'!
+FAILURE!
+
+!testRun: #CreditCardTests #test03 stamp: 'FG 11/25/2020 13:38:24'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'FG 11/25/2020 13:38:25'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'FG 11/25/2020 13:38:27'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'FG 11/25/2020 13:38:28'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'FG 11/25/2020 13:38:30'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:38:32'!
+FAILURE!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:38:32'!
+FAILURE!
+
+!testRun: #CreditCardTests #test02 stamp: 'FG 11/25/2020 13:38:34'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:43:49' prior: 50930471!
+test01
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'No soy un n�mero'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:43:51'!
+PASSED!
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test02 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test03 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test04 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test05 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test06 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+
+!testRun: #CreditCardTests #test07 stamp: 'FG 11/25/2020 13:43:53'!
+PASSED!
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 13:46:54' prior: 50930895!
+assertThatIsValidCreditCardNumber: aCreditCardNumber
+	
+	(aCreditCardNumber size = 16) ifFalse: [ self error: CreditCard plasticNumberMustHaveSixteenDigits ].
+	aCreditCardNumber do: [:aCharacter | (aCharacter isDigit) ifFalse: [self error: CreditCard plasticNumberMustBeMadeOfDigits] ].
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:47:55' prior: 50931061!
+test01
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'No soy un n�mero'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+
+!testRun: #CreditCardTests #test01 stamp: 'FG 11/25/2020 13:47:57'!
+PASSED!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:51:03'!
+test01CreditCardNumberMustBeComposedOfDigits
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'No soy un n�mero'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+
+!methodRemoval: CreditCardTests #test01 stamp: 'FG 11/25/2020 13:51:05'!
+test01
+
+	self should: [	CreditCard 
+				withPlasticNumber: 'No soy un n�mero'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:53:16'!
+test02CreditCardNumberShouldHaveExactlySixteenDigits
+
+	self should: [	CreditCard 
+				withPlasticNumber: '000000000900000' 
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [	CreditCard 
+				withPlasticNumber: '00000000090000000'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+
+!methodRemoval: CreditCardTests #test02 stamp: 'FG 11/25/2020 13:53:18'!
+test02
+
+	self should: [	CreditCard 
+				withPlasticNumber: '000000000900000' 
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [	CreditCard 
+				withPlasticNumber: '00000000090000000'
+				namedAfter: 'Pepito'
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:55:05'!
+test03CreditCardOwnerNameCanNotBeEmpty
+
+	self should: [	CreditCard 
+				withPlasticNumber: '0000000009000000' 
+				namedAfter: ''
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+
+!methodRemoval: CreditCardTests #test03 stamp: 'FG 11/25/2020 13:55:09'!
+test03
+
+	self should: [	CreditCard 
+				withPlasticNumber: '0000000009000000' 
+				namedAfter: ''
+				validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:57:42'!
+test04CreditCardCanShowTheirOwnerName
+
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+
+!methodRemoval: CreditCardTests #test04 stamp: 'FG 11/25/2020 13:57:44'!
+test04
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 13:59:38' prior: 50930533!
+test05
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:01:20'!
+test05IfOwnerNameIsBiggerThanThirtyCharactersTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+
+!methodRemoval: CreditCardTests #test05 stamp: 'FG 11/25/2020 14:01:22'!
+test05
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:05:17'!
+test06CredicCardCanShowTheirPlasticNumber
+	
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	! !
+
+!methodRemoval: CreditCardTests #test06 stamp: 'FG 11/25/2020 14:05:19'!
+test06
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:05:27'!
+test06CreditCardCanShowTheirPlasticNumber
+	
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	! !
+
+!methodRemoval: CreditCardTests #test06CredicCardCanShowTheirPlasticNumber stamp: 'FG 11/25/2020 14:05:30'!
+test06CredicCardCanShowTheirPlasticNumber
+	
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	!
+!CreditCardTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:05:55'!
+test07CreditCarCanShowExpirationDate
+
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024).
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expirationDate equals: creditCardExpiration.! !
+
+!methodRemoval: CreditCardTests #test07 stamp: 'FG 11/25/2020 14:05:58'!
+test07
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024).
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expirationDate equals: creditCardExpiration.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:14:25' prior: 50930673!
+checkout: aCart withCreditCard: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	(aCreditCard expirationDate < GregorianMonthOfYear current) ifTrue: [self error: Cashier creditCardHasExpired ].
+	
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:14:52'!
+assertThatCreditCardHasExpired: aCreditCard	
+	
+	(aCreditCard expirationDate < GregorianMonthOfYear current) ifTrue: [ self error: Cashier creditCardHasExpired ].! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:15:25' prior: 50931385!
+checkout: aCart withCreditCard: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:15:58'!
+assertThatCartIsNotEmpty: aCart
+	
+	aCart isEmpty ifTrue: [self error: Cashier cantCheckoutWithAnEmptyCart].! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:28'!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+
+!methodRemoval: Cashier #checkout:payingWith: stamp: 'FG 11/25/2020 14:16:33'!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51'!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51' prior: 50930399!
+test04
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 300.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51' prior: 50930377!
+test03
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 175.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51' prior: 50930340!
+test01
+	| cart cashier creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+		
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51' prior: 50930439!
+test06
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51' prior: 50930358!
+test02
+	| cart cashier catalogue mathBook creditCard |
+	
+	
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:16:51' prior: 50930417!
+test05
+	| cart cashier catalogue mathBook creditCard |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2019)).
+	
+	self should: [ cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+
+!methodRemoval: Cashier #checkout:withCreditCard: stamp: 'FG 11/25/2020 14:16:51'!
+checkout: aCart withCreditCard: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:19:22' prior: 50931447!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	self purchaseTotal: aCart.
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:20:30'!
+purchaseTotal: aCart
+	
+	| total |
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:20:49' prior: 50931587!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	^ self purchaseTotal: aCart.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:22:58'!
+purchaseTotalOf: aCart
+	
+	| total |
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:22:58' prior: 50931606!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	^ self purchaseTotalOf: aCart.! !
+
+!methodRemoval: Cashier #purchaseTotal: stamp: 'FG 11/25/2020 14:22:58'!
+purchaseTotal: aCart
+	
+	| total |
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:23:33'!
+checkoutWithTicket: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	
+	^ self ticketOf: aCart.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:25:50'!
+ticketOf: aCart
+	
+	| ticket |
+	
+	ticket := OrderedCollection new.
+	aCart books do: [:aBook | ticket := ticket + (aCart catalogue at: aBook)].
+	^ticket.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:34:29' prior: 50931645!
+ticketOf: aCart
+	
+	| ticket |
+	
+	ticket := OrderedCollection new.
+	aCart books do: [:aBook | ticket add: (aBook , '   ') , (aCart catalogue at: aBook) asString].
+	ticket add: 'Total   ' , (self purchaseTotalOf: aCart) asString.
+	
+	^ ticket.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:37:46'!
+testAasdasdasd
+
+	| cart cashier catalogue mathBook creditCard ticket |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	ticket := cashier checkoutWithTicket: cart payingWith: creditCard. 
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:47:14' prior: 50931664!
+testAasdasdasd
+
+	| cart cashier catalogue mathBook creditCard ticket |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 2 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	ticket := cashier checkoutWithTicket: cart payingWith: creditCard. 
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.
+	
+	! !
+
+mochila := Bag new.
+mochila add: 'Caca' withOccurrences: 5.
+!
+
+mochila asSet.!
+
+mochila asSet. !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 14:57:07' prior: 50931653!
+ticketOf: aCart
+	
+	| ticket |
+	
+	ticket := OrderedCollection new.
+	aCart books asSet do: [:aBook | ticket add: (aBook , '   ') , (aCart catalogue at: aBook) asString].
+	ticket add: 'Total   ' , (self purchaseTotalOf: aCart) asString.
+	
+	^ ticket.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:01:46' prior: 50931709!
+ticketOf: aCart
+	
+	| ticket |
+	
+	ticket := OrderedCollection new.
+	aCart books asSet do: [:aBook | ticket add: (aBook , '   ') , ((aCart catalogue at: aBook) * (aCart quantityOf: aBook) ) asString].
+	ticket add: 'Total   ' , (self purchaseTotalOf: aCart) asString.
+	
+	^ ticket.! !
+
+!methodRemoval: CashierTests #testAasdasdasd stamp: 'FG 11/25/2020 15:06:26'!
+testAasdasdasd
+
+	| cart cashier catalogue mathBook creditCard ticket |
+	
+	catalogue := Dictionary new.
+	mathBook := 'MathBook'.
+	catalogue add: mathBook -> 100.
+	cart := Cart with: catalogue.
+	cart add: 2 of: mathBook.
+	cashier := Cashier new.
+	
+	creditCard := CreditCard withPlasticNumber: '0000000000000000' namedAfter: 'Pepito' validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	ticket := cashier checkoutWithTicket: cart payingWith: creditCard. 
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.
+	
+	!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:08:54' prior: 50931499!
+test01
+
+	| cart cashier creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:10:22' prior: 50931536!
+test02
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+		
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard) equals: 100.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:13:25' prior: 50931477!
+test03
+	
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 175.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:13:58' prior: 50931458!
+test04
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 300.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:16:55' prior: 50931555!
+test05
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2019)).
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 15:18:49' prior: 50931517!
+test06
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: (GregorianMonthOfYear januaryOf: (GregorianYear createYear: 2021)).
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.
+	
+	! !
+
+!testRun: #CashierTests #test01 stamp: 'FG 11/25/2020 15:18:51'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'FG 11/25/2020 15:18:51'!
+PASSED!
+
+!testRun: #CashierTests #test03 stamp: 'FG 11/25/2020 15:18:51'!
+PASSED!
+
+!testRun: #CashierTests #test04 stamp: 'FG 11/25/2020 15:18:51'!
+PASSED!
+
+!testRun: #CashierTests #test05 stamp: 'FG 11/25/2020 15:18:51'!
+PASSED!
+
+!testRun: #CashierTests #test06 stamp: 'FG 11/25/2020 15:18:51'!
+PASSED!
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 17:42:50'!
+test07
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2021)).
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | ].
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 17:43:29' prior: 50931884!
+test07
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2021)).
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier amountToBigToProcess. ].
+	
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 17:44:33' prior: 50931637!
+checkoutWithTicket: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	self assertThatAmountIsNotToBig: aCart.
+	
+	^ self ticketOf: aCart.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 17:46:40'!
+assertThatAmountIsNotToBig: aCart
+	
+	(self purchaseTotalOf: aCart < 1000000000000000) ifFalse:[self error: Cashier ].! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 17:47:20'!
+amountToBigToProcess
+	^ 'Total amount to pay should be below the Sixteen digits'.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 17:48:09' prior: 50931937!
+assertThatAmountIsNotToBig: aCart
+	
+	(self purchaseTotalOf: aCart < 1000000000000000) ifFalse:[self error: Cashier amountToBigToProcess].! !
+
+!testRun: #CreditCardTests #test07CreditCarCanShowExpirationDate stamp: 'FG 11/25/2020 17:48:16'!
+PASSED!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'FG 11/25/2020 17:48:18'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'FG 11/25/2020 17:48:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'FG 11/25/2020 17:48:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test04CreditCardCanShowTheirOwnerName stamp: 'FG 11/25/2020 17:48:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test05IfOwnerNameIsBiggerThanThirtyCharactersTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters stamp: 'FG 11/25/2020 17:48:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test06CreditCardCanShowTheirPlasticNumber stamp: 'FG 11/25/2020 17:48:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test07CreditCarCanShowExpirationDate stamp: 'FG 11/25/2020 17:48:19'!
+PASSED!
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'FG 11/25/2020 17:54:34'!
+test05IfOwnerNameIsBiggerThanThirtyCharactersThenTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+
+!methodRemoval: CreditCardTests #test05IfOwnerNameIsBiggerThanThirtyCharactersTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters stamp: 'FG 11/25/2020 17:54:38'!
+test05IfOwnerNameIsBiggerThanThirtyCharactersTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	!
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'FG 11/25/2020 17:55:31'!
+test05IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+
+!methodRemoval: CreditCardTests #test05IfOwnerNameIsBiggerThanThirtyCharactersThenTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters stamp: 'FG 11/25/2020 17:55:34'!
+test05IfOwnerNameIsBiggerThanThirtyCharactersThenTheOwnerNameInTheCreditCardIsTheFirstsThirtyCharacters
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000009000000' 
+		namedAfter: ownerName
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	!
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 17:56:14' prior: 50930950!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	self assertThatIsValidCreditCardNumber: aCreditCardNumber.
+	self assertThatIsValidOwnerName: anOwnerName.
+	
+	plasticNumber := aCreditCardNumber.
+	ownerName := anOwnerName truncateTo: 30.
+	expirationDate := creditCardExpiration. ! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 17:58:03' prior: 50932068!
+initializeWithPlasticNumber: aCreditCardNumber namedAfter: anOwnerName validThrough: 	creditCardExpiration
+	
+	self assertThatIsValidCreditCardNumber: aCreditCardNumber.
+	self assertThatIsValidOwnerName: anOwnerName.
+	self assertThatExpirationDateIsGregorianMonthOfYear: creditCardExpiration.
+	
+	plasticNumber := aCreditCardNumber.
+	ownerName := anOwnerName truncateTo: 30.
+	expirationDate := creditCardExpiration. ! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'FG 11/25/2020 17:59:33'!
+test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+
+	| creditCard |
+	
+	self should: [creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: 0596.] 
+	raisingAnErrorAndAsserting: []. 
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'FG 11/25/2020 17:59:57' prior: 50932098!
+test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: 0596. ] 
+	raisingAnErrorAndAsserting: []. 
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'FG 11/25/2020 18:00:32' prior: 50932109!
+test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: 0596. ] 
+	raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard expirationDateShouldBeGregorianMonthOfYear. ]. 
+	! !
+!CreditCard class methodsFor: 'error texts' stamp: 'FG 11/25/2020 18:01:06'!
+expirationDateShouldBeGregorianMonthOfYear
+	^ 'Expiration Date should be kind of Gregorian Month Of Year'.! !
+!CreditCard methodsFor: 'initialization' stamp: 'FG 11/25/2020 18:02:11'!
+assertThatExpirationDateIsGregorianMonthOfYear: creditCardExpiration.
+	
+	(creditCardExpiration isKindOf: GregorianMonthOfYear) ifFalse: [self error: CreditCard expirationDateShouldBeGregorianMonthOfYear ].! !
+
+!testRun: #CreditCardTests #test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'FG 11/25/2020 18:02:18'!
+PASSED!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'FG 11/25/2020 18:02:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'FG 11/25/2020 18:02:19'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'FG 11/25/2020 18:02:20'!
+PASSED!
+
+!testRun: #CreditCardTests #test04CreditCardCanShowTheirOwnerName stamp: 'FG 11/25/2020 18:02:20'!
+PASSED!
+
+!testRun: #CreditCardTests #test05IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'FG 11/25/2020 18:02:20'!
+PASSED!
+
+!testRun: #CreditCardTests #test06CreditCardCanShowTheirPlasticNumber stamp: 'FG 11/25/2020 18:02:20'!
+PASSED!
+
+!testRun: #CreditCardTests #test07CreditCarCanShowExpirationDate stamp: 'FG 11/25/2020 18:02:20'!
+PASSED!
+
+!testRun: #CreditCardTests #test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'FG 11/25/2020 18:02:20'!
+PASSED!
+!Cashier methodsFor: 'checkout' stamp: 'FG 11/25/2020 18:05:10' prior: 50931622!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasExpired: aCreditCard.
+	self assertThatCartIsNotEmpty: aCart.
+	self assertThatAmountIsNotToBig: aCart.
+	
+	^ self purchaseTotalOf: aCart.! !
+!Cashier methodsFor: 'checkout' stamp: 'FG 11/25/2020 18:12:21' prior: 50931720!
+ticketOf: aCart
+	
+	| ticket |
+	
+	ticket := OrderedCollection new.
+	aCart books asSet do: [:aBook | ticket add: (aCart quantityOf: aBook asString ,(aBook , '   ')) , ((aCart catalogue at: aBook) * (aCart quantityOf: aBook) ) asString].
+	ticket add: 'Total   ' , (self purchaseTotalOf: aCart) asString.
+	
+	^ ticket.
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'FG 11/25/2020 19:26:39' prior: 50931614!
+purchaseTotalOf: aCart
+	
+	| total |
+	
+	total := 0.
+	aCart books do: [:aBook | total := total + (aCart catalogue at: aBook)].
+	^total roundUpTo: 0.01.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'FG 11/25/2020 19:29:23'!
+test08
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2021)).
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier amountToBigToProcess. ].
+	
+	! !
+
+!testRun: #CashierTests #test01 stamp: 'FG 11/25/2020 19:29:44'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'FG 11/25/2020 19:29:44'!
+ERROR!
+
+!testRun: #CashierTests #test03 stamp: 'FG 11/25/2020 19:29:44'!
+ERROR!
+
+!testRun: #CashierTests #test04 stamp: 'FG 11/25/2020 19:29:44'!
+ERROR!
+
+!testRun: #CashierTests #test05 stamp: 'FG 11/25/2020 19:29:44'!
+PASSED!
+
+!testRun: #CashierTests #test06 stamp: 'FG 11/25/2020 19:29:44'!
+ERROR!
+
+!testRun: #CashierTests #test07 stamp: 'FG 11/25/2020 19:29:44'!
+FAILURE!
+
+!testRun: #CashierTests #test08 stamp: 'FG 11/25/2020 19:29:44'!
+FAILURE!
+
+!testRun: #CashierTests #test01 stamp: 'FG 11/25/2020 19:29:51'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'FG 11/25/2020 19:29:51'!
+ERROR!
+
+!testRun: #CashierTests #test03 stamp: 'FG 11/25/2020 19:29:51'!
+ERROR!
+
+!testRun: #CashierTests #test04 stamp: 'FG 11/25/2020 19:29:51'!
+ERROR!
+
+!testRun: #CashierTests #test05 stamp: 'FG 11/25/2020 19:29:51'!
+PASSED!
+
+!testRun: #CashierTests #test06 stamp: 'FG 11/25/2020 19:29:51'!
+ERROR!
+
+!testRun: #CashierTests #test07 stamp: 'FG 11/25/2020 19:29:51'!
+FAILURE!
+
+!testRun: #CashierTests #test08 stamp: 'FG 11/25/2020 19:29:51'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'FG 11/25/2020 19:30:20' prior: 50931950!
+assertThatAmountIsNotToBig: aCart
+	
+	(self purchaseTotalOf: aCart) < 1000000000000000 ifFalse:[self error: Cashier amountToBigToProcess].! !
+
+!testRun: #CashierTests #test01 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test02 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test03 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test04 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test05 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test06 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test07 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!testRun: #CashierTests #test08 stamp: 'FG 11/25/2020 19:30:24'!
+PASSED!
+
+!methodRemoval: CashierTests #test08 stamp: 'FG 11/25/2020 20:17:00'!
+test08
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: (GregorianMonthOfYear decemberOf: (GregorianYear createYear: 2021)).
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier amountToBigToProcess. ].
+	
+	!
+
+----QUIT----(25 November 2020 20:17:04) CuisUniversity-4365.image priorSource: 19151329!

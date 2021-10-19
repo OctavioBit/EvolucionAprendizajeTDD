@@ -1,0 +1,646 @@
+----STARTUP---- (17 November 2020 17:09:05) as /home/jampuero/Documentos/isw1/linux64/CuisUniversity-4365.image!
+
+
+----End fileIn of /home/jampuero/Documentos/isw1/linux64/TusLibros.st----!
+
+!testRun: #CartTest #test01CartIsEmptyAtTheBeginning stamp: 'ja 11/17/2020 17:11:46'!
+PASSED!
+!Cart methodsFor: 'initialization' stamp: 'ja 11/17/2020 17:30:45' prior: 50971171 overrides: 16896425!
+initialize
+	
+	books _ Bag new.! !
+!Cart methodsFor: 'adding' stamp: 'ja 11/17/2020 17:35:43'!
+add: aBook withOccurrences: amount from: aCatalogue
+	
+	books add: aBook withOccurrences: amount.
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:38:35' prior: 50971074!
+test02CanAddToCartABookInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ Catalogue with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 2 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1').! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:42:27' prior: 50971254!
+test02CanAddToCartABookInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 2 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1').! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:42:36' prior: 50971084!
+test03CanNotAddToCartABookThatIsNotPresentInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	self should: [ cart add: 'book3' from: catalogue . self fail.]
+		raise: Error
+		withMessageText: Catalogue bookIsNotInCatalogueErrorDescription.
+	
+	self assert: cart isEmpty .
+	
+	self deny: (cart has: 'book3').! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:42:44' prior: 50971098!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' from: catalogue .
+	
+	cart add: 'book2' from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1').
+	
+	self assert: (cart has: 'book2').
+	! !
+
+!methodRemoval: Cart #add: stamp: 'ja 11/17/2020 17:43:14'!
+add: aBook
+	
+	self halt.
+	
+	(thisContext sender isKindOf: Catalogue) ifTrue: [books add: aBook .].
+	
+	!
+!Cart methodsFor: 'adding' stamp: 'ja 11/17/2020 17:44:20' prior: 50971247!
+add: aBook withOccurrences: amount from: aCatalogue
+
+	(aCatalogue includes: aBook) ifFalse: [self error: self class xxx].
+	
+	books add: aBook withOccurrences: amount.
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:44:56' prior: 50971265!
+test02CanAddToCartABookInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1').! !
+
+!testRun: #CartTest #test01CartIsEmptyAtTheBeginning stamp: 'ja 11/17/2020 17:45:12'!
+PASSED!
+
+!testRun: #CartTest #test02CanAddToCartABookInCatalogue stamp: 'ja 11/17/2020 17:45:14'!
+PASSED!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:45:16'!
+FAILURE!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:45:16'!
+FAILURE!
+!Cart class methodsFor: 'no messages' stamp: 'ja 11/17/2020 17:45:49'!
+bookIsNotInCatalogueErrorDescription
+	
+	^ 'Book is not in catalogue'.! !
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:45:56'!
+FAILURE!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:45:56'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:46:27' prior: 50971277!
+test03CanNotAddToCartABookThatIsNotPresentInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	self should: [ cart add: 'book3' withOccurrences: 1 from: catalogue . self fail.]
+		raise: Error
+		withMessageText: Catalogue bookIsNotInCatalogueErrorDescription.
+	
+	self assert: cart isEmpty .
+	
+	self deny: (cart has: 'book3').! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:46:36' prior: 50971357!
+test03CanNotAddToCartABookThatIsNotPresentInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	self should: [ cart add: 'book3' withOccurrences: 1 from: catalogue . self fail.]
+		raise: Error
+		withMessageText: Cart bookIsNotInCatalogueErrorDescription.
+	
+	self assert: cart isEmpty .
+	
+	self deny: (cart has: 'book3').! !
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:46:44'!
+FAILURE!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:46:44'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'ja 11/17/2020 17:46:57' prior: 50971311!
+add: aBook withOccurrences: amount from: aCatalogue
+
+	(aCatalogue includes: aBook) ifFalse: [self error: self class bookIsNotInCatalogueErrorDescription].
+	
+	books add: aBook withOccurrences: amount.
+	
+	! !
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:47:01'!
+PASSED!
+
+!methodRemoval: Cart #add:from: stamp: 'ja 11/17/2020 17:47:17'!
+add: aBook from: aCatalogue
+	
+	aCatalogue add: aBook to: self. !
+
+!classRemoval: #Catalogue stamp: 'ja 11/17/2020 17:47:32'!
+Object subclass: #Catalogue
+	instanceVariableNames: 'books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibrosAPITest stamp: 'ja 11/17/2020 17:47:52'!
+TestCase subclass: #TusLibrosAPITest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibrosAPI stamp: 'ja 11/17/2020 17:47:55'!
+Object subclass: #TusLibrosAPI
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:50:48' prior: 50971292!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 2 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1').
+	
+	self assert: (cart has: 'book2').
+	
+	self assert: (cart has: 'book1' times: 2).
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:51:45' prior: 50971431!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 2 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1').
+	
+	self assert: (cart has: 'book2').
+	
+	self assert: (cart has: 'book1' times: 2).
+	
+	self assert: (cart has: 'book2' times: 1).	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:51:54' prior: 50971448!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 2 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1' times: 2).
+	
+	self assert: (cart has: 'book2' times: 1).	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:52:06' prior: 50971320!
+test02CanAddToCartABookInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1' times: 1).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:52:19' prior: 50971373!
+test03CanNotAddToCartABookThatIsNotPresentInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	self should: [ cart add: 'book3' withOccurrences: 1 from: catalogue . self fail.]
+		raise: Error
+		withMessageText: Cart bookIsNotInCatalogueErrorDescription.
+	
+	self assert: cart isEmpty .
+	
+	self deny: (cart has: 'book3' times: 1).! !
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 17:52:30'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 17:52:30'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 17:52:54'!
+ERROR!
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 17:52:54'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:53:04'!
+has: aString times: aSmallInteger 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:54:30' prior: 50971523!
+has: aBook times: aQuantity
+
+	^ books occurrencesOf: aBook = aQuantity 
+	
+	! !
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 17:54:32'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 17:55:05' prior: 50971528!
+has: aBook times: aQuantity
+
+	^ (books occurrencesOf: aBook) = aQuantity 
+	
+	! !
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 17:55:35'!
+PASSED!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 17:55:37'!
+PASSED!
+
+!testRun: #CartTest #test02CanAddToCartABookInCatalogue stamp: 'ja 11/17/2020 17:55:39'!
+PASSED!
+
+!testRun: #CartTest #test01CartIsEmptyAtTheBeginning stamp: 'ja 11/17/2020 17:55:40'!
+PASSED!
+
+!methodRemoval: Cart #has: stamp: 'ja 11/17/2020 17:56:03'!
+has: aBook
+	
+	^ books includes: aBook.!
+
+!methodRemoval: CartTest #test00 stamp: 'ja 11/17/2020 17:56:15'!
+test00
+	
+	| cart |
+	
+	cart _ Cart new.
+	
+	cart add: 'loquesea' .
+	
+	self deny: (cart has: 'loquesea').!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:00:22'!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 2 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1' times: 2).
+	
+	self assert: (cart has: 'book2' times: 1).	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:06:55' prior: 50971564!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue xxx|
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2' with:'book3' with:'book4'.
+	xxx _ Bag new.
+	xxx add: 'book1' withOccurrences: 1.
+	xxx add: 'book2' withOccurrences: 2.
+	xxx add: 'book3' withOccurrences: 3.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+
+	cart add: 'book3' withOccurrences: 3 from: catalogue .
+	
+	self assert: xxx = cart books. 
+	
+	
+	self deny: cart isEmpty .
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:07:02' prior: 50971580!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue xxx|
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2' with:'book3' with:'book4'.
+	xxx _ Bag new.
+	xxx add: 'book1' withOccurrences: 1.
+	xxx add: 'book2' withOccurrences: 2.
+	xxx add: 'book3' withOccurrences: 3.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+
+	cart add: 'book3' withOccurrences: 3 from: catalogue .
+	
+	self assert: xxx = cart books. 
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:07:19' prior: 50971601!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue xxx|
+	
+	cart _ Cart new .
+	catalogue _ OrderedCollection with: 'book1' with: 'book2' with:'book3' with:'book4'.
+	xxx _ Bag new.
+	
+	xxx add: 'book1' withOccurrences: 1.
+	xxx add: 'book2' withOccurrences: 2.
+	xxx add: 'book3' withOccurrences: 3.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	cart add: 'book3' withOccurrences: 3 from: catalogue .
+	
+	self assert: xxx = cart books. 
+	! !
+
+!testRun: #CartTest #test05WhenAddingBooksCartHasOnlyTheAddedBooks stamp: 'ja 11/17/2020 18:07:27'!
+ERROR!
+
+!testRun: #CartTest #test05WhenAddingBooksCartHasOnlyTheAddedBooks stamp: 'ja 11/17/2020 18:07:27'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:07:34'!
+books
+	self shouldBeImplemented.
+	^books! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:07:37' prior: 50971647!
+books
+	
+	^books! !
+
+!testRun: #CartTest #test05WhenAddingBooksCartHasOnlyTheAddedBooks stamp: 'ja 11/17/2020 18:07:39'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:09:24' prior: 50971652!
+books
+	
+	^books copy! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:10:10' prior: 50971621!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue addedBooks|
+	
+	cart _ Cart new .
+	catalogue _ OrderedCollection with: 'book1' with: 'book2' with:'book3' with:'book4'.
+	addedBooks _ Bag new.
+	
+	addedBooks add: 'book1' withOccurrences: 1.
+	addedBooks add: 'book2' withOccurrences: 2.
+	addedBooks add: 'book3' withOccurrences: 3.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	cart add: 'book3' withOccurrences: 3 from: catalogue .
+	
+	self assert: addedBooks = cart books. 
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:10:58' prior: 50971466!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	
+	self deny: cart isEmpty .
+	
+	self assert: (cart has: 'book1' times: 1).
+	
+	self assert: (cart has: 'book2' times: 2).	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:11:33' prior: 50971684!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	
+	self deny: cart isEmpty .
+	self assert: (cart has: 'book1' times: 1).
+	self assert: (cart has: 'book2' times: 2).	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:11:43' prior: 50971494!
+test03CanNotAddToCartABookThatIsNotPresentInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	self should: [ cart add: 'book3' withOccurrences: 1 from: catalogue . self fail.]
+		raise: Error
+		withMessageText: Cart bookIsNotInCatalogueErrorDescription.
+	
+	self assert: cart isEmpty .
+	self deny: (cart has: 'book3' times: 1).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:11:59' prior: 50971482!
+test02CanAddToCartABookInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	catalogue _ OrderedCollection with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	self assert: (cart has: 'book1' times: 1).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:24:59' prior: 50971731!
+test02CanAddToCartABookInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	catalogue _ Set with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	
+	self deny: cart isEmpty .
+	self assert: (cart has: 'book1' times: 1).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:25:05' prior: 50971715!
+test03CanNotAddToCartABookThatIsNotPresentInCatalogue
+	
+	| cart catalogue |
+	
+	cart _ Cart new .
+	catalogue _ Set with: 'book1' with: 'book2'.
+	
+	self should: [ cart add: 'book3' withOccurrences: 1 from: catalogue . self fail.]
+		raise: Error
+		withMessageText: Cart bookIsNotInCatalogueErrorDescription.
+	
+	self assert: cart isEmpty .
+	self deny: (cart has: 'book3' times: 1).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:25:12' prior: 50971700!
+test04MultipleBooksInCatalogueCanBeAddedToCart
+
+	| cart catalogue |
+	
+	cart _ Cart new .
+	catalogue _ Set with: 'book1' with: 'book2'.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	
+	self deny: cart isEmpty .
+	self assert: (cart has: 'book1' times: 1).
+	self assert: (cart has: 'book2' times: 2).	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'ja 11/17/2020 18:25:16' prior: 50971663!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue addedBooks|
+	
+	cart _ Cart new .
+	catalogue _ Set with: 'book1' with: 'book2' with:'book3' with:'book4'.
+	addedBooks _ Bag new.
+	
+	addedBooks add: 'book1' withOccurrences: 1.
+	addedBooks add: 'book2' withOccurrences: 2.
+	addedBooks add: 'book3' withOccurrences: 3.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	cart add: 'book3' withOccurrences: 3 from: catalogue .
+	
+	self assert: addedBooks = cart books. 
+	! !
+
+!testRun: #CartTest #test01CartIsEmptyAtTheBeginning stamp: 'ja 11/17/2020 18:25:19'!
+PASSED!
+
+!testRun: #CartTest #test02CanAddToCartABookInCatalogue stamp: 'ja 11/17/2020 18:25:19'!
+PASSED!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 18:25:19'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 18:25:19'!
+PASSED!
+
+!testRun: #CartTest #test05WhenAddingBooksCartHasOnlyTheAddedBooks stamp: 'ja 11/17/2020 18:25:19'!
+PASSED!
+
+!methodRemoval: CartTest #test05WhenAddingBooksCartHasOnlyTheAddedBooks stamp: 'ja 11/17/2020 18:25:24'!
+test05WhenAddingBooksCartHasOnlyTheAddedBooks
+
+	| cart catalogue addedBooks|
+	
+	cart _ Cart new .
+	catalogue _ Set with: 'book1' with: 'book2' with:'book3' with:'book4'.
+	addedBooks _ Bag new.
+	
+	addedBooks add: 'book1' withOccurrences: 1.
+	addedBooks add: 'book2' withOccurrences: 2.
+	addedBooks add: 'book3' withOccurrences: 3.
+	
+	cart add: 'book1' withOccurrences: 1 from: catalogue .
+	cart add: 'book2' withOccurrences: 2 from: catalogue .
+	cart add: 'book3' withOccurrences: 3 from: catalogue .
+	
+	self assert: addedBooks = cart books. 
+	!
+
+!testRun: #CartTest #test01CartIsEmptyAtTheBeginning stamp: 'ja 11/17/2020 18:31:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanAddToCartABookInCatalogue stamp: 'ja 11/17/2020 18:31:06'!
+PASSED!
+
+!testRun: #CartTest #test03CanNotAddToCartABookThatIsNotPresentInCatalogue stamp: 'ja 11/17/2020 18:31:06'!
+PASSED!
+
+!testRun: #CartTest #test04MultipleBooksInCatalogueCanBeAddedToCart stamp: 'ja 11/17/2020 18:31:06'!
+PASSED!
+
+----QUIT----(17 November 2020 19:22:42) CuisUniversity-4365.image priorSource: 20460600!

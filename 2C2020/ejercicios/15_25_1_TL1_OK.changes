@@ -1,0 +1,2189 @@
+----SNAPSHOT----(16 November 2020 17:13:05) CuisUniversity-4137.image priorSource: 18055131!
+
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosCartTest category: #TusLibros stamp: 'HG 11/16/2020 17:40:41'!
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCartTest methodsFor: 'nil' stamp: 'HG 11/16/2020 17:40:56'!
+test01
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 17:42:05'!
+test01JustCreatedCartIsEmpty
+	! !
+
+!methodRemoval: TusLibrosCartTest #test01 stamp: 'HG 11/16/2020 17:42:09'!
+test01
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 17:47:16'!
+test02NonRegisteredClientCanNotCreateCart
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 17:49:52'!
+test03AddBookToCartAffectsCartListCorrectly
+	! !
+
+!methodRemoval: TusLibrosCartTest #test02NonRegisteredClientCanNotCreateCart stamp: 'HG 11/16/2020 19:00:04'!
+test02NonRegisteredClientCanNotCreateCart
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:00:08'!
+test02AddBookToCartAffectsCartListCorrectly
+	! !
+
+!methodRemoval: TusLibrosCartTest #test03AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:00:10'!
+test03AddBookToCartAffectsCartListCorrectly
+	!
+
+!classDefinition: #Market category: #Unknown stamp: 'HG 11/16/2020 19:07:03'!
+Object subclass: #Market
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Unknown'!
+
+!methodRemoval: TusLibrosCartTest #test01JustCreatedCartIsEmpty stamp: 'HG 11/16/2020 19:11:51'!
+test01JustCreatedCartIsEmpty
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:12:03'!
+test01AddBookToCartAffectsCartListCorrectly
+	! !
+
+!methodRemoval: TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:12:06'!
+test02AddBookToCartAffectsCartListCorrectly
+	!
+
+!classDefinition: #MarketCart category: #TusLibros stamp: 'HG 11/16/2020 19:16:29'!
+Object subclass: #MarketCart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MarketProduct category: #TusLibros stamp: 'HG 11/16/2020 19:16:35'!
+Object subclass: #MarketProduct
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:16:21' prior: 50899800!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	
+	cart add: aProduct.
+	
+	self assert: 1 equals: cart quantityProduct.
+	self assert: cart hasProduct: aProduct.
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:17:07' prior: 50899824!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	
+	cart add: aProduct.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:17:09'!
+ERROR!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:17:18'!
+ERROR!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:18:32' prior: 50899835!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	anotherProduct _ MarketProduct new.
+	
+	cart add: aProduct.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self deny: (cart hasProduct: anotherProduct).
+	! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:18:35'!
+ERROR!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/16/2020 19:18:57'!
+add: aMarketProduct 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarketCart category: #TusLibros stamp: 'HG 11/16/2020 19:19:41'!
+Object subclass: #MarketCart
+	instanceVariableNames: 'product'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/16/2020 19:19:39' prior: 50899870!
+add: aMarketProduct 
+	product _ aMarketProduct.! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:19:44'!
+ERROR!
+!MarketCart methodsFor: 'accesing' stamp: 'HG 11/16/2020 19:19:55'!
+quantityProduct
+	self shouldBeImplemented.! !
+!MarketCart methodsFor: 'accesing' stamp: 'HG 11/16/2020 19:19:58' prior: 50899889!
+quantityProduct
+	^1.! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:20:01'!
+ERROR!
+!MarketCart methodsFor: 'testing' stamp: 'HG 11/16/2020 19:20:09'!
+hasProduct: aMarketProduct 
+	self shouldBeImplemented.! !
+!MarketCart methodsFor: 'testing' stamp: 'HG 11/16/2020 19:20:22' prior: 50899901!
+hasProduct: aMarketProduct 
+	^aMarketProduct = product. ! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:20:25'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:20:25'!
+PASSED!
+
+!classRemoval: #Market stamp: 'HG 11/16/2020 19:21:41'!
+Object subclass: #Market
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Unknown'!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:22:27'!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	anotherProduct _ MarketProduct new.
+	
+	cart add: aProduct.
+	cart add: anotherProduct.
+	cart add: anotherProduct.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:23:48' prior: 50899924!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	anotherProduct _ MarketProduct new.
+	
+	cart add: aProduct.
+	cart add: anotherProduct.
+	cart add: anotherProduct.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:25:32' prior: 50899939!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct.
+	cart add: anotherProduct.
+	cart add: anotherProduct.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:26:00' prior: 50899954!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct withQuantity: 1.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 2 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:26:22' prior: 50899853!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self deny: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:26:29' prior: 50899986!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self deny: (cart hasProduct: anotherProduct).
+	! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/16/2020 19:26:30'!
+ERROR!
+!MarketProduct class methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:26:42'!
+withISBN: aString 
+	self shouldBeImplemented.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:26:56' prior: 50899970!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct withQuantity: 1.
+	cart add: anotherProduct withQuantity: 2.
+	
+	self assert: 3 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/16/2020 19:26:57'!
+ERROR!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:27:09' prior: 50900025!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct withQuantity: 1.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:27:27' prior: 50900043!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct withISBN: 'AAA'.
+	anotherProduct _ MarketProduct withISBN: 'BBB'.
+	
+	cart add: aProduct withQuantity: 1.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 2 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!MarketProduct class methodsFor: 'instance creation' stamp: 'HG 11/16/2020 19:28:41' prior: 50900020!
+withISBN: aISBN 
+	self new.! !
+!MarketProduct class methodsFor: 'instance creation' stamp: 'HG 11/16/2020 19:28:45' prior: 50900075!
+withISBN: aISBN 
+	^self new.! !
+
+!methodRemoval: MarketProduct class #withISBN: stamp: 'HG 11/16/2020 19:29:59'!
+withISBN: aISBN 
+	^self new.!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:30:11' prior: 50900001!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	anotherProduct _ MarketProduct new.
+	
+	cart add: aProduct withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self deny: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:30:20' prior: 50900059!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	anotherProduct _ MarketProduct new.
+	
+	cart add: aProduct withQuantity: 1.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 2 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/16/2020 19:30:20'!
+ERROR!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/16/2020 19:31:49' prior: 50900088!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	aProduct _ MarketProduct new.
+	anotherProduct _ MarketProduct new.
+	
+	cart add: aProduct withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self deny: (cart hasProduct: anotherProduct).
+	! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/16/2020 19:32:19'!
+ERROR!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/16/2020 19:32:27'!
+add: aMarketProduct withQuantity: aSmallInteger 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarketCart category: #TusLibros stamp: 'HG 11/16/2020 19:33:13'!
+Object subclass: #MarketCart
+	instanceVariableNames: 'product products'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/16/2020 19:33:11' prior: 50900136!
+add: aMarketProduct withQuantity: aQuantity 
+	products add: aMarketProduct.! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/16/2020 19:33:17'!
+ERROR!
+
+Bag new!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:11:58' prior: 50900120!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart new.
+	aProductISBN _ 'XXXX'.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProductISBN).
+	! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:12:13'!
+ERROR!
+
+!methodRemoval: MarketCart #add: stamp: 'HG 11/18/2020 17:12:28'!
+add: aMarketProduct 
+	product _ aMarketProduct.!
+
+!classDefinition: 'MarketCart class' category: #TusLibros stamp: 'HG 11/18/2020 17:14:02'!
+MarketCart class
+	instanceVariableNames: 'products'!
+!MarketCart class methodsFor: 'no messages' stamp: 'HG 11/18/2020 17:14:00' overrides: 16883149!
+initialize
+	products _ Bag new.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:14:32' prior: 50900103!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	
+	cart add: aProduct withQuantity: 1.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 2 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+
+!classRemoval: #MarketProduct stamp: 'HG 11/18/2020 17:14:39'!
+Object subclass: #MarketProduct
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: MarketCart class #initialize stamp: 'HG 11/18/2020 17:14:52'!
+initialize
+	products _ Bag new.!
+!MarketCart methodsFor: 'initialization' stamp: 'HG 11/18/2020 17:15:11' overrides: 16896425!
+initialize
+	products _ Bag new.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:16:25' prior: 50900186!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	
+	cart add: aProduct withQuantity: 2.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 2 equals: (cart quantityProduct).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:17:07' prior: 50900149!
+add: aMarketProduct withQuantity: aQuantity 
+	products add: aMarketProduct withOccurrences: 2.! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:17:12' prior: 50900225!
+add: aMarketProduct withQuantity: aQuantity 
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:17:27'!
+FAILURE!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:17:27'!
+FAILURE!
+!MarketCart methodsFor: 'testing' stamp: 'HG 11/18/2020 17:17:51' prior: 50899906!
+hasProduct: aMarketProduct 
+	^products includes: aMarketProduct. ! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:18:00'!
+PASSED!
+!MarketCart methodsFor: 'accesing' stamp: 'HG 11/18/2020 17:18:58'!
+quantity
+	^1.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:18:58' prior: 50900213!
+test02
+	
+	| aProduct cart anotherProduct |
+	cart _ MarketCart new.
+	
+	cart add: aProduct withQuantity: 2.
+	cart add: anotherProduct withQuantity: 1.
+	
+	self assert: 2 equals: (cart quantity).
+	self assert: (cart hasProduct: aProduct).
+	self assert: (cart hasProduct: anotherProduct).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:18:59' prior: 50900158!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart new.
+	aProductISBN _ 'XXXX'.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN).
+	! !
+
+!methodRemoval: MarketCart #quantityProduct stamp: 'HG 11/18/2020 17:18:59'!
+quantityProduct
+	^1.!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:19:46' prior: 50900257!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN).
+	self assert: (cart hasProduct: anotherProductISBN).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:19:52' prior: 50900285!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN).
+	self assert: (cart hasProduct: anotherProductISBN).
+	! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:20:28'!
+FAILURE!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:21:24'!
+FAILURE!
+!MarketCart methodsFor: 'accesing' stamp: 'HG 11/18/2020 17:21:38' prior: 50900253!
+quantity
+	^products size.! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:21:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:21:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:21:42'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:22:17' prior: 50900300!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!MarketCart methodsFor: 'testing' stamp: 'HG 11/18/2020 17:23:10'!
+hasProduct: aMarketProduct withQuantity: aQuantity
+	^products includes: aMarketProduct. ! !
+
+!methodRemoval: MarketCart #hasProduct: stamp: 'HG 11/18/2020 17:23:15'!
+hasProduct: aMarketProduct 
+	^products includes: aMarketProduct. !
+!MarketCart methodsFor: 'testing' stamp: 'HG 11/18/2020 17:24:04' prior: 50900348!
+hasProduct: aMarketProduct withQuantity: aQuantity
+	^(products occurrencesOf: aMarketProduct) = aQuantity. ! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:24:27' prior: 50900270!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart new.
+	aProductISBN _ 'XXXX'.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:24:28'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:24:28'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:24:28'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:24:41'!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:25:47' prior: 50900386!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	cart add: aNotListedProductISBN withQuantity: 3.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:26:54' prior: 50900402!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+	aNotListedProductISBN _ 'ZZZZ'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	cart add: aNotListedProductISBN withQuantity: 3.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:32:15' prior: 50900421!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+	aNotListedProductISBN _ 'ZZZZ'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:32:18'!
+ERROR!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:32:38'!
+ERROR!
+!MarketCart class methodsFor: 'error description' stamp: 'HG 11/18/2020 17:32:51'!
+nonListedProductErrorDescription
+	self shouldBeImplemented.! !
+!MarketCart class methodsFor: 'error description' stamp: 'HG 11/18/2020 17:33:15' prior: 50900468!
+nonListedProductErrorDescription
+	^'The product is not listed'.! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:33:16'!
+FAILURE!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:33:27' prior: 50900441!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+	aNotListedProductISBN _ 'ZZZZ'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+
+!classDefinition: #MarketCart category: #TusLibros stamp: 'HG 11/18/2020 17:35:44'!
+Object subclass: #MarketCart
+	instanceVariableNames: 'product products catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:35:31' prior: 50900231!
+add: aMarketProduct withQuantity: aQuantity
+	(catalog includes: aMarketProduct) ifFalse: [ self signalProductNotListed. ].
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:35:50' prior: 50900511!
+add: aMarketProduct withQuantity: aQuantity
+	(catalog includes: aMarketProduct) ifFalse: [ ^self signalProductNotListed. ].
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:35:56' prior: 50900520!
+add: aMarketProduct withQuantity: aQuantity
+	(catalog includes: aMarketProduct) ifFalse: [ self signalProductNotListed. ].
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:36:01'!
+ERROR!
+!MarketCart methodsFor: 'initialization' stamp: 'HG 11/18/2020 17:37:26' prior: 50900208 overrides: 16896425!
+initialize
+	products _ Bag new.
+	catalog _ Set newFrom: { 'XXXX', 'YYYY' }.! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:37:34'!
+ERROR!
+!MarketCart methodsFor: 'error handling' stamp: 'HG 11/18/2020 17:37:42'!
+signalProductNotListed
+	self shouldBeImplemented.! !
+!MarketCart methodsFor: 'error handling' stamp: 'HG 11/18/2020 17:37:57' prior: 50900549!
+signalProductNotListed
+	^self error: self class nonListedProductErrorDescription. ! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:37:59'!
+ERROR!
+!MarketCart methodsFor: 'initialization' stamp: 'HG 11/18/2020 17:38:29' prior: 50900541 overrides: 16896425!
+initialize
+	products _ Bag new.
+	catalog _ Set newFrom: { 'XXXX'. 'YYYY' }.! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:38:32'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:38:32'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:38:32'!
+PASSED!
+!MarketCart methodsFor: 'initialization' stamp: 'HG 11/18/2020 17:38:52'!
+initializeWithCatalog: aISBNCatalog
+	products _ Bag new.
+	catalog _ Set newFrom: { 'XXXX'. 'YYYY' }.! !
+!MarketCart methodsFor: 'initialization' stamp: 'HG 11/18/2020 17:38:57' prior: 50900577!
+initializeWithCatalog: aISBNCatalog
+	products _ Bag new.
+	catalog _ Set newFrom: aISBNCatalog.! !
+
+!methodRemoval: MarketCart #initialize stamp: 'HG 11/18/2020 17:39:00'!
+initialize
+	products _ Bag new.
+	catalog _ Set newFrom: { 'XXXX'. 'YYYY' }.!
+!MarketCart class methodsFor: 'instance creation' stamp: 'HG 11/18/2020 17:39:26'!
+withCatalog: aCatalog
+	self new initializeWithCatalog: aCatalog.! !
+!MarketCart class methodsFor: 'instance creation' stamp: 'HG 11/18/2020 17:39:29' prior: 50900595!
+withCatalog: aCatalog
+	^self new initializeWithCatalog: aCatalog.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:39:51' prior: 50900365!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: { 'XXXX' }.
+	aProductISBN _ 'XXXX'.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:39:53'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:39:53'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:39:53'!
+ERROR!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:39:53'!
+ERROR!
+!TusLibrosCartTest methodsFor: 'setUp' stamp: 'HG 11/18/2020 17:40:10' overrides: 16927572!
+setUp! !
+
+!classDefinition: #TusLibrosCartTest category: #TusLibros stamp: 'HG 11/18/2020 17:40:50'!
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: 'includedISBN'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosCartTest category: #TusLibros stamp: 'HG 11/18/2020 17:40:52'!
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: 'includedISBN anotherIncludedISBN'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosCartTest category: #TusLibros stamp: 'HG 11/18/2020 17:40:53'!
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: 'includedISBN anotherIncludedISBN nonIncludedISBN'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCartTest methodsFor: 'setUp' stamp: 'HG 11/18/2020 17:40:48' prior: 50900632 overrides: 16927572!
+setUp
+	
+	includedISBN _ 'XXXX'.
+	anotherIncludedISBN _ 'YYYY'.
+	
+	nonIncludedISBN _ 'ZZZZ'.! !
+
+!classDefinition: #TusLibrosCartTest category: #TusLibros stamp: 'HG 11/18/2020 17:41:23'!
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: 'includedISBN anotherIncludedISBN nonIncludedISBN catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCartTest methodsFor: 'setUp' stamp: 'HG 11/18/2020 17:41:21' prior: 50900660 overrides: 16927572!
+setUp
+	
+	includedISBN _ 'XXXX'.
+	anotherIncludedISBN _ 'YYYY'.
+	
+	nonIncludedISBN _ 'ZZZZ'.
+	
+	catalog _ { includedISBN . anotherIncludedISBN }! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:41:38' prior: 50900607!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: catalog.
+	aProductISBN _ 'XXXX'.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!classDefinition: #TusLibrosCartTest category: #TusLibros stamp: 'HG 11/18/2020 17:41:51'!
+TestCase subclass: #TusLibrosCartTest
+	instanceVariableNames: 'includedISBN anotherIncludedISBN nonIncludedISBN aCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:41:51' prior: 50900676 overrides: 16927572!
+setUp
+	
+	includedISBN _ 'XXXX'.
+	anotherIncludedISBN _ 'YYYY'.
+	
+	nonIncludedISBN _ 'ZZZZ'.
+	
+	aCatalog _ { includedISBN . anotherIncludedISBN }! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:41:51' prior: 50900684!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	aProductISBN _ 'XXXX'.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:42:05' prior: 50900714!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	aProductISBN _ includedISBN.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:42:26' prior: 50900333!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart new.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:42:33' prior: 50900740!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:42:36'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:42:36'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:42:36'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:42:36'!
+ERROR!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:42:36'!
+ERROR!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:42:46' prior: 50900482!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ 'XXXX'.
+	anotherProductISBN _ 'YYYY'.
+	aNotListedProductISBN _ 'ZZZZ'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:43:36' prior: 50900757!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:43:37'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:43:37'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:43:37'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:43:37'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:43:51' prior: 50900788!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ 'ZZZZ'.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:44:04' prior: 50900841!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:44:19'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:44:19'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:44:19'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:44:19'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:44:57' prior: 50900865!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	! !
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:45:02'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:45:02'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:45:02'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:45:02'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:47:41'!
+test04
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:47:54'!
+ERROR!
+!MarketCart class methodsFor: 'error description' stamp: 'HG 11/18/2020 17:48:10'!
+nonPositiveQuantityAddingErrorDescription
+	self shouldBeImplemented.! !
+!MarketCart class methodsFor: 'error description' stamp: 'HG 11/18/2020 17:48:26' prior: 50900954!
+nonPositiveQuantityAddingErrorDescription
+	^'Can not add a non positive quantity book.'.! !
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:48:29'!
+FAILURE!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:49:09' prior: 50900529!
+add: aMarketProduct withQuantity: aQuantity
+	(catalog includes: aMarketProduct) ifFalse: [ self signalProductNotListed. ].
+	(aQuantity <= 0) ifTrue: [ self signalNonPositiveQuantity. ].
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:49:11'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:49:11'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:49:11'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:49:11'!
+FAILURE!
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:49:11'!
+FAILURE!
+!MarketCart methodsFor: 'error handling' stamp: 'HG 11/18/2020 17:49:30'!
+signalNonPositiveQuantity
+	^self error: self class nonPositiveQuantityAddingErrorDescription . ! !
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:49:33'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:49:33'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:49:33'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:49:33'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:49:33'!
+PASSED!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:50:06'!
+assertProductIsListed: aMarketProduct
+
+	^ (catalog includes: aMarketProduct) ifFalse: [ self signalProductNotListed. ]! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:50:06' prior: 50900968!
+add: aMarketProduct withQuantity: aQuantity
+	self assertProductIsListed: aMarketProduct.
+	(aQuantity <= 0) ifTrue: [ self signalNonPositiveQuantity. ].
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+!MarketCart methodsFor: 'assertions' stamp: 'HG 11/18/2020 17:50:54'!
+assertThatProductIsListed: aMarketProduct
+
+	^ (catalog includes: aMarketProduct) ifFalse: [ self signalProductNotListed. ]! !
+!MarketCart methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:50:54' prior: 50901018!
+add: aMarketProduct withQuantity: aQuantity
+	self assertThatProductIsListed: aMarketProduct.
+	(aQuantity <= 0) ifTrue: [ self signalNonPositiveQuantity. ].
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+
+!methodRemoval: MarketCart #assertProductIsListed: stamp: 'HG 11/18/2020 17:50:54'!
+assertProductIsListed: aMarketProduct
+
+	^ (catalog includes: aMarketProduct) ifFalse: [ self signalProductNotListed. ]!
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:51:23'!
+assertThatPositiveQuantity: aQuantity
+
+	^ (aQuantity <= 0) ifTrue: [ self signalNonPositiveQuantity. ]! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:51:23' prior: 50901034!
+add: aMarketProduct withQuantity: aQuantity
+	self assertThatProductIsListed: aMarketProduct.
+	self assertThatPositiveQuantity: aQuantity.
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+!MarketCart methodsFor: 'adding' stamp: 'HG 11/18/2020 17:51:36' prior: 50901056!
+add: aMarketProduct withQuantity: aQuantity
+
+	self assertThatProductIsListed: aMarketProduct.
+	self assertThatPositiveQuantity: aQuantity.
+	
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+!MarketCart methodsFor: 'assertions' stamp: 'HG 11/18/2020 17:51:47'!
+assertThatPositiveQuantityToAdd: aQuantity
+
+	^ (aQuantity <= 0) ifTrue: [ self signalNonPositiveQuantity. ]! !
+!MarketCart methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:51:47' prior: 50901065!
+add: aMarketProduct withQuantity: aQuantity
+
+	self assertThatProductIsListed: aMarketProduct.
+	self assertThatPositiveQuantityToAdd: aQuantity.
+	
+	products add: aMarketProduct withOccurrences: aQuantity.! !
+
+!methodRemoval: MarketCart #assertThatPositiveQuantity: stamp: 'HG 11/18/2020 17:51:47'!
+assertThatPositiveQuantity: aQuantity
+
+	^ (aQuantity <= 0) ifTrue: [ self signalNonPositiveQuantity. ]!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:52:44'!
+test05
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:53:07' prior: 50901097!
+test05
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+----SNAPSHOT----(18 November 2020 17:54:36) CuisUniversity-4137.image priorSource: 18178836!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:55:06' prior: 50901112!
+test05
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN .
+	
+	cart add: aProductISBN withQuantity: 5. 
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:56:33' prior: 50901125!
+test05
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: products size equals: 12.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:57:17' prior: 50901139!
+test05
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: products size equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.! !
+
+!testRun: #TusLibrosCartTest #test05 stamp: 'HG 11/18/2020 17:57:23'!
+ERROR!
+!MarketCart methodsFor: 'accessing' stamp: 'HG 11/18/2020 17:57:30'!
+productList
+	self shouldBeImplemented.! !
+!MarketCart methodsFor: 'accessing' stamp: 'HG 11/18/2020 17:57:40' prior: 50901174!
+productList
+	^products copy.! !
+
+!testRun: #TusLibrosCartTest #test05 stamp: 'HG 11/18/2020 17:57:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 17:57:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 17:57:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 17:57:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 17:57:42'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05 stamp: 'HG 11/18/2020 17:57:42'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 17:58:05' prior: 50901154!
+test05
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.! !
+!MarketCart methodsFor: 'assertions' stamp: 'HG 11/18/2020 18:02:18' prior: 50901027!
+assertThatProductIsListed: aMarketProduct
+
+	^ (catalog includes: aMarketProduct) 
+		ifFalse: [ self signalProductNotListed. ]! !
+!MarketCart methodsFor: 'assertions' stamp: 'HG 11/18/2020 18:02:26' prior: 50901074!
+assertThatPositiveQuantityToAdd: aQuantity
+
+	^ (aQuantity <= 0) 
+		ifTrue: [ self signalNonPositiveQuantity. ]! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:05:59'!
+test02AddMultipleBooksAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test02 stamp: 'HG 11/18/2020 18:05:59'!
+test02
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:06:22'!
+test03CanNotAddANonListedProduct
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test03 stamp: 'HG 11/18/2020 18:06:22'!
+test03
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:06:46'!
+test04CanNotAddProductWithNonPositiveQuantity
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test04 stamp: 'HG 11/18/2020 18:06:46'!
+test04
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:07:25'!
+test05CartCanListItsOwnProducts
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.! !
+
+!methodRemoval: TusLibrosCartTest #test05 stamp: 'HG 11/18/2020 18:07:25'!
+test05
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.!
+
+----SNAPSHOT----(18 November 2020 18:10:03) CuisUniversity-4137.image priorSource: 18223064!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:15:34'!
+test0
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart quantity).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:16:09'!
+test01CartHasZeroQuantityWhenCreated
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart quantity).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test0 stamp: 'HG 11/18/2020 18:16:11'!
+test0
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart quantity).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:16:14'!
+test02AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	aProductISBN _ includedISBN.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test01AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:16:17'!
+test01AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	aProductISBN _ includedISBN.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:16:25'!
+test03AddMultipleBooksAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test02AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:16:30'!
+test02AddMultipleBooksAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:16:35'!
+test04CanNotAddANonListedProduct
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test03CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:16:37'!
+test03CanNotAddANonListedProduct
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart quantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:16:45'!
+test06CartCanListItsOwnProducts
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.! !
+
+!methodRemoval: TusLibrosCartTest #test05CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:16:46'!
+test05CartCanListItsOwnProducts
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:16:49'!
+test05CanNotAddProductWithNonPositiveQuantity
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test04CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:16:51'!
+test04CanNotAddProductWithNonPositiveQuantity
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart quantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroQuantityWhenCreated stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test06CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:16:56'!
+PASSED!
+!MarketCart methodsFor: 'accesing' stamp: 'HG 11/18/2020 18:17:17'!
+totalQuantity
+	^products size.! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:17' prior: 50901475!
+test04CanNotAddANonListedProduct
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:17' prior: 50901410!
+test02AddBookToCartAffectsCartListCorrectly
+	
+	| aProductISBN cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	aProductISBN _ includedISBN.
+	
+	cart add: aProductISBN withQuantity: 1.
+	
+	self assert: 1 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:17' prior: 50901397!
+test01CartHasZeroQuantityWhenCreated
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart totalQuantity).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:17' prior: 50901435!
+test03AddMultipleBooksAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 3 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:17' prior: 50901566!
+test05CanNotAddProductWithNonPositiveQuantity
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart totalQuantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: MarketCart #quantity stamp: 'HG 11/18/2020 18:17:17'!
+quantity
+	^products size.!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:27'!
+test01CartHasZeroTotalQuantityWhenCreated
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart totalQuantity).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test01CartHasZeroQuantityWhenCreated stamp: 'HG 11/18/2020 18:17:31'!
+test01CartHasZeroQuantityWhenCreated
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart totalQuantity).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:17:37'!
+test01CartHasZeroProductsWhenCreated
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart totalQuantity).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test01CartHasZeroTotalQuantityWhenCreated stamp: 'HG 11/18/2020 18:17:38'!
+test01CartHasZeroTotalQuantityWhenCreated
+	
+	| cart |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	self assert: 0 equals: (cart totalQuantity).
+	!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroProductsWhenCreated stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroProductsWhenCreated stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test06CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:17:43'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:20:05' prior: 50901675!
+test03AddMultipleBooksAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 1.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 2 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:07'!
+FAILURE!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:20:19' prior: 50901772!
+test03AddMultipleBooksAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 1.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self assert: 2 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 1).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	! !
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroProductsWhenCreated stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test06CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:20:20'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:20:47'!
+test04AddBooksWithMultipleQuantityAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 3.
+	cart add: anotherProductISBN withQuantity: 4.
+	
+	self assert: 7 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 3).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 4).
+	! !
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroProductsWhenCreated stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test06CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:20:49'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:08' prior: 50901839!
+test04AddBooksWithMultipleQuantityAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 3.
+	cart add: anotherProductISBN withQuantity: 4.
+	
+	self assert: 7 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 3).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 4).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 4).
+	! !
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroProductsWhenCreated stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test06CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:21:09'!
+PASSED!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:12' prior: 50901887!
+test04AddBooksWithMultipleQuantityAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 3.
+	cart add: anotherProductISBN withQuantity: 4.
+	
+	self assert: 7 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 3).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 4).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:20'!
+test05CanNotAddANonListedProduct
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test04CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:21:22'!
+test04CanNotAddANonListedProduct
+	
+	|  cart  aProductISBN anotherProductISBN aNotListedProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	aNotListedProductISBN _ nonIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 2.
+	cart add: anotherProductISBN withQuantity: 1.
+	
+	self 
+		should: [ cart add: aNotListedProductISBN withQuantity: 3. ]
+		raise: Error
+		withMessageText: MarketCart nonListedProductErrorDescription.
+	
+	self assert: 3 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 2).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 1).
+	self deny: (cart hasProduct: aNotListedProductISBN withQuantity: 3).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:29'!
+test06CanNotAddProductWithNonPositiveQuantity
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart totalQuantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	! !
+
+!methodRemoval: TusLibrosCartTest #test05CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:21:31'!
+test05CanNotAddProductWithNonPositiveQuantity
+	
+	|  cart  aProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	
+	self 
+		should: [ cart add: aProductISBN withQuantity: -1. ]
+		raise: Error
+		withMessageText: MarketCart nonPositiveQuantityAddingErrorDescription..
+	
+	self assert: 0 equals: (cart totalQuantity).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 1).
+	!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:34'!
+test07CartCanListItsOwnProducts
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.! !
+
+!methodRemoval: TusLibrosCartTest #test06CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:21:36'!
+test06CartCanListItsOwnProducts
+	
+	|  cart  aProductISBN anotherProductISBN products |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+	
+	cart add: aProductISBN withQuantity: 5. 
+	cart add: anotherProductISBN withQuantity: 7. 
+	
+	products _ cart productList.
+	
+	self assert: (products size) equals: 12.
+	self assert: (products occurrencesOf: aProductISBN) equals: 5.
+	self assert: (products occurrencesOf: anotherProductISBN) equals: 7.!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:43' prior: 50901937!
+test04AddBooksWithMultipleQuantityAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 3.
+	cart add: anotherProductISBN withQuantity: 4.
+	
+	self assert: 7 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 3).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 4).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 4).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 3).
+	! !
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:47'!
+FAILURE!
+!TusLibrosCartTest methodsFor: 'as yet unclassified' stamp: 'HG 11/18/2020 18:21:55' prior: 50902083!
+test04AddBooksWithMultipleQuantityAffectsCartListCorrectly
+	
+	|  cart  aProductISBN anotherProductISBN |
+	cart _ MarketCart withCatalog: aCatalog.
+	
+	aProductISBN _ includedISBN.
+	anotherProductISBN _ anotherIncludedISBN.
+
+	cart add: aProductISBN withQuantity: 3.
+	cart add: anotherProductISBN withQuantity: 4.
+	
+	self assert: 7 equals: (cart totalQuantity).
+	self assert: (cart hasProduct: aProductISBN withQuantity: 3).
+	self assert: (cart hasProduct: anotherProductISBN withQuantity: 4).
+	self deny: (cart hasProduct: aProductISBN withQuantity: 4).
+	self deny: (cart hasProduct: anotherProductISBN withQuantity: 3).
+	! !
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test01CartHasZeroProductsWhenCreated stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test02AddBookToCartAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test03AddMultipleBooksAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test04AddBooksWithMultipleQuantityAffectsCartListCorrectly stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test05CanNotAddANonListedProduct stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test06CanNotAddProductWithNonPositiveQuantity stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+!testRun: #TusLibrosCartTest #test07CartCanListItsOwnProducts stamp: 'HG 11/18/2020 18:21:55'!
+PASSED!
+
+----SNAPSHOT----(18 November 2020 18:22:56) CuisUniversity-4137.image priorSource: 18231562!

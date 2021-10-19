@@ -1,0 +1,4474 @@
+----End fileIn of C:\Users\Administrador\Desktop\Migue\isw1\is1-ejercicios\20-TusLibros\TusLibros-3.st----!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 22:44:01'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:51:56'!
+test11CartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout.
+	
+	self should: [ 
+		restInterface 
+			add: 2 
+			of: testObjectsFactory itemSoldByTheStore 
+			toCartWithID: cartID. 
+		]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.
+	
+	self should: [ restInterface listItemsInCartWithID: cartID. ]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.
+	
+	self should: [ 
+		restInterface 
+			checkOutCartWithID: cartID 
+			withCardNumber: testObjectsFactory validCardNumber 
+			expiring: testObjectsFactory expirationDateNotReached 
+			owner: testObjectsFactory validClientID.
+		]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:52:18'!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout.
+	
+	self should: [ 
+		restInterface 
+			add: 2 
+			of: testObjectsFactory itemSoldByTheStore 
+			toCartWithID: cartID. 
+		]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.
+	
+	self should: [ restInterface listItemsInCartWithID: cartID. ]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.
+	
+	self should: [ 
+		restInterface 
+			checkOutCartWithID: cartID 
+			withCardNumber: testObjectsFactory validCardNumber 
+			expiring: testObjectsFactory expirationDateNotReached 
+			owner: testObjectsFactory validClientID.
+		]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.! !
+
+!methodRemoval: RestInterfaceTest #test11CartClockResetsAfterInteraction stamp: 'mf 12/2/2020 22:52:18'!
+test11CartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout.
+	
+	self should: [ 
+		restInterface 
+			add: 2 
+			of: testObjectsFactory itemSoldByTheStore 
+			toCartWithID: cartID. 
+		]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.
+	
+	self should: [ restInterface listItemsInCartWithID: cartID. ]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.
+	
+	self should: [ 
+		restInterface 
+			checkOutCartWithID: cartID 
+			withCardNumber: testObjectsFactory validCardNumber 
+			expiring: testObjectsFactory expirationDateNotReached 
+			owner: testObjectsFactory validClientID.
+		]
+		raise: Error
+		withMessageText: RestInterface cartTimedOutMessage.!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:53:23' prior: 50870893!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: 10 minutes.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert clock 
+! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:55:33' prior: 50870973!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: 29 minutes.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert clock 
+! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:55:45' prior: 50870997!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert clock 
+! !
+
+30 * minute - 1!
+
+30 * minute - 1 * minute!
+
+(30 * minute) - (1 * minute)!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:57:07' prior: 50871021!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1 * minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert clock 
+! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 22:59:58' prior: 50871048!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1 * minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now ~= 1.! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:04:24' prior: 50871073!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateNonReacheableValidTime.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now ~= 1.! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:07:21' prior: 50871098!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now ~= 1.! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:08:18' prior: 50871122!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now ~= 1.! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:10:30' prior: 50871145!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: clock now equals: (restInterface cartExpirationDateTimeForID: cartID).! !
+
+1*minute next: 30*minute!
+
+(1*minute) next: (30*minute)!
+
+(GregorianDateTime now next: 30*minute)!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:17:45' prior: 50871170!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:21:16' prior: 50871216!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:22:27' prior: 50871263!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:22:30'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:22:30'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:22:51'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:23:14' prior: 50871312!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	! !
+!StoreTestObjectsFactory methodsFor: 'rest interface' stamp: 'mf 12/2/2020 23:23:53'!
+cartTimeoutNotReached
+
+	^10 * minute.! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:24:01'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:24:01'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:24:10'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:24:10'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:24:22' prior: 50871370!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:24:26'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:24:26'!
+FAILURE!
+
+| date1 date2 |
+date1 := GregorianDateTime now.
+date1!
+
+| date1 date2 |
+date1 := GregorianDateTime now.
+date2 := date1.
+date2 = date1!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:26:24'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:26:24'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:27:35' prior: 50871435!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:27:38'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:27:39'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:28:50' prior: 50871501!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeout - 1*minute.
+	! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:28:54'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:28:54'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:29:16' prior: 50871558!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	
+	! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:29:20'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:29:20'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:29:48' prior: 50871614!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	
+	
+	! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:29:53' prior: 50871668!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	
+	! !
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:29:56'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:29:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:00'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:12'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:24'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:28'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:28'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:33'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:30:53'!
+test11cartClockResetsAfterAdd
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test11cartClockResetsAfterInteraction stamp: 'mf 12/2/2020 23:30:54'!
+test11cartClockResetsAfterInteraction
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	
+	!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:31:07'!
+test11cartClockResetsAfterListing
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	
+	
+	! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:31:29' prior: 50871891!
+test11cartClockResetsAfterListing
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:31:37'!
+test12cartClockResetsAfterListing
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+
+!methodRemoval: RestInterfaceTest #test11cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:31:37'!
+test11cartClockResetsAfterListing
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:31:40'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:31:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:31:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:31:45'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:32:02'!
+test12cartClockResetsAfterCheckout
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:32:10'!
+test13cartClockResetsAfterCheckout
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+
+!methodRemoval: RestInterfaceTest #test12cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:32:10'!
+test12cartClockResetsAfterCheckout
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:32:25' prior: 50872110!
+test13cartClockResetsAfterCheckout
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:32:28'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:32:29'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:32:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:32:29'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:33:53'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:33:53'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:33:53'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:33:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:33:54'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:33:54'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:35:03' prior: 50872162!
+test13cartClockResetsAfterCheckout
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+		
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) = (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:35:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:35:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:35:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:35:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:35:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:35:07'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:35:07'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:35:20' prior: 50872287!
+test13cartClockResetsAfterCheckout
+	| restInterface cartID clock |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+		
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (clock now next: testObjectsFactory cartTimeout) equals: (restInterface cartExpirationDateTimeForID: cartID).
+	! !
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:35:24'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:35:24'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:35:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:35:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:35:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:35:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:35:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:35:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:35:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:35:42'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:36:01'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:36:01'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:36:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:36:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:36:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:36:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:36:20'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:36:21'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/2/2020 23:54:32'!
+test14cannotListPurchasesOfInvalidClient
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: restInterface cannotListPurchasesOfClientWithoutCartMessage.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:55:18'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:55:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:55:18'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/2/2020 23:55:18'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:55:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:55:37'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:55:54'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/2/2020 23:56:00'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:57:25' prior: 50871836!
+test11cartClockResetsAfterAdd
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) 
+	
+	
+	! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:58:24' prior: 50872643!
+test11cartClockResetsAfterAdd
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	originalExpirationDate := restInterface cartExpirationDateTimeForID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) 
+	
+	
+	! !
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/2/2020 23:58:54' prior: 50872670!
+test11cartClockResetsAfterAdd
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	originalExpirationDate := restInterface cartExpirationDateTimeForID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) ~= originalExpirationDate.
+	
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/2/2020 23:59:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/2/2020 23:59:00'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/2/2020 23:59:00'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/2/2020 23:59:00'!
+ERROR!
+!RestInterfaceTest methodsFor: 'auxiliaries' stamp: 'mf 12/3/2020 00:01:33'!
+assertRestInterface: anInterface withClock: aClock resetsTimeoutOfCart: aCartID
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	originalExpirationDate := restInterface cartExpirationDateTimeForID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) ~= originalExpirationDate.
+	! !
+
+!methodRemoval: RestInterfaceTest #assertRestInterface:withClock:resetsTimeoutOfCart: stamp: 'mf 12/3/2020 00:03:13'!
+assertRestInterface: anInterface withClock: aClock resetsTimeoutOfCart: aCartID
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	originalExpirationDate := restInterface cartExpirationDateTimeForID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface 
+		add: 2 
+		of: testObjectsFactory itemSoldByTheStore 
+		toCartWithID: cartID. 
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) ~= originalExpirationDate.
+	!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/3/2020 00:04:26' prior: 50871945!
+test12cartClockResetsAfterListing
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	originalExpirationDate  := restInterface cartExpirationDateTimeForID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface listItemsInCartWithID: cartID.
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) ~= originalExpirationDate .
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:04:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:04:30'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:04:30'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests - cart timeout' stamp: 'mf 12/3/2020 00:05:28' prior: 50872369!
+test13cartClockResetsAfterCheckout
+	| restInterface cartID clock originalExpirationDate |
+
+	clock := Clock newSimulatingRealTime.
+
+	restInterface := RestInterface 
+		authenticatingWith: AuthenticatorSimulator newSimulatingValidAuthentication 
+		debitingWith: self itemsFrom: testObjectsFactory defaultCatalog
+		withClock: clock withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface 
+		createCartFor: testObjectsFactory validClientID
+		password: testObjectsFactory correctPassword.
+	originalExpirationDate := restInterface cartExpirationDateTimeForID: cartID .
+		
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+	
+	clock simulateAdvancing: testObjectsFactory cartTimeoutNotReached.
+	
+	restInterface    checkOutCartWithID: cartID 
+				withCardNumber: testObjectsFactory validCardNumber 
+				expiring: testObjectsFactory expirationDateNotReached 
+				owner: 'Pepe'.
+	
+	self assert: (restInterface cartExpirationDateTimeForID: cartID) ~= originalExpirationDate .
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:05:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:05:30'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:05:30'!
+ERROR!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'mf 12/3/2020 00:06:01'!
+cannotListPurchasesOfClientWithoutCartMessage
+	self shouldBeImplemented.! !
+
+!methodRemoval: RestInterface #cannotListPurchasesOfClientWithoutCartMessage stamp: 'mf 12/3/2020 00:06:25'!
+cannotListPurchasesOfClientWithoutCartMessage
+	self shouldBeImplemented.!
+!RestInterface class methodsFor: 'error messages' stamp: 'mf 12/3/2020 00:07:33'!
+cannotListPurchasesOfClientWithoutCartMessage
+	^ 'Cannot list purchases of client who never created a cart'.! !
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 00:08:30'!
+listPurchasesOf: aClientID password: aPassword
+	self error: self class cannotListPurchasesOfClientWithoutCartMessage.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:08:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:08:41'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:08:41'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:09:03' prior: 50872558!
+test14cannotListPurchasesOfInvalidClient
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:09:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:09:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:09:07'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:09:42'!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:10:20'!
+test15canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.! !
+
+!methodRemoval: RestInterfaceTest #test14canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:10:20'!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:10:27'!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	restInterface 
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.! !
+
+!methodRemoval: RestInterfaceTest #test14canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:10:33'!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	restInterface 
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.!
+
+OrderedCollection with: Dictionary new with: 1.!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:14:21' prior: 50873175!
+test15canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	restInterface createCartFor: testObjectsFactory validClientID password: 	testObjectsFactory correctPassword.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:14:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:14:25'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:14:25'!
+ERROR!
+
+!methodRemoval: RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:16:26'!
+test14cannotListPurchasesOfInvalidClient
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID password: testObjectsFactory correctPassword. ]
+	      raise: Error
+	      withMessageText: RestInterface cannotListPurchasesOfClientWithoutCartMessage.!
+
+!methodRemoval: RestInterface class #cannotListPurchasesOfClientWithoutCartMessage stamp: 'mf 12/3/2020 00:16:39'!
+cannotListPurchasesOfClientWithoutCartMessage
+	^ 'Cannot list purchases of client who never created a cart'.!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:17:06'!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	restInterface createCartFor: testObjectsFactory validClientID password: 	testObjectsFactory correctPassword.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+
+!methodRemoval: RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:17:06'!
+test15canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	restInterface createCartFor: testObjectsFactory validClientID password: 	testObjectsFactory correctPassword.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:17:20' prior: 50873379!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:17:37'!
+test15canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+
+!methodRemoval: RestInterfaceTest #test14canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:17:37'!
+test14canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:17:55'!
+test14cannotListPurchasesOfInvalidClient
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:23:01' prior: 50873497!
+test14cannotListPurchasesOfInvalidClient
+
+	| restInterface clock authSimulator |
+	
+	clock := Clock newSimulatingRealTime.
+	authSimulator := AuthenticatorSimulator new.
+	authSimulator simulateInvalidClientID.
+	restInterface := RestInterface authenticatingWith: authSimulator
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword]
+		raise: Error
+		withMessageText: RestInterface authenticationFailedMessage.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:23:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:23:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:23:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:23:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:23:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:23:08'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:23:08'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:23:13'!
+FAILURE!
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 00:23:58' prior: 50873022!
+listPurchasesOf: aClientID password: aPassword
+	authenticator authenticate: aClientID password: aPassword.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:24:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:24:03'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:24:03'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:24:06'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:24:39' prior: 50873519!
+test14cannotListPurchasesOfInvalidClient
+
+	| restInterface clock authSimulator |
+	
+	clock := Clock newSimulatingRealTime.
+	authSimulator := AuthenticatorSimulator new.
+	authSimulator simulateInvalidClientID.
+	restInterface := RestInterface authenticatingWith: authSimulator
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword]
+		raise: Error
+		withMessageText: AuthenticatorSimulator invalidClientIDMessage.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:24:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:24:42'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:24:42'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:24:42'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:24:42'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:24:42'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:25:26'!
+test15cannotListPurchasesOfClientWithInvalidPassword
+
+	| restInterface clock authSimulator |
+	
+	clock := Clock newSimulatingRealTime.
+	authSimulator := AuthenticatorSimulator new.
+	authSimulator simulateWrongPassword .
+	restInterface := RestInterface authenticatingWith: authSimulator
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self should: [ restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword]
+		raise: Error
+		withMessageText: AuthenticatorSimulator invalidPasswordMessage .! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:25:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:25:29'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 00:25:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:25:30'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:25:43'!
+test16canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+
+!methodRemoval: RestInterfaceTest #test15canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:25:43'!
+test15canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:26:43'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:26:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 00:26:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:26:44'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:26:44'!
+FAILURE!
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 00:27:52' prior: 50873600!
+listPurchasesOf: aClientID password: aPassword
+	authenticator authenticate: aClientID password: aPassword.
+	
+	^ OrderedCollection with: Dictionary new with: 0.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:27:56'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:28:21'!
+test16canListPurchasesClientWhoBoughtOneBook
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:28:29'!
+test17canListPurchasesClientWhoBoughtOneBook
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+
+!methodRemoval: RestInterfaceTest #test16canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 00:28:29'!
+test16canListPurchasesClientWhoBoughtOneBook
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 00:32:28' prior: 50874021!
+test17canListPurchasesClientWhoBoughtOneBook
+
+	| restInterface cartID clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: (Dictionary with: testObjectsFactory itemSoldByTheStore -> 1 ) 
+			                                  with: testObjectsFactory itemSoldByTheStorePrice ).! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 00:32:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 00:32:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 00:32:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 00:32:31'!
+FAILURE!
+
+----QUIT----(3 December 2020 00:35:37) CuisUniversity-4384.image priorSource: 17155564!
+
+----STARTUP---- (3 December 2020 10:15:01) as C:\Users\Administrador\Desktop\Migue\isw1\windows64\CuisUniversity-4384.image!
+
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 10:17:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 10:17:30'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 10:17:30'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 10:17:30'!
+FAILURE!
+
+----End fileIn of C:\Users\Administrador\Desktop\Migue\isw1\windows64\Packages\TerseGuide.pck.st----!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'mf 12/3/2020 10:26:31'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticator lastCartID carts lastInteractionForCart catalog clock transactionValues merchantProcessor cartTimeout clientCarts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 10:26:26' prior: 50870573!
+createCartFor: aClientID password: aPassword
+	| cartID |
+	
+	self authenticate: aClientID with: aPassword.
+
+	cartID := self nextCartID.
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	
+	self resetTimerOfCartWithID: cartID.	
+	
+	(clientCarts at: aClientID ifAbsent: [clientCarts add: (aClientID -> OrderedCollection with: cartID)] ) add: cartID.
+	
+	^cartID.! !
+
+| dic |
+dic := Dictionary with: 1 -> OrderedCollection with: 2.
+(dic at: 1 ifAbsent: [ 'hola' print ]) add: 1.!
+
+| dic |
+dic := Dictionary with: 1 -> OrderedCollection with: 2.
+dic at: 1 ifAbsent: [ dic add: 1-> OrderedCollection new. ]!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+dic at: 1 ifAbsent: [ dic add: 1-> OrderedCollection new. ]!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 1 ifAbsent: [ dic add: 1-> OrderedCollection new. ]) add: 3!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 1 ifAbsent: [ dic add: 1-> OrderedCollection new. ]) add: 3.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 2!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 2!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 2!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 2).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 3.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 1).
+(dic at: 2 ifAbsent: [ ^ dic add: 2-> OrderedCollection new. ]) add: 2.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 1).
+(dic at: 2 ifAbsent: [ dic add: 2-> OrderedCollection new. ]) add: 2.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 1).
+(dic at: 2 ifAbsent: [ dic add: 2-> OrderedCollection new. 
+				dic at: 2]) add: 2.
+dic at: 1!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 1).
+(dic at: 2 ifAbsent: [ dic add: 2-> OrderedCollection new. 
+				dic at: 2]) add: 2.
+dic at: 2!
+
+| dic |
+dic := Dictionary with: 1 -> (OrderedCollection with: 1).
+(dic at: 2 ifAbsent: [ dic add: 2-> OrderedCollection new. 
+				dic at: 2]) add: 2.
+dic at: 1!
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 10:37:55' prior: 50877179!
+createCartFor: aClientID password: aPassword
+	| cartID |
+	
+	self authenticate: aClientID with: aPassword.
+
+	cartID := self nextCartID.
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	
+	self resetTimerOfCartWithID: cartID.	
+	
+	(clientCarts at: aClientID ifAbsent: [clientCarts add: aClientID -> (OrderedCollection new).
+							     clientCarts at: aClientID.] ) add: cartID.
+	
+	^cartID.! !
+!RestInterface methodsFor: 'initialization' stamp: 'mf 12/3/2020 10:40:57' prior: 50870655!
+initializeAuthenticatingWith: anAuthenticator debitingWith: aMerchantProcessor itemsFrom: aCatalog withClock: aClock withCartTimeout: aTimeMeasure 
+
+	authenticator := anAuthenticator.
+	lastCartID := 0.
+	catalog := aCatalog.
+	clock := aClock.
+	merchantProcessor := aMerchantProcessor.
+	cartTimeout := aTimeMeasure.
+	transactionValues := Dictionary new.
+	carts := Dictionary new.
+	lastInteractionForCart := Dictionary new.
+	clientCarts := Dictionary new.! !
+!RestInterface methodsFor: 'initialization' stamp: 'mf 12/3/2020 10:46:11' prior: 50877287!
+initializeAuthenticatingWith: anAuthenticator debitingWith: aMerchantProcessor itemsFrom: aCatalog withClock: aClock withCartTimeout: aTimeMeasure 
+
+	authenticator := anAuthenticator.
+	lastCartID := 0.
+	catalog := aCatalog.
+	clock := aClock.
+	merchantProcessor := aMerchantProcessor.
+	cartTimeout := aTimeMeasure.
+	transactionValues := Dictionary new.
+	carts := Dictionary new.
+	lastInteractionForCart := Dictionary new.! !
+
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticator lastCartID carts lastInteractionForCart catalog clock transactionValues merchantProcessor cartTimeout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'mf 12/3/2020 10:46:18'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticator lastCartID carts lastInteractionForCart catalog clock transactionValues merchantProcessor cartTimeout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 10:46:30' prior: 50877271!
+createCartFor: aClientID password: aPassword
+	| cartID |
+	
+	self authenticate: aClientID with: aPassword.
+
+	cartID := self nextCartID.
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	
+	self resetTimerOfCartWithID: cartID.	
+	
+	^cartID.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 10:46:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 10:46:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 10:46:37'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 10:46:37'!
+FAILURE!
+
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ClientSession category: 'TusLibros' stamp: 'mf 12/3/2020 10:48:44'!
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ClientSession class methodsFor: 'instance creation' stamp: 'mf 12/3/2020 10:49:50'!
+newFor: aClientID password: aPassword
+
+	^ self new initializeFor: aClientID password: aPassword.! !
+
+!classDefinition: #ClientSession category: 'TusLibros' stamp: 'mf 12/3/2020 10:50:32'!
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases clientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ClientSession category: 'TusLibros' stamp: 'mf 12/3/2020 10:50:33'!
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases clientID password'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ClientSession methodsFor: 'initialization' stamp: 'mf 12/3/2020 10:50:31'!
+initializeFor: aClientID password: aPassword
+	clientID := aClientID.
+	password := aPassword.! !
+!ClientSession methodsFor: 'cart management' stamp: 'mf 12/3/2020 10:52:14'!
+assignCart: aCartID
+	
+	ownedCarts add: aCartID.! !
+!ClientSession methodsFor: 'initialization' stamp: 'mf 12/3/2020 10:52:32' prior: 50877448!
+initializeFor: aClientID password: aPassword
+	clientID := aClientID.
+	password := aPassword.
+	ownedCarts := OrderedCollection new.! !
+
+!classDefinition: #ClientSession category: 'TusLibros' stamp: 'mf 12/3/2020 10:53:00'!
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases clientID password totalSpent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ClientSession methodsFor: 'initialization' stamp: 'mf 12/3/2020 10:52:58' prior: 50877459!
+initializeFor: aClientID password: aPassword
+	clientID := aClientID.
+	password := aPassword.
+	ownedCarts := OrderedCollection new.
+	listOfPurchases := Dictionary new.
+	totalSpent := 0! !
+
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticator lastCartID carts lastInteractionForCart catalog clock transactionValues merchantProcessor cartTimeout clientSessions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'mf 12/3/2020 10:54:31'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticator lastCartID carts lastInteractionForCart catalog clock transactionValues merchantProcessor cartTimeout clientSessions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'initialization' stamp: 'mf 12/3/2020 10:54:49' prior: 50877305!
+initializeAuthenticatingWith: anAuthenticator debitingWith: aMerchantProcessor itemsFrom: aCatalog withClock: aClock withCartTimeout: aTimeMeasure 
+
+	authenticator := anAuthenticator.
+	lastCartID := 0.
+	catalog := aCatalog.
+	clock := aClock.
+	merchantProcessor := aMerchantProcessor.
+	cartTimeout := aTimeMeasure.
+	transactionValues := Dictionary new.
+	carts := Dictionary new.
+	lastInteractionForCart := Dictionary new.
+	clientSessions := Dictionary new.! !
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 10:58:49' prior: 50877339!
+createCartFor: aClientID password: aPassword
+	| cartID |
+	
+	self authenticate: aClientID with: aPassword.
+
+	cartID := self nextCartID.
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	
+	self resetTimerOfCartWithID: cartID.	
+	
+	(clientSessions at: aClientID
+			       ifAbsent:	[ clientSessions add: aClientID -> (ClientSession newFor: aClientID).
+					      clientSessions at: aClientID.]) assignCart: cartID.
+					
+	^cartID.! !
+
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases clientID totalSpent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ClientSession category: 'TusLibros' stamp: 'mf 12/3/2020 10:59:03'!
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases clientID totalSpent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ClientSession class methodsFor: 'instance creation' stamp: 'mf 12/3/2020 10:59:50'!
+newFor: aClientID
+
+	^ self new initializeFor: aClientID! !
+
+!methodRemoval: ClientSession class #newFor:password: stamp: 'mf 12/3/2020 10:59:58'!
+newFor: aClientID password: aPassword
+
+	^ self new initializeFor: aClientID password: aPassword.!
+!ClientSession methodsFor: 'initialization' stamp: 'mf 12/3/2020 11:00:09'!
+initializeFor: aClientID
+	clientID := aClientID.
+	ownedCarts := OrderedCollection new.
+	listOfPurchases := Dictionary new.
+	totalSpent := 0! !
+
+!methodRemoval: ClientSession #initializeFor:password: stamp: 'mf 12/3/2020 11:00:13'!
+initializeFor: aClientID password: aPassword
+	clientID := aClientID.
+	password := aPassword.
+	ownedCarts := OrderedCollection new.
+	listOfPurchases := Dictionary new.
+	totalSpent := 0!
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 11:03:34' prior: 50877520!
+createCartFor: aClientID password: aPassword
+	| cartID |
+	
+	self authenticate: aClientID with: aPassword.
+
+	cartID := self nextCartID.
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	
+	self resetTimerOfCartWithID: cartID.	
+	
+	(clientSessions at: aClientID
+			       ifAbsent:	[ clientSessions add: aClientID -> (ClientSession newFor: aClientID inInterface: self).
+					      clientSessions at: aClientID.]) assignCart: cartID.
+					
+	^cartID.! !
+!ClientSession class methodsFor: 'instance creation' stamp: 'mf 12/3/2020 11:05:03'!
+newFor: aClientID inInterface: anInterface
+
+	^ self new initializeFor: aClientID inInterface: anInterface.! !
+
+!methodRemoval: ClientSession class #newFor: stamp: 'mf 12/3/2020 11:05:11'!
+newFor: aClientID
+
+	^ self new initializeFor: aClientID!
+
+!classDefinition: #ClientSession category: 'TusLibros' stamp: 'mf 12/3/2020 11:05:41'!
+Object subclass: #ClientSession
+	instanceVariableNames: 'ownedCarts listOfPurchases clientID totalSpent interface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ClientSession methodsFor: 'initialization' stamp: 'mf 12/3/2020 11:05:39'!
+initializeFor: aClientID inInterface: anInterface
+	clientID := aClientID.
+	interface := anInterface.
+	ownedCarts := OrderedCollection new.
+	listOfPurchases := Dictionary new.
+	totalSpent := 0! !
+
+!methodRemoval: ClientSession #initializeFor: stamp: 'mf 12/3/2020 11:05:46'!
+initializeFor: aClientID
+	clientID := aClientID.
+	ownedCarts := OrderedCollection new.
+	listOfPurchases := Dictionary new.
+	totalSpent := 0!
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:06:06'!
+listPurchasesForCheckedOutCart: aCartID
+	! !
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:06:33' prior: 50877629!
+listPurchasesForCheckedOutCart: aCartID
+	self ensureItsAnOwnedCart: aCartID.! !
+!ClientSession methodsFor: 'cart management' stamp: 'mf 12/3/2020 11:07:34'!
+ensureItsOwnedCart: aCartID
+	ownedCarts at: aCartID ifAbsent: [ self error: self class cartNotOwnedMessage].! !
+!ClientSession class methodsFor: 'error messages' stamp: 'mf 12/3/2020 11:08:24'!
+cartNotOwnedMessage
+	^ 'CartID provided does not belong to this client'! !
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:08:34' prior: 50877634!
+listPurchasesForCheckedOutCart: aCartID
+	self ensureItsOwnedCart: aCartID.! !
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 11:13:04' prior: 50873934!
+listPurchasesOf: aClientID password: aPassword
+	authenticator authenticate: aClientID password: aPassword.
+	
+	^(clientSessions at: aClientID 
+			       ifAbsent: [ clientSessions add: aClientID -> (ClientSession newFor: aClientID inInterface: self).
+						clientSessions at: aClientID]) listPurchases.
+					
+	! !
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:13:55'!
+registerPurchasesInCart: aCartID
+	self ensureItsOwnedCart: aCartID.! !
+
+!methodRemoval: ClientSession #listPurchasesForCheckedOutCart: stamp: 'mf 12/3/2020 11:13:55'!
+listPurchasesForCheckedOutCart: aCartID
+	self ensureItsOwnedCart: aCartID.!
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:14:06'!
+listPurchases
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 11:14:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 11:14:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 11:14:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 11:14:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 11:14:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 11:14:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 11:14:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 11:14:22'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:14:22'!
+FAILURE!
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:18:43' prior: 50877680!
+listPurchases
+	^ OrderedCollection with: listOfPurchases copy with: totalSpent .! !
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 11:18:49' prior: 50877744!
+listPurchases
+	^ OrderedCollection with: listOfPurchases copy with: totalSpent copy.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 11:19:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 11:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 11:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 11:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 11:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 11:19:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:19:04'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:19:04'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 11:20:27' prior: 50873830!
+test16canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Bag new with: 0).! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 11:20:38' prior: 50877820!
+test16canListPurchasesClientWhoNeverCheckedOut
+
+	| restInterface clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: Dictionary new with: 0).! !
+
+| bag1 |
+bag1 := Bag with: 1 with: 1 with: 2.
+bag1 asDictionary!
+
+| bag1 |
+bag1 := Bag with: 1 with: 1 with: 2.
+bag1!
+
+| bag1 |
+bag1 := Bag with: 1 with: 1 with: 2.
+bag1 asDictionary!
+
+| bag1 |
+bag1 := Bag with: 1 with: 1 with: 2.
+bag1 at: 1!
+
+bag1!
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 11:23:56'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 11:23:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 11:23:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 11:23:57'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:23:57'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:23:57'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 11:26:52' prior: 50874066!
+test17canListPurchasesClientWhoBoughtOneBook
+
+	| restInterface cartID clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+	
+	restInterface checkOutCartWithID: cartID 
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: (Dictionary with: testObjectsFactory itemSoldByTheStore -> 1 ) 
+			                                  with: testObjectsFactory itemSoldByTheStorePrice ).! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 11:26:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:26:59'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:26:59'!
+FAILURE!
+!RestInterface methodsFor: 'api - private' stamp: 'mf 12/3/2020 11:27:56' prior: 50870600!
+checkOut: aCart withCard: aCard
+	| cashier |
+
+	cashier:= Cashier 
+		toCheckout: aCart
+		charging: aCard
+		through: merchantProcessor
+		on: clock now date
+		registeringOn: transactionValues.
+	
+	
+	
+	^cashier checkOut.! !
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 11:29:08' prior: 50870559!
+checkOutCartWithID: aCartID withCardNumber: aCardNumber expiring: aGregorianMonthOfYear owner: aName
+	| creditCard cartOwner |
+
+	self ensureCartIDCanBeInteractedWith: aCartID.
+	
+	self resetTimerOfCartWithID: aCartID.
+	
+	cartOwner := self ownerOf: aCartID.
+	
+	creditCard := CreditCard 
+		numbered: aCardNumber 
+		ownedBy: aName 
+		expiringOn: aGregorianMonthOfYear.
+	
+	^self checkOut: (carts at: aCartID) withCard: creditCard.! !
+!RestInterface methodsFor: 'api - private' stamp: 'mf 12/3/2020 11:30:55'!
+checkOut: aCart withCard: aCard andCartOwner: aCartOwnersSession 
+	| cashier |
+
+	cashier:= Cashier 
+		toCheckout: aCart
+		charging: aCard
+		through: merchantProcessor
+		on: clock now date
+		registeringOn: transactionValues.
+	
+	
+	
+	^cashier checkOut.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'mf 12/3/2020 11:30:55' prior: 50878050!
+checkOutCartWithID: aCartID withCardNumber: aCardNumber expiring: aGregorianMonthOfYear owner: aName
+	| creditCard cartOwner |
+
+	self ensureCartIDCanBeInteractedWith: aCartID.
+	
+	self resetTimerOfCartWithID: aCartID.
+	
+	cartOwner := self ownerOf: aCartID.
+	
+	creditCard := CreditCard 
+		numbered: aCardNumber 
+		ownedBy: aName 
+		expiringOn: aGregorianMonthOfYear.
+	
+	^self checkOut: (carts at: aCartID) withCard: creditCard andCartOwner: aCartOwnersSession.! !
+
+!methodRemoval: RestInterface #checkOut:withCard: stamp: 'mf 12/3/2020 11:30:55'!
+checkOut: aCart withCard: aCard
+	| cashier |
+
+	cashier:= Cashier 
+		toCheckout: aCart
+		charging: aCard
+		through: merchantProcessor
+		on: clock now date
+		registeringOn: transactionValues.
+	
+	
+	
+	^cashier checkOut.!
+!RestInterface methodsFor: 'api - private' stamp: 'mf 12/3/2020 11:34:18'!
+checkOut: aCart withCard: aCard  
+	| cashier |
+
+	cashier:= Cashier 
+		toCheckout: aCart
+		charging: aCard
+		through: merchantProcessor
+		on: clock now date
+		registeringOn: transactionValues.
+	
+	
+	
+	^cashier checkOut.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'mf 12/3/2020 11:34:18' prior: 50878077!
+checkOutCartWithID: aCartID withCardNumber: aCardNumber expiring: aGregorianMonthOfYear owner: aName
+	| creditCard cartOwner |
+
+	self ensureCartIDCanBeInteractedWith: aCartID.
+	
+	self resetTimerOfCartWithID: aCartID.
+	
+	cartOwner := self ownerOf: aCartID.
+	
+	creditCard := CreditCard 
+		numbered: aCardNumber 
+		ownedBy: aName 
+		expiringOn: aGregorianMonthOfYear.
+	
+	^self checkOut: (carts at: aCartID) withCard: creditCard .! !
+
+!methodRemoval: RestInterface #checkOut:withCard:andCartOwner: stamp: 'mf 12/3/2020 11:34:18'!
+checkOut: aCart withCard: aCard andCartOwner: aCartOwnersSession 
+	| cashier |
+
+	cashier:= Cashier 
+		toCheckout: aCart
+		charging: aCard
+		through: merchantProcessor
+		on: clock now date
+		registeringOn: transactionValues.
+	
+	
+	
+	^cashier checkOut.!
+!RestInterface methodsFor: 'api - private' stamp: 'mf 12/3/2020 11:34:34' prior: 50878104!
+checkOut: aCart withCard: aCard  
+	| cashier |
+
+	cashier:= Cashier 
+		toCheckout: aCart
+		charging: aCard
+		through: merchantProcessor
+		on: clock now date
+		registeringOn: transactionValues.	
+	
+	^cashier checkOut.! !
+!RestInterface methodsFor: 'api' stamp: 'mf 12/3/2020 11:37:49' prior: 50878114!
+checkOutCartWithID: aCartID withCardNumber: aCardNumber expiring: aGregorianMonthOfYear owner: aName
+	| creditCard transactionID |
+
+	self ensureCartIDCanBeInteractedWith: aCartID.
+	
+	self resetTimerOfCartWithID: aCartID.
+	
+	creditCard := CreditCard 
+		numbered: aCardNumber 
+		ownedBy: aName 
+		expiringOn: aGregorianMonthOfYear.
+	
+	transactionID := self checkOut: (carts at: aCartID) withCard: creditCard .
+	
+	(self ownerOf: aCartID) registerPurchasesInCart: aCartID.
+	
+	^transactionID.! !
+
+| dic |
+dic := Dictionary with: 1 -> 'uno' with: 2 -> 'dos'.
+dic detect: [ :a | a = 'uno'] ifNone: [].!
+!RestInterface methodsFor: 'cart information' stamp: 'mf 12/3/2020 11:45:16'!
+ownerOf: aCartID
+	
+	^clientSessions detect: [ :aClientSession | aClientSession owns: aCartID ].! !
+!ClientSession methodsFor: 'cart management' stamp: 'mf 12/3/2020 11:46:42' prior: 50877639!
+ensureItsOwnedCart: aCartID
+	(self owns: aCartID) ifFalse: [ self error: self class cartNotOwnedMessage].! !
+!ClientSession methodsFor: 'cart management' stamp: 'mf 12/3/2020 11:47:21'!
+owns: aCartID
+	
+	^ ownedCarts includes: aCartID.! !
+
+| dic |
+dic := Dictionary with: 1 -> 'uno' with: 2 -> 'dos'.
+dic includes: 1!
+!ClientSession methodsFor: 'cart management' stamp: 'mf 12/3/2020 11:47:52' prior: 50878186!
+owns: aCartID
+	
+	^ ownedCarts includesKey: aCartID.! !
+!ClientSession methodsFor: 'cart management' stamp: 'mf 12/3/2020 11:48:10' prior: 50878193!
+owns: aCartID
+	
+	^ ownedCarts includes: aCartID.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 11:48:29'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:48:29'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 11:48:30'!
+FAILURE!
+
+| bag or |
+or := OrderedCollection new.
+bag := Bag with: 1 with: 1 with: 2 with: 2.
+bag do: [ :item | or add: item].
+or!
+
+| bag or dic |
+or := OrderedCollection new.
+bag := Bag with: 1 with: 1 with: 2 with: 2.
+bag do: [ :item | or add: item].
+dic := Dictionary with: 1 -> 2.
+(dic at: 1) + 1.
+dic at: 1!
+
+| bag or dic |
+or := OrderedCollection new.
+bag := Bag with: 1 with: 1 with: 2 with: 2.
+bag do: [ :item | or add: item].
+dic := Dictionary with: 1 -> 2.
+dic add: 1-> 3.
+dic at: 1!
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 12:04:49' prior: 50877670!
+registerPurchasesInCart: aCartID
+	| bagOfItems |
+	self ensureItsOwnedCart: aCartID.
+	
+	bagOfItems := interface listItemsInCartWithID: aCartID.
+	bagOfItems do: [ :item | listOfPurchases add: item -> (bagOfItems occurrencesOf: item)].! !
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 12:05:29' prior: 50878282!
+registerPurchasesInCart: aCartID
+	| bagOfItems |
+	self ensureItsOwnedCart: aCartID.
+	
+	bagOfItems := interface listItemsInCartWithID: aCartID.
+	bagOfItems do: [ :item | listOfPurchases add: item -> (bagOfItems occurrencesOf: item)].
+	! !
+!RestInterface methodsFor: 'cart information' stamp: 'mf 12/3/2020 12:07:47'!
+totalPriceOfCartID: aCartID
+	self ensureCartIDIsValid: aCartID.
+	
+	^carts at: aCartID total.! !
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 12:09:28' prior: 50878293!
+registerPurchasesInCart: aCartID
+	| bagOfItems |
+	self ensureItsOwnedCart: aCartID.
+	
+	bagOfItems := interface listItemsInCartWithID: aCartID.
+	bagOfItems do: [ :item | listOfPurchases add: item -> (bagOfItems occurrencesOf: item)].
+	
+	totalSpent := totalSpent + (interface totalPriceOfCartID: aCartID).
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 12:09:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 12:09:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 12:09:34'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 12:09:34'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 12:09:34'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 12:09:34'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 12:09:53'!
+ERROR!
+!RestInterface methodsFor: 'cart information' stamp: 'mf 12/3/2020 12:10:20' prior: 50878303!
+totalPriceOfCartID: aCartID
+	self ensureCartIDIsValid: aCartID.
+	
+	^(carts at: aCartID) total.! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 12:10:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 12:10:25'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 12:12:02'!
+test18canListPurchasesClientWhoBoughtMoreThanOneBook
+
+	| restInterface cartID clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory defaultCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+	
+	restInterface checkOutCartWithID: cartID 
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: (Dictionary with: testObjectsFactory itemSoldByTheStore -> 1 ) 
+			                                  with: testObjectsFactory itemSoldByTheStorePrice ).! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18canListPurchasesClientWhoBoughtMoreThanOneBook stamp: 'mf 12/3/2020 12:41:49'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 12:43:14' prior: 50878452!
+test18canListPurchasesClientWhoBoughtMoreThanOneBook
+
+	| restInterface cartID clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory multipleItemCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory itemSoldByTheStore toCartWithID: cartID.
+	
+	restInterface checkOutCartWithID: cartID 
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: (Dictionary with: testObjectsFactory itemSoldByTheStore -> 1 ) 
+			                                  with: testObjectsFactory itemSoldByTheStorePrice ).! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 12:44:26' prior: 50878557!
+test18canListPurchasesClientWhoBoughtMoreThanOneBook
+
+	| restInterface cartID clock |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory threeItemCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory threeItemCatalogItem1 toCartWithID: cartID.
+	restInterface add: 2 of: testObjectsFactory threeItemCatalogItem2 toCartWithID: cartID.
+	restInterface add: 4 of: testObjectsFactory threeItemCatalogItem3 toCartWithID: cartID.
+	
+	restInterface checkOutCartWithID: cartID 
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: (Dictionary with: testObjectsFactory itemSoldByTheStore -> 1 ) 
+			                                  with: testObjectsFactory itemSoldByTheStorePrice ).! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'mf 12/3/2020 12:44:47'!
+threeItemCatalogItem1
+	^'item1'! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'mf 12/3/2020 12:44:54'!
+threeItemCatalogItem2
+	^'item2'! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'mf 12/3/2020 12:44:58'!
+threeItemCatalogItem3
+	^'item3'! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'mf 12/3/2020 12:46:07'!
+threeItemCatalog
+	
+	^ Dictionary new
+		at: self threeItemCatalogItem1 put: self threeItemCatalogItem1Price;
+		at: self threeItemCatalogItem2 put: self threeItemCatalogItem2Price;
+		at: self threeItemCatalogItem3 put: self threeItemCatalogItem3Price;
+		yourself ! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'mf 12/3/2020 12:46:17'!
+threeItemCatalogItem1Price
+	^30! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'mf 12/3/2020 12:46:27'!
+threeItemCatalogItem2Price
+	^10! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'mf 12/3/2020 12:46:32'!
+threeItemCatalogItem3Price
+	^40! !
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'mf 12/3/2020 12:49:40'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory expectedDic'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'mf 12/3/2020 12:51:03'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 12:54:49' prior: 50878598!
+test18canListPurchasesClientWhoBoughtMoreThanOneBook
+
+	| restInterface cartID clock expectedDic expectedTotal |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory threeItemCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory threeItemCatalogItem1 toCartWithID: cartID.
+	restInterface add: 2 of: testObjectsFactory threeItemCatalogItem2 toCartWithID: cartID.
+	restInterface add: 4 of: testObjectsFactory threeItemCatalogItem3 toCartWithID: cartID.
+	
+	restInterface checkOutCartWithID: cartID 
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+			
+	expectedDic := Dictionary with: testObjectsFactory threeItemCatalogItem1 -> 1
+						     with: testObjectsFactory threeItemCatalogItem2 -> 2
+						     with: testObjectsFactory threeItemCatalogItem3 -> 4.
+						
+	expectedTotal := testObjectsFactory threeItemCatalogItem1Price +
+				      (testObjectsFactory threeItemCatalogItem2Price * 2) +
+			             (testObjectsFactory threeItemCatalogItem3Price * 4).
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: expectedDic
+			                                  with: expectedTotal ).! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 12:55:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 12:55:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18canListPurchasesClientWhoBoughtMoreThanOneBook stamp: 'mf 12/3/2020 12:55:03'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 12:55:34'!
+test19canListPurchasesClientWhoCheckedOutMoreThanOneCart
+
+	| restInterface cartID clock expectedDic expectedTotal |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory threeItemCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory threeItemCatalogItem1 toCartWithID: cartID.
+	restInterface add: 2 of: testObjectsFactory threeItemCatalogItem2 toCartWithID: cartID.
+	restInterface add: 4 of: testObjectsFactory threeItemCatalogItem3 toCartWithID: cartID.
+	
+	restInterface checkOutCartWithID: cartID 
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+			
+	expectedDic := Dictionary with: testObjectsFactory threeItemCatalogItem1 -> 1
+						     with: testObjectsFactory threeItemCatalogItem2 -> 2
+						     with: testObjectsFactory threeItemCatalogItem3 -> 4.
+						
+	expectedTotal := testObjectsFactory threeItemCatalogItem1Price +
+				      (testObjectsFactory threeItemCatalogItem2Price * 2) +
+			             (testObjectsFactory threeItemCatalogItem3Price * 4).
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: expectedDic
+			                                  with: expectedTotal ).! !
+!RestInterfaceTest methodsFor: 'tests - list purchases' stamp: 'mf 12/3/2020 12:57:48' prior: 50878820!
+test19canListPurchasesClientWhoCheckedOutMoreThanOneCart
+
+	| restInterface cartID1 cartID2 clock expectedDic expectedTotal |
+	
+	clock := Clock newSimulatingRealTime.
+	restInterface := RestInterface authenticatingWith:  AuthenticatorSimulator new
+							  debitingWith:  self
+							  itemsFrom:  testObjectsFactory threeItemCatalog
+							  withClock:  clock
+							  withCartTimeout: testObjectsFactory cartTimeout.
+	
+	cartID1 := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 1 of: testObjectsFactory threeItemCatalogItem1 toCartWithID: cartID1.
+	restInterface add: 2 of: testObjectsFactory threeItemCatalogItem2 toCartWithID: cartID1.
+	restInterface add: 4 of: testObjectsFactory threeItemCatalogItem3 toCartWithID: cartID1.
+	
+	restInterface checkOutCartWithID: cartID1
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.
+			
+	cartID2 := restInterface createCartFor: testObjectsFactory validClientID password: testObjectsFactory correctPassword.
+	
+	restInterface add: 5 of: testObjectsFactory threeItemCatalogItem2 toCartWithID: cartID2.
+	restInterface add: 6 of: testObjectsFactory threeItemCatalogItem3 toCartWithID: cartID2.
+	
+	restInterface checkOutCartWithID: cartID2
+			     withCardNumber: testObjectsFactory validCardNumber 
+			     expiring:  testObjectsFactory expirationDateNotReached 
+			     owner: testObjectsFactory validCreditCardOwnersName.	
+			
+	expectedDic := Dictionary with: testObjectsFactory threeItemCatalogItem1 -> 1
+						     with: testObjectsFactory threeItemCatalogItem2 -> 7
+						     with: testObjectsFactory threeItemCatalogItem3 -> 10.
+						
+	expectedTotal := testObjectsFactory threeItemCatalogItem1Price +
+				      (testObjectsFactory threeItemCatalogItem2Price * 7) +
+			             (testObjectsFactory threeItemCatalogItem3Price * 10).
+							
+	self assert: (restInterface listPurchasesOf: testObjectsFactory validClientID 
+	                                      password: testObjectsFactory correctPassword)
+		equals: (OrderedCollection with: expectedDic
+			                                  with: expectedTotal ).! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 12:57:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 12:57:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 12:57:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 12:57:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 12:57:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18canListPurchasesClientWhoBoughtMoreThanOneBook stamp: 'mf 12/3/2020 12:57:51'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test19canListPurchasesClientWhoCheckedOutMoreThanOneCart stamp: 'mf 12/3/2020 12:57:51'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test19canListPurchasesClientWhoCheckedOutMoreThanOneCart stamp: 'mf 12/3/2020 12:57:51'!
+FAILURE!
+
+expected!
+
+actual!
+
+| dic |
+dic := Dictionary with: 1 -> 'uno' with: 2 -> 'dos'.
+dic at: 3 put: 'tres'!
+
+| dic |
+dic := Dictionary with: 'a' -> 3 with: 'b' -> 2.
+dic inject: 0 into: [ :a :c | a + c ]!
+!ClientSession methodsFor: 'list purchases' stamp: 'mf 12/3/2020 13:09:12' prior: 50878309!
+registerPurchasesInCart: aCartID
+	| bagOfItems |
+	self ensureItsOwnedCart: aCartID.
+	
+	bagOfItems := interface listItemsInCartWithID: aCartID.
+	bagOfItems do: [ :item | (listOfPurchases includesKey: item) ifFalse: [ listOfPurchases add: item -> 0].
+					     listOfPurchases at: item put: (listOfPurchases at: item) + 1].
+	
+	totalSpent := totalSpent + (interface totalPriceOfCartID: aCartID).
+	! !
+
+!testRun: #RestInterfaceTest #test01cannotCreateCartForInvalidClientID stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02cannotCreateCartForClientWithWrongPassword stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03canCreateCartForWellAuthenticatedClient stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04canCreateMoreThanOneCartWithDifferentIDs stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05cannotAddToCartWithInvalidID stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06canAddItemToCartWithValidID stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07cannotCheckOutCartWithInvalidID stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08canCheckOutNonEmptyValidCartWithValidCreditCard stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09cannotListCartWithInvalidID stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10cannotInteractWithCartAfterTimeoutSinceCreated stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11cartClockResetsAfterAdd stamp: 'mf 12/3/2020 13:09:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12cartClockResetsAfterListing stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13cartClockResetsAfterCheckout stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14cannotListPurchasesOfInvalidClient stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15cannotListPurchasesOfClientWithInvalidPassword stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16canListPurchasesClientWhoNeverCheckedOut stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17canListPurchasesClientWhoBoughtOneBook stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18canListPurchasesClientWhoBoughtMoreThanOneBook stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test19canListPurchasesClientWhoCheckedOutMoreThanOneCart stamp: 'mf 12/3/2020 13:09:18'!
+PASSED!

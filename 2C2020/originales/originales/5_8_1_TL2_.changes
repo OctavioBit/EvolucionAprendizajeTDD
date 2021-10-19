@@ -1,0 +1,1972 @@
+
+
+----STARTUP---- (26 November 2020 10:12:31) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\TusLibros\SoluciÃ³n de cÃ¡tedra\Iteracion1\TusLibros-18.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'FR 11/26/2020 11:35:02'!
+PASSED!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'FR 11/26/2020 11:39:33'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'FR 11/26/2020 11:40:12'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 11:40:05'!
+test01CannotCheckOutAnEmptyCart
+
+	| aCashier |
+	
+	aCashier := Cashier new.
+	
+	self  should: [ aCashier checkout: self anEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier emptyCartErrorDescription! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:40:37'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:40:38'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 11:40:49'!
+functionalError
+	self shouldBeImplemented.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 11:40:54' prior: 51195710!
+functionalError
+
+	^ Error - MessageNotUnderstood! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:40:55'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 11:41:09'!
+emptyCartErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 11:41:13' prior: 51195723!
+emptyCartErrorDescription
+	
+	^ 'The cashier detected that the shopping cart is empty!!'! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:41:20'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 11:41:44'!
+anEmptyShoppingCart
+	self shouldBeImplemented.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 11:41:56' prior: 51195737!
+anEmptyShoppingCart
+	
+	^ 'Empty shopping cart'! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:41:57'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 11:42:13'!
+aValidCreditCard
+	self shouldBeImplemented.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 11:42:20' prior: 51195750!
+aValidCreditCard
+	
+	^ 'Valid credit card'! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:42:21'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 11:42:32'!
+checkout: aString with: aString2 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 11:44:04' prior: 51195762!
+checkout: aShoppingCart with: aCreditCard
+	
+	self error: self class emptyCartErrorDescription! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 11:44:11'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 12:05:38'!
+test02CannotCheckOutWithExpiredCreditCard
+
+	| aCashier |
+	
+	aCashier := Cashier new.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self anExpiredCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier expiredCreditCardErrorDescription! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 12:05:42'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:05:42'!
+ERROR!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:05:42'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 12:17:39'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:17:39'!
+ERROR!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:17:39'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 12:17:47'!
+expiredCreditCardErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 12:17:51' prior: 51195810!
+expiredCreditCardErrorDescription
+	
+	^ 'The cashier detected that the credit card has expired!!'! !
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:17:54'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 12:18:22'!
+aNonEmptyShoppingCart
+	self shouldBeImplemented.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 12:18:32' prior: 51195825!
+aNonEmptyShoppingCart
+	
+	^ 'A non empty shopping cart'! !
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:18:34'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 12:19:17'!
+anExpiredCreditCard
+	self shouldBeImplemented.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 12:19:27' prior: 51195838!
+anExpiredCreditCard
+	
+	^ 'An expired credit card'! !
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:19:29'!
+FAILURE!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 12:19:53' prior: 51195830!
+aNonEmptyShoppingCart
+	
+	^ 'Non empty shopping cart'! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 12:20:00' prior: 51195843!
+anExpiredCreditCard
+	
+	^ 'Expired credit card'! !
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 12:21:14' prior: 51195767!
+checkout: aShoppingCart with: aCreditCard
+	
+	aShoppingCart ifEmpty: [ self error: self class emptyCartErrorDescription ].
+	self error: self class expiredCreditCardErrorDescription! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 12:21:17'!
+FAILURE!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 12:21:17'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 12:21:17'!
+FAILURE!
+
+!classDefinition: #ShoppingCart category: 'TusLibros' stamp: 'FR 11/26/2020 13:13:47'!
+Object subclass: #ShoppingCart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 13:13:43' prior: 51195742!
+anEmptyShoppingCart
+	
+	^ ShoppingCart new! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 13:15:31' prior: 51195886!
+anEmptyShoppingCart
+	
+	^ Cart acceptingItemsOf: Set new! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 13:16:34' prior: 51195891!
+anEmptyShoppingCart
+	
+	^ Cart acceptingItemsOf: (Set with: 'aBook')! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 13:16:49' prior: 51195851!
+aNonEmptyShoppingCart
+	
+	^ self anEmptyShoppingCart add: 'aBook'! !
+
+self class !
+
+^ self anEmptyShoppingCart add: 'aBook'!
+
+^ self anEmptyShoppingCart add: 'aBook'!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 13:19:51' prior: 51195861!
+checkout: aShoppingCart with: aCreditCard
+	
+	aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	self error: self class expiredCreditCardErrorDescription! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 13:19:52'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 13:19:52'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 13:25:33' prior: 51195693!
+test01CannotCheckOutAnEmptyCart
+
+	| aCashier aReceipt |
+	
+	aCashier := Cashier new.
+	
+	self  should: [ aReceipt := aCashier checkout: self anEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier emptyCartErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 13:27:11' prior: 51195925!
+test01CannotCheckOutAnEmptyCart
+
+	| aCashier aReceipt |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	self  should: [ aReceipt := aCashier checkout: self anEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier emptyCartErrorDescription.
+	
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 13:28:10' prior: 51195779!
+test02CannotCheckOutWithExpiredCreditCard
+
+	| aCashier aReceipt |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self anExpiredCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 13:28:13'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 13:28:13'!
+PASSED!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'FR 11/26/2020 14:15:36'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:15:33'!
+test03CannotCheckOutWithStolenCreditCard
+
+	| aCashier aMerchantProcessor errorMessage |
+	
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:15:49' prior: 51195981!
+test03CannotCheckOutWithStolenCreditCard
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:15:56' prior: 51195999!
+test03CannotCheckOutWithStolenCreditCard
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:16:10' prior: 51196017!
+test03CannotCheckOutWithStolenCreditCard
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:16:22'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:16:22'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:16:22'!
+ERROR!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:16:22'!
+ERROR!
+!MerchantProcessorSimulator class methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:17:23'!
+raisesErrorWithMessage: aString 
+	self shouldBeImplemented.! !
+!MerchantProcessorSimulator class methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:17:28' prior: 51196072!
+raisesErrorWithMessage: errorMessageText
+	
+	^ self new initializeErrorWithMessage: errorMessageText! !
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:17:31'!
+ERROR!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'FR 11/26/2020 14:17:45'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'errorMessageText_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:17:45'!
+initializeErrorWithMessage: errorMessageText 
+	self shouldBeImplemented.
+	errorMessageText_CHANGE_ME := errorMessageText.! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'FR 11/26/2020 14:18:11'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'errorMessageText_CHANGE_ME message'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:18:09' prior: 51196096!
+initializeErrorWithMessage: errorMessageText 
+	
+	message := errorMessageText.! !
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:18:34'!
+ERROR!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:18:34'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:18:47'!
+withMerchantProcessor: aMerchantProcessorSimulator 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithMerchantProcessor: aMerchantProcessorSimulator ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:18:55' prior: 51196124!
+withMerchantProcessor: aMerchantProcessor
+
+	^self new initializeWithMerchantProcessor: aMerchantProcessor! !
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:18:56'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'FR 11/26/2020 14:19:11'!
+Object subclass: #Cashier
+	instanceVariableNames: 'merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:19:12'!
+initializeWithMerchantProcessor: aMerchantProcessor 
+	self shouldBeImplemented.
+	merchantProcessor := aMerchantProcessor.! !
+!Cashier methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:19:15' prior: 51196150!
+initializeWithMerchantProcessor: aMerchantProcessor 
+
+	merchantProcessor := aMerchantProcessor.! !
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:19:17'!
+FAILURE!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'FR 11/26/2020 14:20:59'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:20:53' prior: 51195755!
+aValidCreditCard
+
+	^ CreditCard ownedBy: 'Juan' withNumber: '1234567890123456' andExpirationMonthAndYear: (GregorianMonthOfYear aprilOf: GregorianYear current next)! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:21:16' prior: 51195856!
+anExpiredCreditCard
+
+	^ CreditCard ownedBy: 'Juan' withNumber: '1234567890123456' andExpirationMonthAndYear: (GregorianMonthOfYear aprilOf: GregorianYear current)! !
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'FR 11/26/2020 14:21:33'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:21:55'!
+test01CreditCardNumberCannotHaveLessThanSixteenDigits
+
+	self  should: [ CreditCard ownedBy: 'Juan Rodriguez' withNumber: '123456789012345' andExpirationMonthAndYear: GregorianMonthOfYear current ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard invalidNumberErrorDescription! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:21:58'!
+ERROR!
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:21:58'!
+ERROR!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 14:22:15'!
+invalidNumberErrorDescription
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 14:22:18' prior: 51196222!
+invalidNumberErrorDescription
+	
+	^ 'Credit card number is invalid!!'! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:22:19'!
+ERROR!
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:22:39'!
+ownedBy: aString withNumber: aString2 andExpirationMonthAndYear: aGregorianMonthOfYear 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeOwnedBy: aString withNumber: aString2 andExpirationMonthAndYear: aGregorianMonthOfYear ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:23:05' prior: 51196236!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	self error: self invalidNumberErrorDescription! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:23:06'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:23:08'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:23:55'!
+test03CreditCardNameCannotBeEmpty
+
+	self  should: [ CreditCard ownedBy: '' withNumber: '1234567890123456' andExpirationMonthAndYear: GregorianMonthOfYear current ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard invalidNameErrorDescription! !
+!CreditCardTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:24:01'!
+test02CreditCardNameCannotBeEmpty
+
+	self  should: [ CreditCard ownedBy: '' withNumber: '1234567890123456' andExpirationMonthAndYear: GregorianMonthOfYear current ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard invalidNameErrorDescription! !
+
+!methodRemoval: CreditCardTest #test03CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:24:01'!
+test03CreditCardNameCannotBeEmpty
+
+	self  should: [ CreditCard ownedBy: '' withNumber: '1234567890123456' andExpirationMonthAndYear: GregorianMonthOfYear current ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard invalidNameErrorDescription!
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:24:02'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:24:02'!
+ERROR!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:24:02'!
+ERROR!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 14:24:11'!
+invalidNameErrorDescription
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'FR 11/26/2020 14:24:20' prior: 51196308!
+invalidNameErrorDescription
+	
+	^ 'Name is not valid!!'! !
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:24:21'!
+FAILURE!
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:24:58' prior: 51196249!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	aCreditCardNumber size < 16 ifTrue: [ self error: self invalidNumberErrorDescription ]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:25:09' prior: 51196322!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	aCreditCardNumber size < 16 ifTrue: [ self error: self invalidNumberErrorDescription ].
+	self error: self invalidNameErrorDescription! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:25:12'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:25:13'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:25:26'!
+test03CreditCardNumberCannotHaveMoreThanSixteenDigits
+
+	self  should: [ CreditCard ownedBy: 'Juan Rodriguez' withNumber: '12345678901234567' andExpirationMonthAndYear: GregorianMonthOfYear current ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard invalidNumberErrorDescription! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:25:28'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:25:28'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 14:25:28'!
+FAILURE!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 14:25:28'!
+FAILURE!
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:26:20' prior: 51196332!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	aCreditCardNumber size ~= 16 ifTrue: [ self error: self invalidNumberErrorDescription ].
+	anOwnerName ifEmpty: [ self error: self invalidNameErrorDescription ]! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:26:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:26:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 14:26:24'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:26:40'!
+test04CreditCardWithValidInfoIsCorrectlyCreated
+
+	| aCreditCard |
+	
+	aCreditCard := CreditCard ownedBy: 'Juan Rodriguez' withNumber: '1234567890123456' andExpirationMonthAndYear: GregorianMonthOfYear current.
+	
+	self assert: aCreditCard owner = 'Juan Rodriguez'.
+	self assert: aCreditCard number = '1234567890123456'.
+	self assert: aCreditCard expirationMonthAndYear = GregorianMonthOfYear current.! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:26:44'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:26:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 14:26:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:26:46'!
+ERROR!
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:26:46'!
+ERROR!
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:27:02' prior: 51196377!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	aCreditCardNumber size ~= 16 ifTrue: [ self error: self invalidNumberErrorDescription ].
+	anOwnerName ifEmpty: [ self error: self invalidNameErrorDescription ].
+	
+	^ self new initializeWithOwner: anOwnerName number: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear.! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'FR 11/26/2020 14:27:16'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'FR 11/26/2020 14:27:18'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'FR 11/26/2020 14:27:19'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'owner number expirationMonthAndYear'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:27:15'!
+initializeWithOwner: anOwnerName number: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+
+	owner := anOwnerName.
+	number := aCreditCardNumber.
+	expirationMonthAndYear := anExpirationMonthAndYear.! !
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:27:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:27:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 14:27:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:27:25'!
+ERROR!
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:27:25'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'FR 11/26/2020 14:27:31'!
+owner
+	self shouldBeImplemented.
+	^owner! !
+!CreditCard methodsFor: 'accessing' stamp: 'FR 11/26/2020 14:27:37' prior: 51196498!
+owner
+
+	^ owner copy! !
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:27:38'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'FR 11/26/2020 14:27:45'!
+number
+	self shouldBeImplemented.
+	^number! !
+!CreditCard methodsFor: 'accessing' stamp: 'FR 11/26/2020 14:27:47' prior: 51196510!
+number
+
+	^ number copy! !
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:27:48'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'FR 11/26/2020 14:27:55'!
+expirationMonthAndYear
+	self shouldBeImplemented.
+	^expirationMonthAndYear! !
+!CreditCard methodsFor: 'accessing' stamp: 'FR 11/26/2020 14:27:57' prior: 51196522!
+expirationMonthAndYear
+
+	^ expirationMonthAndYear copy! !
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:27:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 14:28:00'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 14:28:01'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 14:28:01'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 14:28:01'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:28:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:28:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:28:18'!
+FAILURE!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:28:18'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:30:18' prior: 51195910!
+checkout: aShoppingCart with: aCreditCard
+	
+	aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ].! !
+
+!classRemoval: #ShoppingCart stamp: 'FR 11/26/2020 14:30:32'!
+Object subclass: #ShoppingCart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FR 11/26/2020 14:31:11'!
+Object subclass: #Cart
+	instanceVariableNames: 'pricelist items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 11/26/2020 14:31:11' prior: 51195498!
+initializeAcceptingItemsOf: aCatalog
+
+	pricelist := aCatalog.
+	items := OrderedCollection new.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'FR 11/26/2020 14:31:11' prior: 51195485!
+assertIsValidItem: anItem
+
+	(pricelist includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+!Cart methodsFor: 'assertions' stamp: 'FR 11/26/2020 14:31:28' prior: 51196594!
+assertIsValidItem: anItem
+
+	(pricelist keys includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+!Cart methodsFor: 'queries' stamp: 'FR 11/26/2020 14:31:57'!
+totalCost
+	
+	^ items sum: [ :aBook | pricelist at: aBook ] ifEmpty: [^0].! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'FR 11/26/2020 14:32:02'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/26/2020 14:32:02'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'FR 11/26/2020 14:32:02'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'FR 11/26/2020 14:32:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'FR 11/26/2020 14:32:03'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'FR 11/26/2020 14:32:03'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'FR 11/26/2020 14:32:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'FR 11/26/2020 14:32:03'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'FR 11/26/2020 14:32:51'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/26/2020 14:32:51'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'FR 11/26/2020 14:32:51'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'FR 11/26/2020 14:32:51'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'FR 11/26/2020 14:32:51'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'FR 11/26/2020 14:32:51'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'FR 11/26/2020 14:32:51'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'FR 11/26/2020 14:32:51'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/26/2020 14:32:53'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 'FR 11/26/2020 14:33:21' prior: 51195637!
+defaultCatalog
+	
+	^ Dictionary with: (Association key: self itemSellByTheStore value: 50)! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'FR 11/26/2020 14:33:23'!
+PASSED!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:39:21' prior: 51196564!
+checkout: aShoppingCart with: aCreditCard
+	
+	| amount |
+	
+	aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ].
+	
+	amount := aShoppingCart totalCost.
+	
+	merchantProcessor debit: amount from: aCreditCard.
+	
+	^ amount! !
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'FR 11/26/2020 14:40:00'!
+debit: anAmount from: aCreditCard
+
+	self error: message! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:40:09'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:40:09'!
+ERROR!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:40:09'!
+ERROR!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:40:17'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:40:17'!
+ERROR!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:40:17'!
+ERROR!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:40:18'!
+ERROR!
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'FR 11/26/2020 14:42:35' prior: 51196714!
+debit: anAmount from: aCreditCard
+
+	self error: 'El merchant processor detectó que la tarjeta está robada!!'! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:42:42'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:42:42'!
+ERROR!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:42:42'!
+ERROR!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:42:44'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:43:44' prior: 51195896!
+anEmptyShoppingCart
+	
+	^ Cart acceptingItemsOf: (Dictionary with: (Association key: 'aBook' value: 50))! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:43:46'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:43:46'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:43:46'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:44:02'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:44:02'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:44:03'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:45:34'!
+test03CannotCheckOutWithCreditCardWithNoCredit
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:45:42'!
+test04CannotCheckOutWithCreditCardWithNoCredit
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+
+!methodRemoval: CashierTest #test03CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:45:42'!
+test03CannotCheckOutWithCreditCardWithNoCredit
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:46:00' prior: 51195952!
+test02CannotCheckOutWithExpiredCreditCard
+
+	| aCashier aReceipt |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self anExpiredCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:46:04' prior: 51196037!
+test03CannotCheckOutWithStolenCreditCard
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:46:06' prior: 51196808!
+test04CannotCheckOutWithCreditCardWithNoCredit
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:46:14'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:46:15'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:46:15'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:46:15'!
+FAILURE!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:46:15'!
+FAILURE!
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'FR 11/26/2020 14:46:30' prior: 51196742!
+debit: anAmount from: aCreditCard
+
+	self error: message! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:46:35'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:46:35'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:46:35'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:46:35'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:46:49'!
+test05CashierCorrectlyChecksOutCartWithOneItem
+
+	| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard.
+	
+	self assert: aReceipt = 50.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:46:52'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:46:52'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:46:52'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:46:52'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:46:52'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:46:52'!
+ERROR!
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:47:01'!
+successfullyValidates
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeSuccessfullyValidates! !
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:47:04' prior: 51196983!
+successfullyValidates
+
+	^ self new initializeSuccessfullyValidates! !
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:47:05'!
+ERROR!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:47:13'!
+initializeSuccessfullyValidates
+	self shouldBeImplemented.! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'FR 11/26/2020 14:47:19'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'errorMessageText_CHANGE_ME message type'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:47:18' prior: 51197001!
+initializeSuccessfullyValidates
+
+	type := #Successful.
+	message := 'OK'.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:47:30' prior: 51196112!
+initializeErrorWithMessage: errorMessageText 
+	
+	type := #Error.
+	message := errorMessageText.! !
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'FR 11/26/2020 14:47:37' prior: 51196930!
+debit: anAmount from: aCreditCard
+
+	type = #Error ifTrue: [ self error: message ].
+	type = #Successful ifTrue: [ ^ message ]! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:47:43'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:47:43'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:47:43'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:47:43'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:47:43'!
+PASSED!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:48:06' prior: 51196699!
+checkout: aShoppingCart with: aCreditCard
+	
+	| amount |
+	
+	aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ].
+	
+	amount := aShoppingCart totalCost.
+	
+	merchantProcessor debit: amount from: aCreditCard.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:48:09'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:48:09'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:48:09'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:48:09'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:48:09'!
+FAILURE!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:48:10'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:48:21' prior: 51197053!
+checkout: aShoppingCart with: aCreditCard
+	
+	| amount |
+	
+	aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ].
+	
+	amount := aShoppingCart totalCost.
+	
+	merchantProcessor debit: amount from: aCreditCard.
+	
+	^50! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:48:23'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:48:23'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:48:23'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:48:23'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:48:23'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 14:48:30'!
+test06CashierCorrectlyChecksOutCartWithMultipleItems
+
+	| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: self aShoppingCartWithMultipleBooks with: self aValidCreditCard.
+	
+	self assert: aReceipt = 1250.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:49:59' prior: 51196762!
+anEmptyShoppingCart
+	
+	^ Cart acceptingItemsOf: (Dictionary with: (Association key: self aBook value: 50) with: (Association key: self aDifferentBook value: 100))! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:50:05'!
+aBook
+
+	^ 9! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:50:09'!
+aDifferentBook
+
+	^ 8! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:50:40'!
+aShoppingCartWithMultipleBooks
+
+	^ (self anEmptyShoppingCart add: 5 of: self aBook) add: 10 of: self aDifferentBook! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:50:46'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:50:46'!
+FAILURE!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:50:46'!
+FAILURE!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:50:46'!
+FAILURE!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:50:47'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 14:50:47'!
+FAILURE!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:50:50'!
+ERROR!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 14:51:12' prior: 51195902!
+aNonEmptyShoppingCart
+	
+	^ self anEmptyShoppingCart add: self aBook! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:51:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:51:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:51:18'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:51:18'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:51:18'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 14:51:18'!
+FAILURE!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 14:51:18'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:51:32' prior: 51197088!
+checkout: aShoppingCart with: aCreditCard
+	
+	| amount |
+	
+	aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ].
+	
+	amount := aShoppingCart totalCost.
+	
+	merchantProcessor debit: amount from: aCreditCard.
+	
+	^amount! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 14:51:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 14:51:34'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 14:51:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 14:51:34'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 14:51:34'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 14:51:34'!
+PASSED!
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:53:15'!
+assertNumberIsValid: aCreditCardNumber
+
+	^ aCreditCardNumber size ~= 16 ifTrue: [ self error: self invalidNumberErrorDescription ]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:53:15' prior: 51196433!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	self assertNumberIsValid: aCreditCardNumber.
+	anOwnerName ifEmpty: [ self error: self invalidNameErrorDescription ].
+	
+	^ self new initializeWithOwner: anOwnerName number: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:53:24'!
+assertNameIsValid: anOwnerName
+
+	^ anOwnerName ifEmpty: [ self error: self invalidNameErrorDescription ]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'FR 11/26/2020 14:53:25' prior: 51197254!
+ownedBy: anOwnerName withNumber: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear
+	
+	self assertNumberIsValid: aCreditCardNumber.
+	self assertNameIsValid: anOwnerName.
+	
+	^ self new initializeWithOwner: anOwnerName number: aCreditCardNumber andExpirationMonthAndYear: anExpirationMonthAndYear.! !
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:54:05'!
+assertCartIsNotEmpty: aShoppingCart
+
+	^ aShoppingCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ]! !
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:54:05' prior: 51197210!
+checkout: aShoppingCart with: aCreditCard
+	
+	| amount |
+	
+	self assertCartIsNotEmpty: aShoppingCart.
+	aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ].
+	
+	amount := aShoppingCart totalCost.
+	
+	merchantProcessor debit: amount from: aCreditCard.
+	
+	^amount! !
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:54:17'!
+assertCreditCardIsNotExpired: aCreditCard
+
+	^ aCreditCard expirationMonthAndYear < GregorianMonthOfYear current ifTrue: [ self error: self class expiredCreditCardErrorDescription ]! !
+!Cashier methodsFor: 'checkout' stamp: 'FR 11/26/2020 14:54:17' prior: 51197294!
+checkout: aShoppingCart with: aCreditCard
+	
+	| amount |
+	
+	self assertCartIsNotEmpty: aShoppingCart.
+	self assertCreditCardIsNotExpired: aCreditCard.
+	
+	amount := aShoppingCart totalCost.
+	
+	merchantProcessor debit: amount from: aCreditCard.
+	
+	^amount! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'FR 11/26/2020 14:59:02'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'errorMessageText_CHANGE_ME message type used'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'testing' stamp: 'FR 11/26/2020 14:59:01'!
+hasBeenUsed
+
+	^ used copy! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:59:17' prior: 51197022!
+initializeErrorWithMessage: errorMessageText 
+	
+	used := false.
+	type := #Error.
+	message := errorMessageText.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'FR 11/26/2020 14:59:23' prior: 51197016!
+initializeSuccessfullyValidates
+
+	used := false.
+	type := #Successful.
+	message := 'OK'.! !
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'FR 11/26/2020 14:59:40' prior: 51197029!
+debit: anAmount from: aCreditCard
+
+	used := true.
+	type = #Error ifTrue: [ self error: message ].
+	type = #Successful ifTrue: [ ^ message ]! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:01:50' prior: 51195937!
+test01CannotCheckOutAnEmptyCart
+
+	| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self anEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier emptyCartErrorDescription.
+	
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self deny: aMerchantProcessor hasBeenUsed.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 15:01:54'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:02:22' prior: 51196852!
+test02CannotCheckOutWithExpiredCreditCard
+
+	| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self anExpiredCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self deny: aMerchantProcessor hasBeenUsed! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:02:39' prior: 51196868!
+test03CannotCheckOutWithStolenCreditCard
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self assert: aMerchantProcessor hasBeenUsed! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:02:46' prior: 51196890!
+test04CannotCheckOutWithCreditCardWithNoCredit
+
+	| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self assert: aMerchantProcessor hasBeenUsed! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:02:52' prior: 51196948!
+test05CashierCorrectlyChecksOutCartWithOneItem
+
+	| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard.
+	
+	self assert: aReceipt = 50.
+	self assert: aMerchantProcessor hasBeenUsed! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:02:55' prior: 51197119!
+test06CashierCorrectlyChecksOutCartWithMultipleItems
+
+	| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: self aShoppingCartWithMultipleBooks with: self aValidCreditCard.
+	
+	self assert: aReceipt = 1250.
+	self assert: aMerchantProcessor hasBeenUsed! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 15:02:58'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 15:02:58'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 15:02:58'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:02:58'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 15:02:58'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 15:02:58'!
+PASSED!
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'message type used'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'FR 11/26/2020 15:09:32'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'message type used'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:12:42'!
+cashierForSuccessfulSale
+	
+	| aCashier aMerchantProcessor |
+	
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:12:50' prior: 51197521!
+cashierForSuccessfulSale
+	
+	| aCashier aMerchantProcessor |
+	
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	^ aCashier! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:13:28'!
+cashierForSuccessfulStolenCreditCard
+	
+	| aCashier aMerchantProcessor errorMessage |
+	
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	^ aCashier! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:14:25'!
+cashierForCreditCardWithNoCredit
+	
+	| aCashier aMerchantProcessor errorMessage |
+	
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	^ aCashier! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:14:31'!
+cashierForStolenCreditCard
+	
+	| aCashier aMerchantProcessor errorMessage |
+	
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	^ aCashier! !
+
+!methodRemoval: CashierTest #cashierForSuccessfulStolenCreditCard stamp: 'FR 11/26/2020 15:14:31'!
+cashierForSuccessfulStolenCreditCard
+	
+	| aCashier aMerchantProcessor errorMessage |
+	
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	^ aCashier!
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:16:49'!
+merchantProcessorForStolenCreditCard
+
+	^ MerchantProcessorSimulator raisesErrorWithMessage: 'El merchant processor detectó que la tarjeta está robada!!'! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:17:06'!
+merchantProcessorForCreditCardWithNoCredit
+
+	^ MerchantProcessorSimulator raisesErrorWithMessage: 'El merchant processor detectó que la tarjeta no tiene crédito!!'! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:17:32' prior: 51197569!
+cashierForStolenCreditCard
+	
+	^ Cashier withMerchantProcessor: self merchantProcessorForStolenCreditCard.
+! !
+!CashierTest methodsFor: 'tests - instances' stamp: 'FR 11/26/2020 15:17:47' prior: 51197556!
+cashierForCreditCardWithNoCredit
+	
+	^ Cashier withMerchantProcessor: self merchantProcessorForCreditCardWithNoCredit.
+! !
+
+!methodRemoval: CashierTest #cashierForCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:19:13'!
+cashierForCreditCardWithNoCredit
+	
+	^ Cashier withMerchantProcessor: self merchantProcessorForCreditCardWithNoCredit.
+!
+
+!methodRemoval: CashierTest #cashierForStolenCreditCard stamp: 'FR 11/26/2020 15:19:14'!
+cashierForStolenCreditCard
+	
+	^ Cashier withMerchantProcessor: self merchantProcessorForStolenCreditCard.
+!
+
+!methodRemoval: CashierTest #cashierForSuccessfulSale stamp: 'FR 11/26/2020 15:19:15'!
+cashierForSuccessfulSale
+	
+	| aCashier aMerchantProcessor |
+	
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	^ aCashier!
+
+!methodRemoval: CashierTest #merchantProcessorForStolenCreditCard stamp: 'FR 11/26/2020 15:19:16'!
+merchantProcessorForStolenCreditCard
+
+	^ MerchantProcessorSimulator raisesErrorWithMessage: 'El merchant processor detectó que la tarjeta está robada!!'!
+
+!methodRemoval: CashierTest #merchantProcessorForCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:19:17'!
+merchantProcessorForCreditCardWithNoCredit
+
+	^ MerchantProcessorSimulator raisesErrorWithMessage: 'El merchant processor detectó que la tarjeta no tiene crédito!!'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'FR 11/26/2020 15:19:18'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 15:19:20'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 15:19:20'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 15:19:20'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:19:20'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 15:19:20'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 15:19:20'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberCannotHaveLessThanSixteenDigits stamp: 'FR 11/26/2020 15:19:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNameCannotBeEmpty stamp: 'FR 11/26/2020 15:19:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberCannotHaveMoreThanSixteenDigits stamp: 'FR 11/26/2020 15:19:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithValidInfoIsCorrectlyCreated stamp: 'FR 11/26/2020 15:19:22'!
+PASSED!
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:27:15'!
+assertCheckingOutWIthCart: aShoppingCart shouldHaveReceipt: expectedReceipt
+
+	| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: aShoppingCart with: self aValidCreditCard.
+	
+	self assert: aReceipt = expectedReceipt.
+	self assert: aMerchantProcessor hasBeenUsed! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:27:58' prior: 51197455!
+test05CashierCorrectlyChecksOutCartWithOneItem
+
+	self  assertCheckingOutWIthCart: self aNonEmptyShoppingCart
+		shouldHaveReceipt: 50
+
+	"| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard.
+	
+	self assert: aReceipt = 50.
+	self assert: aMerchantProcessor hasBeenUsed"! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:28:12' prior: 51197471!
+test06CashierCorrectlyChecksOutCartWithMultipleItems
+
+	self  assertCheckingOutWIthCart: self aShoppingCartWithMultipleBooks
+		shouldHaveReceipt: 1250
+
+	"| aCashier aMerchantProcessor aReceipt |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+		
+	aReceipt := aCashier checkout: self aShoppingCartWithMultipleBooks with: self aValidCreditCard.
+	
+	self assert: aReceipt = 1250.
+	self assert: aMerchantProcessor hasBeenUsed"! !
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 15:28:16'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 15:28:17'!
+PASSED!
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:30:06'!
+assertCheckingOutShouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: expectedErrorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: expectedErrorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self assert: aMerchantProcessor hasBeenUsed! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:30:26' prior: 51197431!
+test04CannotCheckOutWithCreditCardWithNoCredit
+
+	self assertCheckingOutShouldRaiseErrorWithMessage: 'El merchant processor detectó que la tarjeta no tiene crédito!!'
+
+	"| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta no tiene crédito!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self assert: aMerchantProcessor hasBeenUsed"! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:30:39' prior: 51197408!
+test03CannotCheckOutWithStolenCreditCard
+
+	self assertCheckingOutShouldRaiseErrorWithMessage: 'El merchant processor detectó que la tarjeta está robada!!'
+
+	"| aCashier aReceipt aMerchantProcessor errorMessage |
+	
+	aReceipt := 'No se completó la venta'.
+	errorMessage := 'El merchant processor detectó que la tarjeta está robada!!'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: errorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: errorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self assert: aMerchantProcessor hasBeenUsed"! !
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 15:30:54'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:30:58'!
+PASSED!
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:32:17'!
+assertCheckingOutCart: aShoppingCart withCreditCard: aCreditCard shouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: aShoppingCart with: aCreditCard ]
+		raise: self functionalError
+		withMessageText: expectedErrorMessage.
+	
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self deny: aMerchantProcessor hasBeenUsed.! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:32:46' prior: 51197362!
+test01CannotCheckOutAnEmptyCart
+
+	self assertCheckingOutCart: self anEmptyShoppingCart withCreditCard: self aValidCreditCard shouldRaiseErrorWithMessage: Cashier emptyCartErrorDescription
+
+
+	"| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self anEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier emptyCartErrorDescription.
+	
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self deny: aMerchantProcessor hasBeenUsed."! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:33:12' prior: 51197386!
+test02CannotCheckOutWithExpiredCreditCard
+
+	self assertCheckingOutCart: self aNonEmptyShoppingCart withCreditCard: self anExpiredCreditCard shouldRaiseErrorWithMessage: Cashier expiredCreditCardErrorDescription
+
+	"| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	aCashier := Cashier new.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self anExpiredCreditCard ]
+		raise: self functionalError
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self deny: aMerchantProcessor hasBeenUsed"! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 15:33:14'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 15:33:15'!
+PASSED!
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 15:33:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 15:33:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 15:33:18'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:33:18'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 15:33:18'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 15:33:18'!
+PASSED!
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:34:39' prior: 51197871!
+assertCheckingOutCart: aShoppingCart withCreditCard: aCreditCard shouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: aShoppingCart with: aCreditCard ]
+		raise: self functionalError
+		withMessageText: expectedErrorMessage.
+	
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self deny: aMerchantProcessor hasBeenUsed.! !
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:36:45'!
+assertCheckingOutCart: aShoppingCart withCreditCard: aCreditCard usingMerchantProcessor: aMerchantProcessor shouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aCashier aReceipt |
+	
+	aReceipt := 'No se completó la venta'.
+	
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: aShoppingCart with: aCreditCard ]
+		raise: self functionalError
+		withMessageText: expectedErrorMessage.
+	
+	self assert: aReceipt equals: 'No se completó la venta'.! !
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:39:06' prior: 51197975!
+assertCheckingOutCart: aShoppingCart withCreditCard: aCreditCard shouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aMerchantProcessor |
+	
+	aMerchantProcessor := MerchantProcessorSimulator successfullyValidates.
+
+	self  assertCheckingOutCart: aShoppingCart
+		withCreditCard: aCreditCard
+		usingMerchantProcessor: aMerchantProcessor
+		shouldRaiseErrorWithMessage: expectedErrorMessage.
+
+	self deny: aMerchantProcessor hasBeenUsed.! !
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:40:10' prior: 51197787!
+assertCheckingOutShouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aMerchantProcessor |
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: expectedErrorMessage.
+
+	self  assertCheckingOutCart: self aNonEmptyShoppingCart
+		withCreditCard: self aValidCreditCard
+		usingMerchantProcessor: aMerchantProcessor
+		shouldRaiseErrorWithMessage: expectedErrorMessage.
+
+	self assert: aMerchantProcessor hasBeenUsed.
+
+	"| aCashier aReceipt aMerchantProcessor |
+	
+	aReceipt := 'No se completó la venta'.
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: expectedErrorMessage.
+	aCashier := Cashier withMerchantProcessor: aMerchantProcessor.
+	
+	self  should: [ aReceipt := aCashier checkout: self aNonEmptyShoppingCart with: self aValidCreditCard ]
+		raise: self functionalError
+		withMessageText: expectedErrorMessage.
+		
+	self assert: aReceipt equals: 'No se completó la venta'.
+	self assert: aMerchantProcessor hasBeenUsed"! !
+!CashierTest methodsFor: 'tests - assertions' stamp: 'FR 11/26/2020 15:40:30' prior: 51198033!
+assertCheckingOutShouldRaiseErrorWithMessage: expectedErrorMessage
+
+	| aMerchantProcessor |
+	
+	aMerchantProcessor := MerchantProcessorSimulator raisesErrorWithMessage: expectedErrorMessage.
+
+	self  assertCheckingOutCart: self aNonEmptyShoppingCart
+		withCreditCard: self aValidCreditCard
+		usingMerchantProcessor: aMerchantProcessor
+		shouldRaiseErrorWithMessage: expectedErrorMessage.
+
+	self assert: aMerchantProcessor hasBeenUsed.! !
+
+!testRun: #CashierTest #test01CannotCheckOutAnEmptyCart stamp: 'FR 11/26/2020 15:41:01'!
+PASSED!
+
+!testRun: #CashierTest #test02CannotCheckOutWithExpiredCreditCard stamp: 'FR 11/26/2020 15:41:01'!
+PASSED!
+
+!testRun: #CashierTest #test03CannotCheckOutWithStolenCreditCard stamp: 'FR 11/26/2020 15:41:01'!
+PASSED!
+
+!testRun: #CashierTest #test04CannotCheckOutWithCreditCardWithNoCredit stamp: 'FR 11/26/2020 15:41:01'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierCorrectlyChecksOutCartWithOneItem stamp: 'FR 11/26/2020 15:41:01'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierCorrectlyChecksOutCartWithMultipleItems stamp: 'FR 11/26/2020 15:41:01'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:44:11' prior: 51197894!
+test01CannotCheckOutAnEmptyCart
+
+	self  assertCheckingOutCart: self anEmptyShoppingCart
+		withCreditCard: self aValidCreditCard
+		shouldRaiseErrorWithMessage: Cashier emptyCartErrorDescription
+! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:44:23' prior: 51197920!
+test02CannotCheckOutWithExpiredCreditCard
+
+	self  assertCheckingOutCart: self aNonEmptyShoppingCart
+		withCreditCard: self anExpiredCreditCard
+		shouldRaiseErrorWithMessage: Cashier expiredCreditCardErrorDescription! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:44:28' prior: 51197837!
+test03CannotCheckOutWithStolenCreditCard
+
+	self assertCheckingOutShouldRaiseErrorWithMessage: 'El merchant processor detectó que la tarjeta está robada!!'! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:44:32' prior: 51197809!
+test04CannotCheckOutWithCreditCardWithNoCredit
+
+	self assertCheckingOutShouldRaiseErrorWithMessage: 'El merchant processor detectó que la tarjeta no tiene crédito!!'! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:44:36' prior: 51197743!
+test05CashierCorrectlyChecksOutCartWithOneItem
+
+	self  assertCheckingOutWIthCart: self aNonEmptyShoppingCart
+		shouldHaveReceipt: 50! !
+!CashierTest methodsFor: 'tests' stamp: 'FR 11/26/2020 15:44:42' prior: 51197761!
+test06CashierCorrectlyChecksOutCartWithMultipleItems
+
+	self  assertCheckingOutWIthCart: self aShoppingCartWithMultipleBooks
+		shouldHaveReceipt: 1250! !

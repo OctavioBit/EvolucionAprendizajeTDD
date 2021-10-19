@@ -1,0 +1,2198 @@
+----STARTUP---- (30 November 2020 17:35:02) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Tercera Parte Interfaz/hasta el 4 facu/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Downloads/Ejercicio-TusLibros.com.st----!
+!CreditCard methodsFor: 'initialization' stamp: 'LNB 11/30/2020 18:08:08' prior: 50868692!
+assertNonExpiredCreditCardFor: aGregorianDate
+	
+	(expirationDate < aGregorianDate monthOfYear) ifTrue: [ self error: CreditCard plasticHasExpired ].! !
+!CreditCard methodsFor: 'initialization' stamp: 'LNB 11/30/2020 18:15:02' prior: 50869157!
+assertNonExpiredCreditCardFor: aGregorianMonthOfYear
+	
+	(expirationDate < aGregorianMonthOfYear) ifTrue: [ self error: CreditCard plasticHasExpired ].! !
+!CreditCard methodsFor: 'initialization' stamp: 'LNB 11/30/2020 18:15:31' prior: 50869165!
+assertNonExpiredCreditCardFor: aCurrentGregorianMonthOfYear
+	
+	(expirationDate < aCurrentGregorianMonthOfYear) ifTrue: [ self error: CreditCard plasticHasExpired ].! !
+!Cashier methodsFor: 'checkoutAssertions' stamp: 'LNB 11/30/2020 18:16:59'!
+assertThatCreditCardHasNotExpired: aCreditCard for: aCurrentGregorianMonthOfYear 	
+	
+	(aCreditCard expirationDate < GregorianMonthOfYear current) ifTrue: [ self error: Cashier creditCardHasExpired ].! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:16:59' prior: 50868510!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasNotExpired: aCreditCard for: aCurrentGregorianMonthOfYear.
+	self assertThatCartIsNotEmpty: aCart.
+	self assertThatAmountIsNotTooBig: aCart.
+	
+	^ interface payWith: aCreditCard for: (Sale of: aCart) requestedBy: self.! !
+
+!methodRemoval: Cashier #assertThatCreditCardHasNotExpired: stamp: 'LNB 11/30/2020 18:16:59'!
+assertThatCreditCardHasNotExpired: aCreditCard	
+	
+	(aCreditCard expirationDate < GregorianMonthOfYear current) ifTrue: [ self error: Cashier creditCardHasExpired ].!
+!Cashier methodsFor: 'checkout' stamp: 'LNB 11/30/2020 18:19:58'!
+checkout: aCart payingWith: aCreditCard at: aCurrentGregorianMonthOfYear 
+	
+	self assertThatCreditCardHasNotExpired: aCreditCard for: aCurrentGregorianMonthOfYear.
+	self assertThatCartIsNotEmpty: aCart.
+	self assertThatAmountIsNotTooBig: aCart.
+	
+	^ interface payWith: aCreditCard for: (Sale of: aCart) requestedBy: self.! !
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:58' prior: 50868848!
+checkoutCart: aCartID withPlasticNumber: aPlasticNumber validThrough: aMonthAndYearString namedAfter: anOwnerName
+
+	| sale saleID foundUser |
+
+	(self isAValidCartID: aCartID) ifFalse: [self error: InputInterface wrongCartID].
+
+	foundUser := users at: (users findFirst:[:anUser | (anUser isAValidCartID: aCartID)]).
+	
+	sale := (Cashier payingThrough: OutputInterfaceSimulator new) 
+				checkout: (foundUser carts at: aCartID) 
+				payingWith: (CreditCard withPlasticNumber: aPlasticNumber namedAfter: anOwnerName validThrough: (self changeDate: aMonthAndYearString)) at: builder currentMonthOfYear .
+				
+	saleID := self generateSaleID.
+	
+	foundUser addSale: sale withID: saleID.
+
+	^ saleID.
+
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:58' prior: 50868120!
+test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: (OutputInterfaceSimulator new invalidateNextPurchaseForACustomErrorDescription: 'Tarjeta Robada').
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: 'Tarjeta Robada'. ].
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50868079!
+test07CentsMustBeRoundedUpToTwoDigits
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.002.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear) total equals: 100.01.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50867967!
+test01CantCheckoutWithAnEmptyCart
+
+	| cart cashier creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	cart := Cart with: Set new.
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50868096!
+test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new invalidateNextPurchasesBecauseOfInvalidParameters.
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier purchaseInvalidatedByMerchantProcessorBecauseOfInvalidParameter . ].
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50868038!
+test05CantCheckoutWithAnExpiredCreditCard
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder expiredCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear.] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50868020!
+test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear) total equals: 300.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50867982!
+test02CheckingOutACartWithABookReturnsItsPrice
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear) total equals: 100.! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50868058!
+test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier amountToBigToProcess. ].
+	
+	! !
+!CashierTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:19:59' prior: 50867999!
+test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices
+	
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear) total equals: 175.! !
+
+!methodRemoval: Cashier #checkout:payingWith: stamp: 'LNB 11/30/2020 18:19:59'!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertThatCreditCardHasNotExpired: aCreditCard for: aCurrentGregorianMonthOfYear.
+	self assertThatCartIsNotEmpty: aCart.
+	self assertThatAmountIsNotTooBig: aCart.
+	
+	^ interface payWith: aCreditCard for: (Sale of: aCart) requestedBy: self.!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/30/2020 18:20:20'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:20:21'!
+FAILURE!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/30/2020 18:20:21'!
+ERROR!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/30/2020 18:20:21'!
+ERROR!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/30/2020 18:20:21'!
+ERROR!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/30/2020 18:20:21'!
+FAILURE!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/30/2020 18:20:21'!
+FAILURE!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/30/2020 18:20:21'!
+ERROR!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/30/2020 18:20:21'!
+FAILURE!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/30/2020 18:20:21'!
+FAILURE!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'LNB 11/30/2020 18:20:29'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'LNB 11/30/2020 18:20:29'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'LNB 11/30/2020 18:20:29'!
+PASSED!
+
+!testRun: #CreditCardTests #test04IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'LNB 11/30/2020 18:20:29'!
+PASSED!
+
+!testRun: #CreditCardTests #test05CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/30/2020 18:20:29'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 11/30/2020 18:20:31'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:20:31'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:20:31'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 11/30/2020 18:20:36'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 11/30/2020 18:20:37'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 11/30/2020 18:20:39'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 11/30/2020 18:20:40'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 11/30/2020 18:20:41'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 11/30/2020 18:20:42'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 11/30/2020 18:20:43'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 11/30/2020 18:20:45'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:20:48'!
+FAILURE!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:20:48'!
+FAILURE!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:21:32'!
+FAILURE!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:21:32'!
+FAILURE!
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/30/2020 18:22:44' prior: 50869292!
+test01CantCheckoutWithAnEmptyCart
+
+	| cart cashier creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	cart := Cart with: Set new.
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear.
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:22:46'!
+ERROR!
+!TestObjectBuilder methodsFor: 'build time objects' stamp: 'LNB 11/30/2020 18:27:15' prior: 50869130!
+currentMonthOfYear
+
+	^ (Month month: today monthIndex year: today yearNumber).! !
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:27:18'!
+ERROR!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/30/2020 18:27:18'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:27:18'!
+ERROR!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:27:29'!
+ERROR!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:27:36'!
+ERROR!
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/30/2020 18:27:57' prior: 50869599!
+test01CantCheckoutWithAnEmptyCart
+
+	| cart cashier creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	cart := Cart with: Set new.
+	cashier := Cashier payingThrough: OutputInterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard at: builder currentMonthOfYear.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/30/2020 18:27:58'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/30/2020 18:28:01'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/30/2020 18:28:03'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/30/2020 18:28:04'!
+PASSED!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'LNB 11/30/2020 18:28:05'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'LNB 11/30/2020 18:28:05'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'LNB 11/30/2020 18:28:05'!
+PASSED!
+
+!testRun: #CreditCardTests #test04IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'LNB 11/30/2020 18:28:05'!
+PASSED!
+
+!testRun: #CreditCardTests #test05CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/30/2020 18:28:05'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 11/30/2020 18:28:07'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:28:07'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:28:07'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 11/30/2020 18:28:09'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:28:11'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:28:11'!
+ERROR!
+
+!classRenamed: #Costumer as: #Customer stamp: 'LNB 11/30/2020 18:56:29'!
+Smalltalk renameClassNamed: #Costumer as: #Customer!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868302!
+test05
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface listCart: cartID) equals: Bag new.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868318!
+test06
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface listCart: cartID] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868284!
+test04
+
+	| inputInterface users catalogue cartID1 cartID2 |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID1 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	cartID2 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (cartID1 = cartID2) not.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868358!
+test08
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868335!
+test07
+
+	| inputInterface users catalogue cartID resultingContents |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	resultingContents := Bag new.
+	resultingContents add: 'mathBook' withOccurrences: 1.
+	
+	self assert: (inputInterface listCart: cartID) equals: resultingContents.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868266!
+test03
+
+	| inputInterface users catalogue |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	self should: [inputInterface createCartFor: 'Username' withPassword: 'Wrong Password'] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongPassword. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868235!
+test01
+
+	| inputInterface users catalogue aCartID|
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	aCartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface isAValidCartID: aCartID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:56:29' prior: 50868378!
+test09
+
+	| inputInterface users catalogue cartID aSaleID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	aSaleID := inputInterface checkoutCart: cartID withPlasticNumber: '0000000000000000' validThrough: '012021' namedAfter: 'Valid Name'.
+	
+	self assert: (inputInterface isAValidSalesID: aSaleID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 18:59:09'!
+test20
+
+	| inputInterface users catalogue cartID aSaleID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	aSaleID := inputInterface checkoutCart: cartID withPlasticNumber: '0000000000000000' validThrough: '012021' namedAfter: 'Valid Name'.
+	
+	self assert: (inputInterface isAValidSalesID: aSaleID).! !
+
+!methodRemoval: InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 18:59:15'!
+test09
+
+	| inputInterface users catalogue cartID aSaleID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	aSaleID := inputInterface checkoutCart: cartID withPlasticNumber: '0000000000000000' validThrough: '012021' namedAfter: 'Valid Name'.
+	
+	self assert: (inputInterface isAValidSalesID: aSaleID).!
+
+horaActual := DateAndTime now. !
+
+horaActual := horaActual + Duration minutes: 30.!
+
+horaActual := horaActual + (Duration minutes: 30).!
+
+horaActual := DateAndTime now. !
+
+horaActual := horaActual + (Duration minutes: 30). !
+
+!classDefinition: #SimulatedClock category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/30/2020 19:20:02'!
+Object subclass: #SimulatedClock
+	instanceVariableNames: 'offset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:20:27'!
+test09
+
+	| inputInterface users catalogue cartID resultingContents adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTime: Duration minutes: 30.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	resultingContents := Bag new.
+	resultingContents add: 'mathBook' withOccurrences: 1.
+	
+	self assert: (inputInterface listCart: cartID) equals: resultingContents.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:24:00' prior: 50870107!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTime: Duration minutes: 30.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 19:24:07'!
+ERROR!
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:24:31'!
+newWith: anOrderedCollection andACatalogue: aDictionary withClock: aSimulatedClock 
+	self shouldBeImplemented.! !
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:25:29' prior: 50870166!
+newWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue.! !
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:25:37' prior: 50870173!
+newWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock.! !
+
+!classDefinition: #InputInterface category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/30/2020 19:26:17'!
+Object subclass: #InputInterface
+	instanceVariableNames: 'catalogue globalNextUserID globalTransactionsID users clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:26:12'!
+initializeWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock
+
+	users := anUsersCollection.
+	catalogue := aCatalogue.
+	globalNextUserID := '0'.
+	globalTransactionsID := '0'.
+	clock := aClock.! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 19:26:36'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 19:26:44'!
+ERROR!
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:26:58'!
+offsetTime: aClass minutes: aSmallInteger 
+	self shouldBeImplemented.! !
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:28:08'!
+offsetTime: anOffsetDuration
+	offset := anOffsetDuration.! !
+
+!methodRemoval: SimulatedClock #offsetTime:minutes: stamp: 'LNB 11/30/2020 19:28:11'!
+offsetTime: aClass minutes: aSmallInteger 
+	self shouldBeImplemented.!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:28:33' prior: 50870135!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTime: (Duration minutes: 30).
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:29:10'!
+offsetTimeTo: anOffsetDuration
+	offset := anOffsetDuration.! !
+
+!methodRemoval: SimulatedClock #offsetTime: stamp: 'LNB 11/30/2020 19:29:10'!
+offsetTime: anOffsetDuration
+	offset := anOffsetDuration.!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:29:22' prior: 50870231!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 30).
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:29:42' prior: 50870269!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password').
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 30).
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 19:29:44'!
+FAILURE!
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:30:42'!
+cartAuthenticationExpired
+
+	^'The Authentication for this cart has expired.'! !
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:30:46' prior: 50870327!
+cartAuthenticationExpired
+
+	^'The authentication for this cart has expired.'! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 11/30/2020 19:37:04' prior: 50868837!
+addToCart: aCartID anAmount: anAmount ofABookISBN: aBookISBN
+
+	| user |
+	
+	(self isAValidCartID: aCartID) ifFalse: [self error: InputInterface wrongCartID].
+	
+	user := users at: (users findFirst:[:anUser | (anUser isAValidCartID: aCartID)]).
+	
+	user checkCartID: aCartID isStillAuthenticatedFor: self at: clock now.
+
+	user add: anAmount of: aBookISBN to: aCartID.! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 19:37:34'!
+FAILURE!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 11/30/2020 19:37:34'!
+FAILURE!
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:38:46'!
+checkCartID: aCartID isStillAuthenticatedFor: aRequestingInterface at: aDateAndTime.
+	
+	! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:40:31' prior: 50868626!
+add: anAmount of: aBookISBN to: aCartID
+
+	
+
+	(carts at: aCartID) add: anAmount of: aBookISBN.
+
+	(carts at: aCartID) add: anAmount of: aBookISBN.! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:40:37' prior: 50870365!
+add: anAmount of: aBookISBN to: aCartID
+
+	| cart |
+
+	(carts at: aCartID) add: anAmount of: aBookISBN.
+
+	(carts at: aCartID) add: anAmount of: aBookISBN.! !
+
+Object subclass: #Cart
+	instanceVariableNames: 'books catalogue lastAccess'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classDefinition: #Cart category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/30/2020 19:42:16'!
+Object subclass: #Cart
+	instanceVariableNames: 'books catalogue lastAccess'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 19:44:44' prior: 50870373!
+add: anAmount of: aBookISBN to: aCartID 
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: DateAndTime now from: DateAndTime now.
+
+	cart add: anAmount of: aBookISBN.! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 11/30/2020 19:45:21' prior: 50870339!
+addToCart: aCartID anAmount: anAmount ofABookISBN: aBookISBN
+
+	| user |
+	
+	(self isAValidCartID: aCartID) ifFalse: [self error: InputInterface wrongCartID].
+	
+	user := users at: (users findFirst:[:anUser | (anUser isAValidCartID: aCartID)]).
+	
+	"user checkCartID: aCartID isStillAuthenticatedFor: self at: clock now."
+
+	user add: anAmount of: aBookISBN to: aCartID.! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 11/30/2020 19:47:09' prior: 50870403!
+addToCart: aCartID anAmount: anAmount ofABookISBN: aBookISBN
+
+	| user |
+	
+	(self isAValidCartID: aCartID) ifFalse: [self error: InputInterface wrongCartID].
+	
+	user := users at: (users findFirst:[:anUser | (anUser isAValidCartID: aCartID)]).
+	
+	"user checkCartID: aCartID isStillAuthenticatedFor: self at: clock now."
+
+	user add: anAmount of: aBookISBN to: aCartID at: clock now.! !
+!Cart methodsFor: 'adding' stamp: 'LNB 11/30/2020 20:01:18'!
+assertLastAccessWasBefore: aDuration from: aCurrentDateAndTime for: aRequestingInterface
+	
+	^ (lastAccess + aDuration < aCurrentDateAndTime) ifTrue: [ aRequestingInterface reportAuthenticationExpired ].! !
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:05:53'!
+now
+	^DateAndTime now + offset.! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:15:20'!
+add: anAmount of: aBookISBN to: aCartID for: aRequestingInterface
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: DateAndTime now from: DateAndTime now for: aRequestingInterface.
+
+	cart add: anAmount of: aBookISBN.! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 11/30/2020 20:16:37' prior: 50870418!
+addToCart: aCartID anAmount: anAmount ofABookISBN: aBookISBN
+
+	| user |
+	
+	(self isAValidCartID: aCartID) ifFalse: [self error: InputInterface wrongCartID].
+	
+	user := users at: (users findFirst:[:anUser | (anUser isAValidCartID: aCartID)]).
+	
+	"user checkCartID: aCartID isStillAuthenticatedFor: self at: clock now."
+
+	user add: anAmount of: aBookISBN to: aCartID at: clock now for: self.! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:19:05'!
+add: anAmount of: aBookISBN to: aCartID at: aCurrentDateAndTime for: aRequestingInterface
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: (Duration minutes: 30) from: aCurrentDateAndTime for: aRequestingInterface.
+
+	cart add: anAmount of: aBookISBN.! !
+!Customer class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:19:46'!
+withUsername: anUsername andPassword: aPassword authenticatingCartsFor: aDuration
+
+	^ self basicNew initializeWith: anUsername and: aPassword.! !
+!Customer class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:20:14' prior: 50870484!
+withUsername: anUsername andPassword: aPassword authenticatingCartsFor: aDuration
+
+	^ self basicNew initializeWith: anUsername and: aPassword and: aDuration.! !
+
+!classDefinition: #Customer category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/30/2020 20:21:12'!
+Object subclass: #Customer
+	instanceVariableNames: 'username password carts sales authenticationDuration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!Customer methodsFor: 'initialization' stamp: 'LNB 11/30/2020 20:21:08'!
+initializeWith: anUsername and: aPassword and: aCartAuthenticationDuration
+	username  := anUsername.
+	password  := aPassword.
+	carts := Dictionary new.
+	sales := Dictionary new.
+	authenticationDuration := aCartAuthenticationDuration.
+	! !
+
+!methodRemoval: Customer #initializeWith:and:and: stamp: 'LNB 11/30/2020 20:21:44'!
+initializeWith: anUsername and: aPassword and: aCartAuthenticationDuration
+	username  := anUsername.
+	password  := aPassword.
+	carts := Dictionary new.
+	sales := Dictionary new.
+	authenticationDuration := aCartAuthenticationDuration.
+	!
+!Customer methodsFor: 'initialization' stamp: 'LNB 11/30/2020 20:22:39'!
+initializeWith: anUsername and: aPassword and: aCartAuthenticationDuration 
+	username  := anUsername.
+	password  := aPassword.
+	carts := Dictionary new.
+	sales := Dictionary new.
+	! !
+!Customer class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:22:39' prior: 50868660!
+withUsername: anUsername andPassword: aPassword
+
+	^ self basicNew initializeWith: anUsername and: aPassword and: aDuration.! !
+
+!methodRemoval: Customer #initializeWith:and: stamp: 'LNB 11/30/2020 20:22:39'!
+initializeWith: anUsername and: aPassword
+	username  := anUsername.
+	password  := aPassword.
+	carts := Dictionary new.
+	sales := Dictionary new.
+	!
+
+!methodRemoval: Customer class #withUsername:andPassword:authenticatingCartsFor: stamp: 'LNB 11/30/2020 20:23:02'!
+withUsername: anUsername andPassword: aPassword authenticatingCartsFor: aDuration
+
+	^ self basicNew initializeWith: anUsername and: aPassword and: aDuration.!
+!Customer class methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59'!
+withUsername: anUsername andPassword: aPassword authenticatingCartsFor: aDuration 
+
+	^ self basicNew initializeWith: anUsername and: aPassword and: aDuration.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50870298!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 30).
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50869965!
+test07
+
+	| inputInterface users catalogue cartID resultingContents |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	resultingContents := Bag new.
+	resultingContents add: 'mathBook' withOccurrences: 1.
+	
+	self assert: (inputInterface listCart: cartID) equals: resultingContents.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50869892!
+test05
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface listCart: cartID) equals: Bag new.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50870046!
+test20
+
+	| inputInterface users catalogue cartID aSaleID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	aSaleID := inputInterface checkoutCart: cartID withPlasticNumber: '0000000000000000' validThrough: '012021' namedAfter: 'Valid Name'.
+	
+	self assert: (inputInterface isAValidSalesID: aSaleID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50869988!
+test03
+
+	| inputInterface users catalogue |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	self should: [inputInterface createCartFor: 'Username' withPassword: 'Wrong Password'] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongPassword. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50869908!
+test06
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface listCart: cartID] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50870006!
+test01
+
+	| inputInterface users catalogue aCartID|
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	aCartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface isAValidCartID: aCartID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50869945!
+test08
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:23:59' prior: 50869926!
+test04
+
+	| inputInterface users catalogue cartID1 cartID2 |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: ((Duration minutes: 30))).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID1 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	cartID2 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (cartID1 = cartID2) not.! !
+
+!methodRemoval: Customer class #withUsername:andPassword: stamp: 'LNB 11/30/2020 20:23:59'!
+withUsername: anUsername andPassword: aPassword
+
+	^ self basicNew initializeWith: anUsername and: aPassword and: aDuration.!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:15' prior: 50870706!
+test01
+
+	| inputInterface users catalogue aCartID|
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	aCartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface isAValidCartID: aCartID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:26' prior: 50870667!
+test03
+
+	| inputInterface users catalogue |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	self should: [inputInterface createCartFor: 'Username' withPassword: 'Wrong Password'] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongPassword. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:31' prior: 50870746!
+test04
+
+	| inputInterface users catalogue cartID1 cartID2 |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID1 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	cartID2 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (cartID1 = cartID2) not.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:35' prior: 50870623!
+test05
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface listCart: cartID) equals: Bag new.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:40' prior: 50870687!
+test06
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface listCart: cartID] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:44' prior: 50870598!
+test07
+
+	| inputInterface users catalogue cartID resultingContents |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	resultingContents := Bag new.
+	resultingContents add: 'mathBook' withOccurrences: 1.
+	
+	self assert: (inputInterface listCart: cartID) equals: resultingContents.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:48' prior: 50870724!
+test08
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:52' prior: 50870570!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 30).
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:24:56' prior: 50870641!
+test20
+
+	| inputInterface users catalogue cartID aSaleID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	aSaleID := inputInterface checkoutCart: cartID withPlasticNumber: '0000000000000000' validThrough: '012021' namedAfter: 'Valid Name'.
+	
+	self assert: (inputInterface isAValidSalesID: aSaleID).! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 11/30/2020 20:26:10' prior: 50870472!
+add: anAmount of: aBookISBN to: aCartID at: aCurrentDateAndTime for: aRequestingInterface
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: authenticationDuration from: aCurrentDateAndTime for: aRequestingInterface.
+
+	cart add: anAmount of: aBookISBN.! !
+!Customer methodsFor: 'initialization' stamp: 'LNB 11/30/2020 20:26:21' prior: 50870529!
+initializeWith: anUsername and: aPassword and: aCartAuthenticationDuration 
+	username  := anUsername.
+	password  := aPassword.
+	carts := Dictionary new.
+	sales := Dictionary new.
+	authenticationDuration := aCartAuthenticationDuration.! !
+
+!methodRemoval: Customer #add:of:to: stamp: 'LNB 11/30/2020 20:27:53'!
+add: anAmount of: aBookISBN to: aCartID 
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: DateAndTime now from: DateAndTime now.
+
+	cart add: anAmount of: aBookISBN.!
+
+!methodRemoval: Customer #add:of:to:for: stamp: 'LNB 11/30/2020 20:27:54'!
+add: anAmount of: aBookISBN to: aCartID for: aRequestingInterface
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: DateAndTime now from: DateAndTime now for: aRequestingInterface.
+
+	cart add: anAmount of: aBookISBN.!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 11/30/2020 20:29:52'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 11/30/2020 20:29:53'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 11/30/2020 20:29:56'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 11/30/2020 20:29:56'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test20 stamp: 'LNB 11/30/2020 20:29:56'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 11/30/2020 20:30:00'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 11/30/2020 20:30:00'!
+ERROR!
+
+----QUIT----(30 November 2020 20:58:28) CuisUniversity-4384.image priorSource: 17155564!
+
+----STARTUP---- (1 December 2020 20:35:25) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Tercera Parte Interfaz/hasta el 4 facu/linux64/CuisUniversity-4384.image!
+
+!Cart methodsFor: 'asserting' stamp: 'LNB 12/1/2020 20:38:37'!
+updateLastAccessTo: aCurrentDateAndTime for: aRequestingInterface
+	
+	lastAccess := aCurrentDateAndTime.! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 12/1/2020 20:45:40' prior: 50868871!
+createCartFor: anUsername withPassword: aPassword
+	
+	| cartID foundUser cart |
+	
+	(users select:[:user | user username = anUsername]) isEmpty ifTrue: [self error: InputInterface wrongUsername].
+	
+	foundUser := users at: (users findFirst:[:user | user username = anUsername]).
+	
+	(foundUser password = aPassword) ifFalse: [self error: InputInterface wrongPassword].
+
+	cartID := self generateCartId.
+	
+	cart := (Cart with: catalogue).
+	
+	foundUser addCart: cart withID: cartID.
+	
+
+
+	^ cartID.! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 12/1/2020 20:46:25' prior: 50871057!
+createCartFor: anUsername withPassword: aPassword
+	
+	| cartID foundUser |
+	
+	(users select:[:user | user username = anUsername]) isEmpty ifTrue: [self error: InputInterface wrongUsername].
+	
+	foundUser := users at: (users findFirst:[:user | user username = anUsername]).
+	
+	(foundUser password = aPassword) ifFalse: [self error: InputInterface wrongPassword].
+
+	cartID := self generateCartId.
+	
+	foundUser addCart: (Cart with: catalogue) withID: cartID.
+	
+
+
+	^ cartID.! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 12/1/2020 20:46:29' prior: 50871076!
+createCartFor: anUsername withPassword: aPassword
+	
+	| cartID foundUser |
+	
+	(users select:[:user | user username = anUsername]) isEmpty ifTrue: [self error: InputInterface wrongUsername].
+	
+	foundUser := users at: (users findFirst:[:user | user username = anUsername]).
+	
+	(foundUser password = aPassword) ifFalse: [self error: InputInterface wrongPassword].
+
+	cartID := self generateCartId.
+	
+	foundUser addCart: (Cart with: catalogue) withID: cartID.
+
+	^ cartID.! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:47:50'!
+addCart: aCart withID: aCartID at: aDateAndTime 
+
+	carts add: aCartID -> aCart.! !
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:47:50' prior: 50871094!
+createCartFor: anUsername withPassword: aPassword
+	
+	| cartID foundUser |
+	
+	(users select:[:user | user username = anUsername]) isEmpty ifTrue: [self error: InputInterface wrongUsername].
+	
+	foundUser := users at: (users findFirst:[:user | user username = anUsername]).
+	
+	(foundUser password = aPassword) ifFalse: [self error: InputInterface wrongPassword].
+
+	cartID := self generateCartId.
+	
+	foundUser addCart: (Cart with: catalogue) withID: cartID at: clock now.
+
+	^ cartID.! !
+
+!methodRemoval: Customer #addCart:withID: stamp: 'LNB 12/1/2020 20:47:50'!
+addCart: aCart withID: aCartID
+
+	carts add: aCartID -> aCart.!
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:48:55' prior: 50871112!
+addCart: aCart withID: aCartID at: aCurrentDateAndTime 
+
+	carts add: aCartID -> aCart.
+	aCart updateLastAccessTo: aCurrentDateAndTime for: aCart.! !
+!Cart methodsFor: 'asserting' stamp: 'LNB 12/1/2020 20:49:03'!
+updateLastAccessTo: aCurrentDateAndTime
+	
+	lastAccess := aCurrentDateAndTime.! !
+
+!methodRemoval: Cart #updateLastAccessTo:for: stamp: 'LNB 12/1/2020 20:49:08'!
+updateLastAccessTo: aCurrentDateAndTime for: aRequestingInterface
+	
+	lastAccess := aCurrentDateAndTime.!
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:49:30' prior: 50871141!
+addCart: aCart withID: aCartID at: aCurrentDateAndTime 
+
+	carts add: aCartID -> aCart.
+	aCart updateLastAccessTo: aCurrentDateAndTime.! !
+!Customer methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:50:21' prior: 50870968!
+add: anAmount of: aBookISBN to: aCartID at: aCurrentDateAndTime for: aRequestingInterface
+
+	| cart |
+
+	cart := (carts at: aCartID).
+	
+	cart assertLastAccessWasBefore: authenticationDuration from: aCurrentDateAndTime for: aRequestingInterface.
+
+	cart add: anAmount of: aBookISBN.
+	
+	cart updateLastAccessTo: aCurrentDateAndTime.! !
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 20:50:44'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 20:50:44'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 20:51:04'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 20:51:04'!
+ERROR!
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:52:11'!
+newWith: anUsersCollection andACatalogue: aCatalogue witClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock.! !
+
+!methodRemoval: InputInterface class #newWith:andACatalogue:withClock: stamp: 'LNB 12/1/2020 20:52:11'!
+newWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock.!
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26'!
+newWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870831!
+test05
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface listCart: cartID) equals: Bag new.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870849!
+test06
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface listCart: cartID] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50868251!
+test02
+
+	| inputInterface users catalogue |
+	
+	users := OrderedCollection new.
+	catalogue := Dictionary new.
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	
+	self should: [inputInterface createCartFor: 'WrongUser' withPassword: 'Password'] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongUsername. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870773!
+test01
+
+	| inputInterface users catalogue aCartID|
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	aCartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (inputInterface isAValidCartID: aCartID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870811!
+test04
+
+	| inputInterface users catalogue cartID1 cartID2 |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID1 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	cartID2 := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	self assert: (cartID1 = cartID2) not.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870943!
+test20
+
+	| inputInterface users catalogue cartID aSaleID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	aSaleID := inputInterface checkoutCart: cartID withPlasticNumber: '0000000000000000' validThrough: '012021' namedAfter: 'Valid Name'.
+	
+	self assert: (inputInterface isAValidSalesID: aSaleID).! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870868!
+test07
+
+	| inputInterface users catalogue cartID resultingContents |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	resultingContents := Bag new.
+	resultingContents add: 'mathBook' withOccurrences: 1.
+	
+	self assert: (inputInterface listCart: cartID) equals: resultingContents.! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870791!
+test03
+
+	| inputInterface users catalogue |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	self should: [inputInterface createCartFor: 'Username' withPassword: 'Wrong Password'] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongPassword. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:26' prior: 50870893!
+test08
+
+	| inputInterface users catalogue cartID |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := '1' asSymbol.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface wrongCartID. ].! !
+
+!methodRemoval: InputInterface class #newWith:andACatalogue: stamp: 'LNB 12/1/2020 20:53:26'!
+newWith: anUsersCollection andACatalogue: aCatalogue
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue.!
+
+!methodRemoval: InputInterface class #newWith:andACatalogue:witClock: stamp: 'LNB 12/1/2020 20:53:49'!
+newWith: anUsersCollection andACatalogue: aCatalogue witClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock.!
+!InputInterface class methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:53:59' prior: 50871209!
+newWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock 
+
+	^self basicNew initializeWith: anUsersCollection andACatalogue: aCatalogue withClock: aClock.! !
+!SimulatedClock methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 20:55:35' overrides: 16896425!
+initialize
+	offset := Duration minutes: 0.! !
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 20:55:41'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 12/1/2020 20:55:44'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 12/1/2020 20:55:45'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 12/1/2020 20:55:46'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 12/1/2020 20:55:47'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 12/1/2020 20:55:48'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 12/1/2020 20:55:49'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 12/1/2020 20:55:50'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:55:51'!
+FAILURE!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:55:51'!
+FAILURE!
+!Cart methodsFor: 'asserting' stamp: 'LNB 12/1/2020 20:56:24' prior: 50870432!
+assertLastAccessWasBefore: aDuration from: aCurrentDateAndTime for: aRequestingInterface
+	
+	^ (lastAccess + aDuration < aCurrentDateAndTime) ifTrue: [ aRequestingInterface cartAuthenticationExpired ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:56:30'!
+FAILURE!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:56:30'!
+FAILURE!
+!Cart methodsFor: 'asserting' stamp: 'LNB 12/1/2020 20:57:09' prior: 50871464!
+assertLastAccessWasBefore: aDuration from: aCurrentDateAndTime for: aRequestingInterface
+	
+	^ (lastAccess + aDuration < aCurrentDateAndTime) ifTrue: [ aRequestingInterface reportAuthenticationExpired ].! !
+!Cart methodsFor: 'asserting' stamp: 'LNB 12/1/2020 20:57:38' prior: 50871478!
+assertLastAccessWasBefore: aDuration from: aCurrentDateAndTime for: aRequestingInterface
+	
+	^ (lastAccess + aDuration < aCurrentDateAndTime) ifTrue: [ aRequestingInterface reportCartAuthenticationExpired ].! !
+!InputInterface methodsFor: 'export' stamp: 'LNB 12/1/2020 20:58:19'!
+reportCartAuthenticationExpired
+	
+	self error: InputInterface cartAuthenticationExpired.! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:58:22'!
+FAILURE!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:58:22'!
+FAILURE!
+!InputInterface methodsFor: 'export' stamp: 'LNB 12/1/2020 20:58:32' prior: 50871496!
+reportCartAuthenticationExpired
+	
+	^self error: InputInterface cartAuthenticationExpired.! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:58:35'!
+FAILURE!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 20:58:35'!
+FAILURE!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 21:01:59' prior: 50870915!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 30).
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:02:28'!
+FAILURE!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 21:03:12' prior: 50871519!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 31).
+	
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:03:13'!
+FAILURE!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 21:03:24' prior: 50871552!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: SimulatedClock new.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 31).
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 21:05:05' prior: 50871583!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: adulteratedClock.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 31).
+	
+	inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:05:07'!
+ERROR!
+!InputInterfaceTests methodsFor: 'as yet unclassified' stamp: 'LNB 12/1/2020 21:05:14' prior: 50871614!
+test09
+
+	| inputInterface users catalogue cartID adulteratedClock |
+	
+	users := OrderedCollection with: (Customer withUsername: 'Username' andPassword: 'Password' authenticatingCartsFor: (Duration minutes: 30)).
+	
+	catalogue := Dictionary new.
+	catalogue add: 'mathBook'->100.
+	
+	adulteratedClock := SimulatedClock new.
+	
+	inputInterface := InputInterface newWith: users andACatalogue: catalogue withClock: adulteratedClock.
+	
+	cartID := inputInterface createCartFor: 'Username' withPassword: 'Password'.
+	
+	adulteratedClock offsetTimeTo: (Duration minutes: 31).
+	
+	self should: [inputInterface addToCart: cartID anAmount: 1 ofABookISBN: 'mathBook'.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: InputInterface cartAuthenticationExpired. ].! !
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:05:15'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test20 stamp: 'LNB 12/1/2020 21:05:15'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test20 stamp: 'LNB 12/1/2020 21:05:15'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test01 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test02 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test03 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test04 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test05 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test06 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test07 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test08 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:05:26'!
+PASSED!
+
+!testRun: #InputInterfaceTests #test20 stamp: 'LNB 12/1/2020 21:05:26'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test20 stamp: 'LNB 12/1/2020 21:05:26'!
+ERROR!
+
+!testRun: #InputInterfaceTests #test09 stamp: 'LNB 12/1/2020 21:05:36'!
+PASSED!
+
+----QUIT----(1 December 2020 21:23:34) CuisUniversity-4384.image priorSource: 17260510!
+
+----STARTUP---- (2 December 2020 17:34:33) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Tercera Parte Interfaz/hasta el 4 facu/linux64/CuisUniversity-4384.image!
+
+
+!classRemoval: #TestObjectBuilder stamp: 'LNB 12/2/2020 18:13:21'!
+Object subclass: #TestObjectBuilder
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #SimulatedClock stamp: 'LNB 12/2/2020 18:13:22'!
+Object subclass: #SimulatedClock
+	instanceVariableNames: 'offset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #Sale stamp: 'LNB 12/2/2020 18:13:22'!
+Object subclass: #Sale
+	instanceVariableNames: 'total books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #OutputInterfaceSimulator stamp: 'LNB 12/2/2020 18:13:22'!
+Object subclass: #OutputInterfaceSimulator
+	instanceVariableNames: 'expectedBehaviourBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #InputInterface stamp: 'LNB 12/2/2020 18:13:23'!
+Object subclass: #InputInterface
+	instanceVariableNames: 'catalogue globalNextUserID globalTransactionsID users clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #Customer stamp: 'LNB 12/2/2020 18:13:23'!
+Object subclass: #Customer
+	instanceVariableNames: 'username password carts sales authenticationDuration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #CreditCard stamp: 'LNB 12/2/2020 18:13:23'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'plasticNumber ownerName expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #Cashier stamp: 'LNB 12/2/2020 18:13:24'!
+Object subclass: #Cashier
+	instanceVariableNames: 'interface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #Cart stamp: 'LNB 12/2/2020 18:13:24'!
+Object subclass: #Cart
+	instanceVariableNames: 'books catalogue lastAccess'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #InputInterfaceTests stamp: 'LNB 12/2/2020 18:13:24'!
+TusLibrosExerciseTests subclass: #InputInterfaceTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #CreditCardTests stamp: 'LNB 12/2/2020 18:13:25'!
+TusLibrosExerciseTests subclass: #CreditCardTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #CashierTests stamp: 'LNB 12/2/2020 18:13:25'!
+TusLibrosExerciseTests subclass: #CashierTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #CartTests stamp: 'LNB 12/2/2020 18:13:25'!
+TusLibrosExerciseTests subclass: #CartTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classRemoval: #TusLibrosExerciseTests stamp: 'LNB 12/2/2020 18:13:26'!
+TestCase subclass: #TusLibrosExerciseTests
+	instanceVariableNames: 'builder'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+----End fileIn of /home/leandro/Downloads/Ejercicio-TusLibros.com.st----!

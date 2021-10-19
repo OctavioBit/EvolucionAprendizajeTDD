@@ -1,0 +1,200 @@
+
+
+----SNAPSHOT----(16 November 2020 19:07:30) CuisUniversity-4384.image priorSource: 18264502!
+
+----QUIT----(16 November 2020 19:07:32) CuisUniversity-4384.image priorSource: 18385659!
+
+----STARTUP---- (19 November 2020 15:05:10) as /Users/celeste/facultad/ing1/si-exercises/CuisUniversity-4384.image!
+
+
+----End fileIn of /Users/celeste/facultad/ing1/si-exercises/20 - TusLibros/TusLibros.st----!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:08:26'!
+test07ListEmptyCartGivesEmptyList
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:08:58' prior: 50906396!
+test07ListEmptyCartGivesEmptyList
+	
+	aCart list. ! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:09:41' prior: 50906400!
+test07ListEmptyCartGivesEmptyList
+	
+	self assert: aCart listBooks = 'The cart is empty'.! !
+
+!testRun: #CartTest #test07ListEmptyCartGivesEmptyList stamp: 'CR 11/19/2020 15:11:37'!
+FAILURE!
+
+!testRun: #CartTest #test07ListEmptyCartGivesEmptyList stamp: 'CR 11/19/2020 15:11:37'!
+FAILURE!
+
+aCart listBooks!
+!Cart methodsFor: 'actions' stamp: 'CR 11/19/2020 15:12:20' prior: 50906325!
+listBooks 
+	booksInCart ifEmpty: [^ 'The cart has no items'].
+	^ booksInCart associations.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:12:33' prior: 50906405!
+test07ListEmptyCartGivesEmptyList
+	
+	self assert: aCart listBooks = 'The cart has no items'.! !
+
+!testRun: #CartTest #test07ListEmptyCartGivesEmptyList stamp: 'CR 11/19/2020 15:12:34'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:14:36'!
+test08ListCartWithOneBookWorksCorrectly
+	
+	self assert: aCart listBooks = 'The cart has no items'.! !
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:14:37'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:14:49' prior: 50906431!
+test08ListCartWithOneBookWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	self assert: aCart listBooks = 'The cart has no items'.! !
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:14:51'!
+FAILURE!
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:14:51'!
+FAILURE!
+
+aCart listBooks!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:15:44' prior: 50906440!
+test08ListCartWithOneBookWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	self assert: aCart listBooks asString = 'The cart has no items'.! !
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:15:47'!
+FAILURE!
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:15:47'!
+FAILURE!
+
+aCart listBooks asString!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:16:13' prior: 50906454!
+test08ListCartWithOneBookWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 1)'.! !
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:16:17'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:19:10'!
+test09ListCartWithOneBookMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 1)'.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:19:28' prior: 50906479!
+test09ListCartWithOneBookMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	aCart add: anISBN times: 5.
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 6)'.! !
+
+!testRun: #CartTest #test09ListCartWithOneBookMultipleTimesWorksCorrectly stamp: 'CR 11/19/2020 15:19:32'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:22:07'!
+test10ListCartWithManyBooksMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	aCart add: anISBN times: 5.
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 6)'.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:22:30' prior: 50906499!
+test10ListCartWithManyBooksMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.	
+	aCart add: anotherISBN times: 1.
+	
+	aCart add: anISBN times: 4.	
+	aCart add: anotherISBN times: 5.
+	
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 6)'.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:22:33' prior: 50906487!
+test09ListCartWithOneBookMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	aCart add: anISBN times: 5.
+	
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 6)'.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:22:35' prior: 50906469!
+test08ListCartWithOneBookWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	
+	self assert: aCart listBooks asString = '#(''ISBN #123'' -> 1)'.! !
+
+!testRun: #CartTest #test10ListCartWithManyBooksMultipleTimesWorksCorrectly stamp: 'CR 11/19/2020 15:22:40'!
+FAILURE!
+
+!testRun: #CartTest #test10ListCartWithManyBooksMultipleTimesWorksCorrectly stamp: 'CR 11/19/2020 15:22:40'!
+FAILURE!
+
+aCart listBooks asString!
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:23:08' prior: 50906508!
+test10ListCartWithManyBooksMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.	
+	aCart add: anotherISBN times: 1.
+	
+	aCart add: anISBN times: 4.	
+	aCart add: anotherISBN times: 5.
+	
+	self assert: aCart listBooks asString = '#(''ISBN #127'' -> 6 ''ISBN #123'' -> 5)'.! !
+!Cart methodsFor: 'actions' stamp: 'CR 11/19/2020 15:23:26' prior: 50906417!
+listBooks 
+	booksInCart ifEmpty: [^ 'The cart has no items'].
+	^ booksInCart associations asString.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:23:33' prior: 50906528!
+test08ListCartWithOneBookWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	
+	self assert: aCart listBooks = '#(''ISBN #123'' -> 1)'.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:23:40' prior: 50906519!
+test09ListCartWithOneBookMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.
+	aCart add: anISBN times: 5.
+	
+	self assert: aCart listBooks = '#(''ISBN #123'' -> 6)'.! !
+!CartTest methodsFor: 'tests' stamp: 'CR 11/19/2020 15:23:43' prior: 50906544!
+test10ListCartWithManyBooksMultipleTimesWorksCorrectly
+	
+	aCart add: anISBN times: 1.	
+	aCart add: anotherISBN times: 1.
+	
+	aCart add: anISBN times: 4.	
+	aCart add: anotherISBN times: 5.
+	
+	self assert: aCart listBooks = '#(''ISBN #127'' -> 6 ''ISBN #123'' -> 5)'.! !
+
+!testRun: #CartTest #test01CreateCartWithClientIDAndCartIDWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test02AddingOneBookOneTimeToCartWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test03AddingManyBooksOneTimeToCartWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test04AddingOneBookMultipleTimesToCartWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test05AddingManyBooksManyTimesToCartWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test06AddingNegativeQuantityOfBooksRaisesError stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test07ListEmptyCartGivesEmptyList stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test08ListCartWithOneBookWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test09ListCartWithOneBookMultipleTimesWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!
+
+!testRun: #CartTest #test10ListCartWithManyBooksMultipleTimesWorksCorrectly stamp: 'CR 11/19/2020 15:23:46'!
+PASSED!

@@ -1,0 +1,401 @@
+
+
+----STARTUP---- (9 November 2020 09:35:39) as /media/alex/Rigido-1TB/Migue/Facultad/Ingenieria 1/smalltalk_original/linux64/CuisUniversity-4383.image!
+
+
+----End fileIn of /media/alex/Rigido-1TB/Migue/Facultad/Ingenieria 1/is1-ejercicios/18-Portfolio1/Portfolio-Ejercicio.st----!
+
+| account descendantPortfolio grandchildPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: childPortfolio with: descendantPortfolio.!
+
+| account descendantPortfolio grandchildPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: childPortfolio with: descendantPortfolio.!
+
+| account descendantPortfolio grandchildPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: childPortfolio with: descendantPortfolio.!
+
+| account descendantPortfolio grandchildPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+rootPortfolio add: grandchildPortfolio.!
+!PortfolioTest methodsFor: 'tests - add asset' stamp: 'mf 11/9/2020 09:56:28'!
+test16PortfolioCantAddPortfoliosWithAssetThatRootPortfolioHasAsDescendant
+
+	| account childPortfolio1 childPortfolio2 rootPortfolio |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	childPortfolio1 := Portfolio newWith: account.
+	childPortfolio2 := Portfolio newWith: account.
+
+	rootPortfolio := Portfolio newWith: childPortfolio1.
+	
+	self should: [ rootPortfolio add: childPortfolio2 ] 
+		raise: Error 
+		withExceptionDo: [ :anException | 
+			self assert: anException messageText = Portfolio cantAddRepeatedPortfolioMessage.
+			self assert: rootPortfolio balance = 100.
+		].! !
+
+!testRun: #PortfolioTest #test16PortfolioCantAddPortfoliosWithAssetThatRootPortfolioHasAsDescendant stamp: 'mf 11/9/2020 09:56:31'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16PortfolioCantAddPortfoliosWithAssetThatRootPortfolioHasAsDescendant stamp: 'mf 11/9/2020 09:56:31'!
+FAILURE!
+!Portfolio methodsFor: 'managing assets' stamp: 'mf 11/9/2020 10:05:26' prior: 50869983!
+add: aBankingAsset
+
+	self rootPortfolios do: [ :aRootPortfolio | 
+		(aRootPortfolio isOrHasAssetsInCollection: aBankingAsset assetsInHierarchy) ifTrue: [ self error: self class cantAddRepeatedPortfolioMessage. ]. 
+	].
+
+	bankingAssets add: aBankingAsset.
+
+	aBankingAsset addTo: self.! !
+!Portfolio methodsFor: 'testing' stamp: 'mf 11/9/2020 10:07:30'!
+isOrHasAssetsInCollection: aBankingAssetsCollection
+
+	^aBankingAssetsCollection anySatisfy: [ :anAsset | self isOrHasAsset: anAsset].! !
+
+
+| a b c|
+a := OrderedCollection with: 1 with: 2.
+b := OrderedCollection with: 3 with: 4.
+c := a + b.!
+
+| a b c|
+a := OrderedCollection with: 1 with: 2.
+b := OrderedCollection with: 3 with: 4.
+c := a addAll: b.!
+
+
+| a b |
+a := OrderedCollection with: 1 with: 2.
+b := a addAll: (OrderedCollection with: 3 with: 4).!
+
+
+| a b |
+a := OrderedCollection with: 1 with: 2.
+a addAll: (OrderedCollection with: 3 with: 4). !
+
+| a |
+a := OrderedCollection with: 1 with: 2.
+a addAll: (OrderedCollection with: 3 with: 4). 
+a print!
+!Portfolio methodsFor: 'managing assets' stamp: 'mf 11/9/2020 10:14:44'!
+assetsInHierarchy
+	| assetsCollection |
+	
+	bankingAssets do: [ :anAsset | assetsCollection addAll: (anAsset assetsInHierarchy)].
+	^ assetsCollection.! !
+!BankingAsset methodsFor: 'testing' stamp: 'mf 11/9/2020 10:15:14'!
+isOrHasAssetsInCollection: aGivenBankingAsset
+
+	self subclassResponsibility.! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mf 11/9/2020 10:16:19' overrides: 50870228!
+isOrHasAssetsInCollection: aBankingAssetsCollection
+
+	^aBankingAssetsCollection anySatisfy: [ :anAsset | self isOrHasAsset: anAsset ].! !
+!BankingAsset methodsFor: 'testing' stamp: 'mf 11/9/2020 10:16:40' prior: 50870228!
+isOrHasAssetsInCollection: aBankingAssetCollection
+
+	self subclassResponsibility.! !
+!BankingAsset methodsFor: 'testing' stamp: 'mf 11/9/2020 10:17:35'!
+assetsInHierarchy
+	self subclassResponsibility.! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mf 11/9/2020 10:18:59' overrides: 50870246!
+assetsInHierarchy
+	^ OrderedCollection with: self.! !
+
+| account dscendantPortfolio grandchildPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+grandchildPortfolio assetsInHierarchy!
+!Portfolio methodsFor: 'managing assets' stamp: 'mf 11/9/2020 10:20:19' prior: 50870221 overrides: 50870246!
+assetsInHierarchy
+	| assetsCollection |
+	assetsCollection := OrderedCollection new.
+	
+	bankingAssets do: [ :anAsset | assetsCollection addAll: (anAsset assetsInHierarchy)].
+	^ assetsCollection.! !
+
+| account dscendchildPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+grandchildPortfolio assetsInHierarchy!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+grandchildPortfolio assetsInHierarchy.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio assetsInHierarchy.!
+!Portfolio methodsFor: 'managing assets' stamp: 'mf 11/9/2020 10:23:01' prior: 50870271 overrides: 50870246!
+assetsInHierarchy
+	| assetsCollection |
+	assetsCollection := OrderedCollection newWith: self.
+	
+	bankingAssets do: [ :anAsset | assetsCollection addAll: (anAsset assetsInHierarchy)].
+	^ assetsCollection.! !
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio assetsInHierarchy.!
+!Portfolio methodsFor: 'managing assets' stamp: 'mf 11/9/2020 10:23:18' prior: 50870322 overrides: 50870246!
+assetsInHierarchy
+	| assetsCollection |
+	assetsCollection := OrderedCollection with: self.
+	
+	bankingAssets do: [ :anAsset | assetsCollection addAll: (anAsset assetsInHierarchy)].
+	^ assetsCollection.! !
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio assetsInHierarchy.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio assetsInHierarchy.!
+
+self at: 1!
+
+self at: 2!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio isOrHasAssetsInCollection: childPortfolio assetsInHierarchy.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio isOrHasAssetsInCollection: childPortfolio assetsInHierarchy.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio add: childPortfolio.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio.
+"rootPortfolio add: grandchildPortfolio."
+
+rootPortfolio add: childPortfolio.!
+
+!testRun: #PortfolioTest #test16PortfolioCantAddPortfoliosWithAssetThatRootPortfolioHasAsDescendant stamp: 'mf 11/9/2020 10:30:13'!
+PASSED!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio new.
+childPortfolio := Portfolio newWith: grandchildPortfolio.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.
+
+grandchildPortfolio add: account.!
+
+| account descendantPortfolio childPortfolio rootPortfolio |
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.
+
+descendantPortfolio := Portfolio newWith: account.
+grandchildPortfolio := Portfolio newWith: account.
+childPortfolio := Portfolio new.
+
+rootPortfolio := Portfolio newWith: descendantPortfolio with: childPortfolio.
+
+childPortfolio add: grandchildPortfolio.!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountsHasAccountsBalance stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithSubPortfoliosHasTheirBalance stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotKnowNotRegisteredTransactions stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsRegisteredTransactionsInAccounts stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsInSubPortfolios stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasNoTransactions stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasItsAccountsTransactions stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioHasItsSubPortfoliosTransactions stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10EmptyPortfolioHasNoAssets stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioHasItsAccounts stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioHasItsSubPortfolios stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanAddAssets stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCantAddAssetItHasAsDescendant stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCantAddAssetThatRootPortfolioHasAsDescendant stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCantAddPortfoliosWithAssetThatRootPortfolioHasAsDescendant stamp: 'mf 11/9/2020 10:37:16'!
+PASSED!
+
+----QUIT----(9 November 2020 10:38:24) CuisUniversity-4383.image priorSource: 17207870!

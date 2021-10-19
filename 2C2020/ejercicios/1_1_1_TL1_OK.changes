@@ -1,0 +1,1445 @@
+
+
+----QUIT----(16 November 2020 20:30:29) CuisUniversity-4384.image priorSource: 17155564!
+
+----STARTUP---- (16 November 2020 20:34:35) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/TusLibros/CuisUniversity-4384.image!
+
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:21:21' prior: 50868332!
+test02ABookAddedToCartIsSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1} )! !
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:21:25'!
+ERROR!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/16/2020 21:21:36'!
+addToCart: aSmallInteger withOcurrences: aSmallInteger2 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'book adding' stamp: 'AM 11/16/2020 21:22:16' prior: 50868447!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	books add: aBook withOccurrences: aNumberOfOccurences
+	
+	! !
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:22:18'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/16/2020 21:22:18'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:22:18'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:22:18'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:22:18'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:22:47' prior: 50868315!
+test03ManyBooksAddedToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOccurences: 1.
+	aCart addToCart: 2 withOccurences: 1.
+	aCart addToCart: 3 withOccurences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 2} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:22:52' prior: 50868476!
+test03ManyBooksAddedToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOccurences: 1.
+	aCart addToCart: 2 withOccurences: 1.
+	aCart addToCart: 3 withOccurences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:22:53'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:23:30' prior: 50868492!
+test03ManyBooksAddedToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1. 
+	aCart addToCart: 2 withOcurrences: 1.
+	aCart addToCart: 3 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:23:32'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/16/2020 21:23:32'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:23:32'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:23:32'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:23:32'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:24:02' prior: 50868375!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart validBooks |
+	
+	validBooks := OrderedCollection with: 1.
+	
+	aCart := Cart withAvailableBooks: validBooks.
+	
+	self should: [ aCart addToCart: 2 withOcurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:24:08'!
+FAILURE!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/16/2020 21:24:40' prior: 50868453!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	(collectionOfBooksForSale includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences
+	
+	! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/16/2020 21:24:53'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:24:53'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:24:53'!
+ERROR!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:24:53'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:24:53'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:25:04' prior: 50868511!
+test03ManyBooksAddedToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2 with: 3.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1. 
+	aCart addToCart: 2 withOcurrences: 1.
+	aCart addToCart: 3 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:25:05'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/16/2020 21:25:05'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:25:05'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:25:05'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:25:05'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:25:21'!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2 with: 3.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1. 
+	aCart addToCart: 2 withOcurrences: 1.
+	aCart addToCart: 3 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+
+!methodRemoval: CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:25:22'!
+test03ManyBooksAddedToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2 with: 3.
+	
+	aCart := Cart withAvailableBooks: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1. 
+	aCart addToCart: 2 withOcurrences: 1.
+	aCart addToCart: 3 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )!
+
+!methodRemoval: Cart #addToCart: stamp: 'AM 11/16/2020 21:27:42'!
+addToCart: aBook 
+
+	(collectionOfBooksForSale includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook!
+
+!methodRemoval: Cart #initialize stamp: 'AM 11/16/2020 21:27:49'!
+initialize
+
+	books := OrderedCollection new!
+!Cart methodsFor: 'initialization' stamp: 'AM 11/16/2020 21:27:58' prior: 50868213!
+initializeWithAvailableBooks: aCatalogue
+	
+	collectionOfBooksForSale := aCatalogue.
+	books := OrderedCollection new.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'AM 11/16/2020 21:28:10'!
+Object subclass: #Cart
+	instanceVariableNames: 'books catalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:28:10' prior: 50868559!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences
+	
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:28:10' prior: 50868660!
+initializeWithAvailableBooks: aCatalogue
+	
+	catalogue := aCatalogue.
+	books := OrderedCollection new.! !
+!Cart methodsFor: 'initialization' stamp: 'AM 11/16/2020 21:28:23'!
+initializeWithCatalogue: aCatalogue
+	
+	catalogue := aCatalogue.
+	books := OrderedCollection new.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:28:23' prior: 50868189!
+withAvailableBooks: aCollectionOfBooksForSale
+
+	^self new initializeWithCatalogue: aCollectionOfBooksForSale ! !
+
+!methodRemoval: Cart #initializeWithAvailableBooks: stamp: 'AM 11/16/2020 21:28:23'!
+initializeWithAvailableBooks: aCatalogue
+	
+	catalogue := aCatalogue.
+	books := OrderedCollection new.!
+!Cart class methodsFor: 'instance creation' stamp: 'AM 11/16/2020 21:28:31' prior: 50868697!
+withAvailableBooks: aCatalogue
+
+	^self new initializeWithCatalogue: aCatalogue ! !
+!Cart class methodsFor: 'instance creation' stamp: 'AM 11/16/2020 21:28:41'!
+withCatalogue: aCatalogue
+
+	^self new initializeWithCatalogue: aCatalogue ! !
+
+!methodRemoval: Cart class #withAvailableBooks: stamp: 'AM 11/16/2020 21:28:41'!
+withAvailableBooks: aCatalogue
+
+	^self new initializeWithCatalogue: aCatalogue !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/16/2020 21:28:46'!
+ERROR!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:28:46'!
+ERROR!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:28:46'!
+ERROR!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:28:46'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:28:58' prior: 50868344!
+test01NewCartIsEmpty
+
+	| anEmptyCart availableBooks |
+	
+	availableBooks := OrderedCollection new.
+	
+	anEmptyCart := Cart withCatalogue: availableBooks.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/16/2020 21:29:02'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:29:04' prior: 50868432!
+test02ABookAddedToCartIsSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1} )! !
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/16/2020 21:29:05'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:29:07' prior: 50868618!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2 with: 3.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: 1 withOcurrences: 1. 
+	aCart addToCart: 2 withOcurrences: 1.
+	aCart addToCart: 3 withOcurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/16/2020 21:29:08'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/16/2020 21:29:10' prior: 50868543!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart validBooks |
+	
+	validBooks := OrderedCollection with: 1.
+	
+	aCart := Cart withCatalogue: validBooks.
+	
+	self should: [ aCart addToCart: 2 withOcurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/16/2020 21:29:11'!
+PASSED!
+
+----QUIT----(16 November 2020 21:30:38) CuisUniversity-4384.image priorSource: 17176752!
+
+----STARTUP---- (17 November 2020 22:22:48) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/TusLibros/CuisUniversity-4384.image!
+
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:23:30' prior: 50868674!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	! !
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:23:53'!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	! !
+
+!methodRemoval: Cart #addToCart:withOcurrences: stamp: 'AM 11/17/2020 22:23:53'!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:24:01'!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	! !
+
+!methodRemoval: Cart #addToCart:withOccurrences: stamp: 'AM 11/17/2020 22:24:01'!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:24:11'!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:24:11' prior: 50868768!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1 with: 2 with: 3.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: 1 withOccurrences: 1. 
+	aCart addToCart: 2 withOccurrences: 1.
+	aCart addToCart: 3 withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:24:11' prior: 50868788!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart validBooks |
+	
+	validBooks := OrderedCollection with: 1.
+	
+	aCart := Cart withCatalogue: validBooks.
+	
+	self should: [ aCart addToCart: 2 withOccurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:24:11' prior: 50868752!
+test02ABookAddedToCartIsSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: 1.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: 1 withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1} )! !
+
+!methodRemoval: Cart #addToCart:withOcurrences: stamp: 'AM 11/17/2020 22:24:11'!
+addToCart: aBook withOcurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook
+	
+	!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:24:15'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:24:15'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:24:15'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:24:15'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:25:21' prior: 50868891!
+test02ABookAddedToCartIsSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: #HarryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: #HarryPotter withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {#HarryPotter} )! !
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'AM 11/17/2020 22:27:01'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'harryPotter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'AM 11/17/2020 22:27:03'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'harryPotter lordOfTheRings'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'AM 11/17/2020 22:27:05'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'harryPotter lordOfTheRings ageOfEmpires'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'nil' stamp: 'AM 11/17/2020 22:26:59' overrides: 16927572!
+setUp
+
+	harryPotter := #HarryPotter.
+	lordOfTheRings := #LordOfTheRings.
+	ageOfEmpires := #AgeOfEmpires
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:27:20' prior: 50868925!
+test02ABookAddedToCartIsSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:27:49' prior: 50868862!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter 
+									with: lordOfTheRings 
+									with: ageOfEmpires .
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: 1 withOccurrences: 1. 
+	aCart addToCart: 2 withOccurrences: 1.
+	aCart addToCart: 3 withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:28:03' prior: 50868981!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter 
+									with: lordOfTheRings 
+									with: ageOfEmpires .
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 1. 
+	aCart addToCart: lordOfTheRings withOccurrences: 1.
+	aCart addToCart: ageOfEmpires withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {1. 2. 3} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:28:51' prior: 50868999!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter 
+									with: lordOfTheRings 
+									with: ageOfEmpires .
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 1. 
+	aCart addToCart: lordOfTheRings withOccurrences: 1.
+	aCart addToCart: ageOfEmpires withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. lordOfTheRings. ageOfEmpires} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:30:31' prior: 50868878!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart validBooks |
+	
+	validBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: validBooks.
+	
+	self should: [ aCart addToCart: lordOfTheRings withOccurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:30:33'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:30:33'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:30:33'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:30:33'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:30:33'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:32:20'!
+test05
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 2. 
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. harryPotter} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:32:25' prior: 50869068!
+test05
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 2. 
+	
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. harryPotter} )! !
+
+!testRun: #CartTest #test05 stamp: 'AM 11/17/2020 22:33:02'!
+FAILURE!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:33:34' prior: 50868853!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+
+!testRun: #CartTest #test05 stamp: 'AM 11/17/2020 22:33:36'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:33:36'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:33:36'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:33:36'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:33:36'!
+PASSED!
+
+!testRun: #CartTest #test05 stamp: 'AM 11/17/2020 22:33:36'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:34:02'!
+test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 2. 
+	
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. harryPotter} )! !
+
+!methodRemoval: CartTest #test05 stamp: 'AM 11/17/2020 22:34:02'!
+test05
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	aCart addToCart: harryPotter withOccurrences: 2. 
+	
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. harryPotter} )!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:02' prior: 50869038!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart availableBooks |
+	
+	availableBooks := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: availableBooks.
+	
+	self should: [ aCart addToCart: lordOfTheRings withOccurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:07' prior: 50869146!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: lordOfTheRings withOccurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:15' prior: 50868739!
+test01NewCartIsEmpty
+
+	| anEmptyCart catalogue |
+	
+	catalogue := OrderedCollection new.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:24' prior: 50869173!
+test01NewCartIsEmpty
+
+	| anEmptyCart catalogu |
+	
+	catalogu := OrderedCollection new.
+	
+	anEmptyCart := Cart withCatalogue: catalogu.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:26' prior: 50869183!
+test01NewCartIsEmpty
+
+	| anEmptyCart catalogue |
+	
+	catalogue := OrderedCollection new.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:35' prior: 50868967!
+test02ABookAddedToCartIsSuccessfullyAdded
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	aCart addToCart: harryPotter withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:41' prior: 50869018!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter 
+									with: lordOfTheRings 
+									with: ageOfEmpires .
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	aCart addToCart: harryPotter withOccurrences: 1. 
+	aCart addToCart: lordOfTheRings withOccurrences: 1.
+	aCart addToCart: ageOfEmpires withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. lordOfTheRings. ageOfEmpires} )! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:35:48' prior: 50869122!
+test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	aCart addToCart: harryPotter withOccurrences: 2. 
+	
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. harryPotter} )! !
+
+self pi!
+
+Float pi!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:40:26'!
+test06ABookShouldNotBeAddedWithNonIntegerQuantity
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: harryPotter withOccurrences: 0.5 ]
+		raise: Error
+		withMessageText: Cart bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription.! !
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:40:31'!
+ERROR!
+!Cart class methodsFor: 'error descriptions' stamp: 'AM 11/17/2020 22:40:44'!
+bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error descriptions' stamp: 'AM 11/17/2020 22:41:12' prior: 50869266!
+bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription
+	
+	^ 'Books can not be added with a non natural number of occurrences'! !
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:41:15'!
+FAILURE!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:42:37' prior: 50869095!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ ^ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:42:49'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:43:26'!
+test07ABookCanNotBeAddedANonPositiveNumberOfTimes
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: harryPotter withOccurrences: 0 ]
+		raise: Error
+		withMessageText: Cart bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription.! !
+
+!testRun: #CartTest #test07ABookCanNotBeAddedANonPositiveNumberOfTimes stamp: 'AM 11/17/2020 22:43:27'!
+FAILURE!
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:44:03' prior: 50869283!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ ^ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurences <= 0 ifFalse: [ ^ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+!Cart methodsFor: 'book adding' stamp: 'AM 11/17/2020 22:44:16' prior: 50869338!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ ^ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ ^ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurences > 0 ifFalse: [ ^ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+
+!testRun: #CartTest #test07ABookCanNotBeAddedANonPositiveNumberOfTimes stamp: 'AM 11/17/2020 22:45:06'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:45:06'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:45:06'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:45:06'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:45:06'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:45:07'!
+PASSED!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:45:07'!
+PASSED!
+
+!testRun: #CartTest #test07ABookCanNotBeAddedANonPositiveNumberOfTimes stamp: 'AM 11/17/2020 22:45:07'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:46:03'!
+test07ABookShouldNotBeAddedWithNonPositiveQuantity
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: harryPotter withOccurrences: 0 ]
+		raise: Error
+		withMessageText: Cart bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription.! !
+
+!methodRemoval: CartTest #test07ABookCanNotBeAddedANonPositiveNumberOfTimes stamp: 'AM 11/17/2020 22:46:03'!
+test07ABookCanNotBeAddedANonPositiveNumberOfTimes
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: harryPotter withOccurrences: 0 ]
+		raise: Error
+		withMessageText: Cart bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription.!
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:48:42' prior: 50869356!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	(catalogue includes: aBook) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurences > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:49:26'!
+assertThatCanBeAdded: aNumberOfOccurences aNumberOfOccurences: aBook
+
+	(catalogue includes: aBook) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurences > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:49:26' prior: 50869429!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	self assertThatCanBeAdded: aNumberOfOccurences aNumberOfOccurences: aBook.
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:49:46'!
+assertThatCanBeAdded: aNumberOfOccurences withOccurences: aBook
+
+	(catalogue includes: aBook) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurences > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'AM 11/17/2020 22:49:46' prior: 50869462!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	self assertThatCanBeAdded: aNumberOfOccurences withOccurences: aBook.
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+
+!methodRemoval: Cart #assertThatCanBeAdded:aNumberOfOccurences: stamp: 'AM 11/17/2020 22:49:46'!
+assertThatCanBeAdded: aNumberOfOccurences aNumberOfOccurences: aBook
+
+	(catalogue includes: aBook) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurences isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurences > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]!
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:50:38' prior: 50869471!
+assertThatCanBeAdded: aNumberOfOccurences withOccurences: aBook
+
+	(catalogue includes: aNumberOfOccurences ) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aBook isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aBook > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:50:43' prior: 50869512!
+assertThatCanBeAdded: aBook2 withOccurences: aBook
+
+	(catalogue includes: aBook2 ) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aBook isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aBook > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:50:52' prior: 50869528!
+assertThatCanBeAdded: aBook2 withOccurences: aNumberOfOccurrences
+
+	(catalogue includes: aBook2 ) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurrences isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurrences > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:51:08' prior: 50869543!
+assertThatCanBeAdded: aBook withOccurences: aNumberOfOccurrences
+
+	(catalogue includes: aBook ) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	aNumberOfOccurrences isInteger ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].
+	aNumberOfOccurrences > 0 ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ]! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:52:11' prior: 50869559!
+assertThatCanBeAdded: aBook withOccurences: aNumberOfOccurrences
+
+	(catalogue includes: aBook ) 
+		ifFalse: [ self error: self class bookIsNotForSaleErrorDescription ].
+		
+	(aNumberOfOccurrences isInteger or: [ aNumberOfOccurrences > 0 ]) 
+		ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:52:32'!
+signalBookIsNotForSale
+
+	^ self error: self class bookIsNotForSaleErrorDescription! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:52:32' prior: 50869575!
+assertThatCanBeAdded: aBook withOccurences: aNumberOfOccurrences
+
+	(catalogue includes: aBook ) 
+		ifFalse: [ self signalBookIsNotForSale ].
+		
+	(aNumberOfOccurrences isInteger or: [ aNumberOfOccurrences > 0 ]) 
+		ifFalse: [ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription ].! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:52:59'!
+signalBookCanNotBeAddedANonNaturalNumberOfTimes
+
+	^ self error: self class bookCanNotBeAddedANonNaturalNumberOfTimesErrorDescription! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:52:59' prior: 50869594!
+assertThatCanBeAdded: aBook withOccurences: aNumberOfOccurrences
+
+	(catalogue includes: aBook ) 
+		ifFalse: [ self signalBookIsNotForSale ].
+		
+	(aNumberOfOccurrences isInteger or: [ aNumberOfOccurrences > 0 ]) 
+		ifFalse: [ self signalBookCanNotBeAddedANonNaturalNumberOfTimes ].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:53:37'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:37'!
+ERROR!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:37'!
+ERROR!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:53:37'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:53:37'!
+ERROR!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:53:38'!
+FAILURE!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/17/2020 22:53:38'!
+FAILURE!
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:53:44' prior: 50869613!
+assertThatCanBeAdded: aBook withOccurences: aNumberOfOccurrences
+
+	(catalogue includes: aBook ) 
+		ifFalse: [ self signalBookIsNotForSale ].
+		
+	(aNumberOfOccurrences isInteger and: [ aNumberOfOccurrences > 0 ]) 
+		ifFalse: [ self signalBookCanNotBeAddedANonNaturalNumberOfTimes ].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:53:45'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:45'!
+ERROR!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:45'!
+ERROR!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:53:45'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:53:45'!
+ERROR!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:53:45'!
+FAILURE!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/17/2020 22:53:45'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:53:47'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:47'!
+ERROR!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:47'!
+ERROR!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:53:47'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:53:47'!
+ERROR!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:53:47'!
+FAILURE!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/17/2020 22:53:47'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:53:52'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:52'!
+ERROR!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:52'!
+ERROR!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:53:52'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:53:52'!
+ERROR!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:53:52'!
+FAILURE!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/17/2020 22:53:52'!
+FAILURE!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:53:55'!
+ERROR!
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:54:26' prior: 50869487!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	self assertThatCanBeAdded: aBook withOccurences: aNumberOfOccurences.
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+
+!testRun: #CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/17/2020 22:54:27'!
+PASSED!
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:54:31' prior: 50869736!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	self assertThatCanBeAdded: aBook 
+		withOccurences: aNumberOfOccurences.
+		
+	books add: aBook withOccurrences: aNumberOfOccurences 
+	
+	! !
+!Cart methodsFor: 'adding books' stamp: 'AM 11/17/2020 22:54:35' prior: 50869769!
+addToCart: aBook withOccurrences: aNumberOfOccurences
+
+	self assertThatCanBeAdded: aBook 
+		withOccurences: aNumberOfOccurences.
+		
+	books add: aBook 
+		withOccurrences: aNumberOfOccurences 
+	
+	! !
+
+bag := Bag new.!
+
+bag add: #hola withOccurrences: Float pi.!
+
+bag!
+!CartTest methodsFor: 'tests - adding' stamp: 'AM 11/17/2020 22:59:37'!
+test03ManyBooksAddedToCartAreSuccessfullyAdded
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter 
+									with: lordOfTheRings 
+									with: ageOfEmpires .
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	aCart addToCart: harryPotter withOccurrences: 1. 
+	aCart addToCart: lordOfTheRings withOccurrences: 1.
+	aCart addToCart: ageOfEmpires withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. lordOfTheRings. ageOfEmpires} )! !
+
+!methodRemoval: CartTest #test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 22:59:37'!
+test03ManyBooksAddedOnceEachToCartAreSuccessfullyAdded
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter 
+									with: lordOfTheRings 
+									with: ageOfEmpires .
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	aCart addToCart: harryPotter withOccurrences: 1. 
+	aCart addToCart: lordOfTheRings withOccurrences: 1.
+	aCart addToCart: ageOfEmpires withOccurrences: 1.
+	
+	self deny: aCart isEmpty.
+	self assert: ( aCart listCart hasEqualElements: {harryPotter. lordOfTheRings. ageOfEmpires} )!
+!CartTest methodsFor: 'tests - errors' stamp: 'AM 11/17/2020 23:00:37'!
+test04ABookShouldNotBeAddedWhenNotForSale
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: lordOfTheRings withOccurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.! !
+
+!methodRemoval: CartTest #test04AddingABookThatIsNotForSaleShouldSignalError stamp: 'AM 11/17/2020 23:00:37'!
+test04AddingABookThatIsNotForSaleShouldSignalError
+
+	| aCart catalogue |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	aCart := Cart withCatalogue: catalogue.
+	
+	self should: [ aCart addToCart: lordOfTheRings withOccurrences: 1 ]
+		raise: Error
+		withMessageText: Cart bookIsNotForSaleErrorDescription.!
+
+!testRun: #CartTest #test04ABookShouldNotBeAddedWhenNotForSale stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test04ABookShouldNotBeAddedWhenNotForSale stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/17/2020 23:00:46'!
+PASSED!
+
+----QUIT----(17 November 2020 23:01:55) CuisUniversity-4384.image priorSource: 17188888!
+
+----STARTUP---- (18 November 2020 18:29:35) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/TusLibros/CuisUniversity-4384.image!
+
+!CartTest methodsFor: 'tests - adding' stamp: 'AM 11/18/2020 18:31:11'!
+test08
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+
+!testRun: #CartTest #test08 stamp: 'AM 11/18/2020 18:31:20'!
+FAILURE!
+!CartTest methodsFor: 'tests - adding' stamp: 'AM 11/18/2020 18:31:58' prior: 50869886!
+test08
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter withOccurrences: 1.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+
+!testRun: #CartTest #test08 stamp: 'AM 11/18/2020 18:32:00'!
+FAILURE!
+!CartTest methodsFor: 'tests - adding' stamp: 'AM 11/18/2020 18:32:23' prior: 50869901!
+test08
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+!Cart methodsFor: 'accessing' stamp: 'AM 11/18/2020 18:32:39' prior: 50868090!
+listCart
+	
+	^ books copy! !
+
+!testRun: #CartTest #test08 stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test04ABookShouldNotBeAddedWhenNotForSale stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+
+!testRun: #CartTest #test08 stamp: 'AM 11/18/2020 18:32:52'!
+PASSED!
+!CartTest methodsFor: 'tests - adding' stamp: 'AM 11/18/2020 18:35:36'!
+test08AddingBookToCartListShouldNotModifyCart
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+
+!methodRemoval: CartTest #test08 stamp: 'AM 11/18/2020 18:35:36'!
+test08
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.!
+!CartTest methodsFor: 'tests - adding' stamp: 'AM 11/18/2020 18:35:53'!
+test08ExternallyAddingBookToCartListShouldNotModifyCart
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.! !
+
+!methodRemoval: CartTest #test08AddingBookToCartListShouldNotModifyCart stamp: 'AM 11/18/2020 18:35:53'!
+test08AddingBookToCartListShouldNotModifyCart
+
+	| anEmptyCart catalogue emptyCartList |
+	
+	catalogue := OrderedCollection with: harryPotter.
+	
+	anEmptyCart := Cart withCatalogue: catalogue.
+	emptyCartList := anEmptyCart listCart.
+	emptyCartList add: harryPotter.
+	
+	self assert: anEmptyCart isEmpty.
+	self assert: anEmptyCart listCart isEmpty.!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test02ABookAddedToCartIsSuccessfullyAdded stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test03ManyBooksAddedToCartAreSuccessfullyAdded stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test04ABookShouldNotBeAddedWhenNotForSale stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test05ABookAddedMoreThanOnceIsSuccessfullyAddedMoreThanOnce stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test06ABookShouldNotBeAddedWithNonIntegerQuantity stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test07ABookShouldNotBeAddedWithNonPositiveQuantity stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+!testRun: #CartTest #test08ExternallyAddingBookToCartListShouldNotModifyCart stamp: 'AM 11/18/2020 18:36:09'!
+PASSED!
+
+----QUIT----(18 November 2020 18:37:47) CuisUniversity-4384.image priorSource: 17223318!

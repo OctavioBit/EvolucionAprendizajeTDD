@@ -1,0 +1,1380 @@
+----STARTUP---- (16 November 2020 17:46:22) as /home/grosinov/linux64/CuisUniversity-4384.image!
+
+
+TestCase subclass: #CarritoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CarritoTest category: 'TusLibros' stamp: 'GR 11/16/2020 17:46:54'!
+TestCase subclass: #CarritoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CarritoTest methodsFor: 'no messages' stamp: 'GR 11/16/2020 17:47:27'!
+test01CanCreateCartWithValidUserAndPassword! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 17:47:49'!
+test02CanNotCreateCartWithInvalidUsername! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 17:48:02'!
+test02CanNotCreateCartWithValidUserButInvalidPassword! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 17:48:11'!
+test03CanNotCreateCartWithValidUserButInvalidPassword! !
+
+!methodRemoval: CarritoTest #test02CanNotCreateCartWithValidUserButInvalidPassword stamp: 'GR 11/16/2020 17:48:11'!
+test02CanNotCreateCartWithValidUserButInvalidPassword!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 18:53:39'!
+test01CanCreateNewCartWithNoProducts! !
+
+!methodRemoval: CarritoTest #test01CanCreateCartWithValidUserAndPassword stamp: 'GR 11/16/2020 18:53:39'!
+test01CanCreateCartWithValidUserAndPassword!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 18:54:51'!
+test02CanAddAProductToCart! !
+
+!methodRemoval: CarritoTest #test02CanNotCreateCartWithInvalidUsername stamp: 'GR 11/16/2020 18:54:51'!
+test02CanNotCreateCartWithInvalidUsername!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 18:56:04'!
+test03CanAnMultipleProductsToCart! !
+
+!methodRemoval: CarritoTest #test03CanNotCreateCartWithValidUserButInvalidPassword stamp: 'GR 11/16/2020 18:56:04'!
+test03CanNotCreateCartWithValidUserButInvalidPassword!
+
+!classDefinition: #Carrito category: 'TusLibros' stamp: 'GR 11/16/2020 18:58:14'!
+Object subclass: #Carrito
+	instanceVariableNames: 'products'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 18:58:02' prior: 50873419!
+test01CanCreateNewCartWithNoProducts
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	self assert: 0 equals: carrito productAmount.! !
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 18:58:17'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 18:58:59'!
+productAmount
+	self shouldBeImplemented.! !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 18:59:37' prior: 50873464!
+productAmount
+
+	^ products size.! !
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 18:59:47'!
+ERROR!
+!Carrito methodsFor: 'nil' stamp: 'GR 11/16/2020 19:02:08' overrides: 16896425!
+initialize
+
+	products := OrderedCollection new.! !
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:02:23'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:02:23'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:02:23'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAnMultipleProductsToCart stamp: 'GR 11/16/2020 19:02:23'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:07:49' prior: 50873428!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0'.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: '978-3-16-1418410-0' equals: (carrito products at: 1)! !
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:07:54'!
+ERROR!
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:08:03'!
+addToCart: aString 
+	self shouldBeImplemented.! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:08:20' prior: 50873506!
+addToCart: anISBN
+
+	products add: anISBN.
+	! !
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:08:25'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 19:08:29'!
+products
+	self shouldBeImplemented.
+	^products! !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 19:08:32' prior: 50873518!
+products
+	
+	^products! !
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:08:33'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:08:33'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:08:33'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAnMultipleProductsToCart stamp: 'GR 11/16/2020 19:08:33'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:11:01' prior: 50873437!
+test03CanAnMultipleProductsToCart
+
+	! !
+!Carrito methodsFor: 'initialization' stamp: 'GR 11/16/2020 19:11:09' prior: 50873475 overrides: 16896425!
+initialize
+
+	products := Dictionary new.! !
+
+----End fileIn of /home/grosinov/linux64/Packages/TerseGuide.pck.st----!
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:14:38' prior: 50873511!
+addToCart: anISBN
+
+	products add: anISBN->1.
+	! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:15:47' prior: 50873493!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0'.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: '978-3-16-1418410-0' equals: (carrito products keyAtValue: 1)! !
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:15:49'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:15:49'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:15:49'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAnMultipleProductsToCart stamp: 'GR 11/16/2020 19:15:49'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:17:08' prior: 50873539!
+test03CanAnMultipleProductsToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0'.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: '978-3-16-1418410-0' equals: (carrito products keyAtValue: 1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:17:28'!
+test03CanAddAProductToCartMultipleTimes
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0'.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: '978-3-16-1418410-0' equals: (carrito products keyAtValue: 1)! !
+
+!methodRemoval: CarritoTest #test03CanAnMultipleProductsToCart stamp: 'GR 11/16/2020 19:17:28'!
+test03CanAnMultipleProductsToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0'.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: '978-3-16-1418410-0' equals: (carrito products keyAtValue: 1)!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:18:23' prior: 50876523!
+test03CanAddAProductToCartMultipleTimes
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 3.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: 3 equals: (carrito products at: '978-3-16-1418410-0')! !
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:18:26'!
+ERROR!
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:18:45'!
+addToCart: aString withAmount: aSmallInteger 
+	self shouldBeImplemented.! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:21:22' prior: 50876559!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	products add: anISBN->aProductAmount .! !
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:21:24'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:21:24'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:21:24'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:21:24'!
+PASSED!
+
+!methodRemoval: Carrito #addToCart: stamp: 'GR 11/16/2020 19:21:32'!
+addToCart: anISBN
+
+	products add: anISBN->1.
+	!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:21:44' prior: 50876489!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 1.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: '978-3-16-1418410-0' equals: (carrito products keyAtValue: 1)! !
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:21:44'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:21:45'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:21:45'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:21:45'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:23:26'!
+test04AddAProductThatIsAlreadyInTheCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 3.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: 3 equals: (carrito products at: '978-3-16-1418410-0')! !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 19:27:48' prior: 50873468!
+productAmount
+
+	^ products inject: 0 into: [:productsTotalAmount :productAmount | productsTotalAmount + productAmount].! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:27:56' prior: 50876545!
+test03CanAddAProductToCartMultipleTimes
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 3.
+	
+	self assert: 3 equals: carrito productAmount.
+	self assert: 3 equals: (carrito products at: '978-3-16-1418410-0')! !
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:27:57'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:27:57'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:27:57'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:27:57'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:27:57'!
+FAILURE!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:27:57'!
+FAILURE!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:28:36' prior: 50876610!
+test04AddAProductThatIsAlreadyInTheCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 3.
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 1.
+	
+	self assert: 4 equals: carrito productAmount.
+	self assert: 4 equals: (carrito products at: '978-3-16-1418410-0')! !
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:28:38'!
+FAILURE!
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:30:47' prior: 50876564!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	(products includesKey: anISBN ) 
+		ifTrue: [products at: anISBN put: (products at: anISBN) + aProductAmount.] 
+		ifFalse: [products add: anISBN->aProductAmount ].
+	
+	! !
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:30:49'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:30:49'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:30:49'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:30:49'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:30:49'!
+PASSED!
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:33:17'!
+addExistingBook: anISBN withAmount: aProductAmount
+
+	^ products at: anISBN put: (products at: anISBN) + aProductAmount! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:33:17' prior: 50876675!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	(products includesKey: anISBN ) 
+		ifTrue: [self addExistingBook: anISBN withAmount: aProductAmount.] 
+		ifFalse: [products add: anISBN->aProductAmount ].
+	
+	! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:33:41'!
+addNewBook: anISBN withAmount: aProductAmount
+
+	^ products add: anISBN->aProductAmount! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:33:41' prior: 50876707!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	(products includesKey: anISBN ) 
+		ifTrue: [self addExistingBook: anISBN withAmount: aProductAmount.] 
+		ifFalse: [self addNewBook: anISBN withAmount: aProductAmount ].
+	
+	! !
+
+----SNAPSHOT----(16 November 2020 19:34:38) CuisUniversity-4384.image priorSource: 17335298!
+!Carrito methodsFor: 'initialization' stamp: 'GR 11/16/2020 19:37:53' prior: 50873544 overrides: 16896425!
+initialize
+
+	products := Bag new.! !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 19:40:31' prior: 50876621!
+productAmount
+	
+	^ products size.
+	
+	"^ products inject: 0 into: [:productsTotalAmount :productAmount | productsTotalAmount + productAmount]."! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:41:13' prior: 50876722!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	products add: anISBN occurrencesOf: aProductAmount.
+	
+	"(products includesKey: anISBN ) 
+		ifTrue: [self addExistingBook: anISBN withAmount: aProductAmount.] 
+		ifFalse: [self addNewBook: anISBN withAmount: aProductAmount ]."
+	
+	! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:41:49' prior: 50876748!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	products add: anISBN withOccurrences: aProductAmount.
+	
+	"(products includesKey: anISBN ) 
+		ifTrue: [self addExistingBook: anISBN withAmount: aProductAmount.] 
+		ifFalse: [self addNewBook: anISBN withAmount: aProductAmount ]."
+	
+	! !
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:41:55'!
+ERROR!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:43:05' prior: 50876587!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 1.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: (carrito products includes: '978-3-16-1418410-0')! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:43:18' prior: 50876628!
+test03CanAddAProductToCartMultipleTimes
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 3.
+	
+	self assert: 3 equals: carrito productAmount.
+	self assert: 3 equals: (carrito products occurrencesOf: '978-3-16-1418410-0')! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:43:27' prior: 50876659!
+test04AddAProductThatIsAlreadyInTheCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 3.
+	carrito addToCart: '978-3-16-1418410-0' withAmount: 1.
+	
+	self assert: 4 equals: carrito productAmount.
+	self assert: 4 equals: (carrito products occurrencesOf: '978-3-16-1418410-0')! !
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:43:35'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 19:43:35'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 19:43:35'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 19:43:35'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 19:43:35'!
+PASSED!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/16/2020 19:43:44' prior: 50876740!
+productAmount
+	
+	^ products size.! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/16/2020 19:43:51' prior: 50876760!
+addToCart: anISBN withAmount: aProductAmount 
+	
+	products add: anISBN withOccurrences: aProductAmount.
+	
+	! !
+
+!methodRemoval: Carrito #addNewBook:withAmount: stamp: 'GR 11/16/2020 19:43:57'!
+addNewBook: anISBN withAmount: aProductAmount
+
+	^ products add: anISBN->aProductAmount!
+
+!methodRemoval: Carrito #addExistingBook:withAmount: stamp: 'GR 11/16/2020 19:44:00'!
+addExistingBook: anISBN withAmount: aProductAmount
+
+	^ products at: anISBN put: (products at: anISBN) + aProductAmount!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:54:51' prior: 50876775!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #libro1 withAmount: 1.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: (carrito products includes: #libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:55:05' prior: 50876786!
+test03CanAddAProductToCartMultipleTimes
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self assert: 3 equals: carrito productAmount.
+	self assert: 3 equals: (carrito products occurrencesOf: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:55:12' prior: 50876850!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #Libro1 withAmount: 1.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: (carrito products includes: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/16/2020 19:55:27' prior: 50876798!
+test04AddAProductThatIsAlreadyInTheCart
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	carrito addToCart: #Libro1 withAmount: 1.
+	
+	self assert: 4 equals: carrito productAmount.
+	self assert: 4 equals: (carrito products occurrencesOf: #Libro1)! !
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 20:02:13'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/16/2020 20:02:13'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/16/2020 20:02:13'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/16/2020 20:02:13'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/16/2020 20:02:13'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 20:04:09) CuisUniversity-4384.image priorSource: 17442592!
+
+----QUIT----(16 November 2020 21:34:22) CuisUniversity-4384.image priorSource: 17448256!
+
+----STARTUP---- (18 November 2020 14:30:43) as /home/grosinov/linux64/CuisUniversity-4384.image!
+
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:32:51'!
+test05CanNotAddABookThatIsNotInTheCatalog
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	carrito addToCart: #Libro1 withAmount: 1.
+	
+	self assert: 4 equals: carrito productAmount.
+	self assert: 4 equals: (carrito products occurrencesOf: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:33:02' prior: 50876918!
+test05CanNotAddABookThatIsNotInTheCatalog
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	carrito addToCart: #Libro2 withAmount: 1.
+	
+	self assert: 4 equals: carrito productAmount.
+	self assert: 4 equals: (carrito products occurrencesOf: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:35:42' prior: 50876931!
+test05CanNotAddABookThatIsNotInTheCatalog
+
+	| carrito |
+	
+	carrito := Carrito new.
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self
+		should: [ carrito addToCart: #Libro2 withAmount: 1. ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: Carrito productNotInTheCatalog = anError messageText.
+			self assert: 3 equals: carrito productAmount.
+			self assert: 0 equals: (carrito products occurrencesOf: #Libro2) ].
+	
+	
+	! !
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:35:50'!
+FAILURE!
+
+!classDefinition: #Carrito category: 'TusLibros' stamp: 'GR 11/18/2020 14:36:39'!
+Object subclass: #Carrito
+	instanceVariableNames: 'products catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Carrito methodsFor: 'initialization' stamp: 'GR 11/18/2020 14:36:33' prior: 50876736 overrides: 16896425!
+initialize
+
+	products := Bag new.
+	catalog := #(#Libro1)! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/18/2020 14:39:02' prior: 50876831!
+addToCart: aProduct withAmount: aProductAmount 
+	
+	(aProduct )
+	
+	products add: aProduct withOccurrences: aProductAmount.
+	
+	! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:39:36' prior: 50876944!
+test05CanNotAddABookThatIsNotInTheCatalog
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self
+		should: [ carrito addToCart: #Libro2 withAmount: 1. ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: Carrito productNotInTheCatalog = anError messageText.
+			self assert: 3 equals: carrito productAmount.
+			self assert: 0 equals: (carrito products occurrencesOf: #Libro2) ].
+	
+	
+	! !
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:39:39'!
+ERROR!
+!Carrito class methodsFor: 'instance creation' stamp: 'GR 11/18/2020 14:39:49'!
+withCatalog: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithCatalog: anOrderedCollection ! !
+!Carrito class methodsFor: 'instance creation' stamp: 'GR 11/18/2020 14:39:55' prior: 50877008!
+withCatalog: anOrderedCollection 
+	
+	^self new initializeWithCatalog: anOrderedCollection ! !
+!Carrito class methodsFor: 'instance creation' stamp: 'GR 11/18/2020 14:40:01' prior: 50877017!
+withCatalog: aCatalog 
+	
+	^self new initializeWithCatalog: aCatalog ! !
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:40:02'!
+ERROR!
+!Carrito methodsFor: 'initialization' stamp: 'GR 11/18/2020 14:40:20'!
+initializeWithCatalog: aCatalog 
+	self shouldBeImplemented.
+	catalog := aCatalog.! !
+!Carrito methodsFor: 'initialization' stamp: 'GR 11/18/2020 14:40:31' prior: 50877031!
+initializeWithCatalog: aCatalog 
+	
+	products := Bag new.
+	catalog := aCatalog.! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/18/2020 14:41:24' prior: 50876978!
+addToCart: aProduct withAmount: aProductAmount 
+	
+	(catalog includes: aProduct) ifFalse: [self error: self class ].
+	
+	products add: aProduct withOccurrences: aProductAmount.
+	
+	! !
+!Carrito methodsFor: 'operations' stamp: 'GR 11/18/2020 14:41:35' prior: 50877043!
+addToCart: aProduct withAmount: aProductAmount 
+	
+	(catalog includes: aProduct) ifFalse: [self error: self class productNotInTheCatalog ].
+	
+	products add: aProduct withOccurrences: aProductAmount.
+	
+	! !
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:41:37'!
+ERROR!
+!Carrito class methodsFor: 'error handling' stamp: 'GR 11/18/2020 14:41:45'!
+productNotInTheCatalog
+	self shouldBeImplemented.! !
+!Carrito class methodsFor: 'error handling' stamp: 'GR 11/18/2020 14:41:59' prior: 50877065!
+productNotInTheCatalog
+	
+	^ 'The book is not in the catalog'! !
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:42:00'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 14:42:00'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 14:42:00'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 14:42:00'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 14:42:00'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:42:00'!
+PASSED!
+
+!methodRemoval: Carrito #initialize stamp: 'GR 11/18/2020 14:42:08'!
+initialize
+
+	products := Bag new.
+	catalog := #(#Libro1)!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:42:24' prior: 50876881!
+test04AddAProductThatIsAlreadyInTheCart
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	carrito addToCart: #Libro1 withAmount: 1.
+	
+	self assert: 4 equals: carrito productAmount.
+	self assert: 4 equals: (carrito products occurrencesOf: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:42:28' prior: 50876860!
+test03CanAddAProductToCartMultipleTimes
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self assert: 3 equals: carrito productAmount.
+	self assert: 3 equals: (carrito products occurrencesOf: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:42:31' prior: 50876871!
+test02CanAddAProductToCart
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 1.
+	
+	self assert: 1 equals: carrito productAmount.
+	self assert: (carrito products includes: #Libro1)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:42:36' prior: 50873454!
+test01CanCreateNewCartWithNoProducts
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self assert: 0 equals: carrito productAmount.! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:47:53'!
+test06EmptyCartListsNoItems
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self assert: OrderedCollection new equals: carrito listCart
+	
+	
+	! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 14:47:58'!
+ERROR!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 14:47:58'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 14:48:22'!
+listCart
+	self shouldBeImplemented.! !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 14:48:35' prior: 50877159!
+listCart
+	
+	^OrderedCollection new! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 14:48:36'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 14:48:38'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:49:08'!
+test07CartWithProductsCanListThem
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self assert: OrderedCollection new equals: carrito listCart
+	
+	
+	! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 14:50:57' prior: 50877192!
+test07CartWithProductsCanListThem
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self assert: (OrderedCollection with: #Libro1 with: 3) equals: carrito listCart
+	
+	
+	! !
+
+!testRun: #CarritoTest #test07CartWithProductsCanListThem stamp: 'GR 11/18/2020 14:50:59'!
+FAILURE!
+
+products asOrderedCollection !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 14:57:24' prior: 50877163!
+listCart
+	
+	^ products 
+		inject: OrderedCollection new 
+		addingAll: [ :list :aProduct | 
+			list add: aProduct.
+			list add: (products occurrencesOf: aProduct)
+		 ]! !
+
+!testRun: #CarritoTest #test07CartWithProductsCanListThem stamp: 'GR 11/18/2020 14:57:28'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 14:59:08' prior: 50877216!
+listCart
+	
+	^ products 
+		inject: OrderedCollection new 
+		addingAll: [ :aProduct | 
+			| list |
+			list := OrderedCollection new.
+			list add: aProduct.
+			list add: (products occurrencesOf: aProduct)
+		 ]! !
+
+!testRun: #CarritoTest #test07CartWithProductsCanListThem stamp: 'GR 11/18/2020 14:59:10'!
+ERROR!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 15:02:19'!
+test07CartWithOneProductCanListIt
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self assert: (OrderedCollection with: #Libro1 with: 3) equals: carrito listCart
+	
+	
+	! !
+
+!methodRemoval: CarritoTest #test07CartWithProductsCanListThem stamp: 'GR 11/18/2020 15:02:20'!
+test07CartWithProductsCanListThem
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self assert: (OrderedCollection with: #Libro1 with: 3) equals: carrito listCart
+	
+	
+	!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:02:23'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:04:05' prior: 50877227!
+listCart
+	
+	| book |
+	
+	book := products at: 1.
+	
+	^ OrderedCollection with: book with: (products occurrencesOf: book)! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:04:07'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:04:53' prior: 50877265!
+listCart
+	
+	| book |
+	
+	book := products detect: [ :aBook | true].
+	
+	^ OrderedCollection with: book with: (products occurrencesOf: book)! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:04:54'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:04:54'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:04:54'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:06:17' prior: 50877275!
+listCart
+	
+	| book |
+	
+	book := products asOrderedCollection at: 1.
+	
+	^ OrderedCollection with: book with: (products occurrencesOf: book)! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:06:18'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:06:59'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:07:12'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:07:12'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:07:12'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:09:00' prior: 50877311!
+listCart
+	
+	^ products collect: [ :aProduct | OrderedCollection with: aProduct with: (products occurrencesOf: aProduct )]! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:09:14'!
+FAILURE!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:09:46' prior: 50877353!
+listCart
+	
+	^ products collect: [ :aProduct | OrderedCollection with: aProduct with: (products occurrencesOf: aProduct )] asOrderedCollection ! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:09:47'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:10:00' prior: 50877363!
+listCart
+	
+	^ (products collect: [ :aProduct | OrderedCollection with: aProduct with: (products occurrencesOf: aProduct )]) asOrderedCollection ! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:10:01'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:10:03'!
+FAILURE!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:10:03'!
+FAILURE!
+
+	self assert: (OrderedCollection with: #Libro1 with: 3) equals: carrito listCart!
+
+carrito listCart!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 15:19:33' prior: 50877240!
+test07CartWithOneProductCanListIt
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	self assert: (OrderedCollection with: #Libro1 with: 3) equals: carrito listCart
+	
+	
+	! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 15:21:05' prior: 50877395!
+test07CartWithOneProductCanListIt
+
+	| carrito list |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	list := Dictionary with: #Libro1->3.
+	
+	self assert: (OrderedCollection with: #Libro1 with: 3) equals: carrito listCart
+	
+	
+	! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 15:21:14' prior: 50877406!
+test07CartWithOneProductCanListIt
+
+	| carrito list |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	list := Dictionary with: #Libro1->3.
+	
+	self assert: list equals: carrito listCart
+	
+	
+	! !
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:21:30' prior: 50877374!
+listCart
+	
+	^ products asDictionary.! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:21:34'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:23:08' prior: 50877430!
+listCart
+	
+	^ products inject: Dictionary new into: [ :list :aProduct | list add: aProduct ->(products occurrencesOf: aProduct )]! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:23:08'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:23:52' prior: 50877437!
+listCart
+	
+	^ products inject: Dictionary new into: [ :list :aProduct | list add: aProduct->(products occurrencesOf: aProduct )]! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:23:53'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:24:09'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:24:41'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:26:14'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:27:32'!
+ERROR!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:27:32'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:27:52' prior: 50877447!
+listCart
+	
+	^ products inject: Dictionary new into: [ :list :aProduct | list add: (aProduct->products occurrencesOf: aProduct)]! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:27:53'!
+ERROR!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:29:35' prior: 50877473!
+listCart
+	
+	| productsSet |
+	
+	productsSet := products asSet.
+	
+	^ productsSet inject: Dictionary new into: [ :list :aProduct | list add: (aProduct->products occurrencesOf: aProduct)]! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:29:49'!
+ERROR!
+
+contents!
+
+	products yourself!
+
+products yourself!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 15:38:35' prior: 50877483!
+listCart
+	
+	^ products contents
+	
+	"| productsSet |
+	
+	productsSet := products asSet.
+	
+	^ productsSet inject: Dictionary new into: [ :list :aProduct | list add: (aProduct->products occurrencesOf: aProduct)]"! !
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:38:37'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:38:38'!
+FAILURE!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:38:38'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:38:38'!
+FAILURE!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'GR 11/18/2020 15:38:52' prior: 50877145!
+test06EmptyCartListsNoItems
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self assert: Dictionary new equals: carrito listCart
+	
+	
+	! !
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:38:53'!
+PASSED!
+!CarritoTest methodsFor: 'tests' stamp: 'GR 11/18/2020 15:52:57'!
+test07CartCanListEveryProductInIt
+
+	| carrito list |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	list := Dictionary with: #Libro1->3.
+	
+	self assert: list equals: carrito listCart
+	
+	
+	! !
+
+!methodRemoval: CarritoTest #test07CartWithOneProductCanListIt stamp: 'GR 11/18/2020 15:52:57'!
+test07CartWithOneProductCanListIt
+
+	| carrito list |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	carrito addToCart: #Libro1 withAmount: 3.
+	
+	list := Dictionary with: #Libro1->3.
+	
+	self assert: list equals: carrito listCart
+	
+	
+	!
+
+!testRun: #CarritoTest #test07CartCanListEveryProductInIt stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartCanListEveryProductInIt stamp: 'GR 11/18/2020 15:53:00'!
+PASSED!
+
+----SNAPSHOT----(18 November 2020 15:57:27) CuisUniversity-4384.image priorSource: 17448350!
+!Carrito methodsFor: 'accessing' stamp: 'GR 11/18/2020 16:07:04' prior: 50877497!
+listCart
+	
+	^ products contents! !
+
+!testRun: #CarritoTest #test07CartCanListEveryProductInIt stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartCanListEveryProductInIt stamp: 'GR 11/18/2020 16:07:08'!
+PASSED!
+
+----QUIT----(18 November 2020 16:07:13) CuisUniversity-4384.image priorSource: 17470998!
+
+----STARTUP---- (19 November 2020 17:08:14) as /home/grosinov/linux64/CuisUniversity-4384.image!
+
+!CarritoTest methodsFor: 'tests' stamp: 'GR 11/19/2020 17:10:20'!
+test08CanNotAddNegativeAmountOfProducts
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self 
+		should: [ carrito addToCart: #Libro1 withAmount: -2. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Carrito invalidAmountOfProductsError 
+	
+	
+	! !
+!CarritoTest methodsFor: 'tests' stamp: 'GR 11/19/2020 17:10:37'!
+test09CanNotAddCeroAmountOfProducts
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self 
+		should: [ carrito addToCart: #Libro1 withAmount: 0. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Carrito invalidAmountOfProductsError 
+	
+	
+	! !
+
+!testRun: #CarritoTest #test09CanNotAddCeroAmountOfProducts stamp: 'GR 11/19/2020 17:10:39'!
+ERROR!
+
+Bag new add: 4 withOccurrences: 0!
+
+hola := Bag new.
+hola add: 4 withOccurrences: 0!
+
+hola add: 4 withOccurrences: -1!
+
+hola := Bag new.
+hola add: 4 withOccurrences: -1.
+hola occurrencesOf: 4.!
+!CarritoTest methodsFor: 'tests' stamp: 'GR 11/19/2020 17:13:33' prior: 50877670!
+test09CanNotAddCeroAmountOfProducts
+
+	| carrito |
+	
+	carrito := Carrito withCatalog: (OrderedCollection with: #Libro1).
+	
+	self 
+		should: [ carrito addToCart: #Libro1 withAmount: 0. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Carrito invalidAmountOfProductsError.
+	
+	
+	! !
+
+!testRun: #CarritoTest #test08CanNotAddNegativeAmountOfProducts stamp: 'GR 11/19/2020 17:13:39'!
+ERROR!
+
+!testRun: #CarritoTest #test08CanNotAddNegativeAmountOfProducts stamp: 'GR 11/19/2020 17:13:39'!
+ERROR!
+!Carrito class methodsFor: 'error handling' stamp: 'GR 11/19/2020 17:13:58'!
+invalidAmountOfProductsError
+	self shouldBeImplemented.! !
+!Carrito class methodsFor: 'error handling' stamp: 'GR 11/19/2020 17:14:17' prior: 50877710!
+invalidAmountOfProductsError
+	
+	^ 'You are adding an invalid amount of products to the cart'! !
+
+!testRun: #CarritoTest #test08CanNotAddNegativeAmountOfProducts stamp: 'GR 11/19/2020 17:14:18'!
+FAILURE!
+!Carrito methodsFor: 'operations' stamp: 'GR 11/19/2020 17:15:01' prior: 50877052!
+addToCart: aProduct withAmount: aProductAmount 
+	
+	(aProductAmount <= 0) ifTrue: [ self error: self class invalidAmountOfProductsError ].
+	
+	(catalog includes: aProduct) ifFalse: [self error: self class productNotInTheCatalog ].
+	
+	products add: aProduct withOccurrences: aProductAmount.
+	
+	! !
+
+!testRun: #CarritoTest #test08CanNotAddNegativeAmountOfProducts stamp: 'GR 11/19/2020 17:15:02'!
+PASSED!
+
+!testRun: #CarritoTest #test08CanNotAddNegativeAmountOfProducts stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test01CanCreateNewCartWithNoProducts stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test02CanAddAProductToCart stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test03CanAddAProductToCartMultipleTimes stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test04AddAProductThatIsAlreadyInTheCart stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test05CanNotAddABookThatIsNotInTheCatalog stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test06EmptyCartListsNoItems stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test07CartCanListEveryProductInIt stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test08CanNotAddNegativeAmountOfProducts stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!
+
+!testRun: #CarritoTest #test09CanNotAddCeroAmountOfProducts stamp: 'GR 11/19/2020 17:15:03'!
+PASSED!

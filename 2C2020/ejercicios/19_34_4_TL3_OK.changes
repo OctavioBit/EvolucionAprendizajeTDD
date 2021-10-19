@@ -1,0 +1,875 @@
+----STARTUP---- (29 November 2020 15:49:07) as /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Tercera Parte Interfaz/RefactoringsParaTerceraParteTerminado/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/leandro/Documents/Ingeniería de Software 1/Ejercicio 20/Segunda parte con los cambios de Facundo/UserChangesV3/Ejercicio-TusLibros.com.st----!
+
+!classDefinition: #TusLibrosExerciseTests category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/29/2020 15:54:10'!
+TestCase subclass: #TusLibrosExerciseTests
+	instanceVariableNames: 'builder'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+
+!classDefinition: #TestObjectBuilder category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/29/2020 15:54:24'!
+Object subclass: #TestObjectBuilder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!TusLibrosExerciseTests methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:54:08' overrides: 16927572!
+setUp
+
+	builder := TestObjectBuilder at: DateAndTime now.! !
+!TestObjectBuilder class methodsFor: 'no messages' stamp: 'LNB 11/29/2020 15:54:59' overrides: 16880774!
+at: aCurrentDateAndTime
+	^self basicNew initializeAt: aCurrentDateAndTime.! !
+!TestObjectBuilder methodsFor: 'no messages' stamp: 'LNB 11/29/2020 15:55:19'!
+creditCardWithCustomExpirationDate: arg1
+	^ CreditCard
+		withPlasticNumber: '0000000000000000'
+		namedAfter: 'Pepito'
+		validThrough: arg1.! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:55:30' prior: 50868691!
+creditCardWithCustomExpirationDate: anExpirationDate
+	^ CreditCard
+		withPlasticNumber: '0000000000000000'
+		namedAfter: 'Pepito'
+		validThrough: anExpirationDate.! !
+
+!classDefinition: #TestObjectBuilder category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/29/2020 15:56:13'!
+Object subclass: #TestObjectBuilder
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:56:12'!
+creditCardWithCustomOwnerName: anOwnerName
+	^ CreditCard
+		withPlasticNumber: '0000000000000000'
+		namedAfter: anOwnerName
+		validThrough:
+			(GregorianMonthOfYear
+				year: (GregorianYear number: today yearNumber + 1)
+				monthNumber: today monthIndex).! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:56:33'!
+initializeAt: aCurrentDateAndTime
+	
+	today := aCurrentDateAndTime.! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:57:04'!
+creditCardWithEmptyOwnerName
+	^ CreditCard
+		withPlasticNumber: '0000000009000000'
+		namedAfter: ''
+		validThrough:
+			(GregorianMonthOfYear
+				year: (GregorianYear number: today yearNumber + 1)
+				monthNumber: today monthIndex).! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:57:12'!
+creditCardWithInvalidExpirationDate
+	^ CreditCard
+		withPlasticNumber: '0000000000000000'
+		namedAfter: 'Pepito'
+		validThrough: 596.! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:57:24' prior: 50868743!
+creditCardWithInvalidExpirationDate
+	^ CreditCard
+		withPlasticNumber: '0000000000000000'
+		namedAfter: 'Pepito'
+		validThrough: 0596.! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:57:59'!
+creditCardWithInvalidPlasticNumber
+	^ CreditCard
+		withPlasticNumber: 'NaN %&/NaNNaNNaN'
+		namedAfter: 'Pepito'
+		validThrough:
+			(GregorianMonthOfYear
+				year: (GregorianYear number: today yearNumber + 1)
+				monthNumber: today monthIndex).! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:58:30'!
+creditCardWithLessThan16DigitsInItsPlasticNumber
+	^ CreditCard
+		withPlasticNumber: '000000000900000'
+		namedAfter: 'Pepito'
+		validThrough:
+			(GregorianMonthOfYear
+				year: (GregorianYear number: today yearNumber + 1)
+				monthNumber: today monthIndex).! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:58:38'!
+creditCardWithMoreThan16DigitsInItsPlasticNumber
+	^ CreditCard
+		withPlasticNumber: '00000000090000000'
+		namedAfter: 'Pepito'
+		validThrough:
+			(GregorianMonthOfYear
+				year: (GregorianYear number: today yearNumber + 1)
+				monthNumber: today monthIndex).! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:58:55'!
+currentMonthOfYear
+	^ today monthOfYear.! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:59:34'!
+expiredCreditCard
+	^CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear year: (GregorianYear number: today yearNumber - 1) monthNumber: today monthIndex).! !
+!TestObjectBuilder methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 15:59:54'!
+validCreditCard
+	^ CreditCard
+		withPlasticNumber: '0000000000000000'
+		namedAfter: 'Pepito'
+		validThrough:
+			(GregorianMonthOfYear
+				year: (GregorianYear number: today yearNumber + 1)
+				monthNumber: today monthIndex).! !
+!InterfaceSimulator methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:01:18' overrides: 16896425!
+initialize
+	self nextPurchasesAreValidAndNeedToBeReported.! !
+
+!classDefinition: #InterfaceSimulator category: 'Ejercicio-TusLibros.com' stamp: 'LNB 11/29/2020 16:01:57'!
+Object subclass: #InterfaceSimulator
+	instanceVariableNames: 'expectedBehaviourBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-TusLibros.com'!
+!InterfaceSimulator methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:01:56'!
+nextPurchasesAreValidAndNeedToBeReported
+	expectedBehaviourBlock _ [ :aCashier :anAmount |
+	aCashier reportPayment: anAmount ].! !
+!InterfaceSimulator methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:02:47'!
+invalidateNextPurchasesBecauseOfInvalidParameters
+	expectedBehaviourBlock _ [ :aCashier :anAmount |
+	aCashier invalidatePurchaseBecauseOfInvalidParameter ].! !
+!InterfaceSimulator methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:03:20'!
+invalidateNextPurchaseForACustomErrorDescription: anErrorDescription
+	expectedBehaviourBlock _ [ :aCashier :anAmount |
+	aCashier invalidatePurchaseBecauseOf: anErrorDescription ].! !
+!InterfaceSimulator methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:04:33' prior: 50868643!
+payWith: aCreditCard for: anAmount requestedBy: aCashier
+
+	"mandar al merchantProcesor"
+	
+	^expectedBehaviourBlock value: aCashier value: anAmount.
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:05:16' prior: 50868174!
+test01CreditCardNumberMustBeComposedOfDigits
+
+	self should: [	builder creditCardWithInvalidPlasticNumber.] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: CreditCard plasticNumberMustBeMadeOfDigits. ].	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:05:39' prior: 50868188!
+test02CreditCardNumberShouldHaveExactlySixteenDigits
+
+	self should: [	builder creditCardWithLessThan16DigitsInItsPlasticNumber.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].	
+	
+	self should: [	builder creditCardWithMoreThan16DigitsInItsPlasticNumber.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticNumberMustHaveSixteenDigits. ].! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:05:50' prior: 50868213!
+test03CreditCardOwnerNameCanNotBeEmpty
+
+	self should: [	builder creditCardWithEmptyOwnerName.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard plasticOwnerMustHaveAName. ].	
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:06:22' prior: 50868227!
+test04CreditCardCanShowTheirOwnerName
+
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := builder creditCardWithCustomOwnerName: ownerName.
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:06:53' prior: 50868241!
+test05IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := builder creditCardWithCustomOwnerName: ownerName.
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:07:41' prior: 50868289!
+test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ builder creditCardWithInvalidExpirationDate ] 
+	raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard expirationDateShouldBeGregorianMonthOfYear. ]. 
+	! !
+
+!methodRemoval: CreditCardTests #test04CreditCardCanShowTheirOwnerName stamp: 'LNB 11/29/2020 16:07:56'!
+test04CreditCardCanShowTheirOwnerName
+
+	| ownerName creditCard |
+	
+	ownerName := 'Pepito'.
+	
+	creditCard := builder creditCardWithCustomOwnerName: ownerName.
+	
+	self assert: creditCard ownerName equals: ownerName.
+	
+	
+	!
+
+!methodRemoval: CreditCardTests #test06CreditCardCanShowTheirPlasticNumber stamp: 'LNB 11/29/2020 16:07:59'!
+test06CreditCardCanShowTheirPlasticNumber
+	
+	| creditCard creditCardNumber |
+	
+	creditCardNumber := '0000000009000000'.
+	
+	creditCard := CreditCard 
+		withPlasticNumber: creditCardNumber 
+		namedAfter: 'Pepito'
+		validThrough: (GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024)).
+	
+	self assert: creditCard plasticNumber equals: creditCardNumber.
+	
+	
+	!
+
+!methodRemoval: CreditCardTests #test07CreditCarCanShowExpirationDate stamp: 'LNB 11/29/2020 16:08:01'!
+test07CreditCarCanShowExpirationDate
+
+	| creditCard creditCardExpiration |
+	
+	creditCardExpiration := GregorianMonthOfYear novemberOf: (GregorianYear createYear: 2024).
+	
+	creditCard := CreditCard 
+		withPlasticNumber: '0000000000000000' 
+		namedAfter: 'Pepito' 
+		validThrough: creditCardExpiration.
+	
+	self assert: creditCard expirationDate equals: creditCardExpiration.!
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:08:05'!
+test04IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := builder creditCardWithCustomOwnerName: ownerName.
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:08:13'!
+test05CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ builder creditCardWithInvalidExpirationDate ] 
+	raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard expirationDateShouldBeGregorianMonthOfYear. ]. 
+	! !
+!CreditCardTests methodsFor: 'credit card tests' stamp: 'LNB 11/29/2020 16:08:25'!
+test06CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ builder creditCardWithInvalidExpirationDate ] 
+	raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard expirationDateShouldBeGregorianMonthOfYear. ]. 
+	! !
+
+!methodRemoval: CreditCardTests #test05IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'LNB 11/29/2020 16:08:54'!
+test05IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated
+
+	| ownerName truncatedOwnerName creditCard |
+	
+	ownerName := 'Pepito Gabriel de la Santisima Trinidad'.
+	truncatedOwnerName := 'Pepito Gabriel de la Santisima'.
+	
+	creditCard := builder creditCardWithCustomOwnerName: ownerName.
+	
+	self assert: creditCard ownerName equals: truncatedOwnerName.
+	
+	
+	!
+
+!methodRemoval: CreditCardTests #test06CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/29/2020 16:08:56'!
+test06CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ builder creditCardWithInvalidExpirationDate ] 
+	raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard expirationDateShouldBeGregorianMonthOfYear. ]. 
+	!
+
+!methodRemoval: CreditCardTests #test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/29/2020 16:08:57'!
+test08CreditCardExpirationDateIsKindaOfGregorianMonthOfYear
+	
+	self should: [ builder creditCardWithInvalidExpirationDate ] 
+	raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: CreditCard expirationDateShouldBeGregorianMonthOfYear. ]. 
+	!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'LNB 11/29/2020 16:09:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'LNB 11/29/2020 16:09:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'LNB 11/29/2020 16:09:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test04IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'LNB 11/29/2020 16:09:47'!
+PASSED!
+
+!testRun: #CreditCardTests #test05CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/29/2020 16:09:47'!
+PASSED!
+!CreditCard methodsFor: 'initialization' stamp: 'LNB 11/29/2020 16:10:40'!
+assertNonExpiredCreditCardFor: aDate
+	
+	(expirationDate < aDate monthOfYear) ifTrue: [ self error: CreditCard plasticHasExpired ].! !
+!CreditCard class methodsFor: 'error texts' stamp: 'LNB 11/29/2020 16:11:25'!
+plasticHasExpired
+	^'Cant operate with an expired Credit Card'! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:16:43'!
+payingThrough: aMerchantProcessor
+	self basicNew initializeWith: aMerchantProcessor.! !
+!Cashier methodsFor: 'checkout' stamp: 'LNB 11/29/2020 16:19:41'!
+initializeWith: aMerchantProcessor
+	
+	interface := aMerchantProcessor.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:26:05' prior: 50867961!
+test01CantCheckoutWithAnEmptyCart
+
+	| cart cashier creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	cart := Cart with: Set new.
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:26:08' prior: 50867979!
+test02CheckingOutACartWithABookReturnsItsPrice
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard) equals: 100.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:26:12' prior: 50867999!
+test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices
+	
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 175.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:26:16' prior: 50868023!
+test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 300.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:26:49' prior: 50868044!
+test05CantCheckoutWithAnExpiredCreditCard
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder expiredCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:29:11' prior: 50868067!
+test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier amountToBigToProcess. ].
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:29:29' prior: 50868091!
+test07CentsMustBeRoundedUpToTwoDigits
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.002.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.01.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:30:03' prior: 50868111!
+test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier purchaseInvalidatedByMerchantProcessorBecauseOfInvalidParameter . ].
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:30:08' prior: 50868137!
+test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: 'Tarjeta Robada'. ].
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:30:48' prior: 50869104!
+test01CantCheckoutWithAnEmptyCart
+
+	| cart cashier creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	cart := Cart with: Set new.
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier cantCheckoutWithAnEmptyCart. ]! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:30:54' prior: 50869118!
+test02CheckingOutACartWithABookReturnsItsPrice
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+		
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook. 
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard) equals: 100.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:30:59' prior: 50869134!
+test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices
+	
+	| cart cashier catalogue mathBook historyBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	historyBook := 'HistoryBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	catalogue add: historyBook -> 75.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	cart add: 1 of: historyBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 175.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:31:04' prior: 50869154!
+test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity
+
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 3 of: mathBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 300.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:31:08' prior: 50869171!
+test05CantCheckoutWithAnExpiredCreditCard
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder expiredCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard.] 
+		raisingAnErrorAndAsserting: [ :anError | self assert: anError messageText equals: Cashier creditCardHasExpired. ].	
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:31:12' prior: 50869190!
+test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 1000000000000000.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier amountToBigToProcess. ].
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:31:16' prior: 50869210!
+test07CentsMustBeRoundedUpToTwoDigits
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.	
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.002.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new.
+	
+	self assert: (cashier checkout: cart payingWith: creditCard ) equals: 100.01.! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:31:47' prior: 50869226!
+test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter
+	
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new invalidateNextPurchasesBecauseOfInvalidParameters.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: Cashier purchaseInvalidatedByMerchantProcessorBecauseOfInvalidParameter . ].
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:32:25' prior: 50869248!
+test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: InterfaceSimulator new invalidateNextPurchaseForACustomErrorDescription: 'Tarjeta Robada'.
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: 'Tarjeta Robada'. ].
+	
+	! !
+!CashierTests methodsFor: 'cashier tests' stamp: 'LNB 11/29/2020 16:32:39' prior: 50869421!
+test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError
+	| cart cashier catalogue mathBook creditCard |
+	
+	creditCard := builder validCreditCard.
+	
+	mathBook := 'MathBook'.
+	
+	catalogue := Dictionary new.
+	catalogue add: mathBook -> 100.
+	
+	cart := Cart with: catalogue.
+	cart add: 1 of: mathBook.
+	
+	cashier := Cashier payingThrough: (InterfaceSimulator new invalidateNextPurchaseForACustomErrorDescription: 'Tarjeta Robada').
+	
+	self should: [cashier checkout: cart payingWith: creditCard] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText equals: 'Tarjeta Robada'. ].
+	
+	! !
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/29/2020 16:32:59'!
+PASSED!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'LNB 11/29/2020 16:33:01'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'LNB 11/29/2020 16:33:01'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'LNB 11/29/2020 16:33:01'!
+PASSED!
+
+!testRun: #CreditCardTests #test04IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'LNB 11/29/2020 16:33:01'!
+PASSED!
+
+!testRun: #CreditCardTests #test05CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/29/2020 16:33:01'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/29/2020 16:33:03'!
+FAILURE!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/29/2020 16:33:03'!
+ERROR!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/29/2020 16:33:03'!
+ERROR!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/29/2020 16:33:03'!
+ERROR!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/29/2020 16:33:03'!
+FAILURE!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/29/2020 16:33:03'!
+FAILURE!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/29/2020 16:33:03'!
+ERROR!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/29/2020 16:33:03'!
+FAILURE!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/29/2020 16:33:03'!
+FAILURE!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/29/2020 16:33:23'!
+FAILURE!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/29/2020 16:33:23'!
+FAILURE!
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'LNB 11/29/2020 16:33:32' prior: 50869093!
+payingThrough: aMerchantProcessor
+	^self basicNew initializeWith: aMerchantProcessor.! !
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/29/2020 16:33:39'!
+PASSED!
+
+!testRun: #CartTests #test01NewCartShouldBeEmpty stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test02CartWithABookShouldNotBeEmpty stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test03EmptyCartDoesntHasABook stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test04CartShouldHaveAddedBook stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test05CartShouldNotHaveNonAddedBook stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test06CartShouldAnswerQuantityOfAnAddedBook stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test07CartShouldProperlyAddMoreCopiesOfAnAlreadyAddedBook stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test08CartShouldBeAbleToAnswerWhatBooksItHas stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test09CartCantAddBookThatAreNotInTheCatalogue stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test10CartCantAddANonIntegerAmountOfBooks stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CartTests #test11CartCantAddANonPositiveAmountOfBooks stamp: 'LNB 11/29/2020 16:33:42'!
+PASSED!
+
+!testRun: #CreditCardTests #test01CreditCardNumberMustBeComposedOfDigits stamp: 'LNB 11/29/2020 16:33:43'!
+PASSED!
+
+!testRun: #CreditCardTests #test02CreditCardNumberShouldHaveExactlySixteenDigits stamp: 'LNB 11/29/2020 16:33:43'!
+PASSED!
+
+!testRun: #CreditCardTests #test03CreditCardOwnerNameCanNotBeEmpty stamp: 'LNB 11/29/2020 16:33:43'!
+PASSED!
+
+!testRun: #CreditCardTests #test04IfOwnerNameHasMoreThanThirtyCharactersThenItGetsTruncated stamp: 'LNB 11/29/2020 16:33:43'!
+PASSED!
+
+!testRun: #CreditCardTests #test05CreditCardExpirationDateIsKindaOfGregorianMonthOfYear stamp: 'LNB 11/29/2020 16:33:43'!
+PASSED!
+
+!testRun: #CashierTests #test01CantCheckoutWithAnEmptyCart stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test02CheckingOutACartWithABookReturnsItsPrice stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test03CheckingOutWithTwoDifferentBooksReturnsTheSumOfBothPrices stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test04CheckingOutMultipleCopiesOfTheSameBookReturnsItsPriceTimesTheQuantity stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test05CantCheckoutWithAnExpiredCreditCard stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test06CantCheckoutWhenTotalAmountToPayHasMoreThan15Digits stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test07CentsMustBeRoundedUpToTwoDigits stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test08CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfInvalidParameter stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!
+
+!testRun: #CashierTests #test09CantCheckOutIfPurchaseIsInvalidatedByMerchantProcessorBecauseOfAGivenError stamp: 'LNB 11/29/2020 16:33:45'!
+PASSED!

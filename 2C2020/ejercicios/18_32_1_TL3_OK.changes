@@ -1,0 +1,249 @@
+
+
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:43:23'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'AS 12/3/2020 16:43:26'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'AS 12/3/2020 16:43:26'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'AS 12/3/2020 16:43:26'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'AS 12/3/2020 16:43:26'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'AS 12/3/2020 16:43:26'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'AS 12/3/2020 16:43:26'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+
+!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 16:43:32'!
+PASSED!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:47:43'!
+setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId
+
+	((((cartSessionsByID at: aCartId) timeOfLastUse ) +30 minutes )< aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
+	
+	(cartSessionsByID at: aCartId) setTimeTo: aTime.! !
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:11' prior: 50902163!
+addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
+
+(cartSessionsByID includesKey: aCartId) ifTrue: [
+	
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
+	
+	^((cartSessionsByID at: aCartId) cart) add: anAmount of: aProduct .
+	] 
+	ifFalse:[
+		self error: self class invalidCartErrorDescription .
+	]
+
+! !
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:18' prior: 50902612!
+checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
+|cashier saleValue userOfCart transactionNumber|
+
+(cartSessionsByID includesKey: aCartId) ifTrue: [
+	
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
+	
+	cashier:= Cashier
+		toCheckout: ((cartSessionsByID at: aCartId) cart )
+		charging:  aCreditCard
+		throught: aMerchantProcessor
+		on:  (aTime)
+		registeringOn: (salesBook ).
+		
+		saleValue:= cashier checkOut.
+		userOfCart:= (cartSessionsByID at: aCartId) userofCart.
+		
+		(userSessionByUser at: userOfCart ) addToTotalCostOfPurchases: saleValue.
+		
+		(userSessionByUser at: userOfCart) addPurchases: (((cartSessionsByID at: aCartId ) cart) contents ).
+		
+	cartSessionsByID removeKey: aCartId .
+
+		transactionNumber:=nextNumberAvailableTransaction .
+	
+	self increaseNextNumberAvailableTransaction .
+	
+	^transactionNumber.
+	] 
+	ifFalse:[
+		self error: self class invalidCartErrorDescription .
+	]
+! !
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:31' prior: 50902048!
+listCart: aCartId atTime: aTime
+
+(cartSessionsByID includesKey: aCartId) ifTrue: [
+	
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
+	
+	^(cartSessionsByID at: aCartId)cart contents.
+	] 
+	ifFalse:[
+		self error: self class invalidCartErrorDescription .
+	]! !
+
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:48:47'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:47'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:48:47'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:48:47'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:48:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+----SNAPSHOT----(3 December 2020 16:50:55) tusLibros-iteracion3.image priorSource: 18281476!

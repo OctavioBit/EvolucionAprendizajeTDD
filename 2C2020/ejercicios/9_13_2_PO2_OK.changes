@@ -1,0 +1,274 @@
+
+
+----STARTUP---- (12 November 2020 21:26:41) as /Users/franco/Downloads/macos64 2/CuisUniversity-4384.image!
+
+
+----End fileIn of /Users/franco/Documents/Ingsoft1-ms-fd/19-Portfolio2/Portfolio-Solucion.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/12/2020 21:30:32'!
+PASSED!
+
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportTest category: 'Portfolio-Solucion' stamp: 'FD 11/12/2020 21:34:40'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'FD 11/12/2020 21:40:46'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'nil' stamp: 'FD 11/12/2020 21:39:23'!
+test01AccountSummaryOfAnEmptyPortfolioIsEmpty
+
+	| report | 
+	
+	report := Report for: Portfolio new.
+	
+	self assert: report accountsSize isEmpty.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:40:54'!
+ERROR!
+!Report class methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:41:02'!
+for: aPortfolio 
+	self shouldBeImplemented.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:41:45'!
+ERROR!
+!Report class methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:43:08' prior: 50868542!
+for: anAccount 
+	^self new initializeWith: anAccount.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:43:11'!
+ERROR!
+!Report methodsFor: 'initialization' stamp: 'FD 11/12/2020 21:43:17'!
+initializeWith: anAccount 
+	self shouldBeImplemented.
+	account := anAccount.! !
+!Report methodsFor: 'initialization' stamp: 'FD 11/12/2020 21:43:21' prior: 50868558!
+initializeWith: anAccount 
+	
+	account := anAccount.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:43:22'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:44:02' prior: 50868531!
+test01AccountSummaryOfAnEmptyPortfolioIsEmpty
+
+	| report | 
+	
+	report := Report for: Portfolio new.
+	
+	self assert: report accountsSummary isEmpty.! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:44:05'!
+ERROR!
+!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:44:10'!
+accountsSummary
+	self shouldBeImplemented.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:44:21' prior: 50868584!
+accountsSummary
+	^ OrderedCollection new! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:44:23'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:44:23'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:47:32'!
+test02AccountSummaryOfAPortfolioWithADepositAddsIt
+
+	| report portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary isEmpty.! !
+
+----End fileIn of /Users/franco/Downloads/macos64 2/Packages/TerseGuide.pck.st----!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:49:39' prior: 50868600!
+test02AccountSummaryOfAPortfolioWithADepositAddsIt
+
+	| report account portfolio | 
+	
+	portfolio := Portfolio new.
+	account := Account new.
+	
+	Deposit register: 100 on: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:51:05' prior: 50871545!
+test02AccountSummaryOfAPortfolioWithADepositAddsIt
+
+	| report account portfolio | 
+	
+	portfolio := Portfolio new.
+	account := Account new.
+	
+	Deposit register: 100 on: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Dep�sito por 100'.! !
+
+!testRun: #ReportTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/12/2020 21:51:14'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:52:08' prior: 50871557!
+test02AccountSummaryOfAPortfolioWithADepositAddsIt
+
+	| report account portfolio | 
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Dep�sito por 100'.! !
+
+!testRun: #ReportTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/12/2020 21:52:41'!
+ERROR!
+!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:54:38' prior: 50868589!
+accountsSummary
+
+	account transactions isEmpty ifTrue: [	^ OrderedCollection new].
+	^'Dep�sito por 100'
+	! !
+
+!testRun: #ReportTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/12/2020 21:54:51'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:55:47' prior: 50871573!
+test02AccountSummaryOfAPortfolioWithADepositAddsIt
+
+	| report account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Dep�sito por 100'.! !
+
+!testRun: #ReportTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/12/2020 21:55:49'!
+FAILURE!
+!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:56:27' prior: 50871589!
+accountsSummary
+
+	account transactions isEmpty ifTrue: [	^ OrderedCollection new].
+	^OrderedCollection with: 'Dep�sito por 100'.
+	! !
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 21:56:30'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/12/2020 21:56:30'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:57:48'!
+test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
+
+	| report account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Extracci�n por 50.'.! !
+
+!testRun: #ReportTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/12/2020 21:57:50'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:57:59' prior: 50871630!
+test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
+
+	| report account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	portfolio := Portfolio with: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Extracci�n por 50.'.! !
+
+!testRun: #ReportTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/12/2020 21:58:02'!
+FAILURE!
+!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:08' prior: 50871616!
+accountsSummary
+
+	"Nico dice que el mensaje accounts o transactions no tiene que aparecer"
+	account transactions isEmpty ifTrue: [^OrderedCollection new].
+	(account transactions first isKindOf: Deposit) ifTrue: [^OrderedCollection with: 'Dep�sito por 100'.	].
+	
+	^OrderedCollection with: 'Extracci�n por 50'.	
+	! !
+
+!testRun: #ReportTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/12/2020 22:03:09'!
+FAILURE!
+
+!testRun: #ReportTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/12/2020 22:03:40'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:58' prior: 50871647!
+test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
+
+	| report account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	portfolio := Portfolio with: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Extracci�n por 50'.! !
+
+!testRun: #ReportTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/12/2020 22:04:01'!
+PASSED!
+
+!testRun: #ReportTest #test01AccountSummaryOfAnEmptyPortfolioIsEmpty stamp: 'FD 11/12/2020 22:04:01'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/12/2020 22:04:01'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/12/2020 22:04:01'!
+PASSED!

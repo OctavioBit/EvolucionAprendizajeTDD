@@ -1,0 +1,1550 @@
+
+
+----SNAPSHOT----(5 July 2021 20:15:03) CuisUniversity-victorialousan.image priorSource: 20191012!
+
+----End fileIn of /home/melisa/Desktop/ISI/linux64/ISW1-2021-1C-2doParcial.st----!
+
+TestCase subclass: #RondaDeTrucoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #RondaDeTrucoTest category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 21:39:58'!
+TestCase subclass: #RondaDeTrucoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTrucoTest methodsFor: 'no messages' stamp: 'VL 7/5/2021 21:47:55'!
+test01LaManoComienzaLaRonda
+	
+	| mazo |
+	mazo = CartaDeTruco new! !
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 22:13:40'!
+Object subclass: #Jugador
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:13:33'!
+test01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo: #basto  numero:1) 
+				carta2: (CartaDeTruco palo:#espada numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test01LaManoComienzaLaRonda stamp: 'VL 7/5/2021 22:14:19'!
+test01LaManoComienzaLaRonda
+	
+	| mazo |
+	mazo = CartaDeTruco new!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:14:24'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:14:57'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:15:53' prior: 50963168!
+test01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo: #basto  numero:1) 
+				carta2: (CartaDeTruco palo:#espada numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:15:55'!
+ERROR!
+!Jugador class methodsFor: 'Error Description' stamp: 'VL 7/5/2021 22:16:39'!
+cartasInvalidasErrorDescription
+	self shouldBeImplemented.! !
+!Jugador class methodsFor: 'Error Description' stamp: 'VL 7/5/2021 22:17:13' prior: 50963210!
+cartasInvalidasErrorDescription
+	
+	^'Cartas invalidas'! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:17:17'!
+ERROR!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:17:31'!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:26:38' prior: 50963223!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: aCartaDeTruco = aCartaDeTruco3 or: (aCartaDeTruco2 = aCartaDeTruco3)] ifTrue: self cartasInvalidasErrorDescription.
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:26:45'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:27:01'!
+ERROR!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:27:29' prior: 50963234!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: aCartaDeTruco = aCartaDeTruco3 or: (aCartaDeTruco2 = aCartaDeTruco3)] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:27:49' prior: 50963255!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: aCartaDeTruco = aCartaDeTruco3 or: (aCartaDeTruco2 = aCartaDeTruco3)] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:28:14' prior: 50963268!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: aCartaDeTruco = aCartaDeTruco3 or: (aCartaDeTruco2 = aCartaDeTruco3)] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:28:57' prior: 50963281!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: aCartaDeTruco = aCartaDeTruco3 or: (aCartaDeTruco2 = aCartaDeTruco3)] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:30:30'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:31:28'!
+FAILURE!
+!Jugador methodsFor: 'no messages' stamp: 'VL 7/5/2021 22:32:23'!
+initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:32:54'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:33:35' prior: 50963193!
+test01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo: #basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:33:37'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:34:01' prior: 50963324!
+test01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:34:05'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:37:15'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:37:25'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:39:06' prior: 50963294!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: (aCartaDeTruco = aCartaDeTruco3) or: (aCartaDeTruco2 = aCartaDeTruco3)] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:39:54' prior: 50963366!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[[aCartaDeTruco = aCartaDeTruco2 or: [(aCartaDeTruco = aCartaDeTruco3)]] or: [(aCartaDeTruco2 = aCartaDeTruco3)]] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:40:24'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:41:13' prior: 50963379!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: [(aCartaDeTruco = aCartaDeTruco3)] or: [(aCartaDeTruco2 = aCartaDeTruco3)]] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:41:17'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:41:33' prior: 50963396!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: (aCartaDeTruco = aCartaDeTruco3) or: [(aCartaDeTruco2 = aCartaDeTruco3)]] ifTrue: [self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:41:33'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:41:33'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:42:09' prior: 50963413!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: (aCartaDeTruco = aCartaDeTruco3) or: [(aCartaDeTruco2 = aCartaDeTruco3)]] ifTrue: [^self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:42:12'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:43:25' prior: 50963434!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: [(aCartaDeTruco = aCartaDeTruco3) or: [(aCartaDeTruco2 = aCartaDeTruco3)]]] ifTrue: [^self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:43:36'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/5/2021 22:44:44' prior: 50963451!
+carta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+	
+	[aCartaDeTruco = aCartaDeTruco2 or: [aCartaDeTruco = aCartaDeTruco3 or: [aCartaDeTruco2 = aCartaDeTruco3]]] ifTrue: [^self cartasInvalidasErrorDescription].
+	
+	^self new initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3 ! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:44:54'!
+FAILURE!
+
+aCartaDeTruco = aCartaDeTruco2 or: [aCartaDeTruco = aCartaDeTruco3 or: [aCartaDeTruco2 = aCartaDeTruco3]]!
+
+aCartaDeTruco = aCartaDeTruco2 or: [aCartaDeTruco = aCartaDeTruco3 or: [aCartaDeTruco2 = aCartaDeTruco3]]!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:46:04'!
+FAILURE!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 22:50:49'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:50:32'!
+test02NoSePuedeCrearUnRondaConCartasRepetidas
+		
+	| mano pie |
+	mano = Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).
+				
+	pie= Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).	
+				
+	self should: [RondaDeTruco conMano: mano conPie: pie] 
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:51:52'!
+xtest01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:51:52'!
+test01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnRondaConCartasRepetidas stamp: 'VL 7/5/2021 22:52:00'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnRondaConCartasRepetidas stamp: 'VL 7/5/2021 22:53:30'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnRondaConCartasRepetidas stamp: 'VL 7/5/2021 22:54:30'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnRondaConCartasRepetidas stamp: 'VL 7/5/2021 22:54:47'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnRondaConCartasRepetidas stamp: 'VL 7/5/2021 22:56:47'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 22:57:54'!
+test01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	! !
+
+!methodRemoval: RondaDeTrucoTest #xtest01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:57:54'!
+xtest01NoSePuedecrearUnJugadorConCartasRepetidas
+		
+	self 
+	should: [Jugador carta1: (CartaDeTruco palo:#basto  numero:1) 
+				carta2: (CartaDeTruco palo:#basto numero:1) 
+				carta3: (CartaDeTruco palo:#oro numero:4).]
+	raise: Error-MessageNotUnderstood
+	withMessageText: Jugador cartasInvalidasErrorDescription.
+	 
+	!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedecrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 22:57:56'!
+FAILURE!
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 23:01:31'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 23:01:34'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 23:01:36'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2 carta3'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!Jugador methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:01:28' prior: 50963314!
+initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+
+	carta1= aCartaDeTruco.
+	carta2= aCartaDeTruco2.
+	
+	carta3= aCartaDeTruco3.! !
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 23:06:56'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2 carta3 cartas'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!Jugador methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:06:54' prior: 50963621!
+initializeCarta1: aCartaDeTruco carta2: aCartaDeTruco2 carta3: aCartaDeTruco3
+
+	carta1= aCartaDeTruco.
+	carta2= aCartaDeTruco2.
+	
+	carta3= aCartaDeTruco3.
+	cartas= OrderedCollection with:carta1 with:carta2 with:carta3.! !
+!Jugador methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:07:50'!
+cartas
+
+	^cartas! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:11:43'!
+test01SePuedecrearUnJugadorConCartasDiferentes
+		
+	| carta1 carta2 carta3 cartas jugador |
+	carta1= (CartaDeTruco palo:#basto  numero:1).
+	carta2=(CartaDeTruco palo:#espadas numero:1).
+	carta3= (CartaDeTruco palo:#oro numero:4).
+	cartas= OrderedCollection with:carta1 with:carta2 with:carta3.
+	jugador = Jugador carta1: carta1 
+				carta2: carta2 
+				carta3: carta3.
+	self assert: cartas equals: jugador cartas.
+	 
+	! !
+
+!testRun: #RondaDeTrucoTest #test01SePuedecrearUnJugadorConCartasDiferentes stamp: 'VL 7/5/2021 23:12:31'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:12:48' prior: 50963651!
+test01SePuedecrearUnJugadorConCartasDiferentes
+		
+	| carta1 carta2 carta3 cartas jugador |
+	carta1= (CartaDeTruco palo:#basto  numero:1).
+	carta2=(CartaDeTruco palo:#espada numero:1).
+	carta3= (CartaDeTruco palo:#oro numero:4).
+	cartas= OrderedCollection with:carta1 with:carta2 with:carta3.
+	jugador = Jugador carta1: carta1 
+				carta2: carta2 
+				carta3: carta3.
+	self assert: cartas equals: jugador cartas.
+	 
+	! !
+
+!testRun: #RondaDeTrucoTest #test01SePuedecrearUnJugadorConCartasDiferentes stamp: 'VL 7/5/2021 23:13:14'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:13:42' prior: 50963671!
+test01SePuedecrearUnJugadorConCartasDiferentes
+		
+	| carta1 carta2 carta3 cartas jugador |
+	carta1= (CartaDeTruco palo:#basto  numero:1).
+	
+	
+	=(CartaDeTruco palo:#espada numero:1).
+	ca
+	(CartaDeTruco palo:#oro numero:4).
+	cartas= OrderedCollection new with:carta1 with:carta2 with:carta3.
+	jugado
+	ador carta1: carta1 
+				carta2: carta2 
+				carta3: carta3.
+	self assert: cartas equals: jugador car
+	
+	! !
+
+----SNAPSHOT----(5 July 2021 23:42:54) CuisUniversity-victorialousan.image priorSource: 20191012!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:43:37' prior: 50963475!
+test01SePuedeCrearUnJugadorConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1=(CartaDeTruco palo:#espada numero: 1).
+	carta2=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3=(CartaDeTruco palo:#espada numero: 3).
+  	mazo=OrderedCollection with: carta1 with: carta2 with: carta3.
+	jugador= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test01SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:44:03'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:44:25' prior: 50963494!
+test01SePuedeCrearUnJugadorConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1=(CartaDeTruco palo:#espada numero: 1).
+	carta2=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3=(CartaDeTruco palo:#espada numero: 3).
+  	mazo=OrderedCollection new with: carta1 with: carta2 with: carta3.
+	jugador= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:45:18' prior: 50963514!
+test01SePuedeCrearUnJugadorConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3=(CartaDeTruco palo:#espada numero: 3).
+  	mazo=OrderedCollection new with: carta1 with: carta2 with: carta3.
+	jugador= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test01SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:45:41'!
+ERROR!
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 23:47:03'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2 carta3 cartas'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!Jugador methodsFor: 'Initialization' stamp: 'VL 7/5/2021 23:47:00' prior: 50963321!
+initializeCarta1: cartaDeTruco carta2: cartaDeTruco2 carta3: cartaDeTruco3 
+	
+	carta1 := cartaDeTruco.
+	carta2 := cartaDeTruco2.
+	carta3 := cartaDeTruco3.
+	cartas:= OrderedCollection with: carta1 with: carta2 with: carta3! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:47:31' prior: 50963531!
+test01SePuedeCrearUnJugadorConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+  	mazo:=OrderedCollection with: carta1 with: carta2 with: carta3.
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test01SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:47:31'!
+ERROR!
+!Jugador methodsFor: 'accessing' stamp: 'VL 7/5/2021 23:47:52'!
+cartas
+	self shouldBeImplemented.
+	^cartas! !
+!Jugador methodsFor: 'accessing' stamp: 'VL 7/5/2021 23:47:56' prior: 50963589!
+cartas
+	
+	^cartas! !
+
+!testRun: #RondaDeTrucoTest #test01SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:48:01'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:48:01'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:48:01'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:48:31'!
+test01NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+  	mazo:=OrderedCollection with: carta1 with: carta2 with: carta3.
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/5/2021 23:51:56'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:51:48'!
+test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self should:[ RondaDeTruco mano: jugador pie: jugador]
+	raise: Error
+	withMessageText: RondaDeTruco cartasInvalidasErrorDescription
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/5/2021 23:52:33'!
+test01NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+  	mazo:=OrderedCollection with: carta1 with: carta2 with: carta3.
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/5/2021 23:52:51'!
+test02SePuedeCrearUnJugadorConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+  	mazo:=OrderedCollection with: carta1 with: carta2 with: carta3.
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test01SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/5/2021 23:52:51'!
+test01SePuedeCrearUnJugadorConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador mazo |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+  	mazo:=OrderedCollection with: carta1 with: carta2 with: carta3.
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self assert: mazo equals: jugador cartas.
+	
+	
+	!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/5/2021 23:52:57'!
+ERROR!
+!RondaDeTruco class methodsFor: 'Error Descriptions' stamp: 'VL 7/5/2021 23:53:21'!
+cartasInvalidasErrorDescription
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'Error Descriptions' stamp: 'VL 7/5/2021 23:53:50' prior: 50963704!
+cartasInvalidasErrorDescription
+	^'Cartas invalidas'! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/5/2021 23:53:54'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'assertions' stamp: 'VL 7/5/2021 23:54:03' overrides: 16927375!
+assert: aFalse description: aBlockClosure 
+	self shouldBeImplemented.! !
+!RondaDeTrucoTest class methodsFor: 'no messages' stamp: 'VL 7/5/2021 23:59:55'!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas]) ifTrue: [self cartasInvalidasErrorDescription]! !
+!RondaDeTruco class methodsFor: 'nil' stamp: 'VL 7/6/2021 00:00:34'!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas]) ifTrue: [self cartasInvalidasErrorDescription]! !
+
+!methodRemoval: RondaDeTrucoTest class #mano:pie: stamp: 'VL 7/6/2021 00:00:45'!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas]) ifTrue: [self cartasInvalidasErrorDescription]!
+
+!methodRemoval: RondaDeTrucoTest #assert:description: stamp: 'VL 7/6/2021 00:01:05'!
+assert: aFalse description: aBlockClosure 
+	self shouldBeImplemented.!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:01:11'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:01:37'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:02:11' prior: 50963632!
+test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self should:[ RondaDeTruco mano: jugador pie: jugador]
+	raise: Error-MessageNotUnderstood
+	withMessageText: RondaDeTruco cartasInvalidasErrorDescription
+	
+	
+	! !
+!RondaDeTruco class methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:02:36' prior: 50963731!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas]) ifTrue: [self error: self cartasInvalidasErrorDescription]! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:02:48'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:02:55'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:03:19' prior: 50963777!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas]) ifTrue: [^self error: self cartasInvalidasErrorDescription].! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:03:40'!
+FAILURE!
+!Jugador class methodsFor: 'instance creation' stamp: 'VL 7/6/2021 00:04:28' prior: 50963360!
+carta1: cartaDeTruco carta2: cartaDeTruco2 carta3: cartaDeTruco3 
+	cartaDeTruco=cartaDeTruco2 ifTrue: [self error: self cartasInvalidasErrorDescription].
+	cartaDeTruco=cartaDeTruco3 ifTrue: [self error: self cartasInvalidasErrorDescription].
+	cartaDeTruco3=cartaDeTruco2 ifTrue: [self error: self cartasInvalidasErrorDescription].
+	^self new initializeCarta1: cartaDeTruco carta2: cartaDeTruco2 carta3: cartaDeTruco3 ! !
+!RondaDeTruco class methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:05:08' prior: 50963793!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas do:[:carta|]]) ifTrue: [^self error: self cartasInvalidasErrorDescription].! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:05:18'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:05:40'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:06:50' prior: 50963759!
+test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas
+
+	| carta1 carta2 carta3 jugador |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	jugador:= Jugador carta1: carta1
+	 carta2:carta2 carta3: carta3.
+	
+	self should:[ RondaDeTruco mano: jugador pie: jugador]
+	raise: Error-MessageNotUnderstood
+	withMessageText:[ RondaDeTruco cartasInvalidasErrorDescription]
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:06:52'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:07:31' prior: 50963822!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas do:[:carta|]]) ifTrue: [^self error: self cartasInvalidasErrorDescription].
+	
+	! !
+!RondaDeTruco class methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:08:27' prior: 50963862!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includes: [jugadorPie cartas do:[:carta|]]) ifTrue: [^self error: self cartasInvalidasErrorDescription].
+	^self new initializemano: jugadorMano pie: jugadorPie
+	
+	! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 00:09:37'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'mano'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 00:09:40'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'mano pie'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'nil' stamp: 'VL 7/6/2021 00:09:34'!
+initializemano: jugadorMano pie: jugadorPie
+
+	mano:= jugadorMano.
+	pie:= jugadorPie.! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:09:49'!
+FAILURE!
+!Jugador class methodsFor: 'Error Descriptions' stamp: 'VL 7/6/2021 00:10:42' prior: 50963184!
+cartasInvalidasErrorDescription
+	
+	^'Cartas Invalidas'! !
+!RondaDeTruco class methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:12:20' prior: 50963871!
+mano: jugadorMano pie: jugadorPie
+
+ 	(jugadorMano cartas includesAnyOf: jugadorPie cartas) ifTrue: [^self error: self cartasInvalidasErrorDescription].
+	^self new initializemano: jugadorMano pie: jugadorPie
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:12:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:12:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:12:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:12:29'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:17:37'!
+test04elprimerEnfrentamientoLoComienzaLaMano
+
+	| carta1 carta2 carta3 jugador mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	self assert: ronda comienzaElEnfrentamiento: mano
+	
+	
+	! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:19:25' prior: 50963936!
+test04elprimerEnfrentamientoLoComienzaLaMano
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	self assert: ronda comienzaElEnfrentamiento: mano
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:19:43'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:20:05' prior: 50963953!
+test04elprimerEnfrentamientoLoComienzaLaMano
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	self assert: (ronda comienzaElEnfrentamiento: mano)
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:20:10'!
+ERROR!
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 00:20:38'!
+comienzaElEnfrentamiento: aJugador 
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 00:20:54' prior: 50964002!
+comienzaElEnfrentamiento: aJugador 
+	^True.
+	! !
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:20:58'!
+ERROR!
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 00:21:32' prior: 50964007!
+comienzaElEnfrentamiento: aJugador 
+	
+	^True 
+	! !
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 00:21:41' prior: 50964015!
+comienzaElEnfrentamiento: aJugador 
+	
+	^true
+	! !
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:21:51'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:21:51'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:21:51'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:21:51'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:21:51'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:22:55'!
+test05ElPieNoComienzaLaMano
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	self deny: (ronda comienzaElEnfrentamiento: pie)
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaMano stamp: 'VL 7/6/2021 00:22:57'!
+FAILURE!
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 00:26:54' prior: 50964020!
+comienzaElEnfrentamiento: aJugador 
+	
+	
+	^aJugador tocaTirar.
+	! !
+
+----SNAPSHOT----(6 July 2021 00:29:14) CuisUniversity-victorialousan.image priorSource: 20218873!
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 00:33:24' prior: 50964066!
+comienzaElEnfrentamiento: aJugador 
+	
+	
+	^self esTurnoDe: aJugador.
+	! !
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaMano stamp: 'VL 7/6/2021 00:33:29'!
+ERROR!
+!RondaDeTruco methodsFor: 'comparing' stamp: 'VL 7/6/2021 00:33:46'!
+esTurnoDe: aJugador 
+	self shouldBeImplemented.! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 00:34:20'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'mano pie turno'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'comparing' stamp: 'VL 7/6/2021 00:34:17' prior: 50964082!
+esTurnoDe: aJugador 
+	
+	^turno=aJugador! !
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaMano stamp: 'VL 7/6/2021 00:34:24'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:34:24'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:34:24'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:34:24'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:34:24'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaMano stamp: 'VL 7/6/2021 00:34:24'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:34:24'!
+FAILURE!
+!RondaDeTruco methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:35:09' prior: 50963896!
+initializemano: jugadorMano pie: jugadorPie
+
+	mano:= jugadorMano.
+	pie:= jugadorPie.
+	turno:= mano.! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:35:28'!
+test05ElPieNoComienzaLaRonda
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	self deny: (ronda comienzaElEnfrentamiento: pie)
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test05ElPieNoComienzaLaMano stamp: 'VL 7/6/2021 00:35:37'!
+test05ElPieNoComienzaLaMano
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	self deny: (ronda comienzaElEnfrentamiento: pie)
+	
+	
+	!
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaRonda stamp: 'VL 7/6/2021 00:35:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:35:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:35:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:35:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:35:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaRonda stamp: 'VL 7/6/2021 00:35:43'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:37:06'!
+test05LaManoGanaElPrimerEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano)
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test05LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:37:11'!
+ERROR!
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 00:37:57'!
+enfrentar
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 00:39:59' prior: 50964215!
+enfrentar
+	
+	turno:= mano! !
+
+!testRun: #RondaDeTrucoTest #test05LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaRonda stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:40:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaRonda stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:40:19'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:40:57'!
+test05ElPieGanaElPrimerEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 4).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 1) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: pie)
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test05ElPieGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:41:00'!
+FAILURE!
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 00:45:50' prior: 50964220!
+enfrentar
+	
+	| cartaMano cartaPie |
+	cartaMano:= mano cartas removeFirst.	
+	cartaPie:= pie cartas removeFirst.	
+	^(cartaMano mataA: cartaPie) ifTrue: [turno:= mano]
+							ifFalse: [turno:= cartaPie]! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:47:00'!
+test06LaManoGanaElPrimerEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano)
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test05LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:47:00'!
+test05LaManoGanaElPrimerEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 4) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano)
+	
+	
+	!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 00:47:23'!
+test07ElPieGanaElPrimerEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 4).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 1) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: pie)
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test05ElPieGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:47:23'!
+test05ElPieGanaElPrimerEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 4).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 3).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 1) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: pie)
+	
+	
+	!
+
+!testRun: #RondaDeTrucoTest #test07ElPieGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:47:27'!
+ERROR!
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 00:52:46' prior: 50964298!
+enfrentar
+	
+	| cartaMano cartaPie |
+	cartaMano:= mano cartas first.
+	mano cartas remove:( mano cartas first).	
+	cartaPie:= pie cartas first.	
+	mano cartas remove: (mano cartas first).
+	
+	^(cartaMano mataA: cartaPie) ifTrue: [turno:= mano]
+							ifFalse: [turno:= cartaPie]! !
+
+!testRun: #RondaDeTrucoTest #test07ElPieGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:53:03'!
+FAILURE!
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 00:53:47' prior: 50964395!
+enfrentar
+	
+	| cartaMano cartaPie |
+	cartaMano:= mano cartas first.
+	mano cartas remove:( mano cartas first).	
+	cartaPie:= pie cartas first.	
+	mano cartas remove: (mano cartas first).
+	
+	^(cartaMano mataA: cartaPie) ifTrue: [turno:= mano]
+							ifFalse: [turno:= pie]! !
+
+!testRun: #RondaDeTrucoTest #test07ElPieGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02SePuedeCrearUnJugadorConCartasRepetidas stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaConJugadoresConCartasRepetidas stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04elprimerEnfrentamientoLoComienzaLaMano stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05ElPieNoComienzaLaRonda stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06LaManoGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07ElPieGanaElPrimerEnfrentamiento stamp: 'VL 7/6/2021 00:54:04'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:05:43'!
+test08ElPrimerEnfrentamientoEsPardo
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 3).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#espada numero: 3) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test08ElPrimerEnfrentamientoEsPardo stamp: 'VL 7/6/2021 01:05:54'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:06:41' prior: 50964450!
+test08ElPrimerEnfrentamientoEsPardo
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 3).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#basto numero: 3) carta2:(CartaDeTruco palo:#espada numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test08ElPrimerEnfrentamientoEsPardo stamp: 'VL 7/6/2021 01:06:44'!
+FAILURE!
+!RondaDeTruco methodsFor: 'Pardo' stamp: 'VL 7/6/2021 01:07:16'!
+elEnfrentamientoEsPardo
+	self shouldBeImplemented.! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 01:08:13'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'mano pie turno esPardo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'Pardo' stamp: 'VL 7/6/2021 01:08:08' prior: 50964501!
+elEnfrentamientoEsPardo
+	
+	^esPardo.! !
+!RondaDeTruco methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:08:49' prior: 50964124!
+initializemano: jugadorMano pie: jugadorPie
+
+	mano:= jugadorMano.
+	pie:= jugadorPie.
+	turno:= mano.
+	esPardo:=false.! !
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 01:12:31' prior: 50964410!
+enfrentar
+	
+	| cartaMano cartaPie |
+	cartaMano:= mano cartas first.
+	mano cartas remove:( mano cartas first).	
+	cartaPie:= pie cartas first.	
+	pie cartas remove: (pie cartas first).
+	esPardo:= (mano empardaCon: pie).
+	^(cartaMano mataA: cartaPie) ifTrue: [turno:= mano]
+							ifFalse: [turno:= pie]! !
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 01:14:14'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2 carta3 cartas carta'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!Jugador methodsFor: 'nil' stamp: 'VL 7/6/2021 01:14:11'!
+tirarCarta
+	carta:= self cartas first.
+ 	self cartas remove: carta.
+	^carta! !
+
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2 carta3 cartas'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #Jugador category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 01:15:04'!
+Object subclass: #Jugador
+	instanceVariableNames: 'carta1 carta2 carta3 cartas'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!Jugador methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:15:23' prior: 50964546!
+tirarCarta
+
+	|carta|
+	carta:= self cartas first.
+ 	self cartas remove: carta.
+	^carta! !
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 01:21:32' prior: 50964526!
+enfrentar
+	
+	| cartaMano cartaPie |
+	cartaMano:= mano tirarCarta.
+	cartaPie:= pie tirarCarta.
+	^(cartaMano empardaCon: cartaPie) ifTrue: [ | esParda | esParda:= true. ]
+								ifFalse:[(cartaMano mataA: cartaPie) 
+										ifTrue: [turno:= mano]
+										ifFalse: [turno:= pie]]! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'VL 7/6/2021 01:22:20'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'mano pie turno empardo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:22:20' prior: 50964514!
+elEnfrentamientoEsPardo
+	
+	^empardo.! !
+!RondaDeTruco methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:22:20' prior: 50964519!
+initializemano: jugadorMano pie: jugadorPie
+
+	mano:= jugadorMano.
+	pie:= jugadorPie.
+	turno:= mano.
+	empardo:=false.! !
+!RondaDeTruco methodsFor: 'Entrntamiento' stamp: 'VL 7/6/2021 01:24:10' prior: 50964571!
+enfrentar
+	
+	| cartaMano cartaPie |
+	cartaMano:= mano tirarCarta.
+	cartaPie:= pie tirarCarta.
+	^(cartaMano empardaCon: cartaPie) ifTrue: [ empardo:= true. ]
+								ifFalse:[empardo:=false.
+									  (cartaMano mataA: cartaPie) 
+										ifTrue: [turno:= mano]
+										ifFalse: [turno:= pie]]! !
+!RondaDeTruco methodsFor: '...' stamp: 'VL 7/6/2021 01:28:48' prior: 50964074!
+comienzaElEnfrentamiento: aJugador 
+	
+	
+	^turno=aJugador
+	! !
+
+!methodRemoval: RondaDeTruco #esTurnoDe: stamp: 'VL 7/6/2021 01:29:15'!
+esTurnoDe: aJugador 
+	
+	^turno=aJugador!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:35:13'!
+test09laManoGanaElprimerYSegundoEnfrentamiento
+
+	| cartasMano mano pie ronda |
+	cartasMano:=OrderedCollection with: (CartaDeTruco palo:#espada numero: 3)
+	with: (CartaDeTruco palo:#espada numero: 2) with:(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador con: cartasMano.
+	pie:= Jugador con: (OrderedCollection with: (CartaDeTruco palo:#basto numero: 3) with:(CartaDeTruco palo:#espada numero: 5) with: (CartaDeTruco palo:#espada numero: 6)).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test09laManoGanaElprimerYSegundoEnfrentamiento stamp: 'VL 7/6/2021 01:36:18'!
+test09laManoGanaElprimerYSegundoEnfrentamiento
+
+	| cartasMano mano pie ronda |
+	cartasMano:=OrderedCollection with: (CartaDeTruco palo:#espada numero: 3)
+	with: (CartaDeTruco palo:#espada numero: 2) with:(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador con: cartasMano.
+	pie:= Jugador con: (OrderedCollection with: (CartaDeTruco palo:#basto numero: 3) with:(CartaDeTruco palo:#espada numero: 5) with: (CartaDeTruco palo:#espada numero: 6)).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:37:52'!
+test08laManoGanaElPrimerYSegundoEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#basto numero: 3) carta2:(CartaDeTruco palo:#basto numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	! !
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:38:11'!
+test09laManoGanaElPrimerYSegundoEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#basto numero: 3) carta2:(CartaDeTruco palo:#basto numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	! !
+
+!methodRemoval: RondaDeTrucoTest #test08laManoGanaElPrimerYSegundoEnfrentamiento stamp: 'VL 7/6/2021 01:38:11'!
+test08laManoGanaElPrimerYSegundoEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#basto numero: 3) carta2:(CartaDeTruco palo:#basto numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self assert: (ronda elEnfrentamientoEsPardo)
+	
+	
+	!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'VL 7/6/2021 01:40:14' prior: 50964693!
+test09laManoGanaElPrimerYSegundoEnfrentamiento
+
+	| carta1 carta2 carta3 mano pie ronda |
+	carta1:=(CartaDeTruco palo:#espada numero: 1).
+	
+	carta2:=(CartaDeTruco palo:#espada numero: 2).
+	
+	carta3:=(CartaDeTruco palo:#espada numero: 4).
+
+	mano:= Jugador carta1: carta1
+	 			carta2:carta2 
+				carta3: carta3.
+	pie:= Jugador carta1: (CartaDeTruco palo:#basto numero: 3) carta2:(CartaDeTruco palo:#basto numero: 5) carta3: (CartaDeTruco palo:#espada numero: 6).
+	ronda:=RondaDeTruco mano: mano pie: pie.
+	ronda enfrentar.
+	ronda enfrentar.
+	self assert: (ronda comienzaElEnfrentamiento: mano).
+	self deny: (ronda elEnfrentamientoEsPardo).
+	
+	
+	
+	! !
+
+----SNAPSHOT----(6 July 2021 01:40:20) CuisUniversity-victorialousan.image priorSource: 20237442!

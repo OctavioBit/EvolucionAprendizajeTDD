@@ -1,0 +1,2248 @@
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/19/2020 18:49:16'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/19/2020 18:52:15'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'catalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #Cashier category: 'Ejercicio TusLibros' stamp: 'AM 11/19/2020 18:52:24'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'nil' stamp: 'AM 11/19/2020 18:52:05'!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	cashier checkOut: Cart.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'AM 11/19/2020 18:52:36' prior: 50873535!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	cashier checkOut: cart.! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 18:53:02' prior: 50873543!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	cashier checkOut: cart.
+	
+	self assert! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 18:54:11' prior: 50873550!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	
+	self
+		should:[cashier checkOut: cart]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 18:54:14'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'AM 11/19/2020 18:54:27'!
+checkOutEmptyCartErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'AM 11/19/2020 18:54:38' prior: 50873571!
+checkOutEmptyCartErrorDescription
+	
+	^'Cant check out empty cart'! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 18:54:39'!
+FAILURE!
+!Cashier methodsFor: 'nil' stamp: 'AM 11/19/2020 18:55:02'!
+checkOut: aCart
+
+! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 18:55:30' prior: 50873584!
+checkOut: aCart
+
+	self ! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 18:55:51' prior: 50873588!
+checkOut: aCart
+
+	self signalCheckOutEmptyCart.! !
+!Cashier methodsFor: 'error signaling' stamp: 'AM 11/19/2020 18:56:35'!
+signalCheckOutEmptyCart
+	
+	^self error: self class checkOutEmptyCartErrorDescription.! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 18:56:40'!
+PASSED!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 18:56:40'!
+PASSED!
+
+February!
+
+February,2020!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:19:59'!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier ccExpitationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpitationDate := February,2020.
+	
+	self
+		should:[cashier checkOut: cart]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:22:05' prior: 50873608!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier ccExpitationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpitationDate := February,2020.
+	
+	self
+		should:[cashier checkOut: cart withCCNumber: ccNumber expirationDate: ccExpitationDate owner: ccOwner]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:22:13'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'AM 11/19/2020 19:22:28'!
+expiredCreditCardErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'AM 11/19/2020 19:22:38' prior: 50873643!
+expiredCreditCardErrorDescription
+	
+	^'Credit card is expired'! !
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:22:40'!
+FAILURE!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:23:25'!
+FAILURE!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 19:23:48'!
+checkOut: aCart withCCNumber: aSmallInteger expirationDate: aGregorianMonthOfYear owner: aString 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 19:24:39' prior: 50873660!
+checkOut: aCart withCCNumber: aCCNumber expirationDate: aGregorianMonthOfYear owner: anOwnerName
+	
+	self signalExpiredCreditCard.! !
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:24:41'!
+FAILURE!
+!Cashier methodsFor: 'error signaling' stamp: 'AM 11/19/2020 19:25:02'!
+signalExpiredCreditCard
+	
+	^self error: self class expiredCreditCardErrorDescription.! !
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:25:06'!
+PASSED!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:25:06'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:25:06'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:26:21' prior: 50873558!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier ccExpitationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpitationDate := February,2020.
+	
+	self
+		should:[cashier checkOut: cart]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:27:22' prior: 50873692!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOut: cart withCCNumber: ccNumber expirationDate: ccExpirationDate owner: ccOwner ]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:27:31' prior: 50873623!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOut: cart withCCNumber: ccNumber expirationDate: ccExpirationDate owner: ccOwner]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:27:35'!
+FAILURE!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:27:35'!
+PASSED!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:27:35'!
+FAILURE!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:27:39'!
+PASSED!
+!Cart methodsFor: 'testing' stamp: 'AM 11/19/2020 19:28:41'!
+isEmpty
+	
+	^items isEmpty.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 19:29:19' prior: 50873667!
+checkOut: aCart withCCNumber: aCCNumber expirationDate: aGregorianMonthOfYear owner: anOwnerName
+	
+	(aCart isEmpty) ifTrue: self signalCheckOutEmptyCart.
+	self signalExpiredCreditCard.! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:29:23'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:29:23'!
+FAILURE!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:29:23'!
+FAILURE!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/19/2020 19:30:09' overrides: 16927572!
+setUp
+
+	catalogue := OrderedCollection with: 0001.! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:31:24' prior: 50873723!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOut: cart withCCNumber: ccNumber expirationDate: ccExpirationDate owner: ccOwner]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:31:26'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:31:26'!
+FAILURE!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:31:26'!
+FAILURE!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:31:39'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:31:45'!
+FAILURE!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:31:45'!
+FAILURE!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 19:32:25' prior: 50873756!
+checkOut: aCart withCCNumber: aCCNumber expirationDate: aGregorianMonthOfYear owner: anOwnerName
+	
+	(aCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:32:28'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:32:28'!
+PASSED!
+
+!classDefinition: #Cashier category: 'Ejercicio TusLibros' stamp: 'AM 11/19/2020 19:38:22'!
+Object subclass: #Cashier
+	instanceVariableNames: 'currentCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 19:38:19'!
+recieve: aCart
+
+	currentCart := aCart.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/19/2020 19:41:15'!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName 
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.! !
+!Cashier methodsFor: 'initialization' stamp: 'AM 11/19/2020 19:41:44' overrides: 16896425!
+initialize
+
+	currentCart := Cart new.! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:42:03'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:42:03'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:42:59' prior: 50873780!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:43:24' prior: 50873706!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/19/2020 19:43:27'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/19/2020 19:43:27'!
+PASSED!
+
+!methodRemoval: Cashier #checkOut: stamp: 'AM 11/19/2020 19:43:32'!
+checkOut: aCart
+
+	self signalCheckOutEmptyCart.!
+
+!methodRemoval: Cashier #checkOut:withCCNumber:expirationDate:owner: stamp: 'AM 11/19/2020 19:43:36'!
+checkOut: aCart withCCNumber: aCCNumber expirationDate: aGregorianMonthOfYear owner: anOwnerName
+	
+	(aCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:50:00'!
+test03canCheckOutValidCartWithValidCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonth current),(GregorianYear current + 1) .
+	
+	self
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+(GregorianMonth current),(GregorianYear current + 1)!
+
+(GregorianMonth current),(GregorianYear current) + 1!
+
+(GregorianMonthOfYear current) next!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:53:18' prior: 50873918!
+test03canCheckOutValidCartWithValidCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: 500 equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/19/2020 19:53:38' prior: 50873943!
+test03canCheckOutValidCartWithValidCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+! !
+
+!testRun: #CashierTest #test03canCheckOutValidCartWithValidCreditCard stamp: 'AM 11/19/2020 19:53:42'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/19/2020 19:53:55'!
+cartValue
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'instance creation' stamp: 'AM 11/19/2020 19:56:36'!
+forPriceCatalogue: aPriceCatalogue
+
+	^self new initializeForPriceCatalogue: aPriceCatalogue.! !
+
+!classDefinition: #Cashier category: 'Ejercicio TusLibros' stamp: 'AM 11/19/2020 19:57:13'!
+Object subclass: #Cashier
+	instanceVariableNames: 'currentCart priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'AM 11/19/2020 19:57:11'!
+initializeForPriceCatalogue: aPriceCatalogue
+
+	priceCatalogue := aPriceCatalogue.! !
+!Cashier methodsFor: 'initialization' stamp: 'AM 11/19/2020 19:57:27' prior: 50874000!
+initializeForPriceCatalogue: aPriceCatalogue
+
+	priceCatalogue := aPriceCatalogue.
+	currentCart := Cart new.! !
+
+!methodRemoval: Cashier #initialize stamp: 'AM 11/19/2020 19:57:31'!
+initialize
+
+	currentCart := Cart new.!
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/19/2020 19:58:56'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'catalogue priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/19/2020 19:58:55' prior: 50873775 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	
+	catalogue := OrderedCollection with: 0001.! !
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/19/2020 20:00:04' prior: 50874025 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 0001->500; add: 0002->1000.
+	
+	
+	catalogue := OrderedCollection with: 0001.! !
+
+----QUIT----(19 November 2020 22:07:19) CuisUniversity-4383.image priorSource: 17338122!
+
+----STARTUP---- (24 November 2020 15:05:18) as C:\Users\Chara\Desktop\Facultad\Ingenieria 1\CUIS\CuisUniversity-4383.image!
+
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:23:10'!
+test03canCheckOutValidCartWithNotExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+! !
+
+!methodRemoval: CashierTest #test03canCheckOutValidCartWithValidCreditCard stamp: 'AM 11/24/2020 15:23:10'!
+test03canCheckOutValidCartWithValidCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: catalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+!
+!Cart methodsFor: 'assertions' stamp: 'AM 11/24/2020 15:26:19' prior: 50873350!
+assertItemInCatalogue: anItem
+
+	(itemCatalogue includesKey: anItem) ifFalse: [self signalItemNotInCatalogue].! !
+!CartTest methodsFor: 'setup' stamp: 'AM 11/24/2020 15:26:49' prior: 50873490 overrides: 16927572!
+setUp
+! !
+
+!classDefinition: #CartTest category: 'Ejercicio TusLibros' stamp: 'AM 11/24/2020 15:27:04'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'catalogue priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CartTest methodsFor: 'setup' stamp: 'AM 11/24/2020 15:27:02' prior: 50874089 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 0001->500; add: 0002->1000.! !
+
+TestCase subclass: #CartTest
+	instanceVariableNames: 'priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #CartTest category: 'Ejercicio TusLibros' stamp: 'AM 11/24/2020 15:27:11'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:27:32' prior: 50873248!
+test01cartIsEmptyWhenCreated
+
+	| cart |
+	
+	cart := Cart forCatalogue: priceCatalogue .
+	 
+	self assert: (Bag new) equals: cart listCart.! !
+!CartTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:27:40' prior: 50873284!
+test02canAddBookCorrectly
+
+	| cart ISBN expectedResult |
+
+	ISBN := 0001.
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: ISBN quantity: 1.
+	
+	expectedResult := Bag with: ISBN.
+	
+	self assert: expectedResult equals: cart listCart.! !
+!CartTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:27:48' prior: 50873294!
+test03addingBookAlreadyInCartAddsToTotalBookQuantity
+
+	| cart ISBN expectedResult |
+	
+	ISBN := 0001.
+
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: ISBN quantity: 1.
+	cart addToCart: ISBN quantity: 6.
+	
+	expectedResult := Bag new.
+	expectedResult add: ISBN withOccurrences: 7.
+	
+	self assert: expectedResult equals: cart listCart.! !
+!CartTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:27:54' prior: 50873399!
+test04bookOrderQuantityMustAtLeastOne
+
+	| cart ISBN |
+	
+	ISBN := 0001.
+	cart := Cart forCatalogue: priceCatalogue.
+	
+	self 
+		should: [cart addToCart: ISBN quantity: 0]
+		raise: Error
+		withMessageText: Cart invalidQuantityErrorDescription.! !
+!CartTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:27:59' prior: 50873439!
+test05bookISBNMustBeValid
+
+	| cart ISBN |
+	
+	ISBN := 0000.
+	cart := Cart forCatalogue: priceCatalogue.
+	
+	self 
+		should: [cart addToCart: ISBN quantity: 1]
+		raise: Error
+		withMessageText: Cart itemNotInCatalogueErrorDescription.
+	
+	 ! !
+
+!testRun: #CartTest #test01cartIsEmptyWhenCreated stamp: 'AM 11/24/2020 15:28:02'!
+PASSED!
+
+!testRun: #CartTest #test02canAddBookCorrectly stamp: 'AM 11/24/2020 15:28:02'!
+PASSED!
+
+!testRun: #CartTest #test03addingBookAlreadyInCartAddsToTotalBookQuantity stamp: 'AM 11/24/2020 15:28:02'!
+PASSED!
+
+!testRun: #CartTest #test04bookOrderQuantityMustAtLeastOne stamp: 'AM 11/24/2020 15:28:02'!
+PASSED!
+
+!testRun: #CartTest #test05bookISBNMustBeValid stamp: 'AM 11/24/2020 15:28:02'!
+PASSED!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/24/2020 15:28:12' prior: 50874032 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 0001->500; add: 0002->1000.
+	! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/24/2020 15:28:21'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:28:30' prior: 50873882!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: priceCatalogue.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:28:43' prior: 50873863!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := February,2020.
+	
+	self
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:28:49' prior: 50874046!
+test03canCheckOutValidCartWithNotExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:30:29'!
+test04successfulCheckOutReturnsCorrectTotal
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+! !
+
+!methodRemoval: CashierTest #test04successfulCheckOutReturnsCorrectTotal stamp: 'AM 11/24/2020 15:32:37'!
+test04successfulCheckOutReturnsCorrectTotal
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/24/2020 15:32:41'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/24/2020 15:32:41'!
+PASSED!
+
+!testRun: #CashierTest #test03canCheckOutValidCartWithNotExpiredCreditCard stamp: 'AM 11/24/2020 15:32:41'!
+ERROR!
+
+!testRun: #CashierTest #test03canCheckOutValidCartWithNotExpiredCreditCard stamp: 'AM 11/24/2020 15:32:41'!
+ERROR!
+
+!classDefinition: #ApiRestSimulator category: 'Ejercicio TusLibros' stamp: 'AM 11/24/2020 15:39:29'!
+Object subclass: #ApiRestSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:39:13'!
+test03successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner simulator |
+	
+	simulator := ApiRestSimulator successfulTransaction.
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier forCatalogue: priceCatalogue.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner with: simulator).
+! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:40:15'!
+ERROR!
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/24/2020 15:40:26'!
+successfulTransaction
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeSuccessfulTransaction! !
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/24/2020 15:40:41' prior: 50874343!
+successfulTransaction
+	
+	^self new initializeSuccessfulTransaction! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:40:42'!
+ERROR!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/24/2020 15:41:06'!
+initializeSuccessfulTransaction
+	self shouldBeImplemented.! !
+
+!classDefinition: #ApiRestSimulator category: 'Ejercicio TusLibros' stamp: 'AM 11/24/2020 15:42:15'!
+Object subclass: #ApiRestSimulator
+	instanceVariableNames: 'messageToSend'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/24/2020 15:42:13' prior: 50874361!
+initializeSuccessfulTransaction
+	
+	messageToSend := 'successfulCheckOut'! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:42:16'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'AM 11/24/2020 15:42:25'!
+forCatalogue: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeForCatalogue: aDictionary ! !
+
+!methodRemoval: Cashier class #forCatalogue: stamp: 'AM 11/24/2020 15:42:52'!
+forCatalogue: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeForCatalogue: aDictionary !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 15:43:12' prior: 50874318!
+test03successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner simulator |
+	
+	simulator := ApiRestSimulator successfulTransaction.
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner with: simulator).
+! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:43:23'!
+ERROR!
+
+!methodRemoval: CashierTest #test03canCheckOutValidCartWithNotExpiredCreditCard stamp: 'AM 11/24/2020 15:43:47'!
+test03canCheckOutValidCartWithNotExpiredCreditCard
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier new.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner).
+!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:44:02'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:44:02'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 15:44:22' prior: 50873982!
+cartValue
+	
+	! !
+
+| bag |
+
+bag := Bag new!
+
+| bag |!
+
+bag := Bag new!
+
+
+bag add: 0001 withOccurrences: 10.
+bag add: 0002 withOccurrences: 5.!
+
+item!
+
+0002!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 15:54:11' prior: 50874450!
+cartValue
+	
+	| value cartItems |
+	
+	cartItems := currentCart listCart.
+	value := 0.
+	cartItems do: [:item | value := value + (cartItems occurrencesOf: item) * priceCatalogue at: item].
+	
+	
+	^value.! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:54:16'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:54:16'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:55:29'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 15:55:29'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 15:55:39'!
+checkOutForCard: aSmallInteger withExpirationDate: aGregorianMonthOfYear withOwner: aString with: anApiRestSimulator 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 15:55:44' prior: 50874481!
+checkOutForCard: aSmallInteger withExpirationDate: aGregorianMonthOfYear withOwner: aString with: anApiRestSimulator 
+	
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 15:58:55' prior: 50874489!
+checkOutForCard: aSmallInteger withExpirationDate: aGregorianMonthOfYear withOwner: aString with: anApiRestSimulator 
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	
+	"anApiRestSimulator debit: self cartValue fromCreditCard: "! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:05:42' prior: 50874496!
+checkOutForCard: aSmallInteger withExpirationDate: aGregorianMonthOfYear withOwner: aString with: anApiRestSimulator 
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	
+	"anApiRestSimulator with: self debit: self cartValue fromCreditCard: "! !
+
+!methodRemoval: Cashier #checkOutForCard:withExpirationDate:withOwner:with: stamp: 'AM 11/24/2020 16:07:25'!
+checkOutForCard: aSmallInteger withExpirationDate: aGregorianMonthOfYear withOwner: aString with: anApiRestSimulator 
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	
+	"anApiRestSimulator with: self debit: self cartValue fromCreditCard: "!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:08:44'!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName with: anApiRestSimulator
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:10:44' prior: 50874532!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName with: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	anApiRest debitFromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:11:14' prior: 50874542!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName with: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	anApiRest debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+	
+	^self cartValue! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:12:17'!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	anApiRest debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+	
+	^self cartValue! !
+
+!methodRemoval: Cashier #checkOutForCard:withExpirationDate:withOwner:with: stamp: 'AM 11/24/2020 16:12:17'!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName with: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	anApiRest debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+	
+	^self cartValue!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 16:12:39' prior: 50874399!
+test03successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner simulator |
+	
+	simulator := ApiRestSimulator successfulTransaction.
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner through: simulator).
+! !
+!ApiRestSimulator methodsFor: 'nil' stamp: 'AM 11/24/2020 16:13:42'!
+debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	! !
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:14:19' prior: 50874619!
+debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	self perform: messageToSend.! !
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:14:29' prior: 50874626!
+debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	^self perform: messageToSend.! !
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:14:32' prior: 50874634!
+debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	self perform: messageToSend.! !
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:15:24'!
+successfulTransaction
+
+	! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/24/2020 16:20:55'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/24/2020 16:20:55'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:20:55'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:20:55'!
+ERROR!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:21:49' prior: 50874569!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	anApiRest debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:22:01' prior: 50874667!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.
+	
+	anApiRest with: self debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+! !
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:23:19'!
+with: aCashier debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	aCashier perform: self .! !
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:23:39' prior: 50874695!
+with: aCashier debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	aCashier perform: messageToSend.! !
+!Cashier methodsFor: 'check out - private' stamp: 'AM 11/24/2020 16:24:30'!
+successfulCheckOut
+
+	^self cartValue.! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/24/2020 16:24:41'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/24/2020 16:24:41'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:24:41'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:24:41'!
+ERROR!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:26:00' prior: 50874681!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self assertExpirationDate: anExpirationDate.
+	
+	anApiRest with: self debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:27:15'!
+assertExpirationDate: anExpirationDate
+	
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:27:59' prior: 50874742!
+assertExpirationDate: anExpirationDate
+	
+	(GregorianMonthOfYear current < anExpirationDate) ifFalse: [self signalExpiredCreditCard].! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:28:34'!
+assertCartHasItems
+
+	^ (currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart]! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:28:34' prior: 50874728!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	self assertCartHasItems.
+	self assertExpirationDate: anExpirationDate.
+	
+	anApiRest with: self debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:28:44' prior: 50874754!
+assertCartHasItems
+
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart]! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/24/2020 16:29:19'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/24/2020 16:29:19'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:29:19'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:29:19'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:29:34'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:29:34'!
+ERROR!
+
+!methodRemoval: ApiRestSimulator #successfulTransaction stamp: 'AM 11/24/2020 16:30:06'!
+successfulTransaction
+
+	!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/24/2020 16:30:54' prior: 50874374!
+initializeSuccessfulTransaction
+	
+	messageToSend := #successfulCheckOut! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:30:58'!
+FAILURE!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:30:58'!
+FAILURE!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/24/2020 16:35:59' prior: 50874760!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	self assertCartHasItems.
+	self assertExpirationDate: anExpirationDate.
+	
+	^anApiRest with: self debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:36:03'!
+FAILURE!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:36:03'!
+FAILURE!
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/24/2020 16:36:17' prior: 50874703!
+with: aCashier debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	^aCashier perform: messageToSend.! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/24/2020 16:36:29'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/24/2020 16:36:29'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:36:29'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 16:38:50'!
+test04successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner simulator |
+	
+	simulator := ApiRestSimulator unsuccessfulTransaction.
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self 
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner through: simulator]
+		raise: Error
+		withMessageText: Cashier unsuccessfulCheckOutErrorDescription.
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/24/2020 16:39:40'!
+test04unsuccesfulTransactionShouldRaiseError
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner simulator |
+	
+	simulator := ApiRestSimulator unsuccessfulTransaction.
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self 
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner through: simulator]
+		raise: Error
+		withMessageText: Cashier unsuccessfulCheckOutErrorDescription.
+! !
+
+!methodRemoval: CashierTest #test04successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/24/2020 16:39:40'!
+test04successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier ccExpirationDate ccNumber ccOwner simulator |
+	
+	simulator := ApiRestSimulator unsuccessfulTransaction.
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 0001 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	cashier recieve: cart.
+	
+	ccNumber:= 0000000000000000.
+	ccOwner := 'Test test'.
+	ccExpirationDate := (GregorianMonthOfYear current) next.
+	
+	self 
+		should:[cashier checkOutForCard: ccNumber withExpirationDate: ccExpirationDate withOwner: ccOwner through: simulator]
+		raise: Error
+		withMessageText: Cashier unsuccessfulCheckOutErrorDescription.
+!
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/24/2020 16:39:48'!
+ERROR!
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/24/2020 16:39:54'!
+unsuccessfulTransaction
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeUnsuccessfulTransaction! !
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/24/2020 16:40:00' prior: 50874927!
+unsuccessfulTransaction
+
+	^self new initializeUnsuccessfulTransaction! !
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/24/2020 16:40:01'!
+ERROR!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/24/2020 16:40:08'!
+initializeUnsuccessfulTransaction
+	self shouldBeImplemented.! !
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/24/2020 16:40:29' prior: 50874945!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #unsuccessfulTransaction! !
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/24/2020 16:40:30'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'AM 11/24/2020 16:40:40'!
+unsuccessfulCheckOutErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'AM 11/24/2020 16:41:12' prior: 50874959!
+unsuccessfulCheckOutErrorDescription
+	
+	^'Transaction with merchant processor was unsuccessful'! !
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/24/2020 16:41:14'!
+FAILURE!
+!Cashier methodsFor: 'check out - private' stamp: 'AM 11/24/2020 16:41:55'!
+unsuccessfulTransaction
+
+	self error: self class unsuccessfulCheckOutErrorDescription.! !
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/24/2020 16:42:18'!
+PASSED!
+
+----QUIT----(24 November 2020 16:43:39) CuisUniversity-4383.image priorSource: 17356430!
+
+----STARTUP---- (24 November 2020 18:24:32) as C:\Users\Chara\Desktop\Facultad\Ingenieria 1\CUIS\CuisUniversity-4383.image!
+
+
+----QUIT----(24 November 2020 18:35:20) CuisUniversity-4383.image priorSource: 17386632!
+
+----STARTUP---- (25 November 2020 19:10:40) as C:\Users\Chara\Desktop\Facultad\Ingenieria 1\CUIS\CuisUniversity-4383.image!
+
+!Cart methodsFor: 'assertions' stamp: 'AM 11/25/2020 19:14:41' prior: 50872783!
+assertValidOrderQuantity: aQuantity
+
+	((aQuantity isKindOf: Integer) and: (aQuantity > 0)) ifFalse: [self signalInvalidOrderQuantity].! !
+!Cart class methodsFor: 'error descriptions' stamp: 'AM 11/25/2020 19:15:40' prior: 50872727!
+invalidQuantityErrorDescription
+	
+	^'Order quantity must be at least one and discrete'! !
+
+----End fileIn of C:\Users\Chara\Desktop\Facultad\Ingenieria 1\ISW1\18-Portfolio1\Portfolio-Ejercicio.st----!
+
+TestCase subclass: #CreditCard
+	instanceVariableNames: 'number expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #CreditCard category: 'Ejercicio TusLibros' stamp: 'AM 11/25/2020 19:22:46'!
+TestCase subclass: #CreditCard
+	instanceVariableNames: 'number expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CreditCard class methodsFor: 'no messages' stamp: 'AM 11/25/2020 19:24:18'!
+withNumber: aCreditCardNumber expirationOn: anExpirationDate withOwner: anOwnerNameString
+
+	! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 19:25:39' prior: 50875692!
+withNumber: aCreditCardNumber expirationOn: anExpirationDate withOwner: anOwnerNameString
+
+	^self new initializeForNumber: aCreditCardNumber expirationOn: anExpirationDate withOwner: anOwnerNameString.
+	! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 19:25:57'!
+withNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString
+
+	^self new initializeForNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString.
+	! !
+
+!methodRemoval: CreditCard class #withNumber:expirationOn:withOwner: stamp: 'AM 11/25/2020 19:26:04'!
+withNumber: aCreditCardNumber expirationOn: anExpirationDate withOwner: anOwnerNameString
+
+	^self new initializeForNumber: aCreditCardNumber expirationOn: anExpirationDate withOwner: anOwnerNameString.
+	!
+!CreditCard methodsFor: 'initialization' stamp: 'AM 11/25/2020 19:27:43'!
+initializeForNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString
+	
+	number := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	owner := anOwnerNameString.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 19:29:26' prior: 50875709!
+withNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString
+
+	
+
+	^self new initializeForNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString.
+	! !
+
+1234123412341234//1000000000000000!
+
+12341234123412341//1000000000000000  !
+
+1234123412341234//1000000000000000  !
+
+1234123412341234//10000000000000000!
+
+1234123412341234//1000000000000000!
+
+1234123412341234/1000000000000000!
+
+999999999999//1000000000000000!
+
+9999999999999999//1000000000000000!
+
+9999999999999999//1000000000000000 !
+
+9999999999999999//10000000000000000!
+
+99999999999999991//10000000000000000!
+
+999999999999999//10000000000000000!
+
+999999999999999 mod: 10000000000000000!
+
+9999!
+
+9999999999999999 mod: 10000000000000000!
+
+9999999999999999 mod: 1000000000000000!
+
+9999999999999999 mod: 1000000000000000!
+
+10 lenght!
+
+10 length!
+
+10 length!
+
+10000000 length!
+
+100000000000000000 length!
+
+10000000000000000000000000000000 length!
+
+1000000000000000!
+
+1000000000000000!
+
+self isKindOf: Integer!
+
+self length !
+
+self digitLength!
+
+self digitLength!
+
+1000000000000000 digitLength !
+
+9999999999999999 digitLength !
+
+99999999999999999 digitLength!
+
+999999999999999991 digitLength!
+
+99999999999999999131231231231212 digitLength!
+
+1000 size!
+
+9999 mod: 1000!
+
+9999 mod: 10000!
+
+9999 \\ 1000!
+
+9999 \\ 10000!
+
+9999 // 1000!
+
+11000 // 1000!
+
+10000 // 1000!
+
+9999 // 1000!
+
+999 // 1000!
+
+9999 // 1000!
+
+1000 // 1000!
+
+1 digitLength !
+
+10 digitLength !
+
+1000 decimalDigitLength !
+
+10001 decimalDigitLength !
+!CreditCard class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 19:56:36' prior: 50875738!
+withNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString
+
+	(aCreditCardNumber decimalDigitLength = 16) ifFalse: [self signalInvalidCreditCardNumber].
+	(anExpirationDate isKindOf: GregorianMonthOfYear) ifFalse: [self signalInvalidExpirationDate].
+	^self new initializeForNumber: aCreditCardNumber expirationOn: anExpirationDate Owner: anOwnerNameString.
+	! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 19:57:19'!
+signalInvalidCreditCardNumber 
+	
+	self error: self InvalidCreditCardNumberErrorDescription.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 19:58:01'!
+InvalidCreditCardNumberErrorDescription
+	
+	^'Credit card number must be a 16 digit number'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 19:58:50'!
+signalInvalidExpirationDate
+	
+	self error: self InvalidExpirationDateErrorDescription.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'AM 11/25/2020 20:00:10'!
+InvalidExpirationDateErrorDescription
+
+	^'Expiration date must be a month of year'! !
+!CreditCard methodsFor: 'accessing' stamp: 'AM 11/25/2020 20:00:59'!
+expirationDate
+
+	^expirationDate copy.! !
+!CreditCard methodsFor: 'accessing' stamp: 'AM 11/25/2020 20:01:30'!
+number
+
+	^number.! !
+!CreditCard methodsFor: 'accessing' stamp: 'AM 11/25/2020 20:01:42'!
+owner
+
+	^owner copy.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:06:15'!
+checkOut: anItemCart with: aCreditCard through: anApi
+	
+	self assertCartHasItems.
+	self assertExpirationDate: aCreditCard.
+	
+	^anApi debit: self cartValue from: aCreditCard.
+! !
+
+!methodRemoval: Cashier #recieve: stamp: 'AM 11/25/2020 20:06:23'!
+recieve: aCart
+
+	currentCart := aCart.!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:07:18' prior: 50875837!
+checkOut: anItemCart with: aCreditCard through: anApi
+	
+	self assertCartHasItems: anItemCart.
+	self assertExpirationDate: aCreditCard.
+	
+	^anApi debit: self cartValue from: aCreditCard.
+! !
+!Cashier methodsFor: 'assertions' stamp: 'AM 11/25/2020 20:08:05'!
+assertCartHasItems: anItemCart
+
+	(anItemCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].! !
+
+!methodRemoval: Cashier #assertCartHasItems stamp: 'AM 11/25/2020 20:08:09'!
+assertCartHasItems
+
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart]!
+!Cashier methodsFor: 'assertions' stamp: 'AM 11/25/2020 20:08:38'!
+assertNotExpired: aCreditCard
+	
+	(GregorianMonthOfYear current < aCreditCard expirationDate) ifFalse: [self signalExpiredCreditCard].! !
+
+!methodRemoval: Cashier #assertExpirationDate: stamp: 'AM 11/25/2020 20:08:42'!
+assertExpirationDate: anExpirationDate
+	
+	(GregorianMonthOfYear current < anExpirationDate) ifFalse: [self signalExpiredCreditCard].!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:08:51' prior: 50875849!
+checkOut: anItemCart with: aCreditCard through: anApi
+	
+	self assertCartHasItems: anItemCart.
+	self assertNotExpired: aCreditCard.
+	
+	^anApi debit: self cartValue from: aCreditCard.
+! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:10:01' prior: 50875883!
+checkOut: anItemCart with: aCreditCard through: anApi
+	
+	| value |
+	
+	self assertCartHasItems: anItemCart.
+	self assertNotExpired: aCreditCard.
+	value := self valueFor: anItemCart.
+	
+	^anApi debit: value from: aCreditCard.
+! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:14:13'!
+valueFor: anItemCart
+	
+	| value cartItems |
+	
+	cartItems := currentCart listCart.
+	value := 0.
+	cartItems sum: [:item | (cartItems occurrencesOf: item) * (self priceFor: item)].
+	
+	
+	^value.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:15:32' prior: 50875902!
+valueFor: anItemCart
+	
+	| value cartItems |
+	
+	cartItems := anItemCart listCart.
+	value := cartItems sum: [:item | (cartItems occurrencesOf: item) * (priceCatalogue at: item)].
+	
+	
+	^value.! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 20:17:07' prior: 50875911!
+valueFor: anItemCart
+	
+	|cartItems |
+	
+	cartItems := anItemCart listCart.
+	^cartItems sum: [:item | (cartItems occurrencesOf: item) * (priceCatalogue at: item)].
+	
+	! !
+
+!methodRemoval: Cashier #cartValue stamp: 'AM 11/25/2020 20:17:48'!
+cartValue
+	
+	| value cartItems |
+	
+	cartItems := currentCart listCart.
+	value := 0.
+	cartItems do: [:item | value := value + (cartItems occurrencesOf: item) * priceCatalogue at: item].
+	
+	
+	^value.!
+
+!methodRemoval: Cashier #checkOutForCard:withExpirationDate:withOwner: stamp: 'AM 11/25/2020 20:17:54'!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName 
+	
+	(currentCart isEmpty) ifTrue: [self signalCheckOutEmptyCart].
+	self signalExpiredCreditCard.!
+
+!methodRemoval: Cashier #checkOutForCard:withExpirationDate:withOwner:through: stamp: 'AM 11/25/2020 20:17:57'!
+checkOutForCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName through: anApiRest
+	
+	self assertCartHasItems.
+	self assertExpirationDate: anExpirationDate.
+	
+	^anApiRest with: self debit: self cartValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName.
+!
+!Cashier methodsFor: 'initialization' stamp: 'AM 11/25/2020 20:18:25' prior: 50874006!
+initializeForPriceCatalogue: aPriceCatalogue
+
+	priceCatalogue := aPriceCatalogue.
+! !
+
+Object subclass: #Cashier
+	instanceVariableNames: 'priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!classDefinition: #Cashier category: 'Ejercicio TusLibros' stamp: 'AM 11/25/2020 20:18:30'!
+Object subclass: #Cashier
+	instanceVariableNames: 'priceCatalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+
+!methodRemoval: Cashier class #unsuccessfulCheckOutErrorDescription stamp: 'AM 11/25/2020 20:18:43'!
+unsuccessfulCheckOutErrorDescription
+	
+	^'Transaction with merchant processor was unsuccessful'!
+
+!methodRemoval: Cashier #successfulCheckOut stamp: 'AM 11/25/2020 20:18:55'!
+successfulCheckOut
+
+	^self cartValue.!
+
+!methodRemoval: Cashier #unsuccessfulTransaction stamp: 'AM 11/25/2020 20:18:59'!
+unsuccessfulTransaction
+
+	self error: self class unsuccessfulCheckOutErrorDescription.!
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 20:20:13'!
+debit: value from: aCreditCard
+
+	^self perform: messageToSend.! !
+
+!methodRemoval: ApiRestSimulator #debit:fromCreditCard:withExpirationDate:withOwner: stamp: 'AM 11/25/2020 20:20:19'!
+debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	self perform: messageToSend.!
+
+!methodRemoval: ApiRestSimulator #with:debit:fromCreditCard:withExpirationDate:withOwner: stamp: 'AM 11/25/2020 20:20:21'!
+with: aCashier debit: aValue fromCreditCard: aCreditCardNumber withExpirationDate: anExpirationDate withOwner: anOwnerName
+
+	^aCashier perform: messageToSend.!
+!ApiRestSimulator methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 20:20:44' prior: 50875993!
+debit: value from: aCreditCard
+
+	^self perform: messageToSend with: value.! !
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 20:21:06' prior: 50874803!
+initializeSuccessfulTransaction
+	
+	messageToSend := #successfulTransaction! !
+
+!methodRemoval: ApiRestSimulator #initializeUnsuccessfulTransaction stamp: 'AM 11/25/2020 20:21:10'!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #unsuccessfulTransaction!
+!ApiRestSimulator methodsFor: 'debit simulation' stamp: 'AM 11/25/2020 20:22:10'!
+successfulTransaction: value.! !
+!ApiRestSimulator methodsFor: 'debit simulation' stamp: 'AM 11/25/2020 20:22:26'!
+successfulTransactionFor: value.! !
+!ApiRestSimulator methodsFor: 'debit simulation' stamp: 'AM 11/25/2020 20:22:31' prior: 50876037!
+successfulTransactionFor: aValue.! !
+!ApiRestSimulator methodsFor: 'debit simulation' stamp: 'AM 11/25/2020 20:22:40' prior: 50876042!
+successfulTransactionFor: aValue.
+	
+	^aValue.! !
+
+!methodRemoval: ApiRestSimulator #successfulTransaction: stamp: 'AM 11/25/2020 20:22:44'!
+successfulTransaction: value.!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 20:22:49' prior: 50876022!
+initializeSuccessfulTransaction
+	
+	messageToSend := #successfulTransactionFor! !
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/25/2020 20:24:53'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'priceCatalogue nonExpiredCreditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/25/2020 20:24:49' prior: 50874188 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 0001->500; add: 0002->1000.
+	
+	nonExpiredCreditCard := CreditCard withNumber: 1234123412341234 expirationOn: (GregorianMonthOfYear current next) Owner: 'Juan Perez'! !
+
+November,1998!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/25/2020 20:27:25' prior: 50876071 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 0001->500; add: 0002->1000.
+	nonExpiredCreditCard := CreditCard withNumber: 1234678910111213 expirationOn: November,1998 Owner: 'Perez Juan'.  
+	nonExpiredCreditCard := CreditCard withNumber: 1234123412341234 expirationOn: (GregorianMonthOfYear current next) Owner: 'Juan Perez'! !
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/25/2020 20:29:09' prior: 50876082 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 1111111111111->500; add: 9999999999999->1000.
+	nonExpiredCreditCard := CreditCard withNumber: 1234678910111213 expirationOn: November,1998 Owner: 'Perez Juan'.  
+	nonExpiredCreditCard := CreditCard withNumber: 1234123412341234 expirationOn: (GregorianMonthOfYear current next) Owner: 'Juan Perez'! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:30:50' prior: 50874207!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier api |
+	cart := Cart forCatalogue: priceCatalogue.
+	cashier := Cashier new.
+	api := ApiRestSimulator successfulTransaction. 
+	
+	self
+		should:[cashier checkOut: cart with: nonExpiredCreditCard through: api]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/25/2020 20:30:53'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:31:56' prior: 50874224!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier api |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier new.
+
+	self
+		should:[cashier ]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/25/2020 20:32:26'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'priceCatalogue nonExpiredCreditCard succesfulTransactionApiSim'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/25/2020 20:32:24' prior: 50876096 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 1111111111111->500; add: 9999999999999->1000.
+	succesfulTransactionApiSim := ApiRestSimulator successfulTransaction.
+	nonExpiredCreditCard := CreditCard withNumber: 1234678910111213 expirationOn: November,1998 Owner: 'Perez Juan'.  
+	nonExpiredCreditCard := CreditCard withNumber: 1234123412341234 expirationOn: (GregorianMonthOfYear current next) Owner: 'Juan Perez'! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:32:42' prior: 50876110!
+test01cantCheckOutEmptyCart
+	
+	| cart cashier|
+	cart := Cart forCatalogue: priceCatalogue.
+	cashier := Cashier new.
+	
+	self
+		should:[cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim]
+		raise: Error
+		withMessageText: Cashier checkOutEmptyCartErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/25/2020 20:32:45'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:33:17' prior: 50876126!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier new.
+
+	self
+		should:[cashier checkOut: cart ]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/25/2020 20:33:35'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'priceCatalogue nonExpiredCreditCard succesfulTransactionApiSim expiredCreditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/25/2020 20:33:34' prior: 50876148 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 1111111111111->500; add: 9999999999999->1000.
+	succesfulTransactionApiSim := ApiRestSimulator successfulTransaction.
+	expiredCreditCard := CreditCard withNumber: 1234678910111213 expirationOn: November,1998 Owner: 'Perez Juan'.  
+	nonExpiredCreditCard := CreditCard withNumber: 1234123412341234 expirationOn: (GregorianMonthOfYear current next) Owner: 'Juan Perez'! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:33:55' prior: 50876180!
+test02cantCheckOutWithExpiredCreditCard
+	
+	| cart cashier |
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier new.
+
+	self
+		should:[cashier checkOut: cart with: expiredCreditCard through: succesfulTransactionApiSim]
+		raise: Error
+		withMessageText: Cashier expiredCreditCardErrorDescription.
+	
+! !
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/25/2020 20:34:15'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:35:49' prior: 50874598!
+test03successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier cartValue) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 20:36:03' prior: 50876238!
+test03successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 20:36:06'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 20:36:06'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 20:36:30'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 20:36:30'!
+ERROR!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 20:36:45' prior: 50876056!
+initializeSuccessfulTransaction
+	
+	messageToSend := #successfulTransactionFor:! !
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 20:36:52'!
+PASSED!
+
+----SNAPSHOT----(25 November 2020 20:44:42) CuisUniversity-4383.image priorSource: 17386848!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 21:11:05' prior: 50875920!
+valueFor: anItemCart
+	
+	|cartItems |
+	
+	cartItems := anItemCart listCart.
+	^cartItems sum: [:item | priceCatalogue at: item].
+	
+	! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/25/2020 21:11:09'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/25/2020 21:11:09'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 21:11:09'!
+PASSED!
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/25/2020 21:11:09'!
+ERROR!
+
+!testRun: #CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/25/2020 21:11:09'!
+ERROR!
+
+!testRun: #CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 21:11:14'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:14:19' prior: 50874876!
+test04unsuccesfulTransactionShouldRaiseError
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self 
+		should:[cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim]
+		raise: Error
+		withMessageText: ApiRestSimulator unsuccessfulTransactionErrorDescription.
+! !
+
+!classDefinition: #CashierTest category: 'Ejercicio TusLibros' stamp: 'AM 11/25/2020 21:15:19'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'priceCatalogue nonExpiredCreditCard succesfulTransactionApiSim expiredCreditCard unsuccessfulTransactionApiSim'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'AM 11/25/2020 21:15:16' prior: 50876203 overrides: 16927572!
+setUp
+	
+	priceCatalogue := Dictionary new.
+	priceCatalogue add: 1111111111111->500; add: 9999999999999->1000.
+	succesfulTransactionApiSim := ApiRestSimulator simSuccessfulTransaction.
+	unsuccessfulTransactionApiSim := ApiRestSimulator simUnsuccessfulTransaction.
+	expiredCreditCard := CreditCard withNumber: 1234678910111213 expirationOn: November,1998 Owner: 'Perez Juan'.  
+	nonExpiredCreditCard := CreditCard withNumber: 1234123412341234 expirationOn: (GregorianMonthOfYear current next) Owner: 'Juan Perez'! !
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 21:15:34'!
+simSuccessfulTransaction
+	
+	^self new initializeSuccessfulTransaction! !
+
+!methodRemoval: ApiRestSimulator class #successfulTransaction stamp: 'AM 11/25/2020 21:15:35'!
+successfulTransaction
+	
+	^self new initializeSuccessfulTransaction!
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 21:15:43'!
+simUnsuccessfulTransaction
+
+	^self new initializeUnsuccessfulTransaction! !
+
+!methodRemoval: ApiRestSimulator class #unsuccessfulTransaction stamp: 'AM 11/25/2020 21:15:43'!
+unsuccessfulTransaction
+
+	^self new initializeUnsuccessfulTransaction!
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 21:15:52' prior: 50876376!
+simUnsuccessfulTransaction
+
+	^self new initializeUnsuccessfulTransaction.! !
+!ApiRestSimulator class methodsFor: 'instance creation' stamp: 'AM 11/25/2020 21:15:56' prior: 50876365!
+simSuccessfulTransaction
+	
+	^self new initializeSuccessfulTransaction.! !
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 21:16:32'!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #fasldf! !
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 21:17:05' prior: 50876398!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #signalUnsuccessfulTransaction! !
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 21:17:06' prior: 50876404!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #signalUnsuccessfulTransaction.! !
+!ApiRestSimulator methodsFor: 'error signals' stamp: 'AM 11/25/2020 21:18:06'!
+signalUnsuccessfulTransaction
+
+	self error: self class unsuccessfulTransactionErrorDescription.! !
+!ApiRestSimulator class methodsFor: 'error descriptions' stamp: 'AM 11/25/2020 21:18:42'!
+unsuccessfulTransactionErrorDescription
+	
+	^'Transaction with merchant processor was unsuccessful'! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:20:35' prior: 50876319!
+test04unsuccesfulTransactionShouldRaiseError
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self 
+		should:[cashier checkOut: cart with: nonExpiredCreditCard through: unsuccessfulTransactionApiSim ]
+		raise: Error
+		withMessageText: ApiRestSimulator unsuccessfulTransactionErrorDescription.
+		
+	self assert: 500 equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:21:18'!
+test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self 
+		should:[cashier checkOut: cart with: nonExpiredCreditCard through: unsuccessfulTransactionApiSim ]
+		raise: Error
+		withMessageText: ApiRestSimulator unsuccessfulTransactionErrorDescription.
+		
+	self assert: 500 equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+
+!methodRemoval: CashierTest #test04unsuccesfulTransactionShouldRaiseError stamp: 'AM 11/25/2020 21:21:18'!
+test04unsuccesfulTransactionShouldRaiseError
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 1.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self 
+		should:[cashier checkOut: cart with: nonExpiredCreditCard through: unsuccessfulTransactionApiSim ]
+		raise: Error
+		withMessageText: ApiRestSimulator unsuccessfulTransactionErrorDescription.
+		
+	self assert: 500 equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:21:28'!
+FAILURE!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:21:28'!
+FAILURE!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 21:21:46' prior: 50876410!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #signalUnsuccessfulTransaction:.! !
+!ApiRestSimulator methodsFor: 'error signals' stamp: 'AM 11/25/2020 21:22:17'!
+signalUnsuccessfulTransactionFor: aValue
+
+	self error: self class unsuccessfulTransactionErrorDescription.! !
+
+!methodRemoval: ApiRestSimulator #signalUnsuccessfulTransaction stamp: 'AM 11/25/2020 21:22:20'!
+signalUnsuccessfulTransaction
+
+	self error: self class unsuccessfulTransactionErrorDescription.!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:22:31'!
+FAILURE!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:22:31'!
+FAILURE!
+!ApiRestSimulator methodsFor: 'initialization' stamp: 'AM 11/25/2020 21:23:07' prior: 50876496!
+initializeUnsuccessfulTransaction
+	
+	messageToSend := #signalUnsuccessfulTransactionFor:.! !
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:23:11'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:24:47'!
+test03successfulCheckOutForOneItemReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+
+!methodRemoval: CashierTest #test03successfulCheckOutReturnsCorrectAmount stamp: 'AM 11/25/2020 21:24:47'!
+test03successfulCheckOutReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:25:00'!
+test04successfulCheckOutForMultipleItemReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:25:04'!
+test04successfulCheckOutForMultipleItemsReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:25:20' prior: 50876575!
+test04successfulCheckOutForMultipleItemsReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cart addToCart: 9999999999999 quantity: 2.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:25:26'!
+test05successfulCheckOutForMultipleItemsReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cart addToCart: 9999999999999 quantity: 2.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+
+!methodRemoval: CashierTest #test05successfulCheckOutForMultipleItemsReturnsCorrectAmount stamp: 'AM 11/25/2020 21:25:37'!
+test05successfulCheckOutForMultipleItemsReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cart addToCart: 9999999999999 quantity: 2.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+!
+
+!methodRemoval: CashierTest #test04successfulCheckOutForMultipleItemReturnsCorrectAmount stamp: 'AM 11/25/2020 21:25:42'!
+test04successfulCheckOutForMultipleItemReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: (cashier valueFor: cart) equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+!
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:25:54' prior: 50876533!
+test03successfulCheckOutForOneItemReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: 1500 equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+!CashierTest methodsFor: 'tests' stamp: 'AM 11/25/2020 21:26:09' prior: 50876590!
+test04successfulCheckOutForMultipleItemsReturnsCorrectAmount
+	
+	| cart cashier |
+	
+	cart := Cart forCatalogue: priceCatalogue.
+	cart addToCart: 1111111111111 quantity: 3.
+	cart addToCart: 9999999999999 quantity: 2.
+	cashier := Cashier forPriceCatalogue: priceCatalogue.
+	
+	self assert: 3500 equals: (cashier checkOut: cart with: nonExpiredCreditCard through: succesfulTransactionApiSim).
+! !
+
+!testRun: #CashierTest #test04successfulCheckOutForMultipleItemsReturnsCorrectAmount stamp: 'AM 11/25/2020 21:26:24'!
+PASSED!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 21:27:51' prior: 50876292!
+valueFor: anItemCart
+	
+	^anItemCart valueFor: self.
+	
+	
+	! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 21:28:27'!
+valueForItem: anItem
+	
+	^priceCatalogue at: anItem.
+	
+	
+	! !
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 21:28:39'!
+valueForCart: anItemCart
+	
+	^anItemCart valueFor: self.
+	
+	
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 21:28:39' prior: 50876686!
+valueFor: anItemCart
+	
+	^anItemCart valueForCart: self.
+	
+	
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 21:28:39' prior: 50875892!
+checkOut: anItemCart with: aCreditCard through: anApi
+	
+	| value |
+	
+	self assertCartHasItems: anItemCart.
+	self assertNotExpired: aCreditCard.
+	value := self valueForCart: anItemCart.
+	
+	^anApi debit: value from: aCreditCard.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'AM 11/25/2020 21:28:39' prior: 50876694!
+valueForCart: anItemCart
+	
+	^anItemCart valueForCart: self.
+	
+	
+	! !
+
+!methodRemoval: Cashier #valueFor: stamp: 'AM 11/25/2020 21:28:39'!
+valueFor: anItemCart
+	
+	^anItemCart valueForCart: self.
+	
+	
+	!
+!Cashier methodsFor: 'check out' stamp: 'AM 11/25/2020 21:28:56' prior: 50876715!
+valueForCart: anItemCart
+	
+	^anItemCart valueFor: self.
+	
+	
+	! !
+!Cart methodsFor: 'cashier - private' stamp: 'AM 11/25/2020 21:30:32'!
+valueFor: aCashier
+
+	^items sum: [:item | aCashier valueForItem: item].! !
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/25/2020 21:31:04'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/25/2020 21:31:04'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutForOneItemReturnsCorrectAmount stamp: 'AM 11/25/2020 21:31:04'!
+PASSED!
+
+!testRun: #CashierTest #test04successfulCheckOutForMultipleItemsReturnsCorrectAmount stamp: 'AM 11/25/2020 21:31:04'!
+PASSED!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:31:04'!
+PASSED!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/25/2020 21:31:18'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/25/2020 21:31:18'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutForOneItemReturnsCorrectAmount stamp: 'AM 11/25/2020 21:31:18'!
+PASSED!
+
+!testRun: #CashierTest #test04successfulCheckOutForMultipleItemsReturnsCorrectAmount stamp: 'AM 11/25/2020 21:31:18'!
+PASSED!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:31:18'!
+PASSED!
+
+!testRun: #CashierTest #test01cantCheckOutEmptyCart stamp: 'AM 11/25/2020 21:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test02cantCheckOutWithExpiredCreditCard stamp: 'AM 11/25/2020 21:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test03successfulCheckOutForOneItemReturnsCorrectAmount stamp: 'AM 11/25/2020 21:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test04successfulCheckOutForMultipleItemsReturnsCorrectAmount stamp: 'AM 11/25/2020 21:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test05checkOutAfterUnsuccesfulTransactionShouldReturnCorrectAmount stamp: 'AM 11/25/2020 21:34:39'!
+PASSED!
+
+----QUIT----(25 November 2020 21:34:47) CuisUniversity-4383.image priorSource: 17428416!
+

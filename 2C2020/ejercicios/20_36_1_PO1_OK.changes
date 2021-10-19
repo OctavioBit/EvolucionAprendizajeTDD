@@ -1,0 +1,2021 @@
+
+
+----STARTUP---- (2 November 2020 19:15:02) as C:\Users\Usuario\Desktop\labo\inge1\Cuis\windows64\CuisUniversity-4384.image!
+
+
+----End fileIn of C:\Users\Usuario\Desktop\labo\inge1\Cuis\windows64\Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:18:20'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:18:20'!
+FAILURE!
+
+----End fileIn of C:\Users\Usuario\Desktop\labo\inge1\Cuis\windows64\Packages\TerseGuide.pck.st----!
+
+5 negated!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LH 11/2/2020 19:24:21' prior: 50867985!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction class = Deposit ifTrue: [aTransaction value] ifFalse:[ aTransaction value negated ]] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:24:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:24:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 19:24:30'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LH 11/2/2020 19:25:19' prior: 50870944!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction class = Deposit ifTrue: [aTransaction value] ifFalse:[ aTransaction value negated ]] ifEmpty: [ 0 ]! !
+!Deposit methodsFor: 'value' stamp: 'LH 11/2/2020 19:26:00'!
+balanceValue
+
+	^ value negated.! !
+!Deposit methodsFor: 'value' stamp: 'LH 11/2/2020 19:26:05' prior: 50870997!
+balanceValue
+
+	^ value.! !
+!Withdraw methodsFor: 'value' stamp: 'LH 11/2/2020 19:26:21'!
+balanceValue
+
+	^value negated.! !
+!Withdraw methodsFor: 'value' stamp: 'LH 11/2/2020 19:26:53' prior: 50871004!
+balanceValue
+	"returns the value as how it impacts the balance of an account"
+	
+	^value negated.! !
+!AccountTransaction methodsFor: 'value' stamp: 'LH 11/2/2020 19:27:17'!
+balanceValue
+	"returns the value as how it impacts the balance of an account"
+	
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'LH 11/2/2020 19:27:39' prior: 50871001 overrides: 50871014!
+balanceValue
+	"see superclass"
+
+	^ value.! !
+!Withdraw methodsFor: 'value' stamp: 'LH 11/2/2020 19:27:46' prior: 50871008 overrides: 50871014!
+balanceValue
+	"see superclass"
+	
+	^value negated.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LH 11/2/2020 19:28:03' prior: 50870990!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction balanceValue] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 19:28:05'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'LH 11/2/2020 19:54:45'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'LH 11/2/2020 19:55:15'!
+test01AnAccountCanBeAddedToAPortfolio
+
+! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LH 11/2/2020 20:00:20'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:00:04' prior: 50871075!
+test01AnAccountCanBeAddedToAPortfolio
+	|anAccount aPortfolio|
+	
+	anAccount := Deposit register: 100 on: AccountTransaction new.
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount.
+	
+	self assert: (aPortfolio includesAccount: anAccount).
+! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:00:31'!
+ERROR!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:01:22' prior: 50871087!
+test01AnAccountCanBeAddedToAPortfolio
+	|anAccount aPortfolio|
+	
+	anAccount := Deposit register: 100 on: ReceptiveAccount new.
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount.
+	
+	self assert: (aPortfolio includesAccount: anAccount).
+! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:01:23'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LH 11/2/2020 20:02:11'!
+addAccount: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LH 11/2/2020 20:02:39' prior: 50871115!
+addAccount: anAccount
+	! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:02:43'!
+ERROR!
+!Portfolio methodsFor: 'testing' stamp: 'LH 11/2/2020 20:02:56'!
+includesAccount: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'testing' stamp: 'LH 11/2/2020 20:03:03' prior: 50871127!
+includesAccount: aDeposit 
+	^true.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 20:03:05'!
+PASSED!
+
+----SNAPSHOT----(2 November 2020 20:04:14) CuisUniversity-4384.image priorSource: 17155564!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LH 11/2/2020 20:35:30' prior: 50871031!
+balance
+	|aBalance|
+	aBalance := 0.
+	transactions sum: [ :aTransaction | aTransaction addToBalance: aBalance].
+	^aBalance
+	
+	"
+	^transactions sum: [ :aTransaction | aTransaction balanceValue] ifEmpty: [ 0 ]
+	"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 20:35:37'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:35:37'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:35:37'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 20:35:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 20:35:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 20:35:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 20:35:37'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LH 11/2/2020 20:36:17' prior: 50871172!
+balance
+	|aBalance|
+	aBalance := 0.
+	transactions do: [ :aTransaction | aTransaction addToBalance: aBalance].
+	^aBalance
+	
+	"
+	^transactions sum: [ :aTransaction | aTransaction balanceValue] ifEmpty: [ 0 ]
+	"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 20:36:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:36:18'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:36:18'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 20:36:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 20:36:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 20:36:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 20:36:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:36:25'!
+ERROR!
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'LH 11/2/2020 20:36:42'!
+addToBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'LH 11/2/2020 20:37:15' prior: 50871248!
+addToBalance: aBalance 
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'LH 11/2/2020 20:38:03' overrides: 50871254!
+addToBalance: aBalance
+	"see superclass"
+
+	^ aBalance + value.! !
+!Withdraw methodsFor: 'balance operations' stamp: 'LH 11/2/2020 20:38:33' overrides: 50871254!
+addToBalance: aBalance
+
+	^aBalance - value.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 20:38:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:38:36'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:38:36'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 20:38:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 20:38:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 20:38:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 20:38:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 20:38:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:38:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:38:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 20:38:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 20:38:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 20:38:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 20:38:41'!
+PASSED!
+!Deposit methodsFor: 'balance operations' stamp: 'LH 11/2/2020 20:39:54' prior: 50871259 overrides: 50871254!
+addToBalance: aBalance
+	"see superclass"
+
+	^aBalance + value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LH 11/2/2020 20:40:03' prior: 50871208!
+balance
+	|aBalance|
+	aBalance := 0.
+	transactions do: [ :aTransaction |aBalance:= aTransaction addToBalance: aBalance].
+	^aBalance
+	
+	"
+	^transactions sum: [ :aTransaction | aTransaction balanceValue] ifEmpty: [ 0 ]
+	"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LH 11/2/2020 20:40:07'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:43:11'!
+test02MoreThanOneAccountCanBeAddedToAPortfolio
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 := Deposit register: 100 on: ReceptiveAccount new.
+	anAccount2 := Deposit register: 200 on: ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self assert: (aPortfolio includesAccount: anAccount2).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:44:11'!
+test03aPortfolioDoesNotHaveMoreAccountsThanAdded
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 := Deposit register: 100 on: ReceptiveAccount new.
+	anAccount2 := Deposit register: 200 on: ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self deny: (aPortfolio includesAccount: anAccount2).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:44:30'!
+test02APortfolioDoesNotHaveMoreAccountsThanAdded
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 := Deposit register: 100 on: ReceptiveAccount new.
+	anAccount2 := Deposit register: 200 on: ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self deny: (aPortfolio includesAccount: anAccount2).
+! !
+
+!methodRemoval: PortfolioTest #test03aPortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:44:30'!
+test03aPortfolioDoesNotHaveMoreAccountsThanAdded
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 := Deposit register: 100 on: ReceptiveAccount new.
+	anAccount2 := Deposit register: 200 on: ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self deny: (aPortfolio includesAccount: anAccount2).
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:44:35'!
+test03MoreThanOneAccountCanBeAddedToAPortfolio
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 := Deposit register: 100 on: ReceptiveAccount new.
+	anAccount2 := Deposit register: 200 on: ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self assert: (aPortfolio includesAccount: anAccount2).
+! !
+
+!methodRemoval: PortfolioTest #test02MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:44:35'!
+test02MoreThanOneAccountCanBeAddedToAPortfolio
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 := Deposit register: 100 on: ReceptiveAccount new.
+	anAccount2 := Deposit register: 200 on: ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self assert: (aPortfolio includesAccount: anAccount2).
+!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:44:44'!
+FAILURE!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LH 11/2/2020 20:46:18'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'savedAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding' stamp: 'LH 11/2/2020 20:46:16' prior: 50871120!
+addAccount: anAccount
+
+	savedAccount := anAccount.! !
+!Portfolio methodsFor: 'testing' stamp: 'LH 11/2/2020 20:46:49' prior: 50871132!
+includesAccount: anAccount 
+
+	^anAccount = savedAccount.! !
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:46:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:46:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:46:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:46:50'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:46:51'!
+FAILURE!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LH 11/2/2020 20:47:29'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'savedAccount accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding' stamp: 'LH 11/2/2020 20:47:27' prior: 50871471!
+addAccount: anAccount
+
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'initialization' stamp: 'LH 11/2/2020 20:48:50' overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LH 11/2/2020 20:48:56'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'testing' stamp: 'LH 11/2/2020 20:49:20' prior: 50871476!
+includesAccount: anAccount 
+
+	^accounts includes: anAccount.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:49:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:49:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:49:24'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:52:08'!
+test03AnEmptyPortfolioHasABalanceOf0
+	|aPortfolio|
+	
+	aPortfolio := Portfolio new.
+	
+	self assert: 0 equals: aPortfolio balance.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:52:15'!
+test04AnEmptyPortfolioHasABalanceOf0
+	|aPortfolio|
+	
+	aPortfolio := Portfolio new.
+	
+	self assert: 0 equals: aPortfolio balance.
+! !
+
+!methodRemoval: PortfolioTest #test03AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 20:52:15'!
+test03AnEmptyPortfolioHasABalanceOf0
+	|aPortfolio|
+	
+	aPortfolio := Portfolio new.
+	
+	self assert: 0 equals: aPortfolio balance.
+!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 20:52:17'!
+ERROR!
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 20:52:38'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 20:52:48' prior: 50871567!
+balance
+	^0! !
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 20:52:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:52:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:52:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:52:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 20:52:50'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:56:16'!
+test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount
+	|aPortfolio anAccount|
+	
+	anAccount := Deposit register: 100 on: ReceptiveAccount new .
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount.
+	
+	self assert: anAccount balance equals: aPortfolio balance.
+! !
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 20:56:19'!
+ERROR!
+
+Deposit register: 100 on: ReceptiveAccount new!
+
+Deposit register: 100 on: ReceptiveAccount new!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:58:07' prior: 50871591!
+test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount
+	|aPortfolio anAccount|
+	
+	anAccount :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount.
+	
+	self assert: anAccount balance equals: aPortfolio balance.
+! !
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 20:58:12'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:58:28' prior: 50871101!
+test01AnAccountCanBeAddedToAPortfolio
+	|anAccount aPortfolio|
+	
+	anAccount :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount.
+	
+	self assert: (aPortfolio includesAccount: anAccount).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:58:52' prior: 50871395!
+test02APortfolioDoesNotHaveMoreAccountsThanAdded
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	anAccount2 :=  ReceptiveAccount new.
+	Deposit register: 200 on: anAccount2.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self deny: (aPortfolio includesAccount: anAccount2).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 20:59:00' prior: 50871426!
+test03MoreThanOneAccountCanBeAddedToAPortfolio
+	|anAccount1 anAccount2 aPortfolio|
+	
+	anAccount1 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	anAccount2 :=  ReceptiveAccount new.
+	Deposit register: 200 on: anAccount2.
+	
+	aPortfolio := Portfolio new.
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self assert: (aPortfolio includesAccount: anAccount1).
+	self assert: (aPortfolio includesAccount: anAccount2).
+! !
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 20:59:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 20:59:01'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 20:59:01'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 20:59:54'!
+FAILURE!
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 21:00:52' prior: 50871571!
+balance
+
+	^(accounts at: 1) balance.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:00:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:00:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:00:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:00:55'!
+ERROR!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:00:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:00:55'!
+ERROR!
+
+accounts!
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 21:01:54' prior: 50871703!
+balance
+	|aBalance|
+	aBalance := 0.
+	^aBalance + (accounts at: 1) balance.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:01:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:01:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:01:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:01:55'!
+ERROR!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:01:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:01:55'!
+ERROR!
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 21:10:05' prior: 50871729!
+balance
+	|aBalance|
+	aBalance := 0.
+	accounts isEmpty ifFalse:[aBalance := aBalance + (accounts at:1)].
+	^aBalance.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:10:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:10:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:10:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:10:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:10:07'!
+ERROR!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:10:07'!
+ERROR!
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 21:10:24' prior: 50871756!
+balance
+	|aBalance|
+	aBalance := 0.
+	accounts isEmpty ifFalse:[aBalance := aBalance + (accounts at:1) balance].
+	^aBalance.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:10:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:10:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:10:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:10:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:10:25'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 21:13:29'!
+test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts
+	|aPortfolio anAccount1 anAccount2|
+	
+	anAccount1 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	anAccount2 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self 
+		assert: anAccount1 balance + anAccount2 balance
+		equals: aPortfolio balance.
+! !
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:13:30'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 21:13:47' prior: 50871810!
+test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts
+	|aPortfolio anAccount1 anAccount2|
+	
+	anAccount1 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	anAccount2 :=  ReceptiveAccount new.
+	Deposit register: 200 on: anAccount1.
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self 
+		assert: anAccount1 balance + anAccount2 balance
+		equals: aPortfolio balance.
+! !
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:13:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:13:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:13:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:13:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:13:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:13:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:13:49'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 21:14:06' prior: 50871855!
+test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts
+	|aPortfolio anAccount1 anAccount2|
+	
+	anAccount1 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	anAccount2 :=  ReceptiveAccount new.
+	Deposit register: 200 on: anAccount1.
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self 
+		assert: (anAccount1 balance + anAccount2 balance)
+		equals: aPortfolio balance.
+! !
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:14:07'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'LH 11/2/2020 21:14:26' prior: 50871900!
+test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts
+	|aPortfolio anAccount1 anAccount2|
+	
+	anAccount1 :=  ReceptiveAccount new.
+	Deposit register: 100 on: anAccount1.
+	anAccount2 :=  ReceptiveAccount new.
+	Deposit register: 200 on: anAccount2.
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount1.
+	aPortfolio addAccount: anAccount2.
+	
+	self 
+		assert: (anAccount1 balance + anAccount2 balance)
+		equals: aPortfolio balance.
+! !
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:14:27'!
+FAILURE!
+!Portfolio methodsFor: 'accesing' stamp: 'LH 11/2/2020 21:15:50' prior: 50871785!
+balance
+	|aBalance|
+	aBalance := 0.
+	accounts do: [:anAccount | aBalance:= aBalance + anAccount balance].
+	^aBalance.! !
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04AnEmptyPortfolioHasABalanceOf0 stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05APortfolioWithOneAccountShouldHaveABalanceEqualToThatOfTheAccount stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06APortfolioWithManyAccountsShouldHaveABalanceEqualToTheSumOfItsAccounts stamp: 'LH 11/2/2020 21:15:53'!
+PASSED!
+
+----SNAPSHOT----(2 November 2020 21:24:28) CuisUniversity-4384.image priorSource: 17264576!
+
+----QUIT----(2 November 2020 22:00:21) CuisUniversity-4384.image priorSource: 17291194!
+
+----STARTUP---- (5 November 2020 14:21:39) as C:\Users\Usuario\Desktop\labo\inge1\Cuis\windows64\CuisUniversity-4384.image!
+
+
+----QUIT----(5 November 2020 14:22:14) CuisUniversity-4384.image priorSource: 17291287!
+
+----STARTUP---- (7 November 2020 10:41:14) as C:\Users\Usuario\Desktop\labo\inge1\Cuis\windows64\CuisUniversity-4384.image!
+
+
+!classRemoval: #ReceptiveAccount stamp: 'LH 11/7/2020 10:41:23'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Portfolio stamp: 'LH 11/7/2020 10:41:24'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Withdraw stamp: 'LH 11/7/2020 10:41:24'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Deposit stamp: 'LH 11/7/2020 10:41:24'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #AccountTransaction stamp: 'LH 11/7/2020 10:41:25'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'LH 11/7/2020 10:41:25'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #PortfolioTest stamp: 'LH 11/7/2020 10:41:26'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----End fileIn of C:\Users\Usuario\Desktop\labo\inge1\trabajos\ingeSoft-2020-2c\18-Portfolio\Portfolio-Ejercicio.st----!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 10:43:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 10:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 10:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 10:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:43:31'!
+PASSED!
+!PortfolioTest methodsFor: 'invalid topolgies adding accounts in child portfolios' stamp: 'LH 11/7/2020 10:47:07' prior: 50872254!
+test13
+	
+	"no se pueden agregar una cueanta a un portfolio (hijo) de un portfolio (padre), cuando la cuenta ya estaba en el portfolio (padre)"
+	
+	| portfolio1 portfolio2 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio1 addAccount: account1.
+	portfolio1 addPortfolio: portfolio2.
+
+	self should: [	portfolio2 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:47:08'!
+FAILURE!
+!Portfolio methodsFor: 'portfolios' stamp: 'LH 11/7/2020 10:51:34' prior: 50872508!
+addPortfolio: aPortfolio
+	(self includesPortfolio: aPortfolio) ifTrue: [self error: Portfolio errorMessagePortfolioAlreadyAdded].
+	
+	portfolios add: aPortfolio.
+	aPortfolio addAsFather: self. 
+! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:51:37'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LH 11/7/2020 10:52:04'!
+addAsFather: aPortfolio 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LH 11/7/2020 10:52:32'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios fatherPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LH 11/7/2020 10:52:30' prior: 50872669!
+addAsFather: aPortfolio 
+
+	fatherPortfolios add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:52:37'!
+ERROR!
+!Portfolio methodsFor: 'initialization' stamp: 'LH 11/7/2020 10:53:22' prior: 50872503 overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.
+	
+	fatherPortfolios := OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:53:25'!
+FAILURE!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 10:55:01' prior: 50872524!
+addAccount: anAccount
+
+	(self includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded].
+	
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'initialization' stamp: 'LH 11/7/2020 10:55:32' prior: 50872690 overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LH 11/7/2020 10:56:56' prior: 50872682!
+addAsFather: aPortfolio 
+
+	fatherPortfolios := aPortfolio.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:56:59'!
+FAILURE!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 10:58:12' prior: 50872700!
+addAccount: anAccount
+
+	(self includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded].
+	(fatherPortfolios includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:58:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 10:58:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 10:58:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 10:58:14'!
+ERROR!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 10:58:14'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 10:58:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:58:14'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:58:26'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 10:58:48'!
+ERROR!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:00:11' prior: 50872722!
+addAccount: anAccount
+
+	(self includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded].
+	fatherPortfolios isNil ifFalse: [ (fatherPortfolios includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded]].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:00:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:00:16'!
+PASSED!
+!PortfolioTest methodsFor: 'invalid topolgies adding accounts in child portfolios' stamp: 'LH 11/7/2020 11:03:06'!
+test14
+	
+	"no se pueden agregar una cueanta a un portfolio (hijo) de un portfolio (padre), cuando la cuenta ya estaba en el portfolio (padre), con varios padres"
+	
+	| portfolio1 portfolio2 portfolio3 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio2 addAccount: account1.
+	portfolio2 addPortfolio: portfolio3.
+	portfolio1 addPortfolio: portfolio3.
+
+	self should: [	portfolio3 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:03:07'!
+FAILURE!
+!Portfolio methodsFor: 'initialization' stamp: 'LH 11/7/2020 11:03:37' prior: 50872709 overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.
+	
+	fatherPortfolios := OrderedCollection new.
+	! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:03:53'!
+ERROR!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:05:33' prior: 50872773!
+addAccount: anAccount
+
+	(self includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded].
+	fatherPortfolios do: [:aPortfolio | (aPortfolio includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded]].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:05:34'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LH 11/7/2020 11:06:18' prior: 50872715!
+addAsFather: aPortfolio 
+
+	fatherPortfolios add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:06:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:06:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:06:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:06:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:07:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:07:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:07:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:07:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:07:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:07:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:07:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:07:43'!
+PASSED!
+!PortfolioTest methodsFor: 'portfolios in portfolios' stamp: 'LH 11/7/2020 11:09:53'!
+test07
+	
+	"a un portfolio se le puede agregar mas de un portfolio sin cuentas"
+	
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio1 addPortfolio: portfolio3.
+	
+	self assert: (portfolio1 includesPortfolio: portfolio2).
+	self assert: (portfolio1 includesPortfolio: portfolio3).
+! !
+
+!methodRemoval: PortfolioTest #test08 stamp: 'LH 11/7/2020 11:09:53'!
+test08
+	
+	"a un portfolio se le puede agregar mas de un portfolio sin cuentas"
+	
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio1 addPortfolio: portfolio3.
+	
+	self assert: (portfolio1 includesPortfolio: portfolio2).
+	self assert: (portfolio1 includesPortfolio: portfolio3).
+!
+!PortfolioTest methodsFor: 'portfolios in portfolios' stamp: 'LH 11/7/2020 11:09:58'!
+test08
+	
+	"a un portfolio se le pueden agregar portfolios"
+	
+	| portfolio1 portfolio2 portfolio3 portfolio4 account1 account2 account3 account4 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	portfolio4 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	account4 := ReceptiveAccount new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio1 addPortfolio: portfolio3.
+	portfolio2 addPortfolio: portfolio4. "portfolio anidado"
+	
+	portfolio2 addAccount: account1.
+	portfolio2 addAccount: account2.
+	portfolio3 addAccount: account3.
+	portfolio4 addAccount: account4.
+	
+	self assert: (portfolio1 includesAccount: account1).
+	self assert: (portfolio1 includesAccount: account2).
+	self assert: (portfolio1 includesAccount: account3).
+	self assert: (portfolio1 includesAccount: account4).
+! !
+
+!methodRemoval: PortfolioTest #test09 stamp: 'LH 11/7/2020 11:09:58'!
+test09
+	
+	"a un portfolio se le pueden agregar portfolios"
+	
+	| portfolio1 portfolio2 portfolio3 portfolio4 account1 account2 account3 account4 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	portfolio4 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	account4 := ReceptiveAccount new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio1 addPortfolio: portfolio3.
+	portfolio2 addPortfolio: portfolio4. "portfolio anidado"
+	
+	portfolio2 addAccount: account1.
+	portfolio2 addAccount: account2.
+	portfolio3 addAccount: account3.
+	portfolio4 addAccount: account4.
+	
+	self assert: (portfolio1 includesAccount: account1).
+	self assert: (portfolio1 includesAccount: account2).
+	self assert: (portfolio1 includesAccount: account3).
+	self assert: (portfolio1 includesAccount: account4).
+!
+!PortfolioTest methodsFor: 'portfolios in portfolios' stamp: 'LH 11/7/2020 11:10:02'!
+test09
+	
+	"a un portfolio se le pueden agregar portfolios con portfolios"
+	
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addPortfolio: portfolio3.
+
+	self assert: (portfolio1 includesPortfolio: portfolio3).
+
+! !
+
+!methodRemoval: PortfolioTest #test10 stamp: 'LH 11/7/2020 11:10:02'!
+test10
+	
+	"a un portfolio se le pueden agregar portfolios con portfolios"
+	
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addPortfolio: portfolio3.
+
+	self assert: (portfolio1 includesPortfolio: portfolio3).
+
+!
+!PortfolioTest methodsFor: 'portfolios in portfolios' stamp: 'LH 11/7/2020 11:10:07'!
+test10
+	
+	"no pueden haber cuentas repetidas en un portfolio"
+	
+	| portfolio1 portfolio2 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addAccount: account1.
+
+	
+	self should: [portfolio1 addAccount: account1] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+
+! !
+
+!methodRemoval: PortfolioTest #test11 stamp: 'LH 11/7/2020 11:10:07'!
+test11
+	
+	"no pueden haber cuentas repetidas en un portfolio"
+	
+	| portfolio1 portfolio2 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addAccount: account1.
+
+	
+	self should: [portfolio1 addAccount: account1] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+
+!
+!PortfolioTest methodsFor: 'portfolios in portfolios' stamp: 'LH 11/7/2020 11:10:18'!
+test11
+	
+	"no pueden haber prtfolios repetidos en un portfolio"
+	
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addPortfolio: portfolio3.
+
+	self should: [portfolio1 addPortfolio: portfolio3] raise: Error withMessageText: Portfolio errorMessagePortfolioAlreadyAdded.
+
+! !
+
+!methodRemoval: PortfolioTest #test12 stamp: 'LH 11/7/2020 11:10:18'!
+test12
+	
+	"no pueden haber prtfolios repetidos en un portfolio"
+	
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addPortfolio: portfolio3.
+
+	self should: [portfolio1 addPortfolio: portfolio3] raise: Error withMessageText: Portfolio errorMessagePortfolioAlreadyAdded.
+
+!
+!PortfolioTest methodsFor: 'invalid topolgies adding accounts in child portfolios' stamp: 'LH 11/7/2020 11:10:26'!
+test12
+	
+	"no se pueden agregar una cueanta a un portfolio (hijo) de un portfolio (padre), cuando la cuenta ya estaba en el portfolio (padre)"
+	
+	| portfolio1 portfolio2 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio1 addAccount: account1.
+	portfolio1 addPortfolio: portfolio2.
+
+	self should: [	portfolio2 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+! !
+
+!methodRemoval: PortfolioTest #test13 stamp: 'LH 11/7/2020 11:10:26'!
+test13
+	
+	"no se pueden agregar una cueanta a un portfolio (hijo) de un portfolio (padre), cuando la cuenta ya estaba en el portfolio (padre)"
+	
+	| portfolio1 portfolio2 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio1 addAccount: account1.
+	portfolio1 addPortfolio: portfolio2.
+
+	self should: [	portfolio2 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+!
+!PortfolioTest methodsFor: 'invalid topolgies adding accounts in child portfolios' stamp: 'LH 11/7/2020 11:10:29'!
+test13
+	
+	"no se pueden agregar una cueanta a un portfolio (hijo) de un portfolio (padre), cuando la cuenta ya estaba en el portfolio (padre), con varios padres"
+	
+	| portfolio1 portfolio2 portfolio3 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio2 addAccount: account1.
+	portfolio2 addPortfolio: portfolio3.
+	portfolio1 addPortfolio: portfolio3.
+
+	self should: [	portfolio3 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+! !
+
+!methodRemoval: PortfolioTest #test14 stamp: 'LH 11/7/2020 11:10:29'!
+test14
+	
+	"no se pueden agregar una cueanta a un portfolio (hijo) de un portfolio (padre), cuando la cuenta ya estaba en el portfolio (padre), con varios padres"
+	
+	| portfolio1 portfolio2 portfolio3 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio2 addAccount: account1.
+	portfolio2 addPortfolio: portfolio3.
+	portfolio1 addPortfolio: portfolio3.
+
+	self should: [	portfolio3 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:13:47'!
+validateAccountNotAlredyAdded: anAccount
+
+
+	(self includesAccount: anAccount) ifTrue: [^self error: Portfolio errorMessageAccountAlreadyAdded].
+! !
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:14:28' prior: 50872858!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotAlredyAdded: anAccount].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:14:29'!
+PASSED!
+!PortfolioTest methodsFor: 'invalid topolgies adding accounts in child portfolios' stamp: 'LH 11/7/2020 11:18:05'!
+test14
+	
+	"no se pueden agregar una cueanta a un hijo si esa cuenta est� en el padre de su padre"
+	
+	| portfolio1 portfolio2 portfolio3 account1 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	
+	portfolio1 addAccount: account1.
+	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addPortfolio: portfolio3.
+
+	self should: [	portfolio3 addAccount: account1.] raise: Error withMessageText: Portfolio errorMessageAccountAlreadyAdded.
+! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:18:39'!
+FAILURE!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:25:23' prior: 50873263!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotAlredyAdded: anAccount].
+	
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:29:29' prior: 50873330!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotAlredyAdded: anAccount.
+							aPortfolio validateAccountNotInParents: anAccount. ].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:29:34'!
+FAILURE!
+!Portfolio methodsFor: 'portfolios' stamp: 'LH 11/7/2020 11:31:17'!
+validateAccountNotInParents: anAccount
+
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotAlredyAdded: anAccount].! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:31:35'!
+PASSED!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:32:41' prior: 50873339!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotAlredyAdded: anAccount ].
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount ].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:32:42'!
+PASSED!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:33:37' prior: 50873396!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotAlredyAdded: anAccount ].
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount ].
+	
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'portfolios' stamp: 'LH 11/7/2020 11:36:26' prior: 50873352!
+validateAccountNotInParents: anAccount
+	
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount].! !
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:36:39' prior: 50873445!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount ].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:36:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:36:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:36:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:36:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:36:42'!
+PASSED!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:37:19' prior: 50873466!
+addAccount: anAccount
+
+	"self validateAccountNotAlredyAdded: anAccount."
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount ].
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:37:19'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:37:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:37:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:37:20'!
+FAILURE!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:37:37' prior: 50873512!
+addAccount: anAccount
+
+	self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount ].
+	
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:40:30' prior: 50873560!
+addAccount: anAccount
+
+	"self validateAccountNotAlredyAdded: anAccount.
+	fatherPortfolios do: [:aPortfolio | aPortfolio validateAccountNotInParents: anAccount ]."
+	self validateAccountNotInParents: anAccount.
+	
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test01AnAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioHasNoAccountsInitially stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioDoesNotHaveMoreAccountsThanAdded stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04MoreThanOneAccountCanBeAddedToAPortfolio stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LH 11/7/2020 11:41:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LH 11/7/2020 11:41:25'!
+PASSED!
+!Portfolio methodsFor: 'accounts' stamp: 'LH 11/7/2020 11:41:33' prior: 50873569!
+addAccount: anAccount
+
+	self validateAccountNotInParents: anAccount.
+	
+	accounts add: anAccount.! !
+
+----SNAPSHOT----(7 November 2020 11:44:17) CuisUniversity-4384.image priorSource: 17291502!
+
+----QUIT----(7 November 2020 11:50:13) CuisUniversity-4384.image priorSource: 17343108!

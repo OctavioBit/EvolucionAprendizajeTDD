@@ -1,0 +1,3802 @@
+
+
+----STARTUP---- (17 June 2021 20:36:08) as C:\Users\LMora\source\repos\ingenieria-del-software-i\windows64\CuisUniversity-4532.image!
+
+
+----End fileIn of C:\Users\LMora\source\2021-1c\20-TusLibros\Iteracion2\TusLibros-33.st----!
+
+TestCase subclass: #InputInterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InputInterfaceTest category: 'TusLibros' stamp: 'LM 6/17/2021 20:42:40'!
+TestCase subclass: #InputInterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InputInterfaceTest category: 'TusLibros' stamp: 'LM 6/17/2021 21:14:24'!
+TestCase subclass: #InputInterfaceTest
+	instanceVariableNames: 'authenticationBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InputInterface category: 'TusLibros' stamp: 'LM 6/17/2021 21:14:56'!
+Object subclass: #InputInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'LM 6/17/2021 21:14:44'!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID inputInterface password |
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	inputInterface := InputInterface authenticatingWith: self.
+	
+	self should: [ inputInterface createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+
+!testRun: #InputInterfaceTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/17/2021 21:15:01'!
+ERROR!
+!InputInterface class methodsFor: 'instance creation' stamp: 'LM 6/17/2021 21:15:11'!
+authenticatingWith: anInputInterfaceTest 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeAuthenticatingWith: anInputInterfaceTest ! !
+!InputInterface class methodsFor: 'instance creation' stamp: 'LM 6/17/2021 21:16:34' prior: 50860066!
+authenticatingWith: anAuthenticator
+
+	^self new initializeAuthenticatingWith: anAuthenticator! !
+
+!testRun: #InputInterfaceTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/17/2021 21:16:35'!
+ERROR!
+
+!classDefinition: #InputInterface category: 'TusLibros' stamp: 'LM 6/17/2021 21:16:49'!
+Object subclass: #InputInterface
+	instanceVariableNames: 'authenticator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InputInterface methodsFor: 'initialization' stamp: 'LM 6/17/2021 21:16:49'!
+initializeAuthenticatingWith: anAuthenticator 
+	self shouldBeImplemented.
+	authenticator := anAuthenticator.! !
+!InputInterface methodsFor: 'initialization' stamp: 'LM 6/17/2021 21:16:55' prior: 50860093!
+initializeAuthenticatingWith: anAuthenticator 
+
+	authenticator := anAuthenticator.! !
+
+!testRun: #InputInterfaceTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/17/2021 21:16:57'!
+ERROR!
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'LM 6/17/2021 21:17:07'!
+createCartFor: aSmallInteger withPassword: aString 
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'LM 6/17/2021 21:18:24' prior: 50860109!
+createCartFor: aClientID withPassword: aPassword
+
+	self error: 'Invalid credentials'.! !
+
+!testRun: #InputInterfaceTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/17/2021 21:18:26'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/17/2021 21:18:26'!
+PASSED!
+
+----QUIT----(17 June 2021 21:31:45) CuisUniversity-4532.image priorSource: 16889863!
+
+----STARTUP---- (21 June 2021 17:09:33) as C:\Users\LMora\source\repos\ingenieria-del-software-i\windows64\CuisUniversity-4532.image!
+
+
+----QUIT----(21 June 2021 17:10:16) CuisUniversity-4532.image priorSource: 16911266!
+
+----STARTUP---- (21 June 2021 17:12:09) as C:\Users\LMora\source\repos\ingenieria-del-software-i\windows64\CuisUniversity-4532.image!
+
+
+!classRenamed: #InputInterface as: #Store stamp: 'LM 6/21/2021 17:26:21'!
+Smalltalk renameClassNamed: #InputInterface as: #Store!
+!InputInterfaceTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 17:26:21' prior: 50860045!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID inputInterface password |
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	inputInterface := Store authenticatingWith: self.
+	
+	self should: [ inputInterface createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'LM 6/21/2021 17:31:00'!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID inputInterface password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	inputInterface := Store authenticatingWith: self.
+	cartID := inputInterface createCartFor: clientID withPassword: password.
+	
+	self assert: (inputInterface listCart: cartID) isEmpty.! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'LM 6/21/2021 17:31:14' prior: 50860163!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'LM 6/21/2021 17:31:32' prior: 50860147!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self.
+	
+	self should: [ store createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'LM 6/21/2021 17:33:19' prior: 50860179!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword |  ].
+	store := Store authenticatingWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+
+!classRenamed: #InputInterfaceTest as: #StoreTest stamp: 'LM 6/21/2021 17:33:46'!
+Smalltalk renameClassNamed: #InputInterfaceTest as: #StoreTest!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 17:33:56'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 17:39:18' prior: 50860115!
+createCartFor: aClientID withPassword: aPassword
+
+	authenticator verifyID: aClientID andPassword: aPassword.! !
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 17:39:41'!
+ERROR!
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 17:39:53'!
+verifyID: aSmallInteger andPassword: aString 
+	self shouldBeImplemented.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 17:40:46' prior: 50860240!
+verifyID: aClientID andPassword: aPassword
+
+	authenticationBehavior value: aClientID value: aPassword.! !
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 17:40:48'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 17:40:55'!
+listCart: aStore 
+	self shouldBeImplemented.! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 17:41:45' prior: 50860255!
+listCart: aCartID
+
+	^OrderedCollection new! !
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 17:41:46'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/21/2021 17:41:46'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 17:41:46'!
+PASSED!
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'LM 6/21/2021 18:08:32'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 18:08:27'!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword |  ].
+	store := Store authenticatingWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'setUp/tearDown' stamp: 'LM 6/21/2021 18:09:52' overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :aClientID :aPassword |  ].! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 18:10:05' prior: 50860281!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 18:10:11' prior: 50860210!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:10:19'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:10:31'!
+addToCart: aStore book: aString quantity: aSmallInteger 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 18:22:42'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:22:40' prior: 50860341!
+addToCart: aCartID book: anISBN quantity: aQuantity
+
+	(carts at: aCartID) add: aQuantity of: anISBN.! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 18:28:43'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:28:38' prior: 50860231!
+createCartFor: aClientID withPassword: aPassword
+
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	carts at: self newCartID put: (Cart acceptingItemsOf: catalog).! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:28:46'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:28:52'!
+newCartID
+	self shouldBeImplemented.! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 18:30:07'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:30:06' prior: 50860380!
+newCartID
+
+	lastID := lastID + 1.
+	^lastID! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 18:30:16'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:30:17' prior: 50860392!
+newCartID
+
+	lastCartID := lastCartID + 1.
+	^lastCartID! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:30:20'!
+ERROR!
+!Store class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 18:33:05'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog 
+
+	^self new initializeAuthenticatingWith: anAuthenticator! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:33:05' prior: 50860308!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:33:05' prior: 50860194!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog.
+	
+	self should: [ store createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:33:05' prior: 50860326!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+
+!methodRemoval: Store class #authenticatingWith: stamp: 'LM 6/21/2021 18:33:05'!
+authenticatingWith: anAuthenticator
+
+	^self new initializeAuthenticatingWith: anAuthenticator!
+!Store methodsFor: 'initialization' stamp: 'LM 6/21/2021 18:34:14'!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog  
+
+	authenticator := anAuthenticator.! !
+!Store class methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:34:14' prior: 50860412!
+authenticatingWith: anAuthenticator withCatalog: aCatalog 
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog! !
+
+!methodRemoval: Store #initializeAuthenticatingWith: stamp: 'LM 6/21/2021 18:34:14'!
+initializeAuthenticatingWith: anAuthenticator 
+
+	authenticator := anAuthenticator.!
+!Store methodsFor: 'initialization' stamp: 'LM 6/21/2021 18:35:06' prior: 50860475!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog  
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastCartID := 0.! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:35:19'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:36:31' prior: 50860368!
+createCartFor: aClientID withPassword: aPassword
+
+	| cartID |
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	^cartID! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:36:39' prior: 50860507!
+createCartFor: aClientID withPassword: aPassword
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	^cartID! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:36:41'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 18:37:49' prior: 50860260!
+listCart: aCartID
+
+	^(carts at: aCartID) items! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:38:01'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'LM 6/21/2021 18:38:12'!
+items
+	self shouldBeImplemented.
+	^items! !
+!Cart methodsFor: 'accessing' stamp: 'LM 6/21/2021 18:38:23' prior: 50860537!
+items
+
+	^items copy! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:38:26'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/21/2021 18:38:26'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 18:38:26'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 18:38:26'!
+PASSED!
+!CreditCard class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 19:04:18'!
+number: aCCNumber expiringOn: aMonth 
+	
+	^self new initializeExpiringOn: aMonth! !
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 19:04:18' prior: 50859995!
+notExpiredCreditCard
+	
+	^CreditCard number: 5574822318795416 expiringOn: (Month month: today monthIndex year: today yearNumber + 1)! !
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 19:04:18' prior: 50860002!
+expiredCreditCard
+	
+	^CreditCard number: 5574822318795416 expiringOn: (Month month: today monthIndex year: today yearNumber - 1)! !
+
+!methodRemoval: CreditCard class #expiringOn: stamp: 'LM 6/21/2021 19:04:18'!
+expiringOn: aMonth 
+	
+	^self new initializeExpiringOn: aMonth!
+!CreditCard class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 19:05:22'!
+number: aCCNumber expiringOn: aMonth owner: aCCOwner  
+	
+	^self new initializeExpiringOn: aMonth! !
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 19:05:22' prior: 50860564!
+notExpiredCreditCard
+	
+	^CreditCard number: 5574822318795416 expiringOn: (Month month: today monthIndex year: today yearNumber + 1) owner: 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 19:05:22' prior: 50860572!
+expiredCreditCard
+	
+	^CreditCard number: 5574822318795416 expiringOn: (Month month: today monthIndex year: today yearNumber - 1) owner: 'Dan Ingalls'! !
+
+!methodRemoval: CreditCard class #number:expiringOn: stamp: 'LM 6/21/2021 19:05:22'!
+number: aCCNumber expiringOn: aMonth 
+	
+	^self new initializeExpiringOn: aMonth!
+!CreditCard class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 19:06:19' prior: 50860584!
+number: aCCNumber expiringOn: aMonth owner: aCCOwner  
+
+	self assertIsValidOwner: aCCOwner.
+	self assertIsValidNumber: aCCNumber.
+	
+	^self new initializeExpiringOn: aMonth! !
+!CreditCard class methodsFor: 'error description' stamp: 'LM 6/21/2021 19:06:56'!
+numberMustHave16DigitsErrorDescription
+
+	^'Card number must have 16 digits'! !
+!CreditCard class methodsFor: 'error description' stamp: 'LM 6/21/2021 19:07:08'!
+ownerCannotBeEmptyErrorDescription
+
+	^'Owner cannot be empty'! !
+!CreditCard class methodsFor: 'assertions' stamp: 'LM 6/21/2021 19:09:06'!
+assertIsValidNumber: aCCNumber
+
+	^ (aCCNumber numberOfDigitsInBase: 10) ~= 16 ifTrue: [ self error: self numberMustHave16DigitsErrorDescription ]! !
+!CreditCard class methodsFor: 'assertions' stamp: 'LM 6/21/2021 19:09:24'!
+assertIsValidOwner: aCCOwner
+
+	^ aCCOwner withBlanksTrimmed isEmpty ifTrue: [ self error: self ownerCannotBeEmptyErrorDescription ]! !
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'LM 6/21/2021 19:10:08'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'tests' stamp: 'LM 6/21/2021 19:11:17'!
+test01CannotCreateCreditCardWithEmptyOwner
+
+	self should: [ CreditCard number: 5574822318795416 expiringOn: (December of: 3000) owner: '' ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard ownerCannotBeEmptyErrorDescription.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'LM 6/21/2021 19:11:42'!
+test02CannotCreateCreditCardWithNumberSizeDifferentTo16
+
+	self should: [ CreditCard number: 557482231416 expiringOn: (December of: 3000) owner: 'Dan Ingalls' ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard numberMustHave16DigitsErrorDescription.! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:15:46'!
+ccNumber
+
+	^ 5574822318795416! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:15:46' prior: 50860600!
+expiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: (Month month: today monthIndex year: today yearNumber - 1) owner: 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:16:39'!
+ccExpiredMonth
+
+	^ Month month: today monthIndex year: today yearNumber - 1! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:16:39' prior: 50860686!
+expiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: (self ccExpiredMonth) owner: 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:16:52'!
+ccOwner
+
+	^ 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:16:52' prior: 50860700!
+expiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: (self ccExpiredMonth) owner: self ccOwner! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:17:17' prior: 50860711!
+expiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: self ccExpiredMonth owner: self ccOwner! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:17:58' prior: 50860591!
+notExpiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: (Month month: today monthIndex year: today yearNumber + 1) owner: 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:18:25'!
+ccNotExpiredMonth
+
+	^ Month month: today monthIndex year: today yearNumber + 1! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:18:25' prior: 50860725!
+notExpiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: (self ccNotExpiredMonth) owner: 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:18:38' prior: 50860739!
+notExpiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: self ccNotExpiredMonth owner: 'Dan Ingalls'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'LM 6/21/2021 19:18:53' prior: 50860746!
+notExpiredCreditCard
+	
+	^CreditCard number: self ccNumber expiringOn: self ccNotExpiredMonth owner: self ccOwner! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 19:58:31'!
+test04DifferentCheckoutsHaveDifferentTransactionIDs
+
+	| clientID store password cartID firstTransactionID secondTransactionID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	firstTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	secondTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: firstTransactionID ~= secondTransactionID.! !
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 19:58:46'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 19:58:53'!
+checkOutCart: aSmallInteger chargingCCNumber: aSmallInteger2 ccExpiration: aMonth ccOwner: aString 
+	self shouldBeImplemented.! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 20:00:08' prior: 50860793!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	^self newTransactionID! !
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 20:00:11'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 20:00:16'!
+newTransactionID
+	self shouldBeImplemented.! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 20:01:05'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 20:01:03' prior: 50860810!
+newTransactionID
+
+	lastTransactionID := lastTransactionID + 1.
+	^lastTransactionID! !
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 20:01:27'!
+ERROR!
+!Store methodsFor: 'initialization' stamp: 'LM 6/21/2021 20:01:47' prior: 50860495!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog  
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 20:01:56'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/21/2021 20:01:56'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 20:01:56'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 20:01:56'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 20:01:56'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 21:20:39'!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:22:03'!
+after: aDuration do: aBlock
+
+	aBlock value.! !
+!Store class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 21:23:10'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog withTimer: aTimer  
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:23:10' prior: 50860858!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog withTimer: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:23:10' prior: 50860457!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog withTimer: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:23:10' prior: 50860419!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog withTimer: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:23:10' prior: 50860439!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog withTimer: self.
+	
+	self should: [ store createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:23:10' prior: 50860759!
+test04DifferentCheckoutsHaveDifferentTransactionIDs
+
+	| clientID store password cartID firstTransactionID secondTransactionID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog withTimer: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	firstTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	secondTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: firstTransactionID ~= secondTransactionID.! !
+
+!methodRemoval: Store class #authenticatingWith:withCatalog: stamp: 'LM 6/21/2021 21:23:10'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog 
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/21/2021 21:26:03'!
+ERROR!
+!Store class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 21:26:40'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog   
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:26:40' prior: 50860903!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:26:40' prior: 50860938!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	
+	self should: [ store createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:26:40' prior: 50860886!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:26:40' prior: 50860956!
+test04DifferentCheckoutsHaveDifferentTransactionIDs
+
+	| clientID store password cartID firstTransactionID secondTransactionID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	firstTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	secondTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: firstTransactionID ~= secondTransactionID.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:26:40' prior: 50860917!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+
+!methodRemoval: Store class #authenticatingWith:withCatalog:withTimer: stamp: 'LM 6/21/2021 21:26:40'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog withTimer: aTimer  
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:27:50'!
+createCartFor: aClientID withPassword: aPassword withTimer: aTimer 
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	^cartID! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:27:50' prior: 50861005!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:27:50' prior: 50861084!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:27:50' prior: 50861053!
+test04DifferentCheckoutsHaveDifferentTransactionIDs
+
+	| clientID store password cartID firstTransactionID secondTransactionID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	firstTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	secondTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: firstTransactionID ~= secondTransactionID.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:27:50' prior: 50861019!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	
+	self should: [ store createCartFor: clientID withPassword: password withTimer: self. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+
+!methodRemoval: Store #createCartFor:withPassword: stamp: 'LM 6/21/2021 21:27:50'!
+createCartFor: aClientID withPassword: aPassword
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	^cartID!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/21/2021 21:28:04'!
+FAILURE!
+
+30 * minute !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:35:38' prior: 50861112!
+createCartFor: aClientID withPassword: aPassword withTimer: aTimer 
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	
+	aTimer after: (Duration minutes: 30) do: [ carts removeKey: cartID ].
+	^cartID! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/21/2021 21:35:40'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/21/2021 21:35:40'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 21:35:40'!
+ERROR!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 21:35:40'!
+ERROR!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 21:35:40'!
+ERROR!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/21/2021 21:35:40'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 21:36:23'!
+ERROR!
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'LM 6/21/2021 21:39:01'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 21:38:59' prior: 50860874!
+after: aDuration do: aBlock
+
+	timerBehavior value: aDuration value: aBlock.! !
+!StoreTest methodsFor: 'setUp/tearDown' stamp: 'LM 6/21/2021 21:39:52' prior: 50860301 overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :aClientID :aPassword |  ].
+	timerBehavior := [ :aDuration :aBlock |  ].! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 21:40:47' prior: 50861037!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/21/2021 21:40:47'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/21/2021 21:40:47'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/21/2021 21:40:47'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/21/2021 21:40:47'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/21/2021 21:40:47'!
+PASSED!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/21/2021 21:40:47'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 22:07:46'!
+a_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	"Pasa aDuration - 1"
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 22:13:31'!
+b_test07
+
+	| clientID store password cartID clockBehavior |
+	
+	clientID := 234589.
+	password := 'password'.
+	clockBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	""
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+
+{2 . $g}!
+
+#(2 $g)!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 22:26:38'!
+test05
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: {testObjectsFactory itemSellByTheStore . 2}
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchases: clientID).! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/21/2021 22:26:44'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:26:51'!
+listPurchases: aSmallInteger 
+	self shouldBeImplemented.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/21/2021 22:28:02' prior: 50861352!
+test05
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: {testObjectsFactory itemSellByTheStore . 2}
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/21/2021 22:28:04'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:28:12'!
+listPurchasesFrom: aSmallInteger withPassword: aString 
+	self shouldBeImplemented.! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:30:07' prior: 50861422!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 22:40:22'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/21/2021 22:40:24'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:40:16' prior: 50860800!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	| cart creditCard |
+	cart := carts at: aCartID.
+	creditCard := CreditCard number: aCCNumber expiringOn: aMonth owner: aCCOwner.
+	(Cashier toCheckout: cart
+			charging: creditCard
+			throught: merchantProcessor
+			on: FixedGregorianDate today
+			registeringOn: salesBook) checkOut.
+	^self newTransactionID.! !
+!Store methodsFor: 'initialization' stamp: 'LM 6/21/2021 22:41:45' prior: 50860832!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog  
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	salesBook := OrderedCollection new.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+!Store methodsFor: 'initialization' stamp: 'LM 6/21/2021 22:43:43'!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	salesBook := OrderedCollection new.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+!Store class methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:43:43' prior: 50860997!
+authenticatingWith: anAuthenticator withCatalog: aCatalog   
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: self! !
+
+!methodRemoval: Store #initializeAuthenticatingWith:withCatalog: stamp: 'LM 6/21/2021 22:43:43'!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog  
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	salesBook := OrderedCollection new.
+	lastCartID := 0.
+	lastTransactionID := 0.!
+!Store class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 22:44:31'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor    
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: self! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861331!
+b_test07
+
+	| clientID store password cartID clockBehavior |
+	
+	clientID := 234589.
+	password := 'password'.
+	clockBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	""
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861311!
+a_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	"Pasa aDuration - 1"
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861389!
+test05
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: {testObjectsFactory itemSellByTheStore . 2}
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861158!
+test04DifferentCheckoutsHaveDifferentTransactionIDs
+
+	| clientID store password cartID firstTransactionID secondTransactionID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	firstTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	secondTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: firstTransactionID ~= secondTransactionID.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861276!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861123!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861137!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore
+							   with: testObjectsFactory itemSellByTheStore)
+		equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:44:31' prior: 50861190!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	
+	self should: [ store createCartFor: clientID withPassword: password withTimer: self. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+
+!methodRemoval: Store class #authenticatingWith:withCatalog: stamp: 'LM 6/21/2021 22:44:31'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog   
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: self!
+!Store class methodsFor: 'instance creation' stamp: 'LM 6/21/2021 22:44:52' prior: 50861509!
+authenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor    
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:45:29'!
+debit: anAmount from: aCreditCard! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/21/2021 22:45:59'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:46:50' prior: 50861453!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	| cart creditCard |
+	cart := carts at: aCartID.
+	creditCard := CreditCard number: aCCNumber expiringOn: aMonth owner: aCCOwner.
+	(Cashier toCheckout: cart
+			charging: creditCard
+			throught: merchantProcessor
+			on: DateAndTime today
+			registeringOn: salesBook) checkOut.
+	^self newTransactionID.! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/21/2021 22:47:00'!
+ERROR!
+!Store methodsFor: 'initialization' stamp: 'LM 6/21/2021 22:47:28' prior: 50861479!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	salesBook := OrderedCollection new.
+	merchantProcessor := aMerchantProcessor.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/21/2021 22:47:37'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/21/2021 22:55:11' prior: 50861428!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	| purchasesList |
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	purchasesList := (salesBook select: [ :sale | sale clientID = aClientID ]) collect: [ :sale | { sale item . sale quantity } ].
+	purchasesList add: (purchasesList sum: [ :sale | sale total ]).
+	
+	^purchasesList! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/21/2021 22:55:19'!
+ERROR!
+
+----QUIT----(21 June 2021 22:58:17) CuisUniversity-4532.image priorSource: 16911488!
+
+----STARTUP---- (22 June 2021 08:08:19) as C:\Users\LMora\source\repos\ingenieria-del-software-i\windows64\CuisUniversity-4532.image!
+
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 08:09:33'!
+clientID
+	self shouldBeImplemented.! !
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'LM 6/22/2021 08:09:57'!
+Object subclass: #Sale
+	instanceVariableNames: 'total clientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 08:09:55' prior: 50861779!
+clientID
+
+	^clientID! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 08:10:51'!
+ERROR!
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'LM 6/22/2021 08:11:19'!
+Object subclass: #Sale
+	instanceVariableNames: 'total clientID item'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 08:11:16'!
+item
+
+	^item! !
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'LM 6/22/2021 08:11:51'!
+Object subclass: #Sale
+	instanceVariableNames: 'total clientID item quantity'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 08:11:49'!
+quantity
+
+	^quantity! !
+
+!methodRemoval: Store #listPurchases: stamp: 'LM 6/22/2021 08:14:20'!
+listPurchases: aSmallInteger 
+	self shouldBeImplemented.!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/22/2021 08:19:42'!
+a_test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #test06 stamp: 'LM 6/22/2021 08:19:42'!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 08:47:16'!
+ERROR!
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/22/2021 08:52:18'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 08:52:15' prior: 50861220!
+createCartFor: aClientID withPassword: aPassword withTimer: aTimer 
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	aTimer after: (Duration minutes: 30) do: [ carts removeKey: cartID ].
+	^cartID! !
+!Store methodsFor: 'initialization' stamp: 'LM 6/22/2021 08:52:55' prior: 50861741!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsClients := Dictionary new.
+	salesBook := OrderedCollection new.
+	merchantProcessor := aMerchantProcessor.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 08:53:05'!
+ERROR!
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/22/2021 09:12:52'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients clientsSales'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:12:43' prior: 50861723!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	| cart creditCard clientID clientsSalesBook |
+	
+	cart := carts at: aCartID.
+	clientID := cartsClients at: aCartID.
+	clientsSalesBook := clientsSales at: clientID.
+	creditCard := CreditCard number: aCCNumber expiringOn: aMonth owner: aCCOwner.
+	(Cashier toCheckout: cart
+			charging: creditCard
+			throught: merchantProcessor
+			on: DateAndTime today
+			registeringOn: clientsSalesBook) checkOut.
+	^self newTransactionID.! !
+
+!methodRemoval: Sale #clientID stamp: 'LM 6/22/2021 09:13:12'!
+clientID
+
+	^clientID!
+
+!methodRemoval: Sale #quantity stamp: 'LM 6/22/2021 09:13:39'!
+quantity
+
+	^quantity!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:13:52'!
+items
+
+	^item! !
+
+!methodRemoval: Sale #item stamp: 'LM 6/22/2021 09:13:52'!
+item
+
+	^item!
+
+Object subclass: #Sale
+	instanceVariableNames: 'total item'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'LM 6/22/2021 09:14:16'!
+Object subclass: #Sale
+	instanceVariableNames: 'total item'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'LM 6/22/2021 09:14:20'!
+Object subclass: #Sale
+	instanceVariableNames: 'total items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:14:20' prior: 50861930!
+items
+
+	^items! !
+!Sale class methodsFor: 'instance creation' stamp: 'LM 6/22/2021 09:16:48'!
+of: aTotal forItems: soldItems 
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal ! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:16:48' prior: 50859663!
+createSale
+
+	^ Sale of: total forItems: cart items
+! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:16:48' prior: 50860669!
+test02CannotCreateCreditCardWithNumberSizeDifferentTo16
+
+	self should: [ CreditCard number: 557482231416 expiringOn: (December of: 3000 forItems: cart items) owner: 'Dan Ingalls' ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard numberMustHave16DigitsErrorDescription.! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:16:48' prior: 50860659!
+test01CannotCreateCreditCardWithEmptyOwner
+
+	self should: [ CreditCard number: 5574822318795416 expiringOn: (December of: 3000 forItems: cart items) owner: '' ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard ownerCannotBeEmptyErrorDescription.! !
+
+!methodRemoval: Sale class #of: stamp: 'LM 6/22/2021 09:16:48'!
+of: aTotal
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal !
+!CreditCardTest methodsFor: 'tests' stamp: 'LM 6/22/2021 09:17:09' prior: 50861981!
+test01CannotCreateCreditCardWithEmptyOwner
+
+	self should: [ CreditCard number: 5574822318795416 expiringOn: (December of: 3000) owner: '' ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard ownerCannotBeEmptyErrorDescription.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'LM 6/22/2021 09:17:19' prior: 50861968!
+test02CannotCreateCreditCardWithNumberSizeDifferentTo16
+
+	self should: [ CreditCard number: 557482231416 expiringOn: (December of: 3000) owner: 'Dan Ingalls' ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CreditCard numberMustHave16DigitsErrorDescription.! !
+!Sale methodsFor: 'initialization' stamp: 'LM 6/22/2021 09:18:14'!
+initializeTotal: aTotal forItems: soldItems 
+
+	total := aTotal ! !
+!Sale class methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:18:14' prior: 50861956!
+of: aTotal forItems: soldItems 
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal forItems: soldItems ! !
+
+!methodRemoval: Sale #initializeTotal: stamp: 'LM 6/22/2021 09:18:14'!
+initializeTotal: aTotal
+
+	total := aTotal !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 09:19:12'!
+ERROR!
+!Store methodsFor: 'initialization' stamp: 'LM 6/22/2021 09:25:05' prior: 50861880!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsClients := Dictionary new.
+	clientsSales := Dictionary new.
+	merchantProcessor := aMerchantProcessor.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 09:25:47' prior: 50861906!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	| cart creditCard clientID clientsSalesBook |
+	
+	cart := carts at: aCartID.
+	clientID := cartsClients at: aCartID.
+	clientsSalesBook := clientsSales at: clientID ifAbsentPut: [ OrderedCollection new ].
+	creditCard := CreditCard number: aCCNumber expiringOn: aMonth owner: aCCOwner.
+	(Cashier toCheckout: cart
+			charging: creditCard
+			throught: merchantProcessor
+			on: DateAndTime today
+			registeringOn: clientsSalesBook) checkOut.
+	^self newTransactionID.! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 09:27:05'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 10:39:56' prior: 50861756!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	| purchasesList sales |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	sales := clientsSales at: aClientID.
+	purchasesList := sales collect: [ :sale | sale summary ] andFold: [ :combinedSummary :currentSummary | 
+		currentSummary do: [ :currentEntry |
+			combinedSummary do: [ :entry |
+				entry first = currentEntry first ifTrue: [
+					entry at: 2 put: entry second + currentEntry second.
+				] ifFalse: [
+					combinedSummary add: currentEntry.
+				].
+				combinedSummary yourself.
+			]
+		]
+	].
+	purchasesList add: (sales sum: [ :sale | sale total ]).
+	
+	^purchasesList! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 10:40:06'!
+ERROR!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 10:40:16'!
+summary
+	self shouldBeImplemented.! !
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 10:52:45' prior: 50862100!
+summary
+
+	^items inject: Dictionary new
+		into: [ :summary :item |
+			summary at: item ifPresent: [ :quantity | summary at: item put: quantity + 1 ] ifAbsent: [ 1 ].
+		]! !
+
+blabla := Dictionary new!
+
+blabla at: 'hola' put: 5!
+
+blabla at: 'chau' put: 6!
+
+blabla associations !
+
+blabla associationsDo: [ :association | { association key . association value } ]!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 11:11:53' prior: 50862075!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	| purchasesList sales purchasesDict |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	sales := clientsSales at: aClientID.
+	purchasesDict := sales collect: [ :sale | sale summary ] andFold: [ :combinedSummary :currentSummary |
+		currentSummary keysAndValuesDo: [ :item :currentQuantity |
+			combinedSummary at: item
+							ifPresent: [ :quantity | combinedSummary at: item put: quantity + currentQuantity. combinedSummary ]
+							ifAbsent: [ combinedSummary at: item put: currentQuantity. combinedSummary ]
+			]
+	].
+	purchasesList := purchasesDict associations.
+	purchasesList add: (sales sum: [ :sale | sale total ]).
+	
+	^purchasesList! !
+
+blabla associations!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/22/2021 11:14:00' prior: 50861562!
+test05
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (Array with: (Association key: testObjectsFactory itemSellByTheStore value: 2)
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:14:02'!
+ERROR!
+!Sale methodsFor: 'initialization' stamp: 'LM 6/22/2021 11:14:47' prior: 50862019!
+initializeTotal: aTotal forItems: soldItems 
+
+	total := aTotal.
+	items := soldItems.! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:14:56'!
+ERROR!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:16:32'!
+ERROR!
+!Sale methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 11:18:03' prior: 50862104!
+summary
+
+	^items inject: Dictionary new
+		into: [ :summary :item |
+			summary at: item ifPresent: [ :quantity | summary at: item put: quantity + 1. summary ] ifAbsent: [ summary at: item put: 1. summary ].
+		]! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:18:05'!
+ERROR!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:18:11'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 11:18:42' prior: 50862119!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	| purchasesList sales purchasesDict |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	sales := clientsSales at: aClientID.
+	purchasesDict := sales collect: [ :sale | sale summary ] andFold: [ :combinedSummary :currentSummary |
+		currentSummary keysAndValuesDo: [ :item :currentQuantity |
+			combinedSummary at: item
+							ifPresent: [ :quantity | combinedSummary at: item put: quantity + currentQuantity. combinedSummary ]
+							ifAbsent: [ combinedSummary at: item put: currentQuantity. combinedSummary ]
+			]
+	].
+	purchasesList := purchasesDict associations asOrderedCollection.
+	purchasesList add: (sales sum: [ :sale | sale total ]).
+	
+	^purchasesList! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/22/2021 11:18:50' prior: 50862145!
+test05
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: (Association key: testObjectsFactory itemSellByTheStore value: 2)
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:18:55'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/22/2021 11:22:36' prior: 50862203!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	| purchasesList sales purchasesDict |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	sales := clientsSales at: aClientID.
+	purchasesDict := sales collect: [ :sale | sale summary ] andFold: [ :combinedSummary :currentSummary |
+		currentSummary keysAndValuesDo: [ :item :currentQuantity |
+			combinedSummary at: item
+							ifPresent: [ :quantity | combinedSummary at: item put: quantity + currentQuantity. combinedSummary ]
+							ifAbsent: [ combinedSummary at: item put: currentQuantity. combinedSummary ]
+			].
+		combinedSummary
+	].
+	purchasesList := purchasesDict associations asOrderedCollection.
+	purchasesList add: (sales sum: [ :sale | sale total ]).
+	
+	^purchasesList! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:22:40'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/22/2021 11:22:40'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/22/2021 11:22:40'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/22/2021 11:22:40'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/22/2021 11:22:40'!
+PASSED!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:22:40'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CannotCreateCreditCardWithEmptyOwner stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CannotCreateCreditCardWithNumberSizeDifferentTo16 stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/22/2021 11:22:49'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/22/2021 11:25:07' prior: 50861659!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: (OrderedCollection with: (Association key: testObjectsFactory itemSellByTheStore value: 2))
+		equals: (store listCart: cartID).! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/22/2021 11:25:07'!
+FAILURE!
+
+----QUIT----(22 June 2021 11:32:46) CuisUniversity-4532.image priorSource: 16963872!
+
+----STARTUP---- (24 June 2021 14:00:25) as C:\Users\LMora\source\repos\ingenieria-del-software-i\windows64\CuisUniversity-4532.image!
+
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 14:09:54' prior: 50862376!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID expectedList |
+	
+	expectedList := Bag new.
+	expectedList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: expectedList equals: (store listCart: cartID).! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 14:09:58'!
+FAILURE!
+!Cart methodsFor: 'initialization' stamp: 'LM 6/24/2021 14:10:42' prior: 50859499!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new.! !
+!Cart methodsFor: 'adding' stamp: 'LM 6/24/2021 14:12:04' prior: 50859521!
+add: aQuantity of: anItem
+
+	self assertIsValidQuantity: aQuantity.
+	self assertIsValidItem: anItem.
+
+	items add: anItem withOccurrences: aQuantity.! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 14:12:29'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 14:12:29'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 14:12:29'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 14:12:29'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 14:12:29'!
+PASSED!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/24/2021 14:12:29'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CannotCreateCreditCardWithEmptyOwner stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CannotCreateCreditCardWithNumberSizeDifferentTo16 stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/24/2021 14:13:20'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 14:16:46' prior: 50862229!
+test05
+
+	| clientID store password cartID expectedCartList |
+	
+	expectedCartList := Bag new.
+	expectedCartList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: expectedCartList
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/24/2021 14:16:49'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 14:29:28' prior: 50862264!
+listPurchasesFrom: aClientID withPassword: aPassword
+
+	| purchasesList sales |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	sales := clientsSales at: aClientID.
+	purchasesList := OrderedCollection with: (sales inject: Bag new addingAll: [ :sale | sale items ]).
+	purchasesList add: (sales sum: [ :sale | sale total ]).
+	
+	^purchasesList! !
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/24/2021 14:29:31'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 14:29:32'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 14:29:32'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 14:29:32'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 14:29:32'!
+PASSED!
+
+!testRun: #StoreTest #test05 stamp: 'LM 6/24/2021 14:29:32'!
+PASSED!
+
+!methodRemoval: Sale #summary stamp: 'LM 6/24/2021 14:29:57'!
+summary
+
+	^items inject: Dictionary new
+		into: [ :summary :item |
+			summary at: item ifPresent: [ :quantity | summary at: item put: quantity + 1. summary ] ifAbsent: [ summary at: item put: 1. summary ].
+		]!
+!CashierTest methodsFor: 'tests' stamp: 'LM 6/24/2021 14:40:19'!
+test07CanNotCheckoutWhenSaleTotalIsNotPositive
+
+	| cart cashier salesBook creditCard |
+
+	cart := Cart acceptingItemsOf: (Dictionary newFromPairs: { testObjectsFactory itemSellByTheStore . 0 }).
+	cart add: testObjectsFactory itemSellByTheStore.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	salesBook := OrderedCollection new.
+	
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: self
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	self 
+		should: [cashier checkOut ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Sale totalMustBeStrictlyPositiveErrorDescription.
+			self assert: salesBook isEmpty ]! !
+
+!testRun: #CashierTest #test07CanNotCheckoutWhenSaleTotalIsNotPositive stamp: 'LM 6/24/2021 14:42:04'!
+FAILURE!
+!Sale class methodsFor: 'instance creation' stamp: 'LM 6/24/2021 14:43:11' prior: 50862025!
+of: aTotal forItems: soldItems 
+
+	aTotal > 0 ifFalse: [ self error: 'A sale total must be strictly positive' ].
+	^self new initializeTotal: aTotal forItems: soldItems ! !
+
+!testRun: #CashierTest #test07CanNotCheckoutWhenSaleTotalIsNotPositive stamp: 'LM 6/24/2021 14:43:13'!
+ERROR!
+!Sale class methodsFor: 'error description' stamp: 'LM 6/24/2021 14:43:40'!
+totalMustBeStrictlyPositiveErrorDescription
+	self shouldBeImplemented.! !
+!Sale class methodsFor: 'error description' stamp: 'LM 6/24/2021 14:44:03' prior: 50862647!
+totalMustBeStrictlyPositiveErrorDescription
+
+	^'A sale total must be strictly positive'! !
+
+!testRun: #CashierTest #test07CanNotCheckoutWhenSaleTotalIsNotPositive stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+
+!testRun: #CashierTest #test07CanNotCheckoutWhenSaleTotalIsNotPositive stamp: 'LM 6/24/2021 14:44:05'!
+PASSED!
+!Sale class methodsFor: 'instance creation' stamp: 'LM 6/24/2021 14:44:36' prior: 50862635!
+of: aTotal forItems: soldItems 
+
+	aTotal > 0 ifFalse: [ self error: self totalMustBeStrictlyPositiveErrorDescription ].
+	^self new initializeTotal: aTotal forItems: soldItems ! !
+!Sale class methodsFor: 'instance creation' stamp: 'LM 6/24/2021 14:45:34'!
+assertTotalIsPositive: aTotal
+
+	^ aTotal > 0 ifFalse: [ self error: self totalMustBeStrictlyPositiveErrorDescription ]! !
+!Sale class methodsFor: 'instance creation' stamp: 'LM 6/24/2021 14:45:34' prior: 50862686!
+of: aTotal forItems: soldItems 
+
+	self assertTotalIsPositive: aTotal.
+	^self new initializeTotal: aTotal forItems: soldItems ! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 14:48:12'!
+test05CheckedOutBooksAppearInClientsPurchasesList
+
+	| clientID store password cartID expectedCartList |
+	
+	expectedCartList := Bag new.
+	expectedCartList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: expectedCartList
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+
+!methodRemoval: StoreTest #test05 stamp: 'LM 6/24/2021 14:48:12'!
+test05
+
+	| clientID store password cartID expectedCartList |
+	
+	expectedCartList := Bag new.
+	expectedCartList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: expectedCartList
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).!
+
+----SNAPSHOT----(24 June 2021 15:07:17) CuisUniversity-4532.image priorSource: 16983936!
+
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior clockBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior clockBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'LM 6/24/2021 15:17:06'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior clockBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:17:16' prior: 50861518!
+b_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	clockBehaviour := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	""
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:17:25'!
+b_test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 30).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 15:17:39'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 15:17:39'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 15:17:39'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 15:17:39'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 15:17:39'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 15:17:56'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 15:17:56'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 15:17:56'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 15:17:56'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 15:17:56'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:18:25'!
+test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 30).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #b_test06 stamp: 'LM 6/24/2021 15:18:25'!
+b_test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 30).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:18:29'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:18:43'!
+createCartFor: aSmallInteger withPassword: aString withClock: aStoreTest 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/24/2021 15:22:29'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients clientsSales cartsLastReferences'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:22:25' prior: 50862919!
+createCartFor: aClientID withPassword: aPassword withClock: aClock
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	cartsLastReferences at: cartID put: aClock now.
+	^cartID! !
+!Store methodsFor: 'initialization' stamp: 'LM 6/24/2021 15:23:40' prior: 50862038!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsClients := Dictionary new.
+	clientsSales := Dictionary new.
+	cartsLastReferences := Dictionary new.
+	merchantProcessor := aMerchantProcessor.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:24:01'!
+ERROR!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:24:01'!
+ERROR!
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:24:10'!
+now
+	self shouldBeImplemented.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:24:28' prior: 50862968!
+now
+
+	^clockBehaviour value! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:24:30'!
+FAILURE!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:30:03' prior: 50862875!
+test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 30).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!Store class methodsFor: 'instance creation' stamp: 'LM 6/24/2021 15:31:01'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor measuringTimeWith: aClock
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor measuringTimeWith: aClock! !
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/24/2021 15:31:30'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients clientsSales cartsLastReferences clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'initialization' stamp: 'LM 6/24/2021 15:31:29'!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor measuringTimeWith: aClock
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsClients := Dictionary new.
+	clientsSales := Dictionary new.
+	cartsLastReferences := Dictionary new.
+	merchantProcessor := aMerchantProcessor.
+	clock := aClock.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 15:31:38'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 15:31:38'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 15:31:38'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 15:31:38'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 15:31:38'!
+PASSED!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:31:38'!
+FAILURE!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:31:39'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:36:17' prior: 50860530!
+listCart: aCartID
+
+	| timeCurrently |
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ] ifFalse: [ cartsLastReferences at: aCartID put: timeCurrently ].
+	^(carts at: aCartID) items! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:36:35'!
+FAILURE!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:37:14'!
+FAILURE!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:38:03' prior: 50862978!
+test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 31).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:38:03'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 15:38:03'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 15:38:03'!
+ERROR!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 15:38:03'!
+ERROR!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 15:38:03'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 15:38:04'!
+PASSED!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:38:04'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 15:38:11'!
+ERROR!
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/24/2021 15:45:29'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients clientsSales cartsLastReferences clock cartsTimers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:45:27' prior: 50861866!
+createCartFor: aClientID withPassword: aPassword withTimer: aTimer 
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	aTimer after: (Duration minutes: 30) do: [ carts removeKey: cartID ].
+	cartsTimers at: cartID put: aTimer.
+	^cartID! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:46:44' prior: 50863059!
+listCart: aCartID
+
+	"| timeCurrently |
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ] ifFalse: [ cartsLastReferences at: aCartID put: timeCurrently ]."
+	(cartsTimers at: aCartID) restart.
+	^(carts at: aCartID) items! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:47:23'!
+b_test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 31).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #test06 stamp: 'LM 6/24/2021 15:47:49'!
+test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 31).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:47:56'!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #a_test06 stamp: 'LM 6/24/2021 15:47:56'!
+a_test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:48:02'!
+ERROR!
+!Store methodsFor: 'initialization' stamp: 'LM 6/24/2021 15:48:40' prior: 50862949!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsClients := Dictionary new.
+	clientsSales := Dictionary new.
+	cartsLastReferences := Dictionary new.
+	cartsTimers := Dictionary new.
+	merchantProcessor := aMerchantProcessor.
+	lastCartID := 0.
+	lastTransactionID := 0.! !
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 15:48:53'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 15:48:53'!
+ERROR!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 15:48:53'!
+ERROR!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 15:48:53'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 15:48:53'!
+PASSED!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:48:54'!
+ERROR!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:48:57'!
+ERROR!
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:49:07'!
+restart
+	self shouldBeImplemented.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:49:46' prior: 50863276!
+restart
+! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 15:49:48'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:51:23'!
+a_test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #test06 stamp: 'LM 6/24/2021 15:51:23'!
+test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:51:58'!
+test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 31).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #b_test06 stamp: 'LM 6/24/2021 15:51:58'!
+b_test06
+
+	| clientID store password cartID timeList |
+	
+	timeList := OrderedCollection with: DateAndTime now.
+	timeList add: timeList first + (Duration minutes: 31).
+	clockBehaviour := [ timeList removeFirst ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+!StoreTest methodsFor: 'setUp/tearDown' stamp: 'LM 6/24/2021 15:54:36' prior: 50861268 overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :aClientID :aPassword |  ].
+	timerBehavior := [ :aDuration :aBlock |  ].
+	clockBehaviour := [ testObjectsFactory today ].! !
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'LM 6/24/2021 15:58:06'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior clockBehaviour now'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 15:58:04' prior: 50863320!
+test06
+
+	| clientID store password cartID |
+	
+	clockBehaviour := [ now := now + (Duration minutes: 31). now ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withClock: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'setUp/tearDown' stamp: 'LM 6/24/2021 15:58:28' prior: 50863364 overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :aClientID :aPassword |  ].
+	timerBehavior := [ :aDuration :aBlock |  ].
+	now := testObjectsFactory today.
+	clockBehaviour := [ now ].! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:59:41' prior: 50862936!
+createCartFor: aClientID withPassword: aPassword withClock: aClock
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	cartsLastReferences at: cartID put: clock now.
+	^cartID! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:59:49'!
+createCartFor: aClientID withPassword: aPassword 
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	cartsLastReferences at: cartID put: clock now.
+	^cartID! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:59:50' prior: 50862801!
+b_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	clockBehaviour := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self .
+	cartID := store createCartFor: clientID withPassword: password .
+	
+	""
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 15:59:50' prior: 50863383!
+test06
+
+	| clientID store password cartID |
+	
+	clockBehaviour := [ now := now + (Duration minutes: 31). now ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password .
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: Store #createCartFor:withPassword:withClock: stamp: 'LM 6/24/2021 15:59:50'!
+createCartFor: aClientID withPassword: aPassword withClock: aClock
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	cartsLastReferences at: cartID put: clock now.
+	^cartID!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 16:00:09'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:00:30' prior: 50863148!
+listCart: aCartID
+
+	| timeCurrently |
+	
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ] ifFalse: [ cartsLastReferences at: aCartID put: timeCurrently ].
+	^(carts at: aCartID) items! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:00:49' prior: 50863460!
+test06
+
+	| clientID store password cartID |
+	
+	clockBehaviour := [ now := now + (Duration minutes: 31). now ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 16:00:49'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:00:49'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:00:49'!
+ERROR!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:00:49'!
+ERROR!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:00:49'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:00:49'!
+PASSED!
+
+!testRun: #StoreTest #test06 stamp: 'LM 6/24/2021 16:00:49'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:01:12' prior: 50861644!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:01:26' prior: 50862406!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID expectedList |
+	
+	expectedList := Bag new.
+	expectedList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: expectedList equals: (store listCart: cartID).! !
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:01:31'!
+ERROR!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:01:44' prior: 50863545!
+test02IDOfNewCartReferencesThatCart
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assert: (store listCart: cartID) isEmpty.! !
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:01:46'!
+PASSED!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:01:51' prior: 50863560!
+test03BooksAddedToCartAppearInCartList
+
+	| clientID store password cartID expectedList |
+	
+	expectedList := Bag new.
+	expectedList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	
+	self assert: expectedList equals: (store listCart: cartID).! !
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:01:52'!
+PASSED!
+
+!methodRemoval: Store class #authenticatingWith:withCatalog:through: stamp: 'LM 6/24/2021 16:02:18'!
+authenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor    
+
+	^self new initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:02:41' prior: 50863286!
+a_test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:02:50' prior: 50861540!
+a_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	"Pasa aDuration - 1"
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:03:02' prior: 50863439!
+b_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	clockBehaviour := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	""
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:03:19' prior: 50861680!
+test01CannotCreateCartWithInvalidCredentials
+
+	| clientID store password |
+	
+	clientID := 234589.
+	password := 'password'.
+	authenticationBehavior := [ :aClientID :aPassword | self error: 'Invalid credentials' ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	
+	self should: [ store createCartFor: clientID withPassword: password. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: 'Invalid credentials'.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:03:32' prior: 50861594!
+test04DifferentCheckoutsHaveDifferentTransactionIDs
+
+	| clientID store password cartID firstTransactionID secondTransactionID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 2.
+	firstTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	secondTransactionID := store checkOutCart: cartID
+							chargingCCNumber: testObjectsFactory ccNumber
+							ccExpiration: testObjectsFactory ccNotExpiredMonth
+							ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: firstTransactionID ~= secondTransactionID.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:03:51' prior: 50862707!
+test05CheckedOutBooksAppearInClientsPurchasesList
+
+	| clientID store password cartID expectedCartList |
+	
+	expectedCartList := Bag new.
+	expectedCartList add: testObjectsFactory itemSellByTheStore withOccurrences: 2.
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	store checkOutCart: cartID
+		chargingCCNumber: testObjectsFactory ccNumber
+		ccExpiration: testObjectsFactory ccNotExpiredMonth
+		ccOwner: testObjectsFactory ccOwner.
+	
+	self assert: (OrderedCollection with: expectedCartList
+							with: testObjectsFactory itemSellByTheStorePrice * 2)
+		equals: (store listPurchasesFrom: clientID withPassword: password).! !
+
+!methodRemoval: Store #initializeAuthenticatingWith:withCatalog:through: stamp: 'LM 6/24/2021 16:04:13'!
+initializeAuthenticatingWith: anAuthenticator withCatalog: aCatalog through: aMerchantProcessor   
+
+	authenticator := anAuthenticator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsClients := Dictionary new.
+	clientsSales := Dictionary new.
+	cartsLastReferences := Dictionary new.
+	cartsTimers := Dictionary new.
+	merchantProcessor := aMerchantProcessor.
+	lastCartID := 0.
+	lastTransactionID := 0.!
+
+!methodRemoval: Store #createCartFor:withPassword:withTimer: stamp: 'LM 6/24/2021 16:04:19'!
+createCartFor: aClientID withPassword: aPassword withTimer: aTimer 
+
+	| cartID |
+	
+	authenticator verifyID: aClientID andPassword: aPassword.
+	
+	cartID := self newCartID.	
+	carts at: cartID put: (Cart acceptingItemsOf: catalog).
+	cartsClients at: cartID put: aClientID.
+	
+	aTimer after: (Duration minutes: 30) do: [ carts removeKey: cartID ].
+	cartsTimers at: cartID put: aTimer.
+	^cartID!
+
+!methodRemoval: StoreTest #a_test06 stamp: 'LM 6/24/2021 16:04:39'!
+a_test06
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+
+!methodRemoval: StoreTest #a_test07 stamp: 'LM 6/24/2021 16:04:40'!
+a_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	timerBehavior := [ :aDuration :aBlock | aBlock value ].
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password withTimer: self.
+	
+	"Pasa aDuration - 1"
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	"Pasa aDuration + 2"
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).!
+
+!methodRemoval: StoreTest #after:do: stamp: 'LM 6/24/2021 16:04:44'!
+after: aDuration do: aBlock
+
+	timerBehavior value: aDuration value: aBlock.!
+
+!methodRemoval: StoreTest #restart stamp: 'LM 6/24/2021 16:04:50'!
+restart
+!
+
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients clientsSales cartsLastReferences clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Store category: 'TusLibros' stamp: 'LM 6/24/2021 16:05:22'!
+Object subclass: #Store
+	instanceVariableNames: 'authenticator carts catalog lastCartID lastTransactionID merchantProcessor salesBook cartsClients clientsSales cartsLastReferences clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:06:42'!
+test06CartIDBecomesInvalidAfter30Minutes
+
+	| clientID store password cartID |
+	
+	clockBehaviour := [ now := now + (Duration minutes: 31). now ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+
+!methodRemoval: StoreTest #test06 stamp: 'LM 6/24/2021 16:06:42'!
+test06
+
+	| clientID store password cartID |
+	
+	clockBehaviour := [ now := now + (Duration minutes: 31). now ].
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:09:58' prior: 50863677!
+b_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 28). now ].
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 5). now ].
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:11:38' prior: 50863916!
+b_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:12:10'!
+test07OperatingWithCartRestoresItsLifetime
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+
+!methodRemoval: StoreTest #b_test07 stamp: 'LM 6/24/2021 16:12:10'!
+b_test07
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	self assert: (OrderedCollection with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:12:15'!
+FAILURE!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:12:44' prior: 50863960!
+test07OperatingWithCartRestoresItsLifetime
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	clockBehaviour := [ now := now + (Duration minutes: 30). now ].
+	
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:12:51'!
+PASSED!
+!StoreTest methodsFor: 'setUp/tearDown' stamp: 'LM 6/24/2021 16:19:47' prior: 50863403 overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :aClientID :aPassword |  ].
+	timerBehavior := [ :aDuration :aBlock |  ].
+	now := testObjectsFactory today.! !
+!StoreTest methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:19:54' prior: 50862972!
+now
+
+	^now! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:20:21' prior: 50863879!
+test06CartIDBecomesInvalidAfter30Minutes
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	now := now + (Duration minutes: 31).
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:21:50' prior: 50864008!
+test07OperatingWithCartRestoresItsLifetime
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	now := now + (Duration minutes: 30).
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	now := now + (Duration minutes: 30).
+	
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).! !
+
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior now'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreTest category: 'TusLibros' stamp: 'LM 6/24/2021 16:22:00'!
+TestCase subclass: #StoreTest
+	instanceVariableNames: 'authenticationBehavior testObjectsFactory timerBehavior now'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:25:28' prior: 50864072!
+test06CartIDBecomesInvalidAfter30Minutes
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	now := now + (Duration minutes: 31).
+	
+	self should: [ store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1 ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.
+		
+	now := now + (Duration minutes: 31).
+	
+	self should: [ store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.
+	
+	now := now + (Duration minutes: 31).
+	
+	self should: [ store listCart: cartID ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'support' stamp: 'LM 6/24/2021 16:27:47'!
+assertCartInvalidAfterMinutes: minutes whenDoing: aBlock
+
+	now := now + (Duration minutes: minutes).
+	
+	self should: aBlock
+		raise: Error - MessageNotUnderstood
+		withMessageText: Dictionary keyNotFoundErrorDescription.! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:29:03' prior: 50864127!
+test06CartIDBecomesInvalidAfter30Minutes
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1 ].
+		
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner ].
+	
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store listCart: cartID ].! !
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:29:05'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:29:48' prior: 50860354!
+addToCart: aCartID book: anISBN quantity: aQuantity
+
+	| timeCurrently |
+	
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ].
+	(carts at: aCartID) add: aQuantity of: anISBN.! !
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:29:57'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:29:57'!
+ERROR!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:29:57'!
+ERROR!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:30:11'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:30:11'!
+ERROR!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:30:11'!
+ERROR!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:31:25' prior: 50864173!
+test06CartIDBecomesInvalidAfter30Minutes
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1 ].
+	
+	cartID := store createCartFor: clientID withPassword: password.	
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner ].
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store listCart: cartID ].! !
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:31:25'!
+FAILURE!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:32:08' prior: 50864274!
+test06CartIDBecomesInvalidAfter30Minutes
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1 ].
+	
+	cartID := store createCartFor: clientID withPassword: password.	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner ].
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self assertCartInvalidAfterMinutes: 31 whenDoing: [ store listCart: cartID ].! !
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:32:08'!
+FAILURE!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:32:58' prior: 50862052!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	| cart creditCard clientID clientsSalesBook timeCurrently |
+	
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ].
+	cart := carts at: aCartID.
+	clientID := cartsClients at: aCartID.
+	clientsSalesBook := clientsSales at: clientID ifAbsentPut: [ OrderedCollection new ].
+	creditCard := CreditCard number: aCCNumber expiringOn: aMonth owner: aCCOwner.
+	(Cashier toCheckout: cart
+			charging: creditCard
+			throught: merchantProcessor
+			on: DateAndTime today
+			registeringOn: clientsSalesBook) checkOut.
+	^self newTransactionID.! !
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:33:00'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:33:00'!
+ERROR!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:33:00'!
+ERROR!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:39:54' prior: 50864091!
+test07OperatingWithCartRestoresItsLifetime
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	now := now + (Duration minutes: 30).
+	
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	now := now + (Duration minutes: 30).
+	
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	
+	now := now + (Duration minutes: 30).
+	
+	store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner.	
+	now := now + (Duration minutes: 30).
+	
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	
+	now := now + (Duration minutes: 30).
+	
+	store listCart: cartID.
+	
+	now := now + (Duration minutes: 30).
+	
+	self assert: (Bag new) equals: (store listCart: cartID).! !
+!StoreTest methodsFor: 'support' stamp: 'LM 6/24/2021 16:46:47'!
+restartCartsLifetime: minutes byDoing: aBlock
+
+	now := now + (Duration minutes: minutes).
+	
+	aBlock value.
+	
+	now := now + (Duration minutes: minutes).! !
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:48:31' prior: 50864400!
+test07OperatingWithCartRestoresItsLifetime
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self restartCartsLifetime: 30 byDoing: [ store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1 ].
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	now := now + (Duration minutes: 30).
+	
+	self restartCartsLifetime: 30 byDoing: [ store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner ].
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self restartCartsLifetime: 30 byDoing: [ store listCart: cartID ].
+	self assert: (Bag new) equals: (store listCart: cartID).! !
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:48:31'!
+ERROR!
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:49:49'!
+getCart: aCartID
+
+	| timeCurrently |
+	
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ] ifFalse: [ cartsLastReferences at: aCartID put: timeCurrently ]! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:49:49' prior: 50863494!
+listCart: aCartID
+
+	self getCart: aCartID.
+	^(carts at: aCartID) items! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:50:12' prior: 50864508!
+listCart: aCartID
+
+	^(self getCart: aCartID) items! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:50:26' prior: 50864497!
+getCart: aCartID
+
+	| timeCurrently |
+	
+	timeCurrently := clock now.
+	timeCurrently - (cartsLastReferences at: aCartID) > (Duration minutes: 30)
+		ifTrue: [ carts removeKey: aCartID ] ifFalse: [ cartsLastReferences at: aCartID put: timeCurrently ].
+	
+	^(carts at: aCartID)! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:50:39' prior: 50864203!
+addToCart: aCartID book: anISBN quantity: aQuantity
+
+	
+	
+	(self getCart: aCartID) add: aQuantity of: anISBN.! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:50:45' prior: 50864531!
+addToCart: aCartID book: anISBN quantity: aQuantity
+	
+	(self getCart: aCartID) add: aQuantity of: anISBN.! !
+!Store methodsFor: 'as yet unclassified' stamp: 'LM 6/24/2021 16:51:02' prior: 50864345!
+checkOutCart: aCartID chargingCCNumber: aCCNumber ccExpiration: aMonth ccOwner: aCCOwner
+
+	| cart creditCard clientID clientsSalesBook |
+	
+	cart := self getCart: aCartID.
+	clientID := cartsClients at: aCartID.
+	clientsSalesBook := clientsSales at: clientID ifAbsentPut: [ OrderedCollection new ].
+	creditCard := CreditCard number: aCCNumber expiringOn: aMonth owner: aCCOwner.
+	(Cashier toCheckout: cart
+			charging: creditCard
+			throught: merchantProcessor
+			on: DateAndTime today
+			registeringOn: clientsSalesBook) checkOut.
+	^self newTransactionID.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CashierTest #test07CanNotCheckoutWhenSaleTotalIsNotPositive stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CannotCreateCreditCardWithEmptyOwner stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CannotCreateCreditCardWithNumberSizeDifferentTo16 stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:51:22'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:51:22'!
+ERROR!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:51:22'!
+ERROR!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:51:40'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:51:40'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:51:40'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:51:40'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:51:40'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:51:40'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:51:40'!
+ERROR!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:51:40'!
+ERROR!
+!StoreTest methodsFor: 'tests' stamp: 'LM 6/24/2021 16:52:58' prior: 50864452!
+test07OperatingWithCartRestoresItsLifetime
+
+	| clientID store password cartID |
+	
+	clientID := 234589.
+	password := 'password'.
+	store := Store authenticatingWith: self withCatalog: testObjectsFactory defaultCatalog through: self measuringTimeWith: self.
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self restartCartsLifetime: 30 byDoing: [ store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1 ].
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	store addToCart: cartID book: testObjectsFactory itemSellByTheStore quantity: 1.
+	self restartCartsLifetime: 30 byDoing: [ store checkOutCart: cartID chargingCCNumber: testObjectsFactory ccNumber ccExpiration: testObjectsFactory ccNotExpiredMonth ccOwner: testObjectsFactory ccOwner ].
+	self assert: (Bag with: testObjectsFactory itemSellByTheStore) equals: (store listCart: cartID).
+	
+	cartID := store createCartFor: clientID withPassword: password.
+	self restartCartsLifetime: 30 byDoing: [ store listCart: cartID ].
+	self assert: (Bag new) equals: (store listCart: cartID).! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CashierTest #test07CanNotCheckoutWhenSaleTotalIsNotPositive stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CannotCreateCreditCardWithEmptyOwner stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CannotCreateCreditCardWithNumberSizeDifferentTo16 stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test01CannotCreateCartWithInvalidCredentials stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test02IDOfNewCartReferencesThatCart stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test03BooksAddedToCartAppearInCartList stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test04DifferentCheckoutsHaveDifferentTransactionIDs stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test05CheckedOutBooksAppearInClientsPurchasesList stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test06CartIDBecomesInvalidAfter30Minutes stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+!testRun: #StoreTest #test07OperatingWithCartRestoresItsLifetime stamp: 'LM 6/24/2021 16:53:03'!
+PASSED!
+
+----SNAPSHOT----(24 June 2021 16:56:20) CuisUniversity-4532.image priorSource: 16996025!

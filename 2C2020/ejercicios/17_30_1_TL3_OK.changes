@@ -1,0 +1,1987 @@
+----End fileIn of /home/belu/Documents/ING_SOFT/linux64/TusLibros.st----!
+
+Object subclass: #Ticket
+	instanceVariableNames: 'client amountPaid creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'
+	!
+
+!classDefinition: #Ticket category: 'TusLibros' stamp: 'BT 11/26/2020 16:03:04'!
+Object subclass: #Ticket
+	instanceVariableNames: 'client amountPaid creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Ticket stamp: 'BT 11/26/2020 16:03:14'!
+Object subclass: #Ticket
+	instanceVariableNames: 'client amountPaid creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRenamed: #Receipt as: #Ticket stamp: 'BT 11/26/2020 16:03:39'!
+Smalltalk renameClassNamed: #Receipt as: #Ticket!
+!MPSimulatorValidPayment methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:03:39' prior: 50869854 overrides: 50869795!
+charge: amountToPay to: aCreditCard
+	^ Ticket for: aCreditCard of: amountToPay.! !
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:04:18'!
+amountPaid
+! !
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:04:26'!
+ERROR!
+!Cashier methodsFor: 'actions' stamp: 'BT 11/26/2020 16:08:57' prior: 50869685!
+checkOut: aCart usingCreditCard: aCreditCard of: buyingClient
+	| cartTotal idTransaction |
+	self verifyOwnerOf: aCreditCard is: buyingClient.
+	self verifyItIsaValidCreditCard: aCreditCard.
+	cartTotal :=  aCart total.
+	idTransaction := merchantProcessor charge: cartTotal to: aCreditCard.
+	^Ticket for: aCreditCard of: cartTotal.
+	
+	
+	! !
+!Cashier methodsFor: 'actions' stamp: 'BT 11/26/2020 16:11:29' prior: 50869929!
+checkOut: aCart usingCreditCard: aCreditCard of: buyingClient
+	| cartTotal idTransaction |
+	self verifyOwnerOf: aCreditCard is: buyingClient.
+	self verifyItIsaValidCreditCard: aCreditCard.
+	cartTotal :=  aCart total.
+	idTransaction := merchantProcessor charge: cartTotal to: aCreditCard.
+	^Ticket forTransaction: idTransaction doneBy: aCreditCard of: cartTotal.
+	
+	
+	! !
+!Ticket methodsFor: 'initialization' stamp: 'BT 11/26/2020 16:13:03'!
+idTransaction: forTransaction for: aCreditCard of: amount
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:03'!
+idTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new for: aCreditCard of: amountToPay.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:03' prior: 50869885!
+for: aCreditCard of: amountToPay
+	^ self new idTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+!MPSimulatorValidPayment methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:03' prior: 50869917 overrides: 50869795!
+charge: amountToPay to: aCreditCard
+	^ Ticket idTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:03' prior: 50869964!
+idTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new idTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+
+!methodRemoval: Ticket #for:of: stamp: 'BT 11/26/2020 16:13:03'!
+for: aCreditCard of: amount
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.!
+
+!methodRemoval: Ticket class #for:of: stamp: 'BT 11/26/2020 16:13:03'!
+for: aCreditCard of: amountToPay
+	^ self new idTransaction: idTransaction for: aCreditCard of: amountToPay.!
+!Ticket methodsFor: 'initialization' stamp: 'BT 11/26/2020 16:13:27'!
+forTransaction: forTransaction for: aCreditCard of: amount
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:27'!
+forTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new idTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:27' prior: 50869986!
+idTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+!MPSimulatorValidPayment methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:27' prior: 50869979 overrides: 50869795!
+charge: amountToPay to: aCreditCard
+	^ Ticket forTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:13:27' prior: 50870012!
+forTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+
+!methodRemoval: Ticket #idTransaction:for:of: stamp: 'BT 11/26/2020 16:13:27'!
+idTransaction: forTransaction for: aCreditCard of: amount
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.!
+
+!methodRemoval: Ticket class #idTransaction:for:of: stamp: 'BT 11/26/2020 16:13:27'!
+idTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction for: aCreditCard of: amountToPay.!
+!Ticket methodsFor: 'initialization' stamp: 'BT 11/26/2020 16:14:00'!
+forTransaction: forTransaction doneBy: aCreditCard of: amount
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:14:00'!
+forTransaction: forTransaction doneBy: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction for: aCreditCard of: amountToPay.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:14:00' prior: 50870036!
+forTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction doneBy: aCreditCard of: amountToPay.! !
+!MPSimulatorValidPayment methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:14:00' prior: 50870029 overrides: 50869795!
+charge: amountToPay to: aCreditCard
+	^ Ticket forTransaction: idTransaction doneBy: aCreditCard of: amountToPay.! !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:14:00' prior: 50870065!
+forTransaction: forTransaction doneBy: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction doneBy: aCreditCard of: amountToPay.! !
+
+!methodRemoval: Ticket #forTransaction:for:of: stamp: 'BT 11/26/2020 16:14:00'!
+forTransaction: forTransaction for: aCreditCard of: amount
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.!
+
+!methodRemoval: Ticket class #forTransaction:for:of: stamp: 'BT 11/26/2020 16:14:00'!
+forTransaction: forTransaction for: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction doneBy: aCreditCard of: amountToPay.!
+
+!classDefinition: #Ticket category: 'TusLibros' stamp: 'BT 11/26/2020 16:15:00'!
+Object subclass: #Ticket
+	instanceVariableNames: 'client amountPaid creditCard transaction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Ticket methodsFor: 'initialization' stamp: 'BT 11/26/2020 16:15:22' prior: 50870057!
+forTransaction: idTransaction doneBy: aCreditCard of: amount.
+	transaction := idTransaction.
+	creditCard := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.! !
+!Cashier methodsFor: 'actions' stamp: 'BT 11/26/2020 16:15:30' prior: 50869943!
+checkOut: aCart usingCreditCard: aCreditCard of: buyingClient
+	| cartTotal idTransaction |
+	self verifyOwnerOf: aCreditCard is: buyingClient.
+	self verifyItIsaValidCreditCard: aCreditCard.
+	cartTotal :=  aCart total.
+	idTransaction := merchantProcessor charge: cartTotal to: aCreditCard.
+	^Ticket forTransaction: idTransaction doneBy: aCreditCard of: cartTotal.
+	
+	
+	! !
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:16:29'!
+amountCharged
+	^ amountPaid ! !
+
+!methodRemoval: Ticket #amountPaid stamp: 'BT 11/26/2020 16:16:31'!
+amountPaid
+!
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:17:04'!
+paidWithCreditCard
+	^ creditCard ! !
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:18:08' prior: 50870148!
+paidWithCreditCard
+	^ creditCard number.! !
+
+!classDefinition: #Ticket category: 'TusLibros' stamp: 'BT 11/26/2020 16:18:27'!
+Object subclass: #Ticket
+	instanceVariableNames: 'client amountPaid creditCardNumber transaction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Ticket methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:18:27' prior: 50870119!
+forTransaction: idTransaction doneBy: aCreditCard of: amount.
+	transaction := idTransaction.
+	creditCardNumber := aCreditCard.
+	amountPaid := 	amount.
+	client := aCreditCard owner.! !
+!Ticket methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:18:27' prior: 50870152!
+paidWithCreditCard
+	^ creditCardNumber number.! !
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:18:32' prior: 50870174!
+paidWithCreditCard
+	^ creditCardNumber.! !
+!Cashier methodsFor: 'actions' stamp: 'BT 11/26/2020 16:19:06' prior: 50870128!
+checkOut: aCart usingCreditCard: aCreditCard of: buyingClient
+	| cartTotal idTransaction |
+	self verifyOwnerOf: aCreditCard is: buyingClient.
+	self verifyItIsaValidCreditCard: aCreditCard.
+	cartTotal :=  aCart total.
+	idTransaction := merchantProcessor charge: cartTotal to: aCreditCard.
+	^Ticket forTransaction: idTransaction doneBy: (aCreditCard number) of: cartTotal.
+	
+	
+	! !
+!CreditCard methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:20:02'!
+number
+	^ number ! !
+!Ticket methodsFor: 'initialization' stamp: 'BT 11/26/2020 16:20:37' prior: 50870165!
+forTransaction: idTransaction doneBy: aCreditCard of: amount.
+	transaction := idTransaction.
+	creditCardNumber := aCreditCard number.
+	amountPaid := 	amount.
+	client := aCreditCard owner.! !
+!Cashier methodsFor: 'actions' stamp: 'BT 11/26/2020 16:20:57' prior: 50870183!
+checkOut: aCart usingCreditCard: aCreditCard of: buyingClient
+	| cartTotal idTransaction |
+	self verifyOwnerOf: aCreditCard is: buyingClient.
+	self verifyItIsaValidCreditCard: aCreditCard.
+	cartTotal :=  aCart total.
+	idTransaction := merchantProcessor charge: cartTotal to: aCreditCard.
+	^Ticket forTransaction: idTransaction doneBy: aCreditCard of: cartTotal.
+	
+	
+	! !
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:21:33'!
+paidBy
+	^ client ! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:26:50' prior: 50869536!
+createCashier
+	^ Cashier withMerchantProcessor: MPSimulatorValidPayment new.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:27:26'!
+createCashierWithMerchatProcessorSimulatorOfValidOperations
+	^ Cashier withMerchantProcessor: MPSimulatorValidPayment new.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:28:31' prior: 50870229!
+createCashier
+	^ Cashier new.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:29:54' prior: 50869566!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 3.5).
+	self assert: (ticket paidWithCreditCard = creditCart).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+!Cashier methodsFor: 'initialization' stamp: 'BT 11/26/2020 16:30:22'!
+perfomCheckOutsWith: merchantProcessorToCollaborateWith
+	merchantProcessor := merchantProcessorToCollaborateWith.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:30:46' prior: 50870246!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 3.5).
+	self assert: (ticket paidWithCreditCard = creditCart).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+!MPSimulatorValidPayment methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:32:11' prior: 50870082 overrides: 50869795!
+charge: amountToPay to: aCreditCard
+	^ '0192'! !
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:32:21'!
+FAILURE!
+
+ticket amountCharged!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:33:09' prior: 50870273!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket paidWithCreditCard = creditCart).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+
+ticket amountCharged !
+!Ticket class methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:36:45' prior: 50870089!
+forTransaction: idTransaction doneBy: aCreditCard of: amountToPay
+	^ self new forTransaction: idTransaction doneBy: aCreditCard of: amountToPay.! !
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:37:13'!
+FAILURE!
+
+ticket paidWithCreditCard!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:37:51' prior: 50870305!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket paidWithCreditCard = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:38:43'!
+paidWithCreditCardNumber
+	^ creditCardNumber.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:38:43' prior: 50870340!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket paidWithCreditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+
+!methodRemoval: Ticket #paidWithCreditCard stamp: 'BT 11/26/2020 16:38:43'!
+paidWithCreditCard
+	^ creditCardNumber.!
+!Ticket methodsFor: 'accessing' stamp: 'BT 11/26/2020 16:39:21'!
+creditCardNumber
+	^ creditCardNumber.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:39:21' prior: 50870365!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket creditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+
+!methodRemoval: Ticket #paidWithCreditCardNumber stamp: 'BT 11/26/2020 16:39:21'!
+paidWithCreditCardNumber
+	^ creditCardNumber.!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:39:57'!
+PASSED!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:39:57'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:41:01' prior: 50870394!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: (self createCartWithManyItems ) usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket creditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:41:36' prior: 50870427!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: cartWithOneItem usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket creditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:41:41' prior: 50870448!
+test01checkOutCartWithOneItemWithValidCardWorksCorrectly
+
+	| cashier cartWithOneItem ticket creditCart |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithOneItem := self createCartWithOneItem.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: cartWithOneItem usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 3.5).
+	self assert: (ticket creditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:41:45'!
+PASSED!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:41:45'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:42:41'!
+test02checkOutCartWithManyItemsWithValidCardWorksCorrectly
+
+	| cashier ticket creditCart cartWithManyItems |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithManyItems := self createCartWithManyItems.
+	creditCart := self createValidCreditCard.
+	ticket := cashier checkOut: cartWithManyItems usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket creditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+
+!testRun: #CashierTest #test02checkOutCartWithManyItemsWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:42:52'!
+PASSED!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:42:52'!
+PASSED!
+
+!testRun: #CashierTest #test02checkOutCartWithManyItemsWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:42:52'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:46:22'!
+test03checkOutCartWithInvalidCreditCardRaisesError
+
+	| cashier ticket creditCart cartWithManyItems |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithManyItems := self createCartWithManyItems.
+	creditCart := self createInvalidCreditCard.
+	ticket := cashier checkOut: cartWithManyItems usingCreditCard: creditCart of: 'Carlitos Ticona' .
+	
+	self assert: (ticket amountCharged = 18.7).
+	self assert: (ticket creditCardNumber = creditCart number).
+	self assert: (ticket paidBy = 'Carlitos Ticona')
+	
+	
+
+	
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:48:03' prior: 50870529!
+test03checkOutCartWithInvalidCreditCardRaisesError
+
+	| cashier ticket creditCart cartWithManyItems |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithManyItems := self createCartWithManyItems.
+	creditCart := self createInvalidCreditCard.
+
+	self should:  [cashier checkOut: cartWithManyItems usingCreditCard: creditCart of: 'Carlitos Ticona' .]
+	raise:  Error
+	withMessageText: Cashier errorExpiredCreditCard.
+
+	
+! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:48:21'!
+test03checkOutCartWithExpiredCreditCardRaisesError
+
+	| cashier creditCart cartWithManyItems |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithManyItems := self createCartWithManyItems.
+	creditCart := self createInvalidCreditCard.
+
+	self should:  [cashier checkOut: cartWithManyItems usingCreditCard: creditCart of: 'Carlitos Ticona' .]
+	raise:  Error
+	withMessageText: Cashier errorExpiredCreditCard.
+
+	
+! !
+
+!testRun: #CashierTest #test03checkOutCartWithExpiredCreditCardRaisesError stamp: 'BT 11/26/2020 16:48:28'!
+PASSED!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:48:28'!
+PASSED!
+
+!testRun: #CashierTest #test02checkOutCartWithManyItemsWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:48:28'!
+PASSED!
+
+!testRun: #CashierTest #test03checkOutCartWithExpiredCreditCardRaisesError stamp: 'BT 11/26/2020 16:48:28'!
+PASSED!
+
+!testRun: #CashierTest #test03checkOutCartWithInvalidCreditCardRaisesError stamp: 'BT 11/26/2020 16:48:28'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:50:07'!
+test04checkOutCartWhenNotOwnerIsPayingRaisesError
+
+	| cashier creditCart cartWithManyItems |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithManyItems := self createCartWithManyItems.
+	creditCart := self createInvalidCreditCard.
+
+	self should:  [cashier checkOut: cartWithManyItems usingCreditCard: creditCart of: 'Fulano' .]
+	raise:  Error
+	withMessageText: Cashier errorInvalidClientIsBuying.
+
+	
+! !
+
+!testRun: #CashierTest #test04checkOutCartWhenNotOwnerIsPayingRaisesError stamp: 'BT 11/26/2020 16:50:10'!
+PASSED!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:50:10'!
+PASSED!
+
+!testRun: #CashierTest #test02checkOutCartWithManyItemsWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:50:10'!
+PASSED!
+
+!testRun: #CashierTest #test03checkOutCartWithExpiredCreditCardRaisesError stamp: 'BT 11/26/2020 16:50:10'!
+PASSED!
+
+!testRun: #CashierTest #test03checkOutCartWithInvalidCreditCardRaisesError stamp: 'BT 11/26/2020 16:50:10'!
+PASSED!
+
+!testRun: #CashierTest #test04checkOutCartWhenNotOwnerIsPayingRaisesError stamp: 'BT 11/26/2020 16:50:10'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'BT 11/26/2020 16:50:22' prior: 50870604!
+test04checkOutCartWhenNotOwnerIsPayingRaisesError
+
+	| cashier creditCart cartWithManyItems |
+	cashier := self createCashier.
+	cashier perfomCheckOutsWith: MPSimulatorValidPayment new.
+	cartWithManyItems := self createCartWithManyItems.
+	creditCart := self createValidCreditCard .
+
+	self should:  [cashier checkOut: cartWithManyItems usingCreditCard: creditCart of: 'Fulano' .]
+	raise:  Error
+	withMessageText: Cashier errorInvalidClientIsBuying.
+
+	
+! !
+
+!testRun: #CashierTest #test04checkOutCartWhenNotOwnerIsPayingRaisesError stamp: 'BT 11/26/2020 16:50:26'!
+PASSED!
+
+!testRun: #CashierTest #test01checkOutCartWithOneItemWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:50:26'!
+PASSED!
+
+!testRun: #CashierTest #test02checkOutCartWithManyItemsWithValidCardWorksCorrectly stamp: 'BT 11/26/2020 16:50:26'!
+PASSED!
+
+!testRun: #CashierTest #test03checkOutCartWithExpiredCreditCardRaisesError stamp: 'BT 11/26/2020 16:50:26'!
+PASSED!
+
+!testRun: #CashierTest #test03checkOutCartWithInvalidCreditCardRaisesError stamp: 'BT 11/26/2020 16:50:26'!
+PASSED!
+
+!testRun: #CashierTest #test04checkOutCartWhenNotOwnerIsPayingRaisesError stamp: 'BT 11/26/2020 16:50:26'!
+PASSED!
+
+----STARTUP---- (2 December 2020 08:16:05) as /home/belu/Documents/ING_SOFT/linux64/CuisUniversity-4383.image!
+
+
+----End fileIn of /home/belu/Documents/ING_SOFT/linux64/si-exercises/20 - TusLibrosCashier/TusLibros.st----!
+
+!classRemoval: #Ticket stamp: 'BT 12/2/2020 09:10:33'!
+Object subclass: #Ticket
+	instanceVariableNames: 'client amountPaid creditCardNumber transaction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MPSimulatorValidPayment stamp: 'BT 12/2/2020 09:10:33'!
+MerchantProcessorSimulator subclass: #MPSimulatorValidPayment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MPSimulatorInvalidPayment stamp: 'BT 12/2/2020 09:10:34'!
+MerchantProcessorSimulator subclass: #MPSimulatorInvalidPayment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MerchantProcessorSimulator stamp: 'BT 12/2/2020 09:10:34'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'BT 12/2/2020 09:10:35'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'BT 12/2/2020 09:10:35'!
+Object subclass: #Cashier
+	instanceVariableNames: 'merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'BT 12/2/2020 09:10:36'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items checkedout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'BT 12/2/2020 09:10:36'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'BT 12/2/2020 09:10:37'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/belu/Documents/ING_SOFT/20-TusLibros/Iteracion2/TusLibros-33.st----!
+
+Object subclass: #RestInterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'BT 12/2/2020 09:14:14'!
+Object subclass: #RestInterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'BT 12/2/2020 09:18:39'!
+Object subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'setup' stamp: 'BT 12/2/2020 09:18:36'!
+SetUp
+	testObjectFactory := StoreTestObjectsFactory new.
+	! !
+!RestInterfaceTest methodsFor: 'setup' stamp: 'BT 12/2/2020 09:19:06'!
+setUp
+	testObjectFactory := StoreTestObjectsFactory new.
+	! !
+
+!methodRemoval: RestInterfaceTest #SetUp stamp: 'BT 12/2/2020 09:19:06'!
+SetUp
+	testObjectFactory := StoreTestObjectsFactory new.
+	!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'BT 12/2/2020 09:29:12'!
+Object subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory interface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'BT 12/2/2020 09:30:14'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'supermarket'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Supermarket category: 'TusLibros' stamp: 'BT 12/2/2020 09:31:06'!
+Object subclass: #Supermarket
+	instanceVariableNames: 'catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'BT 12/2/2020 09:31:49'!
+Object subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory interface aClientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 09:32:16'!
+test01newCartsCreatedAreEmpty
+
+	| cartID |
+	interface := RestInterface for: Supermarket 
+				withCatalog: testObjectFactory aCatalog
+				withCashier: testObjectFactory aCashier
+				withMerchantProcessor: testObjectFactory aMerchantProcessor.
+	
+	cartID = interface createCartForClient: 'aClientID' withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'BT 12/2/2020 09:36:23'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'BT 12/2/2020 09:36:23'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'BT 12/2/2020 09:36:23'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'BT 12/2/2020 09:36:23'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'BT 12/2/2020 09:36:23'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'BT 12/2/2020 09:36:23'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 09:41:39' prior: 50870741!
+test01newCartsCreatedAreEmpty
+
+	| cartID |
+	interface := RestInterface for: Supermarket 
+				withCatalog: testObjectFactory aCatalog
+				withCashier: testObjectFactory aCashier.
+	
+	cartID = interface createCartForClient: 'aClientID' withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!Supermarket class methodsFor: 'initialization' stamp: 'BT 12/2/2020 09:44:22'!
+withCatalog: aCatalog withCashier: aCashier
+	^ self new initializeWithCatalog: aCatalog withCashier: aCashier.! !
+
+!classDefinition: #Supermarket category: 'TusLibros' stamp: 'BT 12/2/2020 09:45:46'!
+Object subclass: #Supermarket
+	instanceVariableNames: 'catalog cashier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 09:45:42'!
+initializeWithCatalog: aCatalog withCashier: aCashier
+	catalog := aCatalog.
+	cashier := aCashier.
+	"estamos haciendo que tenga un cashier, podr�a tener muchos potencialmente"! !
+!RestInterface class methodsFor: 'instance creation' stamp: 'BT 12/2/2020 09:47:09'!
+for: aSupermarket
+	^ self new initializeWith: aSupermarket.! !
+!RestInterface class methodsFor: 'instance creation' stamp: 'BT 12/2/2020 09:47:51' prior: 50870813!
+for: aSupermarket
+	^ self new initializeWith: aSupermarket.! !
+!RestInterface methodsFor: 'initialization' stamp: 'BT 12/2/2020 09:48:09'!
+initializeWith: aSupermarket
+	supermarket := aSupermarket.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 09:49:14' prior: 50870777!
+test01newCartsCreatedAreEmpty
+
+	| cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory aCatalog
+				withCashier: testObjectFactory aCashier).
+	
+	cartID = interface createCartForClient: 'aClientID' withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 09:57:56'!
+createCartForClient: aClientID withPassword: passwordOfClientWhoIsCreatingACart
+	self validateUser: aClientID withPassword: passwordOfClientWhoIsCreatingACart.
+	
+	^ supermarket newCart.! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 09:58:33'!
+validateUser: aClientID withPassword: passwordOfClientWhoIsCreatingACart
+	! !
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:02:36'!
+newCart! !
+
+!classDefinition: #Supermarket category: 'TusLibros' stamp: 'BT 12/2/2020 10:04:10'!
+Object subclass: #Supermarket
+	instanceVariableNames: 'catalog cashier carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:04:09' prior: 50870855!
+newCart
+	carts at:1 put: (Cart acceptingItemsOf: catalog).! !
+
+dic := IdentityDictionary new.!
+
+dic at: aCart1 put: aCart1.!
+
+aCart1 = Cart new.!
+
+acart2 = Cart new.!
+
+dic at: aCart1 put: aCart1.!
+
+cat := OrderedCollection new.!
+
+aCart1 = Cart acceptingItemsOf: cat.!
+
+aCart1 := Cart acceptingItemsOf: cat.!
+
+acart2 := Cart acceptingItemsOf: cat.!
+
+dic at: aCart1 put: aCart1.!
+
+dit at: aCart1 !
+
+dic at: aCart1 put: aCart1.!
+
+dit at: aCart1 !
+
+dic at: 1 put: aCart1. !
+
+dit at: 1. !
+
+dic at: 1. !
+
+dic at: aCart1 put: aCart1. !
+
+dic at: aCart1. !
+
+dic at: acart2. !
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:17:41' prior: 50870866!
+newCart
+	| cart |
+	cart := Cart acceptingItemsOf: catalog.
+	carts at: (self createIDforCart: cart) put: cart.! !
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:19:01'!
+createIDforCart: needingIDCart
+	^ needingIDCart.! !
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:19:39' prior: 50870887!
+newCart
+	| aNewCart |
+	aNewCart := Cart acceptingItemsOf: catalog.
+	carts at: (self createIDforCart: aNewCart) put: aNewCart.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 10:21:03' prior: 50870829!
+test01newCartsCreatedAreEmpty
+
+	| cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog 
+				withCashier: testObjectFactory aCashier).
+	
+	cartID = interface createCartForClient: 'aClientID' withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!StoreTestObjectsFactory methodsFor: 'cashier' stamp: 'BT 12/2/2020 10:22:21'!
+defaultCashier
+	^ true! !
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:26:53'!
+initializeWithCatalog: aCatalog 
+	catalog := aCatalog.
+! !
+
+!methodRemoval: Supermarket #initializeWithCatalog:withCashier: stamp: 'BT 12/2/2020 10:27:02'!
+initializeWithCatalog: aCatalog withCashier: aCashier
+	catalog := aCatalog.
+	cashier := aCashier.
+	"estamos haciendo que tenga un cashier, podr�a tener muchos potencialmente"!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 10:27:30' prior: 50870905!
+test01newCartsCreatedAreEmpty
+
+	| cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+	
+	cartID = interface createCartForClient: 'aClientID' withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!Supermarket class methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:27:59'!
+withCatalog: aCatalog 
+	^ self new initializeWithCatalog: aCatalog.! !
+
+!methodRemoval: Supermarket class #withCatalog:withCashier: stamp: 'BT 12/2/2020 10:28:01'!
+withCatalog: aCatalog withCashier: aCashier
+	^ self new initializeWithCatalog: aCatalog withCashier: aCashier.!
+
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory interface aClientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'BT 12/2/2020 10:37:58'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory interface aClientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:38:10'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:38:10'!
+ERROR!
+!RestInterfaceTest methodsFor: 'setup' stamp: 'BT 12/2/2020 10:39:21' prior: 50870702 overrides: 16927572!
+setUp
+	testObjectFactory := StoreTestObjectsFactory new.
+	
+	! !
+
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory  aClientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterfaceTest category: 'TusLibros' stamp: 'BT 12/2/2020 10:40:30'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectFactory aClientID'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 10:40:39' prior: 50870937!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+	
+	cartID = interface createCartForClient: 'aClientID' withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:40:53'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 10:43:30' prior: 50871000!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+	
+	cartID = interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 10:43:39' prior: 50871016!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:43:47'!
+ERROR!
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:44:32' prior: 50870923!
+initializeWithCatalog: aCatalog 
+	catalog := aCatalog.
+	carts := IdentityDictionary  new.
+! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:44:46'!
+ERROR!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 10:44:56'!
+listCart: aSupermarket 
+	self shouldBeImplemented.! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 10:47:48' prior: 50871055!
+listCart: aCartID 
+	^ supermarket listCartsItemsOf: aCartID. ! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:47:57'!
+ERROR!
+!Supermarket methodsFor: 'interface - interaction' stamp: 'BT 12/2/2020 10:48:21'!
+listCartsItemsOf: aSupermarket 
+	self shouldBeImplemented.! !
+!Supermarket methodsFor: 'interface - interaction' stamp: 'BT 12/2/2020 10:51:02' prior: 50871068!
+listCartsItemsOf: aCartID 
+	^ (carts at: aCartID) listItems. ! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:51:06'!
+ERROR!
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:54:36' prior: 50870898!
+newCart
+	| newCart idForNewCart |
+	newCart := Cart acceptingItemsOf: catalog.
+	idForNewCart := self createIDforCart: newCart.
+	carts at: idForNewCart put: newCart.
+	^ idForNewCart.
+	! !
+!Supermarket methodsFor: 'initialization' stamp: 'BT 12/2/2020 10:54:48' prior: 50871082!
+newCart
+	| newCart IDForNewCart |
+	newCart := Cart acceptingItemsOf: catalog.
+	IDForNewCart := self createIDforCart: newCart.
+	carts at: IDForNewCart put: newCart.
+	^ IDForNewCart.
+	! !
+!Cart methodsFor: 'user interface' stamp: 'BT 12/2/2020 10:55:54'!
+listItems
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'user interface' stamp: 'BT 12/2/2020 10:56:20' prior: 50871099!
+listItems
+	items asBag.! !
+!Cart methodsFor: 'user interface' stamp: 'BT 12/2/2020 10:56:32' prior: 50871103!
+listItems
+	^ items asBag.! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 10:56:57'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 10:57:38'!
+test02newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:02:20'!
+test02UserIsAuthenticatedWhenCreatesANewCart
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+
+	self should: [interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.]
+	 raise: Error 
+	 withMessageText: RestInterface invalidClientErrorDescription.
+				! !
+!RestInterface methodsFor: 'initialization' stamp: 'BT 12/2/2020 11:05:57' prior: 50870824!
+initializeWith: aSupermarket
+	supermarket := aSupermarket.
+! !
+
+!methodRemoval: RestInterfaceTest #test02newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:06:11'!
+test02newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog).
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:12:38' prior: 50871127!
+test02UserIsAuthenticatedWhenCreatesANewCart
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: (testObjectFactory invalidClientAuthenticator).
+
+	self should: [interface createCartForClient: 'aClientID'  withPassword: 'anInvalidPassword'.]
+	 raise: Error 
+	 withMessageText: RestInterface invalidClientErrorDescription.
+				! !
+!RestInterface class methodsFor: 'instance creation' stamp: 'BT 12/2/2020 11:13:56'!
+for: aSupermarket withAuthenticator: anAuthenticator 
+	^ self new initializeWith: aSupermarket.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'BT 12/2/2020 11:13:56' prior: 50871029!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: anAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!methodRemoval: RestInterface class #for: stamp: 'BT 12/2/2020 11:13:56'!
+for: aSupermarket
+	^ self new initializeWith: aSupermarket.!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'BT 12/2/2020 11:14:53'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'supermarket authenticator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'initialization' stamp: 'BT 12/2/2020 11:14:51'!
+initializeWith: aSupermarket withAuthenticator: anAuthenticator 
+	supermarket := aSupermarket.
+	authenticator := anAuthenticator.
+! !
+
+!methodRemoval: RestInterface #initializeWith: stamp: 'BT 12/2/2020 11:14:57'!
+initializeWith: aSupermarket
+	supermarket := aSupermarket.
+!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 11:15:26' prior: 50870842!
+createCartForClient: aClientID withPassword: passwordOfClientWhoIsCreatingACart
+	self validateUser: aClientID withPassword: passwordOfClientWhoIsCreatingACart.
+	
+	^ supermarket newCart.! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 11:19:11' prior: 50870850!
+validateUser: aUserToAuthenticate withPassword: aPassword
+	authenticator authenticateUser: aUserToAuthenticate withPassword: aPassword.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:21:44' prior: 50871183!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:22:08'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:22:08'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'interface - authenticator' stamp: 'BT 12/2/2020 11:22:38'!
+defaultAuthenticator
+	self shouldBeImplemented.! !
+
+!classDefinition: #AuthenticatorSimulatorOfValidClients category: 'TusLibros' stamp: 'BT 12/2/2020 11:27:19'!
+Object subclass: #AuthenticatorSimulatorOfValidClients
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTestObjectsFactory methodsFor: 'interface - authenticator' stamp: 'BT 12/2/2020 11:26:31' prior: 50871260!
+defaultAuthenticator
+	^ AuthenticatorSimulatorOfValidClients new! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:27:41'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:27:41'!
+ERROR!
+!RestInterface class methodsFor: 'instance creation' stamp: 'BT 12/2/2020 11:28:39' prior: 50871176!
+for: aSupermarket withAuthenticator: anAuthenticator 
+	^ self new initializeWith: aSupermarket withAuthenticator: anAuthenticator.! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:28:51'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:28:51'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:29:07'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:29:07'!
+ERROR!
+!AuthenticatorSimulatorOfValidClients methodsFor: 'authenticate' stamp: 'BT 12/2/2020 11:29:36'!
+authenticateUser: aString withPassword: aString2 
+	self shouldBeImplemented.! !
+!AuthenticatorSimulatorOfValidClients methodsFor: 'authenticate' stamp: 'BT 12/2/2020 11:29:56' prior: 50871306!
+authenticateUser: aUserToAunthenticate withPassword: aPassword 
+	! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:30:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:30:12'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:30:12'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'interface - authenticator' stamp: 'BT 12/2/2020 11:30:35'!
+invalidClientAuthenticator
+	self shouldBeImplemented.! !
+
+!classDefinition: #AuthenticatorSimulatorOfInvalidClients category: 'TusLibros' stamp: 'BT 12/2/2020 11:31:05'!
+Object subclass: #AuthenticatorSimulatorOfInvalidClients
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTestObjectsFactory methodsFor: 'interface - authenticator' stamp: 'BT 12/2/2020 11:30:57' prior: 50871329!
+invalidClientAuthenticator
+	^ AuthenticatorSimulatorOfInvalidClients new.! !
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:31:18'!
+ERROR!
+!RestInterface class methodsFor: 'error messages' stamp: 'BT 12/2/2020 11:31:42'!
+invalidClientErrorDescription
+	self shouldBeImplemented.! !
+!RestInterface class methodsFor: 'error messages' stamp: 'BT 12/2/2020 11:32:00' prior: 50871352!
+invalidClientErrorDescription
+	^ 'Invalid client!!'.! !
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:32:09'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:32:36' prior: 50871160!
+test02UserIsAuthenticatedWhenCreatesANewCart
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: (testObjectFactory invalidClientAuthenticator).
+
+	self should: [interface createCartForClient: 'aClientID'  withPassword: 'anInvalidPassword'.]
+	 raise: Error 
+	 withMessageText: RestInterface invalidClientErrorDescription.
+				! !
+!AuthenticatorSimulatorOfInvalidClients methodsFor: 'authenticate' stamp: 'BT 12/2/2020 11:34:14'!
+authenticateUser: aUserToAunthenticate withPassword: aPassword 
+	self error: self class invalidClientErrorDescription.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:34:52' prior: 50871238!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 11:35:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:35:15'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:35:15'!
+FAILURE!
+!AuthenticatorSimulatorOfInvalidClients methodsFor: 'authenticate' stamp: 'BT 12/2/2020 11:39:08' prior: 50871382!
+authenticateUser: aUserToAunthenticate withPassword: aPassword 
+	^ false! !
+!AuthenticatorSimulatorOfValidClients methodsFor: 'authenticate' stamp: 'BT 12/2/2020 11:39:16' prior: 50871313!
+authenticateUser: aUserToAunthenticate withPassword: aPassword 
+	^ true! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 11:42:44' prior: 50871230!
+validateUser: aUserToAuthenticate withPassword: aPassword
+	(authenticator authenticateUser: aUserToAuthenticate withPassword: aPassword) ifFalse: [self error: self class invalidClientErrorDescription].
+	! !
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:43:41'!
+PASSED!
+
+Object subclass: #AuthenticatorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticatorSimulator category: 'TusLibros' stamp: 'BT 12/2/2020 11:44:15'!
+Object subclass: #AuthenticatorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+AuthenticatorSimulator subclass: #AuthenticatorSimulatorOfValidClients
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticatorSimulatorOfValidClients category: 'TusLibros' stamp: 'BT 12/2/2020 11:44:54'!
+AuthenticatorSimulator subclass: #AuthenticatorSimulatorOfValidClients
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+AuthenticatorSimulator subclass: #AuthenticatorSimulatorOfInvalidClients
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticatorSimulatorOfInvalidClients category: 'TusLibros' stamp: 'BT 12/2/2020 11:44:58'!
+AuthenticatorSimulator subclass: #AuthenticatorSimulatorOfInvalidClients
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!AuthenticatorSimulator methodsFor: 'authenticate' stamp: 'BT 12/2/2020 11:47:14'!
+authenticateUser: aUserToAunthenticate withPassword: aPassword 
+	^ self subclassResponsibility.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:53:54' prior: 50871366!
+test02UserIsAuthenticatedWhenCreatesANewCart
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: (testObjectFactory invalidClientAuthenticator).
+
+	self should: [interface createCartForClient: 'aClientID'  withPassword: 'anInvalidPassword'.]
+	 raise: Error 
+	 withMessageText: RestInterface invalidClientErrorDescription.
+				! !
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 11:53:58'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 11:56:06'!
+test03CannotAddABookToAnInexistenceCart
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self should: [ ]
+	raise: Error 
+	withMessageText: ''.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 12:02:37'!
+test03CannotAddABookToAnUnknownCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface addToCart: (testObjectFactory unknownCart) book: (testObjectFactory itemSellByTheStore)]
+	raise: Error 
+	withMessageText: RestInterface UnknownCartErrorMessage.
+				! !
+
+!methodRemoval: RestInterfaceTest #test03CannotAddABookToAnInexistenceCart stamp: 'BT 12/2/2020 12:02:52'!
+test03CannotAddABookToAnInexistenceCart
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self should: [ ]
+	raise: Error 
+	withMessageText: ''.
+				!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:24:43'!
+ERROR!
+!RestInterface class methodsFor: 'error messages' stamp: 'BT 12/2/2020 12:25:10'!
+UnknownCartErrorMessage
+	self shouldBeImplemented.! !
+!RestInterface class methodsFor: 'error messages' stamp: 'BT 12/2/2020 12:25:49' prior: 50871554!
+UnknownCartErrorMessage
+	'cant add items to an unknown cart!!'.! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:26:10'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:26:10'!
+FAILURE!
+!RestInterface class methodsFor: 'error messages' stamp: 'BT 12/2/2020 12:26:29'!
+unknownCartErrorMessage
+	'cant add items to an unknown cart!!'.! !
+
+!methodRemoval: RestInterface class #UnknownCartErrorMessage stamp: 'BT 12/2/2020 12:26:33'!
+UnknownCartErrorMessage
+	'cant add items to an unknown cart!!'.!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 12:26:48' prior: 50871519!
+test03CannotAddABookToAnUnknownCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface addToCart: (testObjectFactory unknownCart) book: (testObjectFactory itemSellByTheStore)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:26:50'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 12:27:57' prior: 50871581!
+test03CannotAddABookToAnUnknownCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface addToCart: (testObjectFactory createCart ) book: (testObjectFactory itemSellByTheStore)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:28:06'!
+FAILURE!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 12:28:59'!
+addToCart: aCart book: aBook
+! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 12:30:38' prior: 50871619!
+addToCart: aCart book: aBook
+	supermarket 
+	
+! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 12:31:00' prior: 50871623!
+addToCart: aCartID book: aBook
+	supermarket 
+	
+! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 12:32:43' prior: 50871628!
+addToCart: aCartID book: aBook
+	self error: self class invalidClientErrorDescription.
+	
+! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:32:51'!
+FAILURE!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 12:33:07' prior: 50871633!
+addToCart: aCartID book: aBook
+	self error: self class unknownCartErrorMessage.
+	
+! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:33:12'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 12:34:17' prior: 50871600!
+test03CannotAddABookToAnUnknownCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface addToCart: (testObjectFactory createCart ) book: (testObjectFactory itemSellByTheStore)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:34:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 12:34:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 12:34:18'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 12:34:18'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 12:34:30'!
+test04AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 12:35:46' prior: 50871680!
+test04AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	interface addToCart: cartID book: (testObjectFactory itemSellByTheStore).
+	
+	self deny: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 12:35:56'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 12:35:56'!
+ERROR!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 12:37:59' prior: 50871642!
+addToCart: aCartID book: aBook
+	supermarket addBook: aBook toCart: 	aCartID.
+	self error: self class unknownCartErrorMessage.
+	
+! !
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 12:38:04'!
+ERROR!
+!Supermarket methodsFor: 'cart' stamp: 'BT 12/2/2020 12:38:37'!
+addBook: aString toCart: aCart 
+	self shouldBeImplemented.! !
+!Supermarket methodsFor: 'cart' stamp: 'BT 12/2/2020 14:21:53' prior: 50871731!
+addBook: aString toCart: aCartID
+	| cart |
+	cart := carts at: aCartID ifAbsent: Error.
+	! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:23:07' prior: 50871721!
+addToCart: aCartID book: aBook
+	supermarket addBook: aBook toCart: 	aCartID.
+	self error: self class unknownCartErrorMessage.
+	
+! !
+!Supermarket methodsFor: 'cart' stamp: 'BT 12/2/2020 14:25:27'!
+addBook: aString toCart: aCartID ifAbsent: errorBlock 
+	| cart |
+	cart := carts at: aCartID ifAbsent: Error.
+	! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'BT 12/2/2020 14:25:27' prior: 50871742!
+addToCart: aCartID book: aBook
+	supermarket addBook: aBook toCart: 	aCartID ifAbsent: ifAbsent.
+	self error: self class unknownCartErrorMessage.
+	
+! !
+
+!methodRemoval: Supermarket #addBook:toCart: stamp: 'BT 12/2/2020 14:25:27'!
+addBook: aString toCart: aCartID
+	| cart |
+	cart := carts at: aCartID ifAbsent: Error.
+	!
+!Supermarket methodsFor: 'cart' stamp: 'BT 12/2/2020 14:25:58' prior: 50871749!
+addBook: aString toCart: aCartID ifAbsent: errorBlock 
+	| cart |
+	cart := carts at: aCartID ifAbsent: errorBlock.
+	! !
+!Supermarket methodsFor: 'cart' stamp: 'BT 12/2/2020 14:26:56' prior: 50871769!
+addBook: aBook toCart: aCartID ifAbsent: errorBlock 
+	| cart |
+	cart := carts at: aCartID ifAbsent: errorBlock.
+	cart add: 1 of: aBook.
+	! !
+!Supermarket methodsFor: 'cart' stamp: 'BT 12/2/2020 14:27:33' prior: 50871776!
+addBook: aBook toCart: aCartID ifAbsent: errorBlock 
+	| cart |
+	cart := carts at: aCartID ifAbsent: errorBlock.
+	cart add: aBook.
+	! !
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:27:53'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:27:53'!
+ERROR!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:29:21' prior: 50871756!
+addToCart: aCartID book: aBook
+	supermarket addBook: aBook toCart: 	aCartID ifAbsent: [RestInterface unknownCartErrorMessage].
+	self error: self class unknownCartErrorMessage.
+	
+! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:29:35'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:29:35'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:29:48'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:29:48'!
+FAILURE!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:31:25' prior: 50871797!
+addToCart: aCartID book: aBook
+	supermarket addBook: aBook toCart: 	aCartID ifAbsent: [self error: self class  unknownCartErrorMessage].
+! !
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:31:58'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:32:11'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:38:46' prior: 50871696!
+test04AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart = interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:39:00'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:39:00'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:40:27' prior: 50871834!
+test04AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:40:54'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:41:57'!
+test05AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:43:20'!
+test05list
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:44:27'!
+test05cannotListItemsOfInvalidCart
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+
+!methodRemoval: RestInterfaceTest #test05list stamp: 'BT 12/2/2020 14:44:30'!
+test05list
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:45:29'!
+test05CannotListItemsOfInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface addToCart: (testObjectFactory createCart ) book: (testObjectFactory itemSellByTheStore)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:46:24'!
+test05CannotListItemsOfAnInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface listCart: (testObjectFactory createCart)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+
+!methodRemoval: RestInterfaceTest #test05AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:46:37'!
+test05AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				!
+
+!methodRemoval: RestInterfaceTest #test05cannotListItemsOfInvalidCart stamp: 'BT 12/2/2020 14:46:41'!
+test05cannotListItemsOfInvalidCart
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				!
+
+!methodRemoval: RestInterfaceTest #test05CannotListItemsOfInvalidCart stamp: 'BT 12/2/2020 14:46:45'!
+test05CannotListItemsOfInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface addToCart: (testObjectFactory createCart ) book: (testObjectFactory itemSellByTheStore)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:46:47'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:46:47'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:46:54'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:46:54'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:47:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:47:23'!
+FAILURE!
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:50:02'!
+listCart: aCartID ifAbsent: blockError  
+	^ supermarket listCartsItemsOf: aCartID. ! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'BT 12/2/2020 14:50:02' prior: 50871991!
+test05CannotListItemsOfAnInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface listCart: (testObjectFactory createCart) ifAbsent: [ self error: self class invalidCartErrorMessage]]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'BT 12/2/2020 14:50:02' prior: 50871864!
+test04AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID ifAbsent: [ self error: self class invalidCartErrorMessage].
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'BT 12/2/2020 14:50:02' prior: 50871389!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID ifAbsent: [ self error: self class invalidCartErrorMessage]) isEmpty.
+				! !
+
+!methodRemoval: RestInterface #listCart: stamp: 'BT 12/2/2020 14:50:02'!
+listCart: aCartID 
+	^ supermarket listCartsItemsOf: aCartID. !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:50:33' prior: 50872086!
+listCart: aCartID ifAbsent: errorBlock  
+	^ supermarket listCartsItemsOf: aCartID. ! !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:50:53' prior: 50872155!
+listCart: aCartID ifAbsent: errorBlock  
+	^ supermarket listCartsItemsOf: aCartID ifAbsent: errorBlock. ! !
+!Supermarket methodsFor: 'interface - interaction' stamp: 'BT 12/2/2020 14:53:04'!
+listCartsItemsOf: aCartID ifAbsent: errorBlock
+	^ carts at: aCartID ifPresent: [:cart | cart listItems ] ifAbsent: errorBlock.! !
+
+!methodRemoval: Supermarket #listCartsItemsOf: stamp: 'BT 12/2/2020 14:53:08'!
+listCartsItemsOf: aCartID 
+	^ (carts at: aCartID) listItems. !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:54:39'!
+listCart: aCartID 
+	^ supermarket listCartsItemsOf: aCartID ifAbsent: [ self error: self class invalidCartIDErrorMessage]. ! !
+
+!methodRemoval: RestInterface #listCart:ifAbsent: stamp: 'BT 12/2/2020 14:55:19'!
+listCart: aCartID ifAbsent: errorBlock  
+	^ supermarket listCartsItemsOf: aCartID ifAbsent: errorBlock. !
+!RestInterface methodsFor: 'api' stamp: 'BT 12/2/2020 14:55:27' prior: 50872178!
+listCart: aCartID 
+	^ supermarket listCartsItemsOf: aCartID ifAbsent: [ self error: self class unknownCartErrorMessage ]. ! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:55:41' prior: 50872092!
+test05CannotListItemsOfAnInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface listCart: (testObjectFactory createCart)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+				! !
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:55:48'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:55:51'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:56:44' prior: 50872109!
+test04AddingABookToACreatedCartWorksCorrectly
+
+	| interface cartID itemToAdd itemsListOfCart |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	itemToAdd := testObjectFactory itemSellByTheStore.
+	interface addToCart: cartID book: itemToAdd. 
+	
+	itemsListOfCart := interface listCart: cartID.
+	
+	self assert: itemsListOfCart size = 1.
+	self assert: (itemsListOfCart occurrencesOf: itemToAdd) = 1.
+				! !
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:56:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 14:56:45'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 14:56:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:56:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:56:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:56:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 14:56:45'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:57:07' prior: 50872134!
+test01newCartsCreatedAreEmpty
+
+	| interface cartID |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	cartID := interface createCartForClient: 'aClientID'  withPassword: 'passwordOfClientWhoIsCreatingACart'.
+	
+	self assert: (interface listCart: cartID) isEmpty.
+				! !
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 14:57:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01newCartsCreatedAreEmpty stamp: 'BT 12/2/2020 14:57:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02UserIsAuthenticatedWhenCreatesANewCart stamp: 'BT 12/2/2020 14:57:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CannotAddABookToAnUnknownCart stamp: 'BT 12/2/2020 14:57:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddingABookToACreatedCartWorksCorrectly stamp: 'BT 12/2/2020 14:57:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CannotListItemsOfAnInvalidCart stamp: 'BT 12/2/2020 14:57:12'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 14:58:21' prior: 50872198!
+test05CannotListItemsOfAnInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface listCart: (testObjectFactory createCart)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+	
+	
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 15:00:23'!
+test06CannotCheckOutAnInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface listCart: (testObjectFactory createCart)]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+	
+	
+				! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'BT 12/2/2020 15:07:37' prior: 50872315!
+test06CannotCheckOutAnInvalidCart
+
+	| interface |
+	interface := RestInterface for: (Supermarket 
+				withCatalog: testObjectFactory defaultCatalog) withAuthenticator: testObjectFactory defaultAuthenticator.
+	
+	self should: [ interface checkout: (testObjectFactory createCart) withCreditCard: (testObjectFactory defaultCardNumber) expiratingOn: (testObjectFactory defaultExpirationDate) for: (testObjectFactory defaultCardOwner) ]
+	raise: Error 
+	withMessageText: RestInterface unknownCartErrorMessage.
+	
+	
+				! !

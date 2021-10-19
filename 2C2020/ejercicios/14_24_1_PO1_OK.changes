@@ -1,0 +1,4869 @@
+
+
+----STARTUP---- (2 November 2020 19:14:04) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+
+----End fileIn of /Users/vpomsztein/Documents/Facu/ISW1/Parcial1/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/2/2020 19:18:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:18:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:18:22'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'VP 11/2/2020 19:18:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'VP 11/2/2020 19:18:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'VP 11/2/2020 19:18:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'VP 11/2/2020 19:18:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:18:22'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:19:15'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:22:32' prior: 50880584!
+balance
+
+	^(transactions select: [ :aTransaction | aTransaction class = Deposit ]; 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])
+	- (transactions select: [ :aTransaction | aTransaction class = Withdraw ]; 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]).! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/2/2020 19:22:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:22:35'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:22:35'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'VP 11/2/2020 19:22:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'VP 11/2/2020 19:22:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'VP 11/2/2020 19:22:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'VP 11/2/2020 19:22:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:22:39'!
+FAILURE!
+
+(transactions select: [ :aTransaction | aTransaction class = Deposit ]; 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])!
+
+(transactions select: [ :aTransaction | aTransaction class = Withdraw ]; 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]).!
+
+aTransaction class!
+
+aTransaction class = Deposit!
+
+aTransaction!
+
+transactions select: [ :aTransaction | aTransaction class = Deposit ]!
+
+(transactions select: [ :aTransaction | aTransaction class = Deposit ]; 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])!
+
+(transactions select: [ :aTransaction | aTransaction class = Withdraw ]; 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])!
+
+((transactions select: [ :aTransaction | aTransaction class = Withdraw ]) 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])!
+
+((transactions select: [ :aTransaction | aTransaction class = Deposit ])
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])
+	- ((transactions select: [ :aTransaction | aTransaction class = Withdraw ]) 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]).!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:26:15' prior: 50880632!
+balance
+
+	^((transactions select: [ :aTransaction | aTransaction class = Deposit ])
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])
+	- ((transactions select: [ :aTransaction | aTransaction class = Withdraw ]) 
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]).! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:26:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:26:17'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:32:59'!
+sumTransactionsOfType: aTransactionType
+
+	^(transactions select: [ :aTransaction | aTransaction class = aTransactionType ])
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:33:36' prior: 50880710!
+balance
+
+	^(self sumTransactionsOfType: Deposit) + self sumTransactionsOfType: Withdraw.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/2/2020 19:33:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:33:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:33:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'VP 11/2/2020 19:33:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'VP 11/2/2020 19:33:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'VP 11/2/2020 19:33:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'VP 11/2/2020 19:33:44'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:33:56' prior: 50880739!
+balance
+
+	^(self sumTransactionsOfType: Deposit) - self sumTransactionsOfType: Withdraw.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/2/2020 19:33:58'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:33:58'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 19:33:58'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'VP 11/2/2020 19:33:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'VP 11/2/2020 19:33:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'VP 11/2/2020 19:33:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'VP 11/2/2020 19:33:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/2/2020 19:34:00'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:34:14' prior: 50880771!
+balance
+
+	^(self sumTransactionsOfType: Deposit) - (self sumTransactionsOfType: Withdraw).! !
+
+	^(self sumTransactionsOfType: Deposit) - (self sumTransactionsOfType: Withdraw).!
+!ReceptiveAccount methodsFor: 'balance -- private' stamp: 'VP 11/2/2020 19:34:28' prior: 50880730!
+sumTransactionsOfType: aTransactionType
+
+	^(transactions select: [ :aTransaction | aTransaction class = aTransactionType ])
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].! !
+!ReceptiveAccount methodsFor: 'balance -- private' stamp: 'VP 11/2/2020 19:34:46' prior: 50880816!
+sumTransactionsOfType: aTransactionType
+
+	^(transactions select: [ :aTransaction | aTransaction class = aTransactionType ])
+				 sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].! !
+!ReceptiveAccount methodsFor: 'balance -- private' stamp: 'VP 11/2/2020 19:34:51' prior: 50880826!
+sumTransactionsOfType: aTransactionType
+
+	^(transactions select: [ :aTransaction | aTransaction class = aTransactionType ])
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].! !
+!Deposit methodsFor: 'value' stamp: 'VP 11/2/2020 19:43:41'!
+valueForBalance
+
+	^ value! !
+
+!methodRemoval: Deposit #valueForBalance stamp: 'VP 11/2/2020 19:44:00'!
+valueForBalance
+
+	^ value!
+
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 19:45:15'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Account category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 19:45:32'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Account subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 19:45:37'!
+Account subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 19:45:44'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRenamed: #Account as: #Accountable stamp: 'VP 11/2/2020 19:46:08'!
+Smalltalk renameClassNamed: #Account as: #Accountable!
+!Accountable methodsFor: 'nil' stamp: 'VP 11/2/2020 19:46:27'!
+balance
+
+	self subclassResponsibility.! !
+!Accountable methodsFor: 'balance' stamp: 'VP 11/2/2020 19:47:01'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility.
+! !
+!Accountable methodsFor: 'testing' stamp: 'VP 11/2/2020 19:47:40'!
+register: aTransaction
+
+	self subclassResponsibility.
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'VP 11/2/2020 19:48:10' prior: 50880580!
+transactions
+
+	^ transactions copy! !
+!Accountable methodsFor: 'transactions' stamp: 'VP 11/2/2020 19:48:29'!
+transactions
+
+	self subclassResponsibility.
+! !
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 19:50:18'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'VP 11/2/2020 19:51:34'!
+test01EmptyPortfolioBalanceIsZero
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 19:51:35'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'VP 11/2/2020 19:51:41' overrides: 50880902!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'balance' stamp: 'VP 11/2/2020 19:51:49' prior: 50880946 overrides: 50880902!
+balance
+	
+	^0.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 19:51:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 19:51:50'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 19:53:52'!
+test02SingleAccountPortfolioBalanceIsAccountBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio add: 
+	
+	self assert: 0 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 19:54:31' prior: 50880961!
+test02SingleAccountPortfolioBalanceIsAccountBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+	
+	self assert: 100 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 19:54:48' prior: 50880971!
+test02SingleAccountPortfolioBalanceIsAccountBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+	
+	self assert: account balance equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 19:54:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 19:54:50'!
+ERROR!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 19:54:50'!
+ERROR!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 19:54:57'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 19:55:31'!
+add: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 19:58:23' prior: 50880807 overrides: 50880902!
+balance
+	^transactions inject: 0 into: [ :acc :aTransaction | aTransaction valueForBalance ].
+
+
+	"^(self sumTransactionsOfType: Deposit) - (self sumTransactionsOfType: Withdraw)."! !
+!Deposit methodsFor: 'value' stamp: 'VP 11/2/2020 19:58:45'!
+valueForBalance
+
+	^ value! !
+!Withdraw methodsFor: 'value' stamp: 'VP 11/2/2020 19:58:52'!
+valueForBalance
+
+	^ value! !
+!Withdraw methodsFor: 'value' stamp: 'VP 11/2/2020 19:58:54' prior: 50881024!
+valueForBalance
+
+	^ -1 * value! !
+!Withdraw methodsFor: 'value' stamp: 'VP 11/2/2020 19:59:11' prior: 50881028!
+valueForBalance
+
+	^ -1 * value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 20:10:26' prior: 50881013 overrides: 50880902!
+balance
+
+	^transactions inject: 0 into: [ :currentBalance :aTransaction | aTransaction operateInBalance: currentBalance ].
+	"| xxx |
+	
+	xxx := 0.
+	
+	transactions do: [ :aTransaction | aTransaction operateInBalance: xxx ].
+	
+	^xxx.
+
+	"
+
+
+	"^(self sumTransactionsOfType: Deposit) - (self sumTransactionsOfType: Withdraw)."! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'VP 11/2/2020 20:10:44' prior: 50881037 overrides: 50880902!
+balance
+
+	^transactions inject: 0 into: [ :currentBalance :aTransaction | aTransaction operateOnBalance: currentBalance ].! !
+!Deposit methodsFor: 'value' stamp: 'VP 11/2/2020 20:11:02'!
+operateOnBalance: balance
+
+	^balance - value.! !
+!Deposit methodsFor: 'operation' stamp: 'VP 11/2/2020 20:11:23' prior: 50881057!
+operateOnBalance: balance
+
+	^balance + value.! !
+!Withdraw methodsFor: 'value' stamp: 'VP 11/2/2020 20:11:30'!
+operateOnBalance: balance
+
+	^balance - value.! !
+
+!methodRemoval: Withdraw #valueForBalance stamp: 'VP 11/2/2020 20:11:48'!
+valueForBalance
+
+	^ -1 * value.!
+
+!methodRemoval: Deposit #valueForBalance stamp: 'VP 11/2/2020 20:11:50'!
+valueForBalance
+
+	^ value!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'VP 11/2/2020 20:11:55'!
+PASSED!
+!AccountTransaction methodsFor: 'value' stamp: 'VP 11/2/2020 20:12:22'!
+operateOnBalance: balance
+
+	^self subclassResponsibility.! !
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:16:06'!
+ERROR!
+
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:16:49'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:17:11'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accounts account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:17:09' prior: 50881007!
+add: aReceptiveAccount 
+	
+	account := aReceptiveAccount.! !
+
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:17:15'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'balance' stamp: 'VP 11/2/2020 20:17:42' prior: 50880951 overrides: 50880902!
+balance
+	
+	^account = nil ifTrue: [^0] ifFalse: [^account balance].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 20:17:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:17:45'!
+PASSED!
+!Portfolio methodsFor: 'balance' stamp: 'VP 11/2/2020 20:30:07' prior: 50881150 overrides: 50880902!
+balance
+	
+	^account = nil ifTrue: [0] ifFalse: [account balance].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 20:30:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:30:08'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:31:24'!
+test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+	
+	self assert: account balance equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:32:37' prior: 50881175!
+test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed
+
+	| portfolio1 portfolio2 account1 account2 |
+	
+	portfolio1 := Portfolio new.
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	
+	portfolio2 := Portfolio new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio2 add: account2.
+	portfolio1 add: account1.
+	portfolio1 add: portfolio2.
+	
+	self assert: account1 balance + account2 balance equals: portfolio1 balance.! !
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 20:32:41'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:33:58' prior: 50881132!
+add: aReceptiveAccount 
+	
+	account := aReceptiveAccount.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:34:00'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:34:00' prior: 50881163 overrides: 50880902!
+balance
+	
+	^accounts = nil ifTrue: [0] ifFalse: [accounts balance].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:34:00' prior: 50881211!
+add: aReceptiveAccount 
+	
+	accounts := aReceptiveAccount.! !
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:34:20' overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.! !
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:34:32' prior: 50881230!
+add: anAccount 
+	
+	accounts := anAccount..! !
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:34:37' prior: 50881239!
+add: anAccount 
+	
+	accounts add: anAccount..! !
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:34:39' prior: 50881243!
+add: anAccount 
+	
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'balance' stamp: 'VP 11/2/2020 20:35:51' prior: 50881224 overrides: 50880902!
+balance
+	
+	^accounts inject: 0 into: [ :currentBalance :anAccount | currentBalance + anAccount balance ].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 20:36:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:36:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 20:36:20'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:36:48'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accountables'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:36:48' prior: 50881247!
+add: anAccount 
+	
+	accountables add: anAccount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:36:48' prior: 50881235 overrides: 16896425!
+initialize
+
+	accountables := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/2/2020 20:36:48' prior: 50881252 overrides: 50880902!
+balance
+	
+	^accountables inject: 0 into: [ :currentBalance :anAccount | currentBalance + anAccount balance ].! !
+!Portfolio methodsFor: 'xxx' stamp: 'VP 11/2/2020 20:37:02' prior: 50881278!
+add: anAccountable 
+	
+	accountables add: anAccountable.! !
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:40:18'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: 'accountWith100'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:40:19'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: 'accountWith100 accountWith50'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:40:20'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: 'accountWith100 accountWith50 portfolioWith50WorthAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'test -- balance' stamp: 'VP 11/2/2020 20:40:16' overrides: 16927572!
+setUp
+	
+	accountWith100 := ReceptiveAccount new.
+	Deposit register: 100 on: accountWith100.
+	
+	accountWith50 := ReceptiveAccount new.
+	Deposit register: 50 on: accountWith50.
+	
+	portfolioWith50WorthAccount := Portfolio new.
+	portfolioWith50WorthAccount add: accountWith50.! !
+!PortfolioTest methodsFor: 'test -- balance' stamp: 'VP 11/2/2020 20:40:40' prior: 50880982!
+test02SingleAccountPortfolioBalanceIsAccountBalance
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	
+	self assert: accountWith100 balance equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'test -- balance' stamp: 'VP 11/2/2020 20:41:16' prior: 50881188!
+test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self assert: accountWith100 balance + accountWith50 balance equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 20:41:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:41:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 20:41:22'!
+PASSED!
+
+!methodRemoval: Accountable #register: stamp: 'VP 11/2/2020 20:42:29'!
+register: aTransaction
+
+	self subclassResponsibility.
+!
+
+----SNAPSHOT----(2 November 2020 20:42:34) CuisUniversity-4384.image priorSource: 17558832!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 20:42:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:42:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 20:42:38'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- balance' stamp: 'VP 11/2/2020 20:45:17'!
+test04PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self assert: accountWith100 balance + accountWith50 balance equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'test -- balance' stamp: 'VP 11/2/2020 20:48:06' prior: 50881391!
+test04PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:48:07'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 20:48:25' overrides: 50880906!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 20:48:39' prior: 50881419 overrides: 50880906!
+hasRegistered: aDeposit 
+	
+	^false.! !
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:48:43'!
+PASSED!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:50:36'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: 'accountWith100 accountWith50 portfolioWith50WorthAccount depositOf100'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'VP 11/2/2020 20:50:37'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: 'accountWith100 accountWith50 portfolioWith50WorthAccount depositOf100 depositOf50'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 20:50:34'!
+test05PortfolioHasASpecificTransactionRegistered
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self assert: (portfolio hasRegistered: depositOf100).
+	self assert: (portfolio hasRegistered: depositOf50).! !
+!PortfolioTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/2/2020 20:50:55' prior: 50881327 overrides: 16927572!
+setUp
+	
+	accountWith100 := ReceptiveAccount new.
+	depositOf100 := Deposit register: 100 on: accountWith100.
+	
+	accountWith50 := ReceptiveAccount new.
+	depositOf50 := Deposit register: 50 on: accountWith50.
+	
+	portfolioWith50WorthAccount := Portfolio new.
+	portfolioWith50WorthAccount add: accountWith50.! !
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:50:59'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:51:06'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 20:58:32' prior: 50881425 overrides: 50880906!
+hasRegistered: aTransaction 
+	
+	^accountables anySatisfy: [ :accountable | accountable hasRegistered: aTransaction ].! !
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:58:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 20:58:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 20:58:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 20:58:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:58:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 20:58:34'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 21:01:24'!
+test06EmptyPortfolioHasZeroTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions isEmpty.! !
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:01:25'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 21:01:35' overrides: 50880920!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 21:01:45' prior: 50881527 overrides: 50880920!
+transactions
+	
+	^OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:01:46'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 21:03:32' prior: 50881403!
+test04PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 21:03:47' prior: 50881563!
+test04PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 21:03:56'!
+test05PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test04PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:03:56'!
+test04PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).!
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 21:04:04'!
+test06PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test05PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:04'!
+test05PortfolioDoesNotHaveASpecificTransactionRegistered
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).!
+!PortfolioTest methodsFor: 'test -- hasRegistered' stamp: 'VP 11/2/2020 21:04:22'!
+test04EmptyPortfolioDoesNotHaveAnyTransaction
+
+	| portfolio transaction |
+	
+	portfolio := Portfolio new.
+	
+	transaction := Deposit for: 2000.
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:04:53'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/2/2020 21:05:06'!
+test07EmptyPortfolioHasZeroTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions isEmpty.! !
+
+!methodRemoval: PortfolioTest #test06EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:05:06'!
+test06EmptyPortfolioHasZeroTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions isEmpty.!
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/2/2020 21:06:36'!
+test08PortfolioHasAllSubAccountablesTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions isEmpty.! !
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/2/2020 21:07:29' prior: 50881903!
+test08PortfolioHasAllSubAccountablesTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self assert: portfolio transactions includes: depositOf100.
+	self assert: portfolio transactions includes: depositOf50.! !
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/2/2020 21:07:56'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 21:08:55' prior: 50881532 overrides: 50880920!
+transactions
+	
+	^accountables collect: [ :anAccountable | anAccountable transactions ].! !
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/2/2020 21:09:02'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/2/2020 21:09:49'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 21:12:42' prior: 50881928 overrides: 50880920!
+transactions
+	
+	^accountables inject:OrderedCollection new into: [ :allTransactions :anAccountable | allTransactions addAll: anAccountable transactions ].! !
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/2/2020 21:12:43'!
+FAILURE!
+
+portfolio transactions!
+
+portfolio transactions!
+
+allTransactions!
+
+anAccountable transactions!
+
+self at: 1!
+
+self transactions at: 0!
+
+self transactions at: 1!
+
+accountables inject:OrderedCollection new into: [ :allTransactions :anAccountable | allTransactions addAll: anAccountable transactions ]!
+
+self at: 0!
+
+self at: 1!
+
+OrderedCollection new!
+
+|coll|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+self addAll: coll!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+
+self addAll: coll.
+self addAll: coll2.!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+
+self addAll: coll.
+self addAll: coll2.!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+self addAll: coll2.
+self addAll: coll.!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+self addAllFirst: coll2.
+self addAllFirst: coll.!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+(self addAll: coll2) addAll: coll.!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+((self addAll: coll2) addAll: coll).!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+self addAll: coll2!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+self addAll: coll2!
+
+|coll coll2|
+coll := OrderedCollection new.
+coll add: 'h'.
+
+coll2 := OrderedCollection new.
+coll2 add: 'o'.
+
+self addAll: coll!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/2/2020 21:23:31' prior: 50881942 overrides: 50880920!
+transactions
+	
+	^accountables inject:OrderedCollection new into: [ :allTransactions :anAccountable | allTransactions addAll: anAccountable transactions. allTransactions ].! !
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/2/2020 21:23:33'!
+PASSED!
+
+----QUIT----(2 November 2020 22:04:59) CuisUniversity-4384.image priorSource: 17591227!
+
+----STARTUP---- (7 November 2020 10:43:54) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/7/2020 10:48:46'!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self assert: portfolio transactions includes: depositOf100.
+	self assert: portfolio transactions includes: depositOf50.! !
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/7/2020 10:50:05' prior: 50882056!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		messageText: Portfolio duplicatedAccountErrorMessage.
+	
+	self assert: portfolio transactions includes: depositOf100.
+	self assert: portfolio transactions includes: depositOf50.! !
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/7/2020 10:53:51' prior: 50882069!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: 100 equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'test -- transactions' stamp: 'VP 11/7/2020 10:54:14' prior: 50882084!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 10:54:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:54:36'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:54:36'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 10:55:47' prior: 50881296!
+add: anAccountable 
+	
+	(accountables includes: anAccountable) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:55:50'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:56:31'!
+ERROR!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 10:56:46' prior: 50882151!
+add: anAccountable 
+	
+	(accountables includes: anAccountable) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 10:56:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:56:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:56:49'!
+ERROR!
+!Portfolio class methodsFor: 'error messages' stamp: 'VP 11/7/2020 10:57:00'!
+duplicatedAccountErrorMessage
+	self shouldBeImplemented.! !
+!Portfolio class methodsFor: 'error messages' stamp: 'VP 11/7/2020 10:57:51' prior: 50882212!
+duplicatedAccountErrorMessage
+	^'Can not add the requested account, as it is already in the portfolio'! !
+!Portfolio class methodsFor: 'error messages' stamp: 'VP 11/7/2020 10:57:57' prior: 50882217!
+duplicatedAccountErrorMessage
+	^'Can not add the requested accountable, as it is already in the portfolio'! !
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:58:00'!
+FAILURE!
+
+self messageText!
+
+self message !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 10:59:13' prior: 50882099!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+
+Portfolio duplicatedAccountErrorMessage!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 10:59:24' prior: 50882236!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:59:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 10:59:31'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:00:21'!
+test10PortfolioCanNotAddItself
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:02:07' prior: 50882334!
+test10PortfolioCanNotAddItself
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: 0 equals: portfolio balance.
+		].! !
+
+!testRun: #PortfolioTest #test10PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:02:09'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:02:49' prior: 50882167!
+add: anAccountable 
+	
+	((anAccountable = self) or: (accountables includes: anAccountable)) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test10PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:02:51'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:03:44'!
+test09PortfolioCanNotAddItself
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: 0 equals: portfolio balance.
+		].! !
+
+!methodRemoval: PortfolioTest #test10PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:03:44'!
+test10PortfolioCanNotAddItself
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: 0 equals: portfolio balance.
+		].!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:03:50'!
+test10PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+
+!methodRemoval: PortfolioTest #test09PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:03:50'!
+test09PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:04:49' prior: 50882437!
+test10PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio add: accountWith50 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: portfolioWith50WorthAccount balance equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:05:00'!
+test11PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio add: accountWith50 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: portfolioWith50WorthAccount balance equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:04:49' prior: 50882468!
+test10PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio add: accountWith50 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: portfolioWith50WorthAccount balance equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:03:50' prior: 50882500!
+test10PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:05:54'!
+test11PortfolioBlocksAddingDuplicatedIndirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio add: accountWith50 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: portfolioWith50WorthAccount balance equals: portfolio balance.
+		].! !
+
+!methodRemoval: PortfolioTest #test11PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:05:54'!
+test11PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio add: accountWith50 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: portfolioWith50WorthAccount balance equals: portfolio balance.
+		].!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:06:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 11:06:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 11:06:12'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:07:17'!
+includes: anAccountable
+
+	^ accountables includes: anAccountable! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:07:17' prior: 50882364!
+add: anAccountable 
+	
+	((anAccountable = self) or: (self includes: anAccountable)) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:10:02' prior: 50882607!
+includes: anAccountable
+
+	^(accountables includes: anAccountable) 
+		or: [ accountables anySatisfy: [ :childAccountable | childAccountable includes: anAccountable] ].! !
+!ReceptiveAccount methodsFor: 'balance -- private' stamp: 'VP 11/7/2020 11:11:11'!
+includes: anAccountable
+
+	^false.! !
+!Accountable methodsFor: 'testing' stamp: 'VP 11/7/2020 11:11:47'!
+includes: anAccountable
+
+	self subclassResponsibility.
+! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 11:12:01'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:24:56'!
+test12PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolio1.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: (portfolio1 includes: portfolio2).
+			self deny: (portfolio2 includes: portfolio1).
+		].! !
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:24:58'!
+FAILURE!
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:26:06' prior: 50882621 overrides: 50882633!
+includes: anAccountable
+
+	^(accountables includes: anAccountable) 
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = self or: [childAccountable includes: anAccountable]] 
+		].! !
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:26:08'!
+FAILURE!
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:27:27' prior: 50882706 overrides: 50882633!
+includes: anAccountable
+
+	^(accountables includes: anAccountable) 
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable includes: anAccountable]
+		] or: [ 
+			anAccountable includes: self.
+		].! !
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:27:37'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:27:57'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:28:45' prior: 50882612!
+add: anAccountable 
+	
+	((anAccountable = self) or: [self includes: anAccountable]) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:28:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:28:47'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:30:11' prior: 50882678!
+test12PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolio1.
+	
+	self should: [ self halt. portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: (portfolio1 includes: portfolio2).
+			self deny: (portfolio2 includes: portfolio1).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:30:20' prior: 50882754!
+test12PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolio1.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self assert: (portfolio1 includes: portfolio2).
+			self deny: (portfolio2 includes: portfolio1).
+		].! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:30:28' prior: 50882738!
+add: anAccountable 
+	self halt.
+	((anAccountable = self) or: [self includes: anAccountable]) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+anAccountable = self!
+
+----SNAPSHOT----(7 November 2020 11:35:11) CuisUniversity-4384.image priorSource: 17612754!
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:36:42'!
+includes: anAccountable xxxxx: yyyyy
+
+	^self = yyyyy
+		or: [(accountables includes: anAccountable)]
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable includes: anAccountable]
+		] or: [ 
+			anAccountable includes: self xxxxx: yyyyy.
+		].! !
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:37:13' prior: 50882720 overrides: 50882633!
+includes: anAccountable
+
+	^self includes: anAccountable xxxxx: nil.! !
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:38:10' prior: 50882814!
+includes: anAccountable xxxxx: yyyyy
+
+	^[(accountables includes: anAccountable)]
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = yyyyy or: [childAccountable includes: anAccountable]]
+		] or: [ 
+			anAccountable includes: self xxxxx: yyyyy.
+		].! !
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:38:13' prior: 50882826 overrides: 50882633!
+includes: anAccountable
+
+	^self includes: anAccountable xxxxx: self.! !
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:38:43' prior: 50882831!
+includes: anAccountable xxxxx: yyyyy
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = yyyyy or: [childAccountable includes: anAccountable]]
+		] or: [ 
+			anAccountable includes: self xxxxx: yyyyy.
+		].! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'VP 11/7/2020 11:39:40'!
+includes: anAccountable xxxxx: yyyyy
+
+	^false.! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'VP 11/7/2020 11:40:04' prior: 50882629 overrides: 50882633!
+includes: anAccountable
+
+	^self includes: anAccountable xxxxx: self.! !
+!Accountable methodsFor: 'testing' stamp: 'VP 11/7/2020 11:40:19'!
+includes: anAccountable xxxxx: yyyyy
+
+	self subclassResponsibility.! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 11:41:43' prior: 50882848 overrides: 50882869!
+includes: anAccountable xxxxx: yyyyy
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = yyyyy or: [childAccountable includes: anAccountable xxxxx: yyyyy]]
+		] or: [ 
+			anAccountable includes: self xxxxx: yyyyy.
+		].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 11:43:18' prior: 50882875 overrides: 50882869!
+includes: anAccountable xxxxx: yyyyy
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = yyyyy or: [childAccountable includes: anAccountable]]
+		] or: [ 
+			anAccountable includes: self xxxxx: yyyyy.
+		].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 11:46:35' prior: 50882888 overrides: 50882869!
+includes: anAccountable xxxxx: yyyyy
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = yyyyy or: [childAccountable includes: anAccountable]]
+		] or: [ 
+			anAccountable = yyyyy or: [anAccountable includes: self xxxxx: yyyyy].
+		].! !
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:46:37'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:46:54'!
+ERROR!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 11:47:33' prior: 50882843 overrides: 50882633!
+includes: anAccountable
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable includes: anAccountable]
+		].! !
+
+!methodRemoval: Portfolio #includes:xxxxx: stamp: 'VP 11/7/2020 11:47:37'!
+includes: anAccountable xxxxx: yyyyy
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable = yyyyy or: [childAccountable includes: anAccountable]]
+		] or: [ 
+			anAccountable = yyyyy or: [anAccountable includes: self xxxxx: yyyyy].
+		].!
+
+!methodRemoval: ReceptiveAccount #includes:xxxxx: stamp: 'VP 11/7/2020 11:47:54'!
+includes: anAccountable xxxxx: yyyyy
+
+	^false.!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'VP 11/7/2020 11:47:58' prior: 50882864 overrides: 50882633!
+includes: anAccountable
+
+	^false.! !
+
+!methodRemoval: Accountable #includes:xxxxx: stamp: 'VP 11/7/2020 11:48:07'!
+includes: anAccountable xxxxx: yyyyy
+
+	self subclassResponsibility.!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:48:22' prior: 50882802!
+add: anAccountable
+
+	((anAccountable = self) or: [self includes: anAccountable]) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 11:48:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:48:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:48:24'!
+FAILURE!
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 11:51:14' prior: 50882922 overrides: 50882633!
+includes: anAccountable
+
+	^(accountables includes: anAccountable)
+		or: [ accountables anySatisfy: [ :childAccountable | 
+			childAccountable includes: anAccountable]
+		].! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:54:00' prior: 50882956!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]) 
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 11:54:06' prior: 50883022!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 11:54:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:54:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:54:08'!
+FAILURE!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 11:54:28' prior: 50882778!
+test12PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolio1.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+			self assert: (portfolio2 includes: portfolio1).
+		].! !
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:54:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 11:54:31'!
+PASSED!
+
+----SNAPSHOT----(7 November 2020 11:55:05) CuisUniversity-4384.image priorSource: 17637146!
+
+----QUIT----(7 November 2020 11:55:25) CuisUniversity-4384.image priorSource: 17648335!
+
+----STARTUP---- (7 November 2020 15:51:49) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 15:53:57'!
+test13PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: accountWith100.
+	portfolio2 := Portfolio new.
+	portfolio2 add: accountWith100.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].! !
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 15:54:01'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 15:59:31' prior: 50883032!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [(self sharedAccountablesWith: anAccountable) isNotEmpty])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 15:59:41' prior: 50883198!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [(self sharedAccountablesWith: anAccountable) isEmpty not])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 15:59:43'!
+FAILURE!
+
+OrderedCollection new intersection: OrderedCollection new!
+!Portfolio methodsFor: 'testing' stamp: 'VP 11/7/2020 16:01:54'!
+sharedAccountablesWith: anAccountable
+
+	^self allAccountables intersection: anAccountable allAccountables.! !
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:02:48'!
+allAccountables
+
+	! !
+
+!methodRemoval: ReceptiveAccount #sumTransactionsOfType: stamp: 'VP 11/7/2020 16:03:49'!
+sumTransactionsOfType: aTransactionType
+
+	^(transactions select: [ :aTransaction | aTransaction class = aTransactionType ])
+				sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].!
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:05:22' prior: 50883233!
+allAccountables
+
+	^accountables inject: OrderedCollection new into: [ :accumulatedAccountables :anAccountable | 
+		accumulatedAccountables addAll: accountables.
+		accumulatedAccountables.
+	 ]! !
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:06:41' prior: 50883245!
+allAccountables
+
+	^accountables inject: OrderedCollection new into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables add: anAccountable.
+		accumulatedAccountables addAll: anAccountable allAccountables.
+		accumulatedAccountables.
+	 ]! !
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:06:42' prior: 50883254!
+allAccountables
+
+	^accountables inject: OrderedCollection new into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables add: anAccountable.
+		accumulatedAccountables addAll: anAccountable allAccountables.
+		accumulatedAccountables.
+	 ].! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'VP 11/7/2020 16:07:19'!
+allAccountables
+
+	^OrderedCollection with: self.! !
+!Accountable methodsFor: 'testing' stamp: 'VP 11/7/2020 16:07:47'!
+allAccountables
+
+	self subclassResponsibility.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:09:00'!
+hasSharedAccountablesWith: anAccountable
+
+	^ (self sharedAccountablesWith: anAccountable) isEmpty not! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:09:00' prior: 50883210!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:09:06' prior: 50883284!
+hasSharedAccountablesWith: anAccountable
+
+	^(self sharedAccountablesWith: anAccountable) isEmpty not! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:09:13'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:09:45'!
+test13PortfolioBlocksAddingAccountableWithSharedAccount
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: accountWith100.
+	portfolio2 := Portfolio new.
+	portfolio2 add: accountWith100.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].! !
+
+!methodRemoval: PortfolioTest #test13PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:09:48'!
+test13PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: accountWith100.
+	portfolio2 := Portfolio new.
+	portfolio2 add: accountWith100.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:09:57' prior: 50883090!
+test12PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolio1.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+			self assert: (portfolio2 includes: portfolio1).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:10:33'!
+test14PortfolioBlocksAddingAccountableWithSharedAccount
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: portfolioWith50WorthAccount.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].! !
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:10:34'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:10:41' prior: 50883420!
+test14PortfolioBlocksAddingAccountableWithSharedAccount
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: accountWith100.
+	portfolio2 := Portfolio new.
+	portfolio2 add: accountWith100.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:12:10' prior: 50883500!
+test14PortfolioBlocksAddingAccountableWithSharedAccount
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio1 add: portfolio2.
+	
+	self should: [ portfolio2 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:13:02'!
+test14PortfolioBlocksAddingAccountableDirectlyReferencingParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio1 add: portfolio2.
+	
+	self should: [ portfolio2 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].! !
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableDirectlyReferencingParent stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableDirectlyReferencingParent stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:13:10'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:14:08' prior: 50883290!
+add: anAccountable
+
+	self halt.
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!methodRemoval: PortfolioTest #test14PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:14:26'!
+test14PortfolioBlocksAddingAccountableWithSharedAccount
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio1 add: portfolio2.
+	
+	self should: [ portfolio2 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:16:39' prior: 50883546!
+test14PortfolioBlocksAddingAccountableDirectlyReferencingParent
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio1 add: portfolio2.
+	
+	self should: [ portfolio2 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:16:53' prior: 50883667!
+test14PortfolioBlocksAddingAccountableDirectlyReferencingParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio1 add: portfolio2.
+	
+	self should: [ portfolio2 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:17:41' prior: 50883685!
+test14PortfolioBlocksAddingAccountableDirectlyReferencingParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+	
+	self should: [ portfolio3 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].! !
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableDirectlyReferencingParent stamp: 'VP 11/7/2020 16:17:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableDirectlyReferencingParent stamp: 'VP 11/7/2020 16:17:55'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:20:11'!
+test14PortfolioBlocksAddingAccountableAlreadyInParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	
+	self should: [ portfolio2 add: accountWith100. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].! !
+
+!methodRemoval: PortfolioTest #test14PortfolioBlocksAddingAccountableDirectlyReferencingParent stamp: 'VP 11/7/2020 16:20:14'!
+test14PortfolioBlocksAddingAccountableDirectlyReferencingParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+	
+	self should: [ portfolio3 add: portfolio1. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: portfolio1).
+			self assert: (portfolio1 includes: portfolio2).
+		].!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:21:10' prior: 50883743!
+test14PortfolioBlocksAddingAccountableAlreadyInParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	
+	self should: [ portfolio2 add: accountWith100. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:21:22' prior: 50883630!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:21:27'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:25:04' prior: 50883822!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable]
+		or: [self rootAccountables noneSatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/7/2020 16:26:18'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accountables parentAccountables'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:26:14'!
+rootAccountables
+
+	^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'initialization' stamp: 'VP 11/7/2020 16:27:03' prior: 50881284 overrides: 16896425!
+initialize
+
+	accountables := OrderedCollection new.
+	parentAccountables := OrderedCollection new.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:27:24' prior: 50883838!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable]
+		or: [self rootAccountables noneSatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:29:46'!
+addedTo: anAccountable
+
+	parentAccountables add: anAccountable.! !
+
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accountables'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'VP 11/7/2020 16:31:04'!
+Accountable subclass: #Portfolio
+	instanceVariableNames: 'accountables'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'VP 11/7/2020 16:31:11' prior: 50883872 overrides: 16896425!
+initialize
+
+	accountables := OrderedCollection new.! !
+
+!classDefinition: #Accountable category: 'Portfolio-Ejercicio' stamp: 'VP 11/7/2020 16:31:17'!
+Object subclass: #Accountable
+	instanceVariableNames: 'parentAccountables'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Accountable methodsFor: 'xxxx' stamp: 'VP 11/7/2020 16:31:15'!
+rootAccountables
+
+	^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	 ].! !
+!Accountable methodsFor: 'xxxx' stamp: 'VP 11/7/2020 16:31:38' overrides: 16896425!
+initialize
+
+	parentAccountables := OrderedCollection new.! !
+
+!methodRemoval: Portfolio #rootAccountables stamp: 'VP 11/7/2020 16:31:51'!
+rootAccountables
+
+	^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	 ].!
+
+!methodRemoval: Portfolio #addedTo: stamp: 'VP 11/7/2020 16:31:59'!
+addedTo: anAccountable
+
+	parentAccountables add: anAccountable.!
+!Accountable methodsFor: 'xxxx' stamp: 'VP 11/7/2020 16:32:05'!
+addedTo: anAccountable
+
+	parentAccountables add: anAccountable.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:33:23'!
+noRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables noneSatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:33:23' prior: 50883878!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable]
+		or: [self noRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'initialization' stamp: 'VP 11/7/2020 16:34:02' prior: 50883912 overrides: 50883934!
+initialize
+
+	super initialize.
+	accountables := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'VP 11/7/2020 16:34:08' prior: 50880570 overrides: 50883934!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.! !
+
+self rootAccountables!
+
+self rootAccountables noneSatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:35:45' prior: 50883957!
+noRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:35:57'!
+anyRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 16:35:57' prior: 50883965!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!methodRemoval: Portfolio #noRootAccountableIncludes: stamp: 'VP 11/7/2020 16:35:57'!
+noRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:36:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:36:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:36:06'!
+FAILURE!
+
+self rootAccountables!
+
+self!
+
+self rootAccountables!
+
+parentAccountables!
+!Accountable methodsFor: 'xxxx' stamp: 'VP 11/7/2020 16:38:33' prior: 50883924!
+rootAccountables
+
+	| rootAccountables |
+	rootAccountables := parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	 ].
+	rootAccountables isEmpty ifTrue: [ rootAccountables add: self ].
+	^rootAccountables.! !
+!Accountable methodsFor: 'xxxx' stamp: 'VP 11/7/2020 16:38:40' prior: 50884089!
+rootAccountables
+
+	| rootAccountables |
+	rootAccountables := parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	 ].
+
+	rootAccountables isEmpty ifTrue: [ rootAccountables add: self ].
+	
+	^rootAccountables.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:39:07'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:40:45' prior: 50884010!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		"or: [anAccountable includes: self]"
+		or: [self hasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:40:48'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:40:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:40:48'!
+FAILURE!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:41:00' prior: 50884169!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self hasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:42:49'!
+test15PortfolioBlocksAddingAccountableAlreadyInParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.	
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	portfolio2 add: portfolio3.
+	
+	self should: [ portfolio3 add: accountWith100. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:42:52'!
+PASSED!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:43:06' prior: 50884253!
+test15PortfolioBlocksAddingAccountableAlreadyInParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.	
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	portfolio3 add: accountWith100.
+	
+	self should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:43:07'!
+FAILURE!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:44:19'!
+test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.	
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	portfolio3 add: accountWith100.
+	
+	self should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+
+!methodRemoval: PortfolioTest #test15PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:44:21'!
+test15PortfolioBlocksAddingAccountableAlreadyInParent
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.	
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	portfolio3 add: accountWith100.
+	
+	self should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].!
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:44:25' prior: 50883795!
+test14PortfolioBlocksAddingAccountableAlreadyInParent
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	
+	self should: [ portfolio2 add: accountWith100. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 16:44:28' prior: 50883356!
+test13PortfolioBlocksAddingAccountableWithSharedAccount
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: accountWith100.
+	portfolio2 := Portfolio new.
+	portfolio2 add: accountWith100.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:45:12' prior: 50884239!
+add: anAccountable
+
+	((anAccountable = self) 
+		or: [self includes: anAccountable]
+		or: [anAccountable includes: self]
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:46:02'!
+anyRootHasSharedAccountablesWith: anAccountable
+
+	^self rootAccountables anySatisfy: [ :aRootAccountable | 
+		(aRootAccountable sharedAccountablesWith: anAccountable) isEmpty not
+	].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 16:46:26'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:47:17' prior: 50884470!
+add: anAccountable
+
+	((anAccountable = self)
+		or: [anAccountable includes: self]
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:47:25' prior: 50884549!
+add: anAccountable
+
+	((anAccountable = self) 
+		"or: [self includes: anAccountable]"
+		or: [anAccountable includes: self]
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 16:47:27'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:48:20' prior: 50884562!
+add: anAccountable
+
+	((anAccountable = self) 
+		"or: [self includes: anAccountable]"
+		"or: [anAccountable includes: self]"
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 16:48:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:50:51'!
+PASSED!
+
+self anyRootHasSharedAccountablesWith: anAccountable!
+
+self anyRootAccountableIncludes: anAccountable!
+
+anAccountable = self!
+
+self anyRootHasSharedAccountablesWith: anAccountable!
+
+self anyRootHasSharedAccountablesWith: anAccountable!
+
+self anyRootHasSharedAccountablesWith: anAccountable!
+
+self rootAccountables!
+
+aRootAccountable sharedAccountablesWith: anAccountable!
+
+self allAccountables!
+
+anAccountable allAccountables!
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:56:53' prior: 50883265 overrides: 50883280!
+allAccountables
+
+	^accountables inject: (OrderedCollection with: self) into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables add: anAccountable.
+		accumulatedAccountables addAll: anAccountable allAccountables.
+		accumulatedAccountables.
+	 ].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 16:56:57'!
+PASSED!
+!Portfolio methodsFor: 'xxxxx' stamp: 'VP 11/7/2020 16:57:29' prior: 50884721 overrides: 50883280!
+allAccountables
+
+	^accountables inject: (OrderedCollection with: self) into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: anAccountable allAccountables.
+		accumulatedAccountables.
+	 ].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 16:57:33'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:59:15' prior: 50884002!
+anyRootAccountableIncludes: anAccountable
+
+self halt.
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:59:38' prior: 50884855!
+anyRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:59:46' prior: 50884633!
+add: anAccountable
+
+	((anAccountable = self)
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:00:01' prior: 50884871!
+add: anAccountable
+
+	((true)
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:00:22' prior: 50884883!
+add: anAccountable
+
+	((false)
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:00:25'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:00:40' prior: 50884895!
+add: anAccountable
+
+	((anAccountable = self)
+		or: [self anyRootHasSharedAccountablesWith: anAccountable]
+		or: [self anyRootAccountableIncludes: anAccountable])
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:02:40' prior: 50884963!
+add: anAccountable
+
+	((anAccountable = self)
+		or: [self anyRootHasSharedAccountablesWith: anAccountable])
+		"or: [self anyRootAccountableIncludes: anAccountable])"
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:02:42'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:11:21' prior: 50884975!
+add: anAccountable
+
+	((false)
+		or: [self anyRootHasSharedAccountablesWith: anAccountable])
+		"or: [self anyRootAccountableIncludes: anAccountable])"
+	ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:11:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:11:23'!
+PASSED!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:11:43' prior: 50885043!
+add: anAccountable
+
+	(self anyRootHasSharedAccountablesWith: anAccountable) ifTrue: [ self error: self class duplicatedAccountErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!Portfolio class methodsFor: 'error messages' stamp: 'VP 11/7/2020 17:11:59'!
+duplicatedAccountableErrorMessage
+	^'Can not add the requested accountable, as it is already in the portfolio'! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50884373!
+test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables
+
+	" Caso1: Te agregan a alguien que te apunta a vos / tiene repetida una cuenta que ya ten�s
+	  Caso2: A alguien a quien ya apunt�s le agregan una referencia a vos / una cuenta que ya ten�s "
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.	
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	portfolio3 add: accountWith100.
+	
+	self should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50885111!
+add: anAccountable
+
+	(self anyRootHasSharedAccountablesWith: anAccountable) ifTrue: [ self error: self class duplicatedAccountableErrorMessage ].
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50882531!
+test11PortfolioBlocksAddingDuplicatedIndirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioWith50WorthAccount.
+	
+	self should: [ portfolio add: accountWith50 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self assert: portfolioWith50WorthAccount balance equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50884453!
+test13PortfolioBlocksAddingAccountableWithSharedAccount
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio1 add: accountWith100.
+	portfolio2 := Portfolio new.
+	portfolio2 add: accountWith100.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+		].! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50883403!
+test12PortfolioBlocksAddingAccountableDirectlyReferencingIt
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio2 add: portfolio1.
+	
+	self should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self deny: (portfolio1 includes: portfolio2).
+			self assert: (portfolio2 includes: portfolio1).
+		].! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50884432!
+test14PortfolioBlocksAddingAccountableAlreadyInParent
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	
+	self should: [ portfolio2 add: accountWith100. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50882412!
+test09PortfolioCanNotAddItself
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self should: [ portfolio add: portfolio ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self assert: 0 equals: portfolio balance.
+		].! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:11:59' prior: 50882516!
+test10PortfolioBlocksAddingDuplicatedDirectAccount
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	portfolio add: accountWith100.
+	
+	self should: [ portfolio add: accountWith100 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self assert: accountWith100 balance equals: portfolio balance.
+		].! !
+
+!methodRemoval: Portfolio class #duplicatedAccountErrorMessage stamp: 'VP 11/7/2020 17:11:59'!
+duplicatedAccountErrorMessage
+	^'Can not add the requested accountable, as it is already in the portfolio'!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:13:18'!
+verifyNoSharedAccountablesInHierarchyWith: anAccountable
+
+	^ (self anyRootHasSharedAccountablesWith: anAccountable) ifTrue: [ self error: self class duplicatedAccountableErrorMessage ]! !
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 17:13:18' prior: 50885157!
+add: anAccountable
+
+	self verifyNoSharedAccountablesInHierarchyWith: anAccountable.
+	accountables add: anAccountable.
+	anAccountable addedTo: self.! !
+
+----SNAPSHOT----(7 November 2020 17:13:34) CuisUniversity-4384.image priorSource: 17648428!
+
+!methodRemoval: Portfolio #anyRootAccountableIncludes: stamp: 'VP 11/7/2020 17:14:04'!
+anyRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]!
+!Portfolio methodsFor: 'operation' stamp: 'VP 11/7/2020 16:59:38'!
+anyRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]! !
+
+!methodRemoval: Portfolio #anyRootAccountableIncludes: stamp: 'VP 11/7/2020 17:15:21'!
+anyRootAccountableIncludes: anAccountable
+
+	^ self rootAccountables anySatisfy: [ :aRootAccountable | aRootAccountable includes: anAccountable ]!
+
+!methodRemoval: Portfolio #hasSharedAccountablesWith: stamp: 'VP 11/7/2020 17:15:30'!
+hasSharedAccountablesWith: anAccountable
+
+	^(self sharedAccountablesWith: anAccountable) isEmpty not!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:19:29'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/7/2020 17:20:34' prior: 50882008 overrides: 50880920!
+transactions
+	
+	^accountables inject:OrderedCollection new into: [ :allTransactions :anAccountable | 
+		allTransactions addAll: anAccountable transactions. 
+		allTransactions 
+	].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:25:11'!
+collectAccountablesByResultsOfClosure: aTransformation in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (aTransformation value: anAccountable allAccountables).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:25:46' prior: 50884789 overrides: 50883280!
+allAccountables
+
+	^self collectAccountablesByResultsOfClosure: [:anAccountable | anAccountable allAccountables] 
+		in: (OrderedCollection with: self).! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:25:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:25:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:25:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:25:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:25:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:25:49'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:25:49'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:25:49'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:25:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:25:53'!
+ERROR!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:26:30' prior: 50885389!
+collectAccountablesByResultsOfClosure: aTransformation in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (aTransformation value: anAccountable).
+		accumulatedAccountables.
+	 ].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:26:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:26:36'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/7/2020 17:27:26' prior: 50885380 overrides: 50880920!
+transactions
+	
+	^self collectAccountablesByResultsOfClosure: [:anAccountable | 
+		anAccountable transactions 
+	] in: OrderedCollection new.! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:27:38' prior: 50885402 overrides: 50883280!
+allAccountables
+
+	^self collectAccountablesByResultsOfClosure: [:anAccountable |
+		anAccountable allAccountables
+	] in: (OrderedCollection with: self).! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:27:40'!
+PASSED!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:28:12' prior: 50885471!
+collectAccountablesByResultsOfClosure: aClosure in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (aClosure value: anAccountable).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:28:55'!
+collectAccountablesByMessage: aClosure in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (aClosure value: anAccountable).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:28:55' prior: 50885595 overrides: 50880920!
+transactions
+	
+	^self collectAccountablesByMessage: [:anAccountable | 
+		anAccountable transactions 
+	] in: OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:28:55' prior: 50885603 overrides: 50883280!
+allAccountables
+
+	^self collectAccountablesByMessage: [:anAccountable |
+		anAccountable allAccountables
+	] in: (OrderedCollection with: self).! !
+
+!methodRemoval: Portfolio #collectAccountablesByResultsOfClosure:in: stamp: 'VP 11/7/2020 17:28:55'!
+collectAccountablesByResultsOfClosure: aClosure in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (aClosure value: anAccountable).
+		accumulatedAccountables.
+	 ].!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:29:10' prior: 50885678!
+collectAccountablesByMessage: aMessage in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (aMessage value: anAccountable).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:29:21' prior: 50885717!
+collectAccountablesByMessage: aMessage in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (anAccountable perform: aMessage).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:29:24' prior: 50885728!
+collectAccountablesByMessage: aMessage in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (anAccountable perform: aMessage).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:29:36' prior: 50885698 overrides: 50883280!
+allAccountables
+
+	^self collectAccountablesByMessage: #allAccountables in: (OrderedCollection with: self).! !
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/7/2020 17:29:55' prior: 50885690 overrides: 50880920!
+transactions
+	
+	^self collectAccountablesByMessage: #transactions in: OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:29:57'!
+PASSED!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:31:01'!
+collectAccountablesPerformingSelector: aMessage in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (anAccountable perform: aMessage).
+		accumulatedAccountables.
+	 ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:31:01' prior: 50885758 overrides: 50880920!
+transactions
+	
+	^self collectAccountablesPerformingSelector: #transactions in: OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'VP 11/7/2020 17:31:01' prior: 50885751 overrides: 50883280!
+allAccountables
+
+	^self collectAccountablesPerformingSelector: #allAccountables in: (OrderedCollection with: self).! !
+
+!methodRemoval: Portfolio #collectAccountablesByMessage:in: stamp: 'VP 11/7/2020 17:31:01'!
+collectAccountablesByMessage: aMessage in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (anAccountable perform: aMessage).
+		accumulatedAccountables.
+	 ].!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:31:05' prior: 50885820!
+collectAccountablesPerformingSelector: aSelector in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (anAccountable perform: aSelector).
+		accumulatedAccountables.
+	 ].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:31:13'!
+PASSED!
+!Portfolio methodsFor: 'operation -- private' stamp: 'VP 11/7/2020 17:31:45' prior: 50885275!
+verifyNoSharedAccountablesInHierarchyWith: anAccountable
+
+	(self anyRootHasSharedAccountablesWith: anAccountable) ifTrue: [ self error: self class duplicatedAccountableErrorMessage ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:31:47'!
+PASSED!
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:33:58' prior: 50884103!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	
+	^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	 ].! !
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:34:05' prior: 50885989!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	
+	^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	].! !
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:34:19' prior: 50886002!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	].! !
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:37:15' prior: 50886015!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	
+	^parentAccountables inject:  OrderedCollection new addingAll: [ :aParentAccountable |
+		aParentAccountable rootAccountables.
+	].
+	"^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	]."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:37:17'!
+PASSED!
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:37:29' prior: 50886028!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	
+	^parentAccountables inject: OrderedCollection new addingAll: [ :aParentAccountable |
+		aParentAccountable rootAccountables.
+	].
+	"^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	]."! !
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:37:39' prior: 50886101!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	^parentAccountables inject: OrderedCollection new addingAll: [ :aParentAccountable |
+		aParentAccountable rootAccountables.
+	].
+	"^parentAccountables inject: OrderedCollection new into: [ :accumulatedAccountables :aParentAccountable |
+		accumulatedAccountables addAll: aParentAccountable rootAccountables.
+		accumulatedAccountables.
+	]."! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:38:28' prior: 50885839 overrides: 50883280!
+allAccountables
+
+	^accountables inject: (OrderedCollection with: self) into: [ :anAccountable |
+		anAccountable allAccountables
+	 ].
+
+	"^self collectAccountablesPerformingSelector: #allAccountables in: (OrderedCollection with: self)."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:38:31'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:38:31'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:38:31'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:38:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:38:33'!
+ERROR!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:38:48' prior: 50886135 overrides: 50883280!
+allAccountables
+
+	^accountables inject: (OrderedCollection with: self) addingAll: [ :anAccountable |
+		anAccountable allAccountables
+	 ].
+
+	"^self collectAccountablesPerformingSelector: #allAccountables in: (OrderedCollection with: self)."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:38:50'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/7/2020 17:39:30' prior: 50885832 overrides: 50880920!
+transactions
+	
+	^accountables inject: OrderedCollection new addingAll: [ :anAccountable |
+		anAccountable transactions
+	].
+	"^self collectAccountablesPerformingSelector: #transactions in: OrderedCollection new."! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:39:32'!
+PASSED!
+
+!methodRemoval: Portfolio #collectAccountablesPerformingSelector:in: stamp: 'VP 11/7/2020 17:39:40'!
+collectAccountablesPerformingSelector: aSelector in: aCollection
+
+	^accountables inject: aCollection into: [ :accumulatedAccountables :anAccountable |
+		accumulatedAccountables addAll: (anAccountable perform: aSelector).
+		accumulatedAccountables.
+	 ].!
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:39:45' prior: 50886207 overrides: 50883280!
+allAccountables
+
+	^accountables inject: (OrderedCollection with: self) addingAll: [ :anAccountable |
+		anAccountable allAccountables
+	 ].! !
+!Portfolio methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:39:49' prior: 50886352 overrides: 50883280!
+allAccountables
+
+	^accountables inject: (OrderedCollection with: self) addingAll: [ :anAccountable |
+		anAccountable allAccountables
+	].! !
+!Portfolio methodsFor: 'transactions' stamp: 'VP 11/7/2020 17:39:55' prior: 50886274 overrides: 50880920!
+transactions
+	
+	^accountables inject: OrderedCollection new addingAll: [ :anAccountable |
+		anAccountable transactions
+	].! !
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:40:05' prior: 50886118!
+rootAccountables
+
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	^parentAccountables inject: OrderedCollection new addingAll: [ :aParentAccountable |
+		aParentAccountable rootAccountables.
+	].! !
+!Accountable methodsFor: 'testing -- private' stamp: 'VP 11/7/2020 17:41:39' prior: 50886375!
+rootAccountables
+
+	"No nos pareci� un if que valiera la pena evitar; no es una situaci�n en la que buscar agregar nuevos comportamientos
+	 a futuro vaya a obligarnos a mantener este c�digo (salvo casos muy particulares, pero a priori no tendr�a sentido crear
+	 una nueva abstracci�n."
+	parentAccountables isEmpty ifTrue: [ ^OrderedCollection with: self ].
+	^parentAccountables inject: OrderedCollection new addingAll: [ :aParentAccountable |
+		aParentAccountable rootAccountables.
+	].! !
+!PortfolioTest methodsFor: 'test -- add' stamp: 'VP 11/7/2020 17:42:35' prior: 50885127!
+test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.	
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: accountWith100.
+	portfolio3 add: accountWith100.
+	
+	self should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Portfolio duplicatedAccountableErrorMessage equals: anError messageText.
+			self deny: (portfolio2 includes: accountWith100).
+			self assert: (portfolio1 includes: portfolio2).
+			self assert: (portfolio1 includes: accountWith100).
+		].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioBalanceIsZero stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02SingleAccountPortfolioBalanceIsAccountBalance stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioOfMultipleAccountsAndPortfoliosBalanceIsAllAccountsBalancesSummed stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioDoesNotHaveAnyTransaction stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioDoesNotHaveASpecificTransactionRegistered stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasZeroTransactions stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasAllSubAccountablesTransactions stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioCanNotAddItself stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioBlocksAddingDuplicatedDirectAccount stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioBlocksAddingDuplicatedIndirectAccount stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioBlocksAddingAccountableDirectlyReferencingIt stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioBlocksAddingAccountableWithSharedAccount stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioBlocksAddingAccountableAlreadyInParent stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioBlocksAddingAccountableWithIndirectlySharedAccountables stamp: 'VP 11/7/2020 17:43:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'VP 11/7/2020 17:43:09'!
+PASSED!
+
+----SNAPSHOT----(7 November 2020 17:43:12) CuisUniversity-4384.image priorSource: 17716502!
+
+----SNAPSHOT----(7 November 2020 17:43:48) CuisUniversity-4384.image priorSource: 17755472!

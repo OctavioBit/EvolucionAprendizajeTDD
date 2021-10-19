@@ -1,0 +1,394 @@
+
+
+----STARTUP---- (24 October 2020 20:48:07) as C:\Users\Usuario\Desktop\labo\inge1\Cuis\windows64\CuisUniversity-4383.image!
+
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #MarsRoverTest category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 20:51:39'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #MarsRover category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:05:23'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:04:33'!
+test01
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $S.
+	aMarsRover do: 'f'.
+	
+	self assert: 1@0 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:06:31'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'LH 10/24/2020 21:07:03'!
+at: aPoint pointingTo: aCharacter 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeAt: aPoint pointingTo: aCharacter ! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'LH 10/24/2020 21:07:31' prior: 50869434!
+at: aPoint pointingTo: aCardinalDirection
+
+	^self new initializeAt: aPoint pointingTo: aCardinalDirection ! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:07:33'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:08:10'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position orientation point'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #MarsRover category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:08:10'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position orientation point cardinalDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+!MarsRover methodsFor: 'initialization' stamp: 'LH 10/24/2020 21:08:10'!
+initializeAt: aPoint pointingTo: aCardinalDirection 
+	self shouldBeImplemented.
+	point := aPoint.
+	cardinalDirection := aCardinalDirection.! !
+!MarsRover methodsFor: 'initialization' stamp: 'LH 10/24/2020 21:11:32' prior: 50869469!
+initializeAt: aPoint pointingTo: aCardinalDirection 
+
+	position := aPoint.
+	aCardinalDirection = $S ifTrue: [orientation := -1@0].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:11:34'!
+ERROR!
+!MarsRover methodsFor: 'command receiving' stamp: 'LH 10/24/2020 21:12:34'!
+do: aString 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'command receiving' stamp: 'LH 10/24/2020 21:14:13' prior: 50869486!
+do: aStringOfCommands 
+	position := position + orientation.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:14:14'!
+ERROR!
+!MarsRover methodsFor: 'accessing' stamp: 'LH 10/24/2020 21:14:36'!
+position
+	self shouldBeImplemented.
+	^position! !
+!MarsRover methodsFor: 'accessing' stamp: 'LH 10/24/2020 21:14:41' prior: 50869498!
+position
+	^position! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:14:43'!
+FAILURE!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:15:01' prior: 50869424!
+test01
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $S.
+	aMarsRover do: 'f'.
+	
+	self assert: -1@0 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:15:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:15:03'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:15:32'!
+test02
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $S.
+	aMarsRover do: 'b'.
+	
+	self assert: 1@0 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:15:33'!
+FAILURE!
+!MarsRover methodsFor: 'command receiving' stamp: 'LH 10/24/2020 21:16:52' prior: 50869491!
+do: aStringOfCommands 
+	
+	aStringOfCommands = 'f' ifTrue: [position := position + orientation].
+	aStringOfCommands = 'b' ifTrue: [position := position - orientation].! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:17:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:17:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:17:02'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:24:28'!
+test03
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $N.
+	aMarsRover do: 'f'.
+	
+	self assert: 1@0 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test03 stamp: 'LH 10/24/2020 21:24:31'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'LH 10/24/2020 21:25:17' prior: 50869477!
+initializeAt: aPoint pointingTo: aCardinalDirection 
+
+	position := aPoint.
+	aCardinalDirection = $S ifTrue: [orientation := -1@0].
+	aCardinalDirection = $N ifTrue: [orientation := 1@0].! !
+
+!testRun: #MarsRoverTest #test03 stamp: 'LH 10/24/2020 21:25:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:25:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:25:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'LH 10/24/2020 21:25:24'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:25:53'!
+test04
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $E.
+	aMarsRover do: 'f'.
+	
+	self assert: 0@1 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test04 stamp: 'LH 10/24/2020 21:25:59'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'LH 10/24/2020 21:26:50' prior: 50869556!
+initializeAt: aPoint pointingTo: aCardinalDirection 
+
+	position := aPoint.
+	aCardinalDirection = $S ifTrue: [orientation := -1@0].
+	aCardinalDirection = $N ifTrue: [orientation := 1@0].
+	aCardinalDirection = $E ifTrue: [orientation := 0@1].! !
+
+!testRun: #MarsRoverTest #test04 stamp: 'LH 10/24/2020 21:26:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:26:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:26:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'LH 10/24/2020 21:26:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'LH 10/24/2020 21:26:52'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:27:03'!
+test05
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $O.
+	aMarsRover do: 'f'.
+	
+	self assert: 0@1 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'LH 10/24/2020 21:27:57'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'LH 10/24/2020 21:28:23' prior: 50869584!
+initializeAt: aPoint pointingTo: aCardinalDirection 
+
+	position := aPoint.
+	aCardinalDirection = $S ifTrue: [orientation := -1@0].
+	aCardinalDirection = $N ifTrue: [orientation := 1@0].
+	aCardinalDirection = $E ifTrue: [orientation := 0@1].
+	aCardinalDirection = $O ifTrue: [orientation := 0@-1].! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'LH 10/24/2020 21:28:25'!
+FAILURE!
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:28:33' prior: 50869606!
+test05
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: $O.
+	aMarsRover do: 'f'.
+	
+	self assert: 0@-1 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'LH 10/24/2020 21:28:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:28:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:28:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'LH 10/24/2020 21:28:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'LH 10/24/2020 21:28:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'LH 10/24/2020 21:28:34'!
+PASSED!
+
+Object subclass: #CardinalDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #CardinalDirection category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:29:23'!
+Object subclass: #CardinalDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+CardinalDirection subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #North category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:29:35'!
+CardinalDirection subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+CardinalDirection subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #South category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:29:40'!
+CardinalDirection subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+CardinalDirection subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #West category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:29:47'!
+CardinalDirection subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+CardinalDirection subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+
+!classDefinition: #East category: 'Ejercicio-16-MARS-ROVER' stamp: 'LH 10/24/2020 21:30:06'!
+CardinalDirection subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-16-MARS-ROVER'!
+!CardinalDirection methodsFor: 'nil' stamp: 'LH 10/24/2020 21:30:44'!
+asPoint
+	
+	self subclassResponsibility ! !
+!East methodsFor: 'no messages' stamp: 'LH 10/24/2020 21:31:15' overrides: 50869713!
+asPoint
+	
+	^0@1! !
+!North methodsFor: 'converters' stamp: 'LH 10/24/2020 21:31:53' overrides: 50869713!
+asPoint
+
+	^1@0! !
+!South methodsFor: 'converters' stamp: 'LH 10/24/2020 21:32:09' overrides: 50869713!
+asPoint
+
+	^-1@0! !
+!West methodsFor: 'converters' stamp: 'LH 10/24/2020 21:32:33' overrides: 50869713!
+asPoint
+
+	^0@-1! !
+
+----SNAPSHOT----(24 October 2020 21:33:04) CuisUniversity-4383.image priorSource: 17207870!
+!MarsRover methodsFor: 'initialization' stamp: 'LH 10/24/2020 21:42:31' prior: 50869616!
+initializeAt: aPoint pointingTo: aCardinalDirection 
+
+	position := aPoint.
+	orientation := aCardinalDirection asPoint.! !
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:42:44' prior: 50869509!
+test01
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: South new.
+	aMarsRover do: 'f'.
+	
+	self assert: -1@0 equals: aMarsRover position.
+	! !
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:42:51' prior: 50869521!
+test02
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: South new.
+	aMarsRover do: 'b'.
+	
+	self assert: 1@0 equals: aMarsRover position.
+	! !
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:42:59' prior: 50869546!
+test03
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: North new.
+	aMarsRover do: 'f'.
+	
+	self assert: 1@0 equals: aMarsRover position.
+	! !
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:43:10' prior: 50869574!
+test04
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: East new.
+	aMarsRover do: 'f'.
+	
+	self assert: 0@1 equals: aMarsRover position.
+	! !
+!MarsRoverTest methodsFor: 'test' stamp: 'LH 10/24/2020 21:43:15' prior: 50869631!
+test05
+	|aMarsRover|
+	aMarsRover := MarsRover at: 0@0 pointingTo: West new.
+	aMarsRover do: 'f'.
+	
+	self assert: 0@-1 equals: aMarsRover position.
+	! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'LH 10/24/2020 21:43:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'LH 10/24/2020 21:43:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'LH 10/24/2020 21:43:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'LH 10/24/2020 21:43:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'LH 10/24/2020 21:43:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'LH 10/24/2020 21:43:32'!
+PASSED!
+
+----QUIT----(24 October 2020 21:43:35) CuisUniversity-4383.image priorSource: 17218610!

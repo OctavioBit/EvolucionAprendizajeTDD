@@ -1,0 +1,3351 @@
+----STARTUP---- (10 December 2020 11:05:42) as C:\Users\mdlcs\Downloads\OS\ISW1\parcial2\windows64\CuisUniversity-4365.image!
+
+
+----End fileIn of \Users\mdlcs\Downloads\OS\ISW1\parcial2\windows64\ISW1-2020-2C-2doParcial.st----!
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'MS 12/10/2020 13:23:40'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'MS 12/10/2020 13:23:40'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'MS 12/10/2020 13:23:41'!
+PASSED!
+
+TestCase subclass: #RoomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #RoomTest category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 17:38:33'!
+TestCase subclass: #RoomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!RoomTest methodsFor: 'no messages' stamp: 'MS 12/10/2020 17:39:47'!
+test01ARoomCanNotBeCreatedWithNonPositiveDimensions
+
+	| playableCharacter |
+
+	playableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@2 heading: #North .
+
+	playableCharacter moveForward.
+
+	self assert: (playableCharacter isAt: 1@3 heading: #North)! !
+
+!classDefinition: #Room category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 17:45:43'!
+Object subclass: #Room
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:45:34' prior: 50864658!
+test01ARoomCanNotBeCreatedWithNonPositiveDimensions
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := -1.
+	aYCoordinate:= -1.
+	
+	self
+		should: [ Room withSize: anXCoordinate X: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:47:59'!
+test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withSize: anXCoordinate X: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:48:19'!
+test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withSize: anXCoordinate X: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test01ARoomCanNotBeCreatedWithNonPositiveDimensions stamp: 'MS 12/10/2020 17:48:26'!
+test01ARoomCanNotBeCreatedWithNonPositiveDimensions
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := -1.
+	aYCoordinate:= -1.
+	
+	self
+		should: [ Room withSize: anXCoordinate X: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:48:29'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:48:29'!
+ERROR!
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 17:48:49'!
+InvalidRoomDimensionErrorDescription
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 17:49:23' prior: 50864731!
+InvalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:49:25'!
+FAILURE!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:49:59' prior: 50864688!
+test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withSize: anXCoordinate and: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:50:04'!
+FAILURE!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:51:09'!
+test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withSize: anXCoordinate and: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:51:09'!
+test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withSize: anXCoordinate and: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:51:22'!
+test03ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withSize: anXCoordinate X: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 17:51:22'!
+test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withSize: anXCoordinate X: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:52:28'!
+test01ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withSize: anXCoordinate and: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:54:04' prior: 50864761!
+test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withSize: anXCoordinate and: aYCoordinate]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:54:10'!
+ERROR!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:54:10'!
+ERROR!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:54:15'!
+ERROR!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:54:15'!
+ERROR!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:54:59'!
+ERROR!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 17:54:59'!
+ERROR!
+!Room class methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 17:55:06'!
+withSize: aSmallInteger and: aSmallInteger2 
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:02:36' prior: 50864857!
+withSize: anXCoordinate and: aYCoordinate
+	
+	self initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .! !
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:02:40'!
+ERROR!
+
+!classDefinition: 'Room class' category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 18:02:46'!
+Room class
+	instanceVariableNames: 'xCoordinate'!
+
+!classDefinition: 'Room class' category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 18:02:46'!
+Room class
+	instanceVariableNames: 'xCoordinate yCoordinate'!
+!Room class methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:02:46'!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate 
+	self shouldBeImplemented.
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+!Room class methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:03:34' prior: 50864883!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate 
+
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:03:36'!
+FAILURE!
+
+!methodRemoval: Room class #initializeWithXCoordinate:andYCoordinate: stamp: 'MS 12/10/2020 18:05:06'!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate 
+
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.!
+!Room class methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:05:22' prior: 50864863!
+withSize: anXCoordinate and: aYCoordinate
+	
+	self new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .! !
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:05:33'!
+ERROR!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:05:33'!
+ERROR!
+
+!classDefinition: #Room category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 18:05:50'!
+Object subclass: #Room
+	instanceVariableNames: 'xCoordinate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #Room category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 18:05:50'!
+Object subclass: #Room
+	instanceVariableNames: 'xCoordinate yCoordinate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:05:50'!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate 
+	self shouldBeImplemented.
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:05:54' prior: 50864940!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate 
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:05:55'!
+FAILURE!
+!Room class methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:07:19'!
+withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate
+	
+	self new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:07:19' prior: 50864821!
+test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:07:19' prior: 50864809!
+test01ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: Room class #withSize:and: stamp: 'MS 12/10/2020 18:07:19'!
+withSize: anXCoordinate and: aYCoordinate
+	
+	self new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:07:48' prior: 50864785!
+test03ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:08:09' prior: 50865000!
+test03ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:08:19'!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test01ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:08:19'!
+test01ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:08:26'!
+test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:08:26'!
+test02ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:08:32'!
+test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test03ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:08:32'!
+test03ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room InvalidRoomDimensionErrorDescription.
+!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:12:14' prior: 50864948!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	anXCoordinate strictlyPositive ifFalse: [ self error: self  ].
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 18:12:28'!
+invalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:12:28' prior: 50865050!
+test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Room invalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:12:28' prior: 50865077!
+test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room invalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:12:28' prior: 50865026!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate]
+		raise: Error
+		withMessageText: Room invalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: Room class #InvalidRoomDimensionErrorDescription stamp: 'MS 12/10/2020 18:12:28'!
+InvalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:12:59' prior: 50865104!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	anXCoordinate strictlyPositive ifFalse: [ self error: self invalidRoomDimensionErrorDescription].
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:13:22'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:13:22'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:13:33'!
+invalidRoomDimensionErrorDescription
+	self shouldBeImplemented.! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:14:43' prior: 50865181!
+invalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'! !
+
+!methodRemoval: Room class #invalidRoomDimensionErrorDescription stamp: 'MS 12/10/2020 18:14:53'!
+invalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:15:01'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:15:01'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:17:05'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:17:05'!
+ERROR!
+!Room class methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:17:10'!
+invalidRoomDimensionErrorDescription
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:17:14' prior: 50865211!
+invalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:17:15'!
+PASSED!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:18:02' prior: 50865163!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	anXCoordinate strictlyPositive ifFalse: [ self error: self class invalidRoomDimensionErrorDescription].
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+
+!methodRemoval: Room #invalidRoomDimensionErrorDescription stamp: 'MS 12/10/2020 18:18:11'!
+invalidRoomDimensionErrorDescription
+	
+	^'Invalid Room Size'!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:18:15'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:18:23'!
+FAILURE!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:18:23'!
+FAILURE!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:18:53' prior: 50865226!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	anXCoordinate strictlyPositive ifFalse: [ self error: self class invalidRoomDimensionErrorDescription].
+	aYCoordinate strictlyPositive ifFalse: [ self error: self class invalidRoomDimensionErrorDescription].
+	
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:19:10'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:20:45' prior: 50865146!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate.
+	
+	self assert: aRoom size equals: 25
+! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:21:25'!
+ERROR!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:21:25'!
+ERROR!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:21:41' prior: 50865271!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate.
+	
+	self assert: aRoom dimension equals: 25
+! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:21:46'!
+ERROR!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:21:46'!
+ERROR!
+!Room class methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:21:51'!
+dimension
+	self shouldBeImplemented.! !
+
+!methodRemoval: Room class #dimension stamp: 'MS 12/10/2020 18:22:21'!
+dimension
+	self shouldBeImplemented.!
+!Room class methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:22:40'!
+withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+	
+	self new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:22:40' prior: 50865289!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	self assert: aRoom dimension equals: 25
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:22:40' prior: 50865118!
+test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 0.
+	aYCoordinate:= 1.
+	
+	self
+		should: [ Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Room invalidRoomDimensionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:22:40' prior: 50865132!
+test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension
+
+	| anXCoordinate aYCoordinate|
+
+	anXCoordinate := 1.
+	aYCoordinate:= 0.
+	
+	self
+		should: [ Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room invalidRoomDimensionErrorDescription.
+! !
+
+!methodRemoval: Room class #withXcoordinate:andYcoordinate: stamp: 'MS 12/10/2020 18:22:40'!
+withXcoordinate: anXCoordinate andYcoordinate: aYCoordinate
+	
+	self new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:22:46'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:22:49'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:23:40' prior: 50865322!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom aDimension|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aDimension:= aRoom dimension.
+	
+	self assert: aDimension equals: 25
+! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:23:44'!
+ERROR!
+!Room methodsFor: 'nil' stamp: 'MS 12/10/2020 18:25:30'!
+dimension
+
+^25.! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:25:39'!
+ERROR!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:25:39'!
+ERROR!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:28:27' prior: 50865376!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom aDimension|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .
+	aDimension:= aRoom dimension.
+	
+	self assert: aDimension equals: 25
+! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:28:34'!
+ERROR!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:28:34'!
+ERROR!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:28:47' prior: 50865402!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom aDimension|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .
+	aDimension:= aRoom dimension.
+	
+	self assert: aDimension equals: 25
+! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:28:50'!
+PASSED!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:30:28' prior: 50865391!
+dimension
+
+	^xCoordinate *yCoordinate .! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:30:41'!
+roomSize
+
+	^xCoordinate *yCoordinate .! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:30:41' prior: 50865422!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom aDimension|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .
+	aDimension:= aRoom roomSize.
+	
+	self assert: aDimension equals: 25
+! !
+
+!methodRemoval: Room #dimension stamp: 'MS 12/10/2020 18:30:41'!
+dimension
+
+	^xCoordinate *yCoordinate .!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:31:05'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:31:05'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:31:05'!
+PASSED!
+!Room class methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:31:38' prior: 50865314!
+withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+	
+	^self new initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate .! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:31:56' prior: 50865447!
+test03ARoomIsCreatedWithTheExpectedNumberOfCells
+
+	| anXCoordinate aYCoordinate aRoom aDimension|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aDimension:= aRoom roomSize.
+	
+	self assert: aDimension equals: 25
+! !
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:31:57'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:31:57'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:31:57'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:31:57'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:32:01'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:32:01'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:32:01'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:32:01'!
+PASSED!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:34:30'!
+assertCoordinateIsPositive: anXCoordinate
+
+	^ anXCoordinate strictlyPositive ifFalse: [ self error: self class invalidRoomDimensionErrorDescription]! !
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:34:30' prior: 50865253!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	self assertCoordinateIsPositive: anXCoordinate.
+	aYCoordinate strictlyPositive ifFalse: [ self error: self class invalidRoomDimensionErrorDescription].
+	
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:34:46' prior: 50865531!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	self assertCoordinateIsPositive: anXCoordinate.
+	self assertCoordinateIsPositive: aYCoordinate .
+	
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:34:49'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:34:49'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:34:49'!
+PASSED!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:36:03'!
+signalInvalidRoomDimension
+
+	^ self error: self class invalidRoomDimensionErrorDescription! !
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 18:36:03' prior: 50865523!
+assertCoordinateIsPositive: anXCoordinate
+
+	^ anXCoordinate strictlyPositive ifFalse: [ self signalInvalidRoomDimension]! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:36:37'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:36:37'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:36:37'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:42:35'!
+test04AStageObjectCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aStageObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aStageObject := StageObject new.
+	aRoom addObject: aStageObject inPosition: 0@0.
+	
+	self assert aRoom at: 0@0 = aStageObject. 
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:43:11' prior: 50865588!
+test04AStageObjectCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aStageObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aStageObject := StageObject new.
+	aRoom addObject: aStageObject inPosition: 0@0.
+	
+	"self assert: aRoom at: 0@0 = aStageObject. "
+! !
+
+----End fileIn of C:\Users\mdlcs\Downloads\OS\ISW1\parcial2\windows64\Packages\TerseGuide.pck.st----!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:49:32'!
+test04APlayableCharacterCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aStageObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aStageObject := StageObject new.
+	aRoom addObject: aStageObject inPosition: 0@0.
+	
+	"self assert: aRoom at: 0@0 = aStageObject. "
+! !
+
+!methodRemoval: RoomTest #test04AStageObjectCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:49:32'!
+test04AStageObjectCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aStageObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aStageObject := StageObject new.
+	aRoom addObject: aStageObject inPosition: 0@0.
+	
+	"self assert: aRoom at: 0@0 = aStageObject. "
+!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:50:02' prior: 50868551!
+test04APlayableCharacterCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := StageObject new.
+	aRoom addObject: aPlayableCharacter inPosition: 0@0.
+	
+	"self assert: aRoom at: 0@0 = aStageObject. "
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:55:39' prior: 50868579!
+test04APlayableCharacterCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	aBackpack:= Backpack initializeContainingUpTo: 10 limitingPointsTo: 10.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'hola' using: aBackpack at: 0@0 heading: #North. 
+	
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: aRoom activePlayer = aPlayableCharacter .
+! !
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:55:43'!
+ERROR!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:55:56' prior: 50868594!
+test04APlayableCharacterCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	aBackpack:= Backpack new initializeContainingUpTo: 10 limitingPointsTo: 10.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'hola' using: aBackpack at: 0@0 heading: #North. 
+	
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: aRoom activePlayer = aPlayableCharacter .
+! !
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:55:57'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:56:10'!
+addPlayer: aPlayableCharacter 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Room category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 18:56:39'!
+Object subclass: #Room
+	instanceVariableNames: 'xCoordinate yCoordinate player'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:56:37' prior: 50868638!
+addPlayer: aPlayableCharacter 
+	
+	player := aPlayableCharacter.! !
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:56:41'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:56:52'!
+activePlayer
+	self shouldBeImplemented.! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:57:00' prior: 50868659!
+activePlayer
+	
+	^player.! !
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:57:03'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:57:04'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:57:04'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:57:04'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:57:04'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:57:07'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:58:43' prior: 50868616!
+test04APlayableCharacterCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'hola' using: aBackpack at: 0@0 heading: #North. 
+	
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: aRoom activePlayer = aPlayableCharacter .
+! !
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:58:45'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:58:48'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:58:48'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:58:48'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:58:48'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:58:48'!
+PASSED!
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 18:58:56'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 18:59:30' prior: 50868690!
+test04APlayableCharacterCanBeAdddedToARoom
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: aRoom activePlayer = aPlayableCharacter .
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:02:31'!
+test05ARoomPointReturnsWhatItContains
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom at: 0@0 = aPlayableCharacter).
+! !
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:02:36'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:02:36'!
+ERROR!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:03:29' prior: 50868963!
+test05ARoomPointReturnsWhatItContains
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0 = aPlayableCharacter).
+! !
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:03:34'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:03:40'!
+elementInPosition: aFalse 
+	self shouldBeImplemented.! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:04:38' prior: 50868988!
+test05ARoomPointReturnsWhatItContains
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+! !
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:04:41'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:04:41'!
+ERROR!
+
+!methodRemoval: Room #elementInPosition: stamp: 'MS 12/10/2020 19:05:02'!
+elementInPosition: aFalse 
+	self shouldBeImplemented.!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:05:40'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:05:40'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:05:47'!
+elementInPosition: aPoint 
+	self shouldBeImplemented.! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:06:11' prior: 50869050!
+elementInPosition: aPoint 
+	
+	^ player! !
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:06:14'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:06:16'!
+PASSED!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:08:45' prior: 50869055!
+elementInPosition: aPoint 
+	
+	(player isAt: 0@0) ifTrue: [^player]. ! !
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:08:53'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:08:53'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:09:47' prior: 50869066!
+elementInPosition: aPoint 
+	
+	(player position: 0@0) ifTrue: [^player]. ! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 19:09:51'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 19:09:51'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 19:09:51'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 19:09:51'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:09:51'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:09:51'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:10:47' prior: 50869078!
+elementInPosition: aPoint 
+	
+	(player isAt: 0@0 heading: #North) ifTrue: [^player]. ! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 19:10:51'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 19:10:51'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 19:10:51'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 19:10:52'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:10:52'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:12:23'!
+test05ARoomPositionReturnsPlayerAtThatPostion
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+! !
+
+!methodRemoval: RoomTest #test05ARoomPointReturnsWhatItContains stamp: 'MS 12/10/2020 19:12:23'!
+test05ARoomPointReturnsWhatItContains
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:14:56' prior: 50869105!
+elementInPosition: aPoint 
+	
+	(player isAt: aPoint heading: #North) ifTrue: [^player]. ! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 19:15:01'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 19:15:01'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 19:15:01'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 19:15:01'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPostion stamp: 'MS 12/10/2020 19:15:01'!
+PASSED!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:15:53' prior: 50869166!
+elementInPosition: aPoint 
+	
+	(player isAt: aPoint heading: #North) ifTrue: [player]. ! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:17:10'!
+checkForAndReturnIfPossiblePlayerInPoint: aPoint
+
+	^ (player isAt: aPoint heading: #North) ifTrue: [player]! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:17:11' prior: 50869190!
+elementInPosition: aPoint 
+	
+	self checkForAndReturnIfPossiblePlayerInPoint: aPoint. ! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:17:20' prior: 50869196!
+checkForAndReturnIfPossiblePlayerInPoint: aPoint
+
+	^ (player isAt: aPoint heading: #North) ifTrue: [^player]! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 19:17:24'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 19:17:24'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 19:17:24'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 19:17:24'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPostion stamp: 'MS 12/10/2020 19:17:24'!
+FAILURE!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPostion stamp: 'MS 12/10/2020 19:17:24'!
+FAILURE!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:18:32'!
+checkForPlayerInPoint: aPoint
+
+	^ (player isAt: aPoint heading: #North) ifTrue: [^player]! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:18:32' prior: 50869203!
+elementInPosition: aPoint 
+	
+	self checkForPlayerInPoint: aPoint. ! !
+
+!methodRemoval: Room #checkForAndReturnIfPossiblePlayerInPoint: stamp: 'MS 12/10/2020 19:18:32'!
+checkForAndReturnIfPossiblePlayerInPoint: aPoint
+
+	^ (player isAt: aPoint heading: #North) ifTrue: [^player]!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:19:04' prior: 50869237!
+checkForPlayerInPoint: aPoint
+
+	^ (player isAt: aPoint heading: #North)! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:19:47' prior: 50869243!
+elementInPosition: aPoint 
+	
+	(self checkForPlayerInPoint: aPoint)  ifTrue: [^player]! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 19:19:51'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 19:19:51'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 19:19:51'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 19:19:51'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPostion stamp: 'MS 12/10/2020 19:19:51'!
+PASSED!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:21:11' prior: 50869255!
+checkForPlayerInPoint: aPoint
+
+	^ ((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 19:21:17'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 19:21:17'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 19:21:17'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 19:21:17'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPostion stamp: 'MS 12/10/2020 19:21:17'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:23:59'!
+test05ARoomPositionReturnsPlayerAtThatPosition
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+! !
+
+!methodRemoval: RoomTest #test05ARoomPositionReturnsPlayerAtThatPostion stamp: 'MS 12/10/2020 19:23:59'!
+test05ARoomPositionReturnsPlayerAtThatPostion
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:25:06'!
+test06ARoomCanNotAddAPlayerInAOccupiedPosition
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:26:18'!
+test06ARoomCanAddAnObject
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+! !
+
+!methodRemoval: RoomTest #test06ARoomCanNotAddAPlayerInAOccupiedPosition stamp: 'MS 12/10/2020 19:26:18'!
+test06ARoomCanNotAddAPlayerInAOccupiedPosition
+
+	| anXCoordinate aYCoordinate aRoom aPlayableCharacter aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: (aRoom elementInPosition: 0@0) = aPlayableCharacter.
+!
+
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name weight'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #NonPortableObject category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 19:26:45'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name weight'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #NonPortableObject category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 19:27:30'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!NonPortableObject class methodsFor: 'no messages' stamp: 'MS 12/10/2020 19:29:01'!
+named: aName containing: contents
+	
+	^ self new initializeNamed: aName containing: contents.! !
+
+4 asOrderedCollection.!
+
+{0,1,2} add: 4!
+
+{0.1.2} add: 4!
+
+{0, 1, 2} asOrderedCollection add: 4!
+
+{0. 1. 2} asOrderedCollection add: 4!
+
+{0. 1. 2} asOrderedCollection add: 4!
+
+{0. 1. 2} asOrderedCollection add: 4!
+
+{0. 1. 2} asOrderedCollection add: 4!
+
+hola := {0. 1. 2} asOrderedCollection 
+!
+
+hola add: 4!
+
+hola add: 4!
+
+hola add: 4.!
+
+hola.!
+
+hola add: ({5. 10. 20} asOrderedCollection).!
+
+hola.!
+
+hola := {0. 1. 2} asOrderedCollection !
+
+hola add: ({5. 10. 20}).!
+
+hola.!
+!NonPortableObject methodsFor: 'nil' stamp: 'MS 12/10/2020 19:42:58'!
+initializeNamed: aName containing: someContents
+
+	name:= aName.
+	contents := OrderedCollection new.
+	contents add: someContents.
+	"someContents addTo: contents."! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:51:51' prior: 50869369!
+test06ARoomCanAddAnObject
+
+	| anXCoordinate aYCoordinate aRoom anObject aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert: (aRoom content includes: anObject) .
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:53:28' prior: 50869464!
+test06ARoomCanAddAnObject
+
+	| anXCoordinate aYCoordinate aRoom anObject aBackpack|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert: (aRoom content includes: anObject) .
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:53:43' prior: 50869481!
+test06ARoomCanAddAnObject
+
+	| anXCoordinate aYCoordinate aRoom anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert: (aRoom content includes: anObject) .
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:54:13' prior: 50869498!
+test06ARoomCanAddAnObject
+
+	| anXCoordinate aYCoordinate aRoom anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert:(aRoom elementInPosition: 0@0 = anObject).
+! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 19:55:52'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 19:55:52'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:55:58'!
+addObject: aNoPointsPortableObject at: aPoint 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Room category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 19:58:31'!
+Object subclass: #Room
+	instanceVariableNames: 'xCoordinate yCoordinate player contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 19:58:30' prior: 50869533!
+addObject: aNoPointsPortableObject at: aPoint 
+	
+	contents add: aNoPointsPortableObject ->aPoint .! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 19:58:33'!
+ERROR!
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 19:59:17' prior: 50865543!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	self assertCoordinateIsPositive: anXCoordinate.
+	self assertCoordinateIsPositive: aYCoordinate .
+	
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.
+	
+	contents:= Dictionary new.! !
+!Room methodsFor: 'initialization' stamp: 'MS 12/10/2020 19:59:33' prior: 50869556!
+initializeWithXCoordinate: anXCoordinate andYCoordinate: aYCoordinate
+
+	self assertCoordinateIsPositive: anXCoordinate.
+	self assertCoordinateIsPositive: aYCoordinate .
+	
+	xCoordinate := anXCoordinate.
+	yCoordinate := aYCoordinate.
+	
+	contents:= Dictionary new.! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 19:59:40'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 19:59:40'!
+ERROR!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:05:19' prior: 50869261!
+elementInPosition: aPoint 
+	
+	
+	contents keyAtValue: aPoint ifAbsent: [].
+	
+	(self checkForPlayerInPoint: aPoint)  ifTrue: [^player]! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:05:20'!
+ERROR!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:08:54' prior: 50869584!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	returnValue := contents keyAtValue: aPoint ifAbsent: 
+				[(self checkForPlayerInPoint: aPoint)  ifTrue: [player] ifFalse:[^nil]].
+				
+	^returnValue.
+	
+	! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:09:00'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:09:00'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:09:00'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:09:00'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:09:00'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:09:00'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:09:00'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:09:42'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:08'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:17'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:19'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:19'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:20'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:10:27'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:10:27'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:10:27'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:10:27'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:10:27'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:27'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:10:27'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:11:06'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:15:41'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:15:41'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:15:41'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:15:41'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:15:41'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:15:41'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:15:41'!
+ERROR!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:16:23' prior: 50869285!
+checkForPlayerInPoint: aPoint
+
+	player = nil ifFalse:[
+	^ ((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))
+		
+		].! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:16:26'!
+ERROR!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:18:30' prior: 50869594!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	returnValue := contents keyAtValue: aPoint.
+				
+	(self checkForPlayerInPoint: aPoint)  ifTrue: [^player].
+				
+	^returnValue.
+	
+	! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:18:32'!
+ERROR!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:19:52' prior: 50869513!
+test06ARoomCanAddAnObject
+
+	| anXCoordinate aYCoordinate aRoom anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert: (aRoom elementInPosition: 0@0) = anObject.
+! !
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:19:54'!
+ERROR!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:20:58' prior: 50869693!
+checkForPlayerInPoint: aPoint
+
+	^ ((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))! !
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:22:40' prior: 50869706!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	returnValue := contents keyAtValue:  aPoint ifAbsent: [(self checkForPlayerInPoint: aPoint)  ifTrue: [^player]].
+				
+	^returnValue.
+	
+	! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:22:42'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:22:42'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:22:42'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:22:42'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:22:42'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:22:42'!
+PASSED!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:23:53' prior: 50869744!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	returnValue := contents keyAtValue:  aPoint ifAbsent: [(self checkForPlayerInPoint: aPoint)].
+				
+	^returnValue.
+	
+	! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:23:57'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:23:57'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:23:57'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:23:57'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:23:57'!
+FAILURE!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:23:57'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:23:57'!
+FAILURE!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:25:35' prior: 50869774!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	returnValue := contents keyAtValue:  aPoint ifAbsent: [returnValue := (self checkForPlayerInPoint: aPoint)].
+				
+	^returnValue.
+	
+	! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:25:38'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:25:38'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:25:39'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:25:39'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:25:39'!
+FAILURE!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:25:39'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:25:39'!
+FAILURE!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:27:44' prior: 50869735!
+checkForPlayerInPoint: aPoint
+
+	((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))
+		
+	ifTrue:[^player]! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:27:54'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:27:54'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:27:54'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:27:54'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:27:54'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:27:54'!
+PASSED!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:29:48' prior: 50869807!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	returnValue := contents keyAtValue:  aPoint ifAbsent: [returnValue := (self checkForPlayerInPoint: aPoint)].
+	
+	self assertPositionIsEmpty: returnValue.
+				
+				
+	^returnValue.
+	
+	! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 20:30:55'!
+assertPositionIsEmpty: aValue
+
+	aValue = nil.! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 20:32:22' prior: 50869881!
+assertPositionIsEmpty: aValue
+
+	^ aValue isNil ifTrue: [ self signalEmptyPosition].! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:32:57'!
+test06ARoomCantReturnAnElementsIfThereIsNothingThere
+
+	| anXCoordinate aYCoordinate aRoom anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert: (aRoom elementInPosition: 0@0) = anObject.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:33:11' prior: 50869892!
+test06ARoomCantReturnAnElementsIfThereIsNothingThere
+
+	| anXCoordinate aYCoordinate aRoom anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	self assert: (aRoom elementInPosition: 0@0) = anObject.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:34:05' prior: 50869908!
+test06ARoomCantReturnAnElementsIfThereIsNothingThere
+
+	| anXCoordinate aYCoordinate aRoom |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	self
+		should: [ aRoom elementInPosition: 0@0]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:35:15' prior: 50869920!
+test06ARoomCantReturnAnElementsIfThereIsNothingThere
+
+	| anXCoordinate aYCoordinate aRoom |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	self
+		should: [ aRoom elementInPosition: 0@0]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room noElementInPositionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:35:23'!
+test07ARoomCantReturnAnElementsIfThereIsNothingThere
+
+	| anXCoordinate aYCoordinate aRoom |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	self
+		should: [ aRoom elementInPosition: 0@0]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room noElementInPositionErrorDescription.
+! !
+
+!methodRemoval: RoomTest #test06ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:35:23'!
+test06ARoomCantReturnAnElementsIfThereIsNothingThere
+
+	| anXCoordinate aYCoordinate aRoom |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	self
+		should: [ aRoom elementInPosition: 0@0]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room noElementInPositionErrorDescription.
+!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:35:27'!
+ERROR!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:35:27'!
+ERROR!
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 20:35:38'!
+noElementInPositionErrorDescription
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 20:36:08' prior: 50869984!
+noElementInPositionErrorDescription
+	^ 'There is No Element in That Position'.! !
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:36:10'!
+ERROR!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:37:33' prior: 50869840!
+checkForPlayerInPoint: aPoint
+
+	player isNotNil ifTrue:[
+	((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))
+		
+	ifTrue:[^player]]! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:37:35'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:37:35'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:37:35'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:37:35'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:37:35'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:37:35'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:37:35'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:37:43'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:37:57'!
+ERROR!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:38:15' prior: 50869998!
+checkForPlayerInPoint: aPoint
+
+	player isNil ifFalse:[
+	((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))
+		
+	ifTrue:[^player]]! !
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:38:17'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:38:20'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:38:20'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:38:20'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:38:20'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:38:20'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:38:20'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:38:20'!
+FAILURE!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:38:20'!
+FAILURE!
+!Room methodsFor: 'signals' stamp: 'MS 12/10/2020 20:39:20'!
+signalEmptyPosition
+
+	^ self error: self class noElementInPositionErrorDescription .! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:39:23'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:39:23'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:39:23'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:39:23'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:39:23'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:39:23'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:39:23'!
+FAILURE!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:39:23'!
+FAILURE!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:40:17'!
+FAILURE!
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 20:42:04' prior: 50869886!
+assertPositionIsEmpty: aValue
+
+	aValue isNil ifTrue: [ self signalEmptyPosition].! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:42:07'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:42:07'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:42:07'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:42:07'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:42:07'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:42:07'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:42:07'!
+FAILURE!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:42:07'!
+FAILURE!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:46:51' prior: 50869871!
+elementInPosition: aPoint 
+	
+	|returnValue|
+	
+	 contents keyAtValue:  aPoint ifAbsent: [self assertPositionIsEmpty].
+	
+	^(self checkForPlayerInPoint: aPoint).
+	
+	! !
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:47:37' prior: 50870154!
+elementInPosition: aPoint 
+	
+	 ^ contents keyAtValue:  aPoint ifAbsent: [self assertPositionIsEmpty].! !
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:47:40'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:47:46'!
+assertPositionIsEmpty
+	self shouldBeImplemented.! !
+
+!methodRemoval: Room #assertPositionIsEmpty stamp: 'MS 12/10/2020 20:48:14'!
+assertPositionIsEmpty
+	self shouldBeImplemented.!
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:48:34' prior: 50870162!
+elementInPosition: aPoint 
+	
+	 ^ contents keyAtValue:  aPoint ifAbsent: [self assertPositionIsEmpty: aPoint].! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 20:49:12' prior: 50870120!
+assertPositionIsEmpty: aPoint
+
+	player isNil ifTrue: [ self signalEmptyPosition].
+	
+	^(self checkForPlayerInPoint: aPoint).! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:49:20'!
+PASSED!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:51:43' prior: 50870040!
+checkForPlayerInPoint: aPoint
+
+	((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))
+		
+	ifTrue:[^player]! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:51:46'!
+PASSED!
+!Room methodsFor: 'private' stamp: 'MS 12/10/2020 20:53:40' prior: 50870219!
+checkForPlayerInPoint: aPoint
+
+	self assertThereIsNoPlayer.
+
+	((player isAt: aPoint heading: #North) or: 
+		(player isAt: aPoint heading: #West) or:
+		(player isAt: aPoint heading: #South) or:
+		(player isAt: aPoint heading: #East))
+		
+	ifTrue:[^player]! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 20:53:53'!
+assertThereIsNoPlayer
+
+	player isNil ifTrue: [ self signalEmptyPosition].! !
+!Room methodsFor: 'accessing' stamp: 'MS 12/10/2020 20:54:18' prior: 50870181!
+elementInPosition: aPoint 
+	
+	 ^ contents keyAtValue:  aPoint ifAbsent: [self checkForPlayerInPoint: aPoint].! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 20:54:23'!
+PASSED!
+
+!methodRemoval: Room #assertPositionIsEmpty: stamp: 'MS 12/10/2020 20:54:46'!
+assertPositionIsEmpty: aPoint
+
+	player isNil ifTrue: [ self signalEmptyPosition].
+	
+	^(self checkForPlayerInPoint: aPoint).!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:58:10'!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	self
+		should: [ aRoom elementInPosition: 0@0]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room noElementInPositionErrorDescription.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:58:32' prior: 50870306!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	aRoom addPlayer: aPlayableCharacter .
+	
+	self assert: aRoom activePlayer = aPlayableCharacter .
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:58:51' prior: 50870320!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	aRoom addPlayer: aPlayableCharacter.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 20:59:47' prior: 50870339!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom addPlayer: aPlayableCharacter.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:00:10' prior: 50870356!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom addPlayer: aPlayableCharacter.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+
+!testRun: #RoomTest #test08ARoomCanNotAddAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:00:25'!
+ERROR!
+
+!testRun: #RoomTest #test08ARoomCanNotAddAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:00:25'!
+ERROR!
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 21:00:34'!
+PositionIsAlreadyOccupiedErrorDescription
+	self shouldBeImplemented.! !
+!Room class methodsFor: 'error handling' stamp: 'MS 12/10/2020 21:01:00' prior: 50870408!
+PositionIsAlreadyOccupiedErrorDescription
+	^'Position is already occupied'.! !
+
+!testRun: #RoomTest #test08ARoomCanNotAddAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:01:02'!
+FAILURE!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:01:19' prior: 50870377!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom addPlayer: aPlayableCharacter.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+
+!testRun: #RoomTest #test08ARoomCanNotAddAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:01:23'!
+FAILURE!
+
+!testRun: #RoomTest #test08ARoomCanNotAddAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:01:23'!
+FAILURE!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:02:50' prior: 50868651!
+addPlayer: aPlayableCharacter 
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell.	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:03:13'!
+assertPlayerIsNotTryingToEnterAnOccupiedCell
+
+	player.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:04:31'!
+addPlayer: aPlayableCharacter toPosition: aPoint
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell.	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:04:37' prior: 50870464!
+addPlayer: aPlayableCharacter toPosition: aPoint
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: aPoint.	
+	player := aPlayableCharacter.! !
+
+!methodRemoval: Room #addPlayer: stamp: 'MS 12/10/2020 21:04:48'!
+addPlayer: aPlayableCharacter 
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell.	
+	player := aPlayableCharacter.!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:05:58'!
+addPlayer: aPlayableCharacter
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell.	
+	player := aPlayableCharacter.! !
+
+!methodRemoval: Room #addPlayer:toPosition: stamp: 'MS 12/10/2020 21:06:01'!
+addPlayer: aPlayableCharacter toPosition: aPoint
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: aPoint.	
+	player := aPlayableCharacter.!
+
+Object subclass: #Room
+	instanceVariableNames: 'xCoordinate yCoordinate player contents playerPostion'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #Room category: #'ISW1-2020-2C-2doParcial' stamp: 'MS 12/10/2020 21:06:51'!
+Object subclass: #Room
+	instanceVariableNames: 'xCoordinate yCoordinate player contents playerPostion'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:11:33'!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom move: aPlayableCharacter direction: 'forward'.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+
+!methodRemoval: RoomTest #test08ARoomCanNotAddAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:11:41'!
+test08ARoomCanNotAddAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom addPlayer: aPlayableCharacter.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:12:28'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:12:28'!
+ERROR!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:12:28'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:12:34'!
+move: aPlayableCharacter direction: aString 
+	self shouldBeImplemented.! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:14:05' prior: 50870512!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom movePlayerForward.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:14:13' prior: 50870599!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self
+		should: [aRoom movePlayerForward]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:14:23' prior: 50870624!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	
+	self 
+		should: [aRoom movePlayerForward]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:14:48' prior: 50870649!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter.
+	
+	self 
+		should: [aRoom movePlayerForward]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+
+!methodRemoval: Room #move:direction: stamp: 'MS 12/10/2020 21:14:54'!
+move: aPlayableCharacter direction: aString 
+	self shouldBeImplemented.!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:15:06'!
+ERROR!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:15:06'!
+ERROR!
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:15:10'!
+movePlayerForward
+	self shouldBeImplemented.! !
+!Room methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:15:34' prior: 50870710!
+movePlayerForward
+	
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell.
+	
+	player moveForward. ! !
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:15:37'!
+FAILURE!
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:18:55' prior: 50870460!
+assertPlayerIsNotTryingToEnterAnOccupiedCell
+
+	^ player ifFalse: [ self signalPositionOccupied]! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'MS 12/10/2020 21:21:54'!
+initializeNamed: aName using: aBackpack
+
+	name := aName.
+	backpack := aBackpack.! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'MS 12/10/2020 21:22:20' prior: 50864240!
+initializeNamed: aName using: aBackpack at: aPosition heading: aMarsRoverHeading 
+
+	self initializeNamed: aName using: aBackpack.
+	position := aPosition.
+	heading := aMarsRoverHeading! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:22:44' prior: 50870674!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack. 
+	aRoom addPlayer: aPlayableCharacter at: 0@0 heading: #North.
+	
+	self 
+		should: [aRoom movePlayerForward]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'MS 12/10/2020 21:24:12' prior: 50870737!
+initializeNamed: aName using: aBackpack at: aPosition heading: aMarsRoverHeading 
+
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aMarsRoverHeading! !
+
+!methodRemoval: PlayableCharacter #initializeNamed:using: stamp: 'MS 12/10/2020 21:24:16'!
+initializeNamed: aName using: aBackpack
+
+	name := aName.
+	backpack := aBackpack.!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:14:48' prior: 50870746!
+test08ARoomCanNotMoveAPlayerToAnOccupiedSpace
+
+	| anXCoordinate aYCoordinate aRoom aBackpack aPlayableCharacter anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aBackpack:= Backpack containingUpTo: 10 limitingPointsTo: 10.
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@1.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Traveler' using: aBackpack at: 0@0 heading: #North. 
+	aRoom addPlayer: aPlayableCharacter.
+	
+	self 
+		should: [aRoom movePlayerForward]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:24:57'!
+PASSED!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:25:01'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:25:01'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:25:01'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:25:01'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:25:01'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:25:01'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:25:01'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:25:01'!
+ERROR!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:25:07'!
+ERROR!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:26:07' prior: 50870484!
+addPlayer: aPlayableCharacter
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell.	
+	
+	player := aPlayableCharacter.! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'MS 12/10/2020 21:26:43'!
+position
+
+ ^position.! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:28:36'!
+assertPlayerIsNotTryingToEnterAnOccupiedCell: aPoint
+
+	^ self positionIsEmpty: aPoint ifFalse: [ self signalPositionOccupied].! !
+
+!methodRemoval: Room #assertPlayerIsNotTryingToEnterAnOccupiedCell stamp: 'MS 12/10/2020 21:28:43'!
+assertPlayerIsNotTryingToEnterAnOccupiedCell
+
+	^ player ifFalse: [ self signalPositionOccupied]!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:29:02' prior: 50870846!
+addPlayer: aPlayableCharacter
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: player position.	
+	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:29:58' prior: 50870715!
+movePlayerForward
+	
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: player moveForward .
+	
+	"player moveForward. "! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:30:31' prior: 50870856!
+assertPlayerIsNotTryingToEnterAnOccupiedCell: aPoint
+
+	^ self assertPositionIsEmpty: aPoint ifFalse: [ self signalPositionOccupied].! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:31:43'!
+assertPositionIsEmpty: aPoint
+
+	self elementInPosition: aPoint.! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:32:38' prior: 50870890!
+assertPositionIsEmpty: aPoint
+
+	contents.! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:34:35' prior: 50870895!
+assertPositionIsEmpty: aPoint
+
+ 	contents keyAtValue: aPoint ifAbsent: [^true].
+	
+	self signalOccupiedPosition! !
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:34:39' prior: 50870899!
+assertPositionIsEmpty: aPoint
+
+ 	contents keyAtValue: aPoint ifAbsent: [^true].
+	
+	self signalOccupiedPosition.! !
+!Room methodsFor: 'signals' stamp: 'MS 12/10/2020 21:35:00'!
+signalOccupiedPosition.
+
+	^ self error: self class invalidRoomDimensionErrorDescription! !
+!Room methodsFor: 'signals' stamp: 'MS 12/10/2020 21:35:17' prior: 50870912!
+signalOccupiedPosition.
+
+	^ self error: self class PositionIsAlreadyOccupiedErrorDescription.! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:35:35'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:35:35'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:35:35'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:35:35'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:35:35'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:35:35'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:35:35'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:35:35'!
+ERROR!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:35:39'!
+ERROR!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:36:34' prior: 50870869!
+addPlayer: aPlayableCharacter
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: player position .	
+	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:36:46' prior: 50870955!
+addPlayer: aPlayableCharacter
+
+
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: aPlayableCharacter position .	
+	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:36:58' prior: 50870876!
+movePlayerForward
+	
+	self assertPlayerIsNotTryingToEnterAnOccupiedCell: player moveForward .
+	
+	"player moveForward. "! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:37:01'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:37:01'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:37:01'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:37:01'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:37:01'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:37:01'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:37:01'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:37:01'!
+ERROR!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:37:03'!
+ERROR!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:37:38'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:37:38'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:37:38'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:37:38'!
+ERROR!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:37:38'!
+ERROR!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:37:38'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:37:38'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:37:38'!
+ERROR!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:37:39'!
+ERROR!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:38:39' prior: 50870962!
+addPlayer: aPlayableCharacter
+
+
+	self assertPositionIsEmpty: aPlayableCharacter position .	
+	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:38:51' prior: 50870970!
+movePlayerForward
+	
+	self assertPositionIsEmpty: player moveForward .
+	
+	"player moveForward. "! !
+
+!methodRemoval: Room #assertPlayerIsNotTryingToEnterAnOccupiedCell: stamp: 'MS 12/10/2020 21:38:55'!
+assertPlayerIsNotTryingToEnterAnOccupiedCell: aPoint
+
+	^ self assertPositionIsEmpty: aPoint ifFalse: [ self signalPositionOccupied].!
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:38:57'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:38:57'!
+FAILURE!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:38:57'!
+FAILURE!
+!Room methodsFor: 'assertions' stamp: 'MS 12/10/2020 21:39:44' prior: 50870906!
+assertPositionIsEmpty: aPoint
+
+ 	contents keyAtValue: aPoint ifAbsent: [^true].
+	
+	^ self signalOccupiedPosition.! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:39:53'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:39:53'!
+FAILURE!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:39:53'!
+FAILURE!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:40:34'!
+FAILURE!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:41:28' prior: 50871039!
+addPlayer: aPlayableCharacter
+
+
+	self assertPositionIsEmpty: (aPlayableCharacter position) .	
+	
+	player := aPlayableCharacter.! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:41:36' prior: 50871046!
+movePlayerForward
+	
+	self assertPositionIsEmpty: (player moveForward) .
+	
+	"player moveForward. "! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:41:57' prior: 50871139!
+movePlayerForward
+	
+	self assertPositionIsEmpty: (player moveForward position) .
+	
+	"player moveForward. "! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:42:05'!
+PASSED!
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:44:33'!
+test09ARoomCanNotAddAnObjectInAnOccupiedPosition
+
+	| anXCoordinate aYCoordinate aRoom anObject |
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	
+	self assert: (aRoom elementInPosition: 0@0) = anObject.
+! !
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:45:14'!
+movePlayerBackward
+	
+	self assertPositionIsEmpty: (player moveBackward position) .
+	
+	"player moveForward. "! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:46:12' prior: 50871179!
+test09ARoomCanNotAddAnObjectInAnOccupiedPosition
+
+	| anXCoordinate aYCoordinate aRoom anObject anotherObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	anObject := (NoPointsPortableObject named: 'help-este-parcial-es-muy-largo' weighing: 10).
+	
+	aRoom addObject: anObject at: 0@0.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:46:24' prior: 50871201!
+test09ARoomCanNotAddAnObjectInAnOccupiedPosition
+
+	| anXCoordinate aYCoordinate aRoom anObject anotherObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	anotherObject := (NoPointsPortableObject named: 'help-este-parcial-es-muy-largo' weighing: 10).
+	
+	aRoom addObject: anotherObject at: 0@0.
+! !
+!RoomTest methodsFor: 'as yet unclassified' stamp: 'MS 12/10/2020 21:47:06' prior: 50871219!
+test09ARoomCanNotAddAnObjectInAnOccupiedPosition
+
+	| anXCoordinate aYCoordinate aRoom anObject anotherObject|
+
+	anXCoordinate := 5.
+	aYCoordinate:= 5.
+	
+	aRoom:= Room withXCoordinate: anXCoordinate andYCoordinate: aYCoordinate.
+	
+	anObject := (NoPointsPortableObject named: 'help-wanted sign' weighing: 10).
+	aRoom addObject: anObject at: 0@0.
+	anotherObject := (NoPointsPortableObject named: 'help-este-parcial-es-muy-largo' weighing: 10).
+	
+		self
+		should: [aRoom addObject: anotherObject at: 0@0.]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Room PositionIsAlreadyOccupiedErrorDescription.
+! !
+
+!testRun: #RoomTest #test09ARoomCanNotAddAnObjectInAnOccupiedPosition stamp: 'MS 12/10/2020 21:47:09'!
+FAILURE!
+
+!testRun: #RoomTest #test09ARoomCanNotAddAnObjectInAnOccupiedPosition stamp: 'MS 12/10/2020 21:47:09'!
+FAILURE!
+!Room methodsFor: 'action' stamp: 'MS 12/10/2020 21:47:38' prior: 50869547!
+addObject: aNoPointsPortableObject at: aPoint 
+
+	self assertPositionIsEmpty: aPoint.	
+	contents add: aNoPointsPortableObject ->aPoint .! !
+
+!testRun: #RoomTest #test01ARoomCanNotBeCreatedWithANonPositiveHorizontalDimension stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test02ARoomCanNotBeCreatedWithANonPositiveVerticalalDimension stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test03ARoomIsCreatedWithTheExpectedNumberOfCells stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test04APlayableCharacterCanBeAdddedToARoom stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test05ARoomPositionReturnsPlayerAtThatPosition stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test06ARoomCanAddAnObject stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test07ARoomCantReturnAnElementsIfThereIsNothingThere stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test08ARoomCanNotMoveAPlayerToAnOccupiedSpace stamp: 'MS 12/10/2020 21:47:41'!
+PASSED!
+
+!testRun: #RoomTest #test09ARoomCanNotAddAnObjectInAnOccupiedPosition stamp: 'MS 12/10/2020 21:47:42'!
+PASSED!
+
+----SNAPSHOT----(10 December 2020 21:48:51) CuisUniversity-4365.image priorSource: 17024812!

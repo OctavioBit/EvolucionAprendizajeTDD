@@ -1,0 +1,3570 @@
+----STARTUP---- (18 November 2020 15:25:59) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:26:59' prior: 50900212!
+test04CartCanHoldDifferentBooks
+
+	| cart book1 book2 |
+	
+	cart := Cart new.
+	book1 := '1933988274'.
+	book2 := '1933988275'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book1).
+	self assert: 1 equals: (cart quantityOfProduct: book2).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:27:47' prior: 50900138!
+test03CartCanHoldSameBookMultipleTimes
+
+	| cart book |
+	
+	cart := Cart new.
+	book := '1933988274'.
+	cart add: book.
+	cart add: book.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:27:57' prior: 50900058!
+test02BookAddedToCartIsInCart
+
+	| cart book |
+	
+	cart := Cart new.
+	book := '1933988274'.
+	cart add: book.
+	
+	self deny: cart isEmpty.
+	self assert: 1 equals: (cart quantityOfProduct: book).! !
+
+!classRemoval: #ISBN stamp: 'VP 11/18/2020 15:28:05'!
+Object subclass: #ISBN
+	instanceVariableNames: 'isbnNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Book stamp: 'VP 11/18/2020 15:28:08'!
+Object subclass: #Book
+	instanceVariableNames: 'iSBNNumber isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'VP 11/18/2020 15:28:11'!
+PASSED!
+
+!testRun: #CartTest #test02BookAddedToCartIsInCart stamp: 'VP 11/18/2020 15:28:11'!
+PASSED!
+
+!testRun: #CartTest #test03CartCanHoldSameBookMultipleTimes stamp: 'VP 11/18/2020 15:28:11'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanHoldDifferentBooks stamp: 'VP 11/18/2020 15:28:11'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:31:13'!
+test05Empty
+
+	| cart book1 book2 |
+	
+	cart := Cart new.
+	book1 := '1933988274'.
+	book2 := '1933988275'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book1).
+	self assert: 1 equals: (cart quantityOfProduct: book2).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:34:19'!
+test05EmptyCartListingIsEmpty
+
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: cart isEmpty.
+	self assert: cart productListing isEmpty.! !
+
+!methodRemoval: CartTest #test05Empty stamp: 'VP 11/18/2020 15:34:26'!
+test05Empty
+
+	| cart book1 book2 |
+	
+	cart := Cart new.
+	book1 := '1933988274'.
+	book2 := '1933988275'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book1).
+	self assert: 1 equals: (cart quantityOfProduct: book2).!
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 15:34:27'!
+ERROR!
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 15:34:27'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'VP 11/18/2020 15:34:31'!
+productListing
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'accessing' stamp: 'VP 11/18/2020 15:34:37' prior: 50900572!
+productListing
+	
+	^Dictionary new.! !
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 15:34:39'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:35:17'!
+test06CartListingHasAllCartProductsWithTheirQuantity
+
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: cart isEmpty.
+	self assert: cart productListing isEmpty.! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 15:44:24'!
+test06CartListingHasAllCartProductsGroupedByISBN
+
+	| cart book1 book2 listing |
+	
+	cart := Cart new.
+	book1 := '1933988274'.
+	book2 := '1933988275'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	listing := cart productListing.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: listing size.
+	self assert: 2 equals: (listing at: book1).
+	self assert: 1 equals: (listing at: book2).! !
+
+!methodRemoval: CartTest #test06CartListingHasAllCartProductsWithTheirQuantity stamp: 'VP 11/18/2020 15:44:33'!
+test06CartListingHasAllCartProductsWithTheirQuantity
+
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: cart isEmpty.
+	self assert: cart productListing isEmpty.!
+
+!testRun: #CartTest #test06CartListingHasAllCartProductsGroupedByISBN stamp: 'VP 11/18/2020 15:44:35'!
+FAILURE!
+
+!testRun: #CartTest #test06CartListingHasAllCartProductsGroupedByISBN stamp: 'VP 11/18/2020 15:44:35'!
+FAILURE!
+
+|bag|
+bag := Bag new.
+
+bag add: 3 withOccurrences: 2.!
+
+|bag|
+bag := Bag new.
+
+bag add: 3 withOccurrences: 2; yourself.!
+
+self inject: '' into: [ :str :a | str , a asString ].!
+!Cart methodsFor: 'accessing' stamp: 'VP 11/18/2020 15:59:47' prior: 50900576!
+productListing
+	
+	^products asSet inject: Dictionary new into: [ :listing :aProduct | 
+		listing at: aProduct put: (products occurrencesOf: aProduct); yourself.
+	].
+
+	"
+	Una alternativa viable es esta, pero nos pareci� m�s operacional y menos declarativa.
+	products inject: Dictionary new into: [ :listing :aProduct | 
+		| amount |
+		amount := listing at: aProduct ifAbsent: [ 0 ].
+		listing at: aProduct put: amount + 1.
+	].
+	"! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'VP 11/18/2020 15:59:51'!
+PASSED!
+
+!testRun: #CartTest #test02BookAddedToCartIsInCart stamp: 'VP 11/18/2020 15:59:51'!
+PASSED!
+
+!testRun: #CartTest #test03CartCanHoldSameBookMultipleTimes stamp: 'VP 11/18/2020 15:59:51'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanHoldDifferentBooks stamp: 'VP 11/18/2020 15:59:51'!
+PASSED!
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 15:59:51'!
+PASSED!
+
+!testRun: #CartTest #test06CartListingHasAllCartProductsGroupedByISBN stamp: 'VP 11/18/2020 15:59:51'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:02:53'!
+test07CanNotAddProductOutsideCatalog
+
+	| cart outsideBook |
+	
+	cart := Cart new.
+	outsideBook := '1933988274'.
+	
+	self should: [ cart add: outsideBook ] 
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cart negativeTransferErrorMessage equals: anError messageText.
+			self assert: cart isEmpty.
+		].! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:03:20' prior: 50900660!
+test07CanNotAddProductOutsideCatalog
+
+	| cart outsideBook |
+	
+	cart := Cart newWithCatalog: #('1933988274').
+	outsideBook := 'NOT_A_BOOK'.
+	
+	self should: [ cart add: outsideBook ] 
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cart negativeTransferErrorMessage equals: anError messageText.
+			self assert: cart isEmpty.
+		].! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:03:49' prior: 50900590!
+test06CartListingHasAllCartProductsGroupedByISBN
+
+	| cart book1 book2 listing |
+	
+	cart := Cart newWithCatalog: #('1', '2').
+	book1 := '1'.
+	book2 := '2'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	listing := cart productListing.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: listing size.
+	self assert: 2 equals: (listing at: book1).
+	self assert: 1 equals: (listing at: book2).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:00' prior: 50900548!
+test05EmptyCartListingIsEmpty
+
+	| cart |
+	
+	cart := Cart newWithCatalog: #('1').
+	
+	self assert: cart isEmpty.
+	self assert: cart productListing isEmpty.! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:03' prior: 50900481!
+test04CartCanHoldDifferentBooks
+
+	| cart book1 book2 |
+	
+	cart := Cart newWithCatalog: #('1').
+	book1 := '1933988274'.
+	book2 := '1933988275'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book1).
+	self assert: 1 equals: (cart quantityOfProduct: book2).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:09' prior: 50900710!
+test04CartCanHoldDifferentBooks
+
+	| cart book1 book2 |
+	
+	cart := Cart newWithCatalog: #('1', '2').
+	book1 := '1'.
+	book2 := '2'.
+	cart add: book1 times: 2.
+	cart add: book2.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book1).
+	self assert: 1 equals: (cart quantityOfProduct: book2).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:16' prior: 50900494!
+test03CartCanHoldSameBookMultipleTimes
+
+	| cart book |
+	
+	cart := Cart newWithCatalog: #('1').
+	book := '1'.
+	cart add: book.
+	cart add: book.
+	
+	self deny: cart isEmpty.
+	self assert: 2 equals: (cart quantityOfProduct: book).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:21' prior: 50900504!
+test02BookAddedToCartIsInCart
+
+	| cart book |
+	
+	cart := Cart newWithCatalog: #('1').
+	book := '1'.
+	cart add: book.
+	
+	self deny: cart isEmpty.
+	self assert: 1 equals: (cart quantityOfProduct: book).! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:23' prior: 50899631!
+test01NewCartIsEmpty
+
+	| cart |
+	
+	cart := Cart newWithCatalog: #('1').
+	
+	self assert: cart isEmpty.! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:04:29' prior: 50900673!
+test07CanNotAddProductOutsideCatalog
+
+	| cart outsideBook |
+	
+	cart := Cart newWithCatalog: #('1').
+	outsideBook := 'NOT_A_BOOK'.
+	
+	self should: [ cart add: outsideBook ] 
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cart negativeTransferErrorMessage equals: anError messageText.
+			self assert: cart isEmpty.
+		].! !
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:04:31'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'VP 11/18/2020 16:04:36'!
+newWithCatalog: anArray 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNewWithCatalog: anArray ! !
+!Cart class methodsFor: 'instance creation' stamp: 'VP 11/18/2020 16:04:54' prior: 50900778!
+newWithCatalog: aProductCatalog
+	^self new initializeNewWithCatalog: aProductCatalog.! !
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:04:59'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'VP 11/18/2020 16:05:10'!
+Object subclass: #Cart
+	instanceVariableNames: 'products productCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'VP 11/18/2020 16:05:10'!
+initializeNewWithCatalog: aProductCatalog 
+	self shouldBeImplemented.
+	productCatalog := aProductCatalog.! !
+!Cart methodsFor: 'initialization' stamp: 'VP 11/18/2020 16:05:17' prior: 50900802!
+initializeNewWithCatalog: aProductCatalog 
+
+	productCatalog := aProductCatalog.! !
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:05:23'!
+FAILURE!
+!Cart methodsFor: 'operations' stamp: 'VP 11/18/2020 16:05:47' prior: 50900454!
+add: aProduct times: aQuantity
+	
+	self verifyProductInCatalog: aProduct.
+	
+	products add: aProduct withOccurrences: aQuantity.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'VP 11/18/2020 16:05:52'!
+PASSED!
+
+!testRun: #CartTest #test02BookAddedToCartIsInCart stamp: 'VP 11/18/2020 16:05:52'!
+ERROR!
+
+!testRun: #CartTest #test03CartCanHoldSameBookMultipleTimes stamp: 'VP 11/18/2020 16:05:52'!
+ERROR!
+
+!testRun: #CartTest #test04CartCanHoldDifferentBooks stamp: 'VP 11/18/2020 16:05:52'!
+ERROR!
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 16:05:52'!
+PASSED!
+
+!testRun: #CartTest #test06CartListingHasAllCartProductsGroupedByISBN stamp: 'VP 11/18/2020 16:05:52'!
+ERROR!
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:05:52'!
+ERROR!
+
+!testRun: #CartTest #test02BookAddedToCartIsInCart stamp: 'VP 11/18/2020 16:05:54'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'VP 11/18/2020 16:06:18'!
+verifyProductInCatalog: aString 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'VP 11/18/2020 16:07:09' prior: 50900848!
+verifyProductInCatalog: aProduct
+	
+	(productCatalog includes: aProduct) ifFalse: [ self error: self class  ].! !
+!CartTest methodsFor: 'tests' stamp: 'VP 11/18/2020 16:07:47' prior: 50900761!
+test07CanNotAddProductOutsideCatalog
+
+	| cart outsideBook |
+	
+	cart := Cart newWithCatalog: #('1').
+	outsideBook := 'NOT_A_BOOK'.
+	
+	self should: [ cart add: outsideBook ] 
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cart productOutsideCatalogErrorMessage equals: anError messageText.
+			self assert: cart isEmpty.
+		].! !
+!Cart methodsFor: 'testing' stamp: 'VP 11/18/2020 16:07:56' prior: 50900853!
+verifyProductInCatalog: aProduct
+	
+	(productCatalog includes: aProduct) ifFalse: [ self error: self class productOutsideCatalogErrorMessage ].! !
+!Cart class methodsFor: 'instance creation' stamp: 'VP 11/18/2020 16:08:08' prior: 50900787!
+newWithCatalog: aProductCatalog
+
+	^self new initializeNewWithCatalog: aProductCatalog.! !
+!Cart class methodsFor: 'instance creation' stamp: 'VP 11/18/2020 16:08:33'!
+productOutsideCatalogErrorMessage
+
+	^'The product you are trying to add is outside the catalog, and therefore cannot be added'.! !
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:08:46'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+!testRun: #CartTest #test02BookAddedToCartIsInCart stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+!testRun: #CartTest #test03CartCanHoldSameBookMultipleTimes stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanHoldDifferentBooks stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+!testRun: #CartTest #test06CartListingHasAllCartProductsGroupedByISBN stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:08:49'!
+PASSED!
+
+----SNAPSHOT----(18 November 2020 16:09:14) CuisUniversity-4384.image priorSource: 18202347!
+
+----SNAPSHOT----(18 November 2020 16:10:59) CuisUniversity-4384.image priorSource: 18216557!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+!testRun: #CartTest #test02BookAddedToCartIsInCart stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+!testRun: #CartTest #test03CartCanHoldSameBookMultipleTimes stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+!testRun: #CartTest #test04CartCanHoldDifferentBooks stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+!testRun: #CartTest #test05EmptyCartListingIsEmpty stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+!testRun: #CartTest #test06CartListingHasAllCartProductsGroupedByISBN stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+!testRun: #CartTest #test07CanNotAddProductOutsideCatalog stamp: 'VP 11/18/2020 16:11:04'!
+PASSED!
+
+----QUIT----(18 November 2020 16:13:12) CuisUniversity-4384.image priorSource: 18202437!
+
+----STARTUP---- (19 November 2020 18:46:46) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+
+!classRemoval: #Cart stamp: 'VP 11/19/2020 18:47:09'!
+Object subclass: #Cart
+	instanceVariableNames: 'products productCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MerchantProcessorClientTest stamp: 'VP 11/19/2020 18:47:10'!
+TestCase subclass: #MerchantProcessorClientTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'VP 11/19/2020 18:47:10'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/TusLibros-18.st----!
+
+!classRenamed: #CashierTest as: #Wagamamam stamp: 'VP 11/19/2020 18:49:50'!
+Smalltalk renameClassNamed: #CashierTest as: #Wagamamam!
+
+!classRenamed: #Cashier as: #Wagamama stamp: 'VP 11/19/2020 18:49:56'!
+Smalltalk renameClassNamed: #Cashier as: #Wagamama!
+!Wagamamam methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869578!
+test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot
+
+	self 
+		shouldRaise: Wagamama trailerIsEmptyErrorDescription 
+		when: [ :aRobot :aCashier | aCashier receiveOrderFromNormal: aRobot ]
+! !
+!Wagamamam methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869598!
+test03ShouldNotAcceptSensorsFailureRobot
+
+	self 
+		shouldRaise: Wagamama robotSensorsFailureErrorDescription 
+		when: [ :aRobot :aCashier | 
+			aRobot withSensorsFailure.
+			aCashier receiveOrderFromSensorsFailure: aRobot 
+		]
+! !
+!RobotTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869763!
+test08CanCloseOrderWhenWorkingWithMechanicalFailures
+
+	| aTrailer aRobot |
+
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	aRobot take: (ProductA with: 1  and: 1).
+
+	aRobot withMechanicalFailure.	
+		
+	self assert: (aRobot closeOrderUsing: Wagamama new).! !
+!Wagamamam methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869587!
+test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot
+
+	self 
+		shouldRaise: Wagamama trailerIsEmptyErrorDescription 
+		when: [ :aRobot :aCashier | 
+			aRobot withMechanicalFailure.
+			aCashier receiveOrderFromMechanicalFailure: aRobot 
+		]
+! !
+!RobotTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869774!
+test09CanNotCloseOrderWhenOutOfOrder
+
+	| aTrailer aRobot |
+
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	aRobot take: (ProductA with: 1  and: 1).
+	
+	aRobot outOfOrder.
+
+	self
+		should: [ aRobot closeOrderUsing: Wagamama new ]
+		raise: Error
+		withMessageText: Robot outOfOrderErrorDescription.
+ 
+! !
+!Wagamamam methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869566!
+shouldRaise: errorMessage when: aBlock
+
+	| aRobot aTrailer aCashier |
+	
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	
+	aCashier := Wagamama new.
+
+	self
+		should: [ aBlock value: aRobot value: aCashier ]
+		raise: Error
+		withMessageText: errorMessage.
+! !
+!RobotTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869749!
+test07CanNotCloseOrderWhenWorkingWithSensorsFailures
+
+	| aTrailer aRobot |
+
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	aRobot take: (ProductA with: 1  and: 1).
+	
+	aRobot withSensorsFailure.
+
+	self
+		should: [ aRobot closeOrderUsing: Wagamama new ]
+		raise: Error
+		withMessageText: Wagamama robotSensorsFailureErrorDescription.
+ 
+! !
+!RobotTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 18:49:56' prior: 50869739!
+test06CanCloseOrderWhenWorkingNormal
+
+	| aTrailer aRobot |
+
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	aRobot take: (ProductA with: 1  and: 1).
+	
+	self assert: (aRobot closeOrderUsing: Wagamama new)! !
+
+!classRenamed: #Wagamamam as: #WagamamaTest stamp: 'VP 11/19/2020 18:50:05'!
+Smalltalk renameClassNamed: #Wagamamam as: #WagamamaTest!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/19/2020 18:50:15'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'no messages' stamp: 'VP 11/19/2020 18:56:23'!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 19:03:36' prior: 50900831!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	cart := Cart newFrom: ''.
+	
+	cashier! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 19:03:58' prior: 50900836!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	cart := Cart acceptingItemsOf: ''.
+	
+	cashier! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 19:04:41' prior: 50900843!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 19:04:52'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:05:15'!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:05:23'!
+itemNotSellByTheStore
+	
+	^'invalidBook'! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:05:38'!
+itemSellByTheStore
+	
+	^ 'validBook'! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:05:53' prior: 50900850!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	cart := self createCart.
+	
+	cashier := self createCashier.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'VP 11/19/2020 19:06:18'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:06:13'!
+createCashier
+	
+	^Cashier acceptingItemsOf: self defaultCatalog.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:08:08' prior: 50900873!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier classDoesNotExistErrorMessage equals: anError messageText.
+		].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:08:14' prior: 50900891!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier |
+	
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier emptyCartCheckoutErrorMessage equals: anError messageText.
+		].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:09:31' prior: 50900903!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	self should: [ chargedAmount := cashier checkout: cart ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier emptyCartCheckoutErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:10:22'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:10:42'!
+acceptingItemsOf: anArray 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeAcceptingItemsOf: anArray ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:10:56' prior: 50900934!
+acceptingItemsOf: aProductCatalog
+
+	^self new initializeAcceptingItemsOf: aProductCatalog.! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:11:05'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'VP 11/19/2020 19:11:12'!
+Object subclass: #Cashier
+	instanceVariableNames: 'productCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'VP 11/19/2020 19:11:12'!
+initializeAcceptingItemsOf: aProductCatalog 
+	self shouldBeImplemented.
+	productCatalog := aProductCatalog.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:11:41' prior: 50900886!
+createCashier
+	
+	^Cashier new.! !
+
+!methodRemoval: Cashier #initializeAcceptingItemsOf: stamp: 'VP 11/19/2020 19:11:49'!
+initializeAcceptingItemsOf: aProductCatalog 
+	self shouldBeImplemented.
+	productCatalog := aProductCatalog.!
+
+!methodRemoval: Cashier class #acceptingItemsOf: stamp: 'VP 11/19/2020 19:11:52'!
+acceptingItemsOf: aProductCatalog
+
+	^self new initializeAcceptingItemsOf: aProductCatalog.!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:11:57'!
+ERROR!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:11:57'!
+ERROR!
+!Cashier class methodsFor: 'error message -- private' stamp: 'VP 11/19/2020 19:12:14'!
+emptyCartCheckoutErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error message -- private' stamp: 'VP 11/19/2020 19:12:27' prior: 50900988!
+emptyCartCheckoutErrorMessage
+	
+	^'Cannot checkout empty cart'.! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:12:30'!
+FAILURE!
+!Cashier methodsFor: 'no messages' stamp: 'VP 11/19/2020 19:13:18'!
+checkout: aCart
+
+	self error: self class emptyCartCheckoutErrorMessage.! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:13:21'!
+PASSED!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:17:27'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:17:30'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:17:24'!
+test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: (productCatalog priceOf: validBookOf100) equals: 100.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:17:46' prior: 50901025!
+test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: (productCatalog priceOf: validBookOf100) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:18:00' overrides: 16927572!
+setUp
+
+	validBookOf100 := 'validBook'.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:18:23' prior: 50900869!
+itemSellByTheStore
+	
+	^ validBookOf100.! !
+!CashierTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/19/2020 19:19:53' prior: 50901052 overrides: 16927572!
+setUp
+
+	validBookOf100 := 'validBook'.
+	
+	productCatalog := Dictionary new.
+	productCatalog at: validBookOf100 put: 100.! !
+
+!methodRemoval: CashierTest #defaultCatalog stamp: 'VP 11/19/2020 19:20:02'!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:20:09' prior: 50900856!
+createCart
+	
+	^Cart acceptingItemsOf: productCatalog! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/19/2020 19:20:10' prior: 50901072!
+createCart
+	
+	^Cart acceptingItemsOf: productCatalog.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:20:20' prior: 50901038!
+test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: (productCatalog at: validBookOf100) equals: chargedAmount.! !
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:20:21'!
+ERROR!
+
+catalog includes: anItem!
+
+catalog keys includes: anItem!
+!Cart methodsFor: 'assertions' stamp: 'VP 11/19/2020 19:21:01' prior: 50900548!
+assertIsValidItem: anItem
+
+	(catalog keys includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:21:03'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 19:21:26' prior: 50901002!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self error: self class emptyCartCheckoutErrorMessage ].
+	^100.! !
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:21:28'!
+PASSED!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:21:28'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:21:28'!
+PASSED!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:22:50'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:22:17'!
+test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: (productCatalog at: validBookOf100) equals: chargedAmount.! !
+!CashierTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/19/2020 19:24:08' prior: 50901061 overrides: 16927572!
+setUp
+
+	validBookOf100 := 'Las Cr�nicas de �yar�ya'.
+	validBookOf25 := 'Los Llantos del Ma�ana'.
+	
+	productCatalog := Dictionary new.
+	productCatalog at: validBookOf100 put: 100.
+	productCatalog at: validBookOf25 put: 25.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:24:48' prior: 50901137!
+test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:24:55' prior: 50901082!
+test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: 100 equals: chargedAmount.! !
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:24:58'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'VP 11/19/2020 19:25:46' prior: 50901112!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self error: self class emptyCartCheckoutErrorMessage ].
+	^aCart totalPrice.! !
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:25:50'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:25:57'!
+totalPrice
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:26:39' prior: 50901203!
+totalPrice
+	
+	^items sum: [ :anItem | catalog at: anItem ] ifEmpty: [ 0 ].! !
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:26:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/19/2020 19:26:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:26:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/19/2020 19:26:41'!
+PASSED!
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:28:06'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'VP 11/19/2020 19:33:06'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'no messages' stamp: 'VP 11/19/2020 19:32:57'!
+test01CreditCardCorrectlyStoresCardData
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: '4222222222222' expiration: '12/2026' owner: 'John Smith'.
+	
+	self assert: '4222222222222' equals: creditCard number.
+	self assert: '12/2026' equals: creditCard expiration.
+	self assert: 'John Smith' equals: creditCard owner.! !
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:34:20'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'cardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:34:21'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'cardNumber expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:34:41'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'cardNumber expiration owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:34:39' overrides: 16927572!
+setUp
+
+	cardNumber := '4222222222222'.
+	expiration := '12/2026'.
+	owner := 'John Smith'! !
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:34:43' prior: 50901282 overrides: 16927572!
+setUp
+
+	cardNumber := '4222222222222'.
+	expiration := '12/2026'.
+	owner := 'John Smith'.! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:35:38'!
+ERROR!
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:35:56'!
+withNumber: aString expiration: aString2 owner: aString3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithNumber: aString expiration: aString2 owner: aString3 ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:36:24' prior: 50901298!
+withNumber: aNumber expiration: anExpiration owner: anOwner 
+
+	^self new initializeWithNumber: aNumber expiration: anExpiration owner: anOwner. ! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:36:26'!
+ERROR!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'VP 11/19/2020 19:36:39'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'number'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'VP 11/19/2020 19:36:39'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'number expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'VP 11/19/2020 19:36:39'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'number expiration owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'VP 11/19/2020 19:36:39'!
+initializeWithNumber: aNumber expiration: anExpiration owner: anOwner 
+	self shouldBeImplemented.
+	number := aNumber.
+	expiration := anExpiration.
+	owner := anOwner.! !
+!CreditCard methodsFor: 'initialization' stamp: 'VP 11/19/2020 19:36:43' prior: 50901341!
+initializeWithNumber: aNumber expiration: anExpiration owner: anOwner 
+
+	number := aNumber.
+	expiration := anExpiration.
+	owner := anOwner.! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:36:45'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:36:57'!
+number
+	self shouldBeImplemented.
+	^number! !
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:37:01' prior: 50901360!
+number
+
+	^number.! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:37:03'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:37:07'!
+expiration
+	self shouldBeImplemented.
+	^expiration! !
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:37:10' prior: 50901372!
+expiration
+	
+	^expiration! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:37:12'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:37:17'!
+owner
+	self shouldBeImplemented.
+	^owner! !
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:37:23' prior: 50901384!
+owner
+	
+	^owner.! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:37:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:37:26'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:39:16'!
+test02CreatingCreditCardWithInvalidNumberShouldBeProhibited
+
+	self should: [ CreditCard withNumber: '4222222222222' expiration: '12/2026' owner: 'John Smith' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].! !
+
+!testRun: #CreditCardTest #test02CreatingCreditCardWithInvalidNumberShouldBeProhibited stamp: 'VP 11/19/2020 19:39:17'!
+FAILURE!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:39:55'!
+test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited
+
+	self should: [ CreditCard withNumber: '422222222222' expiration: '12/2026' owner: 'John Smith' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].! !
+
+!methodRemoval: CreditCardTest #test02CreatingCreditCardWithInvalidNumberShouldBeProhibited stamp: 'VP 11/19/2020 19:39:58'!
+test02CreatingCreditCardWithInvalidNumberShouldBeProhibited
+
+	self should: [ CreditCard withNumber: '4222222222222' expiration: '12/2026' owner: 'John Smith' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:40:03' prior: 50901415!
+test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited
+
+	self should: [ CreditCard withNumber: '42222222222' expiration: '12/2026' owner: 'John Smith' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].! !
+
+!testRun: #CreditCardTest #test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited stamp: 'VP 11/19/2020 19:40:04'!
+FAILURE!
+
+January / 2020!
+
+GregorianMonthOfYear !
+
+GregorianMonthOfYear year: 2020 month: 12!
+
+GregorianMonthOfYear current !
+
+self next!
+
+self previous!
+!CreditCardTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/19/2020 19:43:19' prior: 50901289 overrides: 16927572!
+setUp
+
+	cardNumber := '4222222222222'.
+	expiration := GregorianMonthOfYear current next.
+	owner := 'John Smith'.! !
+
+GregorianMonthOfYear current next.!
+
+self next!
+!CreditCardTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/19/2020 19:43:45' prior: 50901464 overrides: 16927572!
+setUp
+
+	cardNumber := '4222222222222'.
+	expiration := GregorianMonthOfYear current.
+	owner := 'John Smith'.! !
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:44:16'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'cardNumber expiration owner expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:44:14' prior: 50901246!
+test01CreditCardCorrectlyStoresCardData
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self assert: '4222222222222' equals: creditCard number.
+	self assert: '12/2026' equals: creditCard expiration.
+	self assert: 'John Smith' equals: creditCard owner.! !
+!CreditCardTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/19/2020 19:44:21' prior: 50901473 overrides: 16927572!
+setUp
+
+	cardNumber := '4222222222222'.
+	expirationDate := GregorianMonthOfYear current.
+	owner := 'John Smith'.! !
+
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'cardNumber expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCardTest category: 'TusLibros' stamp: 'VP 11/19/2020 19:44:31'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: 'cardNumber expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'VP 11/19/2020 19:44:46' prior: 50901350!
+initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner 
+
+	number := aNumber.
+	expiration := anExpirationDate.
+	owner := anOwner.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:44:51' prior: 50901309!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner 
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner. ! !
+
+'asdf' !
+
+self substrings !
+
+self last!
+
+self withoutSuffix: self last!
+
+self withoutSuffix: self last asString!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:47:45' prior: 50901441!
+test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited
+
+	| invalidCardNumber |
+	invalidCardNumber := cardNumber withoutSuffix: cardNumber last asString.
+	
+	self should: [ CreditCard withNumber: invalidCardNumber expiration: expirationDate owner: owner ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].! !
+
+!testRun: #CreditCardTest #test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited stamp: 'VP 11/19/2020 19:47:47'!
+FAILURE!
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:48:36' prior: 50901530!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner 
+
+	aNumber size < 16 ifTrue: [ self error: self  ].
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner. ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:48:55' prior: 50901563!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner 
+
+	aNumber size < 16 ifTrue: [ self error: self invalidNumberMessageText ].
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner. ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:49:19'!
+invalidNumberMessageText
+
+	^'Credit card number is invalid'.! !
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:51:00'!
+ERROR!
+
+!testRun: #CreditCardTest #test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited stamp: 'VP 11/19/2020 19:51:00'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:51:00'!
+ERROR!
+
+aNumber!
+
+aNumber size!
+
+	'123' isNumber !
+
+	'123' isNumber!
+
+'123' isNumber!
+
+'asdf' isNumber!
+
+	'1234' asNumber !
+
+	'asdf' asNumber!
+
+	'asdf1' asNumber!
+
+'1asdf' asNumber!
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/19/2020 19:53:51' prior: 50901573!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner 
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner.! !
+!CreditCardTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/19/2020 19:54:20' prior: 50901502 overrides: 16927572!
+setUp
+
+	cardNumber := 4222222222222.
+	expirationDate := GregorianMonthOfYear current.
+	owner := 'John Smith'.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:54:38' prior: 50901488!
+test01CreditCardCorrectlyStoresCardData
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self assert: cardNumber equals: creditCard number.
+	self assert: expirationDate equals: creditCard expiration.
+	self assert: owner equals: creditCard owner.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:56:43'!
+test01CreditCardCorrectlyStoresCardDataAndIsNotExpired
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self assert: cardNumber equals: creditCard number.
+	self assert: expirationDate equals: creditCard expiration.
+	self assert: owner equals: creditCard owner.
+	
+	self deny: creditCard isExpired.! !
+
+!methodRemoval: CreditCardTest #test01CreditCardCorrectlyStoresCardData stamp: 'VP 11/19/2020 19:56:46'!
+test01CreditCardCorrectlyStoresCardData
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self assert: cardNumber equals: creditCard number.
+	self assert: expirationDate equals: creditCard expiration.
+	self assert: owner equals: creditCard owner.!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:57:26'!
+test02CreditCardWithPastExpirationDateIsExpired
+
+	| invalidCardNumber |
+	invalidCardNumber := cardNumber withoutSuffix: cardNumber last asString.
+	
+	self should: [ CreditCard withNumber: invalidCardNumber expiration: expirationDate owner: owner ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].! !
+
+!methodRemoval: CreditCardTest #test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited stamp: 'VP 11/19/2020 19:57:27'!
+test02CreatingCreditCardWithNumberOfLessThan16DigitsShouldBeProhibited
+
+	| invalidCardNumber |
+	invalidCardNumber := cardNumber withoutSuffix: cardNumber last asString.
+	
+	self should: [ CreditCard withNumber: invalidCardNumber expiration: expirationDate owner: owner ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidNumberMessageText equals: anError messageText.
+		].!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:57:54'!
+test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self assert: cardNumber equals: creditCard number.
+	self assert: expirationDate equals: creditCard expiration.
+	self assert: owner equals: creditCard owner.
+	
+	self deny: creditCard isExpired.! !
+
+!methodRemoval: CreditCardTest #test01CreditCardCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/19/2020 19:57:56'!
+test01CreditCardCorrectlyStoresCardDataAndIsNotExpired
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self assert: cardNumber equals: creditCard number.
+	self assert: expirationDate equals: creditCard expiration.
+	self assert: owner equals: creditCard owner.
+	
+	self deny: creditCard isExpired.!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/19/2020 19:58:46' prior: 50901660!
+test02CreditCardWithPastExpirationDateIsExpired
+
+	| creditCard |
+	
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate previous owner: owner.
+	
+	self assert: creditCard isExpired.! !
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/19/2020 19:58:57'!
+ERROR!
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:59:02'!
+isExpired
+	self shouldBeImplemented.! !
+!CreditCard methodsFor: 'accessing' stamp: 'VP 11/19/2020 19:59:30' prior: 50901735!
+isExpired
+	
+	^expiration < GregorianMonthOfYear current.! !
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/19/2020 19:59:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/19/2020 19:59:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/19/2020 19:59:31'!
+PASSED!
+
+----QUIT----(19 November 2020 20:57:27) CuisUniversity-4384.image priorSource: 18203210!
+
+----STARTUP---- (21 November 2020 10:44:58) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/21/2020 10:45:28'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/21/2020 10:45:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/21/2020 10:45:31'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:48:34'!
+test03CreditCardWithEmptyOwnerCanNotBeCreated
+
+	self should CreditCard withNumber: cardNumber expiration: expirationDate previous owner: owner.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:49:27' prior: 50901774!
+test03CreditCardWithEmptyOwnerCanNotBeCreated
+
+	self should: [ CreditCard withNumber: cardNumber expiration: expirationDate previous owner: owner ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard emptyNameErrorMessage equals: anError messageText.	
+		].! !
+
+!methodRemoval: CreditCard class #invalidNumberMessageText stamp: 'VP 11/21/2020 10:49:44'!
+invalidNumberMessageText
+
+	^'Credit card number is invalid'.!
+!CreditCard class methodsFor: 'error messages -- private' stamp: 'VP 11/21/2020 10:50:00'!
+emptyNameErrorMessage
+
+	^'Owner cannot be empty'.! !
+!CreditCard class methodsFor: 'error messages -- private' stamp: 'VP 11/21/2020 10:50:06' prior: 50901799!
+emptyNameErrorMessage
+
+	^'Owner can not be empty'.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/21/2020 10:50:57' prior: 50901605!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner
+	
+	anOwner isEmpty ifTrue: [ self error: self emptyNameErrorMessage ].
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/21/2020 10:51:04'!
+verifyOwnerNotEmpty: anOwner
+
+	^ anOwner isEmpty ifTrue: [ self error: self emptyNameErrorMessage ]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/21/2020 10:51:04' prior: 50901809!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner
+	
+	self verifyOwnerNotEmpty: anOwner.
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner.! !
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/21/2020 10:51:08'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/21/2020 10:51:08'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/21/2020 10:51:08'!
+FAILURE!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/21/2020 10:51:08'!
+FAILURE!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:51:33' prior: 50901782!
+test03CreditCardWithEmptyOwnerCanNotBeCreated
+
+	self should: [ CreditCard withNumber: cardNumber expiration: expirationDate previous owner: '' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard emptyNameErrorMessage equals: anError messageText.	
+		].! !
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/21/2020 10:51:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/21/2020 10:51:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/21/2020 10:51:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/21/2020 10:51:34'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:54:35'!
+test03CheckoutWithValidCardSucceeds
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: '4222222222222' expiration: '' previous owner: ''.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/21/2020 10:54:57'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25 cardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/21/2020 10:54:58'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25 cardNumber expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/21/2020 10:54:59'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25 cardNumber expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setUp/tearDown' stamp: 'VP 11/21/2020 10:54:55' prior: 50901152 overrides: 16927572!
+setUp
+
+	cardNumber := 4222222222222.
+	expirationDate := GregorianMonthOfYear current.
+	owner := 'John Smith'.
+
+	validBookOf100 := 'Las Cr�nicas de �yar�ya'.
+	validBookOf25 := 'Los Llantos del Ma�ana'.
+	
+	productCatalog := Dictionary new.
+	productCatalog at: validBookOf100 put: 100.
+	productCatalog at: validBookOf25 put: 25.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:55:07'!
+test04CheckoutWithValidCardSucceeds
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: '4222222222222' expiration: '' previous owner: ''.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+
+!methodRemoval: CashierTest #test03CheckoutWithValidCardSucceeds stamp: 'VP 11/21/2020 10:55:07'!
+test03CheckoutWithValidCardSucceeds
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: '4222222222222' expiration: '' previous owner: ''.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:57:00' prior: 50901932!
+test04CheckoutWithValidCardSucceeds
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:57:31' prior: 50900915!
+test01CheckoutOfEmptyCartIsNotAllowed
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier emptyCartCheckoutErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:57:41' prior: 50901176!
+test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:57:56' prior: 50901162!
+test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:58:14'!
+test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.! !
+
+!methodRemoval: CashierTest #test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 10:58:16'!
+test02CheckoutOfSingleProductCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:58:25'!
+test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+
+!methodRemoval: CashierTest #test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 10:58:28'!
+test03CheckoutOfMultipleProductsCartSuccedsAndReturnsCorrectPrice
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 10:59:37'!
+test04CheckoutWithNameOfMoreThan30CharactersFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+
+!methodRemoval: CashierTest #test04CheckoutWithValidCardSucceeds stamp: 'VP 11/21/2020 10:59:37'!
+test04CheckoutWithValidCardSucceeds
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:00:12' prior: 50900966!
+createCashier
+	
+	^Cashier withMerchantProcessor: self createMerchantProcessor.! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'VP 11/21/2020 11:01:03'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:00:57'!
+createMerchantProcessor
+	
+	^MerchantProcessorSimulator new.! !
+!Cashier class methodsFor: 'nil' stamp: 'VP 11/21/2020 11:01:51'!
+withMerchantProcessor: aMerchantProcessor
+
+	^self initializeWith: aMerchantProcessor.! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'VP 11/21/2020 11:01:56' prior: 50902154!
+withMerchantProcessor: aMerchantProcessor
+
+	^self new initializeWith: aMerchantProcessor.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'VP 11/21/2020 11:02:32'!
+Object subclass: #Cashier
+	instanceVariableNames: 'productCatalog merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'VP 11/21/2020 11:02:30'!
+initializeWith: aMerchantProcessor
+
+	merchantProcessor := aMerchantProcessor.! !
+
+!testRun: #CashierTest #test04CheckoutWithNameOfMoreThan30CharactersFails stamp: 'VP 11/21/2020 11:02:58'!
+ERROR!
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:03:12'!
+checkout: aCart with: aCreditCard
+
+	aCart isEmpty ifTrue: [ self error: self class emptyCartCheckoutErrorMessage ].
+	^aCart totalPrice.! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:03:33'!
+verifyCartNotEmpty: aCart
+
+	^ aCart isEmpty ifTrue: [ self error: self class emptyCartCheckoutErrorMessage ]! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:03:33' prior: 50902182!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	^aCart totalPrice.! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/21/2020 11:03:36'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:03:36'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:03:36'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithNameOfMoreThan30CharactersFails stamp: 'VP 11/21/2020 11:03:36'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:04:44' prior: 50902102!
+test04CheckoutWithNameOfMoreThan30CharactersFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:04:53'!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+
+!methodRemoval: CashierTest #test04CheckoutWithNameOfMoreThan30CharactersFails stamp: 'VP 11/21/2020 11:04:53'!
+test04CheckoutWithNameOfMoreThan30CharactersFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:05:12' prior: 50902234!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier: [ ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:05:45'!
+createCashierWithCardValidation: aCardValidationBlock
+	
+	^Cashier withMerchantProcessor: (self createMerchantProcessorWithCardValidation: aCardValidationBlock).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:06:01' prior: 50902136!
+createCashier
+	
+	^self createCashierWithCardValidation: [ ^true ].! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:06:32'!
+createMerchantProcessorWithCardValidation: aCardValidationBlock
+	
+	^MerchantProcessorSimulator newWithCardValidation: aCardValidationBlock.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:06:50' prior: 50902149!
+createMerchantProcessor
+	
+	^self createMerchantProcessorWithCardValidation: [ ^true ].! !
+!MerchantProcessorSimulator class methodsFor: 'no messages' stamp: 'VP 11/21/2020 11:07:22'!
+newWithCardValidation: aCardValidationBlock
+
+	^self new initializeWithCardValidation: aCardValidationBlock.! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'VP 11/21/2020 11:07:44'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'no messages' stamp: 'VP 11/21/2020 11:07:42'!
+initializeWithCardValidation: aCardValidationBlock
+
+	cardValidationBlock := aCardValidationBlock.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'VP 11/21/2020 11:08:10'!
+validateCard: aCreditCard
+
+	^cardValidationBlock value: aCreditCard! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:08:33' prior: 50902306!
+createMerchantProcessor
+	
+	^self createMerchantProcessorWithCardValidation: [ :aCreditCard | ^true ].! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:08:47' prior: 50902293!
+createCashier
+	
+	^self createCashierWithCardValidation: [ :aCreditCard | ^true ].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:08:59' prior: 50902268!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:09:06' prior: 50902350!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	cart add: 2 of: validBookOf25.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 + (2 * 25) equals: chargedAmount.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:10:37' prior: 50902368!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	
+	self should: [ creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:10:53' prior: 50902386!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self should: [  ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:11:05' prior: 50902405!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:16:20'!
+test05CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+
+!methodRemoval: CashierTest #test04CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:16:20'!
+test04CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:16:22'!
+ERROR!
+!Cashier class methodsFor: 'error message -- private' stamp: 'VP 11/21/2020 11:16:35'!
+invalidCreditCardErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error message -- private' stamp: 'VP 11/21/2020 11:16:46' prior: 50902489!
+invalidCreditCardErrorMessage
+	
+	^'The provided Credit Card is invalid'.! !
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:16:47'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:17:10' prior: 50902444!
+test05CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | ^false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:17:13'!
+FAILURE!
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:18:30' prior: 50902196!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	
+	merchantProcessor transactionWith: '' ofAmount: aCart totalPrice.
+	
+	^aCart totalPrice.! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:18:46' prior: 50902529!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	
+	merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice.
+	
+	^aCart totalPrice.! !
+
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'VP 11/21/2020 11:19:02'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+MerchantProcessor subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'VP 11/21/2020 11:19:10'!
+MerchantProcessor subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessor methodsFor: 'no messages' stamp: 'VP 11/21/2020 11:20:54'!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	self validateCard: aCreditCard ifFalse: [ self error: Cashier class invalidCreditCardErrorMessage ].! !
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'VP 11/21/2020 11:20:59' prior: 50902570!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self validateCard: aCreditCard) ifFalse: [ self error: Cashier class invalidCreditCardErrorMessage ].! !
+!MerchantProcessorSimulator methodsFor: 'validation' stamp: 'VP 11/21/2020 11:21:08'!
+isValidCard: aCreditCard
+
+	^cardValidationBlock value: aCreditCard! !
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'VP 11/21/2020 11:21:08' prior: 50902578!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self isValidCard: aCreditCard) ifFalse: [ self error: Cashier class invalidCreditCardErrorMessage ].! !
+
+!methodRemoval: MerchantProcessorSimulator #validateCard: stamp: 'VP 11/21/2020 11:21:08'!
+validateCard: aCreditCard
+
+	^cardValidationBlock value: aCreditCard!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/21/2020 11:21:20'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:21:20'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:21:20'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:21:20'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:21:23'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:21:44' prior: 50902344!
+createCashier
+	
+	^self createCashierWithCardValidation: [ :aCreditCard | true ].! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/21/2020 11:21:47' prior: 50902338!
+createMerchantProcessor
+	
+	^self createMerchantProcessorWithCardValidation: [ :aCreditCard | true ].! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:21:51' prior: 50902504!
+test05CheckoutWithInvalidCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithCardValidation: [ :aCreditCard | false ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:21:52'!
+FAILURE!
+!MerchantProcessor methodsFor: 'transaction' stamp: 'VP 11/21/2020 11:22:19' prior: 50902592!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self isValidCard: aCreditCard) ifFalse: [ self error: Cashier invalidCreditCardErrorMessage ].! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/21/2020 11:22:23'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:22:23'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:22:23'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:22:23'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/21/2020 11:22:57'!
+test04CheckoutWithExpiredCreditCardFails
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashier.
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate previous owner: owner.
+	
+	cart add: validBookOf100.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+
+!methodRemoval: Cashier #checkout: stamp: 'VP 11/21/2020 11:23:38'!
+checkout: aCart
+
+	aCart isEmpty ifTrue: [ self error: self class emptyCartCheckoutErrorMessage ].
+	^aCart totalPrice.!
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:24:30' prior: 50902537!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	aCreditCard isExpired ifTrue: [ self error: self class invalidCreditCardErrorMessage ].
+	
+	merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice.
+	
+	^aCart totalPrice.! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:24:42'!
+verifyCardNotExpired: aCreditCard
+
+	^ aCreditCard isExpired ifTrue: [ self error: self class invalidCreditCardErrorMessage ]! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/21/2020 11:24:42' prior: 50902711!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	self verifyCardNotExpired: aCreditCard.
+	
+	merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice.
+	
+	^aCart totalPrice.! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/21/2020 11:24:46'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:24:46'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:24:46'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/21/2020 11:24:46'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:24:46'!
+PASSED!
+
+TestCase subclass: #MerchantProcessorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorTest category: 'TusLibros' stamp: 'VP 11/21/2020 11:38:17'!
+TestCase subclass: #MerchantProcessorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MerchantProcessorTest stamp: 'VP 11/21/2020 11:44:16'!
+TestCase subclass: #MerchantProcessorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'VP 11/21/2020 11:45:09' overrides: 50902662!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self isValidCard: aCreditCard) ifFalse: [ self error: Cashier invalidCreditCardErrorMessage ].! !
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'VP 11/21/2020 11:45:27'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MerchantProcessor stamp: 'VP 11/21/2020 11:45:29'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/21/2020 11:45:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:45:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/21/2020 11:45:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/21/2020 11:45:32'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/21/2020 11:45:32'!
+PASSED!
+
+----QUIT----(21 November 2020 11:49:28) CuisUniversity-4384.image priorSource: 18243343!
+
+----STARTUP---- (22 November 2020 15:57:22) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 16:12:36'!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier invalidCreditCardErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+!Cashier class methodsFor: 'error message -- private' stamp: 'VP 11/22/2020 16:13:50'!
+processorTimeOutErrorMessage
+	
+	^'The processor timed out'.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 16:15:21'!
+createCashierWithProcessorResponse: aProcessorResponse
+	
+	^MerchantProcessorSimulator newWithCardValidation: [ :aCreditCard | true ] responseBehaviour: aProcessorResponse.! !
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'VP 11/22/2020 16:15:32'!
+newWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponse
+
+	^self new initializeWithCardValidation: aCardValidationBlock.! !
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'VP 11/22/2020 16:15:37' prior: 50902867!
+newWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponse
+
+	^self new initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponse.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'VP 11/22/2020 16:15:54'!
+initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponse
+
+	| processorResponseBlock |
+	cardValidationBlock := aCardValidationBlock.
+	processorResponseBlock := aProcessorResponse.! !
+
+!methodRemoval: MerchantProcessorSimulator #initializeWithCardValidation:responseBehaviour: stamp: 'VP 11/22/2020 16:16:12'!
+initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponse
+
+	| processorResponseBlock |
+	cardValidationBlock := aCardValidationBlock.
+	processorResponseBlock := aProcessorResponse.!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'VP 11/22/2020 16:16:17'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock processorResponseBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'VP 11/22/2020 16:16:15'!
+initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponse
+
+	cardValidationBlock := aCardValidationBlock.
+	processorResponseBlock := aProcessorResponse.! !
+
+!methodRemoval: MerchantProcessorSimulator #initializeWithCardValidation: stamp: 'VP 11/22/2020 16:16:21'!
+initializeWithCardValidation: aCardValidationBlock
+
+	cardValidationBlock := aCardValidationBlock.!
+
+!methodRemoval: MerchantProcessorSimulator class #newWithCardValidation: stamp: 'VP 11/22/2020 16:16:27'!
+newWithCardValidation: aCardValidationBlock
+
+	^self new initializeWithCardValidation: aCardValidationBlock.!
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'VP 11/22/2020 16:16:34' prior: 50902876!
+newWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponseBlock
+
+	^self new initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponseBlock.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'VP 11/22/2020 16:16:39' prior: 50902914!
+initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponseBlock
+
+	cardValidationBlock := aCardValidationBlock.
+	processorResponseBlock := aProcessorResponseBlock.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 16:17:10' prior: 50902298!
+createMerchantProcessorWithCardValidation: aCardValidationBlock
+	
+	^MerchantProcessorSimulator newWithCardValidation: aCardValidationBlock responseBehaviour: [ ].! !
+!MerchantProcessorSimulator methodsFor: 'transaction' stamp: 'VP 11/22/2020 16:18:01' prior: 50902777!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self isValidCard: aCreditCard) ifFalse: [ self error: Cashier invalidCreditCardErrorMessage ].! !
+!MerchantProcessorSimulator methodsFor: 'transaction' stamp: 'VP 11/22/2020 16:18:04' prior: 50902965!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self isValidCard: aCreditCard) ifFalse: [ self error: Cashier invalidCreditCardErrorMessage ].
+	
+	! !
+!MerchantProcessorSimulator methodsFor: 'transaction' stamp: 'VP 11/22/2020 16:18:15' prior: 50902973!
+transactionWith: aCreditCard ofAmount: anAmount
+
+	(self isValidCard: aCreditCard) ifFalse: [ self error: Cashier invalidCreditCardErrorMessage ].
+	
+	processorResponseBlock value.! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/22/2020 16:18:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/22/2020 16:18:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/22/2020 16:18:18'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/22/2020 16:18:18'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/22/2020 16:18:18'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/22/2020 16:18:18'!
+FAILURE!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/22/2020 16:18:18'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 16:18:33' prior: 50902830!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	self should: [ chargedAmount := cashier checkout: cart with: creditCard. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: Cashier processorTimeOutErrorMessage equals: anError messageText.
+			self assert: nil equals: chargedAmount.
+		].! !
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/22/2020 16:18:35'!
+FAILURE!
+
+self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ]!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 16:20:13'!
+createMerchantProcessorWithResponse: aProcessorResponse
+	
+	^MerchantProcessorSimulator newWithCardValidation: [ :aCreditCard | true ] responseBehaviour: aProcessorResponse.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 16:20:56' prior: 50902858!
+createCashierWithProcessorResponse: aProcessorResponse
+	
+	^Cashier withMerchantProcessor: (self createMerchantProcessorWithResponse: aProcessorResponse).! !
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/22/2020 16:20:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/22/2020 16:20:59'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/22/2020 16:20:59'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/22/2020 16:20:59'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/22/2020 16:20:59'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/22/2020 16:20:59'!
+PASSED!
+
+GregorianDate today!
+
+GregorianDay today!
+
+GregorianDay today!
+
+self year!
+
+GregorianDateTime now.!
+
+GregorianDateTime now!
+
+self month!
+
+self year!
+
+self year asString!
+
+self year number !
+
+self monthOfYear number!
+
+self monthOfYear !
+
+self monthOfYear monthNumber !
+
+self monthOfYear previous!
+
+self monthOfYear previous previous monthNumber!
+
+self monthOfYear previous previous monthNumber asString!
+
+Date!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/22/2020 16:53:19'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25 cardNumber expirationDate owner expirationDateFormatted'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 16:53:27' prior: 50903017!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	expirationDateFormatted := expirationDate monthNumber asString, '/', expirationDate year number asString.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25 cardNumber expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'VP 11/22/2020 16:53:34'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'validBookOf100 productCatalog validBookOf25 cardNumber expirationDate owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 16:53:53' prior: 50903110!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard expirationDateFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	expirationDateFormatted := expirationDate monthNumber asString, '/', expirationDate year number asString.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 16:54:02' prior: 50903151!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard expirationDateFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	expirationDateFormatted := expirationDate monthNumber asString, expirationDate year number asString.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+
+1!
+
+1!
+
+1 printStringBase: 10 nDigits: 2 !
+
+1 printStringBase: 10 nDigits: 3!
+
+1 printStringBase: 10 nDigits: 4!
+
+	20 printStringBase: 10 nDigits: 4!
+
+	20 printStringBase: 10 nDigits: 2!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:01:53' prior: 50903178!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard today expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	today := GregorianDateTime now.
+	todayFormatted := expirationDate year number asString, '/', (today monthOfYear monthNumber printStringBase: 10 nDigits: 2), '/', (today dayNumber printStringBase: 10 nDigits: 2).
+	expirationDateFormatted := (expirationDate monthNumber printStringBase: 10 nDigits: 2), expirationDate year number asString.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:02:09'!
+formattedDate: today
+
+	^ expirationDate year number asString, '/', (today monthOfYear monthNumber printStringBase: 10 nDigits: 2), '/', (today dayNumber printStringBase: 10 nDigits: 2)! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:02:09' prior: 50903210!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard today expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	today := GregorianDateTime now.
+	todayFormatted := self formattedDate: today.
+	expirationDateFormatted := (expirationDate monthNumber printStringBase: 10 nDigits: 2), expirationDate year number asString.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:02:28'!
+expirationDateFormatted
+
+	^ (expirationDate monthNumber printStringBase: 10 nDigits: 2), expirationDate year number asString! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:02:28' prior: 50903253!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard today expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	today := GregorianDateTime now.
+	todayFormatted := self formattedDate: today.
+	expirationDateFormatted := self expirationDateFormatted.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:04:01'!
+stringFor: aNumber withDigits: aDigitAmount
+
+	^aNumber printStringBase: 10 nDigits: aDigitAmount.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:04:46' prior: 50903244!
+formattedDate: today
+
+	^ expirationDate year number asString, '/', (self stringOf2DigitsFor: today monthOfYear monthNumber), '/', (self stringOf2DigitsFor: today dayNumber).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:05:01'!
+stringOf2DigitsFor: aNumber
+
+	^aNumber printStringBase: 10 nDigits: 2.! !
+
+!methodRemoval: CashierTest #stringFor:withDigits: stamp: 'VP 11/22/2020 17:05:04'!
+stringFor: aNumber withDigits: aDigitAmount
+
+	^aNumber printStringBase: 10 nDigits: aDigitAmount.!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:05:19' prior: 50903283!
+expirationDateFormatted
+
+	^ (self stringOf2DigitsFor: expirationDate monthNumber), expirationDate year number asString! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:05:34' prior: 50903290!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	todayFormatted := self formattedDate: GregorianDateTime now.
+	expirationDateFormatted := self expirationDateFormatted.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:05:55' prior: 50903350!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	todayFormatted := self formattedDate: GregorianDateTime now.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: '2,', cardNumber, ',', self expirationDateFormatted, ',', owner equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:06:54'!
+pendingTransactionFileLine
+
+	^ '2,', cardNumber, ',', self expirationDateFormatted, ',', owner! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:06:54' prior: 50903377!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	todayFormatted := self formattedDate: GregorianDateTime now.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: self pendingTransactionFileLine equals: (cashier pendingTransactionsLedger first).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:07:27'!
+pendingCheckoutFileLine
+
+	^ '2,', cardNumber, ',', self expirationDateFormatted, ',', owner! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'VP 11/22/2020 17:07:27' prior: 50903408!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard expirationDateFormatted todayFormatted |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	todayFormatted := self formattedDate: GregorianDateTime now.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	self assert: self pendingCheckoutFileLine equals: (cashier pendingTransactionsLedger first).! !
+
+!methodRemoval: CashierTest #pendingTransactionFileLine stamp: 'VP 11/22/2020 17:07:27'!
+pendingTransactionFileLine
+
+	^ '2,', cardNumber, ',', self expirationDateFormatted, ',', owner!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:07:51'!
+pendingCheckoutFileLineFor
+
+	^ '2,', cardNumber, ',', self expirationDateFormatted, ',', owner! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:07:51' prior: 50903432!
+pendingCheckoutFileLine
+
+	^ self pendingCheckoutFileLineFor! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:08:36'!
+pendingCheckoutFileLineForCard: aCardNumber expiration: anExpirationDate owner: anOwner
+
+	^ '2,', aCardNumber, ',', self expirationDateFormatted, ',', anOwner! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:09:01' prior: 50903343!
+expirationDateFormatted
+
+	^ (self stringOf2DigitsFor: expirationDate monthNumber), expirationDate year number asString! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:09:24'!
+expirationDateFormatted: anExpirationDate
+
+	^ (self stringOf2DigitsFor: anExpirationDate monthNumber), anExpirationDate year number asString! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:09:33' prior: 50903487!
+expirationDateFormatted
+
+	^ self expirationDateFormatted: expirationDate.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:09:56' prior: 50903479!
+pendingCheckoutFileLineForCard: aCardNumber expiration: anExpirationDate owner: anOwner
+
+	^ '2,', aCardNumber, ',', (self expirationDateFormatted: anExpirationDate), ',', anOwner! !
+
+!methodRemoval: CashierTest #pendingCheckoutFileLineFor stamp: 'VP 11/22/2020 17:10:13'!
+pendingCheckoutFileLineFor
+
+	^ '2,', cardNumber, ',', self expirationDateFormatted, ',', owner!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:10:31' prior: 50903474!
+pendingCheckoutFileLine
+
+	^ self pendingCheckoutFileLineForCard: cardNumber expiration: expirationDate owner: owner.! !
+
+self formattedDate: GregorianDateTime now!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:14:16' prior: 50903324!
+formattedDate: today
+
+	^ expirationDate year number asString, '_', (self stringOf2DigitsFor: today monthOfYear monthNumber), '_', (self stringOf2DigitsFor: today dayNumber).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:17:17' prior: 50903438!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard fileName pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	fileName := 'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := (cashier pendingTransactionsLedger first) at: fileName.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: '1,' , validBookOf100, ',1' equals: pendingTransactionsFile at: 1.
+	self assert: self pendingCheckoutFileLine equals: pendingTransactionsFile at: 2.! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:17:47' prior: 50903539!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard fileName pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	fileName := 'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := (cashier pendingTransactionsLedger first) at: fileName.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: '1,' , validBookOf100, ',1' equals: (pendingTransactionsFile at: 1).
+	self assert: self pendingCheckoutFileLine equals: (pendingTransactionsFile at: 2).! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:18:51'!
+addProductFileLineFor: aProduct withQuantity: aQuantity
+
+	^'1,' , aProduct, ',', aQuantity asString! !
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:19:15' prior: 50903574!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard fileName pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	fileName := 'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := (cashier pendingTransactionsLedger first) at: fileName.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: (self addProductFileLineFor: validBookOf100 withQuantity: 1) equals: (pendingTransactionsFile at: 1).
+	self assert: self pendingCheckoutFileLine equals: (pendingTransactionsFile at: 2).! !
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/22/2020 17:19:26'!
+ERROR!
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:22:18' prior: 50902729!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	self verifyCardNotExpired: aCreditCard.
+	
+	[ merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice ]
+		on: TimedOut do: [
+			
+		].
+	
+	^aCart totalPrice.! !
+
+Object subclass: #Cashier
+	instanceVariableNames: 'productCatalog merchantProcessor pendingTransactionLedger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'VP 11/22/2020 17:22:27'!
+Object subclass: #Cashier
+	instanceVariableNames: 'productCatalog merchantProcessor pendingTransactionLedger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'validations -- private' stamp: 'VP 11/22/2020 17:22:43'!
+pendingTransactionLedger
+
+	^ pendingTransactionLedger copy.! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:25:59' prior: 50903654!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	self verifyCardNotExpired: aCreditCard.
+	
+	[ merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice ]
+		on: TimedOut do: [
+			| cartCollection |
+			
+			cartCollection := aCart asTransactionCollection.
+			cartCollection addLast: (self pendingCheckoutFileLineFor: aCreditCard).
+			
+			pendingTransactionLedger at: self ledgerEntryNameForToday put: cartCollection.
+		].
+	
+	^aCart totalPrice.! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:26:30' prior: 50903683!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	self verifyCardNotExpired: aCreditCard.
+	
+	[ merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice ]
+		on: TimedOut do: [
+			| ledgerFileLines |
+			
+			ledgerFileLines := aCart asTransactionCollection.
+			ledgerFileLines addLast: (self pendingCheckoutFileLineFor: aCreditCard).
+			
+			pendingTransactionLedger at: self ledgerEntryNameForToday put: ledgerFileLines.
+		].
+	
+	^aCart totalPrice.! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:28:03' prior: 50903701!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	self verifyCardNotExpired: aCreditCard.
+	
+	[ merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice ]
+		on: TimedOut do: [
+			| ledgerFileLines |
+			
+			ledgerFileLines := aCart ledgerLines.
+			ledgerFileLines addLast: (self pendingCheckoutFileLineFor: aCreditCard).
+			
+			pendingTransactionLedger at: self ledgerEntryNameForToday put: ledgerFileLines.
+		].
+	
+	^aCart totalPrice.! !
+!Cart methodsFor: 'accessing' stamp: 'VP 11/22/2020 17:29:52'!
+ledgerLines
+	
+	^items collect: [ :anItem | '1,', anItem, ',' ].! !
+
+	'Hola' asString!
+!Cart methodsFor: 'accessing' stamp: 'VP 11/22/2020 17:30:01' prior: 50903736!
+ledgerLines
+	
+	^items collect: [ :anItem | '1,', anItem asString, ',' ].! !
+
+OrderedCollection!
+
+	(OrderedCollection with: 'TuVieja') asSet!
+
+	(OrderedCollection with: 'TuVieja' with: 'TuVieja') asSet!
+!Cart methodsFor: 'accessing' stamp: 'VP 11/22/2020 17:31:00' prior: 50903742!
+ledgerLines
+	
+	^items asSet collect: [ :anItem | '1,', anItem asString, ',', self occurrencesOf: anItem ].! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:32:09'!
+pendingCheckoutFileLineFor: aCreditCard
+	
+	^ '2,', aCreditCard number, ',', (self expirationDateFormatted: aCreditCard expiration), ',', aCreditCard owner.! !
+!Cashier methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:32:33' prior: 50903757!
+pendingCheckoutFileLineFor: aCreditCard
+	
+	^ '2,', aCreditCard number asString, ',', (self expirationDateFormatted: aCreditCard expiration), ',', aCreditCard owner.! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:32:45' prior: 50903507!
+pendingCheckoutFileLineForCard: aCardNumber expiration: anExpirationDate owner: anOwner
+
+	^ '2,', aCardNumber asString, ',', (self expirationDateFormatted: anExpirationDate), ',', anOwner! !
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:33:43'!
+ledgerEntryNameForToday
+
+	^'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.! !
+!Cashier methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:34:46'!
+expirationDateFormatted: expirationDate
+
+	^expirationDate year number asString, '_', (self stringOf2DigitsFor: expirationDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: expirationDate dayNumber).! !
+!Cashier methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:35:39'!
+formattedDate: aDate.
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).! !
+!Cashier methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:35:40' prior: 50903798!
+formattedDate: aDate.
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:35:51' prior: 50903530!
+formattedDate: today
+
+	^ today year number asString, '_', (self stringOf2DigitsFor: today monthOfYear monthNumber), '_', (self stringOf2DigitsFor: today dayNumber).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:35:54' prior: 50903815!
+formattedDate: aDate
+
+	^ aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).! !
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:35:55' prior: 50903823!
+formattedDate: aDate
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).! !
+!Cashier class methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:36:40'!
+formattedDate: aDate.
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).! !
+
+!methodRemoval: Cashier #formattedDate: stamp: 'VP 11/22/2020 17:36:40'!
+formattedDate: aDate.
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).!
+!Cashier class methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:37:06'!
+ledgerEntryNameForToday
+
+	^'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.! !
+
+!methodRemoval: Cashier #ledgerEntryNameForToday stamp: 'VP 11/22/2020 17:37:06'!
+ledgerEntryNameForToday
+
+	^'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.!
+!Cashier methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:37:55' prior: 50903765!
+pendingCheckoutFileLineFor: aCreditCard
+	
+	^ '2,', aCreditCard number asString, ',', (self expirationDateFormatted: aCreditCard expiration), ',', aCreditCard owner.! !
+!Cashier class methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:38:03'!
+pendingCheckoutFileLineFor: aCreditCard
+	
+	^ '2,', aCreditCard number asString, ',', (self expirationDateFormatted: aCreditCard expiration), ',', aCreditCard owner.! !
+
+!methodRemoval: Cashier #pendingCheckoutFileLineFor: stamp: 'VP 11/22/2020 17:38:03'!
+pendingCheckoutFileLineFor: aCreditCard
+	
+	^ '2,', aCreditCard number asString, ',', (self expirationDateFormatted: aCreditCard expiration), ',', aCreditCard owner.!
+!Cashier class methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:38:09'!
+expirationDateFormatted: expirationDate
+
+	^expirationDate year number asString, '_', (self stringOf2DigitsFor: expirationDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: expirationDate dayNumber).! !
+
+!methodRemoval: Cashier #expirationDateFormatted: stamp: 'VP 11/22/2020 17:38:09'!
+expirationDateFormatted: expirationDate
+
+	^expirationDate year number asString, '_', (self stringOf2DigitsFor: expirationDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: expirationDate dayNumber).!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:39:50' prior: 50903614!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := cashier pendingTransactionsLedger at: Cashier ledgerEntryNameForToday.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: (self addProductFileLineFor: validBookOf100 withQuantity: 1) equals: (pendingTransactionsFile at: 1).
+	self assert: self pendingCheckoutFileLine equals: (pendingTransactionsFile at: 2).! !
+!Cashier methodsFor: 'accessing' stamp: 'VP 11/22/2020 17:40:02'!
+pendingTransactionsLedger
+
+	^ pendingTransactionLedger copy.! !
+
+!methodRemoval: Cashier #pendingTransactionLedger stamp: 'VP 11/22/2020 17:40:02'!
+pendingTransactionLedger
+
+	^ pendingTransactionLedger copy.!
+
+self pendingCheckoutFileLine!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/22/2020 17:41:05' prior: 50903910!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := cashier pendingTransactionsLedger at: Cashier ledgerEntryNameForToday.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: (self addProductFileLineFor: validBookOf100 withQuantity: 1) equals: (pendingTransactionsFile at: 1).
+	self assert: (Cashier pendingCheckoutFileLineFor: creditCard) equals: (pendingTransactionsFile at: 2).! !
+
+!methodRemoval: CashierTest #expirationDateFormatted stamp: 'VP 11/22/2020 17:41:17'!
+expirationDateFormatted
+
+	^ self expirationDateFormatted: expirationDate.!
+
+!methodRemoval: CashierTest #pendingCheckoutFileLine stamp: 'VP 11/22/2020 17:41:26'!
+pendingCheckoutFileLine
+
+	^ self pendingCheckoutFileLineForCard: cardNumber expiration: expirationDate owner: owner.!
+
+!methodRemoval: CashierTest #pendingCheckoutFileLineForCard:expiration:owner: stamp: 'VP 11/22/2020 17:41:28'!
+pendingCheckoutFileLineForCard: aCardNumber expiration: anExpirationDate owner: anOwner
+
+	^ '2,', aCardNumber asString, ',', (self expirationDateFormatted: anExpirationDate), ',', anOwner!
+!Cashier class methodsFor: 'operations -- private' stamp: 'VP 11/22/2020 17:41:41'!
+stringOf2DigitsFor: aNumber
+
+	^aNumber printStringBase: 10 nDigits: 2.! !
+
+!methodRemoval: CashierTest #expirationDateFormatted: stamp: 'VP 11/22/2020 17:42:02'!
+expirationDateFormatted: anExpirationDate
+
+	^ (self stringOf2DigitsFor: anExpirationDate monthNumber), anExpirationDate year number asString!
+
+!methodRemoval: CashierTest #formattedDate: stamp: 'VP 11/22/2020 17:42:11'!
+formattedDate: aDate
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).!
+
+!methodRemoval: CashierTest #stringOf2DigitsFor: stamp: 'VP 11/22/2020 17:43:02'!
+stringOf2DigitsFor: aNumber
+
+	^aNumber printStringBase: 10 nDigits: 2.!
+
+----SNAPSHOT----(22 November 2020 17:43:07) CuisUniversity-4384.image priorSource: 18277507!
+
+----SNAPSHOT----(22 November 2020 17:43:24) CuisUniversity-4384.image priorSource: 18316253!
+
+!methodRemoval: CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/22/2020 17:43:31'!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := cashier pendingTransactionsLedger at: Cashier ledgerEntryNameForToday.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: (self addProductFileLineFor: validBookOf100 withQuantity: 1) equals: (pendingTransactionsFile at: 1).
+	self assert: (Cashier pendingCheckoutFileLineFor: creditCard) equals: (pendingTransactionsFile at: 2).!
+
+Object subclass: #Cashier
+	instanceVariableNames: 'productCatalog merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'VP 11/22/2020 17:43:41'!
+Object subclass: #Cashier
+	instanceVariableNames: 'productCatalog merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: Cashier #pendingTransactionsLedger stamp: 'VP 11/22/2020 17:43:43'!
+pendingTransactionsLedger
+
+	^ pendingTransactionLedger copy.!
+!Cashier methodsFor: 'operation' stamp: 'VP 11/22/2020 17:43:56' prior: 50903719!
+checkout: aCart with: aCreditCard
+
+	self verifyCartNotEmpty: aCart.
+	self verifyCardNotExpired: aCreditCard.
+	
+	merchantProcessor transactionWith: aCreditCard ofAmount: aCart totalPrice.
+	
+	^aCart totalPrice.! !
+
+!methodRemoval: Cashier class #expirationDateFormatted: stamp: 'VP 11/22/2020 17:44:06'!
+expirationDateFormatted: expirationDate
+
+	^expirationDate year number asString, '_', (self stringOf2DigitsFor: expirationDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: expirationDate dayNumber).!
+
+!methodRemoval: Cashier class #formattedDate: stamp: 'VP 11/22/2020 17:44:06'!
+formattedDate: aDate.
+
+	^aDate year number asString, '_', (self stringOf2DigitsFor: aDate monthOfYear monthNumber), '_', (self stringOf2DigitsFor: aDate dayNumber).!
+
+!methodRemoval: Cashier class #ledgerEntryNameForToday stamp: 'VP 11/22/2020 17:44:06'!
+ledgerEntryNameForToday
+
+	^'TUSLIBROS_INPUT_', (self formattedDate: GregorianDateTime now), '.csv'.!
+
+!methodRemoval: Cashier class #pendingCheckoutFileLineFor: stamp: 'VP 11/22/2020 17:44:06'!
+pendingCheckoutFileLineFor: aCreditCard
+	
+	^ '2,', aCreditCard number asString, ',', (self expirationDateFormatted: aCreditCard expiration), ',', aCreditCard owner.!
+
+!methodRemoval: Cashier class #stringOf2DigitsFor: stamp: 'VP 11/22/2020 17:44:06'!
+stringOf2DigitsFor: aNumber
+
+	^aNumber printStringBase: 10 nDigits: 2.!
+
+!methodRemoval: CashierTest #createCashierWithProcessorResponse: stamp: 'VP 11/22/2020 17:44:17'!
+createCashierWithProcessorResponse: aProcessorResponse
+	
+	^Cashier withMerchantProcessor: (self createMerchantProcessorWithResponse: aProcessorResponse).!
+
+!methodRemoval: CashierTest #createMerchantProcessorWithResponse: stamp: 'VP 11/22/2020 17:44:21'!
+createMerchantProcessorWithResponse: aProcessorResponse
+	
+	^MerchantProcessorSimulator newWithCardValidation: [ :aCreditCard | true ] responseBehaviour: aProcessorResponse.!
+!CashierTest methodsFor: 'support' stamp: 'VP 11/22/2020 17:44:26' prior: 50902956!
+createMerchantProcessorWithCardValidation: aCardValidationBlock
+	
+	^MerchantProcessorSimulator newWithCardValidation: aCardValidationBlock.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'VP 11/22/2020 17:44:37'!
+initializeWithCardValidation: aCardValidationBlock
+
+	cardValidationBlock := aCardValidationBlock.! !
+
+!methodRemoval: MerchantProcessorSimulator #initializeWithCardValidation:responseBehaviour: stamp: 'VP 11/22/2020 17:44:39'!
+initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponseBlock
+
+	cardValidationBlock := aCardValidationBlock.
+	processorResponseBlock := aProcessorResponseBlock.!
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'VP 11/22/2020 17:44:46'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'cardValidationBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'VP 11/22/2020 17:45:00'!
+newWithCardValidation: aCardValidationBlock
+
+	^self new initializeWithCardValidation: aCardValidationBlock! !
+
+!methodRemoval: MerchantProcessorSimulator class #newWithCardValidation:responseBehaviour: stamp: 'VP 11/22/2020 17:45:03'!
+newWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponseBlock
+
+	^self new initializeWithCardValidation: aCardValidationBlock responseBehaviour: aProcessorResponseBlock.!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/22/2020 17:45:06'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/22/2020 17:45:06'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/22/2020 17:45:06'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/22/2020 17:45:06'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/22/2020 17:45:06'!
+PASSED!
+
+----STARTUP---- (26 November 2020 12:38:54) as /Users/vpomsztein/Documents/Facu/ISW1/PracticaParcial/CuisUniversity-4384.image!
+
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/26/2020 12:39:33'!
+test04CreditCardWithNonPositiveNumberCanNotBeCreated
+
+	self should: [ CreditCard withNumber: -1 expiration: expirationDate previous owner: '' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard emptyNameErrorMessage equals: anError messageText.	
+		].! !
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/26/2020 12:39:45' prior: 50904044!
+test04CreditCardWithNonPositiveNumberCanNotBeCreated
+
+	self should: [ CreditCard withNumber: -1 expiration: expirationDate previous owner: '' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidCardNumberErrorMessage equals: anError messageText.	
+		].! !
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:39:46'!
+ERROR!
+!CreditCard class methodsFor: 'error messages -- private' stamp: 'VP 11/26/2020 12:39:59'!
+invalidCardNumberErrorMessage
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error messages -- private' stamp: 'VP 11/26/2020 12:40:17' prior: 50904072!
+invalidCardNumberErrorMessage
+	
+	^'Can not create credit card with the given number'.! !
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:40:19'!
+FAILURE!
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/26/2020 12:41:17'!
+verifyValidCreditCardNumber: aCardNumber
+
+	^ aCardNumber < 0 ifTrue: [ self error: self invalidCardNumberErrorMessage ].! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/26/2020 12:41:20' prior: 50904088!
+verifyValidCreditCardNumber: aCardNumber
+
+	aCardNumber < 0 ifTrue: [ self error: self invalidCardNumberErrorMessage ].! !
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/26/2020 12:41:27'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/26/2020 12:41:27'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/26/2020 12:41:27'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:41:27'!
+FAILURE!
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:41:27'!
+FAILURE!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/26/2020 12:41:40' prior: 50904056!
+test04CreditCardWithNonPositiveNumberCanNotBeCreated
+
+	self should: [ CreditCard withNumber: -1 expiration: expirationDate previous owner: owner ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidCardNumberErrorMessage equals: anError messageText.	
+		].! !
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:41:41'!
+FAILURE!
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/26/2020 12:42:11' prior: 50901826!
+withNumber: aNumber expiration: anExpirationDate owner: anOwner
+	
+	self verifyOwnerNotEmpty: anOwner.
+	self verifyValidCreditCardNumber: 	aNumber.
+
+	^self new initializeWithNumber: aNumber expiration: anExpirationDate owner: anOwner.! !
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/26/2020 12:42:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/26/2020 12:42:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/26/2020 12:42:18'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:42:18'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'VP 11/26/2020 12:42:39'!
+test05CreditCardWithNonIntegerNumberCanNotBeCreated
+
+	self should: [ CreditCard withNumber: 1.5 expiration: expirationDate previous owner: owner ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: CreditCard invalidCardNumberErrorMessage equals: anError messageText.	
+		].! !
+
+!testRun: #CreditCardTest #test05CreditCardWithNonIntegerNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:42:41'!
+FAILURE!
+!CreditCard class methodsFor: 'error messages -- private' stamp: 'VP 11/26/2020 12:42:59' prior: 50904078!
+invalidCardNumberErrorMessage
+	
+	^'Can not create credit card with the given number. Card numbers must be positive, integer numbers'.! !
+!CreditCard class methodsFor: 'error messages -- private' stamp: 'VP 11/26/2020 12:43:09' prior: 50904179!
+invalidCardNumberErrorMessage
+	
+	^'Can not create credit card with the given number. Card numbers must be positive, integers'.! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'VP 11/26/2020 12:43:24' prior: 50904095!
+verifyValidCreditCardNumber: aCardNumber
+
+	aCardNumber < 0 ifTrue: [ self error: self invalidCardNumberErrorMessage ].
+	aCardNumber isInteger ifFalse: [ self error: self invalidCardNumberErrorMessage ].! !
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/26/2020 12:43:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/26/2020 12:43:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/26/2020 12:43:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:43:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardWithNonIntegerNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:43:25'!
+PASSED!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/26/2020 12:43:28'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/26/2020 12:43:28'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/26/2020 12:43:28'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/26/2020 12:43:28'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/26/2020 12:43:28'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/26/2020 12:43:28'!
+ERROR!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/26/2020 12:43:28'!
+ERROR!
+
+!testRun: #CreditCardTest #test01CreditCardWithFutureDateCorrectlyStoresCardDataAndIsNotExpired stamp: 'VP 11/26/2020 12:43:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardWithPastExpirationDateIsExpired stamp: 'VP 11/26/2020 12:43:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardWithEmptyOwnerCanNotBeCreated stamp: 'VP 11/26/2020 12:43:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test04CreditCardWithNonPositiveNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:43:34'!
+PASSED!
+
+!testRun: #CreditCardTest #test05CreditCardWithNonIntegerNumberCanNotBeCreated stamp: 'VP 11/26/2020 12:43:34'!
+PASSED!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/26/2020 12:43:36'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/26/2020 12:43:36'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/26/2020 12:43:36'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/26/2020 12:43:36'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/26/2020 12:43:36'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/26/2020 12:43:36'!
+ERROR!
+
+!testRun: #CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/26/2020 12:43:36'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'VP 11/26/2020 12:44:28' prior: 50903954!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := cashier pendingTransactionsLedger at: Cashier ledgerEntryNameForToday.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: (self addProductFileLineFor: validBookOf100 withQuantity: 1) equals: (pendingTransactionsFile at: 1).
+	self assert: (Cashier pendingCheckoutFileLineFor: creditCard) equals: (pendingTransactionsFile at: 2).! !
+
+!methodRemoval: CashierTest #test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile stamp: 'VP 11/26/2020 14:07:51'!
+test06CheckoutWithNonRespondingMerchantProcessorCreatesOrderFile
+
+	| cart cashier chargedAmount creditCard pendingTransactionsFile |
+	
+	chargedAmount := nil.
+	cart := self createCart.
+	cashier := self createCashierWithProcessorResponse: [ self error: Cashier processorTimeOutErrorMessage. ].
+	creditCard := CreditCard withNumber: cardNumber expiration: expirationDate owner: owner.
+	
+	cart add: validBookOf100.
+	
+	chargedAmount := cashier checkout: cart with: creditCard.
+	
+	self assert: 100 equals: chargedAmount.
+	
+	"Nota: estamos usando un Dictionary y una OrderedCollection porque no sab�amos manejar archivos."
+	pendingTransactionsFile := cashier pendingTransactionsLedger at: Cashier ledgerEntryNameForToday.
+	self assert: 2 equals: pendingTransactionsFile size.
+	self assert: (self addProductFileLineFor: validBookOf100 withQuantity: 1) equals: (pendingTransactionsFile at: 1).
+	self assert: (Cashier pendingCheckoutFileLineFor: creditCard) equals: (pendingTransactionsFile at: 2).!
+
+!testRun: #CashierTest #test01CheckoutOfEmptyCartIsNotAllowed stamp: 'VP 11/26/2020 14:07:54'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutOfSingleProductCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/26/2020 14:07:54'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutOfMultipleProductsCartWithValidCardSuccedsAndReturnsCorrectPrice stamp: 'VP 11/26/2020 14:07:54'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutWithExpiredCreditCardFails stamp: 'VP 11/26/2020 14:07:54'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutWithInvalidCreditCardFails stamp: 'VP 11/26/2020 14:07:54'!
+PASSED!

@@ -1,0 +1,2165 @@
+----End fileIn of C:\Users\Usuario\Downloads\TusLibros-3(1).st----!
+
+!methodRemoval: Facade #listPurchasesCart: stamp: 'AC 12/3/2020 15:42:47'!
+listPurchasesCart:aCartId
+|cart |
+cart:= self obtainCartWithId: aCartId.
+
+!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:44:44' prior: 50864513!
+registerPurchasesFromCart:cartId withClient: aUserId
+|booksPurchases|
+booksPurchases:= self quantityFor: aUserId.
+booksPurchases addAll: (self listCart:cartId).
+
+
+
+
+	! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:45:21' prior: 50864461!
+listPurchases:anUserId andPassword:aPassword
+| salesBook return |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:47:39' prior: 50864755!
+listPurchases:anUserId andPassword:aPassword
+| salesBook return |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+return := (self quantityFor: anUserId) copy. 
+salesBook sum
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:47:47' prior: 50864763!
+listPurchases:anUserId andPassword:aPassword
+| salesBook return |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+return := (self quantityFor: anUserId) copy. 
+return add: salesBook sum.
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:48:16' prior: 50864773!
+listPurchases:anUserId andPassword:aPassword
+| salesBook booksAndTotal |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+booksAndTotal := (self quantityFor: anUserId) copy. 
+booksAndTotal add: salesBook sum.
+
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:48:26' prior: 50864784!
+listPurchases:anUserId andPassword:aPassword
+| salesBook booksAndTotal |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+booksAndTotal := (self quantityFor: anUserId) copy. 
+booksAndTotal add: salesBook sum.
+^booksAndTotal.
+
+! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:48:56'!
+test09TrytoListPurchasesWithInvalidPasswordOrClient
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+self should: [ facade listPurchases: client andPassword:password  ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: (anError messageText = Facade  loginErrorMessageText).
+			
+			]! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:49:19'!
+test09TrytoListPurchasesOneBook
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+self should: [ facade listPurchases: client andPassword:password  ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: (anError messageText = Facade  loginErrorMessageText).
+			
+			]! !
+
+!methodRemoval: FacadeTest #test09TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:49:19'!
+test09TrytoListPurchasesWithInvalidPasswordOrClient
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+self should: [ facade listPurchases: client andPassword:password  ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: (anError messageText = Facade  loginErrorMessageText).
+			
+			]!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:49:38'!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+self should: [ facade listPurchases: client andPassword:password  ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: (anError messageText = Facade  loginErrorMessageText).
+			
+			]! !
+
+!methodRemoval: FacadeTest #test09TrytoListPurchasesOneBook stamp: 'AC 12/3/2020 15:49:38'!
+test09TrytoListPurchasesOneBook
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+self should: [ facade listPurchases: client andPassword:password  ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: (anError messageText = Facade  loginErrorMessageText).
+			
+			]!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:49:51' prior: 50864850!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+facade listPurchases: client andPassword:password.! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:50:01' prior: 50864878!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+facade listPurchases: client andPassword:password.! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:50:28' prior: 50864888!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert:(booksAndTotal isEmpty)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:50:29' prior: 50864898!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert:(booksAndTotal isEmpty).! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:50:34'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 15:50:34'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 15:50:34'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 15:50:34'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 15:50:34'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 15:50:34'!
+ERROR!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 15:50:34'!
+ERROR!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:50:34'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:50:34'!
+ERROR!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 15:50:42'!
+ERROR!
+!UserData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:51:13' prior: 50864712!
+initializeWith:aPassword 
+password :=aPassword.
+saleBook:= OrderedCollection new.
+bookPurchasedQuantity := Bag new.
+! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:51:20'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:51:20'!
+ERROR!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:51:20'!
+ERROR!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:51:20'!
+ERROR!
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:51:38'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 15:51:38'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 15:51:38'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 15:51:39'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 15:51:39'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 15:51:39'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 15:51:39'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:51:39'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:51:39'!
+ERROR!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:51:39'!
+ERROR!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:51:39'!
+ERROR!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:52:55' prior: 50864910!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='45678'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert:(booksAndTotal isEmpty).! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:53:06' prior: 50865033!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert:(booksAndTotal isEmpty).! !
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:53:15'!
+ERROR!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:53:15'!
+ERROR!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:54:40' prior: 50864795!
+listPurchases:anUserId andPassword:aPassword
+| salesBook booksAndTotal |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+booksAndTotal := (self quantityFor: anUserId) copy. 
+booksAndTotal add: salesBook sum.
+^booksAndTotal.
+
+! !
+!UserData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:56:07' prior: 50864954!
+initializeWith:aPassword 
+password :=aPassword.
+saleBook:= OrderedCollection new.
+saleBook add: (Sale of: 0).
+bookPurchasedQuantity := Bag new.
+! !
+!UserData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:56:17' prior: 50865075!
+initializeWith:aPassword 
+password :=aPassword.
+saleBook:= OrderedCollection new.
+bookPurchasedQuantity := Bag new.
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:57:08' prior: 50865063!
+listPurchases:anUserId andPassword:aPassword
+| salesBook booksAndTotal |
+self validateClient: anUserId andPassword: aPassword.
+salesBook:= self salesBookFor: anUserId.
+booksAndTotal := (self quantityFor: anUserId) copy. 
+booksAndTotal add: (self totalSalesFor: salesBook).
+^booksAndTotal.
+
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:58:54'!
+totalSalesFor: aSalesBook
+	^ aSalesBook inject: 0 into: [:aSale :c | aSale total + c]! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:59:21'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 15:59:21'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 15:59:21'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 15:59:22'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 15:59:22'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 15:59:22'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 15:59:22'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 15:59:22'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:59:22'!
+FAILURE!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 15:59:22'!
+FAILURE!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:59:54' prior: 50865045!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self deny:(booksAndTotal isEmpty).
+self assert: booksAndTotal size equals: 1.! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 15:59:59' prior: 50865141!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 1.
+! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:00:22' prior: 50865154!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 1.
+self assert: (booksAndTotal includes: 0)! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:00:27'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:00:28'!
+PASSED!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:00:51'!
+test10TrytoListPurchasesOneBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 1.
+self assert: (booksAndTotal includes: 0)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:02:05' prior: 50865208!
+test10TrytoListPurchasesOneBooksBought
+|facade client password cartId creditCard tID booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 1.
+self assert: (booksAndTotal includes: 0)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:02:38' prior: 50865221!
+test10TrytoListPurchasesOneBooksBought
+|facade client password cartId creditCard tID booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+tID:= facade checkOut: cartId  withCreditCard: creditCard.
+
+self assert: booksAndTotal size equals: 1.
+self assert: (booksAndTotal includes: 0)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:03:52' prior: 50865235!
+test10TrytoListPurchasesOneBooksBought
+|facade client password cartId creditCard tID booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+tID:= facade checkOut: cartId  withCreditCard: creditCard.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:04:09' prior: 50865257!
+test10TrytoListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:04:14'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:04:14'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:04:14'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:04:14'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:04:14'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:04:14'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:04:15'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:04:15'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:04:15'!
+PASSED!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:04:15'!
+FAILURE!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:04:15'!
+FAILURE!
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:04:25'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:04:25'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:04:25'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:04:26'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:04:26'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:04:26'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:04:26'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:04:26'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:04:26'!
+PASSED!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:04:26'!
+FAILURE!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:04:26'!
+FAILURE!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:05:57' prior: 50865282!
+test10TrytoListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:06:01'!
+PASSED!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:06:01'!
+ERROR!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:06:01'!
+ERROR!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:06:22' prior: 50865102!
+totalSalesFor: aSalesBook
+	^ aSalesBook inject: 0 into: [:c :aSale | aSale total + c]! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:06:28'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:06:28'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:06:28'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:06:29'!
+PASSED!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:06:40'!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:06:48' prior: 50865476!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:07:01' prior: 50865500!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 5.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:07:07' prior: 50865524!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 5.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:07:13' prior: 50865548!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:08:42' prior: 50865572!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:09:00'!
+test11TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+
+!methodRemoval: FacadeTest #test10TrytoListPurchases3BooksBought stamp: 'AC 12/3/2020 16:09:00'!
+test10TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3!
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+
+!testRun: #FacadeTest #test11TrytoListPurchases3BooksBought stamp: 'AC 12/3/2020 16:09:05'!
+PASSED!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:09:33'!
+test09ListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 1.
+self assert: (booksAndTotal includes: 0)! !
+
+!methodRemoval: FacadeTest #test09TrytoListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:09:33'!
+test09TrytoListPurchasesZeroBooksBought
+|facade client password booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 1.
+self assert: (booksAndTotal includes: 0)!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:09:40'!
+test10ListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+
+!methodRemoval: FacadeTest #test10TrytoListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:09:41'!
+test10TrytoListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:09:48'!
+test11ListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+
+!methodRemoval: FacadeTest #test11TrytoListPurchases3BooksBought stamp: 'AC 12/3/2020 16:09:48'!
+test11TrytoListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade facadeCreateCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:11:14'!
+createCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	! !
+
+!methodRemoval: Facade #facadeCreateCartWith:andPass: stamp: 'AC 12/3/2020 16:11:14'!
+facadeCreateCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:11:14' prior: 50865825!
+createCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:11:52'!
+facadeCreateCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	! !
+
+!methodRemoval: Facade #createCartWith:andPass: stamp: 'AC 12/3/2020 16:11:52'!
+createCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17'!
+createCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50865777!
+test11ListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50863949!
+test01TrytoCreateCartWithInvalidPasswordOrClient
+|facade client password |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JuanGomez'.
+password:='45678'.
+
+self should: [ facade createCartWith: client andPass:password  ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: (anError messageText = Facade  loginErrorMessageText).
+			
+			]! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50863991!
+test04TryToAddAProductToAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade addToCart: -22 isbn: testObjectsFactory itemSellByTheStore quantity: 2.
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage). 
+	self assert: (( facade listCart: cartId) isEmpty).  ]
+
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50863973!
+test03TryToAddAProductToAValidCart
+|facade client password cartId itemList|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 2.
+itemList:=  facade listCart:cartId.
+
+self assert:(itemList allSatisfy: [:anItem| anItem=testObjectsFactory itemSellByTheStore ]).
+self assert:(itemList size= 2)
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50864009!
+test05TryToListAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade listCart: -22 .
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage)	  ]
+
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50865730!
+test10ListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50863963!
+test02CreateCartWithValidPasswordAndClient
+|facade client password |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+ 
+self assert:((facade createCartWith: client andPass:password) ='1')
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50864023!
+test06CheckOutWithAValidCart
+|facade client password cartId creditCard tID salesBook|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId isbn: testObjectsFactory itemSellByTheStore quantity: 2.
+tID:= facade checkOut: cartId  withCreditCard: creditCard.
+salesBook :=facade obtainSalesBookForCartId: cartId.
+self assert: tID equals:1 .
+self assert:  salesBook size equals:1.
+self assert: salesBook first total equals: 20
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:12:17' prior: 50864045!
+test07CheckOutWithTwoCartHaveDifferentIdTransaction
+|facade client password cartId1 cartId2 creditCard tID1 tID2 salesBook1 salesBook2|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId1:=facade createCartWith: client andPass:password.
+cartId2:=facade createCartWith: client andPass:password.
+
+creditCard := testObjectsFactory createCreditCard.
+
+facade addToCart:cartId1 isbn: testObjectsFactory itemSellByTheStore quantity: 2.
+facade addToCart:cartId2 isbn: testObjectsFactory itemSellByTheStore quantity: 10.
+
+
+tID1:= facade checkOut: cartId1  withCreditCard: creditCard.
+tID2:= facade checkOut: cartId2  withCreditCard: creditCard.
+salesBook1:= facade obtainSalesBookForCartId: cartId1.
+salesBook2:= facade obtainSalesBookForCartId: cartId2.
+self deny: (tID1 =tID2) .
+self assert:( salesBook1 ==salesBook2).
+self assert:  salesBook1 size equals:2.
+self assert: salesBook1 first total equals: 20.
+self assert:  salesBook1 last total equals: 100! !
+
+!methodRemoval: Facade #facadeCreateCartWith:andPass: stamp: 'AC 12/3/2020 16:12:18'!
+facadeCreateCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put:aClient->cart.
+	^cartId
+	
+	
+	
+	!
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:13:46'!
+addToCart:aCartId product: anIsbn quantity: aQuantity
+	(self obtainCartWithId: aCartId) add:aQuantity of:anIsbn.! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:13:47' prior: 50865888!
+test11ListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 3.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:13:47' prior: 50865977!
+test10ListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 1.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:13:47' prior: 50865927!
+test04TryToAddAProductToAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade addToCart: -22 product: testObjectsFactory itemSellByTheStore quantity: 2.
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage). 
+	self assert: (( facade listCart: cartId) isEmpty).  ]
+
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:13:47' prior: 50866012!
+test06CheckOutWithAValidCart
+|facade client password cartId creditCard tID salesBook|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2.
+tID:= facade checkOut: cartId  withCreditCard: creditCard.
+salesBook :=facade obtainSalesBookForCartId: cartId.
+self assert: tID equals:1 .
+self assert:  salesBook size equals:1.
+self assert: salesBook first total equals: 20
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:13:47' prior: 50866034!
+test07CheckOutWithTwoCartHaveDifferentIdTransaction
+|facade client password cartId1 cartId2 creditCard tID1 tID2 salesBook1 salesBook2|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId1:=facade createCartWith: client andPass:password.
+cartId2:=facade createCartWith: client andPass:password.
+
+creditCard := testObjectsFactory createCreditCard.
+
+facade addToCart:cartId1 product: testObjectsFactory itemSellByTheStore quantity: 2.
+facade addToCart:cartId2 product: testObjectsFactory itemSellByTheStore quantity: 10.
+
+
+tID1:= facade checkOut: cartId1  withCreditCard: creditCard.
+tID2:= facade checkOut: cartId2  withCreditCard: creditCard.
+salesBook1:= facade obtainSalesBookForCartId: cartId1.
+salesBook2:= facade obtainSalesBookForCartId: cartId2.
+self deny: (tID1 =tID2) .
+self assert:( salesBook1 ==salesBook2).
+self assert:  salesBook1 size equals:2.
+self assert: salesBook1 first total equals: 20.
+self assert:  salesBook1 last total equals: 100! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:13:47' prior: 50865945!
+test03TryToAddAProductToAValidCart
+|facade client password cartId itemList|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2.
+itemList:=  facade listCart:cartId.
+
+self assert:(itemList allSatisfy: [:anItem| anItem=testObjectsFactory itemSellByTheStore ]).
+self assert:(itemList size= 2)
+			! !
+
+!methodRemoval: Facade #addToCart:isbn:quantity: stamp: 'AC 12/3/2020 16:13:47'!
+addToCart:aCartId isbn: anIsbn quantity: aQuantity
+	(self obtainCartWithId: aCartId) add:aQuantity of:anIsbn.!
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:13:59' prior: 50866078!
+addToCart:aCartId product: aProduct quantity: aQuantity
+	(self obtainCartWithId: aCartId) add:aQuantity of:aProduct.! !
+
+Object subclass: #CartTimerDecorator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTimerDecorator category: #TusLibros stamp: 'AC 12/3/2020 16:17:23'!
+Object subclass: #CartTimerDecorator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #CartTimerDecorator
+	instanceVariableNames: 'timeManager decoratee'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTimerDecorator category: #TusLibros stamp: 'AC 12/3/2020 16:19:56'!
+Object subclass: #CartTimerDecorator
+	instanceVariableNames: 'timeManager decoratee'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTimerDecorator class methodsFor: 'no messages' stamp: 'AC 12/3/2020 16:20:44'!
+newDecorating: aCart
+	^self new initializeWith: aCart.! !
+
+!classRemoval: #CartTimerDecorator stamp: 'AC 12/3/2020 16:23:24'!
+Object subclass: #CartTimerDecorator
+	instanceVariableNames: 'timeManager decoratee'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #CartData
+	instanceVariableNames: 'timeManager userId cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartData category: #TusLibros stamp: 'AC 12/3/2020 16:26:51'!
+Object subclass: #CartData
+	instanceVariableNames: 'timeManager userId cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartData class methodsFor: 'no messages' stamp: 'AC 12/3/2020 16:28:04'!
+newWith: aCart ownedBy: userID
+	^self new initializeWith: aCart and: userID.! !
+!CartData methodsFor: 'no messages' stamp: 'AC 12/3/2020 16:29:06'!
+initializeWith: aCart and: aUserID
+	timeManager:= DateAndTime now+ 30 minutes.
+	cart := aCart.
+	userId := aUserID.! !
+!CartData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:29:22'!
+userId 
+^userId! !
+!CartData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:29:40'!
+cart
+^cart! !
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:30:22' prior: 50865877!
+createCartWith: aClient andPass:aPassword  
+	|cartId cart |
+	self validateClient: aClient andPassword: aPassword.
+	cartId:= self generateCartId.
+	cart:= Cart acceptingItemsOf: catalog.
+	carts at:cartId put: (CartData newWith: cart ownedBy: aClient).
+	^cartId
+	
+	
+	
+	! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:30:47' prior: 50864480!
+obtainCartWithId: aCartId
+
+	^ (self obtainCartData: aCartId)cart! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:30:58' prior: 50864498!
+obtainUserWithCartId: aCartId
+
+	^ (self obtainCartData: aCartId)userId! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:34:27' prior: 50866317!
+obtainCartWithId: aCartId
+	
+	^ (self obtainCartData: aCartId)cart! !
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:35:32' prior: 50866232!
+addToCart:aCartId product: aProduct quantity: aQuantity 
+	(self obtainCartWithId: aCartId) add:aQuantity of:aProduct.! !
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:36:01'!
+addToCart:aCartId product: aProduct quantity: aQuantity at: aTime  
+	(self obtainCartWithId: aCartId) add:aQuantity of:aProduct.! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:01' prior: 50866173!
+test07CheckOutWithTwoCartHaveDifferentIdTransaction
+|facade client password cartId1 cartId2 creditCard tID1 tID2 salesBook1 salesBook2|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId1:=facade createCartWith: client andPass:password.
+cartId2:=facade createCartWith: client andPass:password.
+
+creditCard := testObjectsFactory createCreditCard.
+
+facade addToCart:cartId1 product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+facade addToCart:cartId2 product: testObjectsFactory itemSellByTheStore quantity: 10 at: aTime.
+
+
+tID1:= facade checkOut: cartId1  withCreditCard: creditCard.
+tID2:= facade checkOut: cartId2  withCreditCard: creditCard.
+salesBook1:= facade obtainSalesBookForCartId: cartId1.
+salesBook2:= facade obtainSalesBookForCartId: cartId2.
+self deny: (tID1 =tID2) .
+self assert:( salesBook1 ==salesBook2).
+self assert:  salesBook1 size equals:2.
+self assert: salesBook1 first total equals: 20.
+self assert:  salesBook1 last total equals: 100! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:01' prior: 50866085!
+test11ListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 3 at: aTime.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:01' prior: 50866109!
+test10ListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 1 at: aTime.
+facade checkOut: cartId  withCreditCard: creditCard.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:01' prior: 50866151!
+test06CheckOutWithAValidCart
+|facade client password cartId creditCard tID salesBook|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+tID:= facade checkOut: cartId  withCreditCard: creditCard.
+salesBook :=facade obtainSalesBookForCartId: cartId.
+self assert: tID equals:1 .
+self assert:  salesBook size equals:1.
+self assert: salesBook first total equals: 20
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:01' prior: 50866208!
+test03TryToAddAProductToAValidCart
+|facade client password cartId itemList|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+itemList:=  facade listCart:cartId.
+
+self assert:(itemList allSatisfy: [:anItem| anItem=testObjectsFactory itemSellByTheStore ]).
+self assert:(itemList size= 2)
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:01' prior: 50866133!
+test04TryToAddAProductToAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade addToCart: -22 product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage). 
+	self assert: (( facade listCart: cartId) isEmpty).  ]
+
+			! !
+
+!methodRemoval: Facade #addToCart:product:quantity: stamp: 'AC 12/3/2020 16:36:01'!
+addToCart:aCartId product: aProduct quantity: aQuantity 
+	(self obtainCartWithId: aCartId) add:aQuantity of:aProduct.!
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:36:35'!
+checkOut: cartId withCreditCard:aCreditCard at: aTime  
+|cart cashier salesBook|
+cart:= self obtainCartWithId: cartId.
+salesBook := self obtainSalesBookForCartId: cartId.
+cashier:= Cashier toCheckout: cart charging:aCreditCard  throught: merchantProcessor on: DateAndTime now  registeringOn: salesBook .
+cashier checkOut.
+self registerPurchasesFromCart:cartId withClient:(self obtainUserWithCartId: cartId).
+^self generateTransactionID
+
+
+
+
+	! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:35' prior: 50866407!
+test10ListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 1 at: aTime.
+facade checkOut: cartId  withCreditCard: creditCard at: aTime.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:35' prior: 50866431!
+test06CheckOutWithAValidCart
+|facade client password cartId creditCard tID salesBook|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+tID:= facade checkOut: cartId  withCreditCard: creditCard at: aTime.
+salesBook :=facade obtainSalesBookForCartId: cartId.
+self assert: tID equals:1 .
+self assert:  salesBook size equals:1.
+self assert: salesBook first total equals: 20
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:35' prior: 50866347!
+test07CheckOutWithTwoCartHaveDifferentIdTransaction
+|facade client password cartId1 cartId2 creditCard tID1 tID2 salesBook1 salesBook2|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId1:=facade createCartWith: client andPass:password.
+cartId2:=facade createCartWith: client andPass:password.
+
+creditCard := testObjectsFactory createCreditCard.
+
+facade addToCart:cartId1 product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+facade addToCart:cartId2 product: testObjectsFactory itemSellByTheStore quantity: 10 at: aTime.
+
+
+tID1:= facade checkOut: cartId1  withCreditCard: creditCard at: aTime.
+tID2:= facade checkOut: cartId2  withCreditCard: creditCard at: aTime.
+salesBook1:= facade obtainSalesBookForCartId: cartId1.
+salesBook2:= facade obtainSalesBookForCartId: cartId2.
+self deny: (tID1 =tID2) .
+self assert:( salesBook1 ==salesBook2).
+self assert:  salesBook1 size equals:2.
+self assert: salesBook1 first total equals: 20.
+self assert:  salesBook1 last total equals: 100! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:36:35' prior: 50866382!
+test11ListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 3 at: aTime.
+facade checkOut: cartId  withCreditCard: creditCard at: aTime.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+
+!methodRemoval: Facade #checkOut:withCreditCard: stamp: 'AC 12/3/2020 16:36:35'!
+checkOut: cartId withCreditCard:aCreditCard 
+|cart cashier salesBook|
+cart:= self obtainCartWithId: cartId.
+salesBook := self obtainSalesBookForCartId: cartId.
+cashier:= Cashier toCheckout: cart charging:aCreditCard  throught: merchantProcessor on: DateAndTime now  registeringOn: salesBook .
+cashier checkOut.
+self registerPurchasesFromCart:cartId withClient:(self obtainUserWithCartId: cartId).
+^self generateTransactionID
+
+
+
+
+	!
+!Facade methodsFor: 'public interface' stamp: 'AC 12/3/2020 16:37:01'!
+listCart: aCartId at: aTime  
+|cart list itemsInCart|
+cart:=self obtainCartWithId: aCartId.
+list:= Bag new.
+itemsInCart:=self itemsInCart: cart.
+self from: cart add: itemsInCart to: list.
+^list
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:01' prior: 50864746!
+registerPurchasesFromCart:cartId withClient: aUserId
+|booksPurchases|
+booksPurchases:= self quantityFor: aUserId.
+booksPurchases addAll: (self listCart:cartId at: aTime).
+
+
+
+
+	! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:01' prior: 50866453!
+test03TryToAddAProductToAValidCart
+|facade client password cartId itemList|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+itemList:=  facade listCart:cartId at: aTime.
+
+self assert:(itemList allSatisfy: [:anItem| anItem=testObjectsFactory itemSellByTheStore ]).
+self assert:(itemList size= 2)
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:01' prior: 50866471!
+test04TryToAddAProductToAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade addToCart: -22 product: testObjectsFactory itemSellByTheStore quantity: 2 at: aTime.
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage). 
+	self assert: (( facade listCart: cartId at: aTime) isEmpty).  ]
+
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:01' prior: 50865963!
+test05TryToListAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade listCart: -22 at: aTime .
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage)	  ]
+
+			! !
+
+!methodRemoval: Facade #listCart: stamp: 'AC 12/3/2020 16:37:01'!
+listCart: aCartId 
+|cart list itemsInCart|
+cart:=self obtainCartWithId: aCartId.
+list:= Bag new.
+itemsInCart:=self itemsInCart: cart.
+self from: cart add: itemsInCart to: list.
+^list
+!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:56'!
+obtainCartWithId: aCartId at: aTime 
+	
+	^ (self obtainCartData: aCartId)cart! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:57' prior: 50866636!
+listCart: aCartId at: aTime  
+|cart list itemsInCart|
+cart:=self obtainCartWithId: aCartId at: aTime.
+list:= Bag new.
+itemsInCart:=self itemsInCart: cart.
+self from: cart add: itemsInCart to: list.
+^list
+! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:57' prior: 50866495!
+checkOut: cartId withCreditCard:aCreditCard at: aTime  
+|cart cashier salesBook|
+cart:= self obtainCartWithId: cartId at: aTime.
+salesBook := self obtainSalesBookForCartId: cartId.
+cashier:= Cashier toCheckout: cart charging:aCreditCard  throught: merchantProcessor on: DateAndTime now  registeringOn: salesBook .
+cashier checkOut.
+self registerPurchasesFromCart:cartId withClient:(self obtainUserWithCartId: cartId).
+^self generateTransactionID
+
+
+
+
+	! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:37:57' prior: 50866339!
+addToCart:aCartId product: aProduct quantity: aQuantity at: aTime  
+	(self obtainCartWithId: aCartId at: aTime) add:aQuantity of:aProduct.! !
+
+!methodRemoval: Facade #obtainCartWithId: stamp: 'AC 12/3/2020 16:37:57'!
+obtainCartWithId: aCartId
+	
+	^ (self obtainCartData: aCartId)cart!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:38:27' prior: 50866714!
+obtainCartWithId: aCartId at: aTime 
+	self verifyCartExpired: aCartId at: aTime.
+	^ (self obtainCartData: aCartId)cart! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:38:43'!
+verifyCartExpired: aCartId at: aTime.
+	! !
+
+!classDefinition: #FacadeTest category: #TusLibros stamp: 'AC 12/3/2020 16:39:29'!
+TestCase subclass: #FacadeTest
+	instanceVariableNames: 'testObjectsFactory aTime'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:25' prior: 50863944 overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	aTime := DateAndTime now.! !
+
+!classDefinition: #FacadeTest category: #TusLibros stamp: 'AC 12/3/2020 16:39:58'!
+TestCase subclass: #FacadeTest
+	instanceVariableNames: 'testObjectsFactory timeNow'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866537!
+test06CheckOutWithAValidCart
+|facade client password cartId creditCard tID salesBook|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2 at: timeNow.
+tID:= facade checkOut: cartId  withCreditCard: creditCard at: timeNow.
+salesBook :=facade obtainSalesBookForCartId: cartId.
+self assert: tID equals:1 .
+self assert:  salesBook size equals:1.
+self assert: salesBook first total equals: 20
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866692!
+test05TryToListAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade listCart: -22 at: timeNow .
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage)	  ]
+
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866673!
+test04TryToAddAProductToAnInvalidCart
+|facade client password cartId |
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+[facade addToCart: -22 product: testObjectsFactory itemSellByTheStore quantity: 2 at: timeNow.
+self fail ]
+on: Error
+do: [:anError| self assert: (anError messageText =Facade invalidCartIdErrorMessage). 
+	self assert: (( facade listCart: cartId at: timeNow) isEmpty).  ]
+
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866654!
+test03TryToAddAProductToAValidCart
+|facade client password cartId itemList|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId:=facade createCartWith: client andPass:password.
+
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 2 at: timeNow.
+itemList:=  facade listCart:cartId at: timeNow.
+
+self assert:(itemList allSatisfy: [:anItem| anItem=testObjectsFactory itemSellByTheStore ]).
+self assert:(itemList size= 2)
+			! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866596!
+test11ListPurchases3BooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 3 at: timeNow.
+facade checkOut: cartId  withCreditCard: creditCard at: timeNow.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 4.
+self assert: (booksAndTotal includes: 30).
+self assert: (booksAndTotal occurrencesOf: testObjectsFactory itemSellByTheStore) equals: 3! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866512!
+test10ListPurchasesOneBooksBought
+|facade client password cartId creditCard booksAndTotal|
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 1 at: timeNow.
+facade checkOut: cartId  withCreditCard: creditCard at: timeNow.
+booksAndTotal := facade listPurchases: client andPassword:password.
+
+self assert: booksAndTotal size equals: 2.
+self assert: (booksAndTotal includes: 10).
+self assert: (booksAndTotal includes: testObjectsFactory itemSellByTheStore)! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866780 overrides: 16927572!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	timeNow := DateAndTime now.! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:39:59' prior: 50866560!
+test07CheckOutWithTwoCartHaveDifferentIdTransaction
+|facade client password cartId1 cartId2 creditCard tID1 tID2 salesBook1 salesBook2|
+
+facade:= testObjectsFactory createFacade .
+client:='JosePerez'.
+password:='12345'.
+cartId1:=facade createCartWith: client andPass:password.
+cartId2:=facade createCartWith: client andPass:password.
+
+creditCard := testObjectsFactory createCreditCard.
+
+facade addToCart:cartId1 product: testObjectsFactory itemSellByTheStore quantity: 2 at: timeNow.
+facade addToCart:cartId2 product: testObjectsFactory itemSellByTheStore quantity: 10 at: timeNow.
+
+
+tID1:= facade checkOut: cartId1  withCreditCard: creditCard at: timeNow.
+tID2:= facade checkOut: cartId2  withCreditCard: creditCard at: timeNow.
+salesBook1:= facade obtainSalesBookForCartId: cartId1.
+salesBook2:= facade obtainSalesBookForCartId: cartId2.
+self deny: (tID1 =tID2) .
+self assert:( salesBook1 ==salesBook2).
+self assert:  salesBook1 size equals:2.
+self assert: salesBook1 first total equals: 20.
+self assert:  salesBook1 last total equals: 100! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:40:03'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:40:03'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:40:03'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:40:03'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+
+!testRun: #FacadeTest #test09ListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+
+!testRun: #FacadeTest #test10ListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+
+!testRun: #FacadeTest #test11ListPurchases3BooksBought stamp: 'AC 12/3/2020 16:40:04'!
+PASSED!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:41:54' prior: 50866767!
+verifyCartExpired: aCartId at: aTime.
+	(self obtainCartData: aCartId) checkExpiration: aTime.! !
+!CartData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:45:05'!
+checkExpiration: aTime for: aCartiD using: aFacade 
+	(timeManager - aTime > 0) ifTrue: [aFacade cartExpired: aCartiD].
+	timeManager := aTime + 30minutes. ! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:46:40'!
+cartExpired: aCartId
+
+	carts removeKey: aCartId.
+	self error: Facade cartExpiredErrorMessage.! !
+!Facade class methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:46:56'!
+CartExpiredErrorMessage
+ ^'Cart expired'! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:47:14'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:47:14'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:47:14'!
+ERROR!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:47:14'!
+ERROR!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:47:14'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:47:15'!
+ERROR!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:47:15'!
+ERROR!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:47:15'!
+PASSED!
+
+!testRun: #FacadeTest #test09ListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:47:15'!
+PASSED!
+
+!testRun: #FacadeTest #test10ListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:47:15'!
+ERROR!
+
+!testRun: #FacadeTest #test11ListPurchases3BooksBought stamp: 'AC 12/3/2020 16:47:15'!
+ERROR!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:47:34'!
+ERROR!
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:48:48' prior: 50866645!
+registerPurchasesFromCart:cartId withClient: aUserId
+|booksPurchases|
+booksPurchases:= self quantityFor: aUserId.
+booksPurchases addAll: (self listCart:cartId at: DateAndTime now).
+
+
+
+
+	! !
+!Facade methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:49:19' prior: 50866997!
+verifyCartExpired: aCartId at: aTime.
+	(self obtainCartData: aCartId) checkExpiration: aTime for: aCartId using: self.! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:49:32'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:49:32'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:49:32'!
+ERROR!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:49:32'!
+ERROR!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:49:32'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:49:32'!
+ERROR!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:49:32'!
+ERROR!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:49:32'!
+PASSED!
+
+!testRun: #FacadeTest #test09ListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:49:32'!
+PASSED!
+
+!testRun: #FacadeTest #test10ListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:49:32'!
+ERROR!
+
+!testRun: #FacadeTest #test11ListPurchases3BooksBought stamp: 'AC 12/3/2020 16:49:32'!
+ERROR!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:49:36'!
+ERROR!
+!CartData methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:50:12' prior: 50867003!
+checkExpiration: aTime for: aCartiD using: aFacade 
+	(timeManager < aTime) ifTrue: [aFacade cartExpired: aCartiD].
+	timeManager := aTime + 30minutes. ! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:50:28'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:50:29'!
+PASSED!
+
+!testRun: #FacadeTest #test09ListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:50:29'!
+PASSED!
+
+!testRun: #FacadeTest #test10ListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:50:29'!
+PASSED!
+
+!testRun: #FacadeTest #test11ListPurchases3BooksBought stamp: 'AC 12/3/2020 16:50:29'!
+PASSED!
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:53:52'!
+test12sessionExpired
+|facade client password cartId creditCard |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+creditCard := testObjectsFactory createCreditCard.
+[facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 3 at: DateAndTime now + 3 hours.
+	self fail.]
+on: Error
+do:[:anError | anError messageText = Facade CartExpiredErrorMessage ]
+! !
+!FacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 12/3/2020 16:54:01' prior: 50867157!
+test12sessionExpired
+|facade client password cartId |
+
+
+facade:= testObjectsFactory createFacade .
+
+client:='JosePerez'.
+password:='12345'.
+
+cartId:=facade createCartWith: client andPass:password.
+[facade addToCart:cartId product: testObjectsFactory itemSellByTheStore quantity: 3 at: DateAndTime now + 3 hours.
+	self fail.]
+on: Error
+do:[:anError | anError messageText = Facade CartExpiredErrorMessage ]
+! !
+
+!testRun: #FacadeTest #test01TrytoCreateCartWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test02CreateCartWithValidPasswordAndClient stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test03TryToAddAProductToAValidCart stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test04TryToAddAProductToAnInvalidCart stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test05TryToListAnInvalidCart stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test06CheckOutWithAValidCart stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test07CheckOutWithTwoCartHaveDifferentIdTransaction stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test08TrytoListPurchasesWithInvalidPasswordOrClient stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test09ListPurchasesZeroBooksBought stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test10ListPurchasesOneBooksBought stamp: 'AC 12/3/2020 16:54:06'!
+PASSED!
+
+!testRun: #FacadeTest #test11ListPurchases3BooksBought stamp: 'AC 12/3/2020 16:54:07'!
+PASSED!
+
+!testRun: #FacadeTest #test12sessionExpired stamp: 'AC 12/3/2020 16:54:07'!
+PASSED!

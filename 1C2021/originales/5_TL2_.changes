@@ -1,0 +1,4022 @@
+
+
+----SNAPSHOT----(10 June 2021 18:40:53) Carrito.image priorSource: 17414976!
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JPF 6/10/2021 19:43:06'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 19:45:03'!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| catalogue cart cashier |
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 19:47:28' prior: 50876230!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| catalogue cart cashier |
+	
+	
+
+	! !
+
+Object subclass: #TestSupport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TestSupport category: 'TusLibros' stamp: 'JPF 6/10/2021 19:47:55'!
+Object subclass: #TestSupport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TestSupport methodsFor: 'cart' stamp: 'JPF 6/10/2021 19:49:06'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+!TestSupport methodsFor: 'cart' stamp: 'JPF 6/10/2021 19:49:49'!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore! !
+!TestSupport methodsFor: 'cart' stamp: 'JPF 6/10/2021 19:50:19'!
+itemNotSellByTheStore
+	
+	^'invalidBook'! !
+!TestSupport methodsFor: 'cart' stamp: 'JPF 6/10/2021 19:50:37'!
+itemSellByTheStore! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'JPF 6/10/2021 19:51:28'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testSupport'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'set up' stamp: 'JPF 6/10/2021 19:51:25' overrides: 16927572!
+setUp
+
+	testSupport := TestSupport new! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 19:52:20' prior: 50876236!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| cart |
+	
+	cart := testSelector
+	
+	
+
+	! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JPF 6/10/2021 19:56:11'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 19:56:04' prior: 50876279!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := Cashier new.
+	
+	self 
+		should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 19:56:27'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'JPF 6/10/2021 19:57:05'!
+canNotCheckoutEmptyCartErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'JPF 6/10/2021 19:57:42' prior: 50876308!
+canNotCheckoutEmptyCartErrorDescription
+	
+	^ 'Can not checkout an empty cart'! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 19:57:45'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/10/2021 19:58:13'!
+checkout: aCart 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/10/2021 19:59:03' prior: 50876323!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class canNotCheckoutEmptyCartErrorDescription ]! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 19:59:06'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 19:59:06'!
+PASSED!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/10/2021 20:00:05'!
+assertCartIsNotEmpty: aCart
+
+	^ aCart isEmpty ifTrue: [ self error: self class canNotCheckoutEmptyCartErrorDescription ]! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/10/2021 20:00:05' prior: 50876327!
+checkout: aCart 
+	
+	self assertCartIsNotEmpty: aCart! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 20:00:22'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 20:00:27'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:05:40'!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := Cashier new.
+	
+	self 
+		should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:06:19' prior: 50876360!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: testSupport validBook.
+	
+	cashier := Cashier new.
+	
+	self 
+		should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:08:16' prior: 50876372!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: testSupport itemSellByTheStore.
+	
+	cashier := Cashier new.
+	
+	self 
+		should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:09:49' prior: 50876385!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: testSupport itemSellByTheStore.
+	
+	cashier := Cashier new.
+	
+	self assert: 100 equals: (cashier checkout: cart)
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:15:21' prior: 50876399!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier priceList |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	priceList := Dictionary new.
+	priceList at: testSupport itemSellByTheStore put: 50.
+	
+	cashier := Cashier new.
+	
+	self assert: 100 equals: (cashier checkout: cart)
+		
+
+	! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:15:41'!
+FAILURE!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JPF 6/10/2021 20:19:04'!
+Object subclass: #Cashier
+	instanceVariableNames: 'priceList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/10/2021 20:19:01' prior: 50876348!
+checkout: aCart 
+	
+	self assertCartIsNotEmpty: aCart.
+	
+	^ aCart items sum: [ :item | priceList at: item ]! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:19:37' prior: 50876409!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier priceList |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	priceList := Dictionary new.
+	priceList at: testSupport itemSellByTheStore put: 50.
+	
+	cashier := Cashier with: priceList.
+	
+	self assert: 100 equals: (cashier checkout: cart)
+		
+
+	! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:19:42'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/10/2021 20:19:57'!
+with: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aDictionary ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/10/2021 20:20:14' prior: 50876456!
+with: aPriceList 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aPriceList ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/10/2021 20:20:19' prior: 50876464!
+with: aPriceList 
+	
+	^self new initializeWith: aPriceList ! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:20:23'!
+ERROR!
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:20:46'!
+initializeWith: aPriceList 
+	self shouldBeImplemented.
+	priceList := aPriceList.! !
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:20:52' prior: 50876480!
+initializeWith: aPriceList 
+
+	priceList := aPriceList.! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:20:59'!
+ERROR!
+!Cart methodsFor: 'queries' stamp: 'JPF 6/10/2021 20:21:31'!
+items
+	self shouldBeImplemented.
+	^items! !
+!Cart methodsFor: 'queries' stamp: 'JPF 6/10/2021 20:21:40' prior: 50876494!
+items
+
+	^items copy! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:21:48'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 20:21:48'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:21:48'!
+PASSED!
+!TestSupport methodsFor: 'cashier' stamp: 'JPF 6/10/2021 20:23:35'!
+createCashier
+	
+	^ Cashier with: self priceList.! !
+!TestSupport methodsFor: 'cashier' stamp: 'JPF 6/10/2021 20:24:32'!
+priceList
+
+	| priceList |
+	
+	priceList := Dictionary new.
+	priceList at: self itemSellByTheStore put: 50.! !
+!TestSupport methodsFor: 'cashier' stamp: 'JPF 6/10/2021 20:24:41' prior: 50876516!
+priceList
+
+	| priceList |
+	
+	priceList := Dictionary new.
+	priceList at: self itemSellByTheStore put: 50.
+	
+	^ priceList.! !
+!TestSupport methodsFor: 'cashier' stamp: 'JPF 6/10/2021 20:24:42' prior: 50876523!
+priceList
+
+	| priceList |
+	
+	priceList := Dictionary new.
+	priceList at: self itemSellByTheStore put: 50.
+	
+	^ priceList! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:25:06' prior: 50876439!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier priceList |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	priceList := Dictionary new.
+	priceList at: testSupport itemSellByTheStore put: 50.
+	
+	cashier := testSupport createCashier.
+	
+	self assert: 100 equals: (cashier checkout: cart)
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:25:15' prior: 50876537!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self assert: 100 equals: (cashier checkout: cart)
+		
+
+	! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:25:23'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/10/2021 20:25:23'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/10/2021 20:25:23'!
+PASSED!
+
+TestCase subclass: #CreditCartTest
+	instanceVariableNames: 'testSupport'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCartTest category: 'TusLibros' stamp: 'JPF 6/10/2021 20:28:19'!
+TestCase subclass: #CreditCartTest
+	instanceVariableNames: 'testSupport'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRenamed: #CreditCartTest as: #CreditCardTest stamp: 'JPF 6/10/2021 20:28:35'!
+Smalltalk renameClassNamed: #CreditCartTest as: #CreditCardTest!
+
+June/2020!
+
+2020/June!
+
+June!
+
+June ofYear: 2020!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JPF 6/10/2021 20:37:02'!
+Object subclass: #CreditCard
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:37:16'!
+test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: '1111888811118888'
+				expiration: (June ofYear: 2020) ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:42:43' prior: 50876597!
+test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: '1111888811118888'
+				expiration: '012020' ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/10/2021 20:42:52'!
+ERROR!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/10/2021 20:43:15'!
+canNotCreateACreditCardWithEmptyName
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/10/2021 20:44:07' prior: 50876625!
+canNotCreateACreditCardWithEmptyName
+
+	^ 'Can not create a credit card with an empty name'! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/10/2021 20:44:14'!
+ERROR!
+!CreditCard class methodsFor: 'instance creation' stamp: 'JPF 6/10/2021 20:44:20'!
+withName: aString number: aString2 expiration: aString3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithName: aString number: aString2 expiration: aString3 ! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'JPF 6/10/2021 20:45:18' prior: 50876641!
+withName: aName number: aCreditCardNumber expiration: aMonth
+	
+	^self new initializeWithName: aName number: aCreditCardNumber expiration: aMonth! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/10/2021 20:45:22'!
+ERROR!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JPF 6/10/2021 20:45:42'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JPF 6/10/2021 20:45:42'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'name creditCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'JPF 6/10/2021 20:45:42'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'name creditCardNumber month'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:45:42'!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth 
+	self shouldBeImplemented.
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:45:50' prior: 50876685!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth 
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/10/2021 20:45:54'!
+FAILURE!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:46:43' prior: 50876694!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	aName isEmpty ifTrue: [ self error: self class canNotCreateACreditCardWithEmptyName ].
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/10/2021 20:46:50'!
+PASSED!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:47:37'!
+assertNameIsNotEmpty: aName
+
+	^ aName isEmpty ifTrue: [ self error: self class canNotCreateACreditCardWithEmptyName ]! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:47:37' prior: 50876706!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsNotEmpty: aName.
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:47:56' prior: 50876720!
+assertNameIsNotEmpty: aName
+
+	^ aName isEmpty ifTrue: [ self error: self class canNotCreateACreditCardWithEmptyName ]! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/10/2021 20:48:10' prior: 50876736!
+assertNameIsNotEmpty: aName
+
+	^ aName isEmpty 
+		ifTrue: [ self error: self class canNotCreateACreditCardWithEmptyName ]! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:49:28'!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: '1111888811118888'
+				expiration: '012020' ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:50:41' prior: 50876750!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: '1111888811118888'
+				expiration: '012020' ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:54:29' prior: 50876762!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: '1111888811118888'
+				expiration: (June ofYear: 2020)]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/10/2021 20:56:48' prior: 50876609!
+test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: '1111888811118888'
+				expiration: (June ofYear: 2020) ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+----SNAPSHOT----(10 June 2021 21:34:56) Carrito.image priorSource: 17426133!
+
+----QUIT----(10 June 2021 21:35:01) Carrito.image priorSource: 17444801!
+
+----STARTUP---- (12 June 2021 09:04:25) as /Users/juan.ferrino/CuisUniversity/Carrito.image!
+
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:04:41'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:04:41'!
+FAILURE!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:04:41'!
+FAILURE!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:04:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:04:53'!
+FAILURE!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:04:53'!
+FAILURE!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:08:29' prior: 50876775!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: '1111888811118888'
+				expiration: (June ofYear: 2020)]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:09:15' prior: 50876727!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsNotEmpty: aName.
+	aName length > 30 
+		ifTrue: [ self error: self class canNotCreateACreditCardWithANameWithMoreThan30Characters ].
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/12/2021 09:09:58'!
+canNotCreateACreditCardWithANameWithMoreThan30Characters
+
+	^ 'Can not create a credit card with a name with more than 30 characters'! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:10:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:10:03'!
+ERROR!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:10:03'!
+ERROR!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:10:20' prior: 50876850!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsNotEmpty: aName.
+	aName size > 30 
+		ifTrue: [ self error: self class canNotCreateACreditCardWithANameWithMoreThan30Characters ].
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:10:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:10:27'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:10:27'!
+PASSED!
+!TestSupport methodsFor: 'cart' stamp: 'JPF 6/12/2021 09:12:19' prior: 50876256!
+defaultCatalog
+	
+	^ Dictionary with: (self itemSellByTheStore -> self itemSellByTheStorePrice)! !
+!TestSupport methodsFor: 'catalogue' stamp: 'JPF 6/12/2021 09:13:07'!
+itemSellByTheStorePrice
+
+	^ 50! !
+!Cart methodsFor: 'queries' stamp: 'JPF 6/12/2021 09:16:19'!
+total
+	
+	^ items sum: [ :item | catalog at: item ] ifEmpty: [ 0 ]! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/12/2021 09:16:50' prior: 50876433!
+checkout: aCart 
+	
+	self assertCartIsNotEmpty: aCart.
+	
+	^ aCart total! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:17:24'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:18:07'!
+ERROR!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:18:07'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:18:07'!
+ERROR!
+
+'string' == 'string'!
+!TestSupport methodsFor: 'catalogue' stamp: 'JPF 6/12/2021 09:23:05' prior: 50876264!
+itemSellByTheStore
+	
+	^ 'validItem'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:23:11'!
+ERROR!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:23:11'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:23:11'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'JPF 6/12/2021 09:25:22' prior: 50875934!
+assertIsValidItem: anItem
+
+	(catalog includesKey: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:25:27'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:25:27'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:25:27'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:25:27'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:25:27'!
+ERROR!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:25:27'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:25:36'!
+ERROR!
+
+!methodRemoval: CartTest #createCart stamp: 'JPF 6/12/2021 09:26:28'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog!
+
+!methodRemoval: CartTest #defaultCatalog stamp: 'JPF 6/12/2021 09:26:28'!
+defaultCatalog
+	
+	^ Array with: self itemSellByTheStore!
+
+!methodRemoval: CartTest #itemNotSellByTheStore stamp: 'JPF 6/12/2021 09:26:28'!
+itemNotSellByTheStore
+	
+	^'invalidBook'!
+
+!methodRemoval: CartTest #itemSellByTheStore stamp: 'JPF 6/12/2021 09:26:28'!
+itemSellByTheStore
+	
+	^ 'validBook'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'JPF 6/12/2021 09:27:03'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testSupport'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'setUp' stamp: 'JPF 6/12/2021 09:27:01' overrides: 16927572!
+setUp
+	
+	testSupport := TestSupport new! !
+
+!classRenamed: #TestSupport as: #MarketTestSupport stamp: 'JPF 6/12/2021 09:27:46'!
+Smalltalk renameClassNamed: #TestSupport as: #MarketTestSupport!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JPF 6/12/2021 09:27:46' prior: 50876275 overrides: 16927572!
+setUp
+
+	testSupport := MarketTestSupport new! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JPF 6/12/2021 09:27:46' prior: 50877124 overrides: 16927572!
+setUp
+	
+	testSupport := MarketTestSupport new! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:28:52' prior: 50876036!
+test01NewCartsAreCreatedEmpty
+
+	self assert: testSupport createCart isEmpty! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:29:08' prior: 50876014!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	self 
+		should: [ cart add: testSupport itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:29:19' prior: 50876041!
+test03AfterAddingAnItemTheCartIsNotEmptyAnymore
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	cart add: testSupport itemSellByTheStore.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:29:28' prior: 50876001!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	self 
+		should: [cart add: 0 of: testSupport itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:29:38' prior: 50876056!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	self 
+		should: [cart add: 2 of: testSupport itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:29:49' prior: 50876069!
+test06CartRemembersAddedItems
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	cart add: testSupport itemSellByTheStore.
+	self assert: (cart includes: testSupport itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:29:57' prior: 50876049!
+test07CartDoesNotHoldNotAddedItems
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	self deny: (cart includes: testSupport itemSellByTheStore)! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:30:08' prior: 50876027!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	self assert: (cart occurrencesOf: testSupport itemSellByTheStore) = 2! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:30:13'!
+PASSED!
+
+!methodRemoval: Cart #items stamp: 'JPF 6/12/2021 09:30:37'!
+items
+
+	^items copy!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:30:40'!
+PASSED!
+
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JPF 6/12/2021 09:31:37'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: Cashier class #with: stamp: 'JPF 6/12/2021 09:32:02'!
+with: aPriceList 
+	
+	^self new initializeWith: aPriceList !
+
+!methodRemoval: Cashier #initializeWith: stamp: 'JPF 6/12/2021 09:32:11'!
+initializeWith: aPriceList 
+
+	priceList := aPriceList.!
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/12/2021 09:32:54' prior: 50876512!
+createCashier
+	
+	^ Cashier new.! !
+
+!methodRemoval: MarketTestSupport #priceList stamp: 'JPF 6/12/2021 09:33:00'!
+priceList
+
+	| priceList |
+	
+	priceList := Dictionary new.
+	priceList at: self itemSellByTheStore put: 50.
+	
+	^ priceList!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:33:03'!
+PASSED!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:34:36'!
+assertNameHasNotMoreThan30Characters: aName
+
+	^ aName size > 30 
+		ifTrue: [ self error: self class canNotCreateACreditCardWithANameWithMoreThan30Characters ]! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:34:36' prior: 50876884!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsNotEmpty: aName.
+	self assertNameHasNotMoreThan30Characters: aName.
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:34:56'!
+assertNameIsValid: aName
+
+	self assertNameIsNotEmpty: aName.
+	self assertNameHasNotMoreThan30Characters: aName! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:34:56' prior: 50877388!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsValid: aName.
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:38:17'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'ValidName'
+				number: '11118888111188881'
+				expiration: (June ofYear: 2020)]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:38:42' prior: 50877413!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'ValidName'
+				number: '11118888111188881'
+				expiration: (June ofYear: 2020)]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithMoreThan16Digits.! !
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:38:52'!
+ERROR!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/12/2021 09:39:10'!
+canNotCreateACreditCardWithANumberWithMoreThan16Digits
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/12/2021 09:39:53' prior: 50877445!
+canNotCreateACreditCardWithANumberWithMoreThan16Digits
+	
+	^ 'Can not create a credit card with a number with more than 16 digits'! !
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:40:07'!
+FAILURE!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:41:03' prior: 50877405!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsValid: aName.
+	aCreditCardNumber size > 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithMoreThan16Digits ].
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:41:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:41:10'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:41:10'!
+PASSED!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:41:48'!
+assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size > 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithMoreThan16Digits ]! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:41:48' prior: 50877463!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsValid: aName.
+	self assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber.
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:41:55'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:41:55'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:41:55'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:42:54' prior: 50876789!
+test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: (June ofYear: 2020) ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 09:43:21'!
+validCardNumber
+
+	^ '1111888811118888'! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 09:44:13'!
+validCardName
+
+	^ 'Valid Name'! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 09:44:57'!
+expirationMonth
+
+	^ June ofYear: 2020! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:45:21' prior: 50877521!
+test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:45:55' prior: 50876835!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: testSupport validCardNumber 
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:45:57' prior: 50877558!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:46:10' prior: 50877427!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: (June ofYear: 2020)]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithMoreThan16Digits.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:46:20' prior: 50877588!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithMoreThan16Digits.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:46:37'!
+ERROR!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:46:37'!
+ERROR!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:46:37'!
+ERROR!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:46:46'!
+ERROR!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:47:41'!
+ERROR!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:47:41'!
+ERROR!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:47:41'!
+ERROR!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:47:44'!
+ERROR!
+!CreditCardTest methodsFor: 'setUp' stamp: 'JPF 6/12/2021 09:48:47' overrides: 16927572!
+setUp
+	
+	testSupport := MarketTestSupport new! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:48:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:48:51'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:48:51'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:49:24'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithMoreThan16Digits.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:49:36' prior: 50877668!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithLessThan13Digits.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:49:48'!
+test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithLessThan13Digits.! !
+
+!methodRemoval: CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 09:49:48'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithLessThan13Digits.!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/12/2021 09:50:25'!
+canNotCreateACreditCardWithANumberWithLessThan13Digits
+	
+	^ 'Can not create a credit card with a number with less than 13 digits'! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:50:35'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:50:35'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:50:35'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 09:50:35'!
+FAILURE!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 09:50:35'!
+FAILURE!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:51:41' prior: 50877497!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsValid: aName.
+	self assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber.
+	aCreditCardNumber size < 13 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithLessThan13Digits ].
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:51:44'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:51:44'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:51:44'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 09:51:44'!
+PASSED!
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:52:25'!
+assertCreditCardNumberHasNotLessThan13Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size < 13 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithLessThan13Digits ]! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:52:25' prior: 50877755!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsValid: aName.
+	self assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber.
+	self assertCreditCardNumberHasNotLessThan13Digits: aCreditCardNumber.
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:52:57'!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber.
+	self assertCreditCardNumberHasNotLessThan13Digits: aCreditCardNumber! !
+!CreditCard methodsFor: 'initialization' stamp: 'JPF 6/12/2021 09:52:57' prior: 50877796!
+initializeWithName: aName number: aCreditCardNumber expiration: aMonth
+	
+	self assertNameIsValid: aName.
+	self assertNumberIsValid: aCreditCardNumber.
+	
+	name := aName.
+	creditCardNumber := aCreditCardNumber.
+	month := aMonth.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 09:53:04'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 09:53:04'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 09:53:04'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 09:53:04'!
+PASSED!
+
+----SNAPSHOT----(12 June 2021 09:53:10) Carrito.image priorSource: 17444879!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:57:21'!
+test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport expiredCreditCard)
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:58:45' prior: 50876551!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport validCreditCard)
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:59:07' prior: 50876292!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := Cashier new.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 09:59:16' prior: 50877873!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := Cashier new.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/12/2021 09:59:52'!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+	
+	^ aCart total! !
+
+!methodRemoval: Cashier #checkout:payingWith: stamp: 'JPF 6/12/2021 10:00:03'!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+	
+	^ aCart total!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/12/2021 10:00:15'!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+	
+	^ aCart total! !
+
+!methodRemoval: Cashier #checkout: stamp: 'JPF 6/12/2021 10:00:20'!
+checkout: aCart 
+	
+	self assertCartIsNotEmpty: aCart.
+	
+	^ aCart total!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 10:00:34'!
+ERROR!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 10:00:34'!
+ERROR!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:00:34'!
+ERROR!
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:01:45'!
+validCreditCard
+
+	^ CreditCard withName: self validCardName number: self validCardNumber expiration: self expirationMonth.! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:02:02' prior: 50877932!
+validCreditCard
+
+	^ CreditCard
+		withName: self validCardName
+		number: self validCardNumber
+		expiration: self expirationMonth.! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:02:13'!
+expiredCreditCard
+
+	^ CreditCard
+		withName: self validCardName
+		number: self validCardNumber
+		expiration: self expirationMonth.! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:02:24' prior: 50877946!
+expiredCreditCard
+
+	^ CreditCard
+		withName: self validCardName
+		number: self validCardNumber
+		expiration: self expiredMonth.! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:02:48'!
+expiredMonth
+
+	^ June ofYear: 2020! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:02:57' prior: 50877541!
+expirationMonth
+
+	^ June ofYear: 2022! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 10:03:18'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 10:03:18'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:03:18'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 10:05:29' prior: 50877848!
+test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutWithAnExpiredCreditCard
+		
+
+	! !
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:05:33'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'JPF 6/12/2021 10:05:50'!
+canNotCheckoutWithAnExpiredCreditCard
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'JPF 6/12/2021 10:06:20' prior: 50878000!
+canNotCheckoutWithAnExpiredCreditCard
+	
+	^ 'Can not checkout with an expired credit card'! !
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:06:24'!
+FAILURE!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:06:43'!
+FAILURE!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JPF 6/12/2021 10:09:06'!
+Object subclass: #Cashier
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/12/2021 10:09:04' prior: 50877911!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpiredComparingTo: today.
+	
+	^ aCart total! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/12/2021 10:09:58' prior: 50878026!
+checkout: aCart payingWith: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredComparingTo: today) ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ].
+	
+	^ aCart total! !
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:10:05'!
+ERROR!
+!CreditCard methodsFor: 'testing' stamp: 'JPF 6/12/2021 10:10:21'!
+isExpiredComparingTo: anUndefinedObject 
+	self shouldBeImplemented.! !
+!CreditCard methodsFor: 'testing' stamp: 'JPF 6/12/2021 10:13:10' prior: 50878046!
+isExpiredComparingTo: aDate
+	
+	^ aDate > month lastDay! !
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:13:23'!
+ERROR!
+!CreditCard methodsFor: 'testing' stamp: 'JPF 6/12/2021 10:14:13' prior: 50878051!
+isExpiredComparingTo: aDate
+	
+		self halt.
+	
+	^ aDate > month lastDay! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 10:14:17'!
+PASSED!
+!CreditCard methodsFor: 'testing' stamp: 'JPF 6/12/2021 10:14:50' prior: 50878060!
+isExpiredComparingTo: aDate
+	
+	^ aDate > month lastDay! !
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 10:15:17'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:15:28'!
+ERROR!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:15:28'!
+ERROR!
+
+self lastDate!
+!CreditCard methodsFor: 'testing' stamp: 'JPF 6/12/2021 10:18:12' prior: 50878069!
+isExpiredComparingTo: aDate
+	
+	^ aDate > month lastDate! !
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:18:17'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/12/2021 10:19:52'!
+for: aDate
+	
+	self initializeFor: aDate.! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/12/2021 10:19:53' prior: 50878095!
+for: aDate
+	
+	self initializeFor: aDate! !
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/12/2021 10:20:30'!
+initializeFor: aDate
+	
+	today := aDate! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/12/2021 10:21:14' prior: 50878100!
+for: aDate
+	
+	^ self new initializeFor: aDate! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/12/2021 10:22:24' prior: 50877887!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+
+June / 21!
+
+June / 21 / 2021!
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/12/2021 10:25:01' prior: 50877328!
+createCashier
+	
+	^ Cashier for: July / 1 / 2020.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/12/2021 10:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/12/2021 10:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/12/2021 10:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/12/2021 10:25:22'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 10:25:46'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 10:25:46'!
+ERROR!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:25:46'!
+ERROR!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 10:25:52'!
+ERROR!
+
+month lastDate!
+
+self lastDate!
+
+self lastDate !
+
+self lastDate !
+
+(month month / month lastDay / month year )!
+
+(month month / month lastDay / month year )!
+
+month month!
+
+month lastDay!
+
+month year!
+
+mesDeAnio :=June / 2020!
+
+mesDeAnio :=June ofYear: 2020!
+
+mesDeAnio :=June ofYear: 2020!
+
+mesDeAnio :=June ofYear: 2020!
+
+self lastDate!
+
+mesDeAnio :=June ofYear: (FixedGregorianDate createYear: 2020)!
+
+mesDeAnio :=June ofYear: 2020!
+
+self!
+
+self lastDay!
+
+self lastDate!
+
+self lastDate!
+
+self lastDate!
+
+mesDeAnio :=July ofYear: 2022!
+
+mesDeAnio :=July ofYear: 2022!
+
+self lastDate!
+
+self lastDate!
+
+June / 30/ 2020 > self lastDate!
+
+June / 30/ 2020!
+
+self lastDate!
+
+June / 30/ 2020 > June / 20/ 2020!
+
+(June / 30/ 2020) > (June / 20/ 2020)!
+
+(June / 30/ 2020) > self lastDate!
+
+self lastDate!
+
+self lastDay!
+
+self lastDay!
+
+mesDeAnio :=July ofYear: (GregorianYear number: 2021)!
+
+mesDeAnio :=July ofYear: (GregorianYear number: 2021)!
+
+self lastDate!
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:54:24' prior: 50877966!
+expirationMonth
+
+	^ June ofYear: (GregorianYear number: 2022)! !
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/12/2021 10:54:46' prior: 50877961!
+expiredMonth
+
+	^ June ofYear: (GregorianYear number: 2020)! !
+
+!testRun: #CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/12/2021 10:55:06'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/12/2021 10:55:06'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/12/2021 10:55:06'!
+PASSED!
+
+----SNAPSHOT----(12 June 2021 11:02:46) Carrito.image priorSource: 17478235!
+
+----QUIT----(12 June 2021 11:07:48) Carrito.image priorSource: 17490111!
+
+----STARTUP---- (14 June 2021 18:32:09) as /Users/juan.ferrino/CuisUniversity/Carrito.image!
+
+
+!methodRemoval: CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits stamp: 'JPF 6/14/2021 18:40:11'!
+test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithLessThan13Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithLessThan13Digits.!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 18:41:38'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithMoreThan16Digits.! !
+
+!methodRemoval: CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits stamp: 'JPF 6/14/2021 18:41:38'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithMoreThan16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithMoreThan16Digits.!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/14/2021 18:42:28'!
+canNotCreateACreditCardWithANumberThatHasNot16Digits
+	
+	^ 'Can not create a credit card with a number with more than 16 digits'! !
+!CreditCardTest methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 18:42:28' prior: 50878240!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 18:42:28' prior: 50877488!
+assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size > 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberThatHasNot16Digits ]! !
+
+!methodRemoval: CreditCard class #canNotCreateACreditCardWithANumberWithMoreThan16Digits stamp: 'JPF 6/14/2021 18:42:28'!
+canNotCreateACreditCardWithANumberWithMoreThan16Digits
+	
+	^ 'Can not create a credit card with a number with more than 16 digits'!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/14/2021 18:42:57' prior: 50878270!
+canNotCreateACreditCardWithANumberThatHasNot16Digits
+	
+	^ 'Can not create a credit card with a number that has not 16 digits'! !
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 18:43:04'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 18:43:35' prior: 50878278!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.
+		
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 18:43:37'!
+FAILURE!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 18:43:37'!
+FAILURE!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:44:33' prior: 50878292!
+assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size ~= 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberThatHasNot16Digits ]! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 18:44:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 18:44:58'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 18:44:58'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 18:46:09'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 18:46:22'!
+test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+
+!methodRemoval: CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 18:46:22'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 18:46:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 18:46:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 18:46:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 18:46:26'!
+FAILURE!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 18:46:26'!
+FAILURE!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:47:47'!
+assertCreditCardNumberHas16Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size ~= 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberThatHasNot16Digits ]! !
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 18:47:47' prior: 50877809!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber.
+	self assertCreditCardNumberHasNotLessThan13Digits: aCreditCardNumber! !
+
+!methodRemoval: CreditCard #assertCreditCardNumberHasNotMoreThan16Digits: stamp: 'JPF 6/14/2021 18:47:47'!
+assertCreditCardNumberHasNotMoreThan16Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size ~= 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberThatHasNot16Digits ]!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:48:02' prior: 50878449!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber! !
+
+!methodRemoval: CreditCard #assertCreditCardNumberHasNotLessThan13Digits: stamp: 'JPF 6/14/2021 18:48:16'!
+assertCreditCardNumberHasNotLessThan13Digits: aCreditCardNumber
+
+	^ aCreditCardNumber size < 13 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithLessThan13Digits ]!
+
+name := ' juan pablo espacio'.!
+
+name withBlanksTrimmed !
+
+	name withBlanksCondensed !
+
+	name withBlanksCondensed !
+
+	name indexOf: $ .!
+
+	name indexOf: $ .!
+
+name := 'juanpabloespacio'.!
+
+	name indexOf: $ .!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:56:35' prior: 50878467!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber.
+	(aCreditCardNumber indexOf: $ ) > 0 ifTrue: []! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 18:56:56' prior: 50878389!
+test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithEmptySpaces.! !
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 18:57:40'!
+ERROR!
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 18:57:48'!
+canNotCreateACreditCardWithANumberWithEmptySpaces
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 18:58:21' prior: 50878515!
+canNotCreateACreditCardWithANumberWithEmptySpaces
+	
+	^ 'Can not create a card with a number with empty spaces'.! !
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:58:52' prior: 50878489!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber.
+	(aCreditCardNumber indexOf: $ ) > 0 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithEmptySpaces ]! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 18:59:08'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 18:59:08'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 18:59:08'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 18:59:08'!
+PASSED!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:59:23' prior: 50878528!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber.
+	(aCreditCardNumber indexOf: $ ) > 0 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithEmptySpaces ].! !
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:59:58'!
+assertCreditCardNumberHasNotEmptySpaces: aCreditCardNumber
+
+	^ (aCreditCardNumber indexOf: $ ) > 0 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithEmptySpaces ]! !
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 18:59:58' prior: 50878556!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber.
+	self assertCreditCardNumberHasNotEmptySpaces: aCreditCardNumber.! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 19:00:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:00:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 19:00:03'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 19:00:03'!
+PASSED!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:01:35'!
+test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:02:00' prior: 50878600!
+test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: '       '
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithAllEmptySpaces! !
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:02:10'!
+ERROR!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:02:10'!
+ERROR!
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/14/2021 19:02:19'!
+canNotCreateACreditCardWithANameWithAllEmptySpaces
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error descriptions' stamp: 'JPF 6/14/2021 19:03:11' prior: 50878634!
+canNotCreateACreditCardWithANameWithAllEmptySpaces
+	
+	^ 'Can not create a credit card with a name with all empty spaces'! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 19:03:32'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:03:32'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:03:32'!
+FAILURE!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 19:03:32'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 19:03:32'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:03:32'!
+FAILURE!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:03:45'!
+FAILURE!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 19:04:50' prior: 50877398!
+assertNameIsValid: aName
+
+	self assertNameIsNotEmpty: aName.
+	aName withBlanksTrimmed isEmpty ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithEmptySpaces ].
+	self assertNameHasNotMoreThan30Characters: aName! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 19:04:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:04:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:04:54'!
+FAILURE!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 19:04:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 19:04:54'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:04:54'!
+FAILURE!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 19:05:29' prior: 50878676!
+assertNameIsValid: aName
+
+	self assertNameIsNotEmpty: aName.
+	aName withBlanksTrimmed isEmpty ifTrue: [ self error: self class canNotCreateACreditCardWithANameWithAllEmptySpaces ].
+	self assertNameHasNotMoreThan30Characters: aName! !
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 19:05:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:05:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:05:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 19:05:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 19:05:31'!
+PASSED!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 19:06:27'!
+assertNameHasNotOnlyEmptySpaces: aName
+
+	^ aName withBlanksTrimmed isEmpty ifTrue: [ self error: self class canNotCreateACreditCardWithANameWithAllEmptySpaces ]! !
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/14/2021 19:06:27' prior: 50878712!
+assertNameIsValid: aName
+
+	self assertNameIsNotEmpty: aName.
+	self assertNameHasNotOnlyEmptySpaces: aName.
+	self assertNameHasNotMoreThan30Characters: aName! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:07:33'!
+test01ShouldRaiseAnExceptionWhenNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+!methodRemoval: CreditCardTest #test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName stamp: 'JPF 6/14/2021 19:07:33'!
+test01ShouldRaiseAnExceptionWhenCreatesACardWithAnEmptyName
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:09:28'!
+test01ShouldRaiseAnExceptionWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+!methodRemoval: CreditCardTest #test01ShouldRaiseAnExceptionWhenNameIsEmpty stamp: 'JPF 6/14/2021 19:09:28'!
+test01ShouldRaiseAnExceptionWhenNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:09:59'!
+test03ShouldRaiseAnExceptionWhenTheNameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.! !
+
+!methodRemoval: CreditCardTest #test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:09:59'!
+test02ShouldRaiseAnExceptionWhenCreatesACardWithANameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:10:42'!
+test04ShouldRaiseAnExceptionWhenTheNumberHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.
+		
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+
+!methodRemoval: CreditCardTest #test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits stamp: 'JPF 6/14/2021 19:10:42'!
+test03ShouldRaiseAnExceptionWhenCreatesACardWithANumberThatHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.
+		
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:11:09'!
+test05ShouldRaiseAnExceptionWhenTheNumberHasEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithEmptySpaces.! !
+
+!methodRemoval: CreditCardTest #test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces stamp: 'JPF 6/14/2021 19:11:09'!
+test04ShouldRaiseAnExceptionWhenCreatesACardWithANumberWithEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithEmptySpaces.!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:11:48'!
+test01FailWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+!methodRemoval: CreditCardTest #test01ShouldRaiseAnExceptionWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:11:48'!
+test01ShouldRaiseAnExceptionWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:12:20'!
+test01ShouldRaiseAnExceptionWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+!methodRemoval: CreditCardTest #test01FailWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:12:20'!
+test01FailWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName!
+
+!testRun: #CreditCardTest #test01ShouldRaiseAnExceptionWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:12:33'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:12:33'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldRaiseAnExceptionWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:12:33'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldRaiseAnExceptionWhenTheNumberHasNot16Digits stamp: 'JPF 6/14/2021 19:12:33'!
+PASSED!
+
+!testRun: #CreditCardTest #test05ShouldRaiseAnExceptionWhenTheNumberHasEmptySpaces stamp: 'JPF 6/14/2021 19:12:33'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:24:16'!
+test01FailWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	! !
+
+!methodRemoval: CashierTest #test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:24:16'!
+test01ShouldRaiseAnExceptionWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription
+	
+	
+	
+
+	!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:24:34'!
+test03ShouldFailIfTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutWithAnExpiredCreditCard
+		
+
+	! !
+
+!methodRemoval: CashierTest #test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired stamp: 'JPF 6/14/2021 19:24:34'!
+test03ShouldRaiseAnExceptionIfTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutWithAnExpiredCreditCard
+		
+
+	!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:24:44'!
+test01ShouldFailWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName! !
+
+!methodRemoval: CreditCardTest #test01ShouldRaiseAnExceptionWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:24:44'!
+test01ShouldRaiseAnExceptionWhenTheNameIsEmpty
+
+	self 
+		should: [ 
+			CreditCard
+				withName: ''
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithEmptyName!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:24:51'!
+test02ShouldFailWhenTheNameIsAllEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: '       '
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithAllEmptySpaces! !
+
+!methodRemoval: CreditCardTest #test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:24:51'!
+test02ShouldRaiseAnExceptionWhenTheNameIsAllEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: '       '
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithAllEmptySpaces!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:25:00'!
+test03ShouldFailWhenTheNameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.! !
+
+!methodRemoval: CreditCardTest #test03ShouldRaiseAnExceptionWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:25:00'!
+test03ShouldRaiseAnExceptionWhenTheNameWithMoreThan30Characters
+
+	self 
+		should: [ 
+			CreditCard
+				withName: 'NameWithMoreThanThirtyCharacter'
+				number: testSupport validCardNumber
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANameWithMoreThan30Characters.!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:25:07'!
+test04ShouldFailWhenTheNumberHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.
+		
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+
+!methodRemoval: CreditCardTest #test04ShouldRaiseAnExceptionWhenTheNumberHasNot16Digits stamp: 'JPF 6/14/2021 19:25:07'!
+test04ShouldRaiseAnExceptionWhenTheNumberHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888111188881'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.
+		
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '111188881111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.!
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:25:14'!
+test05ShouldFailWhenTheNumberHasEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithEmptySpaces.! !
+
+!methodRemoval: CreditCardTest #test05ShouldRaiseAnExceptionWhenTheNumberHasEmptySpaces stamp: 'JPF 6/14/2021 19:25:14'!
+test05ShouldRaiseAnExceptionWhenTheNumberHasEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithEmptySpaces.!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailIfTheCreditCardIsExpired stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+
+!testRun: #CreditCardTest #test05ShouldFailWhenTheNumberHasEmptySpaces stamp: 'JPF 6/14/2021 19:25:22'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:25:37'!
+test03ShouldFailWhenTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutWithAnExpiredCreditCard
+		
+
+	! !
+
+!methodRemoval: CashierTest #test03ShouldFailIfTheCreditCardIsExpired stamp: 'JPF 6/14/2021 19:25:37'!
+test03ShouldFailIfTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cashier canNotCheckoutWithAnExpiredCreditCard
+		
+
+	!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:27:22' prior: 50878979!
+test01FailWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | self assert: Cashier canNotCheckoutEmptyCartErrorDescription equals: error messageText ]
+		
+		"withMessageText: Cashier canNotCheckoutEmptyCartErrorDescription"
+	
+	
+	
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:29:09' prior: 50879271!
+test01FailWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierWith: salesBook.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutEmptyCartErrorDescription equals: error messageText.
+			self assert: salesBook isEmpty
+			]
+	
+	
+	
+
+	! !
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:29:18'!
+ERROR!
+!MarketTestSupport methodsFor: 'casing' stamp: 'JPF 6/14/2021 19:29:37'!
+salesBook
+	self shouldBeImplemented.! !
+!MarketTestSupport methodsFor: 'casing' stamp: 'JPF 6/14/2021 19:30:01' prior: 50879309!
+salesBook
+	
+	^ OrderedCollection new.! !
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:30:07'!
+ERROR!
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:30:12'!
+createCashierWith: anOrderedCollection 
+	self shouldBeImplemented.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:30:27' prior: 50879321!
+createCashierWith: anOrderedCollection
+
+	! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:31:53'!
+createCashierRegisteringOn: anOrderedCollection
+
+	! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 19:31:53' prior: 50879288!
+test01FailWhenTryToCheckoutAnEmptyCart
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutEmptyCartErrorDescription equals: error messageText.
+			self assert: salesBook isEmpty
+			]
+	
+	
+	
+
+	! !
+
+!methodRemoval: MarketTestSupport #createCashierWith: stamp: 'JPF 6/14/2021 19:31:53'!
+createCashierWith: anOrderedCollection
+
+	!
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:32:30' prior: 50879330!
+createCashierRegisteringOn: aSalesBook
+
+	
+	! !
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/14/2021 19:34:08'!
+for: aDate registeringOn: aSalesBook 
+	
+	^ self new initializeFor: aDate! !
+!MarketTestSupport methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 19:34:08' prior: 50878129!
+createCashier
+	
+	^ Cashier for: July / 1 / 2020 registeringOn: aSalesBook.! !
+
+!methodRemoval: Cashier class #for: stamp: 'JPF 6/14/2021 19:34:08'!
+for: aDate
+	
+	^ self new initializeFor: aDate!
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/14/2021 19:35:08'!
+initializeFor: aDate registeringOn: aSalesBook 
+	
+	today := aDate! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'JPF 6/14/2021 19:35:08' prior: 50879362!
+for: aDate registeringOn: aSalesBook 
+	
+	^ self new initializeFor: aDate registeringOn: aSalesBook! !
+
+!methodRemoval: Cashier #initializeFor: stamp: 'JPF 6/14/2021 19:35:08'!
+initializeFor: aDate
+	
+	today := aDate!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JPF 6/14/2021 19:35:28'!
+Object subclass: #Cashier
+	instanceVariableNames: 'today salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/14/2021 19:35:25' prior: 50879377!
+initializeFor: aDate registeringOn: aSalesBook 
+	
+	today := aDate.
+	salesBook := aSalesBook.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:36:15' prior: 50879368!
+createCashier
+	
+	^ Cashier for: July / 1 / 2020 registeringOn: self createSalesBook.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:37:09'!
+createSalesBook
+	
+	^ OrderedCollection new.! !
+
+!methodRemoval: MarketTestSupport #createSalesBook stamp: 'JPF 6/14/2021 19:37:41'!
+createSalesBook
+	
+	^ OrderedCollection new.!
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:37:50' prior: 50879406!
+createCashier
+	
+	^ Cashier for: July / 1 / 2020 registeringOn: self salesBook.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:38:12' prior: 50879358!
+createCashierRegisteringOn: aSalesBook
+
+	^ Cashier for: July / 1 / 2020 registeringOn: aSalesBook.
+
+	
+	! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:38:38'!
+cashierDate
+
+	^ July / 1 / 2020
+
+	
+	! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:38:54' prior: 50879421!
+createCashier
+	
+	^ Cashier for: self cashierDate registeringOn: self salesBook.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/14/2021 19:39:00' prior: 50879427!
+createCashierRegisteringOn: aSalesBook
+
+	^ Cashier for: self cashierDate registeringOn: aSalesBook.
+
+	
+	! !
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:39:26'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:40:31' prior: 50877861!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport validCreditCard).
+	self assert: salesBook first equals: 100
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:41:42' prior: 50879454!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport validCreditCard).
+	self assert: salesBook first equals: 100
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:41:53'!
+test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport validCreditCard).
+	self assert: salesBook first equals: 100
+		
+
+	! !
+
+!methodRemoval: CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCart stamp: 'JPF 6/14/2021 19:41:53'!
+test02ShouldCalculateTheCorrectTotalOfTheCart
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport validCreditCard).
+	self assert: salesBook first equals: 100
+		
+
+	!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:42:46' prior: 50879483!
+test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self assert: 100 equals: (cashier checkout: cart payingWith: testSupport validCreditCard).
+	self assert: 100 equals: salesBook first.
+	self assert: 1 equals: salesBook size.
+		
+
+	! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/14/2021 19:43:02'!
+ERROR!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/14/2021 19:43:02'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/14/2021 19:44:08' prior: 50878033!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredComparingTo: today) ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ].
+	
+	total := aCart total.
+	
+	^ total! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/14/2021 19:44:25' prior: 50879540!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredComparingTo: today) ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ].
+	
+	total := aCart total.
+	salesBook add total.
+	
+	^ total! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/14/2021 19:44:43' prior: 50879551!
+checkout: aCart payingWith: aCreditCard
+	
+	| total |
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredComparingTo: today) ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ].
+	
+	total := aCart total.
+	salesBook add: total.
+	
+	^ total! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/14/2021 19:45:13' prior: 50879562!
+checkout: aCart payingWith: aCreditCard
+	
+	| cartTotal |
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredComparingTo: today) ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ].
+	
+	cartTotal := aCart total.
+	salesBook add: cartTotal.
+	
+	^ cartTotal! !
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/14/2021 19:45:20'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:46:45' prior: 50879241!
+test03ShouldFailWhenTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | self assert: Cashier canNotCheckoutWithAnExpiredCreditCard equals: error messageText ]. 
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:47:03' prior: 50879589!
+test03ShouldFailWhenTheCreditCardIsExpired
+
+	| cart cashier |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutWithAnExpiredCreditCard equals: error messageText 
+			]. 
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:47:26' prior: 50879606!
+test03ShouldFailWhenTheCreditCardIsExpired
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	cashier := testSupport createCashier.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutWithAnExpiredCreditCard equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:48:40' prior: 50879623!
+test03ShouldFailWhenTheCreditCardIsExpired
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutWithAnExpiredCreditCard equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/14/2021 19:48:43'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test05ShouldFailWhenTheNumberHasEmptySpaces stamp: 'JPF 6/14/2021 19:48:46'!
+PASSED!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/14/2021 19:49:13'!
+assertCreditCardIsNotExpired: aCreditCard
+
+	^ (aCreditCard isExpiredComparingTo: today) ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ]! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/14/2021 19:49:13' prior: 50879573!
+checkout: aCart payingWith: aCreditCard
+	
+	| cartTotal |
+	
+	self assertCartIsNotEmpty: aCart.
+	self assertCreditCardIsNotExpired: aCreditCard.
+	
+	cartTotal := aCart total.
+	salesBook add: cartTotal.
+	
+	^ cartTotal! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+
+!testRun: #CreditCardTest #test05ShouldFailWhenTheNumberHasEmptySpaces stamp: 'JPF 6/14/2021 19:49:24'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:57:21'!
+test04ShouldFailWhenTheCreditCardHasNotCredit
+
+	| cart cashier salesBook merchantProcessor |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	merchantProcessor := testSupport createMerchantProcessorNoCredit.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook using: merchantProcessor.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutWithAnExpiredCreditCard equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'JPF 6/14/2021 19:59:40'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 19:59:29' prior: 50879790!
+test04ShouldFailWhenTheCreditCardHasNotCredit
+
+	| cart cashier salesBook merchantProcessor |
+	
+	cart := testSupport createCart.
+	
+	cart add: 2 of: testSupport itemSellByTheStore.
+	
+	salesBook := testSupport salesBook.
+	
+	merchantProcessor := testSupport createMerchantProcessorNoCredit.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook using: merchantProcessor.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardHasNotCredit equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 20:00:40' prior: 50879642!
+test03ShouldFailWhenTheCreditCardIsExpired
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCartWithValidItems.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport expiredCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: Cashier canNotCheckoutWithAnExpiredCreditCard equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/14/2021 20:01:58' prior: 50879821!
+test04ShouldFailWhenTheCreditCardHasNotCredit
+
+	| cart cashier salesBook merchantProcessor |
+	
+	cart := testSupport createCartWithValidItems.
+	
+	salesBook := testSupport salesBook.
+	
+	merchantProcessor := testSupport createMerchantProcessorNoCredit.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook using: merchantProcessor.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardHasNotCredit equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/14/2021 20:02:02'!
+ERROR!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/14/2021 20:02:02'!
+ERROR!
+!MarketTestSupport methodsFor: 'cart' stamp: 'JPF 6/14/2021 20:02:09'!
+createCartWithValidItems
+	self shouldBeImplemented.! !
+!MarketTestSupport methodsFor: 'cart' stamp: 'JPF 6/14/2021 20:03:03' prior: 50879893!
+createCartWithValidItems
+
+	| cart |	
+	
+	cart := self createCart.
+	cart add: 2 of: self itemSellByTheStore.! !
+!MarketTestSupport methodsFor: 'cart' stamp: 'JPF 6/14/2021 20:03:21' prior: 50879898!
+createCartWithValidItems
+
+	| cart |	
+	
+	cart := self createCart.
+	cart add: 2 of: self itemSellByTheStore.
+	
+	^ cart! !
+
+----QUIT----(15 June 2021 08:10:33) Carrito.image priorSource: 17490189!
+
+----STARTUP---- (15 June 2021 18:32:21) as /Users/juan.ferrino/CuisUniversity/Carrito.image!
+
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/15/2021 18:39:22'!
+test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails
+
+	| cart cashier salesBook merchantProcessor |
+	
+	cart := testSupport createCartWithValidItems.
+	
+	salesBook := testSupport salesBook.
+	
+	merchantProcessor := testSupport createMerchantProcessorNoCredit.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook using: merchantProcessor.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardHasNotCredit equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	! !
+
+!methodRemoval: CashierTest #test04ShouldFailWhenTheCreditCardHasNotCredit stamp: 'JPF 6/15/2021 18:39:22'!
+test04ShouldFailWhenTheCreditCardHasNotCredit
+
+	| cart cashier salesBook merchantProcessor |
+	
+	cart := testSupport createCartWithValidItems.
+	
+	salesBook := testSupport salesBook.
+	
+	merchantProcessor := testSupport createMerchantProcessorNoCredit.
+	
+	cashier := testSupport createCashierRegisteringOn: salesBook using: merchantProcessor.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardHasNotCredit equals: error messageText.
+			self assert: salesBook isEmpty
+			]. 
+		
+
+	!
+!CashierTest methodsFor: 'tests' stamp: 'JPF 6/15/2021 18:45:42' prior: 50879917!
+test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails
+
+	| cart cashier salesBook |
+	
+	cart := testSupport createCartWithValidItems.
+	
+	salesBook := testSupport salesBook.
+	
+	cashier := testSupport
+		createCashierRegisteringOn: salesBook
+		using: testSupport createMerchantProcessorNoCredit.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardHasNotCredit equals: error messageText.
+			self assert: salesBook isEmpty
+			].
+	
+	
+	cashier := testSupport 
+		createCashierRegisteringOn: salesBook
+		using: testSupport createMerchantProcessorFakeCreditCard.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardIsFake equals: error messageText.
+			self assert: salesBook isEmpty
+			].
+		
+	cashier := testSupport 
+		createCashierRegisteringOn: salesBook
+		using: testSupport createMerchantProcessorStolenCreditCard.
+	
+	self 
+		should: [ cashier checkout: cart payingWith: testSupport validCreditCard ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | 
+			self assert: MerchantProcessor creditCardIsStolen equals: error messageText.
+			self assert: salesBook isEmpty
+			].
+		
+
+	! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 18:45:43'!
+ERROR!
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 18:46:01'!
+createMerchantProcessorNoCredit
+	self shouldBeImplemented.! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'JPF 6/15/2021 19:05:55'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:05:36' prior: 50880015!
+createMerchantProcessorNoCredit
+	MerchantProcessorSimulator simulateWith: [ :selfRef | 
+		selfRef error: MerchantProcessor creditCardHasNotCredit ].! !
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:07:10' prior: 50880028!
+createMerchantProcessorNoCredit
+	^ MerchantProcessorSimulator with: [ :selfRef | 
+		selfRef error: MerchantProcessor creditCardHasNotCredit ].! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:07:28'!
+ERROR!
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'JPF 6/15/2021 19:07:36'!
+with: aBlockClosure 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aBlockClosure ! !
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'JPF 6/15/2021 19:08:02' prior: 50880049!
+with: aBlockClosureToRun 
+	
+	^self new initializeWith: aBlockClosureToRun! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:08:07'!
+ERROR!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'JPF 6/15/2021 19:08:24'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'blockClosureToRun'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'JPF 6/15/2021 19:08:24'!
+initializeWith: aBlockClosureToRun 
+	self shouldBeImplemented.
+	blockClosureToRun := aBlockClosureToRun.! !
+!MerchantProcessorSimulator methodsFor: 'initialization' stamp: 'JPF 6/15/2021 19:08:30' prior: 50880076!
+initializeWith: aBlockClosureToRun 
+	
+	blockClosureToRun := aBlockClosureToRun.! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:08:40'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'JPF 6/15/2021 19:11:46'!
+for: aDate registeringOn: aSalesBook using: aMerchantProcessor  
+	
+	^ self new initializeFor: aDate registeringOn: aSalesBook! !
+!MarketTestSupport methodsFor: 'as yet unclassified' stamp: 'JPF 6/15/2021 19:11:46' prior: 50879444!
+createCashierRegisteringOn: aSalesBook
+
+	^ Cashier for: self cashierDate registeringOn: aSalesBook using: aMerchantProcessor.
+
+	
+	! !
+!MarketTestSupport methodsFor: 'as yet unclassified' stamp: 'JPF 6/15/2021 19:11:46' prior: 50879438!
+createCashier
+	
+	^ Cashier for: self cashierDate registeringOn: self salesBook using: aMerchantProcessor.! !
+
+!methodRemoval: Cashier class #for:registeringOn: stamp: 'JPF 6/15/2021 19:11:46'!
+for: aDate registeringOn: aSalesBook 
+	
+	^ self new initializeFor: aDate registeringOn: aSalesBook!
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/15/2021 19:13:26'!
+initializeFor: aDate registeringOn: aSalesBook using: aMerchantProcessor  
+	
+	today := aDate.
+	salesBook := aSalesBook.! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'JPF 6/15/2021 19:13:26' prior: 50880093!
+for: aDate registeringOn: aSalesBook using: aMerchantProcessor  
+	
+	^ self new initializeFor: aDate registeringOn: aSalesBook using: aMerchantProcessor! !
+
+!methodRemoval: Cashier #initializeFor:registeringOn: stamp: 'JPF 6/15/2021 19:13:26'!
+initializeFor: aDate registeringOn: aSalesBook 
+	
+	today := aDate.
+	salesBook := aSalesBook.!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JPF 6/15/2021 19:14:04'!
+Object subclass: #Cashier
+	instanceVariableNames: 'today salesBook merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'JPF 6/15/2021 19:14:03' prior: 50880121!
+initializeFor: aDate registeringOn: aSalesBook using: aMerchantProcessor  
+	
+	today := aDate.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.! !
+!MerchantProcessorSimulator methodsFor: 'payment' stamp: 'JPF 6/15/2021 19:16:58'!
+processPaymentWith: aCreditCard for: aTotal
+	
+	^ blockClosureToRun value: self.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/15/2021 19:19:04'!
+createCashierRegisteringOn: aSalesBook using: aMerchantProcessor
+
+	^ Cashier for: self cashierDate registeringOn: aSalesBook using: aMerchantProcessor.
+
+	
+	! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:19:29'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/15/2021 19:21:09' prior: 50879727!
+checkout: aCart payingWith: aCreditCard
+	
+	| cartTotal |
+	
+	self assertCartIsNotEmpty: aCart.
+	self assertCreditCardIsNotExpired: aCreditCard.
+	
+	cartTotal := aCart total.
+	
+	merchantProcessor processPaymentWith: aCreditCard for: cartTotal.
+	
+	salesBook add: cartTotal.
+	
+	^ cartTotal! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:21:20'!
+ERROR!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:21:20'!
+ERROR!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'JPF 6/15/2021 19:21:41'!
+creditCardHasNotCredit
+	self shouldBeImplemented.! !
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'JPF 6/15/2021 19:22:01' prior: 50880195!
+creditCardHasNotCredit
+	
+	^ 'Credit card has not credit'! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:22:07'!
+ERROR!
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:22:37'!
+createMerchantProcessorFakeCreditCard
+	self shouldBeImplemented.! !
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:25:17' prior: 50880209!
+createMerchantProcessorFakeCreditCard
+	MerchantProcessorSimulator with: [ :selfRef |
+		selfRef error: MerchantProcessor creditCardIsFake ].! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:25:19'!
+ERROR!
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:29:52' prior: 50880215!
+createMerchantProcessorFakeCreditCard
+	^ MerchantProcessorSimulator with: [ :selfRef |
+		selfRef error: MerchantProcessor creditCardIsFake ].! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:30:05'!
+ERROR!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'JPF 6/15/2021 19:31:00'!
+creditCardIsFake
+	self shouldBeImplemented.! !
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'JPF 6/15/2021 19:31:13' prior: 50880239!
+creditCardIsFake
+	
+	^ 'Credit card is fake'! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:31:17'!
+ERROR!
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:31:34'!
+createMerchantProcessorStolenCreditCard
+	self shouldBeImplemented.! !
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:33:35' prior: 50880253!
+createMerchantProcessorStolenCreditCard
+	^ MerchantProcessorSimulator with: [ :selfVar |
+		selfVar error: MerchantProcessor creditCardIsStolen ]! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:33:39'!
+ERROR!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'JPF 6/15/2021 19:33:50'!
+creditCardIsStolen
+	self shouldBeImplemented.! !
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'JPF 6/15/2021 19:34:05' prior: 50880271!
+creditCardIsStolen
+	
+	^ 'Credit card is stolen'! !
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:34:15'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:34:22'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/15/2021 19:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:34:39'!
+ERROR!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/15/2021 19:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:34:39'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:34:39'!
+ERROR!
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/15/2021 19:35:45' prior: 50880109!
+createCashier
+	
+	^ Cashier for: self cashierDate registeringOn: self salesBook using: self merchantProcessorOk.! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/15/2021 19:36:26' prior: 50880308!
+createCashier
+	
+	^ Cashier for: self cashierDate registeringOn: self salesBook using: self createMerchantProcessorOk.! !
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:37:08'!
+createMerchantProcessorOk
+	^ MerchantProcessorSimulator with: [ ]! !
+!MarketTestSupport methodsFor: 'cashier' stamp: 'JPF 6/15/2021 19:37:29' prior: 50880101!
+createCashierRegisteringOn: aSalesBook
+
+	^ Cashier for: self cashierDate registeringOn: aSalesBook using: self createMerchantProcessorOk.
+
+	
+	! !
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/15/2021 19:37:40'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:37:40'!
+ERROR!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/15/2021 19:37:40'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:37:40'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:37:40'!
+ERROR!
+!MarketTestSupport methodsFor: 'merchantProcessor' stamp: 'JPF 6/15/2021 19:38:08' prior: 50880322!
+createMerchantProcessorOk
+	^ MerchantProcessorSimulator with: [ :selfVar | ]! !
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/15/2021 19:38:13'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:38:13'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/15/2021 19:38:13'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:38:13'!
+PASSED!
+
+----SNAPSHOT----(15 June 2021 19:38:48) Carrito.image priorSource: 17544343!
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/15/2021 19:40:11'!
+registerSale: cartTotal
+
+	^ salesBook add: cartTotal! !
+!Cashier methodsFor: 'checkout' stamp: 'JPF 6/15/2021 19:40:11' prior: 50880174!
+checkout: aCart payingWith: aCreditCard
+	
+	| cartTotal |
+	
+	self assertCartIsNotEmpty: aCart.
+	self assertCreditCardIsNotExpired: aCreditCard.
+	
+	cartTotal := aCart total.
+	
+	merchantProcessor processPaymentWith: aCreditCard for: cartTotal.
+	
+	self registerSale: cartTotal.
+	
+	^ cartTotal! !
+
+'1234' asNumber !
+
+'1234 ' asNumber !
+
+'1234d ' asNumber  !
+
+'dd1234' asNumber!
+
+'12dd34' asNumber!
+
+'1234' asNumber!
+
+'01234' asNumber  !
+
+'10234' asNumber  !
+
+'10234' asNumber !
+
+1010 numberOfDigitsInBase: 2!
+
+1010 numberOfDigitsInBase: 10!
+
+1010 numberOfDigitsInBase: 10!
+
+01010 numberOfDigitsInBase: 10!
+!MarketTestSupport methodsFor: 'creditCard' stamp: 'JPF 6/15/2021 19:55:46' prior: 50877533!
+validCardNumber
+
+	^ 1111888811118888! !
+!CreditCardTest methodsFor: 'tests' stamp: 'JPF 6/15/2021 19:56:13' prior: 50879117!
+test04ShouldFailWhenTheNumberHasNot16Digits
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: 11118888111188881
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.
+		
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: 111188881111888
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberThatHasNot16Digits.! !
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:56:23'!
+FAILURE!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:56:23'!
+FAILURE!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/15/2021 19:57:03' prior: 50878440!
+assertCreditCardNumberHas16Digits: aCreditCardNumber
+
+	^ (aCreditCardNumber numberOfDigitsInBase: 10) ~= 16 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberThatHasNot16Digits ]! !
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/15/2021 19:57:13' prior: 50880436!
+assertCreditCardNumberHas16Digits: aCreditCardNumber
+
+	^ (aCreditCardNumber numberOfDigitsInBase: 10) ~= 16
+		ifTrue: [ self error: self class canNotCreateACreditCardWithANumberThatHasNot16Digits ]! !
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:57:25'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/15/2021 19:57:28'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/15/2021 19:57:29'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/15/2021 19:57:31'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:57:33'!
+PASSED!
+
+!methodRemoval: CreditCardTest #test05ShouldFailWhenTheNumberHasEmptySpaces stamp: 'JPF 6/15/2021 19:57:44'!
+test05ShouldFailWhenTheNumberHasEmptySpaces
+
+	self 
+		should: [ 
+			CreditCard
+				withName: testSupport validCardName
+				number: '11118888 1111888'
+				expiration: testSupport expirationMonth ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: CreditCard canNotCreateACreditCardWithANumberWithEmptySpaces.!
+
+!methodRemoval: CreditCard #assertCreditCardNumberHasNotEmptySpaces: stamp: 'JPF 6/15/2021 19:58:12'!
+assertCreditCardNumberHasNotEmptySpaces: aCreditCardNumber
+
+	^ (aCreditCardNumber indexOf: $ ) > 0 ifTrue: [ self error: self class canNotCreateACreditCardWithANumberWithEmptySpaces ]!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/15/2021 19:58:20' prior: 50878575!
+assertNumberIsValid: aCreditCardNumber
+
+	self assertCreditCardNumberHas16Digits: aCreditCardNumber.! !
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/15/2021 19:58:23'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/15/2021 19:58:23'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/15/2021 19:58:23'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:58:23'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:58:26'!
+PASSED!
+!MerchantProcessor methodsFor: 'payment' stamp: 'JPF 6/15/2021 19:59:31'!
+processPaymentWith: aCreditCard for: aTotal
+
+	self subclassResponsibility! !
+
+MerchantProcessor subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'blockClosureToRun'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'JPF 6/15/2021 19:59:42'!
+MerchantProcessor subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'blockClosureToRun'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 19:59:46'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CashierTest #test01FailWhenTryToCheckoutAnEmptyCart stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldCalculateTheCorrectTotalOfTheCartAndSaveIt stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldFailWhenTheCreditCardIsExpired stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldNotRegisterTheSaleAndPassTheErrorWhenTheMerchantProcessorFails stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CreditCardTest #test01ShouldFailWhenTheNameIsEmpty stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CreditCardTest #test02ShouldFailWhenTheNameIsAllEmptySpaces stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CreditCardTest #test03ShouldFailWhenTheNameWithMoreThan30Characters stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+
+!testRun: #CreditCardTest #test04ShouldFailWhenTheNumberHasNot16Digits stamp: 'JPF 6/15/2021 20:00:45'!
+PASSED!
+!CreditCard methodsFor: 'assertions' stamp: 'JPF 6/15/2021 20:02:17' prior: 50878743!
+assertNameHasNotOnlyEmptySpaces: aName
+
+	^ aName withBlanksTrimmed isEmpty
+		ifTrue: [ self error: self class canNotCreateACreditCardWithANameWithAllEmptySpaces ]! !
+!Cashier methodsFor: 'assertions' stamp: 'JPF 6/15/2021 20:02:39' prior: 50879719!
+assertCreditCardIsNotExpired: aCreditCard
+
+	^ (aCreditCard isExpiredComparingTo: today) 
+		ifTrue: [ self error: self class canNotCheckoutWithAnExpiredCreditCard ]! !
+
+----SNAPSHOT----(15 June 2021 20:12:36) Carrito.image priorSource: 17559147!

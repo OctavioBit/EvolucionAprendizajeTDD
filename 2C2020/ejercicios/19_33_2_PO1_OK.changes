@@ -1,0 +1,1941 @@
+
+
+----STARTUP---- (2 November 2020 16:33:02) as C:\Users\FACU PC\Documents\Clases Virtuales\Cosas IS 1\Cuis University\CuisUniversity-4365.image!
+
+----End fileIn of C:\Users\FACU PC\Desktop\18-Portfolio1\Portfolio-Ejercicio.st----!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FG 11/2/2020 19:16:41' prior: 50913843!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction = Deposit) ifTrue:[aTransaction value] ifFalse:[(aTransaction value) negated]] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:17:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:17:00'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FG 11/2/2020 19:18:21' prior: 50913856!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction class = Deposit) ifTrue:[aTransaction value] ifFalse:[(aTransaction value) negated]] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:18:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:18:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:18:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:18:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FG 11/2/2020 19:18:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FG 11/2/2020 19:18:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FG 11/2/2020 19:18:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FG 11/2/2020 19:18:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FG 11/2/2020 19:18:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FG 11/2/2020 19:18:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FG 11/2/2020 19:20:40'!
+PASSED!
+!Withdraw methodsFor: 'value' stamp: 'FG 11/2/2020 19:21:51' prior: 50913799 overrides: 50913728!
+value
+	^ value! !
+!Withdraw methodsFor: 'initialization' stamp: 'FG 11/2/2020 19:21:56' prior: 50913794!
+initializeFor: aValue
+	value := aValue ! !
+!AccountTransaction methodsFor: 'nil' stamp: 'FG 11/2/2020 19:23:01'!
+operation
+	^ self subclassResponsibility.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:23:11' prior: 50913953!
+operation
+	self subclassResponsibility.! !
+!AccountTransaction methodsFor: 'operation' stamp: 'FG 11/2/2020 19:25:29'!
+operation: accountValue
+	self subclassResponsibility.! !
+
+!methodRemoval: AccountTransaction #operation stamp: 'FG 11/2/2020 19:25:33'!
+operation
+	self subclassResponsibility.!
+!Deposit methodsFor: 'nil' stamp: 'FG 11/2/2020 19:27:40' overrides: 50913962!
+operation: accountValue
+	^ accountValue + value.! !
+!Withdraw methodsFor: 'nil' stamp: 'FG 11/2/2020 19:28:03' overrides: 50913962!
+operation: accountValue
+ 	^ accountValue - value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FG 11/2/2020 19:29:24' prior: 50913872!
+balance
+
+	
+	
+	^transactions sum: [ :aTransaction | ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FG 11/2/2020 19:30:58' prior: 50913980!
+balance
+
+	|balance|
+	balance := 0.
+	^transactions do: [ :aTransaction | aTransaction operation: balance ] ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:32:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:32:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:32:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FG 11/2/2020 19:32:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FG 11/2/2020 19:32:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FG 11/2/2020 19:32:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FG 11/2/2020 19:32:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:32:43'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:32:43'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FG 11/2/2020 19:33:21' prior: 50913985!
+balance
+
+	|balance|
+	balance := 0.
+	transactions do: [ :aTransaction | aTransaction operation: balance ].
+	^balance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:33:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:33:28'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:33:28'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FG 11/2/2020 19:34:22' prior: 50914026!
+balance
+
+	|balance|
+	balance := 0.
+	transactions do: [ :aTransaction | balance := aTransaction operation: balance ].
+	^balance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FG 11/2/2020 19:34:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:34:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FG 11/2/2020 19:34:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FG 11/2/2020 19:34:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FG 11/2/2020 19:34:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FG 11/2/2020 19:34:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FG 11/2/2020 19:34:36'!
+PASSED!
+
+Object subclass: #Portafolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portafolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/2/2020 19:39:03'!
+Object subclass: #Portafolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TestCase subclass: #PortafolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortafolioTest category: #'Portfolio-Ejercicio' stamp: 'FG 11/2/2020 19:39:27'!
+TestCase subclass: #PortafolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortafolioTest methodsFor: 'nil' stamp: 'FG 11/2/2020 19:42:57'!
+test01
+
+	| portafolio |
+	
+	portafolio := Portafolio new.
+	
+	self assert: portafolio balance equals: 0.! !
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 19:43:01'!
+ERROR!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 19:43:01'!
+ERROR!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 19:43:11'!
+ERROR!
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:43:20'!
+balance
+	self shouldBeImplemented.! !
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:43:28' prior: 50914114!
+balance
+	^ 0! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:49:07'!
+test02
+
+	| portafolio |
+	
+	portafolio := Portafolio new.
+	portafolio registerAcount: AccountTransaction new.
+	
+	self assert: portafolio balance equals: 0.! !
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 19:49:13'!
+ERROR!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 19:49:13'!
+ERROR!
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:49:22'!
+registerAcount: anAccountTransaction 
+	self shouldBeImplemented.! !
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:49:26' prior: 50914135!
+registerAcount: anAccountTransaction ! !
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 19:49:32'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:52:10' prior: 50914123!
+test02
+
+	| portafolio receptiveAccount|
+	
+	portafolio := Portafolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portafolio registerAcount: receptiveAccount.
+	
+	receptiveAccount.
+	
+	self assert: portafolio balance equals: 0.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:53:22' prior: 50914148!
+test02
+
+	| portafolio receptiveAccount|
+	
+	portafolio := Portafolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portafolio registerAcount: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount . 
+	
+	receptiveAccount.
+	
+	self assert: portafolio balance equals: 0.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 19:53:29' prior: 50914159!
+test02
+
+	| portafolio receptiveAccount|
+	
+	portafolio := Portafolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portafolio registerAcount: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount . 
+	
+	self assert: portafolio balance equals: 100.! !
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 19:54:10'!
+FAILURE!
+
+Object subclass: #Portafolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portafolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/2/2020 19:55:08'!
+Object subclass: #Portafolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portafolio class methodsFor: 'nil' stamp: 'FG 11/2/2020 19:55:31' overrides: 16783533!
+new
+	^ self basicNew initialize.! !
+!Portafolio methodsFor: 'nil' stamp: 'FG 11/2/2020 20:01:03' overrides: 16896425!
+initialize
+	accounts := OrderedCollection new.! !
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:01:48' prior: 50914141!
+registerAcount: aReceptiveAccount 
+	accounts add: aReceptiveAccount! !
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:01:51' prior: 50914206!
+registerAcount: aReceptiveAccount 
+	accounts add: aReceptiveAccount.! !
+!Portafolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:02:49' prior: 50914119!
+balance
+	^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [0].! !
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 20:02:52'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 20:02:53'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:29:33' prior: 50914171!
+test02
+
+	| portafolio receptiveAccount|
+	
+	portafolio := Portafolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portafolio registerAcount: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portafolio balance equals: 100.! !
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 20:29:36'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 20:29:48'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 20:29:48'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:31:49'!
+test03
+
+	| portafolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portafolio := Portafolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portafolio registerAcount: firstReceptiveAccount.
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portafolio balance equals: 100.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:32:02' prior: 50914247!
+test03
+
+	| portafolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portafolio := Portafolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portafolio registerAcount: firstReceptiveAccount.
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portafolio balance equals: 600.! !
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 20:32:04'!
+FAILURE!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 20:32:30'!
+FAILURE!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 20:32:30'!
+FAILURE!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:32:59' prior: 50914263!
+test03
+
+	| portafolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portafolio := Portafolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portafolio registerAcount: firstReceptiveAccount.
+	portafolio registerAcount: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portafolio balance equals: 600.! !
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 20:33:02'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:34:38' prior: 50914286!
+test03
+
+	"Test repetido"
+	
+	| portafolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portafolio := Portafolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portafolio registerAcount: firstReceptiveAccount.
+	portafolio registerAcount: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portafolio balance equals: 600.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:37:21'!
+test03V2
+	
+	| ParentPortfolio SonPortfolio|
+	! !
+
+!classRenamed: #Portafolio as: #Portfolio stamp: 'FG 11/2/2020 20:37:34'!
+Smalltalk renameClassNamed: #Portafolio as: #Portfolio!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:37:34' prior: 50914101!
+test01
+
+	| portafolio |
+	
+	portafolio := Portfolio new.
+	
+	self assert: portafolio balance equals: 0.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:37:34' prior: 50914306!
+test03
+
+	"Test repetido"
+	
+	| portafolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portafolio := Portfolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portafolio registerAcount: firstReceptiveAccount.
+	portafolio registerAcount: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portafolio balance equals: 600.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:37:34' prior: 50914229!
+test02
+
+	| portafolio receptiveAccount|
+	
+	portafolio := Portfolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portafolio registerAcount: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portafolio balance equals: 100.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:37:50' prior: 50914333!
+test01
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:38:03' prior: 50914358!
+test02
+
+	| portfolio receptiveAccount|
+	
+	portfolio := Portfolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portfolio registerAcount: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portfolio balance equals: 100.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:38:22' prior: 50914340!
+test03
+
+	"Test repetido"
+	
+	| portfolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portfolio := Portfolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portfolio registerAcount: firstReceptiveAccount.
+	portfolio registerAcount: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portfolio balance equals: 600.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:42:03' prior: 50914324!
+test03V2
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  registerPorfolio: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio registerAcount: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	! !
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:42:07'!
+ERROR!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:42:07'!
+ERROR!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:42:13'!
+ERROR!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:42:22'!
+ERROR!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:42:22'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:42:29'!
+registerPorfolio: aPortfolio 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/2/2020 20:43:04'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:43:02' prior: 50914434!
+registerPorfolio: aPortfolio 
+	portfolios add: aPortfolio.! !
+!Portfolio methodsFor: 'initialization' stamp: 'FG 11/2/2020 20:43:25' prior: 50914201 overrides: 16896425!
+initialize
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:43:49'!
+registerAccount: aReceptiveAccount 
+	accounts add: aReceptiveAccount.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:43:49' prior: 50914388!
+test03
+
+	"Test repetido"
+	
+	| portfolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portfolio := Portfolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portfolio registerAccount: firstReceptiveAccount.
+	portfolio registerAccount: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portfolio balance equals: 600.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:43:50' prior: 50914377!
+test02
+
+	| portfolio receptiveAccount|
+	
+	portfolio := Portfolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portfolio registerAccount: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portfolio balance equals: 100.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:43:50' prior: 50914406!
+test03V2
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  registerPorfolio: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio registerAccount: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	! !
+
+!methodRemoval: Portfolio #registerAcount: stamp: 'FG 11/2/2020 20:43:50'!
+registerAcount: aReceptiveAccount 
+	accounts add: aReceptiveAccount.!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:44:01'!
+FAILURE!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:44:01'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:45:28' prior: 50914218!
+balance
+	^ (accounts sum: [:anAccount | anAccount balance] ifEmpty: [0]) + (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [0]).! !
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 20:45:35'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 20:45:37'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 20:45:38'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 20:45:40'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:47:03'!
+test04
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  registerPorfolio: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio registerAccount: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:50:46'!
+test05
+	
+	| portfolio accountReceptive transaction|
+	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:53:41' prior: 50914554!
+test05
+	
+	| portfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (portfolio hasRegistered: transaction).	
+
+	! !
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 20:53:57'!
+ERROR!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 20:53:57'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:54:08'!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:58:22' prior: 50914576!
+hasRegistered: aTransaction 
+	
+	| xxxx |
+	
+	xxxx := false.
+	
+	accounts do: [:anAccount | xxxx := (anAccount hasRegistered: aTransaction) or: [xxxx] ].
+	
+	^ xxxx ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 20:59:57' prior: 50914581!
+hasRegistered: aTransaction 
+	
+	| registerUpToNow |
+	
+	registerUpToNow := false.
+	
+	accounts do: [:anAccount | registerUpToNow := (anAccount hasRegistered: aTransaction) or: [registerUpToNow] ].
+	
+	^ registerUpToNow.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:00:44' prior: 50914590!
+hasRegistered: aTransaction 
+	
+	| registeRedUpToNow |
+	
+	registeRedUpToNow := false.
+	
+	accounts do: [:anAccount | registeRedUpToNow := (anAccount hasRegistered: aTransaction) or: [registeRedUpToNow] ].
+	
+	^ registeRedUpToNow.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:00:49' prior: 50914600!
+hasRegistered: aTransaction 
+	
+	| registeredUpToNow |
+	
+	registeredUpToNow := false.
+	
+	accounts do: [:anAccount | registeredUpToNow := (anAccount hasRegistered: aTransaction) or: [registeredUpToNow] ].
+	
+	^ registeredUpToNow.! !
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:01:09'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 21:01:12'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 21:01:12'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 21:01:12'!
+PASSED!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 21:01:12'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/2/2020 21:01:12'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:01:12'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:01:58' prior: 50914559!
+test05
+	
+	| portfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (portfolio hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:02:08' prior: 50914638!
+test05
+	
+	| parentPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:03:36' prior: 50914651!
+test05
+	
+	| parentPortfolio childPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:04:13' prior: 50914665!
+test05
+	
+	| parentPortfolio childPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerPorfolio: childPortfolio.
+	childPortfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	! !
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:04:15'!
+FAILURE!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:04:15'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:05:32' prior: 50914611!
+hasRegistered: aTransaction 
+	
+	| registeredUpToNow |
+	
+	registeredUpToNow := false.
+	
+	portfolios do: [:anAccount | registeredUpToNow := (anAccount hasRegistered: aTransaction) or: [registeredUpToNow] ].
+	accounts do: [:anAccount | registeredUpToNow := (anAccount hasRegistered: aTransaction) or: [registeredUpToNow] ].
+	
+	^ registeredUpToNow.! !
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:06:20'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 21:06:23'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 21:06:23'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 21:06:23'!
+PASSED!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 21:06:23'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/2/2020 21:06:23'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:06:23'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:08:42'!
+test06
+	
+	| parentPortfolio childPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerPorfolio: childPortfolio.
+	childPortfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:08:50' prior: 50914731!
+test06
+	
+	| parentPp childPortfolio receptiveAccount transaction|
+	
+	parentPp := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPp registerPorfolio: childPortfolio.
+	childPortfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPp hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:09:01' prior: 50914748!
+test06
+	
+	| portfolio childPortfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio registerPorfolio: childPortfolio.
+	childPortfolio registerAccount: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (portfolio hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:10:18' prior: 50914764!
+test06
+	
+	| portfolio|
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio transactions size equals: 0.	
+
+	! !
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/2/2020 21:10:21'!
+ERROR!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/2/2020 21:10:21'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:10:33'!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:10:49' prior: 50914791!
+transactions
+	^ OrderedCollection new.! !
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/2/2020 21:10:53'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/2/2020 21:10:53'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:13:32'!
+test07
+	
+	| portfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio registerAccount: receptiveAccount.
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: portfolio transactions size equals: 1.
+	self assert: portfolio  transactions includes: 	transaction.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:18:40' prior: 50914796!
+transactions
+	|allTransactions|
+	
+	allTransactions := OrderedCollection new.
+
+	accounts do: [:anAccount | allTransactions addAll: anAccount transactions asArray] .
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/2/2020 21:19:20' prior: 50914820!
+transactions
+	|allTransactions|
+	
+	allTransactions := OrderedCollection new.
+
+	accounts do: [:anAccount | allTransactions addAll: anAccount transactions asArray; yourself] .
+	
+	^ allTransactions.! !
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/2/2020 21:19:25'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/2/2020 21:19:29'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test03V2 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/2/2020 21:19:32'!
+PASSED!
+
+----QUIT----(2 November 2020 21:22:48) CuisUniversity-4365.image priorSource: 18623125!
+
+----STARTUP---- (6 November 2020 17:49:37) as C:\Users\FACU PC\Documents\Clases Virtuales\Cosas IS 1\Cuis University\CuisUniversity-4365.image!
+
+
+!methodRemoval: PortafolioTest #test03V2 stamp: 'FG 11/6/2020 17:57:52'!
+test03V2
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  registerPorfolio: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio registerAccount: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 18:19:18'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:22:50' prior: 50914829!
+transactions
+	|allTransactions|
+	
+	allTransactions := OrderedCollection new.
+
+	accounts do: [:anAccount | allTransactions addAll: anAccount transactions asArray; yourself].
+	
+	^ allTransactions.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:28:25'!
+test08
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerAccount: parentReceptiveAccount.
+	childPorfolio  registerAccount: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	! !
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:28:28'!
+FAILURE!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:28:28'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:28:52' prior: 50914887!
+transactions
+	|allTransactions|
+	
+	allTransactions := OrderedCollection new.
+
+	accounts do: [:anAccount | allTransactions addAll: anAccount transactions asArray; yourself].
+	portfolios do: [:anAccount | allTransactions addAll: anAccount transactions asArray; yourself].
+	
+	^ allTransactions.! !
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:28:56'!
+FAILURE!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:28:56'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:29:23' prior: 50914932!
+transactions
+	|allTransactions|
+	
+	allTransactions := OrderedCollection new.
+
+	accounts do: [:anAccount | allTransactions addAll: anAccount transactions asArray; yourself].
+	portfolios do: [:aPortfolio | allTransactions addAll: aPortfolio transactions asArray; yourself].
+	
+	^ allTransactions.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:30:33' prior: 50914896!
+test08
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerAccount: parentReceptiveAccount.
+	parentPortfolio registerPorfolio: childPorfolio.
+	childPorfolio  registerAccount: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:30:41' prior: 50914962!
+test08
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio registerPorfolio: childPorfolio.
+	parentPortfolio registerAccount: parentReceptiveAccount.
+	childPorfolio  registerAccount: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	! !
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:30:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:30:47'!
+PASSED!
+
+Object subclass: #TransactionRegister
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #TransactionRegister category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 18:38:41'!
+Object subclass: #TransactionRegister
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 18:38:58'!
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TransactionRegister subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 18:39:09'!
+TransactionRegister subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegister'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 18:39:21'!
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegister'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'FG 11/6/2020 18:39:47' prior: 50914453 overrides: 16896425!
+initialize
+	transactionsRegister := OrderedCollection new.! !
+
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegisters'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 18:40:05'!
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegisters'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'FG 11/6/2020 18:40:10' prior: 50915103 overrides: 16896425!
+initialize
+	transactionsRegisters := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:40:46' prior: 50914521!
+balance
+	^ (transactionsRegisters sum: [:anAccount | anAccount balance] ifEmpty: [0])! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:41:15' prior: 50914459!
+registerAccount: aReceptiveAccount 
+	transactionsRegisters add: aReceptiveAccount.! !
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 18:41:20'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 18:41:23'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:42:01'!
+register: aTransactionRegister
+	transactionsRegisters add: aTransactionRegister.! !
+
+!methodRemoval: Portfolio #registerAccount: stamp: 'FG 11/6/2020 18:42:05'!
+registerAccount: aReceptiveAccount 
+	transactionsRegisters add: aReceptiveAccount.!
+
+!methodRemoval: Portfolio #registerPorfolio: stamp: 'FG 11/6/2020 18:42:08'!
+registerPorfolio: aPortfolio 
+	portfolios add: aPortfolio.!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:42:21' prior: 50914483!
+test02
+
+	| portfolio receptiveAccount|
+	
+	portfolio := Portfolio new.
+	receptiveAccount := ReceptiveAccount new.
+	portfolio register: receptiveAccount.
+	Deposit register: 100 on: receptiveAccount. 
+	
+	self assert: portfolio balance equals: 100.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:42:33' prior: 50914465!
+test03
+
+	"Test repetido"
+	
+	| portfolio firstReceptiveAccount secondReceptiveAccount|
+	
+	portfolio := Portfolio new.
+	firstReceptiveAccount := ReceptiveAccount new.
+	secondReceptiveAccount := ReceptiveAccount  new.
+	
+	portfolio register: firstReceptiveAccount.
+	portfolio register: secondReceptiveAccount.
+	
+	Deposit register: 100 on: firstReceptiveAccount. 
+	Deposit register: 500 on: secondReceptiveAccount.
+	
+	self assert: portfolio balance equals: 600.! !
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 18:42:42'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 18:42:44'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:43:00' prior: 50914538!
+test04
+	
+	| ParentPortfolio ChildPortfolio ChildReceptiveAccount|
+	
+	ParentPortfolio := Portfolio new.
+	ChildPortfolio := Portfolio new.
+	
+	ParentPortfolio  register: ChildPortfolio.
+	
+	ChildReceptiveAccount := ReceptiveAccount new.
+	ChildPortfolio register: 	ChildReceptiveAccount.
+	
+	Deposit register: 100 on: ChildReceptiveAccount.
+	
+	self assert: ParentPortfolio balance equals: 100.
+	
+	! !
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 18:43:02'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:43:23' prior: 50914701!
+hasRegistered: aTransaction 
+	
+	| registeredUpToNow |
+	
+	registeredUpToNow := false.
+	
+	transactionsRegisters do: [:anAccount | registeredUpToNow := (anAccount hasRegistered: aTransaction) or: [registeredUpToNow] ].
+	
+	^ registeredUpToNow.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:43:55' prior: 50914949!
+transactions
+	|allTransactions|
+	
+	allTransactions := OrderedCollection new.
+
+	transactionsRegisters do: [:aTransactionsRegister | allTransactions addAll: aTransactionsRegister transactions asArray; yourself].
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:44:11' prior: 50915127!
+balance
+	^ (transactionsRegisters sum: [:aTransactionsRegister | aTransactionsRegister balance] ifEmpty: [0])! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:44:42' prior: 50914680!
+test05
+	
+	| parentPortfolio childPortfolio receptiveAccount transaction|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPortfolio.
+	childPortfolio register: receptiveAccount.
+	
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: (parentPortfolio hasRegistered: transaction).	
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:44:50' prior: 50914805!
+test07
+	
+	| portfolio receptiveAccount transaction|
+	
+	portfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	portfolio register: receptiveAccount.
+	transaction := Deposit register: 100 on: receptiveAccount.
+	
+	self assert: portfolio transactions size equals: 1.
+	self assert: portfolio  transactions includes: 	transaction.
+
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:45:03' prior: 50914995!
+test08
+	
+	| parentPortfolio childPorfolio childReceptiveAccount parentReceptiveAccount parentTransaction childTransaction|
+	
+	parentPortfolio := Portfolio new.
+	childPorfolio := Portfolio new.
+	parentReceptiveAccount  := ReceptiveAccount new.
+	childReceptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio register: childPorfolio.
+	parentPortfolio register: parentReceptiveAccount.
+	childPorfolio  register: childReceptiveAccount.
+	
+	parentTransaction := Deposit register: 100 on: parentReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 1.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	
+	childTransaction := Deposit register: 150 on: childReceptiveAccount.
+	
+	self assert: parentPortfolio transactions size equals: 2.
+	self assert: parentPortfolio transactions includes: 	parentTransaction.
+	self assert: parentPortfolio transactions includes: childTransaction.
+	! !
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 18:45:43'!
+PASSED!
+!TransactionRegister methodsFor: 'nil' stamp: 'FG 11/6/2020 18:46:01'!
+balance
+	self subclassResponsibility.! !
+!TransactionRegister methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:46:11'!
+hasRegistered
+	self subclassResponsibility.! !
+!TransactionRegister methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:46:24'!
+transactions
+	self subclassResponsibility.! !
+!TransactionRegister methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 18:46:40'!
+register: aTransactionsRegister
+	self subclassResponsibility.! !
+!TransactionRegister class methodsFor: 'no messages' stamp: 'FG 11/6/2020 19:40:43'!
+cantAddTransactionRegisterToPortfolio
+	^ ' Error - You cant add TransactionRegister to this Portfolio '! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:44:31'!
+test09
+	
+	| parentPortfolio childPortfolio grandParentPortfolio|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	grandParentPortfolio  := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	grandParentPortfolio register: parentPortfolio .
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:44:36'!
+should: aBlockThatShouldFail raisingAnErrorAndAsserting: aVerificationBlock
+
+    [aBlockThatShouldFail value. self fail.]
+    on: Error
+    do: aVerificationBlock.! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:46:35' prior: 50915346!
+test09
+	
+	| parentPortfolio childPortfolio |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	
+	self should: [childPortfolio register: parentPortfolio ] raisingAnErrorAndAsserting: [ ] 
+	! !
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:47:17' prior: 50915367!
+test09
+	
+	| parentPortfolio childPortfolio |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	
+	self 
+		should: [childPortfolio register: parentPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 19:47:20'!
+FAILURE!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 19:47:20'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:48:04' prior: 50915143 overrides: 50915335!
+register: aTransactionRegister
+	transactionsRegisters add: aTransactionRegister.! !
+
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegisters parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 19:48:17'!
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegisters parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'FG 11/6/2020 19:48:31' prior: 50915122 overrides: 16896425!
+initialize
+	transactionsRegisters := OrderedCollection new.! !
+
+Object subclass: #TransactionRegister
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegisters'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 19:48:52'!
+TransactionRegister subclass: #Portfolio
+	instanceVariableNames: 'transactionsRegisters'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #TransactionRegister
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #TransactionRegister category: #'Portfolio-Ejercicio' stamp: 'FG 11/6/2020 19:48:58'!
+Object subclass: #TransactionRegister
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'FG 11/6/2020 19:49:18' prior: 50913829 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.! !
+!Portfolio methodsFor: 'initialization' stamp: 'FG 11/6/2020 19:50:31' prior: 50915420 overrides: 16896425!
+initialize
+	transactionsRegisters := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'FG 11/6/2020 19:50:44' prior: 50915457 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:52:10' prior: 50915399 overrides: 50915335!
+register: aTransactionRegister
+
+	self checkIfValid: aTransactionRegister.
+
+	transactionsRegisters add: aTransactionRegister.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:52:41' prior: 50915477 overrides: 50915335!
+register: aTransactionRegister
+
+	self checkIfValid: aTransactionRegister.
+
+	transactionsRegisters add: aTransactionRegister.
+	aTransactionRegister addParent: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:54:30'!
+checkIfValid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := aTransactionRegister = self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:54:43' prior: 50915493!
+checkIfValid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := (aTransactionRegister = self).! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:54:53' prior: 50915500!
+checkIfValid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := (aTransactionRegister = self).
+	
+	^ isAlreadyConnectedToMe.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:55:42' prior: 50915485 overrides: 50915335!
+register: aTransactionRegister
+
+	(self checkIfInvalid: aTransactionRegister) ifTrue: [self error: TransactionRegister cantAddTransactionRegisterToPortfolio].
+
+	transactionsRegisters add: aTransactionRegister.
+	aTransactionRegister addParent: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:55:52'!
+checkIfInvalid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := (aTransactionRegister = self).
+	
+	^ isAlreadyConnectedToMe.! !
+
+!methodRemoval: Portfolio #checkIfValid: stamp: 'FG 11/6/2020 19:55:54'!
+checkIfValid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := (aTransactionRegister = self).
+	
+	^ isAlreadyConnectedToMe.!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:56:35' prior: 50915379!
+test09
+	
+	| parentPortfolio  |
+	
+	parentPortfolio := Portfolio new.
+
+	self 
+		should: [parentPortfolio register: parentPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 19:56:38'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 19:59:30'!
+test10
+	
+	| parentPortfolio  childPortfolio grandParentPortfolio|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	grandParentPortfolio := Portfolio new.
+	
+	parentPortfolio register: childPortfolio.
+	grandParentPortfolio  register: parentPortfolio.	
+
+	self 
+		should: [grandParentPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:02:26' prior: 50915527!
+checkIfInvalid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := (aTransactionRegister = self) or: [ self isAscendantOf: aTransactionRegister ].
+	
+	^ isAlreadyConnectedToMe.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:05:14'!
+isAscendantOf: aTransactionRegister
+
+	| isAscendant |
+	
+	isAscendant := false.
+	
+	transactionsRegisters do:[:anotherTransactionRegister | isAscendant := isAscendant  or: [anotherTransactionRegister isAscendantOf: aTransactionRegister] ].
+	
+	^ isAscendant.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:09:45' prior: 50915585!
+isAscendantOf: aTransactionRegister
+
+	| isAscendant |
+	
+	isAscendant := false.
+	
+	transactionsRegisters do:[:anotherTransactionRegister | 
+		isAscendant := (aTransactionRegister = anotherTransactionRegister) or: [isAscendant  or: [anotherTransactionRegister isAscendantOf: aTransactionRegister]] ].
+	
+	^ isAscendant.! !
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:09:54'!
+ERROR!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:09:54'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:10:35'!
+addParent: aPortfolio
+	parents add: aPortfolio.! !
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:10:43'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 20:10:46'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 20:10:46'!
+ERROR!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:10:46'!
+ERROR!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 20:10:46'!
+ERROR!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 20:10:46'!
+ERROR!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 20:10:46'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 20:10:46'!
+ERROR!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 20:10:46'!
+ERROR!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 20:10:46'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:10:46'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 20:10:58'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 20:10:58'!
+ERROR!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:10:59'!
+ERROR!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 20:10:59'!
+ERROR!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 20:10:59'!
+ERROR!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 20:10:59'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 20:10:59'!
+ERROR!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 20:10:59'!
+ERROR!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 20:10:59'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:10:59'!
+PASSED!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'FG 11/6/2020 20:11:40'!
+addParent: aPortfolio
+	parents add: aPortfolio.! !
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:12:14'!
+ERROR!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:12:14'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:12:14'!
+ERROR!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:12:21'!
+ERROR!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 20:12:21'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:12:22'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:12:22'!
+ERROR!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:12:42'!
+ERROR!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:14:10'!
+ERROR!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:14:10'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:14:46'!
+isAscendantOf: aTransactionRegister
+	^ false.! !
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:14:50'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:14:54'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 20:14:56'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:14:57'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:16:18'!
+test11
+	
+	| parentPortfolio  childPortfolio grandParentPortfolio|
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio  := Portfolio new.
+	grandParentPortfolio := Portfolio new.
+	
+	grandParentPortfolio register: childPortfolio.
+	grandParentPortfolio  register: parentPortfolio.	
+
+	self 
+		should: [parentPortfolio register: childPortfolio ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!testRun: #PortafolioTest #test11 stamp: 'FG 11/6/2020 20:16:22'!
+FAILURE!
+
+!testRun: #PortafolioTest #test11 stamp: 'FG 11/6/2020 20:16:22'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:17:56' prior: 50915576!
+checkIfInvalid:  aTransactionRegister
+	
+	| isAlreadyConnectedToMe |
+	
+ 	isAlreadyConnectedToMe := (aTransactionRegister = self) or: [ self isAscendantOf: aTransactionRegister ].
+	
+	parents do:[:aParent | isAlreadyConnectedToMe := isAlreadyConnectedToMe or:[aParent checkIfInvalid: aTransactionRegister ]].
+	
+	^ isAlreadyConnectedToMe.! !
+
+!testRun: #PortafolioTest #test11 stamp: 'FG 11/6/2020 20:18:03'!
+PASSED!
+
+!testRun: #PortafolioTest #test01 stamp: 'FG 11/6/2020 20:18:05'!
+PASSED!
+
+!testRun: #PortafolioTest #test02 stamp: 'FG 11/6/2020 20:18:05'!
+PASSED!
+
+!testRun: #PortafolioTest #test03 stamp: 'FG 11/6/2020 20:18:05'!
+PASSED!
+
+!testRun: #PortafolioTest #test04 stamp: 'FG 11/6/2020 20:18:05'!
+PASSED!
+
+!testRun: #PortafolioTest #test05 stamp: 'FG 11/6/2020 20:18:05'!
+PASSED!
+
+!testRun: #PortafolioTest #test06 stamp: 'FG 11/6/2020 20:18:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test07 stamp: 'FG 11/6/2020 20:18:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test08 stamp: 'FG 11/6/2020 20:18:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test09 stamp: 'FG 11/6/2020 20:18:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test10 stamp: 'FG 11/6/2020 20:18:06'!
+PASSED!
+
+!testRun: #PortafolioTest #test11 stamp: 'FG 11/6/2020 20:18:06'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:22:54'!
+test12
+	
+	| parentPortfolio childPortfolio  receptiveAccount |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio  register: childPortfolio.
+	childPortfolio  register: receptiveAccount.
+		
+	self 
+		should: [parentPortfolio register: receptiveAccount ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!testRun: #PortafolioTest #test12 stamp: 'FG 11/6/2020 20:24:05'!
+PASSED!
+!PortafolioTest methodsFor: 'as yet unclassified' stamp: 'FG 11/6/2020 20:25:39'!
+test13
+	
+	| parentPortfolio childPortfolio receptiveAccount |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	receptiveAccount  := ReceptiveAccount new.
+	
+	parentPortfolio  register: childPortfolio.
+	parentPortfolio  register: receptiveAccount.
+		
+	self 
+		should: [childPortfolio register: receptiveAccount ] 
+		raisingAnErrorAndAsserting: [:anError | self assert: anError messageText = TransactionRegister cantAddTransactionRegisterToPortfolio]. 
+	! !
+
+!testRun: #PortafolioTest #test13 stamp: 'FG 11/6/2020 20:25:45'!
+PASSED!
+
+----QUIT----(6 November 2020 20:29:01) CuisUniversity-4365.image priorSource: 18662742!

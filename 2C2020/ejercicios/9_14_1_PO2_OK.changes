@@ -1,0 +1,1781 @@
+
+----STARTUP---- (9 November 2020 19:22:27) as /home/franco/Documents/smallTalk/linux64/CuisUniversity-4383.image!
+
+
+----End fileIn of /home/franco/Documents/smallTalk/linux64/Portfolio-Solucion.st----!
+
+TestCase subclass: #AccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTest category: 'Portfolio-Solucion' stamp: 'FD 11/9/2020 19:36:21'!
+TestCase subclass: #AccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTest methodsFor: 'nil' stamp: 'FD 11/9/2020 19:37:58'!
+test01ARegisteredTransferToHimselfDoesNotChangeBalance! !
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:39:28'!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance! !
+
+!methodRemoval: AccountTest #test01ARegisteredTransferToHimselfDoesNotChangeBalance stamp: 'FD 11/9/2020 19:39:28'!
+test01ARegisteredTransferToHimselfDoesNotChangeBalance!
+
+----End fileIn of /home/franco/Documents/smallTalk/linux64/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/franco/Documents/smallTalk/linux64/Packages/Features/VectorGraphics.pck.st----!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 19:44:18'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:43:59' prior: 50332388!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: -100 equals: account balance .
+! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:44:32'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 19:45:14'!
+register: aSmallInteger on: aReceptiveAccount to: aReceptiveAccount3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aSmallInteger on: aReceptiveAccount to: aReceptiveAccount3 ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 19:47:04' prior: 50343542!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	^self new register: anAmount on: aSenderAccount to: aReceiverAccount ! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:47:05'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:47:14'!
+register: aSmallInteger on: aReceptiveAccount to: aReceptiveAccount3 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 19:48:14'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 19:48:16'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sender'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 19:48:17'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:48:11' prior: 50343565!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:48:21'!
+FAILURE!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:48:51'!
+FAILURE!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:48:51'!
+FAILURE!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:50:27'!
+initializeFor: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.! !
+
+!methodRemoval: Transfer #register:on:to: stamp: 'FD 11/9/2020 19:50:31'!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 19:54:05' prior: 50343554!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction |
+	
+	transaction := self new register: anAmount on: aSenderAccount to: aReceiverAccount.
+	aSenderAccount register: transaction.
+	aReceiverAccount register: transaction.
+	
+	^ transaction! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:57:33'!
+affectBalance: aBalance for: anAccount
+
+	^anAccount = sender ifTrue: [aBalance - value] ifFalse: [
+		anAccount = receiver ifTrue: [aBalance + value]
+		]! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:57:38'!
+ERROR!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:57:38'!
+ERROR!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:58:17' prior: 50343527!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer initializeFor: 100 on: account to: anotherAccount.
+		
+	self assert: -100 equals: account balance .
+! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:58:21'!
+ERROR!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:58:36'!
+ERROR!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:58:36'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 19:59:04' prior: 50343627!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction |
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	aSenderAccount register: transaction.
+	aReceiverAccount register: transaction.
+	
+	^ transaction! !
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:59:31' prior: 50343654!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: -100 equals: account balance .
+! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:59:33'!
+ERROR!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 19:59:33'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:03:56'!
+sender
+
+ ^sender.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:04:04'!
+receiver
+
+ ^receiver.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FD 11/9/2020 20:06:21' prior: 50332234 overrides: 50332039!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance for: self]! !
+!AccountTransaction methodsFor: 'balance' stamp: 'FD 11/9/2020 20:07:35'!
+affectBalance: aBalance for: anAccount
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransaction #affectBalance: stamp: 'FD 11/9/2020 20:07:41'!
+affectBalance: aBalance
+
+	self subclassResponsibility !
+!Deposit methodsFor: 'balance' stamp: 'FD 11/9/2020 20:08:15' overrides: 50343725!
+affectBalance: aBalance for: anAccount
+
+	^self affectBalance: aBalance.! !
+!Withdraw methodsFor: 'balance' stamp: 'FD 11/9/2020 20:08:42' overrides: 50343725!
+affectBalance: aBalance for: anAccount
+
+	^self affectBalance: aBalance.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:08:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:08:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:08:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:08:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:08:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:09:20'!
+PASSED!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:09:53'!
+PASSED!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:10:41'!
+test02ARegisteredTransferFromAnotherAccountIncreasesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: 100 equals: account balance .
+! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:10:43'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:10:43'!
+PASSED!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:15:17'!
+test03SenderKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (account hasRegistered: transfer)
+! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:15:20'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:15:20'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:15:20'!
+PASSED!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:15:33'!
+test03ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (anotherAccount hasRegistered: transfer)
+! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:15:35'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:15:35'!
+PASSED!
+
+!testRun: #AccountTest #test03ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:15:35'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:15:35'!
+PASSED!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:15:46'!
+test04ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (anotherAccount hasRegistered: transfer)
+! !
+
+!methodRemoval: AccountTest #test03ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:15:46'!
+test03ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (anotherAccount hasRegistered: transfer)
+!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:17:56'!
+test05AnAccountCannotTransferToItself
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (anotherAccount hasRegistered: transfer)
+! !
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:20:19' prior: 50344368!
+test05AnAccountCannotTransferToItself
+
+
+	| account |
+	
+	account := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 100 on: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer accountsMustBeDifferentErrorDescription ]! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:21:08'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:21:08'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:21:08'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:21:08'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:21:08'!
+FAILURE!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:21:08'!
+FAILURE!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 20:21:47'!
+accountsMustBeDifferentErrorDescription
+
+ 	^'accounts must be different'.! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:21:52'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:21:52'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:21:52'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:21:52'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:21:52'!
+FAILURE!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:21:52'!
+FAILURE!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:24:17' prior: 50343612!
+initializeFor: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self canNotAddAccountErrorMessage].
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:24:20'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:24:20'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:24:20'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:24:20'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:24:20'!
+ERROR!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:24:20'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:24:49' prior: 50344438!
+initializeFor: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:24:51'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:24:51'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:24:51'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:24:51'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:24:51'!
+ERROR!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:24:51'!
+ERROR!
+!AccountTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:25:44' prior: 50344380!
+test05AnAccountCannotTransferToItself
+
+
+	| account |
+	
+	account := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 100 on: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer accountsMustBeDifferentErrorDescription ]! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:25:47'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:25:47'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:25:47'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:25:47'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:25:47'!
+ERROR!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:25:47'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:26:34' prior: 50344469!
+initializeFor: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 20:26:43' prior: 50343678!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	aSenderAccount register: transaction.
+	aReceiverAccount register: transaction.
+	
+	^ transaction! !
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:26:45'!
+PASSED!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:26:45'!
+PASSED!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:26:45'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:26:45'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:26:45'!
+PASSED!
+
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #TransferTest category: 'Portfolio' stamp: 'FD 11/9/2020 20:33:14'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 20:34:53'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!methodRemoval: Deposit #affectBalance:for: stamp: 'FD 11/9/2020 20:35:20'!
+affectBalance: aBalance for: anAccount
+
+	^self affectBalance: aBalance.!
+
+!methodRemoval: Withdraw #affectBalance:for: stamp: 'FD 11/9/2020 20:35:27'!
+affectBalance: aBalance for: anAccount
+
+	^self affectBalance: aBalance.!
+!AccountTransaction methodsFor: 'balance' stamp: 'FD 11/9/2020 20:35:37'!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransaction #affectBalance:for: stamp: 'FD 11/9/2020 20:35:41'!
+affectBalance: aBalance for: anAccount
+
+	self subclassResponsibility !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FD 11/9/2020 20:35:50' prior: 50343718 overrides: 50332039!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:35:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:35:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/9/2020 20:35:57'!
+PASSED!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:36:15'!
+ERROR!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:36:15'!
+ERROR!
+
+!testRun: #AccountTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:36:18'!
+ERROR!
+
+!testRun: #AccountTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:36:18'!
+ERROR!
+
+!testRun: #AccountTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:36:18'!
+PASSED!
+
+!testRun: #AccountTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:36:18'!
+PASSED!
+
+!testRun: #AccountTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:36:18'!
+PASSED!
+!TransferTest methodsFor: 'nil' stamp: 'FD 11/9/2020 20:54:50'!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: -100 equals: account balance .
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:05' prior: 50344726!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: -100 equals: account balance .
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:08'!
+test02ARegisteredTransferFromAnotherAccountIncreasesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: 100 equals: account balance .
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:20'!
+test03SenderKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (account hasRegistered: transfer)
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:35'!
+test04ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (anotherAccount hasRegistered: transfer)
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:50'!
+test05AnAccountCannotTransferToItself
+
+
+	| account |
+	
+	account := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 100 on: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer accountsMustBeDifferentErrorDescription ]! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 20:56:26'!
+ERROR!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 20:56:26'!
+ERROR!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 20:56:26'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 20:56:26'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 20:56:26'!
+PASSED!
+
+Transfer subclass: #TransferReception
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #TransferReception category: 'Portfolio' stamp: 'FD 11/9/2020 20:56:59'!
+Transfer subclass: #TransferReception
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Transfer subclass: #TransferSending
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #TransferSending category: 'Portfolio' stamp: 'FD 11/9/2020 20:59:24'!
+Transfer subclass: #TransferSending
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:01:44' prior: 50344541!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	aSenderAccount register: TransferSending registerFor: anAmount.
+	aReceiverAccount register: TransferReception registerFor: anAmount.
+	
+	^ transaction! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:01:58'!
+ERROR!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:01:58'!
+ERROR!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:01:58'!
+ERROR!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:01:58'!
+ERROR!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:01:58'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:02:02'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:02:10'!
+register: aClass registerFor: aSmallInteger 
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:03:32' prior: 50344837!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	aSenderAccount register: (TransferSending new initializeFor: anAmount).
+	aReceiverAccount register: (TransferReception new initializeFor: anAmount).
+	
+	^ transaction! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:03:36'!
+ERROR!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:03:36'!
+ERROR!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:03:36'!
+ERROR!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:03:36'!
+ERROR!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:03:36'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:03:42'!
+ERROR!
+
+!classDefinition: #TransferSending category: 'Portfolio' stamp: 'FD 11/9/2020 21:03:51'!
+Transfer subclass: #TransferSending
+	instanceVariableNames: 'amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!TransferSending methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:03:51'!
+initializeFor: anAmount 
+	self shouldBeImplemented.
+	amount := anAmount.! !
+!TransferSending methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:04:10' prior: 50344925!
+initializeFor: anAmount 
+
+	amount := anAmount.! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:04:12'!
+ERROR!
+
+!classDefinition: #TransferReception category: 'Portfolio' stamp: 'FD 11/9/2020 21:04:18'!
+Transfer subclass: #TransferReception
+	instanceVariableNames: 'amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!TransferReception methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:04:18'!
+initializeFor: anAmount 
+	self shouldBeImplemented.
+	amount := anAmount.! !
+!TransferReception methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:04:22' prior: 50344947!
+initializeFor: anAmount 
+
+	amount := anAmount.! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:04:24'!
+ERROR!
+!TransferSending methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:04:34'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!TransferSending methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:04:56' prior: 50344962!
+affectBalance: aBalance 
+	^aBalance - amount .! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:04:56'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:04:59'!
+ERROR!
+!TransferReception methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:05:04'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!TransferReception methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:05:30' prior: 50344980!
+affectBalance: aBalance 
+	
+	^ aBalance + amount.! !
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:05:32'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:05:36'!
+FAILURE!
+
+Transfer subclass: #TransferReception
+	instanceVariableNames: 'amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #TransferReception category: 'Portfolio' stamp: 'FD 11/9/2020 21:07:46'!
+Transfer subclass: #TransferReception
+	instanceVariableNames: 'amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 21:09:46'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Transfer subclass: #TransferReception
+	instanceVariableNames: 'amount transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #TransferReception category: 'Portfolio' stamp: 'FD 11/9/2020 21:10:14'!
+Transfer subclass: #TransferReception
+	instanceVariableNames: 'amount transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!TransferReception methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:10:34'!
+initializeFor: anAmount from: aTransfer
+
+	amount := anAmount.
+	transfer := aTransfer! !
+
+!classDefinition: #TransferSending category: 'Portfolio' stamp: 'FD 11/9/2020 21:10:44'!
+Transfer subclass: #TransferSending
+	instanceVariableNames: 'amount transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!TransferSending methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:10:42'!
+initializeFor: anAmount from: aTransfer
+
+	amount := anAmount.
+	transfer := aTransfer! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:11:42' prior: 50344880!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	sending := TransferSending new initializeFor: anAmount.
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: (TransferReception new initializeFor: anAmount).
+	
+	^ transaction! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:12:00' prior: 50345052!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	sending := TransferSending new initializeFor: anAmount.
+	reception := TransferReception new initializeFor: anAmount.
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:12:44' prior: 50345071!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	sending := TransferSending new initializeFor: anAmount.
+	reception := TransferReception new initializeFor: anAmount.
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:13:00' prior: 50345090!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	transaction := self new initializeFor: anAmount on: aSenderAccount to: aReceiverAccount.
+	sending := TransferSending new initializeFor: anAmount.
+	reception := TransferReception new initializeFor: anAmount.
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:14:11' prior: 50345107!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	sending := TransferSending new initializeFor: anAmount.
+	reception := TransferReception new initializeFor: anAmount.
+	transaction := self new initializeFor: anAmount withSending: sending withReception: reception.
+
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 21:15:07'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver sending'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 21:15:09'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sender receiver sending reception'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:15:06'!
+initializeFor: anAmount withSending: aTransferSending withReception: aTransferReception 
+	
+	
+	value := anAmount.
+	sending := aTransferSending.
+	reception := aTransferReception.! !
+
+!methodRemoval: Transfer #initializeFor:on:to: stamp: 'FD 11/9/2020 21:15:11'!
+initializeFor: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	value := anAmount.
+	sender := aSenderAccount.
+	receiver := aReceiverAccount.!
+
+!methodRemoval: Transfer #receiver stamp: 'FD 11/9/2020 21:15:15'!
+receiver
+
+ ^receiver.!
+
+!methodRemoval: Transfer #sender stamp: 'FD 11/9/2020 21:15:17'!
+sender
+
+ ^sender.!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value sending reception'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'FD 11/9/2020 21:15:25'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sending reception'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!methodRemoval: TransferReception #initializeFor: stamp: 'FD 11/9/2020 21:15:47'!
+initializeFor: anAmount 
+
+	amount := anAmount.!
+
+!methodRemoval: TransferSending #initializeFor: stamp: 'FD 11/9/2020 21:15:54'!
+initializeFor: anAmount 
+
+	amount := anAmount.!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:15:57'!
+ERROR!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:15:57'!
+ERROR!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:15:57'!
+ERROR!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:15:57'!
+ERROR!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:15:57'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:16:00'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:16:39' prior: 50345126!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	
+	sending := TransferSending new initializeFor: anAmount from: self.
+	reception := TransferReception new initializeFor: anAmount from: self.
+	transaction := self new initializeFor: anAmount withSending: sending withReception: reception.
+
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:16:49'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:16:49'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:16:49'!
+FAILURE!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:16:49'!
+FAILURE!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:16:49'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:16:56'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:17:25' prior: 50344762!
+test03SenderKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (account hasRegistered: transfer sending)
+! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:17:29'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:17:29'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:17:29'!
+ERROR!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:17:29'!
+FAILURE!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:17:29'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:17:31'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/9/2020 21:17:38'!
+sending
+	self shouldBeImplemented.
+	^sending! !
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/9/2020 21:17:41' prior: 50345295!
+sending
+	
+	^sending! !
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:17:42'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:17:53' prior: 50344773!
+test04ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: (anotherAccount hasRegistered: transfer reception)
+! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:17:59'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:17:59'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:17:59'!
+FAILURE!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:17:59'!
+ERROR!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:17:59'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:18:01'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/9/2020 21:18:11'!
+reception
+	self shouldBeImplemented.
+	^reception! !
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/9/2020 21:18:14' prior: 50345339!
+reception
+	
+	^reception! !
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:18:15'!
+FAILURE!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:20:49'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:20:49'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:20:49'!
+FAILURE!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:20:49'!
+FAILURE!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:20:49'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:21:07'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:22:33' prior: 50345264!
+test03SenderKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: (account hasRegistered: transfer sending)
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:22:40' prior: 50345307!
+test04ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: (anotherAccount hasRegistered: transfer reception)
+! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:22:42'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:22:42'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:22:42'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:22:42'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:22:42'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:29:53'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:29:53'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:29:53'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:29:53'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:29:53'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:31:40'!
+test06TransferAmountShouldBeGreaterThanZero
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 100 on: account to: anotherAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer amountShouldBeGreaterThanZeroErrorDescription ]! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:31:45' prior: 50345430!
+test06TransferAmountShouldBeGreaterThanZero
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 0 on: account to: anotherAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer amountShouldBeGreaterThanZeroErrorDescription ]! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:32:06'!
+amountShouldBeGreaterThanZeroErrorDescription
+
+ 	^'amount should be greater than zero'.! !
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:32:38' prior: 50345223!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	anAmount <= 0 ifTrue: [self error: self amountShouldBeGreaterThanZeroErrorDescription ].
+	
+	sending := TransferSending new initializeFor: anAmount from: self.
+	reception := TransferReception new initializeFor: anAmount from: self.
+	transaction := self new initializeFor: anAmount withSending: sending withReception: reception.
+
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/9/2020 21:32:40'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/9/2020 21:32:40'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/9/2020 21:32:40'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/9/2020 21:32:40'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/9/2020 21:32:40'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/9/2020 21:32:40'!
+PASSED!

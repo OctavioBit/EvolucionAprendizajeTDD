@@ -1,0 +1,939 @@
+
+
+----STARTUP---- (13 November 2020 20:03:52) as /media/alex/Rigido-1TB/Migue/Facultad/Ingenieria 1/smalltalk_original/linux64/CuisUniversity-4383.image!
+
+
+----End fileIn of /media/alex/Rigido-1TB/Migue/Facultad/Ingenieria 1/is1-ejercicios/19-Portfolio2/Portfolio2.st----!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:05:23'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:05:23'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:05:27'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:05:27'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:06:13'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:06:13'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:08:29'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'reports - private' stamp: 'mf 11/13/2020 20:10:36' prior: 50870174 overrides: 50869968!
+logInSummary: anAccountSummary
+
+	transactions do: [ :aTransaction | aTransaction logInSummary: anAccountSummary. ].
+	anAccountSummary add: ('Balance = ,', (self balance asString) ).
+	^anAccountSummary.! !
+!ReceptiveAccount methodsFor: 'reports - private' stamp: 'JEA 11/12/2020 22:10:25' prior: 50870542 overrides: 50869968!
+logInSummary: anAccountSummary
+
+	^transactions do: [ :aTransaction | aTransaction logInSummary: anAccountSummary. ].! !
+!ReceptiveAccount methodsFor: 'reports - private' stamp: 'mf 11/13/2020 20:12:24' prior: 50870553 overrides: 50869968!
+logInSummary: anAccountSummary
+	
+	transactions do: [ :aTransaction | aTransaction logInSummary: anAccountSummary. ].
+	^anAccountSummary logInBalance.! !
+!ReceptiveAccount methodsFor: 'reports - private' stamp: 'mf 11/13/2020 20:12:38' prior: 50870561 overrides: 50869968!
+logInSummary: anAccountSummary
+	
+	transactions do: [ :aTransaction | aTransaction logInSummary: anAccountSummary. ].
+	^anAccountSummary logBalance.! !
+
+Object subclass: #AccountSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccountSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 20:13:47'!
+Object subclass: #AccountSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+!AccountSummary methodsFor: 'initialization' stamp: 'mf 11/13/2020 20:14:31' prior: 50870196!
+initializeFor: anAccount
+
+	account := anAccount.
+	summary := OrderedCollection new.! !
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:14:44'!
+logBalance
+	! !
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:15:19' prior: 50870595!
+logBalance
+	
+	summary add: ('Balance = ', account balance asString).! !
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:15:23'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:15:23'!
+FAILURE!
+!AccountSummary methodsFor: 'summaries' stamp: 'mf 11/13/2020 20:15:52' prior: 50870200!
+summarize
+	account logInSummary: self.
+	^summary.! !
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:15:56'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:15:56'!
+FAILURE!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:16:35' prior: 50870599!
+logBalance
+	
+	summary add: ('Balance = ', account balance asString, '.').! !
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 20:16:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:16:43'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:16:43'!
+FAILURE!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:18:23' prior: 50870204!
+logDeposit: aDeposit
+	summary add: ('Dep�sito por ', aDeposit value, '.').! !
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:18:38'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:18:43'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:18:43'!
+ERROR!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'mf 11/13/2020 20:19:01' prior: 50869424!
+test02AccountSummarizesDepositsAndUpdatedBalance
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account.
+
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccountSummary for: account) summarize.! !
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:19:14'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:19:14'!
+ERROR!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:19:24' prior: 50870641!
+logDeposit: aDeposit
+	summary add: ('Dep�sito por ', aDeposit value asString, '.').! !
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 20:19:28'!
+PASSED!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'mf 11/13/2020 20:20:48' prior: 50869437!
+test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance
+	| originAccount recipientAccount |
+	
+	originAccount := ReceptiveAccount new.
+	recipientAccount := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: recipientAccount.
+	Transfer register: 100 from: originAccount to: recipientAccount.
+
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100.')
+		equals: (AccountSummary for: originAccount ) summarize.
+	
+	self assert: (OrderedCollection with: 'Extracci�n por 50.' with: 'Entrada por transferencia de 100.' with: 'Balance = 50.')
+		equals: (AccountSummary for: recipientAccount ) summarize.! !
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:20:51'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:20:51'!
+ERROR!
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 20:21:57'!
+logTransferWithdraw: aTransferWithdraw 
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 20:22:58' prior: 50870721!
+logTransferWithdraw: aTransferWithdraw 
+	summary add: ('Salida por transferencia de ,', aTransferWithdraw value asString, '.').! !
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:23:25'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:23:25'!
+FAILURE!
+
+!methodRemoval: AccountSummary #logTransferWithDraw: stamp: 'mf 11/13/2020 20:24:43'!
+logTransferWithDraw: aTransferWithdraw!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:27:28' prior: 50870727!
+logTransferWithdraw: aTransferWithdraw 
+	summary add: ('Salida por transferencia de ,', aTransferWithdraw value asString, '.').! !
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:27:46'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:27:46'!
+FAILURE!
+
+(AccountSummary for: originAccount) summarize!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:29:18' prior: 50870747!
+logTransferWithdraw: aTransferWithdraw 
+	summary add: ('Salida por transferencia de ', aTransferWithdraw value asString, '.').! !
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:29:28'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:29:28'!
+FAILURE!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:30:39' prior: 50870215!
+logWithdraw: aWithdraw
+	summary add: ('Extracci�n por ', aWithdraw value asString, '.').! !
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:30:45'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:30:45'!
+FAILURE!
+!AccountSummary methodsFor: 'logs' stamp: 'mf 11/13/2020 20:32:37' prior: 50870207!
+logTransferDeposit: aTransferDeposit
+	summary add: ('Entrada por transferencia de ', aTransferDeposit value asString,'.').! !
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 20:32:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 20:32:42'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 20:32:42'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:16:10'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:16:10'!
+FAILURE!
+
+failureString!
+!AccountSummaryTest methodsFor: 'tests' stamp: 'mf 11/13/2020 21:17:03' prior: 50869460!
+test04PortfolioSummarizesAllItsAccountsAndPortfolios
+	| account1 account2 subPortfolio portfolio |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	subPortfolio := Portfolio with: account1.
+	portfolio := Portfolio with: subPortfolio with: account2.
+	
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccountSummary for: portfolio) summarize.! !
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:17:05'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:17:05'!
+FAILURE!
+
+failureString!
+!ReceptiveAccount methodsFor: 'reports - private' stamp: 'mf 11/13/2020 21:19:02' prior: 50870570 overrides: 50869968!
+logInSummary: anAccountSummary
+	
+	^transactions do: [ :aTransaction | aTransaction logInSummary: anAccountSummary. ].
+	! !
+!AccountSummary methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:19:53' prior: 50870612!
+summarize
+	account logInSummary: self.
+	self logBalance.
+	^summary.! !
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:19:59'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 21:20:00'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 21:20:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:20:03'!
+PASSED!
+!AccountSummary methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:23:33' prior: 50870858!
+summarize
+	summary := OrderedCollection new-
+	account logInSummary: self.
+	self logBalance.
+	^summary.! !
+!AccountSummary methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:23:34' prior: 50870879!
+summarize
+	summary := OrderedCollection new.
+	account logInSummary: self.
+	self logBalance.
+	^summary.! !
+!AccountSummary methodsFor: 'initialization' stamp: 'mf 11/13/2020 21:23:40' prior: 50870590!
+initializeFor: anAccount
+
+	account := anAccount.! !
+
+!testRun: #AccountSummaryTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:24:11'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 21:24:11'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 21:24:11'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:24:11'!
+PASSED!
+
+!classRenamed: #AccountSummary as: #Reports stamp: 'mf 11/13/2020 21:24:39'!
+Smalltalk renameClassNamed: #AccountSummary as: #Reports!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:24:39' prior: 50870658!
+test02AccountSummarizesDepositsAndUpdatedBalance
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account.
+
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (Reports for: account) summarize.! !
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:24:39' prior: 50870689!
+test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance
+	| originAccount recipientAccount |
+	
+	originAccount := ReceptiveAccount new.
+	recipientAccount := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: recipientAccount.
+	Transfer register: 100 from: originAccount to: recipientAccount.
+
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100.')
+		equals: (Reports for: originAccount ) summarize.
+	
+	self assert: (OrderedCollection with: 'Extracci�n por 50.' with: 'Entrada por transferencia de 100.' with: 'Balance = 50.')
+		equals: (Reports for: recipientAccount ) summarize.! !
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:24:39' prior: 50870822!
+test04PortfolioSummarizesAllItsAccountsAndPortfolios
+	| account1 account2 subPortfolio portfolio |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	subPortfolio := Portfolio with: account1.
+	portfolio := Portfolio with: subPortfolio with: account2.
+	
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (Reports for: portfolio) summarize.! !
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:24:39' prior: 50869416!
+test01NewAccountShouldOnlySummarizeBalanceZero
+
+	self assert: (OrderedCollection with: 'Balance = 0.') equals: (Reports for: ReceptiveAccount new) summarize.! !
+
+!classRenamed: #AccountSummaryTest as: #ReportsTest stamp: 'mf 11/13/2020 21:25:16'!
+Smalltalk renameClassNamed: #AccountSummaryTest as: #ReportsTest!
+
+!classRenamed: #Reports as: #AccontSummary stamp: 'mf 11/13/2020 21:28:31'!
+Smalltalk renameClassNamed: #Reports as: #AccontSummary!
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:28:32' prior: 50870955!
+test04PortfolioSummarizesAllItsAccountsAndPortfolios
+	| account1 account2 subPortfolio portfolio |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	subPortfolio := Portfolio with: account1.
+	portfolio := Portfolio with: subPortfolio with: account2.
+	
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccontSummary for: portfolio) summarize.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:28:32' prior: 50870932!
+test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance
+	| originAccount recipientAccount |
+	
+	originAccount := ReceptiveAccount new.
+	recipientAccount := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: recipientAccount.
+	Transfer register: 100 from: originAccount to: recipientAccount.
+
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100.')
+		equals: (AccontSummary for: originAccount ) summarize.
+	
+	self assert: (OrderedCollection with: 'Extracci�n por 50.' with: 'Entrada por transferencia de 100.' with: 'Balance = 50.')
+		equals: (AccontSummary for: recipientAccount ) summarize.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:28:32' prior: 50870918!
+test02AccountSummarizesDepositsAndUpdatedBalance
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account.
+
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccontSummary for: account) summarize.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:28:32' prior: 50870975!
+test01NewAccountShouldOnlySummarizeBalanceZero
+
+	self assert: (OrderedCollection with: 'Balance = 0.') equals: (AccontSummary for: ReceptiveAccount new) summarize.! !
+
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #Reports category: 'Portfolio2' stamp: 'mf 11/13/2020 21:29:27'!
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classRemoval: #Reports stamp: 'mf 11/13/2020 21:29:42'!
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #Reports category: 'Portfolio2' stamp: 'mf 11/13/2020 21:30:07'!
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccontSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:30:07'!
+Reports subclass: #AccontSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+Object subclass: #AccontSummary
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccontSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:30:31'!
+Object subclass: #AccontSummary
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classRemoval: #Reports stamp: 'mf 11/13/2020 21:30:55'!
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #Reports category: 'Portfolio2' stamp: 'mf 11/13/2020 21:31:02'!
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccontSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:31:02'!
+Reports subclass: #AccontSummary
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+Object subclass: #Reports
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #Reports category: 'Portfolio2' stamp: 'mf 11/13/2020 21:31:17'!
+Object subclass: #Reports
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+Object subclass: #AccontSummary
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccontSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:34:34'!
+Object subclass: #AccontSummary
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classRemoval: #Reports stamp: 'mf 11/13/2020 21:34:43'!
+Object subclass: #Reports
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+Object subclass: #AccontSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccontSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:34:49'!
+Object subclass: #AccontSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+Object subclass: #AccountSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccountSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:35:13'!
+Object subclass: #AccountSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classRemoval: #AccountSummary stamp: 'mf 11/13/2020 21:35:22'!
+Object subclass: #AccountSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classRenamed: #AccontSummary as: #AccountSummary stamp: 'mf 11/13/2020 21:35:40'!
+Smalltalk renameClassNamed: #AccontSummary as: #AccountSummary!
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:35:40' prior: 50870992!
+test04PortfolioSummarizesAllItsAccountsAndPortfolios
+	| account1 account2 subPortfolio portfolio |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	subPortfolio := Portfolio with: account1.
+	portfolio := Portfolio with: subPortfolio with: account2.
+	
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccountSummary for: portfolio) summarize.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:35:40' prior: 50871012!
+test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance
+	| originAccount recipientAccount |
+	
+	originAccount := ReceptiveAccount new.
+	recipientAccount := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: recipientAccount.
+	Transfer register: 100 from: originAccount to: recipientAccount.
+
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100.')
+		equals: (AccountSummary for: originAccount ) summarize.
+	
+	self assert: (OrderedCollection with: 'Extracci�n por 50.' with: 'Entrada por transferencia de 100.' with: 'Balance = 50.')
+		equals: (AccountSummary for: recipientAccount ) summarize.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:35:40' prior: 50871036!
+test02AccountSummarizesDepositsAndUpdatedBalance
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account.
+
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccountSummary for: account) summarize.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'mf 11/13/2020 21:35:40' prior: 50871050!
+test01NewAccountShouldOnlySummarizeBalanceZero
+
+	self assert: (OrderedCollection with: 'Balance = 0.') equals: (AccountSummary for: ReceptiveAccount new) summarize.! !
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:36:04'!
+PASSED!
+
+!testRun: #ReportsTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 21:36:04'!
+PASSED!
+
+!testRun: #ReportsTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 21:36:04'!
+PASSED!
+
+!testRun: #ReportsTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:36:04'!
+PASSED!
+
+----SNAPSHOT----(13 November 2020 21:39:40) CuisUniversity-4383.image priorSource: 17207870!
+
+!classDefinition: #Reports category: 'Portfolio2' stamp: 'mf 11/13/2020 21:39:48'!
+Object subclass: #Reports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccountSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:39:48'!
+Reports subclass: #AccountSummary
+	instanceVariableNames: 'account summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #AccountSummary category: 'Portfolio2' stamp: 'mf 11/13/2020 21:39:59'!
+Reports subclass: #AccountSummary
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #Reports category: 'Portfolio2' stamp: 'mf 11/13/2020 21:39:59'!
+Object subclass: #Reports
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+!Reports methodsFor: 'initialization' stamp: 'mf 11/13/2020 21:40:23'!
+initializeFor: anAccount
+
+	account := anAccount.! !
+
+!methodRemoval: AccountSummary #initializeFor: stamp: 'mf 11/13/2020 21:40:23'!
+initializeFor: anAccount
+
+	account := anAccount.!
+!Reports class methodsFor: 'instance creation' stamp: 'mf 11/13/2020 21:40:42'!
+for: anAccount
+
+	^self basicNew initializeFor: anAccount.! !
+
+!methodRemoval: AccountSummary class #for: stamp: 'mf 11/13/2020 21:40:42'!
+for: anAccount
+
+	^self basicNew initializeFor: anAccount.!
+!Reports methodsFor: 'logs' stamp: 'mf 11/13/2020 21:41:43'!
+logDeposit: aDeposit
+	self subclassResponsibility.! !
+!Reports methodsFor: 'logs' stamp: 'mf 11/13/2020 21:42:12'!
+logBalance
+	self subclassResponsibility.! !
+!Reports methodsFor: 'logs' stamp: 'mf 11/13/2020 21:42:21'!
+logTransferDeposit
+	self subclassResponsibility.! !
+!Reports methodsFor: 'logs' stamp: 'mf 11/13/2020 21:42:27'!
+logTransferWithdraw
+	self subclassResponsibility.! !
+!Reports methodsFor: 'logs' stamp: 'mf 11/13/2020 21:42:32'!
+logWithdraw
+	self subclassResponsibility.! !
+
+!methodRemoval: AccountSummary #logBalance stamp: 'mf 11/13/2020 21:43:00'!
+logBalance
+	
+	summary add: ('Balance = ', account balance asString, '.').!
+!AccountSummary methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:43:33' prior: 50870886!
+summarize
+	summary := OrderedCollection new.
+	account logInSummary: self.
+	summary add: ('Balance = ', account balance asString, '.').
+	^summary.! !
+
+!methodRemoval: Reports #logBalance stamp: 'mf 11/13/2020 21:43:38'!
+logBalance
+	self subclassResponsibility.!
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:43:44'!
+PASSED!
+
+!testRun: #ReportsTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 21:43:44'!
+PASSED!
+
+!testRun: #ReportsTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 21:43:44'!
+PASSED!
+
+!testRun: #ReportsTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:43:44'!
+PASSED!
+!Reports methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:44:58'!
+summarize
+	self subclassResponsibility! !
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:45:01'!
+PASSED!
+
+!testRun: #ReportsTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 21:45:01'!
+PASSED!
+
+!testRun: #ReportsTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 21:45:01'!
+PASSED!
+
+!testRun: #ReportsTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:45:01'!
+PASSED!
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:45:04'!
+PASSED!
+
+!testRun: #ReportsTest #test02AccountSummarizesDepositsAndUpdatedBalance stamp: 'mf 11/13/2020 21:45:04'!
+PASSED!
+
+!testRun: #ReportsTest #test03AccountSummarizesWithdrawsAndTransfersAndUpdatedBalance stamp: 'mf 11/13/2020 21:45:04'!
+PASSED!
+
+!testRun: #ReportsTest #test04PortfolioSummarizesAllItsAccountsAndPortfolios stamp: 'mf 11/13/2020 21:45:04'!
+PASSED!
+!ReportsTest methodsFor: 'tests - account summary' stamp: 'mf 11/13/2020 21:45:13' prior: 50871241!
+test01NewAccountShouldOnlySummarizeBalanceZero
+
+	self assert: (OrderedCollection with: 'Balance = 0.') equals: (Reports for: ReceptiveAccount new) summarize.! !
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:45:15'!
+ERROR!
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:45:15'!
+ERROR!
+!Reports methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:45:51' prior: 50871364!
+summarize
+	self subclassResponsibility! !
+!Reports methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:45:53' prior: 50871414!
+summarize
+	self subclassResponsibility.! !
+!ReportsTest methodsFor: 'tests - account summary' stamp: 'mf 11/13/2020 21:46:02' prior: 50871399!
+test01NewAccountShouldOnlySummarizeBalanceZero
+
+	self assert: (OrderedCollection with: 'Balance = 0.') equals: (AccountSummary for: ReceptiveAccount new) summarize.! !
+
+!testRun: #ReportsTest #test01NewAccountShouldOnlySummarizeBalanceZero stamp: 'mf 11/13/2020 21:46:04'!
+PASSED!
+
+Reports subclass: #NetTransfer
+	instanceVariableNames: 'netValue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+
+!classDefinition: #NetTransfer category: 'Portfolio2' stamp: 'mf 11/13/2020 21:47:07'!
+Reports subclass: #NetTransfer
+	instanceVariableNames: 'netValue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio2'!
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 21:48:09' overrides: 50871313!
+logDeposit: aDeposit
+	! !
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 21:48:22'!
+logTrasnferDepoist: aTransferDeposit
+	! !
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 21:48:37'!
+logTransferWithdraw: aTransferWithdraw
+	! !
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 21:48:49'!
+logWithdraw: aWithdraw
+	! !
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 21:48:59'!
+logTransferDeposit: aTransferDeposit
+	! !
+
+!methodRemoval: NetTransfer #logTrasnferDepoist: stamp: 'mf 11/13/2020 21:48:59'!
+logTrasnferDepoist: aTransferDeposit
+	!
+!NetTransfer methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:49:42' overrides: 50871418!
+summarize
+	! !
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 21:51:23'!
+test01NetTransferOfEmptyAccountIsZero
+	
+	self assert: 0 equals: (NetTransfer for: ReceptiveAccount new) summarize.! !
+
+!testRun: #ReportsTest #test01NetTransferOfEmptyAccountIsZero stamp: 'mf 11/13/2020 21:51:24'!
+FAILURE!
+
+!testRun: #ReportsTest #test01NetTransferOfEmptyAccountIsZero stamp: 'mf 11/13/2020 21:51:24'!
+FAILURE!
+!NetTransfer methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:52:41' prior: 50871468 overrides: 50871418!
+summarize
+	netValue := 0.
+	account logInSummary: self.! !
+!NetTransfer methodsFor: 'summaries' stamp: 'mf 11/13/2020 21:52:59' prior: 50871485 overrides: 50871418!
+summarize
+	netValue := 0.
+	account logInSummary: self.
+	^netValue.! !
+
+!testRun: #ReportsTest #test01NetTransferOfEmptyAccountIsZero stamp: 'mf 11/13/2020 21:53:12'!
+PASSED!
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 21:53:38'!
+test02NetTransferOfAccountWithOneTransfer
+	
+	self assert: 0 equals: (NetTransfer for: ReceptiveAccount new) summarize.! !
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 21:56:56' prior: 50871499!
+test02NetTransferOfAccountWithOneTransfer
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 0 equals: (NetTransfer for: ReceptiveAccount new) summarize.! !
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 21:57:04' prior: 50871506!
+test02NetTransferOfAccountWithOneTransfer
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 100 equals: (NetTransfer for: ReceptiveAccount new) summarize.! !
+
+| depositerAccount receiverAccount |
+depositerAccount := ReceptiveAccount new.
+receiverAccount := ReceptiveAccount new.
+
+Deposit register: 100 on: depositerAccount.
+Transfer register: 100 from: depositerAccount to: receiverAccount.
+depositerAccount balance.!
+
+| depositerAccount receiverAccount |
+depositerAccount := ReceptiveAccount new.
+receiverAccount := ReceptiveAccount new.
+
+Deposit register: 100 on: depositerAccount.
+Transfer register: 100 from: depositerAccount to: receiverAccount.
+receiverAccount balance.!
+
+!testRun: #ReportsTest #test02NetTransferOfAccountWithOneTransfer stamp: 'mf 11/13/2020 21:58:35'!
+FAILURE!
+
+!testRun: #ReportsTest #test02NetTransferOfAccountWithOneTransfer stamp: 'mf 11/13/2020 21:58:35'!
+FAILURE!
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 22:00:20' prior: 50871460!
+logTransferDeposit: aTransferDeposit
+	netValue := netValue + aTransferDeposit value.! !
+!NetTransfer methodsFor: 'logs' stamp: 'mf 11/13/2020 22:00:34' prior: 50871453!
+logTransferWithdraw: aTransferWithdraw
+	netValue := netValue - aTransferWithdraw value.! !
+
+!testRun: #ReportsTest #test01NetTransferOfEmptyAccountIsZero stamp: 'mf 11/13/2020 22:00:54'!
+PASSED!
+
+!testRun: #ReportsTest #test02NetTransferOfAccountWithOneTransfer stamp: 'mf 11/13/2020 22:00:56'!
+FAILURE!
+
+!testRun: #ReportsTest #test02NetTransferOfAccountWithOneTransfer stamp: 'mf 11/13/2020 22:00:56'!
+FAILURE!
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 22:01:35' prior: 50871521!
+test02NetTransferOfAccountWithOneTransfer
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 100 equals: (NetTransfer for: receiverAccount) summarize.
+	self assert: -100 equals: (NetTransfer for: depositerAccount) summarize.! !
+
+!testRun: #ReportsTest #test02NetTransferOfAccountWithOneTransfer stamp: 'mf 11/13/2020 22:01:40'!
+PASSED!
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 22:01:51'!
+test02NetTransferOfAccountsWithOneTransfer
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 100 equals: (NetTransfer for: receiverAccount) summarize.
+	self assert: -100 equals: (NetTransfer for: depositerAccount) summarize.! !
+
+!methodRemoval: ReportsTest #test02NetTransferOfAccountWithOneTransfer stamp: 'mf 11/13/2020 22:01:55'!
+test02NetTransferOfAccountWithOneTransfer
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 100 equals: (NetTransfer for: receiverAccount) summarize.
+	self assert: -100 equals: (NetTransfer for: depositerAccount) summarize.!
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 22:02:08'!
+test03NetTransferOfPortfolio
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 100 equals: (NetTransfer for: receiverAccount) summarize.
+	self assert: -100 equals: (NetTransfer for: depositerAccount) summarize.! !
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 22:03:18'!
+test03NetTransferOfPortfolioTakesAllAccountTransfers
+	| account1 account2 subPortfolio portfolio |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	subPortfolio := Portfolio with: account1.
+	portfolio := Portfolio with: subPortfolio with: account2.
+	
+	self assert: (OrderedCollection with: 'Dep�sito por 100.' with: 'Dep�sito por 50.' with: 'Balance = 150.') 
+		equals: (AccountSummary for: portfolio) summarize.! !
+
+!methodRemoval: ReportsTest #test03NetTransferOfPortfolio stamp: 'mf 11/13/2020 22:03:23'!
+test03NetTransferOfPortfolio
+	| depositerAccount receiverAccount |
+	depositerAccount := ReceptiveAccount new.
+	receiverAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: depositerAccount.
+	Transfer register: 100 from: depositerAccount to: receiverAccount.
+	
+	self assert: 100 equals: (NetTransfer for: receiverAccount) summarize.
+	self assert: -100 equals: (NetTransfer for: depositerAccount) summarize.!
+!ReportsTest methodsFor: 'tests - net transfer' stamp: 'mf 11/13/2020 22:05:37' prior: 50871649!
+test03NetTransferOfPortfolioTakesAllAccountTransfers
+	| account1 account2 subPortfolio portfolio |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+	Transfer register: 20 from: account1 to: account2.
+	Transfer register: 20 from: account1 to: account2.
+
+	subPortfolio := Portfolio with: account1.
+	portfolio := Portfolio with: subPortfolio with: account2.
+	
+	self assert: 	0 equals: (NetTransfer for: portfolio) summarize.! !
+
+!testRun: #ReportsTest #test03NetTransferOfPortfolioTakesAllAccountTransfers stamp: 'mf 11/13/2020 22:05:48'!
+PASSED!
+
+----SNAPSHOT----(13 November 2020 22:06:02) CuisUniversity-4383.image priorSource: 17267618!
+
+----QUIT----(13 November 2020 22:06:05) CuisUniversity-4383.image priorSource: 17281792!

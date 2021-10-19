@@ -1,0 +1,1528 @@
+
+
+----SNAPSHOT----(7 June 2021 20:00:09) TusLibros.image priorSource: 18158608!
+
+----QUIT----(8 June 2021 08:45:32) TusLibros.image priorSource: 18162782!
+
+----STARTUP---- (8 June 2021 18:34:22) as /Users/juan.ferrino/CuisUniversity/TusLibros.image!
+
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'JPF 6/8/2021 18:35:48'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'JPF 6/8/2021 18:37:41'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 18:37:33'!
+test01WhenCartIsCreatedItShouldBeEmpty
+
+	| cart |
+	
+	cart _ Cart new.
+	
+	self assert: cart isEmtpy! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 18:37:55'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 18:38:17'!
+isEmtpy
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 18:38:28' prior: 50899271!
+isEmtpy
+	true! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 18:38:31'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 18:38:46' prior: 50899275!
+isEmtpy
+	^ true! !
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 18:38:51' prior: 50899282!
+isEmtpy
+	
+		^ true! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 18:38:58'!
+PASSED!
+
+!classDefinition: #Book category: 'TusLibros' stamp: 'JPF 6/8/2021 19:02:20'!
+Object subclass: #Book
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:02:15'!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem |
+	
+	cart _ Cart new.
+	book _ Book new.
+	
+	cart add: book withQuantity: 2.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:02:47'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 19:03:17'!
+add: aBook withQuantity: aSmallInteger 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'JPF 6/8/2021 19:05:27'!
+Object subclass: #Cart
+	instanceVariableNames: 'cartItem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartItem category: 'TusLibros' stamp: 'JPF 6/8/2021 19:05:31'!
+Object subclass: #CartItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 19:05:22' prior: 50899313!
+add: aBook withQuantity: aQuantity
+ 
+	cartItem _ CartItem for: aQuantity of: aBook.! !
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 19:06:08'!
+add: aBook of: aQuantity
+ 
+	cartItem _ CartItem for: aQuantity of: aBook.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JPF 6/8/2021 19:06:08' prior: 50899297!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem |
+	
+	cart _ Cart new.
+	book _ Book new.
+	
+	cart add: book of: 2.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.! !
+
+!methodRemoval: Cart #add:withQuantity: stamp: 'JPF 6/8/2021 19:06:08'!
+add: aBook withQuantity: aQuantity
+ 
+	cartItem _ CartItem for: aQuantity of: aBook.!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:06:33' prior: 50899342!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem |
+	
+	cart _ Cart new.
+	book _ Book new.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:06:41'!
+ERROR!
+!CartItem class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:06:54'!
+for: aBook of: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aBook of: aSmallInteger ! !
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 19:07:28' prior: 50899336!
+add: aQuantity of: aBook
+ 
+	cartItem _ CartItem for: aQuantity of: aBook.! !
+!CartItem class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:08:15' prior: 50899376!
+for:  aQuantity of: aBook
+	
+	^self new initializeFor: aBook of: aQuantity ! !
+!CartItem class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:08:27' prior: 50899390!
+for:  aQuantity of: aBook
+	
+	^ self new initializeFor: aBook of: aQuantity ! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:08:52'!
+ERROR!
+
+!classDefinition: #CartItem category: 'TusLibros' stamp: 'JPF 6/8/2021 19:09:23'!
+Object subclass: #CartItem
+	instanceVariableNames: 'book'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartItem category: 'TusLibros' stamp: 'JPF 6/8/2021 19:09:23'!
+Object subclass: #CartItem
+	instanceVariableNames: 'book quantity'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartItem methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:09:23'!
+initializeFor: aBook of: aQuantity 
+	self shouldBeImplemented.
+	book := aBook.
+	quantity := aQuantity.! !
+!CartItem methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:09:30' prior: 50899418!
+initializeFor: aBook of: aQuantity 
+
+	book := aBook.
+	quantity := aQuantity.! !
+!CartItem methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:09:49' prior: 50899425!
+initializeFor: aQuantity of: aBook
+
+	book := aBook.
+	quantity := aQuantity.! !
+!CartItem class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:10:20' prior: 50899396!
+for: aQuantity of: aBook
+	
+	^ self new initializeFor: aBook of: aQuantity ! !
+!CartItem class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:10:37' prior: 50899437!
+for: aQuantity of: aBook
+	
+	^ self new initializeFor: aQuantity of: aBook! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:10:52'!
+ERROR!
+!Cart methodsFor: 'items' stamp: 'JPF 6/8/2021 19:11:57'!
+items
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'items' stamp: 'JPF 6/8/2021 19:12:35' prior: 50899451!
+items
+	
+	^ OrderedCollection with: cartItem! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:12:43'!
+FAILURE!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'JPF 6/8/2021 19:13:44'!
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'JPF 6/8/2021 19:13:44' prior: 50899384!
+add: aQuantity of: aBook
+ 
+	items _ CartItem for: aQuantity of: aBook.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'JPF 6/8/2021 19:13:44' prior: 50899455!
+items
+	
+	^ OrderedCollection with: items! !
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 19:14:10' prior: 50899470!
+add: aQuantity of: aBook
+ 
+	items add: (CartItem for: aQuantity of: aBook)! !
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 19:14:51' prior: 50899285!
+isEmtpy
+		
+		^ items size = 0! !
+!CartItem methodsFor: 'accessing' stamp: 'JPF 6/8/2021 19:18:44'!
+book
+
+	^ book ! !
+!CartItem methodsFor: 'accessing' stamp: 'JPF 6/8/2021 19:18:51' prior: 50899489!
+book
+
+	^ book! !
+!CartItem methodsFor: 'accessing' stamp: 'JPF 6/8/2021 19:19:00'!
+quantity
+
+	^ quantity! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:19:30'!
+ERROR!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:19:30'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:20:11' overrides: 16896425!
+initialize
+	
+	items := OrderedCollection new.! !
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:20:13' prior: 50899507 overrides: 16896425!
+initialize
+	
+	items := OrderedCollection new! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:20:17'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:20:17'!
+ERROR!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:20:17'!
+ERROR!
+!Cart methodsFor: 'items' stamp: 'JPF 6/8/2021 19:21:29' prior: 50899476!
+items
+	
+	^ items copy! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:21:31'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:21:31'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:22:17' prior: 50899360!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem |
+	
+	cart _ Cart new.
+	book _ Book new.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:22:19'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 19:23:00' overrides: 16880927!
+size
+	
+	^ items size! !
+!Cart methodsFor: 'testing' stamp: 'JPF 6/8/2021 19:23:13' prior: 50899485!
+isEmtpy
+		
+		^ self size = 0! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:23:18'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:23:18'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:23:18'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:23:21'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:23:21'!
+PASSED!
+
+!classDefinition: #Catalogue category: 'TusLibros' stamp: 'JPF 6/8/2021 19:37:10'!
+Object subclass: #Catalogue
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'test data' stamp: 'JPF 6/8/2021 19:37:47'!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: {'978-84-91291-93-0'}.
+	
+	cart _ Cart with: catalogue.
+	book _ Book new.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:38:08' prior: 50899586!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { '978-84-91291-93-0' }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book new.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:38:37' prior: 50899596!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book new.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'test data' stamp: 'JPF 6/8/2021 19:38:52'!
+isbn1
+	
+	^ '978-84-91291-93-0'! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:39:27' prior: 50899606!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:39:35' prior: 50899620!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: (self isbn2).
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:39:44' prior: 50899630!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'test data' stamp: 'JPF 6/8/2021 19:40:04' prior: 50899616!
+isbn1
+	
+	^ '978-83-21221-93-0'! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:41:35' prior: 50899538!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	cart _ Cart new.
+	book _ Book new.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:41:49' prior: 50899656!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	cart _ Cart new.
+	book _ Book of: self isbn1.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:42:14' prior: 50899671!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn1.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:42:56' prior: 50899262!
+test01WhenCartIsCreatedItShouldBeEmpty
+
+	| cart |
+	
+	cart _ Cart with: (Catalogue with: {}).
+	
+	self assert: cart isEmtpy! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:43:02'!
+ERROR!
+!Catalogue class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:43:18'!
+with: anArray 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: anArray ! !
+!Catalogue class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:43:46' prior: 50899713!
+with: isbns
+	
+	^self new initializeWith: isbns! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:43:50'!
+ERROR!
+
+!classDefinition: #Catalogue category: 'TusLibros' stamp: 'JPF 6/8/2021 19:44:08'!
+Object subclass: #Catalogue
+	instanceVariableNames: 'isbns_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Catalogue methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:44:08'!
+initializeWith: isbns 
+	self shouldBeImplemented.
+	isbns_CHANGE_ME := isbns.! !
+!Catalogue methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:44:25' prior: 50899736!
+initializeWith: isbns
+
+	isbns_CHANGE_ME := isbns.! !
+!Catalogue methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:45:06' prior: 50899742!
+initializeWith: listOfIsbns
+
+	isbns_CHANGE_ME := listOfIsbns! !
+
+!classDefinition: #Catalogue category: 'TusLibros' stamp: 'JPF 6/8/2021 19:45:18'!
+Object subclass: #Catalogue
+	instanceVariableNames: 'isbns'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Catalogue methodsFor: 'as yet unclassified' stamp: 'JPF 6/8/2021 19:45:18' prior: 50899747!
+initializeWith: listOfIsbns
+
+	isbns := listOfIsbns! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:45:22'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:45:40'!
+with: aCatalogue 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aCatalogue ! !
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:45:56' prior: 50899767!
+with: aCatalogue 
+	
+	^self new initializeWith: aCatalogue ! !
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:46:05' prior: 50899775!
+with: aCatalogue 
+	
+	^ self new initializeWith: aCatalogue ! !
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:46:08' prior: 50899780!
+with: aCatalogue 
+	
+	^ self new initializeWith: aCatalogue! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:46:12'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'JPF 6/8/2021 19:46:22'!
+Object subclass: #Cart
+	instanceVariableNames: 'items catalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:46:22'!
+initializeWith: aCatalogue 
+	self shouldBeImplemented.
+	catalogue := aCatalogue.! !
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:46:28' prior: 50899800!
+initializeWith: aCatalogue 
+
+	catalogue := aCatalogue.! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:46:33'!
+ERROR!
+!CartTest methodsFor: 'test data' stamp: 'JPF 6/8/2021 19:47:02'!
+isbn2
+	
+	^ '998-83-51221-93-1'! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:47:09'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:47:09'!
+ERROR!
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:47:09'!
+ERROR!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:47:14'!
+ERROR!
+!Book class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:47:39'!
+of: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeOf: aString ! !
+!Book class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 19:48:04' prior: 50899832!
+of: aIsbn
+
+	^self new initializeOf: aIsbn! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:48:13'!
+ERROR!
+
+!classDefinition: #Book category: 'TusLibros' stamp: 'JPF 6/8/2021 19:48:26'!
+Object subclass: #Book
+	instanceVariableNames: 'isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Book methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:48:26'!
+initializeOf: aIsbn 
+	self shouldBeImplemented.
+	isbn := aIsbn.! !
+!Book methodsFor: 'initialization' stamp: 'JPF 6/8/2021 19:48:32' prior: 50899854!
+initializeOf: aIsbn 
+
+	isbn := aIsbn.! !
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:48:37'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:48:43'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:48:45'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:48:46'!
+FAILURE!
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:48:46'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 19:50:03' prior: 50899480!
+add: aQuantity of: aBook
+
+	(catalogue has: aBook isbn) ifTrue: [ items add: (CartItem for: aQuantity of: aBook) ]! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:50:12'!
+ERROR!
+!Book methodsFor: 'accessing' stamp: 'JPF 6/8/2021 19:50:28'!
+isbn
+	self shouldBeImplemented.
+	^isbn! !
+!Book methodsFor: 'accessing' stamp: 'JPF 6/8/2021 19:50:37' prior: 50899891!
+isbn
+
+	^isbn! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:50:55'!
+ERROR!
+!Catalogue methodsFor: 'testing' stamp: 'JPF 6/8/2021 19:51:05'!
+has: aString 
+	self shouldBeImplemented.! !
+!Catalogue methodsFor: 'testing' stamp: 'JPF 6/8/2021 19:51:45' prior: 50899901!
+has: aIsbn
+
+	isbns includes: aIsbn! !
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:51:49'!
+ERROR!
+!Catalogue methodsFor: 'testing' stamp: 'JPF 6/8/2021 19:52:11' prior: 50899905!
+has: aIsbn
+
+	^ isbns includes: aIsbn! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 19:52:18'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 19:52:18'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:52:18'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:56:17'!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+
+!methodRemoval: CartTest #test03ShouldNotAddABookWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 19:56:17'!
+test03ShouldNotAddABookWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 19:56:48' prior: 50899927!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	cart add: 2 of: book.
+	
+	self assert: cart isEmtpy.
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:01:21' prior: 50899949!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	cart add: 2 of: book.
+	
+	
+	
+	self
+		should: [ self assert: cart isEmtpy ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error | self assert: Cart bookIsNotInCatalgueErrorDescription equals: error description ]
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:02:02' prior: 50899960!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	
+	
+	
+	
+	self
+		should: [ cart add: 2 of: book ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error |
+			self assert: Cart bookIsNotInCatalgueErrorDescription equals: error description.
+			self assert: cart isEmtpy
+			]
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:02:10' prior: 50899976!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	self
+		should: [ cart add: 2 of: book ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error |
+			self assert: Cart bookIsNotInCatalgueErrorDescription equals: error description.
+			self assert: cart isEmtpy
+			]
+! !
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:02:15'!
+FAILURE!
+!Cart class methodsFor: 'error descriptions' stamp: 'JPF 6/8/2021 20:03:26'!
+bookIsNotInCatalgueErrorDescription
+
+	^ 'The book is not in the catalogue'.! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:03:33'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:03:33'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:03:33'!
+FAILURE!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:03:33'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:04:48' prior: 50899881!
+add: aQuantity of: aBook
+
+	(catalogue has: aBook isbn) ifFalse: [ self error: self class bookIsNotInCatalgueErrorDescription ].
+	items add: (CartItem for: aQuantity of: aBook)! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:04:52'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:04:52'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:04:52'!
+FAILURE!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:04:52'!
+FAILURE!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:06:03'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:06:03'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:06:03'!
+FAILURE!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:06:03'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:06:43' prior: 50899993!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn2.
+	
+	self
+		should: [ cart add: 2 of: book ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error |
+			self assert: Cart bookIsNotInCatalgueErrorDescription equals: error messageText.
+			self assert: cart isEmtpy
+			]
+! !
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:06:45'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:06:45'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:06:45'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:06:45'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:09:17'!
+assertBookIsInCatalogue: aBook
+
+	^ (catalogue has: aBook isbn) ifFalse: [ self error: self class bookIsNotInCatalgueErrorDescription ]! !
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:09:17' prior: 50900034!
+add: aQuantity of: aBook
+
+	self assertBookIsInCatalogue: aBook.
+	items add: (CartItem for: aQuantity of: aBook)! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:09:32'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:09:32'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:09:33'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:10:58'!
+test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn1.
+	
+	self
+		should: [ cart add: 0 of: book ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error |
+			self assert: Cart quantityMustBePositiveErrorDescription equals: error messageText.
+			self assert: cart isEmtpy
+			]
+! !
+!Cart class methodsFor: 'error descriptions' stamp: 'JPF 6/8/2021 20:11:35'!
+quantityMustBePositiveErrorDescription
+	
+	^ 'Quantity must be a positive value'! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:11:39'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:11:39'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:11:39'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:11:39'!
+FAILURE!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:11:39'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:12:35' prior: 50900111!
+add: aQuantity of: aBook
+
+	self assertBookIsInCatalogue: aBook.
+	aQuantity < 1 ifTrue: [ self error: self class quantityMustBePositiveErrorDescription ].
+	items add: (CartItem for: aQuantity of: aBook)! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:12:44'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:12:44'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:12:44'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:12:44'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:13:10'!
+assertQuantityIsPositive: aQuantity
+
+	^ aQuantity < 1 ifTrue: [ self error: self class quantityMustBePositiveErrorDescription ]! !
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:13:10' prior: 50900170!
+add: aQuantity of: aBook
+
+	self assertBookIsInCatalogue: aBook.
+	self assertQuantityIsPositive: aQuantity.
+	items add: (CartItem for: aQuantity of: aBook)! !
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:13:15' prior: 50900201!
+add: aQuantity of: aBook
+
+	self assertBookIsInCatalogue: aBook.
+	self assertQuantityIsPositive: aQuantity.
+	
+	items add: (CartItem for: aQuantity of: aBook)! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:13:17'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:13:17'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:13:17'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:13:17'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:14:33'!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn1.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:15:17' prior: 50900232!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	book _ Book of: self isbn1.
+	
+	cart add: 2 of: book.
+	cart add: 3 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:15:22' prior: 50900248!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	book1 _ Book of: self isbn1.
+	
+	cart add: 2 of: book1.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book1 equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:17:30' prior: 50900265!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book1 equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:17:38' prior: 50900282!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book1 equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:18:23' prior: 50900303!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items first.
+	
+	self assert: book1 equals: firstCartItem book.
+	self assert: 4 equals: firstCartItem quantity.
+	self assert: 2 equals: cart size.
+	self assert: 2 equals: secondCartItem quantity.! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:18:38' prior: 50900324!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items second.
+	
+	self assert: book1 equals: firstCartItem book.
+	self assert: 4 equals: firstCartItem quantity.
+	self assert: 2 equals: cart size.
+	self assert: 2 equals: secondCartItem quantity.! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:19:10' prior: 50900346!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 , self isbn2 }.
+	cart _ Cart with: catalogue.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items second.
+	
+	self assert: book1 equals: firstCartItem book.
+	self assert: 4 equals: firstCartItem quantity.
+
+	self assert: book2 equals: firstCartItem book.
+	self assert: 2 equals: secondCartItem quantity.
+	
+	self assert: 2 equals: cart size.! !
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:19:16'!
+ERROR!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:20:00'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:20:00'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:20:00'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:20:00'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:20:00'!
+ERROR!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:20:00'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:20:55' prior: 50900368!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1. self isbn2 }.
+	cart _ Cart with: catalogue.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items second.
+	
+	self assert: book1 equals: firstCartItem book.
+	self assert: 4 equals: firstCartItem quantity.
+
+	self assert: book2 equals: firstCartItem book.
+	self assert: 2 equals: secondCartItem quantity.
+	
+	self assert: 2 equals: cart size.! !
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:20:59'!
+FAILURE!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:20:59'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'JPF 6/8/2021 20:31:10' prior: 50900209!
+add: aQuantity of: aBook
+
+	| selectedBooks |
+
+	self assertBookIsInCatalogue: aBook.
+	self assertQuantityIsPositive: aQuantity.
+	
+	selectedBooks _ items select: [ :item | item book = aBook ].
+	
+	selectedBooks
+		ifEmpty: [ items add: (CartItem for: aQuantity of: aBook) ]
+		ifNotEmpty: [ selectedBooks first addQuantity: aQuantity ]
+	
+	
+	! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:31:14'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:31:14'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:31:14'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:31:14'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:31:14'!
+ERROR!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:31:14'!
+ERROR!
+!CartItem methodsFor: 'adding quantity' stamp: 'JPF 6/8/2021 20:31:29'!
+addQuantity: aSmallInteger 
+	self shouldBeImplemented.! !
+!CartItem methodsFor: 'adding quantity' stamp: 'JPF 6/8/2021 20:32:07' prior: 50900485!
+addQuantity: aQuantity
+ 
+	quantity := quantity + aQuantity! !
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:32:10'!
+FAILURE!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:33:34'!
+FAILURE!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:33:34'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:33:58' prior: 50900418!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1. self isbn2 }.
+	cart _ Cart with: catalogue.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items second.
+	
+	self assert: book1 equals: firstCartItem book.
+	self assert: 4 equals: firstCartItem quantity.
+
+	self assert: book2 equals: secondCartItem book.
+	self assert: 2 equals: secondCartItem quantity.
+	
+	self assert: 2 equals: cart size.! !
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:34:00'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:34:00'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:34:00'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:34:00'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:34:00'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:34:00'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:43:15'!
+test06WhenCartIsCreatedItShouldHaveTheGivenId
+
+	| cart |
+	
+	cart _ Cart with: (Catalogue with: {}) andId: 1.
+	
+	self assert: cart id equals: 1.! !
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:43:25'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 20:43:32'!
+with: aCatalogue andId: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aCatalogue andId: aSmallInteger ! !
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 20:43:55' prior: 50900562!
+with: aCatalogue andId: anId
+
+	^self new initializeWith: aCatalogue andId: anId! !
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:44:03'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'JPF 6/8/2021 20:44:13'!
+Object subclass: #Cart
+	instanceVariableNames: 'items catalogue id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 20:44:13'!
+initializeWith: aCatalogue andId: anId 
+	self shouldBeImplemented.
+	catalogue := aCatalogue.
+	id := anId.! !
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 20:44:26' prior: 50900587!
+initializeWith: aCatalogue andId: anId 
+
+	catalogue := aCatalogue.
+	id := anId.! !
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:44:33'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'JPF 6/8/2021 20:44:51'!
+id
+	self shouldBeImplemented.
+	^id! !
+!Cart methodsFor: 'accessing' stamp: 'JPF 6/8/2021 20:44:59' prior: 50900601!
+id
+
+	^ id! !
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:45:08'!
+PASSED!
+!Cart class methodsFor: 'instance creation' stamp: 'JPF 6/8/2021 20:46:13'!
+withCatalogue: aCatalogue andId: anId
+
+	^self new initializeWith: aCatalogue andId: anId! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'JPF 6/8/2021 20:46:13' prior: 50900551!
+test06WhenCartIsCreatedItShouldHaveTheGivenId
+
+	| cart |
+	
+	cart _ Cart withCatalogue: (Catalogue with: {}) andId: 1.
+	
+	self assert: cart id equals: 1.! !
+
+!methodRemoval: Cart class #with:andId: stamp: 'JPF 6/8/2021 20:46:13'!
+with: aCatalogue andId: anId
+
+	^self new initializeWith: aCatalogue andId: anId!
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 20:46:46'!
+initializeWithCatalogue: aCatalogue andId: anId 
+
+	catalogue := aCatalogue.
+	id := anId.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'JPF 6/8/2021 20:46:46' prior: 50900634!
+withCatalogue: aCatalogue andId: anId
+
+	^self new initializeWithCatalogue: aCatalogue andId: anId! !
+
+!methodRemoval: Cart #initializeWith:andId: stamp: 'JPF 6/8/2021 20:46:46'!
+initializeWith: aCatalogue andId: anId 
+
+	catalogue := aCatalogue.
+	id := anId.!
+!Cart methodsFor: 'initialization' stamp: 'JPF 6/8/2021 20:47:06' prior: 50900652!
+initializeWithCatalogue: aCatalogue andId: anId 
+
+	items := OrderedCollection new.
+	catalogue := aCatalogue.
+	id := anId.! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:47:32' prior: 50899703!
+test01WhenCartIsCreatedItShouldBeEmpty
+
+	| cart |
+	
+	cart _ Cart withCatalogue: (Catalogue with: {}) andId: 1.
+	
+	self assert: cart isEmtpy! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:47:59' prior: 50899687!
+test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue
+
+	| cart book firstCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	cart _ Cart withCatalogue: catalogue andId: 1.
+	book _ Book of: self isbn1.
+	
+	cart add: 2 of: book.
+	
+	firstCartItem _ cart items first.
+	
+	self deny: cart isEmtpy.
+	self assert: book equals: firstCartItem book.
+	self assert: 2 equals: firstCartItem quantity.
+	self assert: 1 equals: cart size! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:48:17' prior: 50900073!
+test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart withCatalogue: catalogue andId: 1.
+	book _ Book of: self isbn2.
+	
+	self
+		should: [ cart add: 2 of: book ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error |
+			self assert: Cart bookIsNotInCatalgueErrorDescription equals: error messageText.
+			self assert: cart isEmtpy
+			]
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:48:28' prior: 50900128!
+test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive
+
+	| cart book catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1 }.
+	
+	cart _ Cart withCatalogue: catalogue andId: 1.
+	book _ Book of: self isbn1.
+	
+	self
+		should: [ cart add: 0 of: book ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :error |
+			self assert: Cart quantityMustBePositiveErrorDescription equals: error messageText.
+			self assert: cart isEmtpy
+			]
+! !
+!CartTest methodsFor: 'tests' stamp: 'JPF 6/8/2021 20:48:37' prior: 50900506!
+test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart
+
+	| cart book1 book2 firstCartItem secondCartItem catalogue |
+	
+	catalogue _ Catalogue with: { self isbn1. self isbn2 }.
+	cart _ Cart withCatalogue: catalogue andId: 1.
+	
+	book1 _ Book of: self isbn1.
+	book2 _ Book of: self isbn2.
+	
+	cart add: 1 of: book1.
+	cart add: 2 of: book2.
+	cart add: 3 of: book1.
+	
+	firstCartItem _ cart items first.
+	secondCartItem _ cart items second.
+	
+	self assert: book1 equals: firstCartItem book.
+	self assert: 4 equals: firstCartItem quantity.
+
+	self assert: book2 equals: secondCartItem book.
+	self assert: 2 equals: secondCartItem quantity.
+	
+	self assert: 2 equals: cart size.! !
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:48:43'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:48:43'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:48:43'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:48:43'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:48:43'!
+PASSED!
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:48:43'!
+PASSED!
+
+!methodRemoval: Cart #initialize stamp: 'JPF 6/8/2021 20:52:59'!
+initialize
+	
+	items := OrderedCollection new!
+
+!methodRemoval: Cart #initializeWith: stamp: 'JPF 6/8/2021 20:53:04'!
+initializeWith: aCatalogue 
+
+	catalogue := aCatalogue.!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:53:06'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:53:06'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:53:06'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:53:06'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:53:06'!
+PASSED!
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:53:06'!
+PASSED!
+
+!methodRemoval: Cart class #with: stamp: 'JPF 6/8/2021 20:53:25'!
+with: aCatalogue 
+	
+	^ self new initializeWith: aCatalogue!
+
+!testRun: #CartTest #test01WhenCartIsCreatedItShouldBeEmpty stamp: 'JPF 6/8/2021 20:53:55'!
+PASSED!
+
+!testRun: #CartTest #test02ShouldAddABookWithAQuantityWhenItIsInTheCatalogue stamp: 'JPF 6/8/2021 20:53:55'!
+PASSED!
+
+!testRun: #CartTest #test03ShouldNotAddABookAndRaiseAnExceptionWhenItIsNotInTheCatalogue stamp: 'JPF 6/8/2021 20:53:55'!
+PASSED!
+
+!testRun: #CartTest #test04ShouldNotAddABookAndRaiseAnExceptionWhenTheGivenQuantityIsNotPositive stamp: 'JPF 6/8/2021 20:53:55'!
+PASSED!
+
+!testRun: #CartTest #test05ShouldAddTheQuantityWhenTheBookIsAlreadyInTheCart stamp: 'JPF 6/8/2021 20:53:55'!
+PASSED!
+
+!testRun: #CartTest #test06WhenCartIsCreatedItShouldHaveTheGivenId stamp: 'JPF 6/8/2021 20:53:55'!
+PASSED!
+
+----SNAPSHOT----(8 June 2021 21:24:50) TusLibros.image priorSource: 18162861!

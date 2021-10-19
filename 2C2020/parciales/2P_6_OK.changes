@@ -1,0 +1,4455 @@
+----STARTUP---- (10 December 2020 14:04:30) as /home/grosinov/SegundoParcialCuis/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/grosinov/SegundoParcialCuis/ISW1-2020-2C-2doParcial.st----!
+!PlayableCharacter methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:11:59' prior: 50868325!
+initializeNamed: aName using: aBackpack at: aPosition heading: aPlayableCharacterHeading 
+
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aPlayableCharacterHeading! !
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 17:40:55'!
+Object subclass: #Room
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:40:46'!
+test11_playerCannotStartOutOfTheRoom
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@5 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription
+	
+	
+	
+	
+	
+	! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:41:08' prior: 50868654!
+test11_playerCannotStartOutOfTheRoom
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@5 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:41:10'!
+ERROR!
+!Room class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:41:14'!
+newOfSize: aSmallInteger and: aSmallInteger2 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNewOfSize: aSmallInteger and: aSmallInteger2 ! !
+!Room class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:42:11' prior: 50868684!
+newOfSize: aWidth and: aHeight 
+	
+	^self new initializeNewOfSize: aWidth and: aHeight ! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:42:12'!
+ERROR!
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 17:42:24'!
+Object subclass: #Room
+	instanceVariableNames: 'width'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 17:42:24'!
+Object subclass: #Room
+	instanceVariableNames: 'width height'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:42:24'!
+initializeNewOfSize: aWidth and: aHeight 
+	self shouldBeImplemented.
+	width := aWidth.
+	height := aHeight.! !
+!Room methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:42:26' prior: 50868718!
+initializeNewOfSize: aWidth and: aHeight 
+	
+	width := aWidth.
+	height := aHeight.! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:42:38'!
+ERROR!
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 17:42:47'!
+playerOutOfRoomErrorDescription
+	self shouldBeImplemented.! !
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 17:42:58' prior: 50868734!
+playerOutOfRoomErrorDescription
+	
+	^ 'Player is out of the room!!'! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:42:59'!
+ERROR!
+!PlayableCharacter class methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:43:09'!
+named: aString using: aBackpack at: aPoint heading: aSymbol inTheRoom: aRoom 
+	self shouldBeImplemented.! !
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:45:46' prior: 50868749!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self class playerOutOfRoomErrorDescription ].
+	
+	^ self named: aName using: aBackpack at: aPosition heading: aCardinalPoint ! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:45:46'!
+ERROR!
+!Room methodsFor: 'accessing' stamp: 'Gr 12/10/2020 17:45:51'!
+includes: aPoint 
+	self shouldBeImplemented.! !
+!Room methodsFor: 'accessing' stamp: 'Gr 12/10/2020 17:46:54' prior: 50868770!
+includes: aPosition 
+	
+	^ (aPosition >= (0@0)) and: [ aPosition  < (width@height)]! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:46:55'!
+ERROR!
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:47:07' prior: 50868756!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self playerOutOfRoomErrorDescription ].
+	
+	^ self named: aName using: aBackpack at: aPosition heading: aCardinalPoint ! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:47:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:47:10'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:48:00'!
+test12_playerCannotStartOutOfTheRoom
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@-1 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:48:01'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:48:20'!
+test12_playerCannotMove
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@-1 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription! !
+
+!methodRemoval: PlayableCharacterTest #test12_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:48:20'!
+test12_playerCannotStartOutOfTheRoom
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@-1 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:48:48'!
+test12_playerCannotMoveForwardOutOfTheRoom
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@-1 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription! !
+
+!methodRemoval: PlayableCharacterTest #test12_playerCannotMove stamp: 'Gr 12/10/2020 17:48:48'!
+test12_playerCannotMove
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@-1 heading: #West inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerOutOfRoomErrorDescription!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:50:58' prior: 50868974!
+test12_playerCannotMoveForwardOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@4 heading: #West inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveForward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			]
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 17:51:42' prior: 50869000!
+test12_playerCannotMoveForwardOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@4 heading: #West inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveForward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 4@4 heading: #West)
+			]
+			! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:51:43'!
+FAILURE!
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:52:50' prior: 50868784!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self playerOutOfRoomErrorDescription ].
+	
+	^ self named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom ! !
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:53:13' prior: 50869042!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self playerOutOfRoomErrorDescription ].
+	
+	^ self new initializeNamed: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom ! !
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:53:33' prior: 50869055!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self playerOutOfRoomErrorDescription ].
+	
+	^ self new initializeNamed: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom ! !
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 17:53:40'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:53:58'!
+ERROR!
+
+!classDefinition: #PlayableCharacter category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 17:54:17'!
+Object subclass: #PlayableCharacter
+	instanceVariableNames: 'position heading backpack name cardinalPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #PlayableCharacter category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 17:54:17'!
+Object subclass: #PlayableCharacter
+	instanceVariableNames: 'position heading backpack name cardinalPoint room'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacter methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:54:17'!
+initializeNamed: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	self shouldBeImplemented.
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	cardinalPoint := aCardinalPoint.
+	room := aRoom.! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:54:21' prior: 50869106!
+initializeNamed: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	cardinalPoint := aCardinalPoint.
+	room := aRoom.! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:54:23'!
+ERROR!
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:55:07' prior: 50869068!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	| newHeading |
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self playerOutOfRoomErrorDescription ].
+
+	newHeading := self headingFor: aCardinalPoint.
+	
+	^ self new initializeNamed: aName using: aBackpack at: aPosition heading: newHeading inTheRoom: aRoom ! !
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 17:55:54' prior: 50868389!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint 
+	
+	^self named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: (Room newOfSize: 100 and: 100) ! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:56:25'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:56:55'!
+ERROR!
+!PlayableCharacter methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:57:49' prior: 50869117!
+initializeNamed: aName using: aBackpack at: aPosition heading: aPlayableCharacterHeading inTheRoom: aRoom 
+	
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	cardinalPoint := aPlayableCharacterHeading.
+	room := aRoom.! !
+!PlayableCharacter methodsFor: 'initialization' stamp: 'Gr 12/10/2020 17:58:04' prior: 50869163!
+initializeNamed: aName using: aBackpack at: aPosition heading: aPlayableCharacterHeading inTheRoom: aRoom 
+	
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aPlayableCharacterHeading.
+	room := aRoom.! !
+
+!methodRemoval: PlayableCharacter #initializeNamed:using:at:heading: stamp: 'Gr 12/10/2020 17:58:07'!
+initializeNamed: aName using: aBackpack at: aPosition heading: aPlayableCharacterHeading 
+
+	name := aName.
+	backpack := aBackpack.
+	position := aPosition.
+	heading := aPlayableCharacterHeading!
+
+Object subclass: #PlayableCharacter
+	instanceVariableNames: 'position heading backpack name room'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #PlayableCharacter category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 17:58:15'!
+Object subclass: #PlayableCharacter
+	instanceVariableNames: 'position heading backpack name room'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:58:19'!
+FAILURE!
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 17:59:18' prior: 50868349!
+moveForward
+	
+	(room includes: position + heading forwardPoint) ifFalse: [ self error: self class playerMovingOutOfRoomErrorDescription ].
+	
+	position := position + heading forwardPoint! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 17:59:20'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:00:27'!
+FAILURE!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:00:54' prior: 50869018!
+test12_playerCannotMoveForwardOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@4 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveForward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 4@4 heading: #North)
+			]
+			! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:00:55'!
+ERROR!
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 18:01:03'!
+playerMovingOutOfRoomErrorDescription
+	self shouldBeImplemented.! !
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 18:01:19' prior: 50869253!
+playerMovingOutOfRoomErrorDescription
+	
+	^ 'You are moving out of the room'! !
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:01:20'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:04:02'!
+test13_playerCannotMoveBackwardsOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			! !
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:04:04'!
+FAILURE!
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:04:44' prior: 50868344!
+moveBackward
+	
+	(room includes: position - heading forwardPoint) ifFalse: [ self error: self class playerMovingOutOfRoomErrorDescription ].
+	
+	position := position - heading forwardPoint ! !
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:04:45'!
+PASSED!
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:07:21' prior: 50869212!
+moveForward
+	
+	self assertIsInTheRoomThePosition: position + heading forwardPoint.
+	
+	position := position + heading forwardPoint! !
+!PlayableCharacter methodsFor: 'nil' stamp: 'Gr 12/10/2020 18:07:47'!
+assertIsInTheRoomThePosition: aPosition
+	
+	(room includes: aPosition) ifFalse: [ self error: self class playerMovingOutOfRoomErrorDescription ].! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:08:12' prior: 50869338!
+moveBackward
+	
+	self assertIsInTheRoomThePosition: position - heading forwardPoint.
+	position := position - heading forwardPoint ! !
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:08:13'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:09:23'!
+test13_playerCannotStartSteppingOnAStageObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:09:29'!
+test14_playerCannotStartSteppingOnAStageObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			! !
+
+!methodRemoval: PlayableCharacterTest #test13_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:09:29'!
+test13_playerCannotStartSteppingOnAStageObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:10:26' prior: 50869546!
+test14_playerCannotStartSteppingOnAStageObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@0)->NoPointsPortableObject initializedInstance ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:11:20' prior: 50869587!
+test14_playerCannotStartSteppingOnAStageObject
+
+	| room aPlayableCharacter aNoPointsPortableObject |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@0)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:12:10' prior: 50869610!
+test14_playerCannotStartSteppingOnAStageObject
+
+	| room aNoPointsPortableObject |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@0)-> aNoPointsPortableObject ).
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerSteppingOnStageObjectErrorDescription.
+			! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:12:16'!
+ERROR!
+!Room class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:12:22'!
+newOfSize: aSmallInteger and: aSmallInteger2 withObjects: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNewOfSize: aSmallInteger and: aSmallInteger2 withObjects: aDictionary ! !
+!Room class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:12:27' prior: 50869659!
+newOfSize: aSmallInteger and: aSmallInteger2 withObjects: aDictionary 
+	
+	^self new initializeNewOfSize: aSmallInteger and: aSmallInteger2 withObjects: aDictionary ! !
+!Room class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:12:58' prior: 50869671!
+newOfSize: aWidth and: aHeight  withObjects: anObjectDistribution 
+	
+	^self new initializeNewOfSize: aWidth and: aHeight withObjects: anObjectDistribution ! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:12:59'!
+ERROR!
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 18:13:08'!
+Object subclass: #Room
+	instanceVariableNames: 'width height objectDistribution'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room methodsFor: 'initialization' stamp: 'Gr 12/10/2020 18:13:08'!
+initializeNewOfSize: aWidth and: aHeight withObjects: anObjectDistribution 
+	self shouldBeImplemented.
+	width := aWidth.
+	height := aHeight.
+	objectDistribution := anObjectDistribution.! !
+!Room methodsFor: 'initialization' stamp: 'Gr 12/10/2020 18:13:11' prior: 50869699!
+initializeNewOfSize: aWidth and: aHeight withObjects: anObjectDistribution 
+	
+	width := aWidth.
+	height := aHeight.
+	objectDistribution := anObjectDistribution.! !
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 18:13:22'!
+Object subclass: #Room
+	instanceVariableNames: 'width height objectDistribution objectsDistribution'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!Room methodsFor: 'initialization' stamp: 'Gr 12/10/2020 18:13:18' prior: 50869708!
+initializeNewOfSize: aWidth and: aHeight withObjects: anObjectDistribution 
+	
+	width := aWidth.
+	height := aHeight.
+	objectsDistribution := anObjectDistribution.! !
+!Room methodsFor: 'initialization' stamp: 'Gr 12/10/2020 18:13:26' prior: 50869725!
+initializeNewOfSize: aWidth and: aHeight withObjects: anObjectsDistribution 
+	
+	width := aWidth.
+	height := aHeight.
+	objectsDistribution := anObjectsDistribution.! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:13:28'!
+ERROR!
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 18:13:36'!
+playerSteppingOnStageObjectErrorDescription
+	self shouldBeImplemented.! !
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 18:13:56' prior: 50869745!
+playerSteppingOnStageObjectErrorDescription
+	
+	^ 'Player is on a stage object'! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:13:56'!
+FAILURE!
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:15:10' prior: 50869131!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: aRoom 
+	
+	| newHeading |
+	
+	(aRoom includes: aPosition) ifFalse: [ self error: self playerOutOfRoomErrorDescription ].
+	
+	(aRoom hasAnObjectInThePosition: aPosition) ifTrue: [ self error: self playerSteppingOnStageObjectErrorDescription ].
+
+	newHeading := self headingFor: aCardinalPoint.
+	
+	^ self new initializeNamed: aName using: aBackpack at: aPosition heading: newHeading inTheRoom: aRoom ! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:15:13'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 18:15:27'!
+hasAnObjectInThePosition: aPoint 
+	self shouldBeImplemented.! !
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 18:15:48' prior: 50869782!
+hasAnObjectInThePosition: aPosition 
+	
+	^ objectsDistribution includesKey: aPosition! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:15:48'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:15:48'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:15:48'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:15:48'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:15:48'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:16:00'!
+ERROR!
+!PlayableCharacter class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:16:37' prior: 50869146!
+named: aName using: aBackpack at: aPosition heading: aCardinalPoint 
+	
+	^self named: aName using: aBackpack at: aPosition heading: aCardinalPoint inTheRoom: (Room newOfSize: 100 and: 100 withObjects: Dictionary new) ! !
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:16:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:16:39'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:16:39'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:16:39'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:16:43'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:17:11'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:17:11'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:17:11'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:17:15'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:18:04' prior: 50869229!
+test12_playerCannotMoveForwardOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@4 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveForward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			self assert: (aPlayableCharacter isAt: 4@4 heading: #North)
+			]
+			! !
+!Room class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:18:32' prior: 50868694!
+newOfSize: aWidth and: aHeight 
+	
+	^ self newOfSize: aWidth and: aHeight withObjects: (Dictionary new)! !
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:18:38'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:19:28'!
+test15_playerCannotToPositionThatHasStageObject
+
+	| room aNoPointsPortableObject |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@0)-> aNoPointsPortableObject ).
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerSteppingOnStageObjectErrorDescription.
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:19:40' prior: 50870069!
+test15_playerCannotToPositionThatHasStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@0)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerSteppingOnStageObjectErrorDescription.
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:20:34' prior: 50870089!
+test15_playerCannotToPositionThatHasStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:20:42'!
+test15_playerCannotMoveForwardToPositionThatHasStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			! !
+
+!methodRemoval: PlayableCharacterTest #test15_playerCannotToPositionThatHasStageObject stamp: 'Gr 12/10/2020 18:20:42'!
+test15_playerCannotToPositionThatHasStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:20:46'!
+test15_playerCannotMoveForwardToPositionThatHasAStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			! !
+
+!methodRemoval: PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasStageObject stamp: 'Gr 12/10/2020 18:20:46'!
+test15_playerCannotMoveForwardToPositionThatHasStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingOutOfRoomErrorDescription.
+			!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:20:47'!
+FAILURE!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:21:35' prior: 50869407!
+assertIsInTheRoomThePosition: aPosition
+	
+	(room includes: aPosition) ifFalse: [ self error: self class playerMovingOutOfRoomErrorDescription ].
+	
+	(room hasAnObjectInThePosition: aPosition) ifTrue: [ self error: self class playerMovingOutOfRoomErrorDescription ]! !
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:21:36'!
+PASSED!
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 18:21:55'!
+playerMovingToInvalidPositionErrorDescription
+	
+	^ 'You are moving out of the room'! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:21:55' prior: 50870224!
+assertIsInTheRoomThePosition: aPosition
+	
+	(room includes: aPosition) ifFalse: [ self error: self class playerMovingToInvalidPositionErrorDescription ].
+	
+	(room hasAnObjectInThePosition: aPosition) ifTrue: [ self error: self class playerMovingToInvalidPositionErrorDescription ]! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:21:55' prior: 50869986!
+test12_playerCannotMoveForwardOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 4@4 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveForward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			self assert: (aPlayableCharacter isAt: 4@4 heading: #North)
+			]
+			! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:21:55' prior: 50869314!
+test13_playerCannotMoveBackwardsOutOfTheRoom
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5.
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room.
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:[ :anError | 
+			self assert: anError messageText equals: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			self assert: (aPlayableCharacter isAt: 0@0 heading: #North)
+			]
+			! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:21:55' prior: 50870175!
+test15_playerCannotMoveForwardToPositionThatHasAStageObject
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			! !
+
+!methodRemoval: PlayableCharacter class #playerMovingOutOfRoomErrorDescription stamp: 'Gr 12/10/2020 18:21:55'!
+playerMovingOutOfRoomErrorDescription
+	
+	^ 'You are moving out of the room'!
+!PlayableCharacter class methodsFor: 'error handling' stamp: 'Gr 12/10/2020 18:22:02' prior: 50870297!
+playerMovingToInvalidPositionErrorDescription
+	
+	^ 'You are moving to an invalid position'! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:22:21'!
+test16_
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:22:40' prior: 50870393!
+test16_
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (1@0)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@1 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			! !
+
+!testRun: #PlayableCharacterTest #test16_ stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_ stamp: 'Gr 12/10/2020 18:22:41'!
+PASSED!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:23:06'!
+assertIsValidThePosition: aPosition
+	
+	(room includes: aPosition) ifFalse: [ self error: self class playerMovingToInvalidPositionErrorDescription ].
+	
+	(room hasAnObjectInThePosition: aPosition) ifTrue: [ self error: self class playerMovingToInvalidPositionErrorDescription ]! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:23:06' prior: 50869415!
+moveBackward
+	
+	self assertIsValidThePosition: position - heading forwardPoint.
+	position := position - heading forwardPoint ! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:23:06' prior: 50869400!
+moveForward
+	
+	self assertIsValidThePosition: position + heading forwardPoint.
+	
+	position := position + heading forwardPoint! !
+
+!methodRemoval: PlayableCharacter #assertIsInTheRoomThePosition: stamp: 'Gr 12/10/2020 18:23:06'!
+assertIsInTheRoomThePosition: aPosition
+	
+	(room includes: aPosition) ifFalse: [ self error: self class playerMovingToInvalidPositionErrorDescription ].
+	
+	(room hasAnObjectInThePosition: aPosition) ifTrue: [ self error: self class playerMovingToInvalidPositionErrorDescription ]!
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:23:15' prior: 50870509!
+moveBackward
+	
+	self assertIsValidThePosition: position - heading forwardPoint.
+	
+	position := position - heading forwardPoint ! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:23:36' prior: 50870536!
+moveBackward
+	
+	self moveTo: position - heading forwardPoint.! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:24:03'!
+moveTo: aPosition
+
+	self assertIsValidThePosition: aPosition.
+	
+	position := aPosition ! !
+!PlayableCharacter methodsFor: 'moving' stamp: 'Gr 12/10/2020 18:24:15' prior: 50870517!
+moveForward
+	
+	self moveTo: position + heading forwardPoint.! !
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_ stamp: 'Gr 12/10/2020 18:24:16'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:25:57'!
+test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (4@4)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter 
+			! !
+
+!methodRemoval: PlayableCharacterTest #test16_ stamp: 'Gr 12/10/2020 18:26:29'!
+test16_
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (1@0)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 1@1 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveBackward ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:27:13' prior: 50870674!
+test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (4@4)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack
+			! !
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:27:16'!
+ERROR!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:27:34'!
+take
+	self shouldBeImplemented.! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:27:36' prior: 50870736!
+take
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:27:37'!
+ERROR!
+!PlayableCharacter methodsFor: 'accessing' stamp: 'Gr 12/10/2020 18:27:43'!
+hasEmptyBackpack
+	self shouldBeImplemented.! !
+!PlayableCharacter methodsFor: 'accessing' stamp: 'Gr 12/10/2020 18:27:49' prior: 50870748!
+hasEmptyBackpack
+	
+	^ backpack isEmpty.! !
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:27:50'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:29:00'!
+test17_playerCanTakeAPortableObjectThatIsInFrontOfHim
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject )
+			! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:29:09'!
+FAILURE!
+
+!methodRemoval: PlayableCharacter #take stamp: 'Gr 12/10/2020 18:30:33'!
+take
+	
+	!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:30:39'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:30:39'!
+ERROR!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:30:45'!
+take
+	self shouldBeImplemented.! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:33:44' prior: 50870858!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^nil ].
+	
+	backpack add: object! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:33:46'!
+ERROR!
+!Room methodsFor: 'accessing' stamp: 'Gr 12/10/2020 18:33:49'!
+objectInPosition: aPoint ifAbsent: aBlockClosure 
+	self shouldBeImplemented.! !
+!Room methodsFor: 'accessing' stamp: 'Gr 12/10/2020 18:33:58' prior: 50870873!
+objectInPosition: aPosition ifAbsent: aClosure 
+	
+	! !
+!Room methodsFor: 'accessing' stamp: 'Gr 12/10/2020 18:34:54' prior: 50870878!
+objectInPosition: aPosition ifAbsent: aClosure 
+	
+	objectsDistribution at: aPosition ifAbsent: aClosure! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:34:55'!
+ERROR!
+!Room methodsFor: 'accessing' stamp: 'Gr 12/10/2020 18:35:28' prior: 50870883!
+objectInPosition: aPosition ifAbsent: aClosure 
+	
+	^ objectsDistribution at: aPosition ifAbsent: aClosure! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:35:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:35:34'!
+PASSED!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:36:04' prior: 50870863!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^nil ].
+	
+	backpack add: object! !
+
+aPlayableCharacter hasEmptyBackpack!
+
+----SNAPSHOT----(10 December 2020 18:40:15) CuisUniversity-4384.image priorSource: 17155564!
+
+!classDefinition: #NonPortableObject category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 18:42:12'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:42:02'!
+test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim
+
+	| room aNonPortableObject aPlayableCharacter |
+	
+	aNonPortableObject := NonPortableObject named: 'Paper'.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			! !
+
+!testRun: #PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:42:20'!
+ERROR!
+!NonPortableObject class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:42:32'!
+named: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString ! !
+!NonPortableObject class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:42:38' prior: 50871016!
+named: aString 
+	
+	^self new initializeNamed: aString ! !
+!NonPortableObject class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:42:50' prior: 50871025!
+named: AnAME 
+	
+	^self new initializeNamed: AnAME ! !
+!NonPortableObject class methodsFor: 'instance creation' stamp: 'Gr 12/10/2020 18:43:00' prior: 50871031!
+named: aName 
+	
+	^self new initializeNamed: aName ! !
+
+!testRun: #PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:43:05'!
+ERROR!
+
+!classDefinition: #NonPortableObject category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 18:43:16'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!NonPortableObject methodsFor: 'initialization' stamp: 'Gr 12/10/2020 18:43:16'!
+initializeNamed: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+
+!classDefinition: #NonPortableObject category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 18:44:32'!
+StageObject subclass: #NonPortableObject
+	instanceVariableNames: 'name objects'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!NonPortableObject methodsFor: 'initialization' stamp: 'Gr 12/10/2020 18:44:30' prior: 50871053!
+initializeNamed: aName 
+	
+	name := aName.
+	objects := OrderedCollection new.! !
+
+!testRun: #PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:44:33'!
+ERROR!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:45:34' prior: 50870974!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^nil ].
+	
+	backpack add: object! !
+
+!testRun: #PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:45:42'!
+ERROR!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:46:02'!
+assertCanAddTo: aBackpack 
+	self shouldBeImplemented.! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:48:51' prior: 50870993!
+test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim
+
+	| room aNonPortableObject aPlayableCharacter |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:53:38' prior: 50871077!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^self ].
+	
+	backpack add: object! !
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:53:44'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:53:44'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:53:44'!
+ERROR!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 18:54:55'!
+test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing
+
+	| room aNonPortableObject aPlayableCharacter |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			! !
+
+!methodRemoval: PlayableCharacterTest #test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:54:55'!
+test18_playerCannotTakeANonPortableObjectThatIsInFrontOfHim
+
+	| room aNonPortableObject aPlayableCharacter |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			!
+
+!testRun: #PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 18:55:02'!
+ERROR!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:59:13' prior: 50871112!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^self ].
+	
+	object addToTheBackPack: backpack.! !
+
+!testRun: #PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 18:59:19'!
+ERROR!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:59:40'!
+addToTheBackPack: aBackpack 
+	self shouldBeImplemented.! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 18:59:51' prior: 50871302!
+addToTheBackPack: aBackpack 
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 18:59:55'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:59:57'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 18:59:57'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 18:59:57'!
+ERROR!
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:00:42'!
+addToTheBackPack: aBackpack 
+	self shouldBeImplemented.! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:00:50' prior: 50871395!
+addToTheBackPack: aBackpack 
+	
+	aBackpack add: self! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:00:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:00:54'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:06:52'!
+test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing
+
+	| room aNonPortableObject aPlayableCharacter |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			! !
+
+!methodRemoval: PlayableCharacterTest #test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:06:52'!
+test18_playerTakeingANonPortableObjectWithNoObjectsTakesNothing
+
+	| room aNonPortableObject aPlayableCharacter |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:06:56'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:08:52'!
+test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (NoPointsPortableObject named: 'Papel' weighing: 1).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject)
+			! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:08:59'!
+ERROR!
+!NonPortableObject methodsFor: 'adding' stamp: 'Gr 12/10/2020 19:09:17'!
+add: aNoPointsPortableObject 
+	self shouldBeImplemented.! !
+!NonPortableObject methodsFor: 'adding' stamp: 'Gr 12/10/2020 19:09:36' prior: 50871625!
+add: aStageObject 
+	
+	objects add: aStageObject.! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:09:37'!
+FAILURE!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:11:25' prior: 50871290!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^self ].
+	
+	object addToTheBackPack: self.! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:11:26'!
+FAILURE!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:12:05'!
+addToBackPackOfPlayer: aBackpack 
+	
+	! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:12:05'!
+addToBackPackOfPlayer: aBackpack 
+	
+	aBackpack add: self! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:12:05' prior: 50871640!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^self ].
+	
+	object addToBackPackOfPlayer: self.! !
+
+!methodRemoval: NonPortableObject #addToTheBackPack: stamp: 'Gr 12/10/2020 19:12:05'!
+addToTheBackPack: aBackpack 
+	
+	!
+
+!methodRemoval: PortableObject #addToTheBackPack: stamp: 'Gr 12/10/2020 19:12:05'!
+addToTheBackPack: aBackpack 
+	
+	aBackpack add: self!
+!NonPortableObject methodsFor: 'nil' stamp: 'Gr 12/10/2020 19:13:13'!
+addToTheBackPack: aPlayableCharacter 
+	
+	aPlayableCharacter take: self! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:13:31'!
+ERROR!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:15:04' prior: 50871662!
+take
+	
+	| object |
+	
+	object := room objectInPosition: heading forwardPoint ifAbsent: [ ^self ].
+	
+	self take: object! !
+!PlayableCharacter methodsFor: 'taking objects' stamp: 'Gr 12/10/2020 19:16:00' prior: 50868363!
+take: aStageObject
+
+	aStageObject addToTheBackPack: self! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:16:03'!
+ERROR!
+!PortableObject methodsFor: 'adding' stamp: 'Gr 12/10/2020 19:17:13'!
+addToTheBackPack: aPlayableCharacter 
+	self shouldBeImplemented.! !
+!PortableObject methodsFor: 'adding' stamp: 'Gr 12/10/2020 19:17:34' prior: 50871704!
+addToTheBackPack: aPlayableCharacter 
+	
+	aPlayableCharacter addThePortableObject: self! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:17:38'!
+ERROR!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:17:45'!
+addThePortableObject: aNoPointsPortableObject 
+	self shouldBeImplemented.! !
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:17:58' prior: 50871719!
+addThePortableObject: aPortableObject 
+	
+	backpack add: aPortableObject.
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:17:59'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:18:05'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 19:18:07'!
+PASSED!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:19:05' prior: 50871677!
+addToTheBackPack: aPlayableCharacter 
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:19:08'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:19:09'!
+PASSED!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:20:36' prior: 50871744!
+addToTheBackPack: aPlayableCharacter 
+	
+	objects isEmpty ifFalse: [ aPlayableCharacter take: (objects at: 1) ]! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:20:37'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:24:24'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:24:40'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:24:40'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:24:48'!
+FAILURE!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:26:14' prior: 50871595!
+test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (aNoPointsPortableObject ).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject)
+			! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:26:15'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:27:05'!
+test19_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (aNoPointsPortableObject ).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject)
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:27:11'!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (aNoPointsPortableObject ).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject)
+			! !
+
+!methodRemoval: PlayableCharacterTest #test19_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 19:27:11'!
+test19_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (aNoPointsPortableObject ).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject)
+			!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:31:26' prior: 50871917!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aPlayableCharacter armor drawer paper wardrobe |
+	
+	wardrobe := NonPortableObject named: 'Armario'.
+	
+	drawer := NonPortableObject named: 'Cajon'.
+	
+	paper := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	armor := NoPointsPortableObject named: 'Papel' weighing: 5.
+	
+	drawer add: paper.
+	
+	wardrobe add: armor.
+	
+	wardrobe add: drawer.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> wardrobe ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: paper).
+	self assert: (aPlayableCharacter backpackIncludes: armor)
+			! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 19:31:37'!
+FAILURE!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:32:48' prior: 50871758!
+addToTheBackPack: aPlayableCharacter 
+	
+	objects do: [ :aStageObject | aPlayableCharacter take: aStageObject ].! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 19:32:49'!
+PASSED!
+!StageObject methodsFor: 'no messages' stamp: 'Gr 12/10/2020 19:33:51'!
+addToTheBackPack: aPlayableCharacter
+
+	self subclassResponsibility.! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:34:45' prior: 50871656!
+addToBackPackOfPlayer: aPlayableCharacter 
+	
+	aPlayableCharacter addThePortableObject: self! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:34:58' prior: 50871652!
+addToBackPackOfPlayer: aPlayableCharacter 
+	
+	objects do: [ :aStageObject | aPlayableCharacter take: aStageObject ].! !
+
+!methodRemoval: NonPortableObject #addToTheBackPack: stamp: 'Gr 12/10/2020 19:35:03'!
+addToTheBackPack: aPlayableCharacter 
+	
+	objects do: [ :aStageObject | aPlayableCharacter take: aStageObject ].!
+
+!methodRemoval: NonPortableObject #assertCanAddTo: stamp: 'Gr 12/10/2020 19:35:11'!
+assertCanAddTo: aBackpack 
+	self shouldBeImplemented.!
+!StageObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:35:28'!
+addToBackPackOfPlayer: aPlayableCharacter 
+
+	self subclassResponsibility.! !
+
+!methodRemoval: StageObject #addToTheBackPack: stamp: 'Gr 12/10/2020 19:35:33'!
+addToTheBackPack: aPlayableCharacter
+
+	self subclassResponsibility.!
+!PlayableCharacter methodsFor: 'taking objects' stamp: 'Gr 12/10/2020 19:35:41' prior: 50871695!
+take: aStageObject
+
+	aStageObject addToBackPackOfPlayer: self! !
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 19:35:47'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:37:01' prior: 50871968!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aPlayableCharacter armor drawer paper wardrobe |
+	
+	wardrobe := self defaultWardrove.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> wardrobe ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: paper).
+	self assert: (aPlayableCharacter backpackIncludes: armor)
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:37:29' prior: 50872278!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aPlayableCharacter armor drawer paper wardrobe |
+	
+	wardrobe := NonPortableObject named: 'Armario'.
+	
+	drawer := NonPortableObject named: 'Cajon'.
+	
+	paper := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	armor := NoPointsPortableObject named: 'Papel' weighing: 5.
+	
+	drawer add: paper.
+	
+	wardrobe add: armor.
+	
+	wardrobe add: drawer.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> wardrobe ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: paper).
+	self assert: (aPlayableCharacter backpackIncludes: armor)
+			! !
+
+TestCase subclass: #PlayableCharacterTest
+	instanceVariableNames: 'papel armadura armario cajon'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #PlayableCharacterTest category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 19:40:15'!
+TestCase subclass: #PlayableCharacterTest
+	instanceVariableNames: 'papel armadura armario cajon'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 19:45:05' prior: 50870823!
+test17_playerCanTakeAPortableObjectThatIsInFrontOfHim
+
+	| room aNoPointsPortableObject aPlayableCharacter |
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Paper' weighing: 1.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNoPointsPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject ).
+	self deny: (room hasTheObject: aNoPointsPortableObject)
+			! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:45:07'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:45:07'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 19:45:15'!
+hasTheObject: aNoPointsPortableObject 
+	self shouldBeImplemented.! !
+
+----End fileIn of /home/grosinov/SegundoParcialCuis/Packages/TerseGuide.pck.st----!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 19:48:22' prior: 50872370!
+hasTheObject: aStageObject
+	
+	objectsDistribution do: [ :currentStageObject | currentStageObject = aStageObject or: [ currentStageObject hasTheObject: aStageObject ] ]! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:48:23'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 19:48:41' prior: 50875311!
+hasTheObject: aStageObject
+	
+	^ objectsDistribution do: [ :currentStageObject | currentStageObject = aStageObject or: [ currentStageObject hasTheObject: aStageObject ] ]! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:48:41'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:49:12'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 19:49:49' prior: 50875323!
+hasTheObject: aStageObject
+	
+	objectsDistribution 
+		detect: [ :currentStageObject | currentStageObject = aStageObject or: [ currentStageObject hasTheObject: aStageObject ] ]
+		ifFound: [ ^true ]
+		ifNone: [ ^false ]! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:49:55'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:50:10'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 19:50:57' prior: 50875339!
+hasTheObject: aStageObject
+	
+	objectsDistribution 
+		detect: [ :currentStageObject | currentStageObject = aStageObject or: [ currentStageObject hasTheObject: aStageObject ] ]
+		ifFound: [ :currentStageObject | ^true ]
+		ifNone: [ :currentStageObject | ^false ]! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:50:59'!
+FAILURE!
+!PlayableCharacter methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 19:52:32' prior: 50871725!
+addThePortableObject: aPortableObject 
+	
+	backpack add: aPortableObject.
+	
+	room remove: aPortableObject.
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:52:34'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 19:52:54'!
+remove: aNoPointsPortableObject 
+	self shouldBeImplemented.! !
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 19:53:05' prior: 50875383!
+remove: aPortableObject 
+	
+	! !
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 19:53:30' prior: 50875388!
+remove: aPortableObject 
+	
+	objectsDistribution findAndRemove: aPortableObject.! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:53:33'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 19:57:52' prior: 50875392!
+remove: aPortableObject 
+	
+	objectsDistribution remove: aPortableObject ifAbsent: [ 
+		objectsDistribution 
+			do: [ :aStageObject | aStageObject findAndRemove: aPortableObject from: self ]
+		]
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 19:57:56'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:10:38' prior: 50875402!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject ifAbsent: [
+			objectsDistribution do: [ :aStageObject | aStageObject findAndRemove: aPortableObject from: self ]
+		].
+	
+	objectsDistribution removeKey: objectPosition ifAbsent: []
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:10:39'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:11:29'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:11:34'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:11:40'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:12:26'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 20:15:19' prior: 50875357!
+hasTheObject: aStageObject
+	
+	objectsDistribution ifEmpty: [ ^ false].
+	
+	objectsDistribution 
+		detect: [ :currentStageObject | currentStageObject = aStageObject or: [ currentStageObject hasTheObject: aStageObject ] ]
+		ifFound: [ :currentStageObject | ^true ]
+		ifNone: [ :currentStageObject | ^false ]! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 20:15:20'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:15:20'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:15:20'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:15:22'!
+ERROR!
+!NonPortableObject methodsFor: 'removing' stamp: 'Gr 12/10/2020 20:15:37'!
+findAndRemove: aNoPointsPortableObject from: aRoom 
+	self shouldBeImplemented.! !
+!NonPortableObject methodsFor: 'removing' stamp: 'Gr 12/10/2020 20:16:55' prior: 50875548!
+findAndRemove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: [ 
+		objects do: [ :aStageObject | aStageObject findAndRemove: aPortableObject from: aRoom]
+		 ]! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:16:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:17:00'!
+FAILURE!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 20:17:49' prior: 50872298!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aPlayableCharacter armor drawer paper wardrobe |
+	
+	wardrobe := NonPortableObject named: 'Armario'.
+	
+	drawer := NonPortableObject named: 'Cajon'.
+	
+	paper := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	armor := NoPointsPortableObject named: 'Papel' weighing: 5.
+	
+	drawer add: paper.
+	
+	wardrobe add: armor.
+	
+	wardrobe add: drawer.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> wardrobe ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: paper).
+	self assert: (aPlayableCharacter backpackIncludes: armor).
+	self deny: (room hasTheObject: paper).
+	self deny: (room hasTheObject: armor).			! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:17:52'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:26:50'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:29:39'!
+ERROR!
+
+aPortableObject!
+
+	objects includes: aPortableObject!
+!NonPortableObject methodsFor: 'removing' stamp: 'Gr 12/10/2020 20:31:39' prior: 50875554!
+findAndRemove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: [ 
+		objects do: [ :aStageObject | aStageObject findAndRemove: aPortableObject from: aRoom]
+		 ].! !
+
+aPortableObject!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:35:14' prior: 50875415!
+remove: aPortableObject 
+	
+	objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]
+	! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:35:21'!
+ERROR!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:35:32'!
+hasTheObject: aNoPointsPortableObject 
+	self shouldBeImplemented.! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:37:51' prior: 50875645!
+hasTheObject: aPortableObject 
+	
+	^ objects 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]]
+		ifFound: [ :aStageObject | ^true]
+		ifNone: [ :aStageObject | ^false]! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:37:54'!
+ERROR!
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:38:00'!
+hasTheObject: aNoPointsPortableObject 
+	self shouldBeImplemented.! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:39:14' prior: 50875666!
+hasTheObject: aPortableObject 
+	
+	^self = aPortableObject! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:39:17'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:39:46'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:39:58'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:39:58'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:40:27'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:40:27'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:41:43' prior: 50875629!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectDistribution keyAtValue: aPortableObject.
+	
+	objectDistribution remove: objectPosition.
+	
+	"objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]"
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:41:44'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:41:56'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:41:56'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:42:06' prior: 50875704!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject.
+	
+	objectDistribution remove: objectPosition.
+	
+	"objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]"
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:42:06'!
+ERROR!
+
+Object subclass: #Room
+	instanceVariableNames: 'width height objectsDistribution'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!classDefinition: #Room category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 20:42:15'!
+Object subclass: #Room
+	instanceVariableNames: 'width height objectsDistribution'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:42:20'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:42:20'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:42:26' prior: 50875731!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject.
+	
+	objectsDistribution remove: objectPosition.
+	
+	"objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]"
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:42:27'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:42:46' prior: 50875772!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject.
+	
+	objectsDistribution remove: objectPosition ifAbsent: [].
+	
+	"objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]"
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:42:46'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:43:26' prior: 50875791!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject.
+	
+	objectsDistribution removeKey: objectPosition ifAbsent: [].
+	
+	"objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]"
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:43:27'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 20:43:29'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 20:43:55' prior: 50871789!
+test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (aNoPointsPortableObject ).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject).
+			! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 20:44:03' prior: 50875835!
+test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject
+
+	| room aNonPortableObject aPlayableCharacter aNoPointsPortableObject |
+	
+	aNonPortableObject := NonPortableObject named: 'Armario'.
+	
+	aNoPointsPortableObject := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	aNonPortableObject add: (aNoPointsPortableObject ).
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> aNonPortableObject ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: aNoPointsPortableObject).
+	self deny: (room hasTheObject: aNoPointsPortableObject)
+			! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:44:19'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:45:35' prior: 50875811!
+remove: aPortableObject 
+	
+	objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject removeFrom: self] 
+		ifNone: [ :aStageObject | ]
+	! !
+
+aStageObject = aPortableObject!
+
+aStageObject = aPortableObject!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:46:54'!
+ERROR!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:47:14'!
+removeFrom: aRoom 
+	self shouldBeImplemented.! !
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 20:49:38' prior: 50875891!
+remove: aPortableObject 
+	
+	objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject remove: aPortableObject from: self] 
+		ifNone: [ :aStageObject | ]
+	! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:49:41'!
+ERROR!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:49:45'!
+remove: aNoPointsPortableObject from: aRoom 
+	self shouldBeImplemented.! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:50:05' prior: 50875930!
+remove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: []! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:50:39'!
+ERROR!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 20:51:24' prior: 50875651!
+hasTheObject: aPortableObject 
+	
+	objects ifEmpty: [ ^false ].
+	
+	^ objects 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]]
+		ifFound: [ :aStageObject | ^true]
+		ifNone: [ :aStageObject | ^false]! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:51:25'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:52:40'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:54:53'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:55:53'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:55:53'!
+ERROR!
+!Room methodsFor: 'testing' stamp: 'Gr 12/10/2020 20:56:15' prior: 50875447!
+hasTheObject: aStageObject
+	
+	objectsDistribution ifEmpty: [ ^ false].
+	
+	objectsDistribution 
+		detect: [ :currentStageObject | currentStageObject = aStageObject or: [ currentStageObject hasTheObject: aStageObject ] ]
+		ifFound: [ :currentStageObject | ^true ]
+		ifNone: [ ^false ]! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:56:16'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 20:56:18'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:56:19'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:56:19'!
+FAILURE!
+
+aPlayableCharacter backpackIncludes: paper!
+
+aPortableObject!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 20:58:44' prior: 50875573!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aPlayableCharacter armor drawer paper wardrobe |
+	
+	wardrobe := NonPortableObject named: 'Armario'.
+	
+	drawer := NonPortableObject named: 'Cajon'.
+	
+	paper := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	armor := NoPointsPortableObject named: 'Armadura' weighing: 5.
+	
+	drawer add: paper.
+	
+	wardrobe add: armor.
+	
+	wardrobe add: drawer.
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> wardrobe ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: paper).
+	self assert: (aPlayableCharacter backpackIncludes: armor).
+	self deny: (room hasTheObject: paper).
+	self deny: (room hasTheObject: armor).			! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 20:58:49'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:03:38'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:03:46'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:07:10'!
+FAILURE!
+
+----SNAPSHOT----(10 December 2020 21:14:30) CuisUniversity-4384.image priorSource: 17258592!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:17:56' prior: 50872106 overrides: 50872123!
+addToBackPackOfPlayer: aPlayableCharacter 
+	
+	objects reverseDo: [ :aStageObject | aPlayableCharacter take: aStageObject ].! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:17:58'!
+FAILURE!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:22:59' prior: 50875947!
+hasTheObject: aPortableObject 
+	
+	^ objects 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]]
+		ifFound: [ :aStageObject | ^true]
+		ifNone: [ ^false ]! !
+
+self = aPortableObject!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 21:24:51' prior: 50875913!
+remove: aPortableObject 
+	
+	objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject remove: aPortableObject from: self] 
+		ifNone: [ :aStageObject | ]
+	! !
+
+aStageObject = aPortableObject!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:31:57' prior: 50875936!
+remove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: [
+		objects do: [ :aStageObject | aStageObject remove: aPortableObject from: aRoom]
+		]! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:32:00'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:32:32'!
+ERROR!
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:32:37'!
+remove: aNoPointsPortableObject from: aRoom 
+	self shouldBeImplemented.! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:32:57' prior: 50876123!
+remove: aPortableObject from: aRoom 
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:32:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:33:00'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:33:00'!
+ERROR!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:33:00'!
+FAILURE!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:33:00'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:33:08'!
+ERROR!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 21:33:23' prior: 50876092!
+remove: aPortableObject 
+	
+	objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject remove: aPortableObject from: self] 
+		ifNone: [ ]
+	! !
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:33:46'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:33:48'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:33:48'!
+FAILURE!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 21:37:03' prior: 50876226!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject ifAbsent: [
+		objectsDistribution 
+		detect: [ :aStageObject | aStageObject = aPortableObject or: [ aStageObject hasTheObject: aPortableObject ]] 
+		ifFound: [ :aStageObject | aStageObject remove: aPortableObject from: self] 
+		ifNone: [ ].
+		^ self.
+		].
+	
+	objectsDistribution removeKey: objectPosition 
+	
+	
+	! !
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 21:37:34' prior: 50876248!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject ifAbsent: [
+		objectsDistribution do: [ :aStageObject | aStageObject remove: aPortableObject ]
+		^ self.
+		].
+	
+	objectsDistribution removeKey: objectPosition 
+	
+	
+	! !
+
+!methodRemoval: NonPortableObject #removeFrom: stamp: 'Gr 12/10/2020 21:37:47'!
+removeFrom: aRoom 
+	self shouldBeImplemented.!
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:38:07' prior: 50876105!
+remove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: [
+		objects do: [ :aStageObject | aStageObject remove: aPortableObject]
+		]! !
+!PortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:38:21'!
+remove: aPortableObject  
+	
+	! !
+!NonPortableObject methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:38:21'!
+remove: aPortableObject  
+	
+	objects remove: aPortableObject ifAbsent: [
+		objects do: [ :aStageObject | aStageObject remove: aPortableObject]
+		]! !
+
+!methodRemoval: PortableObject #remove:from: stamp: 'Gr 12/10/2020 21:38:21'!
+remove: aPortableObject from: aRoom 
+	
+	!
+
+!methodRemoval: NonPortableObject #remove:from: stamp: 'Gr 12/10/2020 21:38:22'!
+remove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: [
+		objects do: [ :aStageObject | aStageObject remove: aPortableObject]
+		]!
+!Room methodsFor: 'actions' stamp: 'Gr 12/10/2020 21:38:35' prior: 50876264!
+remove: aPortableObject 
+	
+	| objectPosition |
+	
+	objectPosition := objectsDistribution keyAtValue: aPortableObject ifAbsent: [
+		objectsDistribution do: [ :aStageObject | aStageObject remove: aPortableObject ].
+		^ self.
+		].
+	
+	objectsDistribution removeKey: objectPosition 
+	
+	
+	! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:38:45'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:38:50'!
+PASSED!
+
+----SNAPSHOT----(10 December 2020 21:39:02) CuisUniversity-4384.image priorSource: 17421280!
+!StageObject methodsFor: 'nil' stamp: 'Gr 12/10/2020 21:39:50'!
+remove: aPortableObject
+
+	self subclassResponsibility.! !
+
+!methodRemoval: PortableObject #addToTheBackPack: stamp: 'Gr 12/10/2020 21:41:49'!
+addToTheBackPack: aPlayableCharacter 
+	
+	aPlayableCharacter addThePortableObject: self!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:41:58'!
+PASSED!
+
+!methodRemoval: NonPortableObject #findAndRemove:from: stamp: 'Gr 12/10/2020 21:42:28'!
+findAndRemove: aPortableObject from: aRoom 
+	
+	objects remove: aPortableObject ifAbsent: [ 
+		objects do: [ :aStageObject | aStageObject findAndRemove: aPortableObject from: aRoom]
+		 ].!
+
+!testRun: #BackpackTest #test01CanNotCreateBackpackWithZeroMaxWeight stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test02CanNotCreateBackpackWithNegativeMaxWeight stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test03CanNotCreateBackpackWithZeroMaxPoints stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test04CanNotCreateBackpackWithNegativeMaxPoints stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test05CanNotCreateBackpackWithNoIntegerMaxWeight stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test06CanNotCreateBackpackWithNoIntegerMaxPoints stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test07ShouldNotAddNoPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test08ShouldNotAddPointsPortableObjectIfWeightExceeded stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test09ShouldAddPortableObjectsIfWeightUnderMaxWeightCapacity stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test10ShouldAddPortableObjectsIfWeightEqualsMaxWeightCapacity stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test11ShouldAddZeroWeightWhenEmpty stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test12ShouldAddWeightWhenAddingPortableObjects stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test13ShouldAddZeroPointsWhenEmpty stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test14ShouldAddPointsWhenAddingPointsPortableObjects stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #BackpackTest #test15ShouldNotAddPointsWhenAddingNoPointsPortableObjects stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:42:31'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:44:42' overrides: 16927572!
+setUp
+
+	! !
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:45:32' prior: 50876652 overrides: 16927572!
+setUp
+
+	armario := NonPortableObject named: 'Armario'.
+	
+	cajon := NonPortableObject named: 'Cajon'.
+	
+	papel := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	armadura := NoPointsPortableObject named: 'Armadura' weighing: 5.
+	
+	cajon add: papel.
+	
+	armario add: armadura.
+	
+	armario add: cajon.! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:46:02' prior: 50876016!
+test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> armario ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: papel).
+	self assert: (aPlayableCharacter backpackIncludes: armadura).
+	self deny: (room hasTheObject: papel).
+	self deny: (room hasTheObject: armadura).			! !
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:46:08'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:46:45' prior: 50875860!
+test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> armario ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: armadura).
+	self deny: (room hasTheObject: armadura)
+			! !
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:46:49'!
+PASSED!
+
+!classDefinition: #PlayableCharacterTest category: 'ISW1-2020-2C-2doParcial' stamp: 'Gr 12/10/2020 21:47:21'!
+TestCase subclass: #PlayableCharacterTest
+	instanceVariableNames: 'papel armadura armario cajon caja'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2020-2C-2doParcial'!
+!PlayableCharacterTest methodsFor: 'as yet unclassified' stamp: 'Gr 12/10/2020 21:47:20' prior: 50876657 overrides: 16927572!
+setUp
+	
+	caja := NonPortableObject named: 'Caja'.
+	
+	armario := NonPortableObject named: 'Armario'.
+	
+	cajon := NonPortableObject named: 'Cajon'.
+	
+	papel := NoPointsPortableObject named: 'Papel' weighing: 1.
+	
+	armadura := NoPointsPortableObject named: 'Armadura' weighing: 5.
+	
+	cajon add: papel.
+	
+	armario add: armadura.
+	
+	armario add: cajon.! !
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:47:48' prior: 50872341!
+test17_playerCanTakeAPortableObjectThatIsInFrontOfHim
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> papel ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: (aPlayableCharacter backpackIncludes: papel ).
+	self deny: (room hasTheObject: papel)
+			! !
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:47:51'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:48:01' prior: 50870713!
+test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (4@4)-> papel ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack
+			! !
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:48:04'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:48:14' prior: 50870358!
+test15_playerCannotMoveForwardToPositionThatHasAStageObject
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> papel ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	self
+		should: [ aPlayableCharacter moveForward] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerMovingToInvalidPositionErrorDescription.
+			! !
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:48:28'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:48:40' prior: 50869636!
+test14_playerCannotStartSteppingOnAStageObject
+
+	| room |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@0)-> papel ).
+	
+	self
+		should: [ PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: PlayableCharacter playerSteppingOnStageObjectErrorDescription.
+			! !
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:48:41'!
+PASSED!
+!PlayableCharacterTest methodsFor: 'tests' stamp: 'Gr 12/10/2020 21:49:01' prior: 50871483!
+test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing
+
+	| room aPlayableCharacter |
+	
+	room := Room newOfSize: 5 and: 5 withObjects: (Dictionary with: (0@1)-> caja ).
+	
+	aPlayableCharacter := PlayableCharacter named: 'Luigi' using: self defaultBackpack at: 0@0 heading: #North inTheRoom: room. 
+	
+	aPlayableCharacter take.
+	
+	self assert: aPlayableCharacter hasEmptyBackpack 
+			! !
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test01_forwardWhenHeadingNorthIncrementsYCoordinate stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test02_backwardWhenHeadingNorthDecrementsYCoordinate stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test03_rotateRightWhenHeadingNorthHeadsEast stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test04_rotateLeftWhenHeadingNorthHeadsWest stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test05_movingWhenHeadingEastWorksAsExpected stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test06_movingWhenHeadingSouthWorksAsExpected stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test07_movingWhenHeadingWestWorksAsExpected stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test08_canNotCreatePlayableCharacterWhenHeadingIsNotValid stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test09_canTakePortableObjects stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test10_canNotTakeMoreObjectsThanTheBackpackCanCarry stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test11_playerCannotStartOutOfTheRoom stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test12_playerCannotMoveForwardOutOfTheRoom stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test13_playerCannotMoveBackwardsOutOfTheRoom stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test14_playerCannotStartSteppingOnAStageObject stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test15_playerCannotMoveForwardToPositionThatHasAStageObject stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test16_playerDoesnotTakeAnythingIfThereIsNothingInFrontOfHim stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test17_playerCanTakeAPortableObjectThatIsInFrontOfHim stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test18_playerTakingANonPortableObjectWithNoObjectsTakesNothing stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test19_playerTakingANonPortableObjectWithAPortableObjectTakesThePortableObject stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+!testRun: #PlayableCharacterTest #test20_playerTakingANonPortableObjectWithStageObjectsTakesEveryPortableObject stamp: 'Gr 12/10/2020 21:49:02'!
+PASSED!
+
+----SNAPSHOT----(10 December 2020 21:49:18) CuisUniversity-4384.image priorSource: 17432336!
+
+----QUIT----(10 December 2020 21:49:24) CuisUniversity-4384.image priorSource: 17461578!

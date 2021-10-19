@@ -1,0 +1,4734 @@
+
+
+----STARTUP---- (26 October 2020 13:36:32) as /home/john/Downloads/linux64/CuisUniversity-4365.image!
+
+
+!classRemoval: #MarsRover stamp: 'FS 10/26/2020 13:36:42'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position direction mapHeight mapWidth validOrders'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classRemoval: #WestDirection stamp: 'FS 10/26/2020 13:36:43'!
+GridDirection subclass: #WestDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classRemoval: #SouthDirection stamp: 'FS 10/26/2020 13:36:43'!
+GridDirection subclass: #SouthDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classRemoval: #NorthDirection stamp: 'FS 10/26/2020 13:36:43'!
+GridDirection subclass: #NorthDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classRemoval: #EastDirection stamp: 'FS 10/26/2020 13:36:44'!
+GridDirection subclass: #EastDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classRemoval: #GridDirection stamp: 'FS 10/26/2020 13:36:44'!
+Object subclass: #GridDirection
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classRemoval: #MarsRoverTest stamp: 'FS 10/26/2020 13:36:44'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+----End fileIn of /home/john/Desktop/ing1-2C2020/16-MarsRover/EjercicioMarsRover.st----!
+
+!classRenamed: #GridCardinalPoints as: #GridDirection stamp: 'FS 10/26/2020 13:37:10'!
+Smalltalk renameClassNamed: #GridCardinalPoints as: #GridDirection!
+
+!classRenamed: #GridDirection as: #GridCardinalDirection stamp: 'FS 10/26/2020 13:37:20'!
+Smalltalk renameClassNamed: #GridDirection as: #GridCardinalDirection!
+
+!classRenamed: #East as: #EastDirection stamp: 'FS 10/26/2020 13:37:26'!
+Smalltalk renameClassNamed: #East as: #EastDirection!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:26' prior: 50934448 overrides: 16927572!
+setUp
+	south _ South new.
+	north _ North new.
+	west _ West new.
+	east _ EastDirection new.! !
+!North methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:26' prior: 50934555 overrides: 50934476!
+rotateRight
+	^EastDirection new.! !
+!South methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:26' prior: 50934590 overrides: 50934471!
+rotateLeft
+	^EastDirection new.! !
+
+!classRenamed: #North as: #NorthDirection stamp: 'FS 10/26/2020 13:37:34'!
+Smalltalk renameClassNamed: #North as: #NorthDirection!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:34' prior: 50934788 overrides: 16927572!
+setUp
+	south _ South new.
+	north _ NorthDirection new.
+	west _ West new.
+	east _ EastDirection new.! !
+!EastDirection methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:34' prior: 50934508 overrides: 50934471!
+rotateLeft
+	^NorthDirection new.! !
+!West methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:34' prior: 50934629 overrides: 50934476!
+rotateRight
+	^NorthDirection new.! !
+
+!classRenamed: #South as: #SouthDirection stamp: 'FS 10/26/2020 13:37:40'!
+Smalltalk renameClassNamed: #South as: #SouthDirection!
+!West methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:40' prior: 50934625 overrides: 50934471!
+rotateLeft
+	^SouthDirection new.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:40' prior: 50934809 overrides: 16927572!
+setUp
+	south _ SouthDirection new.
+	north _ NorthDirection new.
+	west _ West new.
+	east _ EastDirection new.! !
+!EastDirection methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:40' prior: 50934512 overrides: 50934476!
+rotateRight
+	^SouthDirection new.! !
+
+!classRenamed: #West as: #WestDirection stamp: 'FS 10/26/2020 13:37:47'!
+Smalltalk renameClassNamed: #West as: #WestDirection!
+!SouthDirection methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:47' prior: 50934594 overrides: 50934476!
+rotateRight
+	^WestDirection new.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:47' prior: 50934835 overrides: 16927572!
+setUp
+	south _ SouthDirection new.
+	north _ NorthDirection new.
+	west _ WestDirection new.
+	east _ EastDirection new.! !
+!NorthDirection methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:37:47' prior: 50934551 overrides: 50934471!
+rotateLeft
+	^WestDirection new.! !
+!SouthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:07'!
+pointsEast	
+	^false.! !
+!WestDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:07'!
+pointsEast	
+	^false.! !
+!EastDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:07'!
+pointsEast
+	^true.! !
+!GridCardinalDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:07'!
+pointsEast
+	self subclassResponsibility.! !
+!NorthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:07' overrides: 50934879!
+pointsEast
+	^false.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:39:07' prior: 50934721!
+pointsEast
+	^direction pointsEast.! !
+
+!methodRemoval: SouthDirection #isEast stamp: 'FS 10/26/2020 13:39:07'!
+isEast	
+	^false.!
+
+!methodRemoval: WestDirection #isEast stamp: 'FS 10/26/2020 13:39:07'!
+isEast	
+	^false.!
+
+!methodRemoval: EastDirection #isEast stamp: 'FS 10/26/2020 13:39:07'!
+isEast
+	^true.!
+
+!methodRemoval: GridCardinalDirection #isEast stamp: 'FS 10/26/2020 13:39:07'!
+isEast
+	self subclassResponsibility.!
+
+!methodRemoval: NorthDirection #isEast stamp: 'FS 10/26/2020 13:39:07'!
+isEast
+	^false.!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:39:09'!
+PASSED!
+!WestDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:27'!
+pointsNorth
+	^false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:27'!
+pointsNorth
+	^true.! !
+!EastDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:27'!
+pointsNorth
+	^false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:27'!
+pointsNorth
+	^false.! !
+!GridCardinalDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:27'!
+pointsNorth
+	self subclassResponsibility.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:39:27' prior: 50934725!
+pointsNorth
+	^direction pointsNorth.! !
+
+!methodRemoval: WestDirection #isNorth stamp: 'FS 10/26/2020 13:39:27'!
+isNorth
+	^false.!
+
+!methodRemoval: NorthDirection #isNorth stamp: 'FS 10/26/2020 13:39:27'!
+isNorth
+	^true.!
+
+!methodRemoval: EastDirection #isNorth stamp: 'FS 10/26/2020 13:39:27'!
+isNorth
+	^false.!
+
+!methodRemoval: SouthDirection #isNorth stamp: 'FS 10/26/2020 13:39:27'!
+isNorth
+	^false.!
+
+!methodRemoval: GridCardinalDirection #isNorth stamp: 'FS 10/26/2020 13:39:27'!
+isNorth
+	self subclassResponsibility.!
+!GridCardinalDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:39'!
+pointsWest
+	self subclassResponsibility.! !
+!NorthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:39' overrides: 50935043!
+pointsWest
+	^false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:39' overrides: 50935043!
+pointsWest	
+	^false.! !
+!WestDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:39' overrides: 50935043!
+pointsWest	
+	^true.! !
+!EastDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:39' overrides: 50935043!
+pointsWest
+	^false.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:39:39' prior: 50934733!
+pointsWest
+	^direction pointsWest.! !
+
+!methodRemoval: GridCardinalDirection #isWest stamp: 'FS 10/26/2020 13:39:39'!
+isWest
+	self subclassResponsibility.!
+
+!methodRemoval: NorthDirection #isWest stamp: 'FS 10/26/2020 13:39:39'!
+isWest
+	^false.!
+
+!methodRemoval: SouthDirection #isWest stamp: 'FS 10/26/2020 13:39:39'!
+isWest	
+	^false.!
+
+!methodRemoval: WestDirection #isWest stamp: 'FS 10/26/2020 13:39:39'!
+isWest	
+	^true.!
+
+!methodRemoval: EastDirection #isWest stamp: 'FS 10/26/2020 13:39:39'!
+isWest
+	^false.!
+!EastDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:46'!
+pointsSouth
+	^false.! !
+!SouthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:46'!
+pointsSouth
+	^true.! !
+!WestDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:46'!
+pointsSouth
+	^false.! !
+!NorthDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:46'!
+pointsSouth
+	^false.! !
+!GridCardinalDirection methodsFor: 'testing' stamp: 'FS 10/26/2020 13:39:46'!
+pointsSouth
+	self subclassResponsibility.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:39:46' prior: 50934729!
+pointsSouth
+	^ direction pointsSouth.! !
+
+!methodRemoval: EastDirection #isSouth stamp: 'FS 10/26/2020 13:39:46'!
+isSouth
+	^false.!
+
+!methodRemoval: SouthDirection #isSouth stamp: 'FS 10/26/2020 13:39:46'!
+isSouth
+	^true.!
+
+!methodRemoval: WestDirection #isSouth stamp: 'FS 10/26/2020 13:39:46'!
+isSouth
+	^false.!
+
+!methodRemoval: NorthDirection #isSouth stamp: 'FS 10/26/2020 13:39:46'!
+isSouth
+	^false.!
+
+!methodRemoval: GridCardinalDirection #isSouth stamp: 'FS 10/26/2020 13:39:46'!
+isSouth
+	self subclassResponsibility.!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:39:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:39:50'!
+PASSED!
+!NorthDirection methodsFor: 'movement' stamp: 'FS 10/26/2020 13:40:14'!
+forwardPointOffset
+	^0@1.! !
+!EastDirection methodsFor: 'movement' stamp: 'FS 10/26/2020 13:40:14'!
+forwardPointOffset
+	^-1@0.! !
+!GridCardinalDirection methodsFor: 'movement directions' stamp: 'FS 10/26/2020 13:40:14'!
+forwardPointOffset
+	self subclassResponsibility.! !
+!SouthDirection methodsFor: 'movement' stamp: 'FS 10/26/2020 13:40:14' overrides: 50935328!
+forwardPointOffset
+	^0@-1.! !
+!WestDirection methodsFor: 'movement' stamp: 'FS 10/26/2020 13:40:14' overrides: 50935328!
+forwardPointOffset
+	^1@0.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:40:14' prior: 50934667!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction forwardPointOffset).].
+		$b -> [position _ position + (direction forwardPointOffset).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!methodRemoval: NorthDirection #movementValue stamp: 'FS 10/26/2020 13:40:15'!
+movementValue
+	^0@1.!
+
+!methodRemoval: EastDirection #movementValue stamp: 'FS 10/26/2020 13:40:15'!
+movementValue
+	^-1@0.!
+
+!methodRemoval: GridCardinalDirection #movementValue stamp: 'FS 10/26/2020 13:40:15'!
+movementValue
+	self subclassResponsibility.!
+
+!methodRemoval: SouthDirection #movementValue stamp: 'FS 10/26/2020 13:40:15'!
+movementValue
+	^0@-1.!
+
+!methodRemoval: WestDirection #movementValue stamp: 'FS 10/26/2020 13:40:15'!
+movementValue
+	^1@0.!
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:42:19' prior: 50934695!
+executeValidOrder: aValidOrderToExecute
+	|BlockOperation |
+	(validOrders at: aValidOrderToExecute) value.
+	self fixPositionWithinBorder.! !
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:42:34' prior: 50935376!
+executeValidOrder: aValidOrderToExecute
+	(validOrders at: aValidOrderToExecute) value.
+	self fixPositionWithinBorder.! !
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:42:45' prior: 50935383!
+executeValidOrder: aValidOrderToExecute
+	(validOrders at: aValidOrderToExecute) value.
+	self fixPositionWithinBorder.! !
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:43:30' prior: 50935390!
+executeValidOrder: aValidOrderToExecute
+	| OrderOperationBlock |
+	OrderOperationBlock := validOrders at: aValidOrderToExecute.
+	(OrderOperationBlock) value.
+	self fixPositionWithinBorder.! !
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:43:38' prior: 50935397!
+executeValidOrder: aValidOrderToExecute
+	| OrderOperationBlock |
+	
+	OrderOperationBlock := validOrders at: aValidOrderToExecute.
+	(OrderOperationBlock) value.
+	
+	self fixPositionWithinBorder.! !
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 13:48:28'!
+fixYaxisWhenOffgrid
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1]! !
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 13:48:28' prior: 50934684!
+fixPositionWithinBorder
+
+	self fixYaxisWhenOffgrid.
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)].! !
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 13:48:47'!
+fixXaxisWhenOffgrid
+
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)]! !
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 13:48:47' prior: 50935423!
+fixPositionWithinBorder
+
+	self fixYaxisWhenOffgrid.
+	self fixXaxisWhenOffgrid.! !
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 13:49:16'!
+fixXaxisWhenOutsideGrid
+
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:49:16' prior: 50935439!
+fixPositionWithinBorder
+
+	self fixYaxisWhenOffgrid.
+	self fixXaxisWhenOutsideGrid.! !
+
+!methodRemoval: MarsRover #fixXaxisWhenOffgrid stamp: 'FS 10/26/2020 13:49:16'!
+fixXaxisWhenOffgrid
+
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)]!
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 13:49:25'!
+fixYaxisWhenOutsideGrid
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 13:49:25' prior: 50935452!
+fixPositionWithinBorder
+
+	self fixYaxisWhenOutsideGrid.
+	self fixXaxisWhenOutsideGrid.! !
+
+!methodRemoval: MarsRover #fixYaxisWhenOffgrid stamp: 'FS 10/26/2020 13:49:26'!
+fixYaxisWhenOffgrid
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1]!
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:50:21' prior: 50934711!
+shouldBeExecuted: anOrderToExecute
+
+	^validOrders includes: anOrderToExecute.
+! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:23'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:25'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:25'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:25'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:25'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:27'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:27'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:50:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:50:51'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:50:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:50:52'!
+ERROR!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:19:27' prior: 50935485!
+shouldBeExecuted: anOrderToExecute
+
+	(validOrders at: anOrderToExecute ifAbsent: [^false]).
+	^true.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:51:30'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:51:46' prior: 50936385!
+shouldBeExecuted: anOrderToExecute
+
+	^validOrders includes: anOrderToExecute  .
+	 ! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:51:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:51:48'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'FS 10/26/2020 13:52:31' prior: 50936491!
+shouldBeExecuted: anOrderToExecute
+
+	^validOrders includesKey: anOrderToExecute  .
+	 ! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:52:32'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:53:10' prior: 50935341!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position + (direction forwardPointOffset).].
+		$b -> [position _ position - (direction forwardPointOffset).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:53:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:53:11'!
+FAILURE!
+!WestDirection methodsFor: 'movement arithmetic' stamp: 'FS 10/26/2020 13:53:19' prior: 50935337 overrides: 50935328!
+forwardPointOffset
+	^-1@0.! !
+!SouthDirection methodsFor: 'movement arithmetic' stamp: 'FS 10/26/2020 13:53:26' prior: 50935333 overrides: 50935328!
+forwardPointOffset
+	^0@1.! !
+!NorthDirection methodsFor: 'movement arithmetic' stamp: 'FS 10/26/2020 13:53:30' prior: 50935320 overrides: 50935328!
+forwardPointOffset
+	^0@-1.! !
+!EastDirection methodsFor: 'movement arithmetic' stamp: 'FS 10/26/2020 13:53:36' prior: 50935324 overrides: 50935328!
+forwardPointOffset
+	^1@0.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:53:38'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:17'!
+forwardOperationBlock
+
+	^ [position _ position + (direction forwardPointOffset).]! !
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:17' prior: 50936702!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> self forwardOperationBlock.
+		$b -> [position _ position - (direction forwardPointOffset).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:55:19'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:32'!
+backwardOperationBlock
+
+	^ [position _ position - (direction forwardPointOffset).]! !
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:32' prior: 50936945!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> self forwardOperationBlock.
+		$b -> self backwardOperationBlock.
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:46'!
+rotateRightOperationBlock
+
+	^ [direction _ direction rotateRight.]! !
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:46' prior: 50937067!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> self forwardOperationBlock.
+		$b -> self backwardOperationBlock.
+		$r -> self rotateRightOperationBlock.
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:57'!
+rotateLeftOperationBlock
+
+	^ [direction _ direction rotateLeft.]! !
+!MarsRover methodsFor: 'initialization' stamp: 'FS 10/26/2020 13:55:57' prior: 50937088!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> self forwardOperationBlock.
+		$b -> self backwardOperationBlock.
+		$r -> self rotateRightOperationBlock.
+		$l -> self rotateLeftOperationBlock.
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:56:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:58:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:58:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:58:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:58:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 13:58:17'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 13:59:33'!
+RoverAt2_2facingSouthIn3by3Grid
+
+	^ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 13:59:33' prior: 50934254!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverAt2_2facingSouthIn3by3Grid.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 13:59:50' prior: 50937346!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverAt2_2facingSouthIn3by3Grid.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 13:59:54'!
+RoverAt2x2facingSouthIn3by3Grid
+
+	^ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3! !
+
+!methodRemoval: MarsRoverTest #RoverAt2_2facingSouthIn3by3Grid stamp: 'FS 10/26/2020 14:00:07'!
+RoverAt2_2facingSouthIn3by3Grid
+
+	^ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:00:16' prior: 50937355!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverAt2x2facingSouthIn3by3Grid.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'HG 10/25/2020 14:29:21' prior: 50937378!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'HG 10/25/2020 14:29:21' prior: 50937387!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+
+!methodRemoval: MarsRoverTest #RoverAt2x2facingSouthIn3by3Grid stamp: 'FS 10/26/2020 14:01:10'!
+RoverAt2x2facingSouthIn3by3Grid
+
+	^ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:04:54'!
+RoverIn3by3GridStartingAt: aStartingPoint pointing: aCardinalDirection
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:05:15' prior: 50937415!
+RoverIn3by3GridStartingAt: aStartingPoint pointing: aCardinalDirection
+	 
+	^MarsRover startingAt: aStartingPoint pointingTo: aCardinalDirection withMapHeight: 3 withMapWidth: 3.
+	
+	 ! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:05:39' prior: 50937398!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:05:47' prior: 50934264!
+test03movingBackwardWithSouthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:05:58'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:06:07' prior: 50934158!
+test04rotatingLeftDirectionFromSouthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: 'l'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:06:09'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:06:21' prior: 50934170!
+test05rotatingRightDirectionFromSouthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:06:22'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:06:45' prior: 50934274!
+test06movingForwardWithNorthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:07:10' prior: 50934284!
+test07movingBackwardWithNorthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:07:12' prior: 50937798!
+test07movingBackwardWithNorthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:07:51' prior: 50934182!
+test08rotatingRightDirectionFromNorthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: 'r'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:07:56' prior: 50934194!
+test09rotatingLeftDirectionFromNorthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:08:05' prior: 50934294!
+test10movingForwardWithWestDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@2! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:08:11' prior: 50934304!
+test11movingBackwardWithWestDirectionGoesRightInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@2! !
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:08:11'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:08:19' prior: 50934206!
+test12rotatingRightDirectionFromWestPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:08:30' prior: 50934218!
+test13rotatingLeftDirectionFromWestPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:08:31'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:08:45' prior: 50934314!
+test14movingForwardWithEastDirectionGoesRightInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@2.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:09:16' prior: 50934230!
+test16rotatingRightDirectionFromEastPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:09:21' prior: 50934242!
+test17rotatingLeftDirectionFromEastPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:09:29' prior: 50934324!
+test15movingBackwardWithEastDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@2.! !
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:09:33'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:09:46' prior: 50934334!
+test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: west.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:09:57' prior: 50934345!
+test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: north.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:03' prior: 50934356!
+test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@3 pointing: south.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:10:04'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:11' prior: 50934367!
+test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 3@1 pointing: east.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:17' prior: 50934378!
+test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 3@1 pointing: west.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:22' prior: 50934389!
+test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@3 pointing: north.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:10:23'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:30' prior: 50934400!
+test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: east.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:10:31'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:45' prior: 50934411!
+test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: south.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:47' prior: 50938528!
+test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: north.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:47'!
+FAILURE!
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:10:50' prior: 50938539!
+test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: south.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:10:51'!
+PASSED!
+!MarsRoverTest methodsFor: 'multiple orders tests' stamp: 'FS 10/26/2020 14:10:57' prior: 50934422!
+test26assertValidOrderSequenceGoingForwardAndRotate
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: south.
+	
+	Rover receiveOrder: 'ffr'.
+	
+	self assert: Rover currentPosition equals: 1@3.
+	self assert: Rover pointsWest.! !
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'FS 10/26/2020 14:11:08' prior: 50934433!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: south.
+			Rover receiveOrder: 'frNKf'.
+			]
+		raise: Error
+		withMessageText: MarsRover invalidErrorCharacterDescription. 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:11:16'!
+PASSED!
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:13:12'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:13:13'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:13:14'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder rotateRightOrder'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:13:15'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder rotateRightOrder rotateLeftOrder'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!MarsRoverTest methodsFor: 'setUp' stamp: 'FS 10/26/2020 14:13:10' prior: 50934857 overrides: 16927572!
+setUp
+	south _ SouthDirection new.
+	north _ NorthDirection new.
+	west _ WestDirection new.
+	east _ EastDirection new.
+	
+	forwardOrder _ 'f'.
+	backwardOrder _ 'b'.
+	rotateRightOrder _ 'r'.
+	rotateLeftOrder _ 'l'.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:13:24'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:13:33' prior: 50937558!
+test04rotatingLeftDirectionFromSouthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:13:38' prior: 50937673!
+test05rotatingRightDirectionFromSouthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:13:43' prior: 50937818!
+test08rotatingRightDirectionFromNorthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:13:48' prior: 50937830!
+test09rotatingLeftDirectionFromNorthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:13:49'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:13:55' prior: 50937965!
+test12rotatingRightDirectionFromWestPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:14:08' prior: 50937977!
+test13rotatingLeftDirectionFromWestPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:14:14' prior: 50938102!
+test16rotatingRightDirectionFromEastPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: rotateRightOrder.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:14:21' prior: 50938114!
+test17rotatingLeftDirectionFromEastPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:14:22'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:14:31' prior: 50937435!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: forwardOrder .
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:14:35' prior: 50937445!
+test03movingBackwardWithSouthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: south.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:14:42' prior: 50937788!
+test06movingForwardWithNorthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:14:46' prior: 50937808!
+test07movingBackwardWithNorthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: north.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:14:50' prior: 50937842!
+test10movingForwardWithWestDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 1@2! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:14:55' prior: 50937852!
+test11movingBackwardWithWestDirectionGoesRightInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: west.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 3@2! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:15:05' prior: 50938092!
+test14movingForwardWithEastDirectionGoesRightInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: forwardOrder .
+	
+	self assert: Rover currentPosition equals: 3@2.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:15:09' prior: 50938126!
+test15movingBackwardWithEastDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 2@2 pointing: east.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 1@2.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:18' prior: 50938140!
+test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: west.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:15:19'!
+PASSED!
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:23' prior: 50938151!
+test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: north.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:26' prior: 50938162!
+test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@3 pointing: south.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:28' prior: 50938277!
+test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 3@1 pointing: east.
+	
+	Rover receiveOrder:forwardOrder.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:31' prior: 50939463!
+test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 3@1 pointing: east.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:37' prior: 50938288!
+test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 3@1 pointing: west.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:40' prior: 50938299!
+test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@3 pointing: north.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:44' prior: 50938414!
+test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: east.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+!MarsRoverTest methodsFor: 'movement grid border tests' stamp: 'FS 10/26/2020 14:15:47' prior: 50938554!
+test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: 1@1 pointing: south.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:15:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:15:59'!
+PASSED!
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:16:33'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder rotateRightOrder rotateLeftOrder center3by3GridPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!MarsRoverTest methodsFor: 'setUp' stamp: 'FS 10/26/2020 14:16:32' prior: 50938831 overrides: 16927572!
+setUp
+	south _ SouthDirection new.
+	north _ NorthDirection new.
+	west _ WestDirection new.
+	east _ EastDirection new.
+	
+	forwardOrder _ 'f'.
+	backwardOrder _ 'b'.
+	rotateRightOrder _ 'r'.
+	rotateLeftOrder _ 'l'.
+	
+	center3by3GridPoint _ 2@2.! !
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:16:48'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder rotateRightOrder rotateLeftOrder center3by3GridPoint centerPoint3by3Grid'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!MarsRoverTest methodsFor: 'setUp' stamp: 'FS 10/26/2020 14:16:46' prior: 50939643 overrides: 16927572!
+setUp
+	south _ SouthDirection new.
+	north _ NorthDirection new.
+	west _ WestDirection new.
+	east _ EastDirection new.
+	
+	forwardOrder _ 'f'.
+	backwardOrder _ 'b'.
+	rotateRightOrder _ 'r'.
+	rotateLeftOrder _ 'l'.
+	
+	centerPoint3by3Grid _ 2@2.! !
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder rotateRightOrder rotateLeftOrder centerPoint3by3Grid'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #MarsRoverTest category: #EjercicioMarsRover stamp: 'FS 10/26/2020 14:16:59'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east forwardOrder backwardOrder rotateRightOrder rotateLeftOrder centerPoint3by3Grid'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:07' prior: 50938941!
+test04rotatingLeftDirectionFromSouthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: south.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:11' prior: 50938965!
+test08rotatingRightDirectionFromNorthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: north.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:16' prior: 50938953!
+test05rotatingRightDirectionFromSouthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: south.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:21' prior: 50938977!
+test09rotatingLeftDirectionFromNorthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: north.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:24' prior: 50939093!
+test12rotatingRightDirectionFromWestPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: west.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:26' prior: 50939105!
+test13rotatingLeftDirectionFromWestPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: west.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:32' prior: 50939117!
+test16rotatingRightDirectionFromEastPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: east.
+	
+	Rover receiveOrder: rotateRightOrder.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:17:35' prior: 50939129!
+test17rotatingLeftDirectionFromEastPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: east.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:39' prior: 50939245!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: south.
+	
+	Rover receiveOrder: forwardOrder .
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:42' prior: 50939255!
+test03movingBackwardWithSouthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: south.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:45' prior: 50939265!
+test06movingForwardWithNorthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: north.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:47' prior: 50939275!
+test07movingBackwardWithNorthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: north.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:51' prior: 50939285!
+test10movingForwardWithWestDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: west.
+	
+	Rover receiveOrder: forwardOrder.
+	
+	self assert: Rover currentPosition equals: 1@2! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:55' prior: 50939295!
+test11movingBackwardWithWestDirectionGoesRightInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: west.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 3@2! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:17:58' prior: 50939305!
+test14movingForwardWithEastDirectionGoesRightInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: east.
+	
+	Rover receiveOrder: forwardOrder .
+	
+	self assert: Rover currentPosition equals: 3@2.! !
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'FS 10/26/2020 14:18:02' prior: 50939315!
+test15movingBackwardWithEastDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: east.
+	
+	Rover receiveOrder: backwardOrder .
+	
+	self assert: Rover currentPosition equals: 1@2.! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:18:13'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:19:20'!
+assertThatOnlyPointsEast: Rover
+
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:19:20' prior: 50939695!
+test04rotatingLeftDirectionFromSouthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: south.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self assertThatOnlyPointsEast: Rover.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:19:43'!
+assertThatOnlyPointsWest: Rover
+
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:19:43' prior: 50939721!
+test05rotatingRightDirectionFromSouthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: south.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self assertThatOnlyPointsWest: Rover.! !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:19:48'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:20:10' prior: 50939708!
+test08rotatingRightDirectionFromNorthPointsEast
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: north.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self assertThatOnlyPointsEast: Rover
+! !
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:20:11'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:20:24' prior: 50939734!
+test09rotatingLeftDirectionFromNorthPointsWest
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: north.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self assertThatOnlyPointsWest: Rover
+! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:20:49'!
+assertThatOnlyPointsNorth: Rover
+
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:20:49' prior: 50939747!
+test12rotatingRightDirectionFromWestPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: west.
+	
+	Rover receiveOrder: rotateRightOrder .
+	
+	self assertThatOnlyPointsNorth: Rover.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:21:14'!
+assertThatOnlyPointsSouth: Rover
+
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:21:14' prior: 50939760!
+test13rotatingLeftDirectionFromWestPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: west.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self assertThatOnlyPointsSouth: Rover.! !
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:21:23' prior: 50939773!
+test16rotatingRightDirectionFromEastPointsSouth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: east.
+	
+	Rover receiveOrder: rotateRightOrder.
+	
+	self assertThatOnlyPointsSouth: Rover.! !
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:21:23'!
+PASSED!
+!MarsRoverTest methodsFor: 'rotating tests' stamp: 'FS 10/26/2020 14:21:32' prior: 50939786!
+test17rotatingLeftDirectionFromEastPointsNorth
+	| Rover|
+	Rover _ self RoverIn3by3GridStartingAt: centerPoint3by3Grid pointing: east.
+	
+	Rover receiveOrder: rotateLeftOrder .
+	
+	self assertThatOnlyPointsNorth: Rover.! !
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:21:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'FS 10/26/2020 14:23:55'!
+PASSED!
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 14:24:49'!
+fixXCoordinateWhenOutsideGrid
+
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 14:24:49' prior: 50935472!
+fixPositionWithinBorder
+
+	self fixYaxisWhenOutsideGrid.
+	self fixXCoordinateWhenOutsideGrid.! !
+
+!methodRemoval: MarsRover #fixXaxisWhenOutsideGrid stamp: 'FS 10/26/2020 14:24:49'!
+fixXaxisWhenOutsideGrid
+
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)]!
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 14:25:00'!
+fixYCoordinateWhenOutsideGrid
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 14:25:00' prior: 50940620!
+fixPositionWithinBorder
+
+	self fixYCoordinateWhenOutsideGrid.
+	self fixXCoordinateWhenOutsideGrid.! !
+
+!methodRemoval: MarsRover #fixYaxisWhenOutsideGrid stamp: 'FS 10/26/2020 14:25:00'!
+fixYaxisWhenOutsideGrid
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1]!
+!MarsRover methodsFor: 'movement - private' stamp: 'FS 10/26/2020 14:25:21'!
+fixPositionWhenOutsideBorder
+
+	self fixYCoordinateWhenOutsideGrid.
+	self fixXCoordinateWhenOutsideGrid.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'FS 10/26/2020 14:25:21' prior: 50935406!
+executeValidOrder: aValidOrderToExecute
+	| OrderOperationBlock |
+	
+	OrderOperationBlock := validOrders at: aValidOrderToExecute.
+	(OrderOperationBlock) value.
+	
+	self fixPositionWhenOutsideBorder.! !
+
+!methodRemoval: MarsRover #fixPositionWithinBorder stamp: 'FS 10/26/2020 14:25:21'!
+fixPositionWithinBorder
+
+	self fixYCoordinateWhenOutsideGrid.
+	self fixXCoordinateWhenOutsideGrid.!

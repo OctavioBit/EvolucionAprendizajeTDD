@@ -1,0 +1,1447 @@
+
+
+----STARTUP---- (17 November 2020 13:16:41) as /home/dn-01/Escritorio/Ingenieria en Software I/CuisLimpio/linux64/CuisUniversity-4384.image!
+
+
+Object subclass: #Carro
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Carro category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 13:17:18'!
+Object subclass: #Carro
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+TestCase subclass: #CarroTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #CarroTest category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 13:17:32'!
+TestCase subclass: #CarroTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classRenamed: #CarroTest as: #CartTest stamp: 'D S 11/17/2020 13:21:16'!
+Smalltalk renameClassNamed: #CarroTest as: #CartTest!
+
+!classRenamed: #Carro as: #Cart stamp: 'D S 11/17/2020 13:21:30'!
+Smalltalk renameClassNamed: #Carro as: #Cart!
+!CartTest methodsFor: 'no messages' stamp: 'D S 11/17/2020 13:22:33'!
+test01
+	|aCart|
+	
+	aCart := Cart new.
+	self assert: 0 equals: aCart quantityItemsInside! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:22:39' prior: 50867800!
+test01
+	|aCart|
+	
+	aCart := Cart new.
+	self assert: 0 equals: aCart quantityItemsInside.! !
+!Cart methodsFor: 'no messages' stamp: 'D S 11/17/2020 13:22:51'!
+quantityItemsInside
+
+	^0.! !
+
+!testRun: #CartTest #test01 stamp: 'D S 11/17/2020 13:22:54'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:25:13'!
+test02
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook'.
+	self assert: 1 equals: aCart quantityItemsInside.! !
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:25:43'!
+ERROR!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:25:43'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:25:52' prior: 50867817!
+test02
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook'.
+	self assert: 1 equals: aCart itemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:26:00' prior: 50867828!
+test02
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' quantity: 1.
+	self assert: 1 equals: aCart itemsInside.! !
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:26:04'!
+ERROR!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:26:04'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:26:10' prior: 50867835!
+test02
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: 1 equals: aCart itemsInside.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:26:48'!
+addBook: aBook Quantity: aQuantity
+
+	^0.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:27:07' prior: 50867847!
+test02
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:27:16' prior: 50867854!
+addBook: aBook Quantity: aQuantity
+
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:27:39'!
+itemsInside
+
+	^Bag with: 'aBook'
+	! !
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:27:44'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:29:07'!
+test03
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart quantityItemsInside .! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:29:13' prior: 50867877!
+test03
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .! !
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:29:16'!
+FAILURE!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:29:16'!
+FAILURE!
+!Cart class methodsFor: 'no messages' stamp: 'D S 11/17/2020 13:30:02' overrides: 16883149!
+initialize
+
+	^self new initialize! !
+
+!classDefinition: #Cart category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 13:30:25'!
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:30:23' overrides: 16896425!
+initialize
+
+	items := Bag new.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:30:36' prior: 50867867!
+addBook: aBook Quantity: aQuantity
+
+	items add: 'aBook'.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:30:53' prior: 50867871!
+itemsInside
+
+	^items copy
+	! !
+
+!testRun: #CartTest #test01 stamp: 'D S 11/17/2020 13:30:56'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:30:56'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:30:56'!
+FAILURE!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:30:56'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:31:08' prior: 50867917!
+addBook: aBook Quantity: aQuantity
+
+	items add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'D S 11/17/2020 13:31:11'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:31:11'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:31:11'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:31:22'!
+test04
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside .! !
+
+!testRun: #CartTest #test04 stamp: 'D S 11/17/2020 13:31:26'!
+FAILURE!
+
+!testRun: #CartTest #test04 stamp: 'D S 11/17/2020 13:31:26'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:31:46' prior: 50867935!
+addBook: aBook Quantity: aQuantity
+
+	aQuantity timesRepeat: [items add: aBook].! !
+
+!testRun: #CartTest #test01 stamp: 'D S 11/17/2020 13:31:50'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:31:50'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:31:50'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'D S 11/17/2020 13:31:50'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:33:26'!
+test05
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: 1 equals: aCart quantityItemsInside.! !
+
+!testRun: #CartTest #test05 stamp: 'D S 11/17/2020 13:33:30'!
+FAILURE!
+
+!testRun: #CartTest #test05 stamp: 'D S 11/17/2020 13:33:30'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:33:49' prior: 50867811!
+quantityItemsInside
+
+	items isEmpty ifTrue:[^0].
+	^1.! !
+
+!testRun: #CartTest #test01 stamp: 'D S 11/17/2020 13:33:52'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:33:52'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:33:52'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'D S 11/17/2020 13:33:52'!
+PASSED!
+
+!testRun: #CartTest #test05 stamp: 'D S 11/17/2020 13:33:52'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:34:15'!
+test06
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 2.
+	self assert: 3 equals: aCart quantityItemsInside.! !
+
+!testRun: #CartTest #test06 stamp: 'D S 11/17/2020 13:34:18'!
+FAILURE!
+
+!testRun: #CartTest #test06 stamp: 'D S 11/17/2020 13:34:18'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:34:32' prior: 50867985!
+quantityItemsInside
+
+	^items size.! !
+
+!testRun: #CartTest #test01 stamp: 'D S 11/17/2020 13:34:35'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'D S 11/17/2020 13:34:35'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'D S 11/17/2020 13:34:35'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'D S 11/17/2020 13:34:35'!
+PASSED!
+
+!testRun: #CartTest #test05 stamp: 'D S 11/17/2020 13:34:35'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'D S 11/17/2020 13:34:35'!
+PASSED!
+
+----SNAPSHOT----(17 November 2020 13:34:46) CuisUniversity-4384.image priorSource: 17155564!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:53:20'!
+test01NewCartHasNoItemInside
+	|aCart|
+	
+	aCart := Cart new.
+	self assert: 0 equals: aCart quantityItemsInside.! !
+
+!methodRemoval: CartTest #test01 stamp: 'D S 11/17/2020 13:53:20'!
+test01
+	|aCart|
+	
+	aCart := Cart new.
+	self assert: 0 equals: aCart quantityItemsInside.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:53:56'!
+test02AddingABookToTheCartAppearsInside
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.! !
+
+!methodRemoval: CartTest #test02 stamp: 'D S 11/17/2020 13:53:56'!
+test02
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:54:21'!
+test03AddingTwoBooksAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .! !
+
+!methodRemoval: CartTest #test03 stamp: 'D S 11/17/2020 13:54:21'!
+test03
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:54:29'!
+test03AddingTwoDifferentsBooksAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .! !
+
+!methodRemoval: CartTest #test03AddingTwoBooksAppearsInsideTheCart stamp: 'D S 11/17/2020 13:54:29'!
+test03AddingTwoBooksAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:54:57'!
+test04AddingTwoBooksThatAreTheSameAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside .! !
+
+!methodRemoval: CartTest #test04 stamp: 'D S 11/17/2020 13:54:57'!
+test04
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside .!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:55:30'!
+test05AddingABookAffectsQuantityOfItems
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: 1 equals: aCart quantityItemsInside.! !
+
+!methodRemoval: CartTest #test05 stamp: 'D S 11/17/2020 13:55:30'!
+test05
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: 1 equals: aCart quantityItemsInside.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:55:52'!
+test06AddingMoreThanOneBookAffectsQuantityOfItems
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 2.
+	self assert: 3 equals: aCart quantityItemsInside.! !
+
+!methodRemoval: CartTest #test06 stamp: 'D S 11/17/2020 13:55:52'!
+test06
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 2.
+	self assert: 3 equals: aCart quantityItemsInside.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:56:02'!
+test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside .! !
+
+!methodRemoval: CartTest #test04AddingTwoBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/17/2020 13:56:02'!
+test04AddingTwoBooksThatAreTheSameAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside .!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:56:12'!
+test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .! !
+
+!methodRemoval: CartTest #test03AddingTwoDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/17/2020 13:56:12'!
+test03AddingTwoDifferentsBooksAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside .!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:58:59'!
+test07
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 13:59:26'!
+errorDescriptionQuantityMustBePositive
+
+	^'The quantity must be positive'! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/17/2020 13:59:35'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/17/2020 13:59:35'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/17/2020 13:59:35'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/17/2020 13:59:35'!
+PASSED!
+
+!testRun: #CartTest #test05AddingABookAffectsQuantityOfItems stamp: 'D S 11/17/2020 13:59:35'!
+PASSED!
+
+!testRun: #CartTest #test06AddingMoreThanOneBookAffectsQuantityOfItems stamp: 'D S 11/17/2020 13:59:35'!
+PASSED!
+
+!testRun: #CartTest #test07 stamp: 'D S 11/17/2020 13:59:35'!
+FAILURE!
+
+!testRun: #CartTest #test07 stamp: 'D S 11/17/2020 13:59:35'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:00:18' prior: 50867959!
+addBook: aBook Quantity: aQuantity
+
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive].
+	aQuantity timesRepeat: [items add: aBook].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:00:21' prior: 50868228!
+addBook: aBook Quantity: aQuantity
+
+	
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive].
+	aQuantity timesRepeat: [items add: aBook].! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+
+!testRun: #CartTest #test05AddingABookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+
+!testRun: #CartTest #test06AddingMoreThanOneBookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+
+!testRun: #CartTest #test07 stamp: 'D S 11/17/2020 14:00:25'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:00:45'!
+test08
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test05AddingABookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test06AddingMoreThanOneBookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test07 stamp: 'D S 11/17/2020 14:00:53'!
+PASSED!
+
+!testRun: #CartTest #test08 stamp: 'D S 11/17/2020 14:00:53'!
+FAILURE!
+
+!testRun: #CartTest #test08 stamp: 'D S 11/17/2020 14:00:53'!
+FAILURE!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:01:14'!
+errorDescriptionEmptyName
+
+	^'The name of the cannot be empty'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:01:35' prior: 50868237!
+addBook: aBook Quantity: aQuantity
+
+	(aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ].
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive ].
+	aQuantity timesRepeat: [items add: aBook ].! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test05AddingABookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test06AddingMoreThanOneBookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test07 stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+
+!testRun: #CartTest #test08 stamp: 'D S 11/17/2020 14:01:39'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:02:20' prior: 50868166!
+test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:02:35' prior: 50868045!
+test02AddingABookToTheCartAppearsInside
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.
+	self assert: 1 equals: aCart quantityItemsInside.	! !
+
+!methodRemoval: CartTest #test05AddingABookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:02:46'!
+test05AddingABookAffectsQuantityOfItems
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: 1 equals: aCart quantityItemsInside.!
+
+!methodRemoval: CartTest #test06AddingMoreThanOneBookAffectsQuantityOfItems stamp: 'D S 11/17/2020 14:03:07'!
+test06AddingMoreThanOneBookAffectsQuantityOfItems
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 2.
+	self assert: 3 equals: aCart quantityItemsInside.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:03:21' prior: 50868147!
+test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart
+	|aCart|
+	
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:03:56'!
+test05AddingAQuantityOfZeroRaiseError
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]! !
+
+!methodRemoval: CartTest #test07 stamp: 'D S 11/17/2020 14:03:56'!
+test07
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:04:08'!
+test06AddingABookWithEmptyNameRaiseError
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]! !
+
+!methodRemoval: CartTest #test08 stamp: 'D S 11/17/2020 14:04:08'!
+test08
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:05:21' prior: 50868034!
+test01NewCartHasNoItemInside
+	|aCart|
+	
+	aCart := Cart new.
+	self assert: 0 equals: aCart quantityItemsInside.
+	self assert: (Bag new) equals: aCart itemsInside.! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/17/2020 14:05:24'!
+PASSED!
+
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Cart category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 14:13:37'!
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+Object subclass: #Catalogo
+	instanceVariableNames: 'items'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Catalogo category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 14:13:49'!
+Object subclass: #Catalogo
+	instanceVariableNames: 'items'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+Object subclass: #Catalogo
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Catalogo category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 14:13:54'!
+Object subclass: #Catalogo
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: 'catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+^Error new signal: aString!
+
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Cart category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 14:14:07'!
+Object subclass: #Cart
+	instanceVariableNames: 'items'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+TestCase subclass: #CatalogoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #CatalogoTest category: 'TusLibros1-Ejercicio' stamp: 'D S 11/17/2020 14:14:20'!
+TestCase subclass: #CatalogoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+!CatalogoTest methodsFor: 'no messages' stamp: 'D S 11/17/2020 14:15:17'!
+test01
+	|aCatalogo|
+	aCatalogo := Catalogo new.
+	
+	self assert: OrderedCollection new equals: aCatalogo items.! !
+
+!testRun: #CatalogoTest #test01 stamp: 'D S 11/17/2020 14:15:23'!
+ERROR!
+
+!testRun: #CatalogoTest #test01 stamp: 'D S 11/17/2020 14:15:23'!
+ERROR!
+!Catalogo methodsFor: 'no messages' stamp: 'D S 11/17/2020 14:15:42'!
+items
+
+	^OrderedCollection new.! !
+
+!testRun: #CatalogoTest #test01 stamp: 'D S 11/17/2020 14:15:49'!
+PASSED!
+
+!testRun: #CatalogoTest #test01 stamp: 'D S 11/17/2020 14:21:01'!
+PASSED!
+!CatalogoTest methodsFor: 'as yet unclassified' stamp: 'D S 11/17/2020 14:22:25'!
+test02
+	|aCatalogo|
+	aCatalogo := Catalogo new.
+	aCatalogo add: 'aBook'.
+	
+	self assert: OrderedCollection new equals: aCatalogo items.! !
+
+----QUIT----(17 November 2020 17:06:53) CuisUniversity-4384.image priorSource: 17164175!
+
+----STARTUP---- (17 November 2020 21:41:37) as /home/dn-01/Escritorio/Ingenieria en Software I/CuisLimpio/linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/dn-01/Escritorio/Ingenieria en Software I/CuisLimpio/linux64/Packages/TerseGuide.pck.st----!
+
+----QUIT----(17 November 2020 23:33:23) CuisUniversity-4384.image priorSource: 17180458!
+
+----STARTUP---- (18 November 2020 11:40:37) as /home/dn-01/Escritorio/Ingenieria en Software I/CuisLimpio/linux64/CuisUniversity-4384.image!
+
+
+!classRemoval: #CatalogoTest stamp: 'D S 11/18/2020 11:42:42'!
+TestCase subclass: #CatalogoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classRemoval: #Catalogo stamp: 'D S 11/18/2020 11:42:48'!
+Object subclass: #Catalogo
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Cart category: 'TusLibros1-Ejercicio' stamp: 'D S 11/18/2020 11:43:16'!
+Object subclass: #Cart
+	instanceVariableNames: 'items catalog'
+	classVariableNames: 'Catalogo'
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:43:13'!
+initializewithCatalog: aCatalog
+
+	items := Bag new.
+	catalog := aCatalog.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:43:42'!
+test07AddingABookNotInCatalogRaiseError
+	|aCart|
+	
+	aCart := Cart new.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionBookNotInCatalog equals: anError messageText]! !
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:43:48'!
+ERROR!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:43:48'!
+ERROR!
+
+!methodRemoval: Cart #initialize stamp: 'D S 11/18/2020 11:43:58'!
+initialize
+
+	items := Bag new.!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:44:15'!
+initializeWithCatalog: aCatalog
+
+	^self new initializeWithCatalog: aCatalog! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:45:36' prior: 50868310!
+addBook: aBook Quantity: aQuantity
+
+	(catalog includes: aBook) ifFalse: [self error: self class errorDescriptionNotInCatalog].
+	(aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ].
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive ].
+	aQuantity timesRepeat: [items add: aBook ].! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:45:51'!
+errorDescriptionNotInCatalog
+
+	^'The book doesnt belong to the catalog'! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:45:59' prior: 50871556!
+errorDescriptionNotInCatalog
+
+	^'The book dont belong to the catalog'! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:46:35' prior: 50868437!
+test01NewCartHasNoItemInside
+	|aCart aCatalog|
+	aCatalog := OrderedCollection new.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	self assert: 0 equals: aCart quantityItemsInside.
+	self assert: (Bag new) equals: aCart itemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:46:54' prior: 50868360!
+test02AddingABookToTheCartAppearsInside
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart := Cart new.
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.
+	self assert: 1 equals: aCart quantityItemsInside.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:47:24' prior: 50871579!
+test02AddingABookToTheCartAppearsInside
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.
+	self assert: 1 equals: aCart quantityItemsInside.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:47:40' prior: 50868347!
+test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook' with: 'anotherBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:47:51' prior: 50868389!
+test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:47:59' prior: 50868400!
+test05AddingAQuantityOfZeroRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:48:05' prior: 50868419!
+test06AddingABookWithEmptyNameRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:48:34'!
+errorDescriptionBookNotInCatalog
+
+	^'The book dont belong to the catalog'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:48:34' prior: 50871542!
+addBook: aBook Quantity: aQuantity
+
+	(catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog].
+	(aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ].
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive ].
+	aQuantity timesRepeat: [items add: aBook ].! !
+
+!methodRemoval: Cart class #errorDescriptionNotInCatalog stamp: 'D S 11/18/2020 11:48:34'!
+errorDescriptionNotInCatalog
+
+	^'The book dont belong to the catalog'!
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 11:48:55'!
+ERROR!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 11:48:55'!
+ERROR!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 11:48:55'!
+ERROR!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 11:48:55'!
+ERROR!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 11:48:55'!
+ERROR!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 11:48:55'!
+ERROR!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:48:55'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 11:49:01'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 11:49:01'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:49:30'!
+initializeWithCatalog: aCatalog
+
+	items := Bag new.
+	catalog := aCatalog.! !
+
+!methodRemoval: Cart #initializewithCatalog: stamp: 'D S 11/18/2020 11:49:30'!
+initializewithCatalog: aCatalog
+
+	items := Bag new.
+	catalog := aCatalog.!
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 11:49:35'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 11:49:35'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 11:49:35'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 11:49:35'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 11:49:35'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 11:49:35'!
+FAILURE!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:49:35'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:49:46' prior: 50871667!
+addBook: aBook Quantity: aQuantity
+
+	(aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ].
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive ].
+	(catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog].
+	aQuantity timesRepeat: [items add: aBook ].! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 11:49:49'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 11:49:49'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 11:49:49'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 11:49:49'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 11:49:49'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 11:49:49'!
+PASSED!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:49:49'!
+FAILURE!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:49:49'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:50:36' prior: 50871516!
+test07AddingABookNotInCatalogRaiseError
+	|aCart aCatalog|
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: 'aBookNotInCatalog' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionBookNotInCatalog equals: anError messageText]! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 11:52:54'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 11:52:55'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 11:52:55'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 11:52:55'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 11:52:55'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 11:52:55'!
+PASSED!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 11:52:55'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:54:01'!
+checkNameIsNotEmptyOfTheBook: aBook
+
+	^ (aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:54:01' prior: 50871749!
+addBook: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	(aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive ].
+	(catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog].
+	aQuantity timesRepeat: [items add: aBook ].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:54:46'!
+checkQuantityIsPositive: aQuantity
+
+	^ (aQuantity < 1) ifTrue:[self error: self class errorDescriptionQuantityMustBePositive ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:54:46' prior: 50871834!
+addBook: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	self checkQuantityIsPositive: aQuantity.
+	(catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog].
+	aQuantity timesRepeat: [items add: aBook ].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:55:14'!
+checkBookIsInTheCatalog: aBook
+
+	^ (catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 11:55:14' prior: 50871854!
+addBook: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBook.
+	aQuantity timesRepeat: [items add: aBook ].! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 12:01:19'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'D S 11/18/2020 12:08:18'!
+addBookWithISBN: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBook.
+	aQuantity timesRepeat: [items add: aBook ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 12:08:18' prior: 50871606!
+test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook' with: 'anotherBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBookWithISBN: 'aBook' Quantity: 1.
+	aCart addBookWithISBN: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 12:08:18' prior: 50871593!
+test02AddingABookToTheCartAppearsInside
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+
+	aCart addBookWithISBN: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.
+	self assert: 1 equals: aCart quantityItemsInside.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 12:08:18' prior: 50871636!
+test05AddingAQuantityOfZeroRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBookWithISBN: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 12:08:18' prior: 50871649!
+test06AddingABookWithEmptyNameRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBookWithISBN: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 12:08:18' prior: 50871790!
+test07AddingABookNotInCatalogRaiseError
+	|aCart aCatalog|
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBookWithISBN: 'aBookNotInCatalog' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionBookNotInCatalog equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 12:08:18' prior: 50871622!
+test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBookWithISBN: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+
+!methodRemoval: Cart #addBook:Quantity: stamp: 'D S 11/18/2020 12:08:18'!
+addBook: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBook.
+	aQuantity timesRepeat: [items add: aBook ].!
+!Cart methodsFor: 'adding' stamp: 'D S 11/18/2020 12:08:48' prior: 50871905!
+addBookWithISBN: aBookISBN Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBookISBN.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBookISBN.
+	aQuantity timesRepeat: [items add: aBookISBN ].! !
+!Cart methodsFor: 'testing --Private--' stamp: 'D S 11/18/2020 12:09:47' prior: 50871865!
+checkBookIsInTheCatalog: aBookISBN
+
+	^ (catalog includes: aBookISBN) ifFalse: [self error: self class errorDescriptionBookNotInCatalog]! !
+!Cart methodsFor: 'testing --Private--' stamp: 'D S 11/18/2020 12:09:55' prior: 50871827!
+checkNameIsNotEmptyOfTheBook: aBookISBN
+
+	^ (aBookISBN = '') ifTrue:[self error: self class errorDescriptionEmptyName ]! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 12:10:33'!
+PASSED!
+
+----QUIT----(18 November 2020 14:35:59) CuisUniversity-4384.image priorSource: 17274649!
+
+----STARTUP---- (18 November 2020 15:11:43) as /home/dn-01/Escritorio/Ingenieria en Software I/CuisLimpio/linux64/CuisUniversity-4384.image!
+
+!Cart methodsFor: 'adding' stamp: 'D S 11/18/2020 15:12:05'!
+addBook: aBookISBN Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBookISBN.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBookISBN.
+	aQuantity timesRepeat: [items add: aBookISBN ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:05' prior: 50871932!
+test02AddingABookToTheCartAppearsInside
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.
+	self assert: 1 equals: aCart quantityItemsInside.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:05' prior: 50871945!
+test05AddingAQuantityOfZeroRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871959!
+test06AddingABookWithEmptyNameRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871972!
+test07AddingABookNotInCatalogRaiseError
+	|aCart aCatalog|
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: 'aBookNotInCatalog' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionBookNotInCatalog equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871986!
+test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871915!
+test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook' with: 'anotherBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+
+!methodRemoval: Cart #addBookWithISBN:Quantity: stamp: 'D S 11/18/2020 15:12:06'!
+addBookWithISBN: aBookISBN Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBookISBN.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBookISBN.
+	aQuantity timesRepeat: [items add: aBookISBN ].!
+!Cart methodsFor: 'adding' stamp: 'D S 11/18/2020 15:12:25' prior: 50872065!
+addBook: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBook.
+	aQuantity timesRepeat: [items add: aBook ].! !
+!Cart methodsFor: 'testing --Private--' stamp: 'D S 11/18/2020 15:12:35' prior: 50872020!
+checkBookIsInTheCatalog: aBook
+
+	^ (catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog]! !
+!Cart methodsFor: 'testing --Private--' stamp: 'D S 11/18/2020 15:12:40' prior: 50872028!
+checkNameIsNotEmptyOfTheBook: aBook
+
+	^ (aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ]! !
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/18/2020 15:12:48'!
+PASSED!
+
+----STARTUP---- (19 November 2020 16:37:17) as /home/dn-01/Escritorio/Ingenieria en Software I/CuisLimpio/linux64/CuisUniversity-4384.image!
+
+!Cart methodsFor: 'adding' stamp: 'D S 11/18/2020 15:12:05'!
+addBook: aBookISBN Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBookISBN.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBookISBN.
+	aQuantity timesRepeat: [items add: aBookISBN ].! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:05' prior: 50871932!
+test02AddingABookToTheCartAppearsInside
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+
+	aCart addBook: 'aBook' Quantity: 1.
+	self assert: (Bag with: 'aBook') equals: aCart itemsInside.
+	self assert: 1 equals: aCart quantityItemsInside.	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:05' prior: 50871945!
+test05AddingAQuantityOfZeroRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: 'aBook' Quantity: 0.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionQuantityMustBePositive equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871959!
+test06AddingABookWithEmptyNameRaiseError
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: '' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionEmptyName equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871972!
+test07AddingABookNotInCatalogRaiseError
+	|aCart aCatalog|
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	[aCart addBook: 'aBookNotInCatalog' Quantity: 1.
+	self fail]
+	on: Error 
+	do: [:anError| self assert: Cart errorDescriptionBookNotInCatalog equals: anError messageText]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871986!
+test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBook: 'aBook' Quantity: 2.
+	self assert: (Bag with: 'aBook' with: 'aBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'D S 11/18/2020 15:12:06' prior: 50871915!
+test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart
+	|aCart aCatalog|
+	
+	aCatalog := OrderedCollection with: 'aBook' with: 'anotherBook'.
+	aCart := Cart initializeWithCatalog: aCatalog.
+	aCart addBook: 'aBook' Quantity: 1.
+	aCart addBook: 'anotherBook' Quantity: 1.
+	self assert: (Bag with: 'aBook' with: 'anotherBook') equals: aCart itemsInside.
+	self assert: 2 equals: aCart quantityItemsInside.! !
+
+!methodRemoval: Cart #addBookWithISBN:Quantity: stamp: 'D S 11/19/2020 16:37:20'!
+addBookWithISBN: aBookISBN Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBookISBN.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBookISBN.
+	aQuantity timesRepeat: [items add: aBookISBN ].!
+!Cart methodsFor: 'adding' stamp: 'D S 11/18/2020 15:12:25' prior: 50872219!
+addBook: aBook Quantity: aQuantity
+
+	self checkNameIsNotEmptyOfTheBook: aBook.
+	self checkQuantityIsPositive: aQuantity.
+	self checkBookIsInTheCatalog: aBook.
+	aQuantity timesRepeat: [items add: aBook ].! !
+!Cart methodsFor: 'testing --Private--' stamp: 'D S 11/18/2020 15:12:35' prior: 50872020!
+checkBookIsInTheCatalog: aBook
+
+	^ (catalog includes: aBook) ifFalse: [self error: self class errorDescriptionBookNotInCatalog]! !
+!Cart methodsFor: 'testing --Private--' stamp: 'D S 11/18/2020 15:12:40' prior: 50872028!
+checkNameIsNotEmptyOfTheBook: aBook
+
+	^ (aBook = '') ifTrue:[self error: self class errorDescriptionEmptyName ]! !
+
+Object subclass: #Cart
+	instanceVariableNames: 'items catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!classDefinition: #Cart category: 'TusLibros1-Ejercicio' stamp: 'D S 11/19/2020 16:37:28'!
+Object subclass: #Cart
+	instanceVariableNames: 'items catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros1-Ejercicio'!
+
+!methodRemoval: Cart class #initialize stamp: 'D S 11/19/2020 16:37:39'!
+initialize
+
+	^self new initialize!
+
+!testRun: #CartTest #test01NewCartHasNoItemInside stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!
+
+!testRun: #CartTest #test02AddingABookToTheCartAppearsInside stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!
+
+!testRun: #CartTest #test03AddingMoreThanOneBooksDifferentsBooksAppearsInsideTheCart stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!
+
+!testRun: #CartTest #test04AddingMoreThanOneBooksThatAreTheSameAppearsInsideTheCart stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!
+
+!testRun: #CartTest #test05AddingAQuantityOfZeroRaiseError stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!
+
+!testRun: #CartTest #test06AddingABookWithEmptyNameRaiseError stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!
+
+!testRun: #CartTest #test07AddingABookNotInCatalogRaiseError stamp: 'D S 11/19/2020 16:37:42'!
+PASSED!

@@ -1,0 +1,419 @@
+
+
+----End fileIn of /home/rodrigo/cuis-linux64/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'RL 11/2/2020 19:20:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:20:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:20:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'RL 11/2/2020 19:20:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'RL 11/2/2020 19:20:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'RL 11/2/2020 19:20:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'RL 11/2/2020 19:20:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:20:34'!
+FAILURE!
+
+collect sum: [:var | var=2 ifTrue: [var]]!
+
+a!
+
+collect sum: [:var | var=2 ifTrue: [var] value]!
+
+collect sum: [:var | var=2 ifTrue: [[var] value]]!
+
+collect sum: [:var | [var=2 ifTrue: [var]] value]!
+
+[var] value!
+
+collect sum: [:var | var=2 ifTrue: [[var] value]]!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 19:42:49' prior: 50876313!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		| actualValue |
+		(aTransaction isKindOf: Deposit) ifTrue: [ actualValue := aTransaction value ].
+		(aTransaction isKindOf: Withdraw) ifTrue: [ actualValue := aTransaction value negated ].
+		actualValue
+		] 
+	ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'RL 11/2/2020 19:43:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'RL 11/2/2020 19:48:48'!
+PASSED!
+
+ord := OrderedCollection new.!
+
+ord inject: 0 into: [:a :c | a + c	]!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 19:50:34' prior: 50876364!
+balance
+
+	^transactions inject: 0 into: [ :acumValues :aTransaction | 
+		(aTransaction isKindOf: Deposit) ifTrue: [ acumValues + aTransaction value ].
+		(aTransaction isKindOf: Withdraw) ifTrue: [ acumValues - aTransaction value ].
+		] ! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 19:42:49' prior: 50876431!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		| actualValue |
+		(aTransaction isKindOf: Deposit) ifTrue: [ actualValue := aTransaction value ].
+		(aTransaction isKindOf: Withdraw) ifTrue: [ actualValue := aTransaction value negated ].
+		actualValue
+		] 
+	ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 20:35:39' prior: 50876442!
+balance
+	| accumulatedBalance |
+	transactions do: [ :aTransaction | 
+		accumulatedBalance := aTransaction accumulateTo: accumulatedBalance.
+		"(aTransaction isKindOf: Deposit) 
+			ifTrue: [ accumulatedBalance := accumulatedBalance + aTransaction value ].
+		(aTransaction isKindOf: Withdraw) 
+			ifTrue: [ accumulatedBalance := accumulatedBalance - aTransaction value ]."
+		].
+	^accumulatedBalance ! !
+!AccountTransaction methodsFor: 'nil' stamp: 'RL 11/2/2020 20:36:04'!
+accumulateTo: aBalance
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'nil' stamp: 'RL 11/2/2020 20:36:25' overrides: 50876469!
+accumulateTo: aBalance
+	^aBalance + self value.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:36:33' prior: 50876474 overrides: 50876469!
+accumulateTo: aBalance
+	^aBalance + value.! !
+!Withdraw methodsFor: 'nil' stamp: 'RL 11/2/2020 20:36:42' overrides: 50876469!
+accumulateTo: aBalance
+	^aBalance - value.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'RL 11/2/2020 20:36:55'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 20:36:55'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 20:36:55'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'RL 11/2/2020 20:36:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'RL 11/2/2020 20:36:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'RL 11/2/2020 20:36:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'RL 11/2/2020 20:36:55'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 20:37:35' prior: 50876454!
+balance
+	| accumulatedBalance |
+	accumulatedBalance := 0
+	transactions do: [ :aTransaction | 
+		accumulatedBalance := aTransaction accumulateTo: accumulatedBalance.
+		"(aTransaction isKindOf: Deposit) 
+			ifTrue: [ accumulatedBalance := accumulatedBalance + aTransaction value ].
+		(aTransaction isKindOf: Withdraw) 
+			ifTrue: [ accumulatedBalance := accumulatedBalance - aTransaction value ]."
+		].
+	^accumulatedBalance ! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 20:37:43' prior: 50876515!
+balance
+	| accumulatedBalance |
+	accumulatedBalance := 0.
+	transactions do: [ :aTransaction | 
+		accumulatedBalance := aTransaction accumulateTo: accumulatedBalance.
+		"(aTransaction isKindOf: Deposit) 
+			ifTrue: [ accumulatedBalance := accumulatedBalance + aTransaction value ].
+		(aTransaction isKindOf: Withdraw) 
+			ifTrue: [ accumulatedBalance := accumulatedBalance - aTransaction value ]."
+		].
+	^accumulatedBalance ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'RL 11/2/2020 20:37:48'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'RL 11/2/2020 20:38:19' prior: 50876532!
+balance
+	| accumulatedBalance |
+	accumulatedBalance := 0.
+	transactions do: [ :aTransaction | 	accumulatedBalance := aTransaction accumulateTo: accumulatedBalance. 	].
+	^accumulatedBalance ! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'RL 11/2/2020 20:38:32'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'RL 11/2/2020 20:38:41'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'nil' stamp: 'RL 11/2/2020 20:43:39'!
+test01NewPortfolioHasBalanceZero
+	| portfolio |
+	portfolio := Portfolio new.
+	self assert: portfolio balance equals: 0.! !
+!Portfolio methodsFor: 'nil' stamp: 'RL 11/2/2020 20:45:38'!
+balance
+	^0! !
+
+portfolio balance!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:47:59' prior: 50876607!
+test01NewPortfolioHasBalanceZero
+	| portfolio |
+	portfolio := Portfolio new.
+	self assert: portfolio balance equals: 0.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZero stamp: 'RL 11/2/2020 20:48:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZero stamp: 'RL 11/2/2020 20:48:15'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:49:49'!
+test02PortfolioWithOneAccountHasSameBalanceAsAccount
+	| portfolio account |
+	account := ReceptiveAccount .
+	portfolio := Portfolio new.
+	self assert: portfolio balance equals: 0.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:51:23' prior: 50876631!
+test02PortfolioWithOneAccountHasSameBalanceAsAccount
+	| portfolio account |
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	self assert: portfolio balance equals: account balance.! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 20:51:26'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 20:51:26'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'RL 11/2/2020 20:52:22'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'nil' stamp: 'RL 11/2/2020 20:52:20'!
+add: anAccount
+	accounts add: anAccount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:55:41' prior: 50876613!
+balance
+	^accounts sum: [ :anAccount | anAccount balance ]! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 20:55:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 20:55:56'!
+ERROR!
+!Portfolio methodsFor: 'nil' stamp: 'RL 11/2/2020 20:56:29' overrides: 16896425!
+initialize
+	accounts := OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZero stamp: 'RL 11/2/2020 20:56:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 20:56:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZero stamp: 'RL 11/2/2020 20:56:33'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:57:04' prior: 50876670!
+balance
+	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [0]! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZero stamp: 'RL 11/2/2020 20:57:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 20:57:09'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 20:59:27'!
+test03PortfolioWithTwoAccountsHasTheAccumulatedBalanceOfTheAccounts
+	| portfolio account1 account2 |
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account1.
+	portfolio add: account2.
+	self assert: portfolio balance equals: account1 balance + account2 balance.! !
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasTheAccumulatedBalanceOfTheAccounts stamp: 'RL 11/2/2020 20:59:32'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 21:05:10'!
+test04PortfolioWithOneTransactionAccountHasSameTransactionsRegistered
+	| portfolio account |
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	"self assert: portfolio hasRegistered: Argument expected ->."! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 21:06:00' prior: 50876729!
+test04PortfolioWithOneTransactionAccountHasSameTransactionsRegistered
+	| portfolio account transaction |
+	account := ReceptiveAccount new.
+	transaction := Deposit register: 100 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test04PortfolioWithOneTransactionAccountHasSameTransactionsRegistered stamp: 'RL 11/2/2020 21:06:03'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithOneTransactionAccountHasSameTransactionsRegistered stamp: 'RL 11/2/2020 21:06:03'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 21:06:27'!
+hasRegistered: aTransaction
+	^true! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZero stamp: 'RL 11/2/2020 21:06:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalanceAsAccount stamp: 'RL 11/2/2020 21:06:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasTheAccumulatedBalanceOfTheAccounts stamp: 'RL 11/2/2020 21:06:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithOneTransactionAccountHasSameTransactionsRegistered stamp: 'RL 11/2/2020 21:06:32'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 21:07:54'!
+test05PortfolioHasNotRegisteredTransactionNotRegisteredInItsAccount
+	| portfolio account transaction |
+	account := ReceptiveAccount new.
+	transaction := Deposit register: 100 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	self assert: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 21:08:53' prior: 50876782!
+test05PortfolioHasNotRegisteredTransactionNotRegisteredInItsAccount
+	| portfolio account transaction |
+	account := ReceptiveAccount new.
+	transaction := Deposit for: 100.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	self assert: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'RL 11/2/2020 21:09:10' prior: 50876795!
+test05PortfolioHasNotRegisteredTransactionNotRegisteredInItsAccount
+	| portfolio account transaction |
+	account := ReceptiveAccount new.
+	transaction := Deposit for: 100.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	self deny: (portfolio hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test05PortfolioHasNotRegisteredTransactionNotRegisteredInItsAccount stamp: 'RL 11/2/2020 21:09:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioHasNotRegisteredTransactionNotRegisteredInItsAccount stamp: 'RL 11/2/2020 21:09:27'!
+FAILURE!
+
+0 = false!
+
+0 = true!
+
+0 ifFalse: [2]!
+
+----QUIT----(2 November 2020 22:04:56) CuisUniversity-4384.image priorSource: 17420565!
+
+----STARTUP---- (7 November 2020 11:09:57) as /home/rodrigo/cuis-linux64/CuisUniversity-4384.image!
+
+
+----QUIT----(7 November 2020 11:10:39) CuisUniversity-4384.image priorSource: 17445679!
+
+----STARTUP---- (7 November 2020 11:29:53) as /home/rodrigo/cuis-linux64/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/rodrigo/Documents/isw1-actividades/13-CodigoRepetido/CodigoRepetido-Ejercicio.st----!
+
+----End fileIn of /home/rodrigo/Desktop/TerniLapilli.st----!
+
+----QUIT----(7 November 2020 12:18:55) CuisUniversity-4384.image priorSource: 17445870!

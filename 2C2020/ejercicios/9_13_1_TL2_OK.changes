@@ -1,0 +1,577 @@
+
+----STARTUP---- (18 November 2020 16:28:35) as C:\Users\mdlcs\Downloads\OS\cuis4\windows64\CuisUniversity-4365.image!
+
+
+!classRemoval: #MerchantProcessor stamp: 'CS 11/18/2020 16:30:33'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MerchantProcessorTests stamp: 'CS 11/18/2020 16:30:40'!
+TestCase subclass: #MerchantProcessorTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:31:45' prior: 50867003!
+test02ABookCanBeAddedToTheCart
+
+	|newCart newBook| 
+	
+	newCart:= Cart new.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 1.
+	self assert: newCart books includes: newBook.
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:32:00' prior: 50866991!
+test03ABookCanBeAddedToTheCartMoreThanOnceAtATime
+
+	|newCart newBook| 
+	
+	newCart:= Cart new.
+	
+	newBook:= 1.
+	
+	newCart add: newBook withQuantity: 2.
+	
+	
+	self assert: newCart books size equals: 2.
+	self assert: newCart books includes: newBook.
+	
+	! !
+
+!classRemoval: #Book stamp: 'CS 11/18/2020 16:32:08'!
+Object subclass: #Book
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:32:11'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:32:11'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:32:11'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:33:16'!
+no_test0XACartWithUnderThirtyMinutesLifetimeIsValid
+
+	|newCart aLifetime| 
+	
+	newCart:= Cart new.
+	
+	aLifetime:=  Duration new.
+	
+	self assert: aLifetime totalMinutes 
+	
+
+	! !
+
+!methodRemoval: CartTest #no_test04ACartWithUnderThirtyMinutesLifetimeIsValid stamp: 'CS 11/18/2020 16:34:17'!
+no_test04ACartWithUnderThirtyMinutesLifetimeIsValid
+
+	|newCart aLifetime| 
+	
+	newCart:= Cart new.
+	
+	aLifetime:=  Duration new.
+	
+	self assert: aLifetime totalMinutes 
+	
+
+	!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:34:55'!
+test02ABookThatIsNotIncludedInTheCatalogCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart new.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 0.
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:35:14' prior: 50867178!
+test02ABookThatIsNotIncludedInTheCatalogCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart new.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 0.
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:36:28'!
+test02ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
+
+	|newCart newBook| 
+	
+	
+	newCart:= Cart withCatalogue.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 0.
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:39:18'!
+test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue: OrderedCollection  new.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 0.
+	! !
+
+!methodRemoval: CartTest #test02ABookThatIsNotIncludedInTheCatalogCanNotBeAdded stamp: 'CS 11/18/2020 16:39:27'!
+test02ABookThatIsNotIncludedInTheCatalogCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart new.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 0.
+	!
+
+!methodRemoval: CartTest #test02ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:39:29'!
+test02ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
+
+	|newCart newBook| 
+	
+	
+	newCart:= Cart withCatalogue.
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 0.
+	!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:39:33'!
+ERROR!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:39:41'!
+withCatalogue: anOrderedCollection 
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:41:33' prior: 50867238!
+withCatalogue: anOrderedCollection
+ 
+	^self new initializeWithCatalogue: anOrderedCollection.! !
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:41:39'!
+ERROR!
+
+!classDefinition: #Cart category: #TusLibros stamp: 'CS 11/18/2020 16:41:46'!
+Object subclass: #Cart
+	instanceVariableNames: 'books orderedCollection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'CS 11/18/2020 16:41:46'!
+initializeWithCatalogue: anOrderedCollection 
+	self shouldBeImplemented.
+	orderedCollection := anOrderedCollection.! !
+
+!classDefinition: #Cart category: #TusLibros stamp: 'CS 11/18/2020 16:42:16'!
+Object subclass: #Cart
+	instanceVariableNames: 'books orderedCollection catalogue'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'CS 11/18/2020 16:42:13' prior: 50867260!
+initializeWithCatalogue: anOrderedCollection 
+	
+	
+	catalogue := anOrderedCollection.! !
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:42:19'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:46:04' prior: 50867205!
+test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue: OrderedCollection  new.
+	
+	newBook:= 1.
+	
+	self should:[ newCart add: newBook] raise: Error withMessageText: Cart BookNotInCatalogueErrorDescription.
+	! !
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:46:08'!
+ERROR!
+!Cart class methodsFor: 'error handling' stamp: 'CS 11/18/2020 16:46:35'!
+BookNotInCatalogueErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error handling' stamp: 'CS 11/18/2020 16:47:07' prior: 50867299!
+BookNotInCatalogueErrorDescription
+	
+	^'The book is not in the catalogue'.! !
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:47:09'!
+FAILURE!
+!Cart methodsFor: 'actions' stamp: 'CS 11/18/2020 16:50:00' prior: 50867088!
+add: aBook withQuantity: aQuantity 
+
+	(catalogue includes: aBook) ifFalse: [self error: self class BookNotInCatalogueErrorDescription].
+
+	books add: aBook withOccurrences: aQuantity.! !
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:50:09'!
+PASSED!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:50:11'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:50:15'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:50:16'!
+ERROR!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:50:16'!
+ERROR!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:50:16'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:50:39' prior: 50867284!
+test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue: OrderedCollection  new.
+	
+	newBook:= 1.
+	
+	self should:[ newCart add: newBook] raise: Error withMessageText: Cart bookNotInCatalogueErrorDescription.
+	! !
+!Cart class methodsFor: 'error handling' stamp: 'CS 11/18/2020 16:50:53'!
+bookNotInCatalogueErrorDescription
+	
+	^'The book is not in the catalogue'.! !
+
+!methodRemoval: Cart class #BookNotInCatalogueErrorDescription stamp: 'CS 11/18/2020 16:51:03'!
+BookNotInCatalogueErrorDescription
+	
+	^'The book is not in the catalogue'.!
+!Cart methodsFor: 'actions' stamp: 'CS 11/18/2020 16:51:26' prior: 50867313!
+add: aBook withQuantity: aQuantity 
+
+	(catalogue includes: aBook) ifFalse: [self error: self class bookNotInCatalogueErrorDescription].
+
+	books add: aBook withOccurrences: aQuantity.! !
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:51:29'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:51:29'!
+ERROR!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:51:29'!
+ERROR!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:51:29'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:52:16' prior: 50867126!
+test02ABookCanBeAddedToTheCart
+
+	|newCart newBook| 
+	
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 1).
+	
+	newBook:= 1.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 1.
+	self assert: newCart books includes: newBook.
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:52:23' prior: 50867136!
+test03ABookCanBeAddedToTheCartMoreThanOnceAtATime
+
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue:( OrderedCollection with: 1).
+	
+	newBook:= 1.
+	
+	newCart add: newBook withQuantity: 2.
+	
+	
+	self assert: newCart books size equals: 2.
+	self assert: newCart books includes: newBook.
+	
+	! !
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:52:26'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:52:26'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:52:26'!
+PASSED!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:52:26'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:57:23' prior: 50867386!
+test02ABookCanBeAddedToTheCart
+
+	|newCart newBook| 
+	
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 9992158107).
+	
+	newBook:= 9992158107.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 9992158107.
+	self assert: newCart books includes: newBook.
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:57:30' prior: 50867397!
+test03ABookCanBeAddedToTheCartMoreThanOnceAtATime
+
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue:( OrderedCollection with: 9992158107).
+	
+	newBook:= 9992158107.
+	
+	newCart add: newBook withQuantity: 2.
+	
+	
+	self assert: newCart books size equals: 2.
+	self assert: newCart books includes: newBook.
+	
+	! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:57:39' prior: 50867342!
+test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
+
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue: OrderedCollection  new.
+	
+	newBook:= 9992158107.
+	
+	self should:[ newCart add: newBook] raise: Error withMessageText: Cart bookNotInCatalogueErrorDescription.
+	! !
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:57:44'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:57:44'!
+FAILURE!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:57:44'!
+PASSED!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:57:44'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:57:44'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:58:01'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:58:01'!
+FAILURE!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:58:01'!
+PASSED!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:58:01'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:58:01'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:58:23' prior: 50867422!
+test02ABookCanBeAddedToTheCart
+
+	|newCart newBook| 
+	
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 9992158107).
+	
+	newBook:= 9992158107.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 1.
+	self assert: newCart books includes: newBook.
+	
+	! !
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 16:58:26'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 16:58:27'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 16:58:27'!
+PASSED!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 16:58:27'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 17:01:03'!
+test05TheBookListOfAnEmptyCartIsEmpty
+
+
+
+! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 17:02:37'!
+test05ModifyingBooksDoesNotAlterTheCartsBookList
+
+	|newCart newBook| 
+	
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 9992158107).
+	
+	newBook:= 9992158107.
+	
+	newCart add: newBook.
+	
+	
+	self assert: newCart books size equals: 1.
+	self assert: newCart books includes: newBook.
+	
+
+
+
+! !
+
+!methodRemoval: CartTest #test05TheBookListOfAnEmptyCartIsEmpty stamp: 'CS 11/18/2020 17:02:43'!
+test05TheBookListOfAnEmptyCartIsEmpty
+
+
+
+!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 17:06:35' prior: 50867519!
+test05ModifyingBooksDoesNotAlterTheCartsBookList
+
+	|newCart newBook anotherBook| 
+	
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 9992158107).
+	
+	newBook:= 9992158107.
+	anotherBook := 9992158108.
+	
+	newCart add: newBook.
+	newCart books add: anotherBook.
+	
+	self assert: newCart books size equals: 1.
+	self deny: (newCart books includes: anotherBook).
+	
+
+
+
+! !
+
+!testRun: #CartTest #test05ModifyingBooksDoesNotAlterTheCartsBookList stamp: 'CS 11/18/2020 17:06:39'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartHasNoBooks stamp: 'CS 11/18/2020 17:06:39'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToTheCart stamp: 'CS 11/18/2020 17:06:39'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToTheCartMoreThanOnceAtATime stamp: 'CS 11/18/2020 17:06:39'!
+PASSED!
+
+!testRun: #CartTest #test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded stamp: 'CS 11/18/2020 17:06:39'!
+PASSED!
+
+!testRun: #CartTest #test05ModifyingBooksDoesNotAlterTheCartsBookList stamp: 'CS 11/18/2020 17:06:39'!
+PASSED!
+
+!methodRemoval: CartTest #test05ModifyingBooksDoesNotAlterTheCartsBookList stamp: 'CS 11/18/2020 17:07:41'!
+test05ModifyingBooksDoesNotAlterTheCartsBookList
+
+	|newCart newBook anotherBook| 
+	
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 9992158107).
+	
+	newBook:= 9992158107.
+	anotherBook := 9992158108.
+	
+	newCart add: newBook.
+	newCart books add: anotherBook.
+	
+	self assert: newCart books size equals: 1.
+	self deny: (newCart books includes: anotherBook).
+	
+
+
+
+!
+
+!methodRemoval: CartTest #no_test0XACartWithUnderThirtyMinutesLifetimeIsValid stamp: 'CS 11/18/2020 17:07:52'!
+no_test0XACartWithUnderThirtyMinutesLifetimeIsValid
+
+	|newCart aLifetime| 
+	
+	newCart:= Cart new.
+	
+	aLifetime:=  Duration new.
+	
+	self assert: aLifetime totalMinutes 
+	
+
+	!
+!Cart methodsFor: 'actions' stamp: 'CS 11/18/2020 17:10:24'!
+assertBookIsInCatalogue: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self error: self class bookNotInCatalogueErrorDescription]! !
+!Cart methodsFor: 'actions' stamp: 'CS 11/18/2020 17:10:24' prior: 50867364!
+add: aBook withQuantity: aQuantity 
+
+	self assertBookIsInCatalogue: aBook.
+
+	books add: aBook withOccurrences: aQuantity.! !
+!Cart methodsFor: 'assertions' stamp: 'CS 11/18/2020 17:11:21' prior: 50867594!
+assertBookIsInCatalogue: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self error: self class bookNotInCatalogueErrorDescription].! !
+!Cart methodsFor: 'assertions' stamp: 'CS 11/18/2020 17:11:44'!
+signalBookNotInCatalogue
+
+	^ self error: self class bookNotInCatalogueErrorDescription! !
+!Cart methodsFor: 'assertions' stamp: 'CS 11/18/2020 17:11:45' prior: 50867608!
+assertBookIsInCatalogue: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self signalBookNotInCatalogue].! !

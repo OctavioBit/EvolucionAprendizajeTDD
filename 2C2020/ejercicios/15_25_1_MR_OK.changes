@@ -1,0 +1,3700 @@
+
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverTest category: 'MarsRover' stamp: 'HG 10/23/2020 18:31:03'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverTest methodsFor: 'nil' stamp: 'HG 10/23/2020 18:38:12'!
+test01
+	
+	
+	! !
+
+----STARTUP---- (25 October 2020 12:12:56) as /home/hernan/Escritorio/Cuis-University/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/hernan/Escritorio/ISW1/16-MarsRover/EjercicioMarsRover.st----!
+
+Object subclass: #CardinalPoints
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #CardinalPoints category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:21:32'!
+Object subclass: #CardinalPoints
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+CardinalPoints subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #South category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:23:17'!
+CardinalPoints subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!South methodsFor: 'nil' stamp: 'HG 10/25/2020 12:27:02'!
+movementValue
+	^0@-1.! !
+
+CardinalPoints subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #North category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:27:31'!
+CardinalPoints subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+CardinalPoints subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #West category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:27:34'!
+CardinalPoints subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+CardinalPoints subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #East category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:27:36'!
+CardinalPoints subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!North methodsFor: 'nil' stamp: 'HG 10/25/2020 12:28:50'!
+movementValue
+	^0@1.! !
+!West methodsFor: 'nil' stamp: 'HG 10/25/2020 12:31:10'!
+movementValue
+	^1@0.! !
+!East methodsFor: 'nil' stamp: 'HG 10/25/2020 12:31:21'!
+movementValue
+	^-1@0.! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:33:04' prior: 50870009!
+receiveSingleOrder: anOrder 
+	| yDecrementor xDecrementor xIncrementor yIncrementor |
+	yDecrementor := 0@-1.
+	xDecrementor := -1@0.
+	yIncrementor := 0@1.
+	xIncrementor := 1@0.
+
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		].
+	^nil! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:34:49' prior: 50870186!
+receiveSingleOrder: anOrder 
+	| yDecrementor xDecrementor xIncrementor yIncrementor |
+	yDecrementor := 0@-1.
+	xDecrementor := -1@0.
+	yIncrementor := 0@1.
+	xIncrementor := 1@0.
+
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		].
+	^nil! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:35:46'!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:11' prior: 50870317!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:27' prior: 50870323!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1]! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:29' prior: 50870329!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:42' prior: 50870337!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].
+	position x <1 ifTrue: [position _ mapWidth@(position y)].! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:55' prior: 50870345!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x >mapWidth ifTrue: [position _ 1@(position y)]! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:56' prior: 50870355!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x >mapWidth ifTrue: [position _ 1@(position y)].! !
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 12:36:59' prior: 50870366!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:37:29' prior: 50869721!
+test02
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: (South new) withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 12:37:32'!
+PASSED!
+
+!classDefinition: #MarsRoverTest category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:37:47'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:37:42' prior: 50870389!
+test02
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'nil' stamp: 'HG 10/25/2020 12:38:05' overrides: 16927572!
+setUp
+	south _ South new.! !
+
+!classDefinition: #MarsRoverTest category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:38:25'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #MarsRoverTest category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:38:26'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+
+!classDefinition: #MarsRoverTest category: 'EjercicioMarsRover' stamp: 'HG 10/25/2020 12:38:27'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'south north west east'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'EjercicioMarsRover'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:38:23' prior: 50870417 overrides: 16927572!
+setUp
+	south _ South new.
+	north _ North new.
+	west _ West new.
+	east _ East new.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 12:38:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 12:38:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 12:38:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 12:38:40'!
+ERROR!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:38:51' prior: 50869712!
+test01
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: ''.
+	
+	self assert: Rover currentPosition equals: 2@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:38:57' prior: 50869730!
+test03
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:39:09' prior: 50869739!
+test04
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:40:28' prior: 50869750!
+test05
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:40:35' prior: 50869761!
+test06
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:40:41' prior: 50869770!
+test07
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:40:50' prior: 50869779!
+test08
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:40:55' prior: 50869790!
+test09
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:00' prior: 50869801!
+test10
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@2! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:07' prior: 50869810!
+test11
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@2! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:11' prior: 50869819!
+test12
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:16' prior: 50869830!
+test13
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:21' prior: 50869841!
+test14
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:26' prior: 50869850!
+test15
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:30' prior: 50869859!
+test16
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:37' prior: 50869870!
+test17
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:42' prior: 50869881!
+test18
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:48' prior: 50869890!
+test19
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:54' prior: 50869899!
+test20
+	| Rover|
+	Rover _ MarsRover startingAt: 1@3 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:41:59' prior: 50869908!
+test21
+	| Rover|
+	Rover _ MarsRover startingAt: 3@1 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:42:05' prior: 50869917!
+test22
+	| Rover|
+	Rover _ MarsRover startingAt: 3@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:42:11' prior: 50869926!
+test23
+	| Rover|
+	Rover _ MarsRover startingAt: 1@3 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:42:17' prior: 50869935!
+test24
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:42:23' prior: 50869944!
+test25
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:42:29' prior: 50869953!
+test26
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'ffr'.
+	
+	self assert: Rover currentPosition equals: 1@3.
+	self assert: Rover pointsWest.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:42:34' prior: 50869963!
+test27
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'frNKf'.
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	 ! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:43:03' prior: 50870251!
+receiveSingleOrder: anOrder 
+	| yDecrementor xDecrementor xIncrementor yIncrementor |
+	yDecrementor := 0@-1.
+	xDecrementor := -1@0.
+	yIncrementor := 0@1.
+	xIncrementor := 1@0.
+
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		
+		position _ position + (direction movementValue).
+		self borderPositionsGetFixed.
+		
+		"
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		].
+	^nil! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:43:27' prior: 50870782!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		
+		position _ position + (direction movementValue).
+		self borderPositionsGetFixed.
+		
+		"
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		].
+	^nil! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 12:43:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 12:43:43'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:50:23' prior: 50870851!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		
+		position _ position + (direction movementValue).
+		self borderPositionsGetFixed.
+		
+		"
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		direction rotateLeft.
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		].
+	^nil! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:50:30' prior: 50870982!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		
+		position _ position + (direction movementValue).
+		self borderPositionsGetFixed.
+		
+		"
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		direction rotateLeft.
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		direction rotateRight.
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		].
+	^nil! !
+!South methodsFor: 'rotate' stamp: 'HG 10/25/2020 12:50:55'!
+rotateLeft
+	^East new.! !
+!South methodsFor: 'rotate' stamp: 'HG 10/25/2020 12:51:32'!
+rotateRight
+	^West new.! !
+!North methodsFor: 'rotating' stamp: 'HG 10/25/2020 12:51:56'!
+rotateRight
+	^East new.! !
+!North methodsFor: 'rotating' stamp: 'HG 10/25/2020 12:52:06'!
+rotateLeft
+	^West new.! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 12:52:41' prior: 50871047!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		
+		position _ position + (direction movementValue).
+		self borderPositionsGetFixed.
+		
+		"
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		direction rotateLeft.
+		"
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		"
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		direction rotateRight.
+		"
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		"
+		].
+	^nil! !
+!West methodsFor: 'rotating' stamp: 'HG 10/25/2020 12:53:13'!
+rotateRight! !
+!West methodsFor: 'rotating' stamp: 'HG 10/25/2020 12:53:15'!
+rotateLeft! !
+!West methodsFor: 'rotating' stamp: 'HG 10/25/2020 12:53:52' prior: 50871195!
+rotateLeft
+	^South new.! !
+!West methodsFor: 'rotating' stamp: 'HG 10/25/2020 12:54:00' prior: 50871192!
+rotateRight
+	^North new.! !
+!East methodsFor: 'nil' stamp: 'HG 10/25/2020 12:54:27'!
+rotateRight
+	^South new.! !
+!East methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 12:54:43'!
+rotateLeft
+	^North new.! !
+!MarsRover methodsFor: 'testing' stamp: 'HG 10/25/2020 13:08:02' prior: 50870076!
+pointsEast
+	^direction pointsEast.! !
+!CardinalPoints methodsFor: 'nil' stamp: 'HG 10/25/2020 13:08:15'!
+movementValue
+	self subclassResponsibility.! !
+!CardinalPoints methodsFor: 'rotating' stamp: 'HG 10/25/2020 13:08:36'!
+rotateLeft
+	self subclassResponsibility.! !
+!CardinalPoints methodsFor: 'rotating' stamp: 'HG 10/25/2020 13:08:39'!
+rotateRight
+	self subclassResponsibility.! !
+!MarsRover methodsFor: 'testing' stamp: 'HG 10/25/2020 13:09:24' prior: 50871213!
+pointsEast
+	^direction pointsEast.! !
+!MarsRover methodsFor: 'testing' stamp: 'HG 10/25/2020 13:12:43' prior: 50871229!
+pointsEast
+	^direction isEast.! !
+!MarsRover methodsFor: 'testing' stamp: 'HG 10/25/2020 13:12:51' prior: 50870080!
+pointsNorth
+	^direction isNorth.! !
+!MarsRover methodsFor: 'testing' stamp: 'HG 10/25/2020 13:12:58' prior: 50870084!
+pointsSouth
+	^ direction isSouth.! !
+!MarsRover methodsFor: 'testing' stamp: 'HG 10/25/2020 13:13:04' prior: 50870088!
+pointsWest
+	^direction isWest.! !
+!CardinalPoints methodsFor: 'testing' stamp: 'HG 10/25/2020 13:13:22'!
+isNorth
+	self subclassResponsibility.! !
+!CardinalPoints methodsFor: 'testing' stamp: 'HG 10/25/2020 13:13:24'!
+isSouth
+	self subclassResponsibility.! !
+!CardinalPoints methodsFor: 'testing' stamp: 'HG 10/25/2020 13:13:27'!
+isWest
+	self subclassResponsibility.! !
+!CardinalPoints methodsFor: 'testing' stamp: 'HG 10/25/2020 13:13:29'!
+isEast
+	self subclassResponsibility.! !
+!East methodsFor: 'testing' stamp: 'HG 10/25/2020 13:13:57' overrides: 50871261!
+isEast
+	^true.! !
+!East methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:05' overrides: 50871249!
+isNorth
+	^false.! !
+!East methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:08' overrides: 50871253!
+isSouth
+	^false.! !
+!East methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:11' overrides: 50871257!
+isWest
+	^false.! !
+!North methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:22' overrides: 50871257!
+isWest
+	^false.! !
+!North methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:25' overrides: 50871261!
+isEast
+	^false.! !
+!North methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:28' overrides: 50871253!
+isSouth
+	^false.! !
+!North methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:35' overrides: 50871249!
+isNorth
+	^true.! !
+!South methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:46' overrides: 50871253!
+isSouth
+	^true.! !
+!South methodsFor: 'testing' stamp: 'HG 10/25/2020 13:14:56' overrides: 50871249!
+isNorth
+	^false.! !
+!South methodsFor: 'testing' stamp: 'HG 10/25/2020 13:15:00' overrides: 50871261!
+isEast	
+	^false.! !
+!South methodsFor: 'testing' stamp: 'HG 10/25/2020 13:15:03' overrides: 50871257!
+isWest	
+	^false.! !
+!West methodsFor: 'testing' stamp: 'HG 10/25/2020 13:15:32' overrides: 50871257!
+isWest	
+	^true.! !
+!West methodsFor: 'testing' stamp: 'HG 10/25/2020 13:15:37' overrides: 50871261!
+isEast	
+	^false.! !
+!West methodsFor: 'testing' stamp: 'HG 10/25/2020 13:15:49' overrides: 50871253!
+isSouth
+	^false.! !
+!West methodsFor: 'testing' stamp: 'HG 10/25/2020 13:15:55' overrides: 50871249!
+isNorth
+	^false.! !
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 13:16:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 13:16:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:16:18'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:16:29'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:17:00'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:18:49' prior: 50871126!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[
+		
+		position _ position - (direction movementValue).
+		self borderPositionsGetFixed.
+		"
+		self pointsNorth ifTrue:[  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+								
+		self pointsSouth ifTrue:  [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsWest ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+								
+		self pointsEast ifTrue: [position _ position +xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'b' ifTrue:[
+		
+		position _ position + (direction movementValue).
+		self borderPositionsGetFixed.
+		
+		"
+		self pointsNorth ifTrue: [
+							position _  position + yIncrementor.
+							position y >mapHeight ifTrue:[position _ (position x)@1].
+							 ].
+		self pointsSouth ifTrue: [  
+						     position _  position + yDecrementor.
+						     position y <1 ifTrue:[position _ (position x)@(mapHeight)
+												].
+						].
+		self pointsWest ifTrue:[position _ position + xIncrementor.
+						     position x >mapWidth ifTrue: [position _ 1@(position y)].
+						].
+		self pointsEast ifTrue: [		   
+							position _ position + xDecrementor.
+							position x <1 ifTrue: [position _ mapWidth@(position y)].
+						].
+		"
+		].
+	
+	anOrder = 'l' ifTrue:[ 
+		direction _ direction rotateLeft.
+		"
+		self pointsSouth	 ifTrue: [ ^direction _ 'E'].
+		self pointsNorth ifTrue: [^direction _ 'W'].
+		self pointsWest ifTrue: [^direction _ 'S'].
+		self pointsEast ifTrue: [^direction _ 'N'].
+		"
+		].	
+	
+	anOrder = 'r' ifTrue:[ 
+		direction _ direction rotateRight.
+		"
+		self pointsSouth	 ifTrue: [ ^direction _ 'W'].
+		self pointsNorth ifTrue: [^direction _ 'E'].
+		self pointsWest ifTrue: [^direction _ 'N'].
+		self pointsEast ifTrue: [^direction _ 'S'].
+		"
+		].
+	^nil! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 13:18:53'!
+PASSED!
+!East methodsFor: 'rotating' stamp: 'HG 10/25/2020 13:20:26' prior: 50871209 overrides: 50871221!
+rotateLeft
+	^North new.! !
+
+!classRenamed: #CardinalPoints as: #GridCardinalPoints stamp: 'HG 10/25/2020 13:21:15'!
+Smalltalk renameClassNamed: #CardinalPoints as: #GridCardinalPoints!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 13:21:29'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:24:02' prior: 50871402!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[ position _ position - (direction movementValue). ].
+	anOrder = 'b' ifTrue:[ position _ position + (direction movementValue). ].
+	
+	anOrder = 'l' ifTrue:[ direction _ direction rotateLeft. ].	
+	anOrder = 'r' ifTrue:[ direction _ direction rotateRight. ].
+	self borderPositionsGetFixed.
+	^nil! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:25:07' prior: 50871610!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[ position _ position - (direction movementValue). ].
+	anOrder = 'b' ifTrue:[ position _ position + (direction movementValue). ].
+	
+	anOrder = 'l' ifTrue:[ direction _ direction rotateLeft. ].	
+	anOrder = 'r' ifTrue:[ direction _ direction rotateRight. ].
+	
+	self borderPositionsGetFixed.
+	
+	^nil! !
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 13:28:42' prior: 50869987!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ OrderedCollection with: 'f' with: 'b' with: 'r' with: 'l'.! !
+
+dicti !
+
+dicti !
+
+dicti !
+
+dicti value: $a!
+
+dicti at: $a!
+
+dicti at: 0!
+
+dicti !
+
+dicti at: $a!
+
+dicti _ {
+	$a: 'lsdlskd'
+} asDictionary. !
+
+dicti _ {
+	$a. 'lsdlskd'
+} asDictionary. !
+
+dicti _ {
+	$a -> 'lsdlskd'
+} asDictionary. !
+
+dicti at: $a!
+
+i _ 0.!
+
+dicti _ {
+	$a -> [ i _ 1 ]
+} asDictionary. !
+
+dicti at: $a value.!
+
+i!
+
+dicti at: $a!
+
+(dicti at: $a) value.!
+
+i !
+
+i!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 13:39:07' prior: 50871638!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [].
+		$b -> [].
+		$r -> [].
+		$l -> [].
+	}
+	"
+	validOrders _ OrderedCollection with: 'f' with: 'b' with: 'r' with: 'l'.
+	"! !
+
+dicti at: $b!
+
+dicti at: $b ifAbsent: [ ^nil ]!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 13:42:16' prior: 50871662!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [^nil].
+		$b -> [].
+		$r -> [].
+		$l -> [].
+	}
+	"
+	validOrders _ OrderedCollection with: 'f' with: 'b' with: 'r' with: 'l'.
+	"! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:44:34' prior: 50869999!
+receiveOrder: aSequenceOfOrders 
+	aSequenceOfOrders do: [ :anOrder | (validOrders includes: anOrder asString )				
+									ifTrue:[ 
+										self receiveSingleOrder: anOrder asString]
+									ifFalse:[ ^nil].
+									].
+								! !
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 13:48:57' prior: 50871678!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [^nil].
+		$b -> [].
+		$r -> [].
+		$l -> [].
+	}
+	"
+	validOrders _ OrderedCollection with: 'f' with: 'b' with: 'r' with: 'l'.
+	"! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:52:06' prior: 50871693!
+receiveOrder: aSequenceOfOrders 
+
+	"
+	aSequenceOfOrders do: [ :anOrder | (validOrders includes: anOrder asString )				
+									ifTrue:[ 
+										self receiveSingleOrder: anOrder asString]
+									ifFalse:[ ^nil].
+									].
+	"
+								
+	aSequenceOfOrders do: [:anOrder | self shouldBeExecuted: anOrder ].
+	
+	
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:54:02' prior: 50871719!
+receiveOrder: aSequenceOfOrders 
+
+	"
+	aSequenceOfOrders do: [ :anOrder | (validOrders includes: anOrder asString )				
+									ifTrue:[ 
+										self receiveSingleOrder: anOrder asString]
+									ifFalse:[ ^nil].
+									].
+	"
+								
+	aSequenceOfOrders do: [:anOrder | self executeValidOrderOrStop: anOrder ].
+	
+	
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:55:17' prior: 50871732!
+receiveOrder: aSequenceOfOrders 
+
+	"
+	aSequenceOfOrders do: [ :anOrder | (validOrders includes: anOrder asString )				
+									ifTrue:[ 
+										self receiveSingleOrder: anOrder asString]
+									ifFalse:[ ^nil].
+									].
+	"
+								
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) ifFalse: [^nil] ].
+	
+	
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:55:56'!
+shouldBeExecuted: anOrderToExecute
+
+	(validOrders at: anOrderToExecute) 
+		ifAbsent: [].! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:56:40' prior: 50871758!
+shouldBeExecuted: anOrderToExecute
+
+	validOrders at: anOrderToExecute ifAbsent: [].! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 13:57:42' prior: 50871764!
+shouldBeExecuted: anOrderToExecute
+
+	validOrders at: anOrderToExecute ifAbsent: [^false] value.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 13:58:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 13:58:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 13:58:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:59:04'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:59:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 13:59:27'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:01:25' prior: 50871770!
+shouldBeExecuted: anOrderToExecute
+
+	(validOrders at: anOrderToExecute ifAbsent: [^false]) value.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:01:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:01:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:01:34'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:02:11'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:02:37'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:03:31' prior: 50871704!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction movementValue).].
+		$b -> [].
+		$r -> [].
+		$l -> [].
+	}
+	"
+	validOrders _ OrderedCollection with: 'f' with: 'b' with: 'r' with: 'l'.
+	"! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:03:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:03:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:04:02'!
+ERROR!
+
+(dicti at: $b ifAbsent: [ ^nil ]) value.!
+
+(dicti at: $a ifAbsent: [ ^nil ]) value.!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:08:01' prior: 50871926!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction movementValue).].
+		$b -> [].
+		$r -> [].
+		$l -> [].
+	} asDictionary.
+	"
+	validOrders _ OrderedCollection with: 'f' with: 'b' with: 'r' with: 'l'.
+	"! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:08:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:08:07'!
+ERROR!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:08:34' prior: 50871850!
+shouldBeExecuted: anOrderToExecute
+
+	(validOrders at: anOrderToExecute ifAbsent: [^false]) value.
+	^true.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:08:39'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:09:40'!
+executeValidOrderOrStop: anOrderToExecute
+
+	(validOrders at: anOrderToExecute ifAbsent: [^false]) value.
+	^true.! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:13:01' prior: 50871745!
+receiveOrder: aSequenceOfOrders 
+
+	"
+	aSequenceOfOrders do: [ :anOrder | (validOrders includes: anOrder asString )				
+									ifTrue:[ 
+										self receiveSingleOrder: anOrder asString]
+									ifFalse:[ ^nil].
+									].
+	"
+								
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) 
+									ifTrue: [ self executeValidOrder: anOrder ] 
+									ifFalse: [ ^nil. ] 	
+						].
+	
+	
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:13:21'!
+executeValidOrder: anOrderToExecute
+
+	(validOrders at: anOrderToExecute) value.! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:13:23' prior: 50872003!
+executeValidOrder: anOrderToExecute
+	(validOrders at: anOrderToExecute) value.! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:13:33' prior: 50872009!
+executeValidOrder: aValidOrderToExecute
+	(validOrders at: aValidOrderToExecute) value.! !
+
+!methodRemoval: MarsRover #executeValidOrderOrStop: stamp: 'HG 10/25/2020 14:13:38'!
+executeValidOrderOrStop: anOrderToExecute
+
+	(validOrders at: anOrderToExecute ifAbsent: [^false]) value.
+	^true.!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:13:50' prior: 50871988!
+receiveOrder: aSequenceOfOrders 
+						
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) 
+									ifTrue: [ self executeValidOrder: anOrder ] 
+									ifFalse: [ ^nil. ]].
+	
+	
+	! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:13:59' prior: 50872027!
+receiveOrder: aSequenceOfOrders 
+						
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) 
+									ifTrue: [ self executeValidOrder: anOrder ] 
+									ifFalse: [ ^nil. ]].! !
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:14:57' prior: 50871952!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction movementValue).].
+		$b -> [position _ position + (direction movementValue).].
+		$r -> [direction _ direction rotateLeft.].
+		$l -> [direction _ direction rotateRight.].
+	} asDictionary.! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:15:33' prior: 50872015!
+executeValidOrder: aValidOrderToExecute
+	(validOrders at: aValidOrderToExecute) value.
+	self borderPositionsGetFixed.! !
+
+!methodRemoval: MarsRover #receiveSingleOrder: stamp: 'HG 10/25/2020 14:15:41'!
+receiveSingleOrder: anOrder 
+	
+	anOrder = 'f' ifTrue:[ position _ position - (direction movementValue). ].
+	anOrder = 'b' ifTrue:[ position _ position + (direction movementValue). ].
+	
+	anOrder = 'l' ifTrue:[ direction _ direction rotateLeft. ].	
+	anOrder = 'r' ifTrue:[ direction _ direction rotateRight. ].
+	
+	self borderPositionsGetFixed.
+	
+	^nil!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:15:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:15:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:16:33'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:16:33'!
+FAILURE!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:17:05' prior: 50872045!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction movementValue).].
+		$b -> [position _ position + (direction movementValue).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:17:11'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:17:11'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 14:19:27' prior: 50871973!
+shouldBeExecuted: anOrderToExecute
+
+	(validOrders at: anOrderToExecute ifAbsent: [^false]).
+	^true.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:19:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:19:41'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:20:21' prior: 50872152!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position + (direction movementValue).].
+		$b -> [position _ position + (direction movementValue).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:20:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:20:26'!
+FAILURE!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:20:50' prior: 50872248!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position + (direction movementValue).].
+		$b -> [position _ position + (direction movementValue).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:20:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:20:51'!
+FAILURE!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:20:58' prior: 50872329!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction movementValue).].
+		$b -> [position _ position - (direction movementValue).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:20:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:20:59'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'HG 10/25/2020 14:21:03' prior: 50872410!
+initializeStartingAt: aStartingPoint pointingTo: aCardinalPoint MapHeight: aMapHeight MapWidth: aMapWidth 
+	position := aStartingPoint.
+	direction := aCardinalPoint.
+	mapHeight := aMapHeight.
+	mapWidth := aMapWidth.
+	
+	validOrders _ {
+		$f -> [position _ position - (direction movementValue).].
+		$b -> [position _ position + (direction movementValue).].
+		$r -> [direction _ direction rotateRight.].
+		$l -> [direction _ direction rotateLeft.].
+	} asDictionary.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:21:03'!
+PASSED!
+!MarsRover methodsFor: '- private' stamp: 'HG 10/25/2020 14:22:52'!
+fixPositionWithinBorder
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:22:52' prior: 50872063!
+executeValidOrder: aValidOrderToExecute
+	(validOrders at: aValidOrderToExecute) value.
+	self fixPositionWithinBorder.! !
+
+!methodRemoval: MarsRover #borderPositionsGetFixed stamp: 'HG 10/25/2020 14:22:52'!
+borderPositionsGetFixed
+
+	position y <1 ifTrue:[position _ (position x)@(mapHeight)].
+	position y > mapHeight ifTrue:[position _ (position x)@1].
+	position x <1 ifTrue: [position _ mapWidth@(position y)].
+	position x > mapWidth ifTrue: [position _ 1@(position y)].!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:25:07'!
+test01movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+
+!methodRemoval: MarsRoverTest #test02 stamp: 'HG 10/25/2020 14:25:36'!
+test02
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:25:57'!
+test03movingBackwardWithSouthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+
+!methodRemoval: MarsRoverTest #test03 stamp: 'HG 10/25/2020 14:26:01'!
+test03
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:26:33'!
+test04rotatingLeftDirectionPointsEast
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test04 stamp: 'HG 10/25/2020 14:26:37'!
+test04
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:27:04'!
+test05rotatingRightDirectionFromSouthPointsWest
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test05 stamp: 'HG 10/25/2020 14:27:07'!
+test05
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:27:16'!
+test04rotatingLeftDirectionFromSouthPointsEast
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test04rotatingLeftDirectionPointsEast stamp: 'HG 10/25/2020 14:27:19'!
+test04rotatingLeftDirectionPointsEast
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+
+!methodRemoval: MarsRoverTest #test01 stamp: 'HG 10/25/2020 14:28:02'!
+test01
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: ''.
+	
+	self assert: Rover currentPosition equals: 2@2.!
+!MarsRoverTest methodsFor: 'movement tests' stamp: 'HG 10/25/2020 14:29:21'!
+test02movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+
+!methodRemoval: MarsRoverTest #test01movingForwardWithSouthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 14:29:24'!
+test01movingForwardWithSouthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@3.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:29:53'!
+test06movingForwardWithNorthDirectionGoesUpInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@1.! !
+
+!methodRemoval: MarsRoverTest #test06 stamp: 'HG 10/25/2020 14:29:55'!
+test06
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 2@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:30:12'!
+test07movingBackwardWithNorthDirectionGoesDownInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@3.! !
+
+!methodRemoval: MarsRoverTest #test07 stamp: 'HG 10/25/2020 14:30:14'!
+test07
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 2@3.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:30:39'!
+test08rotatingRightDirectionFromNorthPointsEast
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test08 stamp: 'HG 10/25/2020 14:30:43'!
+test08
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self assert: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:30:59'!
+test09rotatingLeftDirectionFromNorthPointsWest
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test09 stamp: 'HG 10/25/2020 14:31:02'!
+test09
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self assert: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:31:26'!
+test10movingForwardWithWestDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@2! !
+
+!methodRemoval: MarsRoverTest #test10 stamp: 'HG 10/25/2020 14:31:28'!
+test10
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@2!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:31:45'!
+test11movingBackwardWithWestDirectionGoesRightInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@2! !
+
+!methodRemoval: MarsRoverTest #test11 stamp: 'HG 10/25/2020 14:31:47'!
+test11
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@2!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:32:06'!
+test12rotatingRightDirectionFromWestPointsNorth
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test12 stamp: 'HG 10/25/2020 14:32:10'!
+test12
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:32:45'!
+test13rotatingLeftDirectionFromWestPointsSouth
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test13 stamp: 'HG 10/25/2020 14:32:47'!
+test13
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:33:05'!
+test14movingForwardWithEastDirectionGoesRightInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:33:24'!
+test15movingBackwardWithEastDirectionGoesLeftInGrid
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@2.! !
+
+!methodRemoval: MarsRoverTest #test15 stamp: 'HG 10/25/2020 14:33:25'!
+test15
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@2.!
+
+!methodRemoval: MarsRoverTest #test14 stamp: 'HG 10/25/2020 14:33:27'!
+test14
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@2.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:33:44'!
+test16rotatingRightDirectionFromEastPointsSouth
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test16 stamp: 'HG 10/25/2020 14:33:46'!
+test16
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'r'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self assert: Rover pointsSouth.
+	self deny: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:34:00'!
+test17rotatingLeftDirectionFromEastPointsNorth
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.! !
+
+!methodRemoval: MarsRoverTest #test17 stamp: 'HG 10/25/2020 14:34:02'!
+test17
+	| Rover|
+	Rover _ MarsRover startingAt: 2@2 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'l'.
+	
+	self deny: Rover pointsEast.
+	self deny: Rover pointsWest.
+	self deny: Rover pointsSouth.
+	self assert: Rover pointsNorth.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:34:58'!
+test18movingForwardWithWestDirectionInBorderGoesToEastBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+
+!methodRemoval: MarsRoverTest #test18 stamp: 'HG 10/25/2020 14:35:00'!
+test18
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:35:13'!
+test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+
+!methodRemoval: MarsRoverTest #test18movingForwardWithWestDirectionInBorderGoesToEastBorder stamp: 'HG 10/25/2020 14:35:15'!
+test18movingForwardWithWestDirectionInBorderGoesToEastBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 3@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:35:57'!
+test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+
+!methodRemoval: MarsRoverTest #test19 stamp: 'HG 10/25/2020 14:36:00'!
+test19
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@3.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:36:17'!
+test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@3 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+
+!methodRemoval: MarsRoverTest #test20 stamp: 'HG 10/25/2020 14:36:19'!
+test20
+	| Rover|
+	Rover _ MarsRover startingAt: 1@3 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:36:37'!
+test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 3@1 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+
+!methodRemoval: MarsRoverTest #test21 stamp: 'HG 10/25/2020 14:36:40'!
+test21
+	| Rover|
+	Rover _ MarsRover startingAt: 3@1 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'f'.
+	
+	self assert: Rover currentPosition equals: 1@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:37:53'!
+test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 3@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+
+!methodRemoval: MarsRoverTest #test22 stamp: 'HG 10/25/2020 14:37:55'!
+test22
+	| Rover|
+	Rover _ MarsRover startingAt: 3@1 pointingTo: west withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:38:28'!
+test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@3 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.! !
+
+!methodRemoval: MarsRoverTest #test23 stamp: 'HG 10/25/2020 14:38:31'!
+test23
+	| Rover|
+	Rover _ MarsRover startingAt: 1@3 pointingTo: north withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:38:59'!
+test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@1.! !
+
+!methodRemoval: MarsRoverTest #test24 stamp: 'HG 10/25/2020 14:39:01'!
+test24
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: east withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 3@1.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:39:18'!
+test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@3.! !
+
+!methodRemoval: MarsRoverTest #test25 stamp: 'HG 10/25/2020 14:39:20'!
+test25
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'b'.
+	
+	self assert: Rover currentPosition equals: 1@3.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:40:43'!
+test26assertValidOrderSequence
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'ffr'.
+	
+	self assert: Rover currentPosition equals: 1@3.
+	self assert: Rover pointsWest.! !
+
+!methodRemoval: MarsRoverTest #test26 stamp: 'HG 10/25/2020 14:40:45'!
+test26
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'ffr'.
+	
+	self assert: Rover currentPosition equals: 1@3.
+	self assert: Rover pointsWest.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:41:06'!
+test26assertValidOrderSequenceGoingForwardAndRotate
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'ffr'.
+	
+	self assert: Rover currentPosition equals: 1@3.
+	self assert: Rover pointsWest.! !
+
+!methodRemoval: MarsRoverTest #test26assertValidOrderSequence stamp: 'HG 10/25/2020 14:41:08'!
+test26assertValidOrderSequence
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'ffr'.
+	
+	self assert: Rover currentPosition equals: 1@3.
+	self assert: Rover pointsWest.!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'HG 10/25/2020 14:41:33'!
+test27assertStopAtInvalidOrder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'frNKf'.
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	 ! !
+
+!methodRemoval: MarsRoverTest #test27 stamp: 'HG 10/25/2020 14:41:35'!
+test27
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'frNKf'.
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	 !
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 14:42:24'!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'frNKf'.
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	 ! !
+
+!methodRemoval: MarsRoverTest #test27assertStopAtInvalidOrder stamp: 'HG 10/25/2020 14:42:26'!
+test27assertStopAtInvalidOrder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'frNKf'.
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	 !
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 14:45:04'!
+PASSED!
+
+----SNAPSHOT----(25 October 2020 14:45:17) CuisUniversity-4384.image priorSource: 17203596!
+
+----STARTUP---- (25 October 2020 19:51:07) as /home/hernan/Escritorio/Cuis-University/CuisUniversity-4384.image!
+
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:51:39' prior: 50873218!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+	
+	Rover receiveOrder: 'frNKf'.
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+!MarsRover class methodsFor: 'error messages' stamp: 'HG 10/25/2020 19:53:25'!
+signalInvalidOrderCharacter
+	
+	self error: self invalidErrorCharacterDescription.! !
+!MarsRover class methodsFor: 'error messages' stamp: 'HG 10/25/2020 19:54:18'!
+invalidErrorCharacterDescription
+	
+	^'Invalid Order Character Error'! !
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:56:10' prior: 50873347!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'. ]
+		raise: Error
+		withMessageText: MarsRover signalInvalidOrderCharacter. 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:56:14'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:56:14'!
+ERROR!
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:56:28' prior: 50873370!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'. 
+			self error.
+			]
+		raise: Error
+		withMessageText: MarsRover signalInvalidOrderCharacter. 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:56:29'!
+ERROR!
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:57:06' prior: 50873391!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'. 
+			self error.
+			]
+		raise: Error
+		withMessageText: MarsRover signalInvalidOrderCharacter. 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:57:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'HG 10/25/2020 19:57:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:57:12'!
+ERROR!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:57:12'!
+ERROR!
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:57:35' prior: 50873410!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'. 
+			self error.
+			]
+		raise: Error
+		withMessageText: MarsRover invalidErrorCharacterDescription . 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:57:36'!
+FAILURE!
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:57:49' prior: 50873532!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'.
+			]
+		raise: Error
+		withMessageText: MarsRover invalidErrorCharacterDescription . 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:57:50'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 19:58:45' prior: 50872036!
+receiveOrder: aSequenceOfOrders 
+						
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) 
+									ifTrue: [ self executeValidOrder: anOrder ] 
+									ifFalse: [ ^self signalInvalidOrderCharacter. ]].! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:58:47'!
+FAILURE!
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 19:58:57' prior: 50873569!
+receiveOrder: aSequenceOfOrders 
+						
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) 
+									ifTrue: [ self executeValidOrder: anOrder ] 
+									ifFalse: [ self signalInvalidOrderCharacter. ]].! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:59:00'!
+FAILURE!
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:59:15' prior: 50873551!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'.
+			]
+		raise: Error
+		withMessageText: MarsRover signalInvalidOrderCharacter . 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:59:16'!
+ERROR!
+!MarsRoverTest methodsFor: 'invalid order test' stamp: 'HG 10/25/2020 19:59:23' prior: 50873596!
+test27assertStopExecutionAtInvalidOrder
+	| Rover|
+	
+	self
+		should:[
+			Rover _ MarsRover startingAt: 1@1 pointingTo: south withMapHeight: 3 withMapWidth: 3.
+			Rover receiveOrder: 'frNKf'.
+			]
+		raise: Error
+		withMessageText: MarsRover invalidErrorCharacterDescription. 
+	
+	self assert: Rover currentPosition equals: 1@2.
+	self assert: Rover pointsWest .
+	
+! !
+!MarsRover methodsFor: 'actions' stamp: 'HG 10/25/2020 19:59:32' prior: 50873582!
+receiveOrder: aSequenceOfOrders 
+						
+	aSequenceOfOrders do: [:anOrder | (self shouldBeExecuted: anOrder) 
+									ifTrue: [ self executeValidOrder: anOrder ] 
+									ifFalse: [ self class signalInvalidOrderCharacter. ]].! !
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02movingForwardWithSouthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03movingBackwardWithSouthDirectionGoesUpInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04rotatingLeftDirectionFromSouthPointsEast stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05rotatingRightDirectionFromSouthPointsWest stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06movingForwardWithNorthDirectionGoesUpInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07movingBackwardWithNorthDirectionGoesDownInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08rotatingRightDirectionFromNorthPointsEast stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09rotatingLeftDirectionFromNorthPointsWest stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10movingForwardWithWestDirectionGoesLeftInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11movingBackwardWithWestDirectionGoesRightInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12rotatingRightDirectionFromWestPointsNorth stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13rotatingLeftDirectionFromWestPointsSouth stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14movingForwardWithEastDirectionGoesRightInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15movingBackwardWithEastDirectionGoesLeftInGrid stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16rotatingRightDirectionFromEastPointsSouth stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17rotatingLeftDirectionFromEastPointsNorth stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18movingForwardWithWestDirectionInWestBorderGoesToEastBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19movingForwardWithNorthDirectionInNorthBorderGoesToSouthBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20movingForwardWithSouthDirectionInSouthBorderGoesToNorthBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21movingForwardWithEastDirectionInEastBorderGoesToWestBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22movingBackwardWithWestDirectionInEastBorderGoesToWestBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23movingBackwardWithNorthDirectionInSouthBorderGoesToNorthBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24movingBackwardWithEastDirectionInWestBorderGoesToEastBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test25movingBackwardWithSouthDirectionInNorthBorderGoesToSouthBorder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test26assertValidOrderSequenceGoingForwardAndRotate stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test27assertStopExecutionAtInvalidOrder stamp: 'HG 10/25/2020 19:59:35'!
+PASSED!

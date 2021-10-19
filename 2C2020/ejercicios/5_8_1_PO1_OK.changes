@@ -1,0 +1,3070 @@
+
+
+----STARTUP---- (5 November 2020 21:43:54) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio\Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FR 11/5/2020 21:47:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FR 11/5/2020 21:47:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FR 11/5/2020 21:47:30'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FR 11/5/2020 21:47:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FR 11/5/2020 21:47:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FR 11/5/2020 21:47:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FR 11/5/2020 21:47:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FR 11/5/2020 21:47:30'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FR 11/5/2020 22:40:50' prior: 51108276!
+balance
+
+	| myBalance |
+	
+	myBalance := 0.
+
+	transactions do: [ :aTransaction | myBalance := aTransaction evaluateOn: myBalance ].
+	
+	^myBalance! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FR 11/5/2020 22:40:54'!
+ERROR!
+!AccountTransaction methodsFor: 'balance' stamp: 'FR 11/5/2020 22:41:02'!
+evaluateOn: aSmallInteger 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'balance' stamp: 'FR 11/5/2020 22:41:11' prior: 51108331!
+evaluateOn: aBalance
+	
+	^ self subclassResponsibility! !
+!Deposit methodsFor: 'balance' stamp: 'FR 11/5/2020 22:41:33' overrides: 51108336!
+evaluateOn: aBalance
+	
+	^ aBalance + self value! !
+!Withdraw methodsFor: 'balance' stamp: 'FR 11/5/2020 22:41:45' overrides: 51108336!
+evaluateOn: aBalance
+	
+	^ aBalance - self value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FR 11/5/2020 22:41:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FR 11/5/2020 22:41:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FR 11/5/2020 22:41:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FR 11/5/2020 22:41:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FR 11/5/2020 22:41:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FR 11/5/2020 22:41:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FR 11/5/2020 22:41:52'!
+PASSED!
+
+----STARTUP---- (5 November 2020 22:54:14) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio\Segunda\Test3\Portfolio-Ejercicio.st----!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'FR 11/5/2020 22:54:54'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/5/2020 22:56:15'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 22:56:12'!
+test01EmptyPortfolioHasBalanceZero
+
+	| aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	
+	self assert: aPortfolio balance equals: 0.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:56:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:56:19'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'FR 11/5/2020 22:56:27'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'balance' stamp: 'FR 11/5/2020 22:56:30' prior: 51108831!
+balance
+	
+	^0! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:56:33'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 22:56:44'!
+test02PortfolioWithAccountHasCorrectBalance
+
+	| aPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anAccount.
+	
+	Deposit register: 50 on: anAccount.
+	
+	self assert: aPortfolio balance equals: (anAccount balance).! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:56:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 22:56:46'!
+ERROR!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 22:56:46'!
+ERROR!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/5/2020 22:56:53'!
+addChild: aReceptiveAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/5/2020 22:57:19'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'child'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/5/2020 22:57:17' prior: 51108865!
+addChild: aPotentialChild
+
+	child := aPotentialChild! !
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 22:57:20'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'FR 11/5/2020 22:57:52' prior: 51108835!
+balance
+	
+	^child isNil ifTrue: [ 0 ] ifFalse: [ child balance ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:57:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 22:57:55'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 22:58:21'!
+test03PortfolioWithPortfoliosHasCorrectBalance
+
+	| aPortfolio aSubPortfolio anotherSubPortfolio anAccount anotherAccount |
+	
+	aPortfolio := Portfolio new.
+	aSubPortfolio := Portfolio new.
+	anotherSubPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+
+	aPortfolio addChild: aSubPortfolio.
+	aPortfolio addChild: anotherSubPortfolio.
+
+	aSubPortfolio addChild: anAccount.
+	anotherSubPortfolio addChild: anotherAccount.
+		
+	Deposit register: 50 on: anAccount.
+	Deposit register: 100 on: anotherAccount.
+
+	self assert: aPortfolio balance equals: (anAccount balance + anotherAccount balance).! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:58:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 22:58:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 22:58:23'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 22:58:23'!
+FAILURE!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/5/2020 22:58:40'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'child children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/5/2020 22:58:39' prior: 51108877!
+addChild: aPotentialChild
+
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'balance' stamp: 'FR 11/5/2020 22:59:13' prior: 51108885!
+balance
+	
+	^children sum: [ :aChild | aChild balance ] ifEmpty: [0]! !
+!Portfolio methodsFor: 'initialization' stamp: 'FR 11/5/2020 22:59:31' overrides: 16896425!
+initialize
+
+	children := OrderedCollection new! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/5/2020 22:59:35'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 22:59:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 22:59:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 22:59:37'!
+PASSED!
+
+----STARTUP---- (5 November 2020 23:07:08) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio\Segunda\TestsBalance\Portfolio-EjercicioTestsBalance.st----!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 23:07:56'!
+test04EmptyPortfolioHasNoTransactions
+
+	| aPortfolio |
+	
+	aPortfolio := Portfolio new.
+		
+	self assert: aPortfolio transactions isEmpty! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:07:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:07:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:07:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:07:58'!
+ERROR!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:07:58'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:08:06'!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:08:09' prior: 51109530!
+transactions
+	
+	^ #()! !
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:08:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:08:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:08:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:08:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:08:12'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 23:09:06'!
+test05PortfolioWithChildrenHasTheirTransactions
+
+	| aPortfolio aSubportfolio anAccount anotherAccount aTransaction anotherTransaction expectedTransactions|
+	
+	aPortfolio := Portfolio new.
+	aSubportfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anAccount.
+	aPortfolio addChild: aSubportfolio.
+	aSubportfolio addChild: anotherAccount.
+	
+	aTransaction := Deposit register: 50 on: anAccount.
+	anotherTransaction := Deposit register: 10 on: anotherAccount.
+	
+	expectedTransactions := Set new.
+	expectedTransactions add: aTransaction.
+	expectedTransactions add: anotherTransaction.
+	
+	self assert: aPortfolio transactions equals: expectedTransactions! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:09:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:09:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:09:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:09:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:09:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:09:08'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:09:54' prior: 51109535!
+transactions
+	
+	^ children inject: Set new into: [ :myTransactions :aChild | myTransactions union: aChild transactions ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:09:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:09:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:09:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:09:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:09:55'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 23:11:09'!
+test06EmptyPortfolioHasntRegisteredTransactions
+
+	| aPortfolio aTransaction |
+	
+	aPortfolio := Portfolio new.
+	
+	aTransaction := Deposit for: 50.
+	
+	self deny: (aPortfolio hasRegistered: aTransaction)! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:11:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:11:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:11:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:11:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:11:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:11:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:11:19'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:11:25'!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:11:37' prior: 51109659!
+hasRegistered: aTransaction
+	
+	^false! !
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:11:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:11:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:11:40'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 23:12:20'!
+test07PortfolioWithAccountRegistersItsTransactions
+
+	| aPortfolio anAccount aTransaction |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anAccount.
+	
+	aTransaction := Deposit register: 100 on: anAccount.
+	
+	self assert: (aPortfolio hasRegistered: aTransaction).! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:12:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:12:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:12:22'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:12:22'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:12:43' prior: 51109664!
+hasRegistered: aTransaction
+	
+	^ children isEmpty not! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:12:45'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/5/2020 23:13:30'!
+test08PortfolioWithPortfoliosRegistersItsTransactions
+
+	| aPortfolio aSubPortfolio anotherSubPortfolio anAccount anotherAccount transactionOne transactionTwo transactionThree transactionFour |
+	
+	aPortfolio := Portfolio new.
+	aSubPortfolio := Portfolio new.
+	anotherSubPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+
+	aPortfolio addChild: aSubPortfolio.
+	aPortfolio addChild: anotherSubPortfolio.
+
+	aSubPortfolio addChild: anAccount.
+	anotherSubPortfolio addChild: anotherAccount.
+		
+	transactionOne := Deposit register: 50 on: anAccount.
+	transactionTwo := Deposit register: 100 on: anotherAccount.
+	transactionThree := Withdraw register: 10 on: anotherAccount.
+	transactionFour := Withdraw for: 100.
+
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).
+	self deny: (aPortfolio hasRegistered: transactionFour).! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:13:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:13:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:13:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:13:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:13:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:13:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:13:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/5/2020 23:13:33'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/5/2020 23:13:33'!
+FAILURE!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:13:55' prior: 51109733!
+hasRegistered: aTransaction
+	
+	^ self transactions includes: aTransaction! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/5/2020 23:13:56'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:16:05' prior: 51109602!
+transactions
+	
+	| myTransactions |
+	
+	myTransactions := Set new.
+	
+	children do: [ :aChild | aChild addTransactionsTo: myTransactions ].
+	
+	^myTransactions! !
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:16:56'!
+addTransactionsTo: aTransactionCollection
+
+	self transactions do: [ :eachTransaction | aTransactionCollection add: eachTransaction ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:17:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:17:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:17:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:17:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:17:10'!
+ERROR!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:17:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:17:11'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/5/2020 23:17:11'!
+ERROR!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:17:17'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:20:09' prior: 51109870!
+addTransactionsTo: aTransactionCollection
+
+	children do: [ :aChild | aChild addTransactionsTo: aTransactionCollection ].! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'FR 11/5/2020 23:20:19'!
+addTransactionsTo: aCollectionOfTransactions
+
+	self transactions do: [ :eachTransaction | aCollectionOfTransactions add: eachTransaction ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/5/2020 23:20:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/5/2020 23:20:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/5/2020 23:20:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/5/2020 23:20:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/5/2020 23:20:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/5/2020 23:20:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/5/2020 23:20:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/5/2020 23:20:22'!
+PASSED!
+
+----STARTUP---- (8 November 2020 09:51:57) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio\Portfolio-EjercicioTransactionsRefactor.st----!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 09:53:08'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 09:53:33'!
+test09CantAddMyself
+
+	| aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	
+	self  should: [ aPortfolio addChild: aPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 09:53:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 09:53:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 09:53:43'!
+ERROR!
+!Portfolio class methodsFor: 'error descriptions' stamp: 'FR 11/8/2020 09:53:50'!
+cannotAddChildErrorDescription
+	self shouldBeImplemented.! !
+!Portfolio class methodsFor: 'error descriptions' stamp: 'FR 11/8/2020 09:53:56' prior: 51119571!
+cannotAddChildErrorDescription
+
+	^ 'Cannot add this child: adding it would duplicate information!!'! !
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 09:53:57'!
+FAILURE!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 09:54:46' prior: 51119423!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	children add: aPotentialChild! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 09:54:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 09:54:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 09:54:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 09:54:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 09:54:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 09:54:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 09:54:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 09:54:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 09:54:48'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 09:55:12'!
+test10CantAddOneOfMyChildren
+
+	| aPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anAccount.
+	
+	self  should: [ aPortfolio addChild: anAccount ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 09:55:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 09:55:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 09:55:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 09:55:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 09:55:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 09:55:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 09:55:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 09:55:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 09:55:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 09:55:16'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 09:55:16'!
+FAILURE!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 09:56:25' prior: 51119585!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	children add: aPotentialChild! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 09:56:27'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 09:59:50'!
+test11CantAddSuccessor
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anotherPortfolio.
+	anotherPortfolio addChild: anAccount.
+		
+	self  should: [ aPortfolio addChild: anAccount ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:00:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:00:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:00:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:00:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:00:02'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:00:02'!
+FAILURE!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 10:01:57' prior: 51119673!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:05:50'!
+hasSuccessor: aPotentialSuccessor
+
+	^ (children includes: aPotentialSuccessor) or: [
+		children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialSuccessor ]
+	]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:05:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:05:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:05:54'!
+ERROR!
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 10:06:08'!
+hasSuccessor: aPotentialSuccessor
+
+	^ false! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:06:09'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 10:08:35'!
+test12CantAddOneOfMyParents
+
+	| aPortfolio anotherPortfolio |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.	
+	
+	anotherPortfolio addChild: aPortfolio.
+	
+	self  should: [ aPortfolio addChild: anotherPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:08:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:08:38'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:08:38'!
+FAILURE!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 10:11:24'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'children parent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 10:11:18' prior: 51119773!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parent = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:11:41'!
+addParent: aNewParent
+
+	parent := aNewParent! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 10:11:49'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 10:11:46'!
+addParent: aNewParent
+
+	parent := aNewParent! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:11:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:11:57'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 10:13:43'!
+test13CantAddAnyOfMyParents
+
+	| aSuperPortfolio anotherSuperPortfolio aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	aSuperPortfolio := Portfolio new.	
+	anotherSuperPortfolio := Portfolio new.	
+	
+	aSuperPortfolio addChild: aPortfolio.
+	anotherSuperPortfolio addChild: aPortfolio.
+
+	self  should: [ aPortfolio addChild: aSuperPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription.
+	self  should: [ aPortfolio addChild: anotherSuperPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:13:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:13:45'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:13:45'!
+FAILURE!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 10:14:09'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'children parent parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:14:08' prior: 51119960!
+addParent: aNewParent
+
+	parents add: aNewParent! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 10:14:15'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parent parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 10:14:14' prior: 51119972!
+addParent: aNewParent
+
+	parents add: aNewParent! !
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 10:14:19'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'children parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 10:14:24'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'children parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 10:15:02' prior: 51119941!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:15:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:15:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:15:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:15:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:15:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:15:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:15:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:15:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:15:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:15:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:15:05'!
+ERROR!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:15:05'!
+ERROR!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:15:05'!
+ERROR!
+!Portfolio methodsFor: 'initialization' stamp: 'FR 11/8/2020 10:15:34' prior: 51119414 overrides: 16896425!
+initialize
+
+	children := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'FR 11/8/2020 10:15:46' prior: 51119461 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.
+	parents := OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:15:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:15:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:15:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:15:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:15:49'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 10:18:49'!
+test14CantAddPredecessor
+
+	| aSuperSuperPortfolio aSuperPortfolio aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	aSuperPortfolio := Portfolio new.	
+	aSuperSuperPortfolio := Portfolio new.	
+	
+	aSuperSuperPortfolio addChild: aSuperPortfolio.
+	aSuperPortfolio addChild: aPortfolio.
+
+	self  should: [ aPortfolio addChild: aSuperSuperPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:18:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 10:18:51'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 10:18:51'!
+FAILURE!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 10:19:42' prior: 51120173!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:20:32'!
+hasPredecessor: aPotentialPredecessor
+
+	^ (parents includes: aPotentialPredecessor) or: [
+		parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialPredecessor ]
+	]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 10:20:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 10:39:24'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 10:43:18'!
+test15CantAddPortfolioThatSharesSuccessorsWithMe
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+
+	aPortfolio addChild: anAccount.
+	anotherPortfolio addChild: anAccount.
+
+	self  should: [ aPortfolio addChild: anotherPortfolio ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 10:43:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 10:43:21'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 10:43:22'!
+FAILURE!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 10:46:25' prior: 51120356!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorsWith: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:47:16'!
+sharesSuccessorsWith: aBankAsset
+
+	^ (self successors intersection: aBankAsset successors) isEmpty not! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:48:34' prior: 51120575!
+sharesSuccessorsWith: aBankAsset
+
+	| mySuccessors |
+	
+	mySuccessors := children copy.
+	children do: [ :aChild | aChild addSuccessorsTo: mySuccessors ].
+	
+	^mySuccessors! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:49:21'!
+addSuccessorsTo: aSuccessorsCollection
+
+	children do: [ :aChild | 
+		aSuccessorsCollection add: aChild.
+		aChild addSuccessorsTo: aSuccessorsCollection.
+	]! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 10:49:50'!
+addSuccessorsTo: aSuccessorsCollection! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:51:21'!
+successors
+
+	| mySuccessors |
+	
+	mySuccessors := children copy.
+	children do: [ :aChild | aChild addSuccessorsTo: mySuccessors ].
+	
+	^mySuccessors! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 10:51:54' prior: 51120581!
+sharesSuccessorsWith: aBankAsset
+
+	^ (self successors intersection: aBankAsset successors) isEmpty not! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 10:52:23'!
+successors
+
+	^ OrderedCollection new! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 10:52:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 10:52:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 10:52:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 10:52:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 10:52:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 10:52:26'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'FR 11/8/2020 11:04:28'!
+test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors
+
+	| portfolioOne portfolioTwo portfolioThree portfolioFour anAccount |
+	
+	portfolioOne := Portfolio new.
+	portfolioTwo := Portfolio new.
+	portfolioThree := Portfolio new.
+	portfolioFour := Portfolio new.
+	anAccount := ReceptiveAccount new.
+
+	portfolioOne addChild: anAccount.
+	portfolioOne addChild: portfolioThree.
+	portfolioTwo addChild: anAccount.
+	portfolioThree addChild: portfolioFour.
+
+	self  should: [ portfolioFour addChild: portfolioTwo ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 11:04:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 11:04:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 11:04:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 11:04:32'!
+FAILURE!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 11:07:10' prior: 51120548!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorsWith: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorWithOneOfMyPredecessors: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 11:08:06' prior: 51120748!
+addChild: aPotentialChild
+
+	(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorsWith: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorsWithOneOfMyPredecessors: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 11:09:06'!
+sharesSuccessorsWithOneOfMyPredecessors: aBankAsset
+
+	^ parents anySatisfy: [ :aParent | (aParent sharesSuccessorsWith: aBankAsset) or: [ aParent sharesSuccessorsWithOneOfMyPredecessors: aBankAsset ] ]! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 11:09:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 11:09:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 11:09:18'!
+PASSED!
+!PortfolioTest methodsFor: 'private - assertions' stamp: 'FR 11/8/2020 11:14:11'!
+assertCannotAdd: aBankAsset asChildTo: anotherBankAsset
+
+	^ self  should: [ anotherBankAsset addChild: aBankAsset ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:14:41' prior: 51119527!
+test09CantAddMyself
+
+	| aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	
+	self assertCannotAdd: aPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:15:04' prior: 51119623!
+test10CantAddOneOfMyChildren
+
+	| aPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anAccount.
+	
+	self assertCannotAdd: anAccount asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:15:30' prior: 51119718!
+test11CantAddSuccessor
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addChild: anotherPortfolio.
+	anotherPortfolio addChild: anAccount.
+		
+	self assertCannotAdd: anAccount asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:15:46' prior: 51119877!
+test12CantAddOneOfMyParents
+
+	| aPortfolio anotherPortfolio |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.	
+	
+	anotherPortfolio addChild: aPortfolio.
+	
+	self assertCannotAdd: anotherPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:16:13' prior: 51120055!
+test13CantAddAnyOfMyParents
+
+	| aSuperPortfolio anotherSuperPortfolio aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	aSuperPortfolio := Portfolio new.	
+	anotherSuperPortfolio := Portfolio new.	
+	
+	aSuperPortfolio addChild: aPortfolio.
+	anotherSuperPortfolio addChild: aPortfolio.
+
+	self assertCannotAdd: aSuperPortfolio asChildTo: aPortfolio.
+	self assertCannotAdd: anotherSuperPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:16:28' prior: 51120291!
+test14CantAddPredecessor
+
+	| aSuperSuperPortfolio aSuperPortfolio aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	aSuperPortfolio := Portfolio new.	
+	aSuperSuperPortfolio := Portfolio new.	
+	
+	aSuperSuperPortfolio addChild: aSuperPortfolio.
+	aSuperPortfolio addChild: aPortfolio.
+
+	self assertCannotAdd: aSuperSuperPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:16:51' prior: 51120479!
+test15CantAddPortfolioThatSharesSuccessorsWithMe
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+
+	aPortfolio addChild: anAccount.
+	anotherPortfolio addChild: anAccount.
+
+	self assertCannotAdd: anotherPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'tests - addChild' stamp: 'FR 11/8/2020 11:17:08' prior: 51120668!
+test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors
+
+	| portfolioOne portfolioTwo portfolioThree portfolioFour anAccount |
+	
+	portfolioOne := Portfolio new.
+	portfolioTwo := Portfolio new.
+	portfolioThree := Portfolio new.
+	portfolioFour := Portfolio new.
+	anAccount := ReceptiveAccount new.
+
+	portfolioOne addChild: anAccount.
+	portfolioOne addChild: portfolioThree.
+	portfolioTwo addChild: anAccount.
+	portfolioThree addChild: portfolioFour.
+
+	self assertCannotAdd: portfolioTwo asChildTo: portfolioFour! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 11:17:13'!
+PASSED!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 11:19:41' prior: 51120780!
+addChild: aPotentialChild
+
+	"(self = aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents includes: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorsWith: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ].
+	(self sharesSuccessorsWithOneOfMyPredecessors: aPotentialChild) ifTrue: [ self error: self class cannotAddChildErrorDescription ]."
+	self assertCanAddChild: aPotentialChild.
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 11:20:35'!
+assertCanAddChild: aPotentialChild
+
+	(self rootPredecessors anySatisfy: [ :aRootPredecessor | aRootPredecessor sharesAssetsWith: aPotentialChild ]) ifTrue: [ self error: self class cannotAddChildErrorDescription ]! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 11:23:57'!
+rootPredecessors
+
+	| myRootPredecessors |
+	
+	myRootPredecessors := Set new.
+	
+	parents isEmpty ifTrue: [
+		myRootPredecessors add: self
+	]
+	ifFalse: [
+		parents do: [ :aParent | myRootPredecessors := myRootPredecessors union: aParent rootPredecessors ]
+	].
+	
+	^myRootPredecessors! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 11:26:33'!
+sharesAssetsWith: aBankAsset
+
+	| myMembers otherMembers |
+	
+	myMembers := Set new.
+	myMembers := myMembers union: self successors.
+	myMembers add: self.
+	
+	otherMembers := Set new.
+	otherMembers := otherMembers union: aBankAsset successors.
+	otherMembers add: aBankAsset.
+	
+	^ (myMembers intersection: otherMembers) isEmpty not! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 11:26:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 11:26:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 11:26:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 11:26:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 11:26:43'!
+PASSED!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 11:26:49' prior: 51121043!
+addChild: aPotentialChild
+
+	self assertCanAddChild: aPotentialChild.
+	
+	aPotentialChild addParent: self.
+	children add: aPotentialChild! !
+
+!methodRemoval: Portfolio #sharesSuccessorsWithOneOfMyPredecessors: stamp: 'FR 11/8/2020 11:27:39'!
+sharesSuccessorsWithOneOfMyPredecessors: aBankAsset
+
+	^ parents anySatisfy: [ :aParent | (aParent sharesSuccessorsWith: aBankAsset) or: [ aParent sharesSuccessorsWithOneOfMyPredecessors: aBankAsset ] ]!
+
+!methodRemoval: Portfolio #sharesSuccessorsWith: stamp: 'FR 11/8/2020 11:28:18'!
+sharesSuccessorsWith: aBankAsset
+
+	^ (self successors intersection: aBankAsset successors) isEmpty not!
+
+!methodRemoval: Portfolio #hasSuccessor: stamp: 'FR 11/8/2020 11:28:34'!
+hasSuccessor: aPotentialSuccessor
+
+	^ (children includes: aPotentialSuccessor) or: [
+		children anySatisfy: [ :aChild | aChild hasSuccessor: aPotentialSuccessor ]
+	]!
+
+!methodRemoval: Portfolio #hasPredecessor: stamp: 'FR 11/8/2020 11:28:39'!
+hasPredecessor: aPotentialPredecessor
+
+	^ (parents includes: aPotentialPredecessor) or: [
+		parents anySatisfy: [ :aParent | aParent hasPredecessor: aPotentialPredecessor ]
+	]!
+
+!methodRemoval: ReceptiveAccount #hasSuccessor: stamp: 'FR 11/8/2020 11:29:41'!
+hasSuccessor: aPotentialSuccessor
+
+	^ false!
+
+!classDefinition: #BankAsset category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 11:30:52'!
+Object subclass: #BankAsset
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 11:30:52'!
+BankAsset subclass: #Portfolio
+	instanceVariableNames: 'children parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 11:31:15'!
+BankAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankAsset subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 11:32:00'!
+BankAsset subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 11:32:04'!
+BankAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #BankAsset
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #BankAsset category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 11:32:09'!
+Object subclass: #BankAsset
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!BankAsset methodsFor: 'private' stamp: 'FR 11/8/2020 11:32:28'!
+addParent: aNewParent
+
+	parents add: aNewParent! !
+
+!methodRemoval: Portfolio #addParent: stamp: 'FR 11/8/2020 11:32:31'!
+addParent: aNewParent
+
+	parents add: aNewParent!
+
+!methodRemoval: ReceptiveAccount #addParent: stamp: 'FR 11/8/2020 11:32:35'!
+addParent: aNewParent
+
+	parents add: aNewParent!
+!BankAsset methodsFor: 'initialization' stamp: 'FR 11/8/2020 11:33:05' overrides: 16896425!
+initialize
+
+	self subclassResponsibility! !
+!BankAsset methodsFor: 'balance' stamp: 'FR 11/8/2020 11:33:25'!
+balance
+
+	self subclassResponsibility! !
+!BankAsset methodsFor: 'private' stamp: 'FR 11/8/2020 11:35:40'!
+successors
+
+	self subclassResponsibility! !
+!BankAsset methodsFor: 'private' stamp: 'FR 11/8/2020 11:36:30'!
+addSuccessorsTo: aSuccessorsCollection
+
+	self subclassResponsibility! !
+!BankAsset methodsFor: 'private' stamp: 'FR 11/8/2020 11:36:39'!
+addTransactionsTo: aTransactionsCollection
+
+	self subclassResponsibility! !
+!BankAsset methodsFor: 'transactions' stamp: 'FR 11/8/2020 11:37:32'!
+transactions
+
+	self subclassResponsibility! !
+!BankAsset methodsFor: 'testing' stamp: 'FR 11/8/2020 11:38:00'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility! !
+
+----STARTUP---- (8 November 2020 11:41:07) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio-EjercicioDefinitivoSuperclassRefactor.st----!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 11:56:31'!
+PASSED!
+!BankAsset methodsFor: 'private' stamp: 'FR 11/8/2020 11:57:22' prior: 51121784!
+addParent: aPortfolio
+
+	parents add: aPortfolio! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 12:00:51' prior: 51121859 overrides: 51121788!
+addSuccessorsTo: aSuccessorsCollection
+
+	children addAll: aSuccessorsCollection.
+	children do: [ :aChild | aChild addSuccessorsTo: aSuccessorsCollection ]! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 12:01:57' prior: 51121873!
+rootPredecessors
+
+	| myRootPredecessors |
+	
+	myRootPredecessors := Set new.
+	
+	parents isEmpty ifTrue: [
+		myRootPredecessors add: self
+	]
+	ifFalse: [
+		parents do: [ :aParent | aParent rootPredecessors addAll: myRootPredecessors ]
+	].
+	
+	^myRootPredecessors! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 12:02:31' prior: 51121884!
+sharesAssetsWith: aBankAsset
+
+	| myMembers otherMembers |
+	
+	myMembers := Set new.
+	self successors addAll: myMembers.
+	myMembers add: self.
+	
+	otherMembers := Set new.
+	aBankAsset successors addAll: otherMembers.
+	otherMembers add: aBankAsset.
+	
+	^ (myMembers intersection: otherMembers) isEmpty not! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 12:03:36' prior: 51121958 overrides: 51121793!
+addTransactionsTo: aCollectionOfTransactions
+
+	transactions addAll: aCollectionOfTransactions! !
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 12:05:53'!
+cannotAddChildError
+
+	^ self error: self class cannotAddChildErrorDescription! !
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 12:05:53' prior: 51121843!
+assertCanAddChild: aPotentialChild
+
+	(self rootPredecessors anySatisfy: [ :aRootPredecessor | aRootPredecessor sharesAssetsWith: aPotentialChild ]) ifTrue: [ self cannotAddChildError ]! !
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 12:08:12'!
+sharesAssetsWithMyRootPredecessors: aPotentialChild
+
+	^ self rootPredecessors anySatisfy: [ :aRootPredecessor | aRootPredecessor sharesAssetsWith: aPotentialChild ]! !
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 12:08:12' prior: 51122100!
+assertCanAddChild: aPotentialChild
+
+	(self sharesAssetsWithMyRootPredecessors: aPotentialChild) ifTrue: [ self cannotAddChildError ]! !
+!Portfolio methodsFor: 'errors' stamp: 'FR 11/8/2020 12:10:03' prior: 51122094!
+cannotAddChildError
+
+	self error: self class cannotAddChildErrorDescription! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 12:10:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 12:10:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 12:10:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 12:10:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 12:10:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 12:10:26'!
+PASSED!
+
+self rootPredecessors!
+
+self rootPredecessors!
+
+self at: 1!
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 12:15:17' prior: 51122056 overrides: 51121788!
+addSuccessorsTo: aSuccessorsCollection
+
+	aSuccessorsCollection addAll: children.
+	children do: [ :aChild | aChild addSuccessorsTo: aSuccessorsCollection ]! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 12:15:42' prior: 51122064!
+rootPredecessors
+
+	| myRootPredecessors |
+	
+	myRootPredecessors := Set new.
+	
+	parents isEmpty ifTrue: [
+		myRootPredecessors add: self
+	]
+	ifFalse: [
+		parents do: [ :aParent | myRootPredecessors addAll: aParent rootPredecessors ]
+	].
+	
+	^myRootPredecessors! !
+!Portfolio methodsFor: 'private' stamp: 'FR 11/8/2020 12:16:09' prior: 51122075!
+sharesAssetsWith: aBankAsset
+
+	| myMembers otherMembers |
+	
+	myMembers := Set new.
+	myMembers addAll: self successors.
+	myMembers add: self.
+	
+	otherMembers := Set new.
+	otherMembers addAll: aBankAsset successors.
+	otherMembers add: aBankAsset.
+	
+	^ (myMembers intersection: otherMembers) isEmpty not! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'FR 11/8/2020 12:16:35' prior: 51122088 overrides: 51121793!
+addTransactionsTo: aCollectionOfTransactions
+
+	aCollectionOfTransactions addAll: transactions! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 12:17:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 12:17:26'!
+PASSED!
+
+----STARTUP---- (8 November 2020 20:38:08) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio\versionSubidaAGit\Portfolio-Ejercicio.st----!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'FR 11/8/2020 20:42:14'!
+BankAsset subclass: #Portfolio
+	instanceVariableNames: 'assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122852 overrides: 51122726!
+successors
+
+	| mySuccessors |
+	
+	mySuccessors := assets copy.
+	assets do: [ :aChild | aChild addSuccessorsTo: mySuccessors ].
+	
+	^mySuccessors! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122813 overrides: 51122712!
+addTransactionsTo: aTransactionCollection
+
+	assets do: [ :aChild | aChild addTransactionsTo: aTransactionCollection ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122766 overrides: 51122735!
+balance
+	
+	^assets sum: [ :aChild | aChild balance ] ifEmpty: [0]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122786 overrides: 51122717!
+addSuccessorsTo: aSuccessorsCollection
+
+	aSuccessorsCollection addAll: assets.
+	assets do: [ :aChild | aChild addSuccessorsTo: aSuccessorsCollection ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122778!
+addChild: aPotentialChild
+
+	self assertCanAddChild: aPotentialChild.
+	
+	aPotentialChild addParent: self.
+	assets add: aPotentialChild! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122760 overrides: 51122731!
+initialize
+
+	assets := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:42:14' prior: 51122800 overrides: 51122739!
+transactions
+	
+	| myTransactions |
+	
+	myTransactions := Set new.
+	
+	assets do: [ :aChild | aChild addTransactionsTo: myTransactions ].
+	
+	^myTransactions! !
+!Deposit methodsFor: 'balance' stamp: 'FR 11/8/2020 20:44:19'!
+evaluateOnBalance: aBalance
+	
+	^ aBalance + self value! !
+!Withdraw methodsFor: 'balance' stamp: 'FR 11/8/2020 20:44:19'!
+evaluateOnBalance: aBalance
+	
+	^ aBalance - self value! !
+!AccountTransaction methodsFor: 'balance' stamp: 'FR 11/8/2020 20:44:19'!
+evaluateOnBalance: aBalance
+	
+	^ self subclassResponsibility! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:44:19' prior: 51122917 overrides: 51122735!
+balance
+
+	| myBalance |
+	
+	myBalance := 0.
+
+	transactions do: [ :aTransaction | myBalance := aTransaction evaluateOnBalance: myBalance ].
+	
+	^myBalance! !
+
+!methodRemoval: Deposit #evaluateOn: stamp: 'FR 11/8/2020 20:44:19'!
+evaluateOn: aBalance
+	
+	^ aBalance + self value!
+
+!methodRemoval: Withdraw #evaluateOn: stamp: 'FR 11/8/2020 20:44:19'!
+evaluateOn: aBalance
+	
+	^ aBalance - self value!
+
+!methodRemoval: AccountTransaction #evaluateOn: stamp: 'FR 11/8/2020 20:44:19'!
+evaluateOn: aBalance
+	
+	^ self subclassResponsibility!
+
+!methodRemoval: Portfolio #addSuccessorsTo: stamp: 'FR 11/8/2020 20:47:12'!
+addSuccessorsTo: aSuccessorsCollection
+
+	aSuccessorsCollection addAll: assets.
+	assets do: [ :aChild | aChild addSuccessorsTo: aSuccessorsCollection ]!
+
+!methodRemoval: ReceptiveAccount #addSuccessorsTo: stamp: 'FR 11/8/2020 20:47:14'!
+addSuccessorsTo: aSuccessorsCollection!
+!Portfolio methodsFor: 'private - adding' stamp: 'FR 11/8/2020 20:48:09' prior: 51122947 overrides: 51122726!
+successors
+
+	| mySuccessors |
+	
+	mySuccessors := assets copy.
+	assets do: [ :aChild | mySuccessors addAll: aChild successors ].
+	
+	^mySuccessors! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 20:49:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 20:49:44'!
+PASSED!
+
+!methodRemoval: BankAsset #addSuccessorsTo: stamp: 'FR 11/8/2020 20:50:28'!
+addSuccessorsTo: aSuccessorsCollection
+
+	self subclassResponsibility!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 20:52:02'!
+addAsset: aPotentialChild
+
+	self assertCanAddChild: aPotentialChild.
+	
+	aPotentialChild addParent: self.
+	assets add: aPotentialChild! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122310!
+test03PortfolioWithPortfoliosHasCorrectBalance
+
+	| aPortfolio aSubPortfolio anotherSubPortfolio anAccount anotherAccount |
+	
+	aPortfolio := Portfolio new.
+	aSubPortfolio := Portfolio new.
+	anotherSubPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+
+	aPortfolio addAsset: aSubPortfolio.
+	aPortfolio addAsset: anotherSubPortfolio.
+
+	aSubPortfolio addAsset: anAccount.
+	anotherSubPortfolio addAsset: anotherAccount.
+		
+	Deposit register: 50 on: anAccount.
+	Deposit register: 100 on: anotherAccount.
+
+	self assert: aPortfolio balance equals: (anAccount balance + anotherAccount balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122445!
+test14CantAddPredecessor
+
+	| aSuperSuperPortfolio aSuperPortfolio aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	aSuperPortfolio := Portfolio new.	
+	aSuperSuperPortfolio := Portfolio new.	
+	
+	aSuperSuperPortfolio addAsset: aSuperPortfolio.
+	aSuperPortfolio addAsset: aPortfolio.
+
+	self assertCannotAdd: aSuperSuperPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122491!
+assertCannotAdd: aBankAsset asChildTo: anotherBankAsset
+
+	^ self  should: [ anotherBankAsset addAsset: aBankAsset ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Portfolio cannotAddChildErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122298!
+test02PortfolioWithAccountHasCorrectBalance
+
+	| aPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addAsset: anAccount.
+	
+	Deposit register: 50 on: anAccount.
+	
+	self assert: aPortfolio balance equals: (anAccount balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122265!
+test05PortfolioWithChildrenHasTheirTransactions
+
+	| aPortfolio aSubportfolio anAccount anotherAccount aTransaction anotherTransaction expectedTransactions|
+	
+	aPortfolio := Portfolio new.
+	aSubportfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	aPortfolio addAsset: anAccount.
+	aPortfolio addAsset: aSubportfolio.
+	aSubportfolio addAsset: anotherAccount.
+	
+	aTransaction := Deposit register: 50 on: anAccount.
+	anotherTransaction := Deposit register: 10 on: anotherAccount.
+	
+	expectedTransactions := Set new.
+	expectedTransactions add: aTransaction.
+	expectedTransactions add: anotherTransaction.
+	
+	self assert: aPortfolio transactions equals: expectedTransactions! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122429!
+test13CantAddAnyOfMyParents
+
+	| aSuperPortfolio anotherSuperPortfolio aPortfolio |
+	
+	aPortfolio := Portfolio new.
+	aSuperPortfolio := Portfolio new.	
+	anotherSuperPortfolio := Portfolio new.	
+	
+	aSuperPortfolio addAsset: aPortfolio.
+	anotherSuperPortfolio addAsset: aPortfolio.
+
+	self assertCannotAdd: aSuperPortfolio asChildTo: aPortfolio.
+	self assertCannotAdd: anotherSuperPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122472!
+test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors
+
+	| portfolioOne portfolioTwo portfolioThree portfolioFour anAccount |
+	
+	portfolioOne := Portfolio new.
+	portfolioTwo := Portfolio new.
+	portfolioThree := Portfolio new.
+	portfolioFour := Portfolio new.
+	anAccount := ReceptiveAccount new.
+
+	portfolioOne addAsset: anAccount.
+	portfolioOne addAsset: portfolioThree.
+	portfolioTwo addAsset: anAccount.
+	portfolioThree addAsset: portfolioFour.
+
+	self assertCannotAdd: portfolioTwo asChildTo: portfolioFour! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122459!
+test15CantAddPortfolioThatSharesSuccessorsWithMe
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+
+	aPortfolio addAsset: anAccount.
+	anotherPortfolio addAsset: anAccount.
+
+	self assertCannotAdd: anotherPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122342!
+test07PortfolioWithAccountRegistersItsTransactions
+
+	| aPortfolio anAccount aTransaction |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addAsset: anAccount.
+	
+	aTransaction := Deposit register: 100 on: anAccount.
+	
+	self assert: (aPortfolio hasRegistered: aTransaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122406!
+test11CantAddSuccessor
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addAsset: anotherPortfolio.
+	anotherPortfolio addAsset: anAccount.
+		
+	self assertCannotAdd: anAccount asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122419!
+test12CantAddOneOfMyParents
+
+	| aPortfolio anotherPortfolio |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.	
+	
+	anotherPortfolio addAsset: aPortfolio.
+	
+	self assertCannotAdd: anotherPortfolio asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122396!
+test10CantAddOneOfMyChildren
+
+	| aPortfolio anAccount |
+	
+	aPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio addAsset: anAccount.
+	
+	self assertCannotAdd: anAccount asChildTo: aPortfolio! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:02' prior: 51122355!
+test08PortfolioWithPortfoliosRegistersItsTransactions
+
+	| aPortfolio aSubPortfolio anotherSubPortfolio anAccount anotherAccount transactionOne transactionTwo transactionThree transactionFour |
+	
+	aPortfolio := Portfolio new.
+	aSubPortfolio := Portfolio new.
+	anotherSubPortfolio := Portfolio new.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+
+	aPortfolio addAsset: aSubPortfolio.
+	aPortfolio addAsset: anotherSubPortfolio.
+
+	aSubPortfolio addAsset: anAccount.
+	anotherSubPortfolio addAsset: anotherAccount.
+		
+	transactionOne := Deposit register: 50 on: anAccount.
+	transactionTwo := Deposit register: 100 on: anotherAccount.
+	transactionThree := Withdraw register: 10 on: anotherAccount.
+	transactionFour := Withdraw for: 100.
+
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).
+	self deny: (aPortfolio hasRegistered: transactionFour).! !
+
+!methodRemoval: Portfolio #addChild: stamp: 'FR 11/8/2020 20:52:02'!
+addChild: aPotentialChild
+
+	self assertCanAddChild: aPotentialChild.
+	
+	aPotentialChild addParent: self.
+	assets add: aPotentialChild!
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 20:52:15'!
+assertCanAddAsset: aPotentialChild
+
+	(self sharesAssetsWithMyRootPredecessors: aPotentialChild) ifTrue: [ self cannotAddChildError ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FR 11/8/2020 20:52:15' prior: 51123112!
+addAsset: aPotentialChild
+
+	self assertCanAddAsset: aPotentialChild.
+	
+	aPotentialChild addParent: self.
+	assets add: aPotentialChild! !
+
+!methodRemoval: Portfolio #assertCanAddChild: stamp: 'FR 11/8/2020 20:52:15'!
+assertCanAddChild: aPotentialChild
+
+	(self sharesAssetsWithMyRootPredecessors: aPotentialChild) ifTrue: [ self cannotAddChildError ]!
+!Portfolio methodsFor: 'modifying' stamp: 'FR 11/8/2020 20:52:31' prior: 51123351!
+addAsset: aBankAssetToAdd
+
+	self assertCanAddAsset: aBankAssetToAdd.
+	
+	aBankAssetToAdd addParent: self.
+	assets add: aBankAssetToAdd! !
+!Portfolio methodsFor: 'private - transactions' stamp: 'FR 11/8/2020 20:52:45' prior: 51122956 overrides: 51122712!
+addTransactionsTo: aCollectionOfTransactions
+
+	assets do: [ :aChild | aChild addTransactionsTo: aCollectionOfTransactions ].! !
+!Portfolio methodsFor: 'private - transactions' stamp: 'FR 11/8/2020 20:52:53' prior: 51123373 overrides: 51122712!
+addTransactionsTo: aTransactionCollection
+
+	assets do: [ :aChild | aChild addTransactionsTo: aTransactionCollection ].! !
+!Portfolio methodsFor: 'private - transactions' stamp: 'FR 11/8/2020 20:52:59' prior: 51123381 overrides: 51122712!
+addTransactionsTo: aTransactionCollection
+
+	assets do: [ :aBankAsset | aBankAsset addTransactionsTo: aTransactionCollection ].! !
+!Portfolio methodsFor: 'assertions' stamp: 'FR 11/8/2020 20:53:34' prior: 51123343!
+assertCanAddAsset: aBankAssetToAdd
+
+	(self sharesAssetsWithMyRootPredecessors: aBankAssetToAdd) ifTrue: [ self cannotAddChildError ]! !
+!Portfolio methodsFor: 'balance' stamp: 'FR 11/8/2020 20:53:51' prior: 51122964 overrides: 51122735!
+balance
+	
+	^assets sum: [ :aBankAsset | aBankAsset balance ] ifEmpty: [0]! !
+!Portfolio methodsFor: 'private - adding' stamp: 'FR 11/8/2020 20:55:34' prior: 51122831!
+sharesAssetsWith: aBankAsset
+
+	| myAssets otherMembers |
+	
+	myAssets := Set new.
+	myAssets addAll: self successors.
+	myAssets add: self.
+	
+	otherMembers := Set new.
+	otherMembers addAll: aBankAsset successors.
+	otherMembers add: aBankAsset.
+	
+	^ (myAssets intersection: otherMembers) isEmpty not! !
+!Portfolio methodsFor: 'private - adding' stamp: 'FR 11/8/2020 20:55:39' prior: 51123410!
+sharesAssetsWith: aBankAsset
+
+	| myAssets otherAssets |
+	
+	myAssets := Set new.
+	myAssets addAll: self successors.
+	myAssets add: self.
+	
+	otherAssets := Set new.
+	otherAssets addAll: aBankAsset successors.
+	otherAssets add: aBankAsset.
+	
+	^ (myAssets intersection: otherAssets) isEmpty not! !
+!Portfolio methodsFor: 'private - adding' stamp: 'FR 11/8/2020 20:55:51' prior: 51122843!
+sharesAssetsWithMyRootPredecessors: aBankAsset
+
+	^ self rootPredecessors anySatisfy: [ :aRootPredecessor | aRootPredecessor sharesAssetsWith: aBankAsset ]! !
+!Portfolio methodsFor: 'private - adding' stamp: 'FR 11/8/2020 20:56:00' prior: 51123047 overrides: 51122726!
+successors
+
+	| mySuccessors |
+	
+	mySuccessors := assets copy.
+	assets do: [ :aBankAsset | mySuccessors addAll: aBankAsset successors ].
+	
+	^mySuccessors! !
+!Portfolio methodsFor: 'transactions' stamp: 'FR 11/8/2020 20:56:12' prior: 51122993 overrides: 51122739!
+transactions
+	
+	| myTransactions |
+	
+	myTransactions := Set new.
+	
+	assets do: [ :aBankAsset | aBankAsset addTransactionsTo: myTransactions ].
+	
+	^myTransactions! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 20:57:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 20:57:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 20:57:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 20:57:36'!
+PASSED!
+
+----STARTUP---- (8 November 2020 22:20:05) as E:\!!NUEVO\Programas\CuisUniversity\v4383.1\CuisUniversity-4383.image!
+
+
+----End fileIn of E:\!!NUEVO\Programas\CuisUniversity\v4383.1\Portfolio\versionSubidaAGit\segundaVersión\Portfolio-Ejercicio.st----!
+!Portfolio methodsFor: 'private - adding' stamp: 'FR 11/8/2020 22:21:10' prior: 51124759!
+rootPredecessors
+
+	| myRootPredecessors |
+	
+	myRootPredecessors := Set new.
+	
+	parents ifEmpty: [
+		myRootPredecessors add: self
+	]
+	ifNotEmpty: [
+		parents do: [ :aParent | myRootPredecessors addAll: aParent rootPredecessors ]
+	].
+	
+	^myRootPredecessors! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 22:21:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 22:21:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 22:21:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 22:21:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 22:21:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 22:21:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FR 11/8/2020 22:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasBalanceZero stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithAccountHasCorrectBalance stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithPortfoliosHasCorrectBalance stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasNoTransactions stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithChildrenHasTheirTransactions stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06EmptyPortfolioHasntRegisteredTransactions stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithAccountRegistersItsTransactions stamp: 'FR 11/8/2020 22:21:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithPortfoliosRegistersItsTransactions stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CantAddMyself stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test10CantAddOneOfMyChildren stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CantAddSuccessor stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CantAddOneOfMyParents stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CantAddAnyOfMyParents stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddPredecessor stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddPortfolioThatSharesSuccessorsWithMe stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddPortfolioThatSharesSuccessorsWithOneOfMyPredecessors stamp: 'FR 11/8/2020 22:21:37'!
+PASSED!

@@ -1,0 +1,696 @@
+
+
+TestCase subclass: #CartsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartsTest category: 'TusLibros' stamp: 'LM 6/9/2021 17:07:31'!
+TestCase subclass: #CartsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'LM 6/9/2021 17:12:20'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 17:12:11'!
+test01cartIsEmptyWhenCreated
+
+	| cart |
+	cart := Cart new.
+	
+	self assert: cart isEmpty.! !
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 17:12:20'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 17:12:27'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 17:12:42' prior: 50859486!
+isEmpty
+
+	^true! !
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 17:12:46'!
+PASSED!
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 17:12:46'!
+PASSED!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 17:13:02' prior: 50859478!
+test01cartIsEmptyWhenCreated
+
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: cart isEmpty.! !
+
+!classDefinition: #Book category: 'TusLibros' stamp: 'LM 6/9/2021 17:37:56'!
+Object subclass: #Book
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 17:37:48'!
+test02cartIsNotEmptyAfterAddingABookFromThisPublisher
+
+	| cart book |
+	
+	cart := Cart new.
+	book := Book isbn: '9780262531962'.
+	cart add: 1 of: book.
+	
+	self deny: cart isEmpty.! !
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:37:59'!
+ERROR!
+!Book class methodsFor: 'instance creation' stamp: 'LM 6/9/2021 17:38:05'!
+isbn: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIsbn: aString ! !
+!Book class methodsFor: 'instance creation' stamp: 'LM 6/9/2021 17:38:42' prior: 50859523!
+isbn: anISBN
+
+	^self new initializeIsbn: anISBN ! !
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:38:43'!
+ERROR!
+
+!classDefinition: #Book category: 'TusLibros' stamp: 'LM 6/9/2021 17:39:04'!
+Object subclass: #Book
+	instanceVariableNames: 'iSBN'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Book methodsFor: 'initialization' stamp: 'LM 6/9/2021 17:39:04'!
+initializeIsbn: anISBN 
+	self shouldBeImplemented.
+	iSBN := anISBN.! !
+!Book methodsFor: 'initialization' stamp: 'LM 6/9/2021 17:39:26' prior: 50859545!
+initializeIsbn: anISBN 
+
+	iSBN := anISBN.! !
+
+!classDefinition: #Book category: 'TusLibros' stamp: 'LM 6/9/2021 17:39:31'!
+Object subclass: #Book
+	instanceVariableNames: 'ISBN'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Book methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 17:39:31' prior: 50859550!
+initializeIsbn: anISBN 
+
+	ISBN := anISBN.! !
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:39:41'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 17:39:52'!
+add: aSmallInteger of: aBook 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'LM 6/9/2021 17:48:39'!
+Object subclass: #Cart
+	instanceVariableNames: 'books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 17:48:37' prior: 50859569!
+add: aQuantity of: aBook 
+
+	books add: aBook.! !
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:48:57'!
+ERROR!
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:49:21'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'LM 6/9/2021 17:49:50' overrides: 16896425!
+initialize
+
+	books := OrderedCollection new.! !
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:49:54'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 17:50:30' prior: 50859490!
+isEmpty
+
+	^books isEmpty! !
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:50:34'!
+PASSED!
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 17:50:34'!
+PASSED!
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 17:50:34'!
+PASSED!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:02:31'!
+test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher
+
+	| cart book expectedCartBooks |
+	
+	cart := Cart new.
+	book := Book isbn: '9780262531962'.
+	expectedCartBooks := OrderedCollection with: book with: book.
+	
+	cart add: 2 of: book.
+	
+	self assert: expectedCartBooks equals: cart books.! !
+
+!testRun: #CartsTest #test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher stamp: 'LM 6/9/2021 18:02:38'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 18:02:51'!
+books
+	self shouldBeImplemented.
+	^books! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 18:03:06' prior: 50859629!
+books
+
+	^books copy! !
+
+!testRun: #CartsTest #test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher stamp: 'LM 6/9/2021 18:03:09'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 18:04:02' prior: 50859580!
+add: aQuantity of: aBook 
+
+	aQuantity timesRepeat: [ books add: aBook ].! !
+
+!testRun: #CartsTest #test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher stamp: 'LM 6/9/2021 18:04:04'!
+PASSED!
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 18:04:04'!
+PASSED!
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 18:04:04'!
+PASSED!
+
+!testRun: #CartsTest #test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher stamp: 'LM 6/9/2021 18:04:04'!
+PASSED!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:06:32'!
+test03severalCopiesOfSameBookFromThisPublisherCanBeAdded
+
+	| cart book expectedCartBooks |
+	
+	cart := Cart new.
+	book := Book isbn: '9780262531962'.
+	expectedCartBooks := OrderedCollection with: book with: book.
+	
+	cart add: 2 of: book.
+	
+	self assert: expectedCartBooks equals: cart books.! !
+
+!methodRemoval: CartsTest #test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher stamp: 'LM 6/9/2021 18:06:32'!
+test03cartIsNotEmptyAfterAddingSeveralCopiesOfBookFromThisPublisher
+
+	| cart book expectedCartBooks |
+	
+	cart := Cart new.
+	book := Book isbn: '9780262531962'.
+	expectedCartBooks := OrderedCollection with: book with: book.
+	
+	cart add: 2 of: book.
+	
+	self assert: expectedCartBooks equals: cart books.!
+
+!classDefinition: #Publisher category: 'TusLibros' stamp: 'LM 6/9/2021 18:37:22'!
+Object subclass: #Publisher
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:37:11'!
+test04cannotAddBooksFromOtherPublishers
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531963'.
+	
+	self should: [cart add: 1 of: book]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart bookNotRegisteredByPublisherErrorDescription.! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:37:27'!
+ERROR!
+!Publisher class methodsFor: 'instance creation' stamp: 'LM 6/9/2021 18:37:33'!
+withRegisteredISBNs: anArray 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithRegisteredISBNs: anArray ! !
+!Publisher class methodsFor: 'instance creation' stamp: 'LM 6/9/2021 18:38:10' prior: 50859710!
+withRegisteredISBNs: aCollectionOfISBNs
+
+	^self new initializeWithRegisteredISBNs: aCollectionOfISBNs! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:38:14'!
+ERROR!
+
+!classDefinition: #Publisher category: 'TusLibros' stamp: 'LM 6/9/2021 18:38:28'!
+Object subclass: #Publisher
+	instanceVariableNames: 'collectionOfISBNs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Publisher methodsFor: 'initialization' stamp: 'LM 6/9/2021 18:38:28'!
+initializeWithRegisteredISBNs: aCollectionOfISBNs 
+	self shouldBeImplemented.
+	collectionOfISBNs := aCollectionOfISBNs.! !
+
+#('9780262531962')!
+!Publisher methodsFor: 'initialization' stamp: 'LM 6/9/2021 18:41:12' prior: 50859735!
+initializeWithRegisteredISBNs: aCollectionOfISBNs 
+
+	collectionOfISBNs := OrderedCollection withAll: aCollectionOfISBNs.! !
+
+!classDefinition: #Publisher category: 'TusLibros' stamp: 'LM 6/9/2021 18:41:19'!
+Object subclass: #Publisher
+	instanceVariableNames: 'catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Publisher methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 18:41:19' prior: 50859743!
+initializeWithRegisteredISBNs: aCollectionOfISBNs 
+
+	catalog := OrderedCollection withAll: aCollectionOfISBNs.! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:41:29'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'LM 6/9/2021 18:41:37'!
+for: aPublisher 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aPublisher ! !
+!Cart class methodsFor: 'instance creation' stamp: 'LM 6/9/2021 18:41:57' prior: 50859767!
+for: aPublisher
+
+	^self new initializeFor: aPublisher! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:41:59'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'LM 6/9/2021 18:42:12'!
+Object subclass: #Cart
+	instanceVariableNames: 'books publisher'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'LM 6/9/2021 18:42:12'!
+initializeFor: aPublisher 
+	self shouldBeImplemented.
+	publisher := aPublisher.! !
+!Cart methodsFor: 'initialization' stamp: 'LM 6/9/2021 18:43:33' prior: 50859789!
+initializeFor: aPublisher
+
+	publisher := aPublisher.! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:43:48'!
+ERROR!
+!Cart class methodsFor: 'error description' stamp: 'LM 6/9/2021 18:44:07'!
+bookNotRegisteredByPublisherErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error description' stamp: 'LM 6/9/2021 18:45:42' prior: 50859803!
+bookNotRegisteredByPublisherErrorDescription
+
+	^'El libro que se intenta agregar no está en el catálogo'! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:46:42'!
+FAILURE!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:48:16' prior: 50859499!
+test01cartIsEmptyWhenCreated
+
+	| cart publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #().
+	cart := Cart for: publisher.
+	
+	self assert: cart isEmpty.! !
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:48:42' prior: 50859511!
+test02cartIsNotEmptyAfterAddingABookFromThisPublisher
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	cart add: 1 of: book.
+	
+	self deny: cart isEmpty.! !
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:49:00' prior: 50859661!
+test03severalCopiesOfSameBookFromThisPublisherCanBeAdded
+
+	| cart book expectedCartBooks publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	expectedCartBooks := OrderedCollection with: book with: book.
+	
+	cart add: 2 of: book.
+	
+	self assert: expectedCartBooks equals: cart books.! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:49:09'!
+FAILURE!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 18:52:34' prior: 50859693!
+test04cannotAddBooksFromOtherPublishers
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531963'.
+	
+	self should: [cart add: 1 of: book]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart bookNotRegisteredByPublisherErrorDescription.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:52:34'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 18:57:19' prior: 50859642!
+add: aQuantity of: aBook 
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self error: self class bookNotRegisteredByPublisherErrorDescription
+	].
+	
+	aQuantity timesRepeat: [ books add: aBook ].! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:57:28'!
+ERROR!
+!Book methodsFor: 'accessing' stamp: 'LM 6/9/2021 18:57:35'!
+ISBN
+	self shouldBeImplemented.
+	^ISBN! !
+!Book methodsFor: 'accessing' stamp: 'LM 6/9/2021 18:57:44' prior: 50859886!
+ISBN
+
+	^ISBN! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 18:57:46'!
+ERROR!
+!Publisher methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 18:57:54'!
+isInCatalog: aString 
+	self shouldBeImplemented.! !
+!Publisher methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:00:28' prior: 50859897!
+isInCatalog: anISBN
+
+	^catalog includes: anISBN.! !
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 19:00:30'!
+PASSED!
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 19:00:30'!
+PASSED!
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 19:00:30'!
+PASSED!
+
+!testRun: #CartsTest #test03severalCopiesOfSameBookFromThisPublisherCanBeAdded stamp: 'LM 6/9/2021 19:00:30'!
+PASSED!
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 19:00:30'!
+PASSED!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 19:06:56'!
+test05cannotAddANegativeNumberOfBooks
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	
+	self should: [cart add: -1 of: book]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart invalidBookQuantityErrorDescription.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartsTest #test05cannotAddANegativeNumberOfBooks stamp: 'LM 6/9/2021 19:06:58'!
+ERROR!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:07:13'!
+invalidBookQuantityErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:08:13' prior: 50859940!
+invalidBookQuantityErrorDescription
+
+	^'La cantidad de libros a agregar debe ser un entero positivo'! !
+
+!testRun: #CartsTest #test05cannotAddANegativeNumberOfBooks stamp: 'LM 6/9/2021 19:08:15'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:09:41' prior: 50859874!
+add: aQuantity of: aBook 
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self error: self class bookNotRegisteredByPublisherErrorDescription
+	].
+	(aQuantity > 0) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	
+	aQuantity timesRepeat: [ books add: aBook ].! !
+
+!testRun: #CartsTest #test05cannotAddANegativeNumberOfBooks stamp: 'LM 6/9/2021 19:09:43'!
+PASSED!
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 19:09:43'!
+PASSED!
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 19:09:43'!
+PASSED!
+
+!testRun: #CartsTest #test03severalCopiesOfSameBookFromThisPublisherCanBeAdded stamp: 'LM 6/9/2021 19:09:43'!
+PASSED!
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 19:09:43'!
+PASSED!
+
+!testRun: #CartsTest #test05cannotAddANegativeNumberOfBooks stamp: 'LM 6/9/2021 19:09:43'!
+PASSED!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 19:11:02'!
+test06cannotAddANonIntegerNumberOfBooks
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	
+	self should: [cart add: 1.5 of: book]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart invalidBookQuantityErrorDescription.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartsTest #test06cannotAddANonIntegerNumberOfBooks stamp: 'LM 6/9/2021 19:11:02'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:16:41' prior: 50859955!
+add: aQuantity of: aBook 
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self error: self class bookNotRegisteredByPublisherErrorDescription
+	].
+	(aQuantity > 0) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	(aQuantity is: #Integer) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	
+	aQuantity timesRepeat: [ books add: aBook ].! !
+
+!testRun: #CartsTest #test06cannotAddANonIntegerNumberOfBooks stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+
+!testRun: #CartsTest #test01cartIsEmptyWhenCreated stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+
+!testRun: #CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+
+!testRun: #CartsTest #test03severalCopiesOfSameBookFromThisPublisherCanBeAdded stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+
+!testRun: #CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+
+!testRun: #CartsTest #test05cannotAddANegativeNumberOfBooks stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+
+!testRun: #CartsTest #test06cannotAddANonIntegerNumberOfBooks stamp: 'LM 6/9/2021 19:16:43'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:18:25'!
+assertCanAdd: aQuantity aQuantityof: aBook
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self error: self class bookNotRegisteredByPublisherErrorDescription
+	].
+	(aQuantity > 0) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	(aQuantity is: #Integer) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:18:25' prior: 50860004!
+add: aQuantity of: aBook 
+
+	self assertCanAdd: aQuantity aQuantityof: aBook.
+	
+	aQuantity timesRepeat: [ books add: aBook ].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:18:45'!
+assertCanAdd: aQuantity of: aBook
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self error: self class bookNotRegisteredByPublisherErrorDescription
+	].
+	(aQuantity > 0) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	(aQuantity is: #Integer) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:18:45' prior: 50860057!
+add: aQuantity of: aBook 
+
+	self assertCanAdd: aQuantity of: aBook.
+	
+	aQuantity timesRepeat: [ books add: aBook ].! !
+
+!methodRemoval: Cart #assertCanAdd:aQuantityof: stamp: 'LM 6/9/2021 19:18:46'!
+assertCanAdd: aQuantity aQuantityof: aBook
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self error: self class bookNotRegisteredByPublisherErrorDescription
+	].
+	(aQuantity > 0) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	(aQuantity is: #Integer) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	]!
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:19:45'!
+signalBookNotRegisteredError
+
+	^ self error: self class bookNotRegisteredByPublisherErrorDescription! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:19:45' prior: 50860064!
+assertCanAdd: aQuantity of: aBook
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self signalBookNotRegisteredError
+	].
+	(aQuantity > 0) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	].
+	(aQuantity is: #Integer) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:20:18'!
+signalInvalidBookQuantityError
+
+	^ self error: self class invalidBookQuantityErrorDescription! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:20:18' prior: 50860104!
+assertCanAdd: aQuantity of: aBook
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self signalBookNotRegisteredError
+	].
+	(aQuantity > 0) ifFalse: [
+		self signalInvalidBookQuantityError
+	].
+	(aQuantity is: #Integer) ifFalse: [
+		self error: self class invalidBookQuantityErrorDescription
+	]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'LM 6/9/2021 19:22:10' prior: 50860123!
+assertCanAdd: aQuantity of: aBook
+
+	(publisher isInCatalog: aBook ISBN) ifFalse: [
+		self signalBookNotRegisteredError
+	].
+	(aQuantity > 0 and: [aQuantity is: #Integer]) ifFalse: [
+		self signalInvalidBookQuantityError
+	].! !
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 19:25:46'!
+test04cannotAddBooksThatDoNotBelongToPublisher
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531963'.
+	
+	self should: [cart add: 1 of: book]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart bookNotRegisteredByPublisherErrorDescription.
+	self assert: cart isEmpty.! !
+
+!methodRemoval: CartsTest #test04cannotAddBooksFromOtherPublishers stamp: 'LM 6/9/2021 19:25:46'!
+test04cannotAddBooksFromOtherPublishers
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531963'.
+	
+	self should: [cart add: 1 of: book]
+		raise: Error - MessageNotUnderstood
+		withMessageText: Cart bookNotRegisteredByPublisherErrorDescription.
+	self assert: cart isEmpty.!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 19:25:52'!
+test02cartIsNotEmptyAfterAddingABookFromPublisher
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	cart add: 1 of: book.
+	
+	self deny: cart isEmpty.! !
+
+!methodRemoval: CartsTest #test02cartIsNotEmptyAfterAddingABookFromThisPublisher stamp: 'LM 6/9/2021 19:25:53'!
+test02cartIsNotEmptyAfterAddingABookFromThisPublisher
+
+	| cart book publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	cart add: 1 of: book.
+	
+	self deny: cart isEmpty.!
+!CartsTest methodsFor: 'tests' stamp: 'LM 6/9/2021 19:26:02'!
+test03severalCopiesOfSameBookFromPublisherCanBeAdded
+
+	| cart book expectedCartBooks publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	expectedCartBooks := OrderedCollection with: book with: book.
+	
+	cart add: 2 of: book.
+	
+	self assert: expectedCartBooks equals: cart books.! !
+
+!methodRemoval: CartsTest #test03severalCopiesOfSameBookFromThisPublisherCanBeAdded stamp: 'LM 6/9/2021 19:26:02'!
+test03severalCopiesOfSameBookFromThisPublisherCanBeAdded
+
+	| cart book expectedCartBooks publisher |
+	
+	publisher := Publisher withRegisteredISBNs: #('9780262531962').
+	cart := Cart for: publisher.
+	book := Book isbn: '9780262531962'.
+	expectedCartBooks := OrderedCollection with: book with: book.
+	
+	cart add: 2 of: book.
+	
+	self assert: expectedCartBooks equals: cart books.!
+
+----QUIT----(9 June 2021 19:36:19) CuisUniversity-4532.image priorSource: 16885703!
