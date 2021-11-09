@@ -1,0 +1,3199 @@
+
+
+----End fileIn of /Users/celeste/facultad/ing1/si-exercises/18 - Portfolio/Portfolio-Ejercicio.st----!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/4/2020 23:03:22' prior: 50892119!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'CR 11/4/2020 23:04:55'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions deposits'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'CR 11/4/2020 23:04:57'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions deposits withdraws'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:04:53' prior: 50892110!
+register: aTransaction
+
+	deposits add: aTransaction.
+	withdraws add: aTransaction.
+	! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:05:36' prior: 50892156!
+register: aTransaction
+
+	deposits add: aTransaction.
+	withdraws add: aTransaction.
+	! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:06:38'!
+registerByAccountType: aTransaction
+
+	deposits add: aTransaction.
+	withdraws add: aTransaction! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:06:38' prior: 50892162!
+register: aTransaction
+
+	self registerByAccountType: aTransaction.
+	! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:06:47' prior: 50892174!
+register: aTransactionToRegister
+
+	self registerByAccountType: aTransactionToRegister.
+	! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:07:37' prior: 50892168!
+registerByAccountType: aTransactionToRegister
+
+	deposits addIfItsADeposit: aTransactionToRegister.
+	withdraws addIfItsAWithdraw: aTransactionToRegister.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:08:27' prior: 50892186!
+registerByAccountType: aTransactionToRegister
+
+	aTransactionToRegister addIfItsADeposit: deposits.
+	aTransactionToRegister addIfItsAWithdraw: withdraws.! !
+!Deposit methodsFor: 'nil' stamp: 'CR 11/4/2020 23:09:37'!
+addIfItsADeposit: aSetOfDepositToBeAddedTo
+	aSetOfDepositToBeAddedTo add: self.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'CR 11/4/2020 23:09:46' prior: 50892201!
+addIfItsADeposit: aSetOfDepositToBeAddedTo
+	aSetOfDepositToBeAddedTo add: self.! !
+!Withdraw methodsFor: 'nil' stamp: 'CR 11/4/2020 23:10:12'!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+	aSetOfWithdrawsToBeAddedTo add: self.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'CR 11/4/2020 23:10:28'!
+addIfItsADeposit: aSetOfDepositsToBeAddedTo! !
+!Deposit methodsFor: 'nil' stamp: 'CR 11/4/2020 23:10:41'!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+! !
+!AccountTransaction methodsFor: 'nil' stamp: 'CR 11/4/2020 23:11:37'!
+addIfItsADeposit: aSetOfDepositsToBeAddedTo
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'nil' stamp: 'CR 11/4/2020 23:11:55'!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'CR 11/4/2020 23:11:56' prior: 50892231!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+	self subclassResponsibility.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'CR 11/4/2020 23:12:00' prior: 50892226!
+addIfItsADeposit: aSetOfDepositsToBeAddedTo
+	self subclassResponsibility.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/4/2020 23:13:51' prior: 50892133!
+balance
+
+	^deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ] - withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/4/2020 23:14:08' prior: 50892249!
+balance
+
+	^(deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]) - withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/4/2020 23:18:18'!
+sumTotalTransactionsFrom: aSetOfTransactions
+
+	^aSetOfTransactions sum: [ :aTransactionToSumItsValue | aTransactionToSumItsValue value ] ifEmpty: [ 0 ].! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/4/2020 23:20:19' prior: 50892257!
+balance
+
+	^(self sumTotalTransactionsFrom: deposits) - (self sumTotalTransactionsFrom: withdraws).! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/4/2020 23:20:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:20:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:20:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/4/2020 23:20:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/4/2020 23:20:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/4/2020 23:20:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/4/2020 23:20:30'!
+ERROR!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'CR 11/4/2020 23:20:59' prior: 50892105 overrides: 16896425!
+initialize
+
+	deposits := OrderedCollection new.
+	withdraws := OrderedCollection new.! !
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'deposits withdraws'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'CR 11/4/2020 23:21:04'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'deposits withdraws'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/4/2020 23:21:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:21:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:21:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/4/2020 23:21:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/4/2020 23:21:07'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/4/2020 23:21:07'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/4/2020 23:21:07'!
+ERROR!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'CR 11/4/2020 23:22:20' prior: 50892124!
+hasRegistered: aTransactionToCheckIfRegistered
+
+	^ (deposits includes: aTransactionToCheckIfRegistered) or: [withdraws includes: aTransactionToCheckIfRegistered].
+! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/4/2020 23:22:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:22:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:22:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/4/2020 23:22:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/4/2020 23:22:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/4/2020 23:22:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/4/2020 23:22:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/4/2020 23:22:23'!
+ERROR!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:23:12' prior: 50892115!
+transactions 
+
+	^ deposits copy union: (withdraws copy).! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/4/2020 23:23:14'!
+PASSED!
+!ReceptiveAccount methodsFor: 'transactions private' stamp: 'CR 11/4/2020 23:25:51' prior: 50892265!
+sumTotalTransactionsFrom: aSetOfTransactions
+
+	^ aSetOfTransactions sum: [ :aTransactionToSumItsValue | aTransactionToSumItsValue value ] ifEmpty: [ 0 ].! !
+
+----SNAPSHOT----(4 November 2020 23:26:00) CuisUniversity-4384.image priorSource: 17927970!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'CR 11/4/2020 23:26:26'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'nil' stamp: 'CR 11/4/2020 23:27:35'!
+test01balanceOfAnEmptyPortfolioIsZero
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CR 11/4/2020 23:29:13'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CR 11/4/2020 23:29:01' prior: 50892443!
+test01balanceOfAnEmptyPortfolioIsZero
+	| anEmptyPortfolio |
+	anEmptyPortfolio := Portfolio new. 
+	
+	self assert: 0 = anEmptyPortfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:29:17'!
+ERROR!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:29:17'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/4/2020 23:29:29'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/4/2020 23:29:39' prior: 50892469!
+balance
+	^ 0.! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:29:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:30:05'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:34:24'!
+test02registerReceptiveAccountWithNoTransactionsWorksCorrectly
+	| aReceptiveAccountWithNoTransactions anEmptyPortfolio |
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithNoTransactions register: Deposit new.
+	anEmptyPortfolio := Portfolio new. 
+	
+	self assert: 0 = anEmptyPortfolio balance.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:35:19' prior: 50892483!
+test02registerReceptiveAccountWithNoTransactionsWorksCorrectly
+	| aReceptiveAccountWithNoTransactions anEmptyPortfolio |
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	anEmptyPortfolio := Portfolio new. 
+	anEmptyPortfolio register: aReceptiveAccountWithNoTransactions.
+	self assert: 0 = anEmptyPortfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:35:23'!
+ERROR!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:35:23'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:35:34'!
+register: aReceptiveAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CR 11/4/2020 23:36:19'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'receptiveAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/4/2020 23:36:17' prior: 50892517!
+register: aReceptiveAccountToBeAdded 
+	receptiveAccounts add: aReceptiveAccountToBeAdded.! !
+!Portfolio class methodsFor: 'nil' stamp: 'CR 11/4/2020 23:37:18' overrides: 16783533!
+new
+	^self new initialize.! !
+
+!methodRemoval: Portfolio class #new stamp: 'CR 11/4/2020 23:37:23'!
+new
+	^self new initialize.!
+!Portfolio methodsFor: 'nil' stamp: 'CR 11/4/2020 23:37:53' overrides: 16896425!
+initialize
+	receptiveAccounts := Collection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/4/2020 23:38:33' prior: 50892543 overrides: 16896425!
+initialize
+	receptiveAccounts := OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:39:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:39:09'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:40:19'!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions anEmptyPortfolio |
+	aReceptiveAccountWithTransactions := ReceptiveAccount for: 50.
+	anEmptyPortfolio := Portfolio new. 
+	anEmptyPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = anEmptyPortfolio balance.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:40:39' prior: 50892561!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions anEmptyPortfolio |
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	anEmptyPortfolio := Portfolio new. 
+	anEmptyPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = anEmptyPortfolio balance.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:41:05' prior: 50892574!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions anEmptyPortfolio |
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: (Deposit for: 50).
+	anEmptyPortfolio := Portfolio new. 
+	anEmptyPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = anEmptyPortfolio balance.
+	! !
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:41:09'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:41:09'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:42:24' prior: 50892496!
+test02registerReceptiveAccountWithNoTransactionsWorksCorrectly
+	| aReceptiveAccountWithNoTransactions aPortfolio |
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	self assert: aPortfolio balance = 0.
+	self assert: aPortfolio transactions isEmpty.! !
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:42:28'!
+ERROR!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:42:28'!
+ERROR!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:42:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:42:51'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/4/2020 23:42:57'!
+transactions
+	self shouldBeImplemented.! !
+
+lala := #( #(2) #(3 5) )!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/4/2020 23:46:05' prior: 50892640!
+transactions
+	^ receptiveAccounts collect: [:aReceptiveAccountToAddItsTransactions | aReceptiveAccountToAddItsTransactions transactions] copy.! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:46:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:46:10'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:46:10'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:46:25'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:46:25'!
+FAILURE!
+
+aPortfolio transactions!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/4/2020 23:47:00' prior: 50892610!
+test02registerReceptiveAccountWithNoTransactionsWorksCorrectly
+	| aReceptiveAccountWithNoTransactions aPortfolio |
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	self assert: aPortfolio balance = 0.
+	self assert: (aPortfolio transactions) isEmpty.! !
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:47:01'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:47:01'!
+FAILURE!
+
+(aPortfolio transactions) !
+
+lala collect: [:lala | lala first]!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/4/2020 23:54:01' prior: 50892645!
+transactions
+	^ receptiveAccounts collect: [:aReceptiveAccountToAddItsTransactions | aReceptiveAccountToAddItsTransactions transactions] andFold: [:a :b | a union: b] ifEmpty: (OrderedCollection new) copy. ! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/4/2020 23:54:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:54:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:54:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:54:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:54:27'!
+PASSED!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/4/2020 23:55:37' prior: 50892473!
+balance
+	^ receptiveAccounts sum: [:aReceptiveAccountToSum | aReceptiveAccountToSum balance] ifEmpty: [0].! !
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/4/2020 23:55:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:19:20'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/5/2020 00:21:02' prior: 50892587!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions aPortfolio aDeposit |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = aPortfolio balance.
+	self assert: aPortfolio transactions includes: aDeposit.	
+	self assert: aPortfolio transactions size = 1.! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 00:21:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:21:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:21:04'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/5/2020 00:22:06'!
+test04
+	| aReceptiveAccountWithTransactions aPortfolio aDeposit |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = aPortfolio balance.
+	self assert: aPortfolio transactions includes: aDeposit.	
+	self assert: aPortfolio transactions size = 1.! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/5/2020 00:23:06' prior: 50892741!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions aPortfolio aDeposit |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = aPortfolio balance.
+	self assert: aPortfolio transactions includes: aDeposit.	
+	self assert: aPortfolio transactions size = 1.
+	self assert: (aPortfolio hasRegistered: aDeposit).! !
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:23:28'!
+ERROR!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:23:28'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:23:34'!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:23:56' prior: 50892816!
+hasRegistered: aTransactionToCheckIfRegistered
+	
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:24:13' prior: 50892821!
+hasRegistered: aTransactionToCheckIfRegistered
+	receptiveAccounts includes: aTransactionToCheckIfRegistered. 	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 00:24:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:24:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:24:24'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'CR 11/5/2020 00:24:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:24:24'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:24:40' prior: 50892826!
+hasRegistered: aTransactionToCheckIfRegistered
+	^ receptiveAccounts includes: aTransactionToCheckIfRegistered. 	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 00:24:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:24:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:24:44'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'CR 11/5/2020 00:24:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:24:44'!
+FAILURE!
+
+aPortfolio transactions includes: aDeposit.	!
+
+aPortfolio hasRegistered: aDeposit!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:25:54' prior: 50892850!
+hasRegistered: aTransactionToCheckIfRegistered
+	^ (receptiveAccounts transactions) includes: aTransactionToCheckIfRegistered. 	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 00:25:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:25:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:25:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'CR 11/5/2020 00:25:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:25:59'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:27:04' prior: 50892877!
+hasRegistered: aTransactionToCheckIfRegistered
+	^ receptiveAccounts transactions.! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/5/2020 00:27:49' prior: 50892902!
+hasRegistered: aTransactionToCheckIfRegistered
+	^ receptiveAccounts anySatisfy: [:aReceptiveAccount | aReceptiveAccount hasRegistered: aTransactionToCheckIfRegistered].! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 00:27:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:27:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:27:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CR 11/5/2020 00:27:55'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/5/2020 00:30:05' prior: 50892788!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions aPortfolio aDeposit |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = aPortfolio balance.
+	self assert: aPortfolio transactions size = 1.
+	self assert: (aPortfolio hasRegistered: aDeposit).! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 00:30:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:30:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:30:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CR 11/5/2020 00:30:18'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/5/2020 00:33:02'!
+test03registerReceptiveAccountWithOnlyDepositWorksCorrectly
+	| aReceptiveAccountWithTransactions aPortfolio aDeposit |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = aPortfolio balance.
+	self assert: aPortfolio transactions size = 1.
+	self assert: (aPortfolio hasRegistered: aDeposit).! !
+
+!methodRemoval: PortfolioTest #test03registerReceptiveAccountWithTransactionsWorksCorrectly stamp: 'CR 11/5/2020 00:33:07'!
+test03registerReceptiveAccountWithTransactionsWorksCorrectly
+	| aReceptiveAccountWithTransactions aPortfolio aDeposit |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: 50 = aPortfolio balance.
+	self assert: aPortfolio transactions size = 1.
+	self assert: (aPortfolio hasRegistered: aDeposit).!
+
+----SNAPSHOT----(5 November 2020 00:58:33) CuisUniversity-4384.image priorSource: 17944892!
+
+----QUIT----(5 November 2020 00:58:40) CuisUniversity-4384.image priorSource: 17963159!
+
+----STARTUP---- (5 November 2020 18:35:13) as /Users/celeste/facultad/ing1/si-exercises/CuisUniversity-4384.image!
+
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'CR 11/5/2020 18:45:56'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'deposits withdraws transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:45:54' prior: 50892273!
+balance
+
+	^(self sumTotalTransactionsFrom: transactions).! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:47:05' prior: 50893018!
+balance
+
+	^(self calculateTotalBalanceFromTransactions).! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:47:14' prior: 50893023!
+balance
+
+	^self calculateTotalBalanceFromTransactions.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:47:16' prior: 50893028!
+balance
+
+	^ self calculateTotalBalanceFromTransactions.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:49:23'!
+calculateTotalBalanceFromTransactions
+	| totalBalance |
+	transactions do: [:aTransactionToCollaborateWith | aTransactionToCollaborateWith collaborateWithBalance: totalBalance].
+	^ totalBalance.
+	! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:49:42' prior: 50893038!
+calculateTotalBalanceFromTransactions
+	| totalBalance |
+	totalBalance := 0.
+	transactions do: [:aTransactionToCollaborateWith | aTransactionToCollaborateWith collaborateWithBalance: totalBalance].
+	^ totalBalance.
+	! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56' prior: 50892306 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.! !
+
+!methodRemoval: ReceptiveAccount #registerByAccountType: stamp: 'CR 11/5/2020 18:50:19'!
+registerByAccountType: aTransactionToRegister
+
+	aTransactionToRegister addIfItsADeposit: deposits.
+	aTransactionToRegister addIfItsAWithdraw: withdraws.!
+
+!methodRemoval: ReceptiveAccount #sumTotalTransactionsFrom: stamp: 'CR 11/5/2020 18:50:22'!
+sumTotalTransactionsFrom: aSetOfTransactions
+
+	^ aSetOfTransactions sum: [ :aTransactionToSumItsValue | aTransactionToSumItsValue value ] ifEmpty: [ 0 ].!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' prior: 50892389!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' prior: 50892180!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CR 11/5/2020 18:50:56' prior: 50893084!
+register: aTransactionToRegister
+
+	transactions add: aTransactionToRegister.
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43' prior: 50892351!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'CR 11/5/2020 18:51:17' prior: 50893095!
+hasRegistered: aTransactionToCheckIfRegistered
+
+	^ transactions includes: aTransactionToCheckIfRegistered. 
+! !
+
+!methodRemoval: AccountTransaction #addIfItsADeposit: stamp: 'CR 11/5/2020 18:51:45'!
+addIfItsADeposit: aSetOfDepositsToBeAddedTo
+	self subclassResponsibility.!
+
+!methodRemoval: AccountTransaction #addIfItsAWithdraw: stamp: 'CR 11/5/2020 18:51:47'!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+	self subclassResponsibility.!
+!AccountTransaction methodsFor: 'nil' stamp: 'CR 11/5/2020 18:52:36'!
+collaborateWithBalance: balanceToCollaborateWith
+
+	self subclassResponsibility.! !
+!Deposit methodsFor: 'nil' stamp: 'CR 11/5/2020 18:53:03' overrides: 50893117!
+collaborateWithBalance: balanceToCollaborateWith
+	
+	^ balanceToCollaborateWith + value. ! !
+
+!methodRemoval: Deposit #addIfItsADeposit: stamp: 'CR 11/5/2020 18:53:12'!
+addIfItsADeposit: aSetOfDepositToBeAddedTo
+	aSetOfDepositToBeAddedTo add: self.!
+
+!methodRemoval: Deposit #addIfItsAWithdraw: stamp: 'CR 11/5/2020 18:53:13'!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+!
+
+!methodRemoval: Withdraw #addIfItsADeposit: stamp: 'CR 11/5/2020 18:53:18'!
+addIfItsADeposit: aSetOfDepositsToBeAddedTo!
+
+!methodRemoval: Withdraw #addIfItsAWithdraw: stamp: 'CR 11/5/2020 18:53:20'!
+addIfItsAWithdraw: aSetOfWithdrawsToBeAddedTo
+	aSetOfWithdrawsToBeAddedTo add: self.!
+!Withdraw methodsFor: 'receptive-account interaction' stamp: 'CR 11/5/2020 18:53:24' overrides: 50893117!
+collaborateWithBalance: balanceToCollaborateWith
+	
+	^ balanceToCollaborateWith - value. ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/5/2020 18:53:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:53:40'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:53:40'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/5/2020 18:53:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/5/2020 18:53:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/5/2020 18:53:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/5/2020 18:53:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:53:49'!
+FAILURE!
+
+account balance!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:58:00' prior: 50893047!
+calculateTotalBalanceFromTransactions
+
+	^ transactions inject: 0 into: [:totalBalance :aTransactionToCollaborateWith |
+				totalBalance + aTransactionToCollaborateWith collaborateWithBalance: totalBalance].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/5/2020 18:58:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:58:04'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:58:04'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/5/2020 18:58:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/5/2020 18:58:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/5/2020 18:58:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/5/2020 18:58:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:58:08'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:58:31' prior: 50893184!
+calculateTotalBalanceFromTransactions
+
+	^ transactions inject: 0 into: [:totalBalance :aTransactionToCollaborateWith |
+				totalBalance + (aTransactionToCollaborateWith collaborateWithBalance: totalBalance)].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/5/2020 18:58:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:58:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:58:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/5/2020 18:58:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/5/2020 18:58:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/5/2020 18:58:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/5/2020 18:58:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:58:34'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'CR 11/5/2020 18:59:24' prior: 50893224!
+calculateTotalBalanceFromTransactions
+
+	^ transactions inject: 0 into: [:totalBalance :aTransactionToCollaborateWith |
+				aTransactionToCollaborateWith collaborateWithBalance: totalBalance].
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/5/2020 18:59:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/5/2020 19:00:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/5/2020 19:00:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02registerReceptiveAccountWithNoTransactionsWorksCorrectly stamp: 'CR 11/5/2020 19:00:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03registerReceptiveAccountWithOnlyDepositWorksCorrectly stamp: 'CR 11/5/2020 19:00:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CR 11/5/2020 19:00:06'!
+PASSED!
+
+----QUIT----(5 November 2020 19:00:58) CuisUniversity-4384.image priorSource: 17963252!
+
+----STARTUP---- (5 November 2020 20:36:58) as /Users/celeste/facultad/ing1/si-exercises/CuisUniversity-4384.image!
+
+
+----QUIT----(5 November 2020 21:10:30) CuisUniversity-4384.image priorSource: 17974026!
+
+----STARTUP---- (7 November 2020 23:17:08) as /Users/celeste/facultad/ing1/si-exercises/CuisUniversity-4384.image!
+
+
+!classRemoval: #ReceptiveAccount stamp: 'CR 11/7/2020 23:17:25'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'deposits withdraws transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Portfolio stamp: 'CR 11/7/2020 23:17:26'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'receptiveAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Withdraw stamp: 'CR 11/7/2020 23:17:26'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Deposit stamp: 'CR 11/7/2020 23:17:27'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #AccountTransaction stamp: 'CR 11/7/2020 23:17:27'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'CR 11/7/2020 23:17:27'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #PortfolioTest stamp: 'CR 11/7/2020 23:17:28'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----End fileIn of /Users/celeste/facultad/ing1/si-exercises/18 - Portfolio/Portfolio-Ejercicio.st----!
+
+!methodRemoval: ReceptiveAccount #registerByAccountType: stamp: 'CR 11/7/2020 23:18:11'!
+registerByAccountType: aTransactionToRegister
+
+	aTransactionToRegister addIfItsADeposit: deposits.
+	aTransactionToRegister addIfItsAWithdraw: withdraws.!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:18:59' prior: 50893917!
+register: aPortfolioToBeAdded
+
+	self verifyThereIsNoPortfolioEntryLoop: (aPortfolioToBeAdded allPortfolioEntries).
+	portfolioEntries add: aPortfolioToBeAdded.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:21:24' prior: 50894045!
+register: aPortfolioEntryToBeAdded
+
+	aPortfolioEntryToBeAdded		verifyThereIsNoPortfolioEntryLoop.
+	portfolioEntries add: aPortfolioEntryToBeAdded.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:18:59' prior: 50894053!
+register: aPortfolioToBeAdded
+
+	self verifyThereIsNoPortfolioEntryLoop: (aPortfolioToBeAdded allPortfolioEntries).
+	portfolioEntries add: aPortfolioToBeAdded.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'BT 11/5/2020 21:44:34' prior: 50894061!
+register: aReceptiveAccountToBeAdded
+
+	self verifyThereIsNoPortfolioEntryLoop: (aReceptiveAccountToBeAdded allPortfolioEntries).
+	portfolioEntries add: aReceptiveAccountToBeAdded.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'BT 11/5/2020 21:44:34' prior: 50894069!
+register: aReceptiveAccountToBeAdded
+
+	self verifyThereIsNoPortfolioEntryLoop: (aReceptiveAccountToBeAdded allPortfolioEntries).
+	portfolioEntries add: aReceptiveAccountToBeAdded.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:24:39' prior: 50894078!
+register: aPortfolioEntryToBeAdded
+
+	aPortfolioEntryToBeAdded addIfPossibleToPortfolioEntries: self.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:27:40'!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	aPortfolioToBeAddedTo verifyThereIsNoPortfolioEntryLoop.
+	aPortfolioToBeAddedTo addToPorfolio: self.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:27:54' prior: 50894093!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	aPortfolioToBeAddedTo verifyThereIsNoPortfolioEntryLoop: self.
+	aPortfolioToBeAddedTo addToPorfolio: self.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:28:03' prior: 50894101!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	aPortfolioToBeAddedTo verifyThereIsNoPortfolioEntryLoopWhenAdding: self.
+	aPortfolioToBeAddedTo addToPorfolio: self.
+	
+	
+	! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'CR 11/7/2020 23:28:28'!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	aPortfolioToBeAddedTo addToPorfolio: self.! !
+!PortfolioEntry methodsFor: 'nil' stamp: 'CR 11/7/2020 23:28:42'!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	self subclassResponsibility.! !
+!Portfolio methodsFor: 'nil' stamp: 'CR 11/7/2020 23:30:03'!
+addToPorfolio: aPortfolioEntryToAdd
+
+	portfolioEntries add: aPortfolioEntryToAdd.! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:31:45'!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: lala
+	| allEntriesOfPortfolioThatMightCreateLoop |
+	
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | allEntriesOfPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: allEntriesOfPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:34:09' prior: 50894134!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| allEntriesOfPortfolioThatMightCreateLoop |
+	allEntriesOfPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop allEntries.
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | allEntriesOfPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: allEntriesOfPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:36:40' prior: 50894152!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| allEntriesOfPortfolioThatMightCreateLoop |
+	allEntriesOfPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachedByMe.
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | allEntriesOfPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: allEntriesOfPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:36:54' prior: 50894173!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| allEntriesOfPortfolioThatMightCreateLoop |
+	allEntriesOfPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableByMe.
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | allEntriesOfPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: allEntriesOfPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:39:34' prior: 50894194!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: entriesReachableByPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:42:05' prior: 50894216!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: entriesReachableByPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:51:39'!
+checkIfAnyPortfolioWhereIncludedAppearsIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	^ (portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop]! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:51:39' prior: 50894238!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	self checkIfAnyPortfolioWhereIncludedAppearsIn: entriesReachableByPortfolioThatMightCreateLoop.
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: entriesReachableByPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:52:16' prior: 50894272!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	self checkIfAnyPortfolioWhereIncludedAppearsIn: entriesReachableByPortfolioThatMightCreateLoop.
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: entriesReachableByPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+
+!methodRemoval: Portfolio #verifyThereIsNoPortfolioEntryLoop: stamp: 'CR 11/7/2020 23:52:23'!
+verifyThereIsNoPortfolioEntryLoop: allEntriesOfPortfolioThatMightCreateLoop
+
+	(portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | allEntriesOfPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop].
+	
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoop: allEntriesOfPortfolioThatMightCreateLoop ].
+	
+	
+	!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:52:48' prior: 50894291!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	self checkIfAnyPortfolioWhereIncludedAppearsIn: entriesReachableByPortfolioThatMightCreateLoop.
+	portfoliosWhereIncluded do: [:aPortfolioWhereIncluded | 
+		aPortfolioWhereIncluded verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop ].
+	
+	
+	! !
+
+!methodRemoval: Portfolio #checkIfParentIsAnyOf: stamp: 'CR 11/7/2020 23:54:15'!
+checkIfParentIsAnyOf: allEntriesOfPortfolioThatMightCreateLoop
+	allEntriesOfPortfolioThatMightCreateLoop 
+	
+	
+	!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:57:31' prior: 50894327!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	self raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop.
+	self checkIfAnyPortfolioWhereIncludedAppearsIn: entriesReachableByPortfolioThatMightCreateLoop.
+	
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:57:38'!
+checkIfAnyPortfolioWhereIncludedAppearsInL: entriesReachableByPortfolioThatMightCreateLoop
+
+	^ (portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop]! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/7/2020 23:58:21' prior: 50894368!
+checkIfAnyPortfolioWhereIncludedAppearsInL: entriesReachableByPortfolioThatMightCreateLoop
+
+	^ (portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop]! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/8/2020 00:03:23' prior: 50894352!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	
+	self checkIfMeOrPortfolioEntriesWhereIncludedIsIn: entriesReachableByPortfolioThatMightCreateLoop.
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/8/2020 00:05:02'!
+checkIfMeOrPortfolioEntriesWhereIncludedIsIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	self raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop.
+	portfoliosWhereIncluded do: [:portfolioWhereIncluded |  portfolioWhereIncluded checkIfMeOrPortfolioEntriesWhereIncludedIsIn: entriesReachableByPortfolioThatMightCreateLoop].
+
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/8/2020 00:06:11'!
+raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	(entriesReachableByPortfolioThatMightCreateLoop includes: self) ifTrue: [ self signalCantAddEntryBecauseCreatesLoop].
+	
+	! !
+
+!methodRemoval: Portfolio #checkIfAnyPortfolioWhereIncludedAppearsInL: stamp: 'CR 11/8/2020 00:06:23'!
+checkIfAnyPortfolioWhereIncludedAppearsInL: entriesReachableByPortfolioThatMightCreateLoop
+
+	^ (portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop]!
+
+!methodRemoval: Portfolio #checkIfAnyPortfolioWhereIncludedAppearsIn: stamp: 'CR 11/8/2020 00:06:30'!
+checkIfAnyPortfolioWhereIncludedAppearsIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	^ (portfoliosWhereIncluded anySatisfy: [:aPortfolioWhereIncluded | entriesReachableByPortfolioThatMightCreateLoop includes: aPortfolioWhereIncluded]) ifTrue:[ self signalCantAddEntryBecauseCreatesLoop]!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/8/2020 00:06:54' prior: 50894392!
+verifyThereIsNoPortfolioEntryLoopWhenAdding: aPortfolioThatMightCreateLoop
+	| entriesReachableByPortfolioThatMightCreateLoop |
+	entriesReachableByPortfolioThatMightCreateLoop := aPortfolioThatMightCreateLoop entriesReachableIfAdded. 
+	
+	self checkIfMeOrPortfolioEntriesWhereIncludedAreIn: entriesReachableByPortfolioThatMightCreateLoop.
+	
+	! !
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/8/2020 00:07:03'!
+checkIfMeOrPortfolioEntriesWhereIncludedAreIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	self raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop.
+	portfoliosWhereIncluded do: [:portfolioWhereIncluded |  portfolioWhereIncluded checkIfMeOrPortfolioEntriesWhereIncludedIsIn: entriesReachableByPortfolioThatMightCreateLoop].
+
+	
+	! !
+
+!methodRemoval: Portfolio #checkIfMeOrPortfolioEntriesWhereIncludedIsIn: stamp: 'CR 11/8/2020 00:07:08'!
+checkIfMeOrPortfolioEntriesWhereIncludedIsIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	self raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop.
+	portfoliosWhereIncluded do: [:portfolioWhereIncluded |  portfolioWhereIncluded checkIfMeOrPortfolioEntriesWhereIncludedIsIn: entriesReachableByPortfolioThatMightCreateLoop].
+
+	
+	!
+!Portfolio methodsFor: 'transactions' stamp: 'CR 11/8/2020 00:07:23' prior: 50894466!
+checkIfMeOrPortfolioEntriesWhereIncludedAreIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	self raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop.
+	portfoliosWhereIncluded do: [:portfolioWhereIncluded |  portfolioWhereIncluded checkIfMeOrPortfolioEntriesWhereIncludedAreIn: entriesReachableByPortfolioThatMightCreateLoop].
+
+	
+	! !
+!Portfolio methodsFor: 'nil' stamp: 'CR 11/8/2020 00:12:38'!
+entriesReachableIfAdded
+
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:14:34' prior: 50894509!
+entriesReachableIfAdded
+	| entriesReachableByMe |
+	entriesReachableByMe := OrderedCollection new.
+	self collectReachableEntriesAndSaveIn: entriesReachableByMe. 
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:32:10'!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(entriesReachableByPortfoliosWhereIncluded includes: self) ifFalse: [
+		entriesReachableByPortfoliosWhereIncluded add: self.
+		portfolioEntries do: [:aPortfolioEntryWhoKeepsCollecting | 
+			aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.
+			]
+		]
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:33:18'!
+reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded
+
+	^ entriesReachableByPortfoliosWhereIncluded includes: self! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:33:18' prior: 50894521!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		entriesReachableByPortfoliosWhereIncluded add: self.
+		portfolioEntries do: [:aPortfolioEntryWhoKeepsCollecting | 
+			aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.
+			]
+		]
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:34:27' prior: 50894544!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		entriesReachableByPortfoliosWhereIncluded add: self.
+		portfolioEntries do: [:aPortfolioEntryWhoKeepsCollecting | 
+			aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.
+			]
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:34:41' prior: 50894560!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		entriesReachableByPortfoliosWhereIncluded add: self.
+		portfolioEntries do: [:aPortfolioEntryWhoKeepsCollecting | 
+			aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.
+			].
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:36:01'!
+keepCollectingAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.].
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:36:07' prior: 50894592!
+keepCollectingAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.].
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 00:36:38' prior: 50894576!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+		]
+	! !
+
+----SNAPSHOT----(8 November 2020 00:37:52) CuisUniversity-4384.image priorSource: 17974232!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+ERROR!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+ERROR!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:38:03'!
+ERROR!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 00:38:03'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:38:17'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:38:56'!
+test03balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	! !
+
+!methodRemoval: PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:39:07'!
+test03balanceOfPortfolioWithManyReceptiveAccountWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:39:25'!
+test03bisbalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	! !
+
+!methodRemoval: PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:39:27'!
+test03balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:39:31'!
+test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	! !
+
+!methodRemoval: PortfolioTest #test03bisbalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:39:33'!
+test03bisbalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	!
+
+!testRun: #PortfolioTest #test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:39:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:39:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 00:39:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:39:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:39:52'!
+ERROR!
+!ReceptiveAccount methodsFor: 'nil' stamp: 'CR 11/8/2020 00:40:28'!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:40:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 00:40:49'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:40:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:40:54'!
+ERROR!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 00:42:15' prior: 50894513!
+entriesReachableIfAdded
+	| entriesReachableByMe |
+	entriesReachableByMe := OrderedCollection new.
+	self collectReachableEntriesAndSaveIn: entriesReachableByMe. 
+	^ entriesReachableByMe
+	
+	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+ERROR!
+
+!testRun: #PortfolioTest #test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+ERROR!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:42:20'!
+ERROR!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 00:42:20'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:42:25'!
+ERROR!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:42:25'!
+ERROR!
+!Portfolio methodsFor: 'initialization' stamp: 'CR 11/8/2020 00:43:06' prior: 50893948 overrides: 16896425!
+initialize
+	portfolioEntries := OrderedCollection new.
+	portfoliosWhereIncluded := OrderedCollection new.! !
+!Portfolio methodsFor: 'adding to portfolio' stamp: 'CR 11/8/2020 00:43:57' prior: 50894110 overrides: 50894124!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	aPortfolioToBeAddedTo verifyThereIsNoPortfolioEntryLoopWhenAdding: self.
+	aPortfolioToBeAddedTo addToPorfolio: self.
+	portfoliosWhereIncluded add: aPortfolioToBeAddedTo.
+	
+	
+	! !
+!Portfolio methodsFor: 'adding to portfolio' stamp: 'CR 11/8/2020 00:44:51'!
+addNewPortfolioWhereIncluded: aPortfolioToBeAddedTo
+
+	^ portfoliosWhereIncluded add: aPortfolioToBeAddedTo! !
+!Portfolio methodsFor: 'adding to portfolio' stamp: 'CR 11/8/2020 00:44:51' prior: 50894993 overrides: 50894124!
+addIfPossibleToPortfolioEntries: aPortfolioToBeAddedTo
+
+	aPortfolioToBeAddedTo verifyThereIsNoPortfolioEntryLoopWhenAdding: self.
+	aPortfolioToBeAddedTo addToPorfolio: self.
+	self addNewPortfolioWhereIncluded: aPortfolioToBeAddedTo.
+	
+	
+	! !
+!Portfolio methodsFor: 'adding to portfolio' stamp: 'CR 11/8/2020 00:44:58' prior: 50895003!
+addNewPortfolioWhereIncluded: aPortfolioToBeAddedTo
+
+	portfoliosWhereIncluded add: aPortfolioToBeAddedTo! !
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:45:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 00:45:10'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:46:53'!
+test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	! !
+
+!methodRemoval: PortfolioTest #test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:46:56'!
+test03bisBalanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aDeposit aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	aDeposit := Deposit for: 50.
+	aReceptiveAccountWithTransactions := ReceptiveAccount new.
+	aReceptiveAccountWithTransactions register: aDeposit.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 00:46:59'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:48:28'!
+test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithMany |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithMany := Portfolio new. 
+	aPortfolioWithMany register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithMany register: aPortfolioWithTwoAccounts.
+	
+	self assert: (aPortfolioWithMany transactions size) = 2.
+	self assert: (aPortfolioWithMany transactions includes: depositOfHundred).	
+	self assert: (aPortfolioWithMany transactions includes: depositOfFifty).	! !
+
+!methodRemoval: PortfolioTest #test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 00:48:34'!
+test09hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithMany |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithMany := Portfolio new. 
+	aPortfolioWithMany register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithMany register: aPortfolioWithTwoAccounts.
+	
+	self assert: (aPortfolioWithMany transactions size) = 2.
+	self assert: (aPortfolioWithMany transactions includes: depositOfHundred).	
+	self assert: (aPortfolioWithMany transactions includes: depositOfFifty).	!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:50:29' prior: 50895076!
+test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aReceptiveAccountWithNoTransactions aReceptiveAccountWithTransactions aPortfolio |
+	
+	aReceptiveAccountWithTransactions register: depositOfFifty.
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: aReceptiveAccountWithTransactions.
+	self assert: aPortfolio balance = 50.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:50:59' prior: 50895215!
+test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aReceptiveAccountWithNoTransactions aPortfolio |
+	
+	aReceptiveAccountWithNoTransactions := ReceptiveAccount new.
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: aReceptiveAccountWithNoTransactions.
+	aPortfolio register: receptiveAccountWithDepositOfFifty.
+	self assert: aPortfolio balance = 50.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:51:23' prior: 50895233!
+test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aPortfolio |
+	
+	aPortfolio := Portfolio new. 
+	aPortfolio register: receptiveAccountWithNoTransactions.
+	aPortfolio register: receptiveAccountWithDepositOfFifty.
+	self assert: aPortfolio balance = 50.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:51:59' prior: 50893444!
+test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly
+	| aPortfolioWithBalanceZero |
+	
+	aPortfolioWithBalanceZero := Portfolio new. 
+	aPortfolioWithBalanceZero register: receptiveAccountWithNoTransactions.
+	self assert: aPortfolioWithBalanceZero balance = 0.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:52:25' prior: 50895260!
+test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly
+	| aPortfolioWithBalanceZero |
+	
+	aPortfolioWithBalanceZero := Portfolio new. 
+	aPortfolioWithBalanceZero register: receptiveAccountWithNoTransactions.
+	self assert: aPortfolioWithBalanceZero balance = 0.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:53:14' prior: 50895272!
+test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly
+	| aPortfolioWithBalanceZero |
+	aPortfolioWithBalanceZero := Portfolio new. 
+	
+	self assert:  [aPortfolioWithBalanceZero register: receptiveAccountWithNoTransactions] doesNotChange: [aPortfolioWithBalanceZero balance].
+	! !
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 00:53:17'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:53:32' prior: 50893473!
+test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithMany |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithMany := Portfolio new. 
+	aPortfolioWithMany register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithMany register: aPortfolioWithTwoAccounts.
+	
+	self assert: aPortfolioWithMany balance = 150.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:54:06' prior: 50895300!
+test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	self assert: aPortfolioWithAnAccountAndAPortfolio balance = 150.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:54:33' prior: 50895248!
+test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly
+	| aPortfolioWithTwoAccounts |
+	
+	aPortfolioWithTwoAccounts := Portfolio new. 
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfFifty.
+	self assert: aPortfolioWithTwoAccounts balance = 50.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:55:25' prior: 50893501!
+test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly
+	| aPortfolioWithOneAccount |
+	
+	aPortfolioWithOneAccount := Portfolio new. 
+	aPortfolioWithOneAccount register: receptiveAccountWithDepositOfHundred.
+	self assert: (aPortfolioWithOneAccount hasRegistered: depositOfHundred).
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:55:52' prior: 50893511!
+test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio hasRegistered: depositOfFifty).
+	self assert: (aPortfolioWithAnAccountAndAPortfolio hasRegistered: depositOfHundred).
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:57:16' prior: 50895369!
+test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio hasRegistered: depositOfFifty).
+	self assert: (aPortfolioWithAnAccountAndAPortfolio hasRegistered: depositOfHundred).
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:57:57' prior: 50893541!
+test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly
+	| aPortfolioWithOneAccount |
+	
+	aPortfolioWithOneAccount := Portfolio new. 
+	aPortfolioWithOneAccount register: receptiveAccountWithDepositOfFifty.
+	self assert: (aPortfolioWithOneAccount transactions size) = 1.
+	self assert: aPortfolioWithOneAccount transactions includes: depositOfFifty.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:58:53' prior: 50895163!
+test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions size) = 2.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfHundred).	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfFifty).	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 00:59:27' prior: 50895435!
+test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions size) = 2.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfHundred).	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfFifty).	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:00:14' prior: 50893578!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfHundred).	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfFifty).	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: withdrawOfTwenty).	! !
+
+col := {2,1,2}!
+
+col := #(2 3)!
+
+ #(2 3) !
+
+col := OrderedCollection new. !
+
+col := OrderedCollection new. !
+
+col add: 3!
+
+col add: 3!
+
+col add: 3!
+
+col!
+
+col print.!
+
+col printString!
+
+col printStore!
+
+col printOn: self.!
+
+lala := OrderedCollection with: 2 with: 3.!
+
+lala := OrderedCollection with: 2 with: 3.!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:06:03' prior: 50895493!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions =  depositOfHundred).	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: depositOfFifty).	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions includes: withdrawOfTwenty).	! !
+!Portfolio methodsFor: 'initialization' stamp: 'CR 11/8/2020 01:06:57' prior: 50894986 overrides: 16896425!
+initialize
+	portfolioEntries := Bag new.
+	portfoliosWhereIncluded := OrderedCollection new.! !
+!Portfolio methodsFor: 'initialization' stamp: 'CR 11/8/2020 01:07:03' prior: 50895570 overrides: 16896425!
+initialize
+	portfolioEntries := Bag new.
+	portfoliosWhereIncluded := Bag new.! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:07:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:07:07'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:07:07'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:07:58' prior: 50895536!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions =  (Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty)).	
+	
+	! !
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:08:14'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:08:14'!
+FAILURE!
+
+lala := Bag with: 1 with:3!
+
+lala2 := OrderedCollection with:3 with:1!
+
+lala = lala2!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:12:38' prior: 50895631!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio setWithTransactions|
+	
+	setWithTransactions := Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty.
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions =  (Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty)).	
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:12:47' prior: 50895671!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio setWithTransactions|
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	setWithTransactions := Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions =  (Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty)).	
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:13:21' prior: 50895704!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio setWithTransactions|
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	setWithTransactions := Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assert: (aPortfolioWithAnAccountAndAPortfolio transactions isSameSetAs: setWithTransactions).
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:14:50' prior: 50895737!
+test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio
+	| aPortfolioWithTwoAccounts aPortfolioWithAnAccountAndAPortfolio setWithTransactions|
+	
+	aPortfolioWithTwoAccounts := Portfolio new.
+	aPortfolioWithTwoAccounts register: receptiveAccountWithNoTransactions.
+
+	aPortfolioWithTwoAccounts register: receptiveAccountWithDepositOfHundred.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithTwoAccounts.
+	
+	receptiveAccountWithDepositOfHundred register: withdrawOfTwenty.
+	
+	setWithTransactions := Bag with: depositOfHundred with: depositOfFifty with: withdrawOfTwenty.
+	
+	self assert: (aPortfolioWithAnAccountAndAPortfolio balance) = 130.
+	self assertThat: (aPortfolioWithAnAccountAndAPortfolio transactions) isSameSetAs: setWithTransactions.
+	
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:17:38'!
+assertThat: portfolioTransactions isSameSetAs: transactionsThatShouldBeIncluded
+	
+	self assert: (transactionsThatShouldBeIncluded allSatisfy: [:transactionThatShouldBeIncluded | portfolioTransactions includes: transactionThatShouldBeIncluded]).
+	self assert: portfolioTransactions size = transactionsThatShouldBeIncluded size.! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:17:42'!
+PASSED!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 01:18:35' prior: 50894923!
+entriesReachableIfAdded
+	| entriesReachableByMe |
+	entriesReachableByMe := Bag new.
+	self collectReachableEntriesAndSaveIn: entriesReachableByMe. 
+	^ entriesReachableByMe
+	
+	! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'CR 11/8/2020 01:18:57' prior: 50893980 overrides: 16896425!
+initialize
+
+	transactions := Bag new.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CR 11/8/2020 01:19:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:19:09'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:22:17'!
+test11addingPortfolioThatCreatesLoopRaisesError
+	| aPortfolioWithAPortfolio aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithAPortfolio.
+	
+	aPortfolioWithAPortfolio register: aPortfolioWithAnAccountAndAPortfolio. 
+
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:23:18' prior: 50895942!
+test11addingPortfolioThatCreatesLoopRaisesError
+	| aPortfolioWithAPortfolio aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithAPortfolio.
+	
+	self should: [aPortfolioWithAPortfolio register: aPortfolioWithAnAccountAndAPortfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+----SNAPSHOT----(8 November 2020 01:23:29) CuisUniversity-4384.image priorSource: 18015294!
+
+!testRun: #PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:23:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:23:32'!
+FAILURE!
+
+aPortfolioEntryToBeAdded!
+
+aPortfolioThatMightCreateLoop!
+
+entriesReachableByPortfolioThatMightCreateLoop!
+
+self at: 1!
+
+self print!
+
+self print!
+
+!testRun: #PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:28:57'!
+FAILURE!
+
+entriesReachableByPortfolioThatMightCreateLoop!
+
+self sortedElements !
+
+Portfolio!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 01:30:42' prior: 50895857!
+entriesReachableIfAdded
+	| entriesReachableByMe |
+	entriesReachableByMe := OrderedCollection new.
+	self collectReachableEntriesAndSaveIn: entriesReachableByMe. 
+	^ entriesReachableByMe
+	
+	! !
+
+!testRun: #PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:30:49'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:30:49'!
+FAILURE!
+
+entriesReachableByPortfolioThatMightCreateLoop!
+
+entriesReachableByPortfolioThatMightCreateLoop includes: self!
+!Portfolio methodsFor: 'errors' stamp: 'CR 11/8/2020 01:32:50' prior: 50893926!
+signalCantAddEntryBecauseCreatesLoop
+	^ self error: self class errorCantAddBecauseCreatesLoop.! !
+
+!testRun: #PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:32:56'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:34:34'!
+test11addingPortfolioToPortfolioWhereIncludedRaisesError
+	| aPortfolioWithAPortfolio aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithAPortfolio.
+	
+	self should: [aPortfolioWithAPortfolio register: aPortfolioWithAnAccountAndAPortfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+!methodRemoval: PortfolioTest #test11addingPortfolioThatCreatesLoopRaisesError stamp: 'CR 11/8/2020 01:34:38'!
+test11addingPortfolioThatCreatesLoopRaisesError
+	| aPortfolioWithAPortfolio aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithAPortfolio.
+	
+	self should: [aPortfolioWithAPortfolio register: aPortfolioWithAnAccountAndAPortfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:37:13'!
+test12addingPortfolioToPortfolioWhereIncludedRaisesError
+	| rootPorfolio childPortfolio grandchildPorfolio |
+	
+	childPortfolio := Portfolio new.
+	grandchildPorfolio := Portfolio new.
+	
+	childPortfolio register: grandchildPorfolio.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: childPortfolio.
+
+	
+	self should: [grandchildPorfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIncludedRaisesError stamp: 'CR 11/8/2020 01:37:17'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:38:50'!
+test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError
+	| rootPorfolio childPortfolio grandchildPorfolio |
+	
+	childPortfolio := Portfolio new.
+	grandchildPorfolio := Portfolio new.
+	
+	childPortfolio register: grandchildPorfolio.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: childPortfolio.
+
+	
+	self should: [grandchildPorfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+!methodRemoval: PortfolioTest #test12addingPortfolioToPortfolioWhereIncludedRaisesError stamp: 'CR 11/8/2020 01:38:55'!
+test12addingPortfolioToPortfolioWhereIncludedRaisesError
+	| rootPorfolio childPortfolio grandchildPorfolio |
+	
+	childPortfolio := Portfolio new.
+	grandchildPorfolio := Portfolio new.
+	
+	childPortfolio register: grandchildPorfolio.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: childPortfolio.
+
+	
+	self should: [grandchildPorfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:39:01'!
+test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError
+	| aPortfolioWithAPortfolio aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithAPortfolio.
+	
+	self should: [aPortfolioWithAPortfolio register: aPortfolioWithAnAccountAndAPortfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+!methodRemoval: PortfolioTest #test11addingPortfolioToPortfolioWhereIncludedRaisesError stamp: 'CR 11/8/2020 01:39:08'!
+test11addingPortfolioToPortfolioWhereIncludedRaisesError
+	| aPortfolioWithAPortfolio aPortfolioWithAnAccountAndAPortfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	aPortfolioWithAnAccountAndAPortfolio := Portfolio new. 
+	aPortfolioWithAnAccountAndAPortfolio register: receptiveAccountWithDepositOfFifty.
+	aPortfolioWithAnAccountAndAPortfolio register: aPortfolioWithAPortfolio.
+	
+	self should: [aPortfolioWithAPortfolio register: aPortfolioWithAnAccountAndAPortfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:39:33' prior: 50896131!
+test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError
+	| aPortfolioWithAPortfolio rootPorfolio |
+	
+	aPortfolioWithAPortfolio := Portfolio new.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: aPortfolioWithAPortfolio.
+	
+	self should: [aPortfolioWithAPortfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:39:54' prior: 50896173!
+test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError
+	| rootPorfolio childPortfolio |
+	
+	childPortfolio := Portfolio new.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: childPortfolio.
+	
+	self should: [childPortfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: Portfolio errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:39:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:40:12'!
+PASSED!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 01:41:11' prior: 50896000!
+entriesReachableIfAdded
+	| entriesReachableByMe |
+	entriesReachableByMe := Bag new.
+	self collectReachableEntriesAndSaveIn: entriesReachableByMe. 
+	^ entriesReachableByMe
+	
+	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:41:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:43:14'!
+PASSED!
+!Portfolio methodsFor: 'errors' stamp: 'CR 11/8/2020 01:44:41' prior: 50894419!
+raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	(entriesReachableByPortfolioThatMightCreateLoop includes: self) ifTrue: [ PortfolioEntry signalCantAddEntryBecauseCreatesLoop].
+	
+	! !
+!PortfolioEntry methodsFor: 'nil' stamp: 'CR 11/8/2020 01:44:56'!
+signalCantAddEntryBecauseCreatesLoop
+	^ self error: self class errorCantAddBecauseCreatesLoop.! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 01:44:58' prior: 50896435!
+signalCantAddEntryBecauseCreatesLoop
+	self error: self class errorCantAddBecauseCreatesLoop.! !
+!PortfolioEntry class methodsFor: 'nil' stamp: 'CR 11/8/2020 01:45:49'!
+errorCantAddBecauseCreatesLoop
+	^ 'CantAddBecauseCreatesLoop!!'! !
+
+!methodRemoval: Portfolio class #errorCantAddBecauseCreatesLoop stamp: 'CR 11/8/2020 01:45:59'!
+errorCantAddBecauseCreatesLoop
+	^ 'CantAddBecauseCreatesLoop!!'!
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:46:13' prior: 50896190!
+test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError
+	| rootPorfolio childPortfolio |
+	
+	childPortfolio := Portfolio new.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: childPortfolio.
+	
+	self should: [childPortfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: PortfolioEntry errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'CR 11/8/2020 01:46:18' prior: 50896092!
+test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError
+	| rootPorfolio childPortfolio grandchildPorfolio |
+	
+	childPortfolio := Portfolio new.
+	grandchildPorfolio := Portfolio new.
+	
+	childPortfolio register: grandchildPorfolio.
+	
+	rootPorfolio := Portfolio new. 
+	rootPorfolio register: receptiveAccountWithDepositOfFifty.
+	rootPorfolio register: childPortfolio.
+
+	
+	self should: [grandchildPorfolio register: rootPorfolio] 
+	raise: Error   
+	withMessageText: PortfolioEntry errorCantAddBecauseCreatesLoop.
+	
+
+	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:46:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:46:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:46:24'!
+FAILURE!
+
+!methodRemoval: Portfolio #signalCantAddEntryBecauseCreatesLoop stamp: 'CR 11/8/2020 01:46:58'!
+signalCantAddEntryBecauseCreatesLoop
+	^ self error: self class errorCantAddBecauseCreatesLoop.!
+!Portfolio methodsFor: 'errors' stamp: 'CR 11/8/2020 01:48:08' prior: 50896426!
+raiseErrorIfIncludedIn: entriesReachableByPortfolioThatMightCreateLoop
+
+	(entriesReachableByPortfolioThatMightCreateLoop includes: self) ifTrue: [ super signalCantAddEntryBecauseCreatesLoop].
+	
+	! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 01:48:13'!
+PASSED!
+!PortfolioEntry methodsFor: 'adding to portfolio' stamp: 'CR 11/8/2020 01:49:30'!
+addToPorfolio: aPortfolioEntryToAdd
+	self subclassResponsibility.! !
+!PortfolioEntry methodsFor: 'nil' stamp: 'CR 11/8/2020 01:50:32'!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+	self subclassResponsibility.! !
+
+!methodRemoval: ReceptiveAccount #sumTotalTransactionsFrom: stamp: 'CR 11/8/2020 01:51:10'!
+sumTotalTransactionsFrom: aSetOfTransactions
+
+	^ aSetOfTransactions sum: [ :aTransactionToSumItsValue | aTransactionToSumItsValue value ] ifEmpty: [ 0 ].!
+!Deposit methodsFor: 'initialization' stamp: 'CR 11/8/2020 01:51:47' prior: 50893755!
+initializeFor: aDepositValue
+
+	value := aDepositValue ! !
+!Withdraw methodsFor: 'initialization' stamp: 'CR 11/8/2020 01:52:06' prior: 50893806!
+initializeFor: aWithdrawValue
+
+	value := aWithdrawValue ! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 01:55:53' prior: 50893893 overrides: 50893863!
+hasRegistered: aTransactionToCheckIfRegistered
+	^ portfolioEntries anySatisfy: [:aPortfolioEntry | aPortfolioEntry hasRegistered: aTransactionToCheckIfRegistered].! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 01:58:16' prior: 50893902 overrides: 50893868!
+transactions
+	| accountsReachableByMe |
+	accountsReachableByMe := Bag new.
+	self collectReachableAccountsAndSaveIn: accountsReachableByMe. 
+	^ accountsReachableByMe.! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 01:58:24'!
+collectReachableAccountsAndSaveIn: accountsReachableByMe. 
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:00:16' prior: 50896662!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+
+	(self reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+		]
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:00:26'!
+reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:01:05'!
+keepCollectingEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.].
+
+	! !
+
+!methodRemoval: Portfolio #keepCollectingAndSaveIn: stamp: 'CR 11/8/2020 02:01:10'!
+keepCollectingAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.].
+
+	!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:01:15' prior: 50896667!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+
+	(self reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingEntriesAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+		]
+	! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:01:19' prior: 50894618 overrides: 50896620!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+		]
+	! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:01:48'!
+keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+
+	accountsReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded.].
+
+	! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:02:43' prior: 50896678!
+reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:02:57' prior: 50896744!
+reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded
+
+	^ accountsReachableByPortfoliosWhereIncluded includes: self.! !
+!PortfolioEntry methodsFor: 'private' stamp: 'CR 11/8/2020 02:03:35'!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+	self subclassResponsibility.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'CR 11/8/2020 02:03:58' overrides: 50896757!
+collectReachableAccountsAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:10:23'!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingEntriesAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+		]
+	! !
+
+!methodRemoval: Portfolio #collectReachableAccountsAndSaveIn: stamp: 'CR 11/8/2020 02:10:28'!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+
+	(self reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingEntriesAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+		]
+	!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:11:09' prior: 50896769!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingEntriesAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+		]
+	! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:11:39' prior: 50896683!
+keepCollectingEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded.].
+
+	! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:11:44'!
+keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	accountsReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded.].
+
+	! !
+
+!methodRemoval: Portfolio #keepCollectingAccountsAndSaveIn: stamp: 'CR 11/8/2020 02:11:48'!
+keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+
+	accountsReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded.].
+
+	!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:12:52' prior: 50896821!
+keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded.].
+
+	! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:14:04' prior: 50896849!
+keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	entriesReachableByPortfoliosWhereIncluded add: self.
+	portfolioEntries do: 
+					[:aPortfolioEntryWhoKeepsCollecting | aPortfolioEntryWhoKeepsCollecting collectReachableAccountsAndSaveIn:  accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded].
+
+	! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'CR 11/8/2020 02:14:44'!
+collectReachableAccountsAndSaveIn:  accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 02:14:52' prior: 50896880!
+collectReachableAccountsAndSaveIn:  accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+	accountsReachableByPortfoliosWhereIncluded add: self.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'CR 11/8/2020 02:14:58' prior: 50896888!
+collectReachableAccountsAndSaveIn:  accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+	accountsReachableByPortfoliosWhereIncluded add: self! !
+!PortfolioEntry methodsFor: 'nil' stamp: 'CR 11/8/2020 02:15:11'!
+collectReachableAccountsAndSaveIn:  accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+	self subclassResponsibility ! !
+
+!methodRemoval: PortfolioEntry #collectReachableAccountsAndSaveIn: stamp: 'CR 11/8/2020 02:15:38'!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded
+	self subclassResponsibility.!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:16:37' prior: 50896654 overrides: 50893868!
+transactions
+	| accountsReachableByMe entriesReachableByMe|
+	accountsReachableByMe := Bag new.
+	entriesReachableByMe := Bag new.
+	self collectReachableAccountsAndSaveIn: accountsReachableByMe andRecursionOn: entriesReachableByMe. 
+	^ accountsReachableByMe.! !
+
+!methodRemoval: ReceptiveAccount #collectReachableAccountsAndSaveIn: stamp: 'CR 11/8/2020 02:17:08'!
+collectReachableAccountsAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:18:08' prior: 50896794 overrides: 50896907!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	(self reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+		]
+	! !
+
+!methodRemoval: Portfolio #reachableAccountsAlreadyCollected: stamp: 'CR 11/8/2020 02:20:45'!
+reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded
+
+	^ accountsReachableByPortfoliosWhereIncluded includes: self.!
+!ReceptiveAccount methodsFor: 'nil' stamp: 'CR 11/8/2020 02:20:51'!
+reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded
+
+	^ accountsReachableByPortfoliosWhereIncluded includes: self.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'CR 11/8/2020 02:22:28' prior: 50896898 overrides: 50896907!
+collectReachableAccountsAndSaveIn:  alreadyCollectedAccounts andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+	(self reachableAccountsAlreadyCollected: alreadyCollectedAccounts) ifFalse: [alreadyCollectedAccounts add: self].! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'CR 11/8/2020 02:23:07' prior: 50896971 overrides: 50896907!
+collectReachableAccountsAndSaveIn:  alreadyCollectedAccounts andRecursionOn: alreadyReachedEntries
+	(self reachableAccountsAlreadyCollected: alreadyCollectedAccounts) ifFalse: [alreadyCollectedAccounts add: self].! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'CR 11/8/2020 02:24:23' prior: 50896982 overrides: 50896907!
+collectReachableAccountsAndSaveIn:  alreadyCollectedAccounts andRecursionOn: alreadyReachedEntries
+
+	(self alreadyCollectedIn: alreadyCollectedAccounts) ifFalse: [alreadyCollectedAccounts add: self]! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'CR 11/8/2020 02:24:31'!
+alreadyCollectedIn: accountsReachableByPortfoliosWhereIncluded
+
+	^ accountsReachableByPortfoliosWhereIncluded includes: self.! !
+
+!methodRemoval: ReceptiveAccount #reachableAccountsAlreadyCollected: stamp: 'CR 11/8/2020 02:24:33'!
+reachableAccountsAlreadyCollected: accountsReachableByPortfoliosWhereIncluded
+
+	^ accountsReachableByPortfoliosWhereIncluded includes: self.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'CR 11/8/2020 02:24:56' prior: 50897002!
+alreadyCollectedIn: alreadyCollectedAccounts
+
+	^ alreadyCollectedAccounts includes: self.! !
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:25:50' prior: 50896720 overrides: 50896620!
+collectReachableEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+
+	(self alreadyCollectedIn: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingEntriesAndSaveIn: entriesReachableByPortfoliosWhereIncluded
+		]
+	! !
+
+!methodRemoval: Portfolio #reachableEntriesAlreadyCollected: stamp: 'CR 11/8/2020 02:26:07'!
+reachableEntriesAlreadyCollected: entriesReachableByPortfoliosWhereIncluded
+
+	^ entriesReachableByPortfoliosWhereIncluded includes: self!
+!Portfolio methodsFor: 'verification' stamp: 'CR 11/8/2020 02:26:21' prior: 50896941 overrides: 50896907!
+collectReachableAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+
+	(self alreadyCollectedIn: entriesReachableByPortfoliosWhereIncluded) ifFalse: [
+		self keepCollectingAccountsAndSaveIn: accountsReachableByPortfoliosWhereIncluded andRecursionOn: entriesReachableByPortfoliosWhereIncluded
+		]
+	! !
+!PortfolioEntry methodsFor: 'private' stamp: 'CR 11/8/2020 02:26:48'!
+alreadyCollectedIn: alreadyCollectedAccounts
+
+	^ alreadyCollectedAccounts includes: self.! !
+
+!methodRemoval: ReceptiveAccount #alreadyCollectedIn: stamp: 'CR 11/8/2020 02:27:10'!
+alreadyCollectedIn: alreadyCollectedAccounts
+
+	^ alreadyCollectedAccounts includes: self.!
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:27:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 02:27:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 02:27:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:27:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:27:41'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:28:37' prior: 50896923 overrides: 50893868!
+transactions
+	| accountsReachableByMe entriesReachableByMe|
+	accountsReachableByMe := Bag new.
+	entriesReachableByMe := Bag new.
+	self collectReachableAccountsAndSaveIn: accountsReachableByMe andRecursionOn: entriesReachableByMe. 
+	^ self collectTransactionsFromAccounts: accountsReachableByMe.! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:28:55'!
+collectTransactionsFromAccounts: setOfAccountsReachableByMe
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:29:48' prior: 50897143!
+collectTransactionsFromAccounts: setOfAccountsReachableByMe
+	^ setOfAccountsReachableByMe collect: [:accountReachableByMe | accountReachableByMe transactions].! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:29:51' prior: 50897148!
+collectTransactionsFromAccounts: setOfAccountsReachableByMe
+
+	^ setOfAccountsReachableByMe collect: [:accountReachableByMe | accountReachableByMe transactions]! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:29:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 02:29:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 02:29:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:30:03'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:30:03'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:30:51' prior: 50897156!
+collectTransactionsFromAccounts: setOfAccountsReachableByMe
+
+	^ setOfAccountsReachableByMe collect: [:accountReachableByMe | accountReachableByMe transactions].! !
+!Portfolio methodsFor: 'accessing' stamp: 'CR 11/8/2020 02:33:21' prior: 50897226!
+collectTransactionsFromAccounts: setOfAccountsReachableByMe
+
+	^ setOfAccountsReachableByMe collect: [:accountReachableByMeToAddItsTransactions | accountReachableByMeToAddItsTransactions transactions] andFold: [:aSetOfTransactions :anotherSetOfTransactions | aSetOfTransactions union: anotherSetOfTransactions] ifEmpty: (Bag new).! !
+
+!testRun: #PortfolioTest #test01balanceOfAnEmptyPortfolioIsZero stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02balanceOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03balanceOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03bis_balanceOfPortfolioWithManyReceptiveAccountsWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04hasRegisteredOfAnEmptyPortfolioIsFalse stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05hasRegisteredOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06hasRegisteredOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07transactionsOfAnEmptyPortfolioIsEmpty stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08transactionsOfPortfolioWithOneReceptiveAccountWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09transactionOfPortfolioWithManyReceptiveAccountsAndPortfoliosWorksCorrectly stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10updatingAnAccountIncludedInPortfolioUpdatesPortfolio stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11addingPortfolioToPortfolioWhereDirectlyIncludedRaisesError stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12addingPortfolioToPortfolioWhereIndirectlyIncludedRaisesError stamp: 'CR 11/8/2020 02:34:26'!
+PASSED!
+
+----SNAPSHOT----(8 November 2020 02:35:11) CuisUniversity-4384.image priorSource: 18058505!
+
+----QUIT----(8 November 2020 02:35:14) CuisUniversity-4384.image priorSource: 18100779!
+
+----STARTUP---- (9 November 2020 16:36:57) as /Users/celeste/facultad/ing1/si-exercises/CuisUniversity-4384.image!
+
+
+----SNAPSHOT----(9 November 2020 16:42:09) CuisUniversity-4384.image priorSource: 18100872!

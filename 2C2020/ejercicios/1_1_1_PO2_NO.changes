@@ -1,0 +1,4863 @@
+
+----STARTUP---- (9 November 2020 16:20:18) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/imagenportfolio1/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/isw1-2c2020-ejercicios/18-Portfolio1/Portfolio-Ejercicio.st----!
+
+!testRun: #PortfolioTest #test01BalanceOfEmptyPortfolioIsZero stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneFinancialProductIsBalanceOfThatAccount stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioWithMoreThanOneFinancialProductIsSumOfBalances stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04EmptyPortfolioHasRegisteredNoTransactions stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneFinancialProductRegistersATransactionOfThatAccount stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06APortfolioWithMoreThanOneFinancialProductRegistersAllTransactions stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07EmptyPortfolioHasNoTransactions stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneFinancialProductHasTheTransactionsOfThatAccount stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09APortfolioWithMoreThanOneFinancialProductHasTheTransactionsOfItsAccounts stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioShouldNotAddItself stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioShouldNotAddAnOwnerPortfolio stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioShouldNotAddFinancialProductIfTheyBothBelongToAnotherPortfolio stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioShouldNotAddAnotherPortfolioWhenTheyBothOwnAFinancialProduct stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test14APortfolioShouldNotAddAnotherFinancialProductWhenTheyAreOwnedIndirectlyByAnotherPortfolio stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test15APortfolioShouldNotAddAPortfolioWhenTheyBothOwnTheSameFinancialProductIndirectly stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'am 11/9/2020 16:20:52'!
+PASSED!
+
+----STARTUP---- (9 November 2020 19:16:32) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/portfolio2/CuisUniversity-4384.image!
+
+
+----End fileIn of /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/2020-2c/18-Portfolio1/Portfolio-Solucion.st----!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 19:30:41'!
+Object subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:30:58'!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.	
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:33:54' prior: 50868495!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:30' prior: 50868505!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:35' prior: 50868516!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:34:49'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 19:35:04'!
+from: aReceptiveAccount to: aReceptiveAccount2 for: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFrom: aReceptiveAccount to: aReceptiveAccount2 for: aSmallInteger ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 19:36:00' prior: 50868541!
+from: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+	
+	^self new initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue ! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:36:10'!
+ERROR!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 19:36:29'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 19:36:29'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount receivingReceptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 19:36:30'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount receivingReceptiveAccount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:36:30'!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+	self shouldBeImplemented.
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:36:35' prior: 50868586!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	value := aValue.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:36:38'!
+FAILURE!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:39:22' prior: 50868597!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:39:32'!
+ERROR!
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:39:44'!
+registerTransfer: aTransfer 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:39:57' prior: 50868624!
+registerTransfer: aTransfer 
+	
+	| transfer |
+	transfer := aTransfer! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:40:32' prior: 50868629!
+registerTransfer: aTransfer 
+	
+	| transfesr |
+	transfesr := aTransfer! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio' stamp: 'AM 11/9/2020 19:40:46'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:40:44' prior: 50868634!
+registerTransfer: aTransfer 
+	
+	transfer := aTransfer! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:40:49'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:41:41' prior: 50868349 overrides: 50868154!
+balance
+
+	^(transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]) - transfer value! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:41:43'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:42:06' prior: 50868655 overrides: 50868154!
+balance
+
+	^(transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]) - (transfer value)! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:42:09'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:42:20'!
+ERROR!
+!Transfer methodsFor: 'nil' stamp: 'AM 11/9/2020 19:42:55' overrides: 16881508!
+value
+	^ value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:43:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:43:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:43:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 19:43:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 19:43:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 19:43:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 19:43:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:43:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:43:14'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:44:44' prior: 50868666 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ result := result - transfer value].! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:44:50' prior: 50868716 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ result := result - transfer value].
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:44:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:44:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:44:54'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:45:58' prior: 50868527!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:35' prior: 50868748!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:46:18'!
+test09
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:46:20'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:47:45' prior: 50868726 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ 
+		transfer sender = self 
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			]
+		
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:47:47'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:48:07' prior: 50868785 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ 
+		transfer sender = self 
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			].
+		
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:48:13'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 19:48:25'!
+sender
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 19:49:18' prior: 50868816!
+sender
+	^ sendingReceptiveAccount ! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:49:20'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:50:23'!
+test10
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	Transfer from: aReceivingAccount to: aSendingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:50:35' prior: 50868858!
+test10
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	Transfer from: aReceivingAccount to: aSendingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: 0.
+! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 19:51:19'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:51:51' prior: 50868647!
+registerTransfer: aTransfer 
+	
+	transfer add: aTransfer! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 19:51:54'!
+ERROR!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'AM 11/9/2020 19:52:18' prior: 50868326 overrides: 16896425!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.
+	transfer := OrderedCollection new.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:52:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:52:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:52:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 19:52:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 19:52:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 19:52:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 19:52:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:52:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:52:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 19:52:22'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:52:26'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:53:40' prior: 50868801 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:54:10' prior: 50868940 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 19:54:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:54:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 19:54:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 19:54:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 19:54:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 19:54:22'!
+PASSED!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 19:56:49'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receivingReceptiveAccount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:56:49' prior: 50868820!
+sender
+	^ sender ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:56:49' prior: 50868609!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 19:57:08'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:57:08' prior: 50868998!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:59:15' prior: 50868954 overrides: 50868154!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:59:19' prior: 50869031 overrides: 50868154!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:41' prior: 50869045 overrides: 50868154!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:48' prior: 50869059 overrides: 50868154!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		])
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:51' prior: 50869072 overrides: 50868154!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]).
+		
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:00:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:00:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:00:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:00:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:00:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:00:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:00:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:00:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:00:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:00:54'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:00:57'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:01:32' prior: 50869085 overrides: 50868154!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result := result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]).
+		
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:01:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:01:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:01:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:01:37'!
+ERROR!
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:01:51'!
+affectBalance: aSmallInteger for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:00' prior: 50869162!
+affectBalance: aBalance for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:38' prior: 50869167!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:47' prior: 50869172!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:57' prior: 50869178!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].
+	^aBalance! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:03:01' prior: 50869186!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:03:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:03:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:03:10'!
+PASSED!
+
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:05:15'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutcomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:05:20'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRenamed: #OutcomingTransfer as: #OutgoingTransfer stamp: 'AM 11/9/2020 20:05:40'!
+Smalltalk renameClassNamed: #OutcomingTransfer as: #OutgoingTransfer!
+!IncomingTransfer methodsFor: 'nil' stamp: 'AM 11/9/2020 20:06:27'!
+affectBalance: aBalance
+	^ aBalance + self value! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:07:40'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'outgoing'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:07:37' prior: 50869238!
+affectBalance: aBalance
+	^ aBalance + outgoing value! !
+!OutgoingTransfer methodsFor: 'nil' stamp: 'AM 11/9/2020 20:07:57'!
+affectBalance: aBalance
+	^ aBalance - value! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:11:11' prior: 50869018!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (IncomingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:11:26' prior: 50869260!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (IncomingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: (OutgoingTransfer in: self). 
+	value := aValue.! !
+
+!methodRemoval: Transfer #affectBalance:for: stamp: 'AM 11/9/2020 20:11:50'!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:11:58' prior: 50869136 overrides: 50868154!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result := result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance.
+		]).
+		
+	^result! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:12:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'outgoing transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:12:22' prior: 50869251!
+affectBalance: aBalance
+
+	^ aBalance + transfer value! !
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:12:33'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:12:31' prior: 50869255!
+affectBalance: aBalance
+	^ aBalance - transfer value! !
+
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:12:49'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:12:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:12:59'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:12:59'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:12:59'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:13:02'!
+ERROR!
+!IncomingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:13:14'!
+in: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIn: aTransfer ! !
+!IncomingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:13:25' prior: 50869381!
+in: aTransfer 
+
+	^self new initializeIn: aTransfer ! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:13:26'!
+ERROR!
+!IncomingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:13:40'!
+initializeIn: aTransfer 
+	self shouldBeImplemented.
+	transfer := aTransfer.! !
+!IncomingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:13:43' prior: 50869396!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:13:46'!
+ERROR!
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:14:17'!
+in: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIn: aTransfer ! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:14:22' prior: 50869409!
+in: aTransfer 
+	
+	^self new initializeIn: aTransfer ! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:14:57'!
+ERROR!
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:15:10'!
+initializeIn: aTransfer 
+	self shouldBeImplemented.
+	transfer := aTransfer.! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:15:14' prior: 50869424!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:15:16'!
+FAILURE!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:16:13' prior: 50869273!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (OutgoingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: (IncomingTransfer in: self). 
+	value := aValue.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:16:17'!
+PASSED!
+
+IncomingTransfer superclass: Object!
+
+OutgoingTransfer superclass: Object!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:19:36' prior: 50869437!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	OutgoingTransfer for: aSendingReceptiveAccount transfer: self.
+	IncomingTransfer for: aReceivingReceptiveAccount transfer: self. 
+	value := aValue.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:19:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:19:52'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:19:52'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:19:52'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:19:55'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:20:11'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:20:27'!
+ERROR!
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:20:34'!
+for: aReceptiveAccount transfer: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:20:40' prior: 50869539!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:20:41'!
+ERROR!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:21:04'!
+Object subclass: #OutgoingTransfer
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:21:04'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	self shouldBeImplemented.
+	receptiveAccount := aReceptiveAccount.
+	transfer := aTransfer.! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:21:52' prior: 50869566!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:22:07'!
+ERROR!
+
+Object subclass: #Pata
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:22:33'!
+Object subclass: #Pata
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+IncomingTransfer superclass: Pata!
+
+OutgoingTransfer superclass: Pata!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:24:02'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:24:23'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:24:28'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:24:28'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Pata methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:24:38'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.! !
+
+!methodRemoval: OutgoingTransfer #initializeFor:transfer: stamp: 'AM 11/9/2020 20:24:38'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.!
+
+!methodRemoval: OutgoingTransfer #initializeIn: stamp: 'AM 11/9/2020 20:24:43'!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.!
+
+!methodRemoval: IncomingTransfer #initializeIn: stamp: 'AM 11/9/2020 20:24:57'!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:26:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:26:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:27:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:27:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:27:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:27:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:27:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:27:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:27:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:27:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:27:02'!
+ERROR!
+!Pata class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:27:26'!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+
+!methodRemoval: OutgoingTransfer class #for:transfer: stamp: 'AM 11/9/2020 20:27:26'!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer !
+
+!methodRemoval: OutgoingTransfer class #in: stamp: 'AM 11/9/2020 20:27:30'!
+in: aTransfer 
+	
+	^self new initializeIn: aTransfer !
+
+!methodRemoval: IncomingTransfer class #in: stamp: 'AM 11/9/2020 20:27:36'!
+in: aTransfer 
+
+	^self new initializeIn: aTransfer !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AM 11/9/2020 20:27:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:27:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:27:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:27:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:27:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:27:56'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:28:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:28:16'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:28:16'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:28:16'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:28:20'!
+ERROR!
+
+OutgoingTransfer class superclass: Pata class!
+
+IncomingTransfer class superclass: Pata class!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:29:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:29:39'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:29:39'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:29:41'!
+ERROR!
+
+----STARTUP---- (9 November 2020 20:31:31) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/portfolio2/CuisUniversity-4384.image!
+
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:19'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:19'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:16:26'!
+test01BalanceOfPortfolioWithoutAccountsIsZero
+
+	self assert: 0 equals: Portfolio new balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:17:51'!
+test02BalanceOfPortfolioWithOneAccountIsAccountBalance
+
+	| account portfolio |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: account balance equals: portfolio balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:23:25'!
+test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortofolio |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortofolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	self assert: (composedPortfolioAccount balance + simplePortfolio balance) equals: composedPortofolio balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:43:15'!
+test04PortfolioWithoutAccountsHasNoRegisteredTransaction
+
+	self deny: (Portfolio new hasRegistered: (Deposit for: 100))! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:43:11'!
+test05PortfolioHasRegisteredItsAccountsTransactions
+
+	| account portfolio deposit |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: (portfolio hasRegistered: deposit)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:06'!
+test06PortfolioLooksForRegisteredTransactionsRecursively
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortfolio composedPortfolioAccountWithdraw simplePortfolioAccountDeposit |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	simplePortfolioAccountDeposit := Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	composedPortfolioAccountWithdraw := Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortfolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	self assert: (composedPortfolio hasRegistered: simplePortfolioAccountDeposit).
+	self assert: (composedPortfolio hasRegistered: composedPortfolioAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:10'!
+test07PortfolioHasNoTransactionWhenHasNoAccounts
+
+	self assert: Portfolio new transactions isEmpty! !
+!PortfolioTest methodsFor: 'tests' stamp: 'NR 6/22/2020 07:31:19'!
+test08PortfolioTransactionsIncludesAllItsAccountsTransactions
+
+	| account portfolio accountDeposit anotherAccount portfolioTransactions anotherAccountWithdraw |
+	
+	account := ReceptiveAccount new.
+	accountDeposit := Deposit register: 100 on: account.
+	anotherAccount := ReceptiveAccount new.
+	anotherAccountWithdraw := Withdraw register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	portfolioTransactions := portfolio transactions.
+	
+	self assert: 2 equals: portfolioTransactions size.
+	self assert: (portfolioTransactions includes: accountDeposit).
+	self assert: (portfolioTransactions includes: anotherAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:20'!
+test09PortfolioTransactionsAreCalculatedRecursively
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortfolio composedPortfolioAccountWithdraw simplePortfolioAccountDeposit composedPortfolioTransactions |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	simplePortfolioAccountDeposit := Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	composedPortfolioAccountWithdraw := Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortfolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	composedPortfolioTransactions := composedPortfolio transactions.
+	self assert: 2 equals: composedPortfolioTransactions size.
+	self assert: (composedPortfolioTransactions includes: simplePortfolioAccountDeposit).
+	self assert: (composedPortfolioTransactions includes: composedPortfolioAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:24'!
+test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce
+
+	| account portfolio |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio with: account.
+	
+	self 
+		should: [ portfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: portfolio accountsSize.
+			self assert: (portfolio accountsIncludes: account) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:28'!
+test11PortfolioCanNotIncludeAccountOfItsPortfolios
+
+	| account simplePortfolio composedPortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio with: account.
+	composedPortfolio := Portfolio with: simplePortfolio.
+	
+	self 
+		should: [ composedPortfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: composedPortfolio accountsSize.
+			self assert: (composedPortfolio accountsIncludes: simplePortfolio) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:32'!
+test12PortfolioCanNotIncludeItself
+
+	| account simplePortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio with: account.
+	
+	self 
+		should: [ simplePortfolio add: simplePortfolio ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: simplePortfolio accountsSize.
+			self assert: (simplePortfolio accountsIncludes: account) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 12:01:51'!
+test13ComposedPortfolioCanNotHaveParentPortfolioAccount
+
+	| account simplePortfolio composedPortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio new.
+	composedPortfolio := Portfolio with: simplePortfolio.
+	composedPortfolio add: account.
+	
+	self 
+		should: [ simplePortfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: simplePortfolio accountsIsEmpty ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 12:12:16'!
+test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively
+
+	| account leftParentPortfolio leftRootParentPortfolio portfolio rightParentPortfolio rightRootParentPortfolio |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	leftParentPortfolio := Portfolio with: portfolio .
+	leftRootParentPortfolio := Portfolio with: leftParentPortfolio.
+	leftRootParentPortfolio add: account.
+	
+	rightParentPortfolio := Portfolio with: portfolio .
+	rightRootParentPortfolio := Portfolio with: rightParentPortfolio.
+	rightRootParentPortfolio add: account.
+
+	self 
+		should: [ portfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: portfolio accountsIsEmpty ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/29/2019 16:31:18'!
+test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
+
+	| portfolioToAdd portfolioToModify rootPortfolio sharedAccount |
+	
+	sharedAccount := ReceptiveAccount new.
+	portfolioToModify := Portfolio new.
+	rootPortfolio := Portfolio with: sharedAccount with: portfolioToModify.
+	portfolioToAdd := Portfolio with: sharedAccount.
+	
+	self 
+		should: [ portfolioToModify add: portfolioToAdd ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: portfolioToModify accountsIsEmpty ]! !
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:20'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:20'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:48'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:54'!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:02'!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/9/2020 06:00:12'!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 100.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/9/2020 06:02:30'!
+test07AccountKnowsItsTransactions 
+
+	| account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 100 on: account.
+		
+	self assert: 1 equals: account transactions size .
+	self assert: (account transactions includes: deposit).
+! !
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:20'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:20'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:23:47'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:24:25'!
+isComposedBy: anAccount
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'balance' stamp: 'HAW 5/25/2019 12:23:40'!
+balance
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:27'!
+addTransactionsTo: aCollectionOfTransactions
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
+transactions
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:24:04'!
+addedTo: aPortfolio
+
+	self subclassResponsibility ! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:20'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:20'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:20'!
+accountsIncludes: anAccount
+
+	^accounts includes: anAccount ! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:05:04'!
+accountsIsEmpty
+	
+	^accounts isEmpty ! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:06'!
+accountsSize
+	
+	^accounts size! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:19:20'!
+add: accountToAdd
+
+	self assertCanAdd: accountToAdd.
+		
+	accounts add: accountToAdd.
+	accountToAdd addedTo: self 
+	! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:17:31'!
+rootParents
+	
+	| rootParents |
+	
+	rootParents := Set new.
+	self addRootParentsTo: rootParents.
+	
+	^ rootParents! !
+!Portfolio methodsFor: 'initialization' stamp: 'HAW 5/25/2019 12:03:18' overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36' overrides: 50870278!
+balance
+	
+	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:42:55' overrides: 50870282!
+addTransactionsTo: aCollectionOfTransactions
+
+	accounts do: [ :anAccount | anAccount addTransactionsTo: aCollectionOfTransactions ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:32' overrides: 50870287!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	accounts do: [ :anAccount | anAccount addTransactionsTo: transactions ].
+	
+	^transactions ! !
+!Portfolio methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:02:59' overrides: 50870291!
+addedTo: aPortfolio 
+	
+	parents add: aPortfolio ! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:20:56'!
+anyRootParentIsComposedBy: accountToAdd
+
+	^self rootParents anySatisfy: [ :aParent | aParent isComposedBy: accountToAdd]! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 11:28:29' overrides: 50870270!
+hasRegistered: aTransaction
+
+	^accounts anySatisfy: [ :anAccount | anAccount hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/29/2019 16:24:54' overrides: 50870274!
+isComposedBy: anAccount
+
+	^ self = anAccount or: [ accounts anySatisfy: [ :composedAccount | (composedAccount isComposedBy: anAccount) or: [ anAccount isComposedBy: composedAccount ]]]! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:17:31'!
+addRootParentsTo: rootParents
+
+	parents 
+		ifEmpty: [ rootParents add: self ] 
+		ifNotEmpty: [ parents do: [ :aParent | aParent addRootParentsTo: rootParents ]]! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:20:36'!
+assertCanAdd: accountToAdd
+
+	(self anyRootParentIsComposedBy: accountToAdd) ifTrue: [ self signalCanNotAddAccount ].
+! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 11:48:34'!
+signalCanNotAddAccount
+	
+	self error: self class canNotAddAccountErrorMessage! !
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Portfolio class
+	instanceVariableNames: ''!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'NR 11/9/2020 06:01:26'!
+canNotAddAccountErrorMessage
+	
+	^'Can not add repeated account to a portfolio!!'! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+with: anAccount
+
+	^self new 
+		add: anAccount;
+		yourself! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+with: anAccount with: anotherAccount
+
+	^self new 
+		add: anAccount;
+		add: anotherAccount;
+		yourself! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:35' overrides: 16896425!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'NR 11/9/2020 05:56:36' overrides: 50870282!
+addTransactionsTo: aCollectionOfTransactions
+
+	aCollectionOfTransactions addAll: transactions copy! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' overrides: 50870287!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:24:46' overrides: 50870278!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/21/2019 18:55:56' overrides: 50870270!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'HAW 5/25/2019 11:54:51' overrides: 50870274!
+isComposedBy: anAccount
+
+	^self = anAccount ! !
+!ReceptiveAccount methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:03:32' overrides: 50870291!
+addedTo: aPortfolio 
+	
+	! !
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' overrides: 16881508!
+value 
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' overrides: 50870519!
+value
+
+	^ value! !
+!Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02' overrides: 50870523!
+affectBalance: aBalance
+
+	^aBalance + value ! !
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:21'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' overrides: 50870519!
+value
+
+	^ value! !
+!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15' overrides: 50870523!
+affectBalance: aBalance
+
+	^aBalance - value! !
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:22'!
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:22'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 20:32:22'!
+Object subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:30:58'!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.	
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:33:54' prior: 50870637!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:30' prior: 50870647!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:35' prior: 50870658!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!Transfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 19:35:04'!
+from: aReceptiveAccount to: aReceptiveAccount2 for: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFrom: aReceptiveAccount to: aReceptiveAccount2 for: aSmallInteger ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 19:36:00' prior: 50870680!
+from: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+	
+	^self new initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue ! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:22'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:22'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount receivingReceptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:22'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount receivingReceptiveAccount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:36:30'!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+	self shouldBeImplemented.
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:36:35' prior: 50870722!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:39:22' prior: 50870733!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:39:44'!
+registerTransfer: aTransfer 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:39:57' prior: 50870756!
+registerTransfer: aTransfer 
+	
+	| transfer |
+	transfer := aTransfer! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:40:32' prior: 50870761!
+registerTransfer: aTransfer 
+	
+	| transfesr |
+	transfesr := aTransfer! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:22'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:40:44' prior: 50870766!
+registerTransfer: aTransfer 
+	
+	transfer := aTransfer! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:41:41' prior: 50870481 overrides: 50870278!
+balance
+
+	^(transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]) - transfer value! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:42:06' prior: 50870785 overrides: 50870278!
+balance
+
+	^(transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]) - (transfer value)! !
+!Transfer methodsFor: 'nil' stamp: 'AM 11/9/2020 19:42:55' overrides: 16881508!
+value
+	^ value! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:44:44' prior: 50870793 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ result := result - transfer value].! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:44:50' prior: 50870805 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ result := result - transfer value].
+	^result! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:45:58' prior: 50870669!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:35' prior: 50870825!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:46:18'!
+test09
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:47:45' prior: 50870815 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ 
+		transfer sender = self 
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			]
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:48:07' prior: 50870859 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ 
+		transfer sender = self 
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			].
+		
+	^result! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 19:48:25'!
+sender
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 19:49:18' prior: 50870885!
+sender
+	^ sendingReceptiveAccount ! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:50:23'!
+test10
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	Transfer from: aReceivingAccount to: aSendingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:50:35' prior: 50870893!
+test10
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	Transfer from: aReceivingAccount to: aSendingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: 0.
+! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:51:51' prior: 50870779!
+registerTransfer: aTransfer 
+	
+	transfer add: aTransfer! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'AM 11/9/2020 19:52:18' prior: 50870458 overrides: 16896425!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.
+	transfer := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:53:40' prior: 50870873 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:54:10' prior: 50870932 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:23'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receivingReceptiveAccount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:56:49' prior: 50870889!
+sender
+	^ sender ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:56:49' prior: 50870743!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:23'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:57:08' prior: 50870971!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:59:15' prior: 50870946 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:59:19' prior: 50871004 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:41' prior: 50871018 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:48' prior: 50871032 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		])
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:51' prior: 50871045 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]).
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:01:32' prior: 50871058 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result := result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]).
+		
+	^result! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:01:51'!
+affectBalance: aSmallInteger for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:00' prior: 50871083!
+affectBalance: aBalance for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:38' prior: 50871088!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:47' prior: 50871093!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:57' prior: 50871099!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].
+	^aBalance! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:03:01' prior: 50871107!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutcomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutcomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'nil' stamp: 'AM 11/9/2020 20:06:27'!
+affectBalance: aBalance
+	^ aBalance + self value! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'outgoing'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:07:37' prior: 50871152!
+affectBalance: aBalance
+	^ aBalance + outgoing value! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:11:11' prior: 50870991!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (IncomingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:11:26' prior: 50871170!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (IncomingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: (OutgoingTransfer in: self). 
+	value := aValue.! !
+
+!methodRemoval: Transfer #affectBalance:for: stamp: 'AM 11/9/2020 20:32:24'!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:11:58' prior: 50871071 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result := result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance.
+		]).
+		
+	^result! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'outgoing transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:12:22' prior: 50871165!
+affectBalance: aBalance
+
+	^ aBalance + transfer value! !
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:12:31'!
+affectBalance: aBalance
+	^ aBalance - transfer value! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:24'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:13:14'!
+in: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIn: aTransfer ! !
+!IncomingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:13:25' prior: 50871257!
+in: aTransfer 
+
+	^self new initializeIn: aTransfer ! !
+!IncomingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:13:40'!
+initializeIn: aTransfer 
+	self shouldBeImplemented.
+	transfer := aTransfer.! !
+!IncomingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:13:43' prior: 50871270!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:14:17'!
+in: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIn: aTransfer ! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:14:22' prior: 50871281!
+in: aTransfer 
+	
+	^self new initializeIn: aTransfer ! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:15:10'!
+initializeIn: aTransfer 
+	self shouldBeImplemented.
+	transfer := aTransfer.! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:15:14' prior: 50871294!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:16:13' prior: 50871183!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (OutgoingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: (IncomingTransfer in: self). 
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:19:36' prior: 50871305!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	OutgoingTransfer for: aSendingReceptiveAccount transfer: self.
+	IncomingTransfer for: aReceivingReceptiveAccount transfer: self. 
+	value := aValue.! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:20:34'!
+for: aReceptiveAccount transfer: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:20:40' prior: 50871330!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Object subclass: #OutgoingTransfer
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:21:04'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	self shouldBeImplemented.
+	receptiveAccount := aReceptiveAccount.
+	transfer := aTransfer.! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:21:52' prior: 50871354!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.! !
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Object subclass: #Pata
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Object subclass: #Pata
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 20:32:25'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Pata methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:24:38'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.! !
+
+!methodRemoval: OutgoingTransfer #initializeFor:transfer: stamp: 'AM 11/9/2020 20:32:25'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.!
+
+!methodRemoval: OutgoingTransfer #initializeIn: stamp: 'AM 11/9/2020 20:32:25'!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.!
+
+!methodRemoval: IncomingTransfer #initializeIn: stamp: 'AM 11/9/2020 20:32:26'!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.!
+!Pata class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:27:26'!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+
+!methodRemoval: OutgoingTransfer class #for:transfer: stamp: 'AM 11/9/2020 20:32:26'!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer !
+
+!methodRemoval: OutgoingTransfer class #in: stamp: 'AM 11/9/2020 20:32:26'!
+in: aTransfer 
+	
+	^self new initializeIn: aTransfer !
+
+!methodRemoval: IncomingTransfer class #in: stamp: 'AM 11/9/2020 20:32:26'!
+in: aTransfer 
+
+	^self new initializeIn: aTransfer !
+
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Account category: 'Portfolio' stamp: 'AM 11/9/2020 20:52:28'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio' stamp: 'AM 11/9/2020 20:52:36'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Deposit category: 'Portfolio' stamp: 'AM 11/9/2020 20:52:42'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Portfolio category: 'Portfolio' stamp: 'AM 11/9/2020 20:52:48'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio' stamp: 'AM 11/9/2020 20:52:53'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio' stamp: 'AM 11/9/2020 20:52:59'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Withdraw category: 'Portfolio' stamp: 'AM 11/9/2020 20:53:03'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #OutcomingTransfer stamp: 'AM 11/9/2020 20:53:23'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:53:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:53:25'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:53:25'!
+ERROR!
+
+!methodRemoval: IncomingTransfer #affectBalance: stamp: 'AM 11/9/2020 20:54:33'!
+affectBalance: aBalance
+
+	^ aBalance + transfer value!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 20:54:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:54:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 20:54:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 20:54:46'!
+ERROR!
+
+!classRemoval: #OutgoingTransfer stamp: 'AM 11/9/2020 20:56:24'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #IncomingTransfer stamp: 'AM 11/9/2020 20:56:26'!
+Pata subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Transfer stamp: 'AM 11/9/2020 20:56:28'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: 'AnObsoleteOutgoingTransfer' stamp: 'AM 11/9/2020 20:56:30'!
+Pata subclass: 'AnObsoleteOutgoingTransfer'
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'nil'!
+
+!classRemoval: #Pata stamp: 'AM 11/9/2020 20:56:31'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: 'AnObsoleteAnObsoleteOutgoingTransfer' stamp: 'AM 11/9/2020 20:56:33'!
+AnObsoletePata subclass: 'AnObsoleteAnObsoleteOutgoingTransfer'
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'nil'!
+
+!classRemoval: #Withdraw stamp: 'AM 11/9/2020 20:56:35'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Deposit stamp: 'AM 11/9/2020 20:56:37'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #AccountTransaction stamp: 'AM 11/9/2020 20:56:38'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #ReceptiveAccount stamp: 'AM 11/9/2020 20:56:40'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Portfolio stamp: 'AM 11/9/2020 20:56:42'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Account stamp: 'AM 11/9/2020 20:56:45'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'AM 11/9/2020 20:56:46'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #PortfolioTest stamp: 'AM 11/9/2020 20:56:49'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+----End fileIn of /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/isw1-2c2020-ejercicios/18-Portfolio1/Portfolio-Ejercicio.st----!
+
+----STARTUP---- (9 November 2020 20:59:44) as /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/portfolio2/CuisUniversity-4384.image!
+
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:17'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:17'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:16:26'!
+test01BalanceOfPortfolioWithoutAccountsIsZero
+
+	self assert: 0 equals: Portfolio new balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:17:51'!
+test02BalanceOfPortfolioWithOneAccountIsAccountBalance
+
+	| account portfolio |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: account balance equals: portfolio balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:23:25'!
+test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortofolio |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortofolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	self assert: (composedPortfolioAccount balance + simplePortfolio balance) equals: composedPortofolio balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:43:15'!
+test04PortfolioWithoutAccountsHasNoRegisteredTransaction
+
+	self deny: (Portfolio new hasRegistered: (Deposit for: 100))! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:43:11'!
+test05PortfolioHasRegisteredItsAccountsTransactions
+
+	| account portfolio deposit |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: (portfolio hasRegistered: deposit)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:06'!
+test06PortfolioLooksForRegisteredTransactionsRecursively
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortfolio composedPortfolioAccountWithdraw simplePortfolioAccountDeposit |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	simplePortfolioAccountDeposit := Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	composedPortfolioAccountWithdraw := Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortfolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	self assert: (composedPortfolio hasRegistered: simplePortfolioAccountDeposit).
+	self assert: (composedPortfolio hasRegistered: composedPortfolioAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:10'!
+test07PortfolioHasNoTransactionWhenHasNoAccounts
+
+	self assert: Portfolio new transactions isEmpty! !
+!PortfolioTest methodsFor: 'tests' stamp: 'NR 6/22/2020 07:31:19'!
+test08PortfolioTransactionsIncludesAllItsAccountsTransactions
+
+	| account portfolio accountDeposit anotherAccount portfolioTransactions anotherAccountWithdraw |
+	
+	account := ReceptiveAccount new.
+	accountDeposit := Deposit register: 100 on: account.
+	anotherAccount := ReceptiveAccount new.
+	anotherAccountWithdraw := Withdraw register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	portfolioTransactions := portfolio transactions.
+	
+	self assert: 2 equals: portfolioTransactions size.
+	self assert: (portfolioTransactions includes: accountDeposit).
+	self assert: (portfolioTransactions includes: anotherAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:20'!
+test09PortfolioTransactionsAreCalculatedRecursively
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortfolio composedPortfolioAccountWithdraw simplePortfolioAccountDeposit composedPortfolioTransactions |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	simplePortfolioAccountDeposit := Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	composedPortfolioAccountWithdraw := Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortfolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	composedPortfolioTransactions := composedPortfolio transactions.
+	self assert: 2 equals: composedPortfolioTransactions size.
+	self assert: (composedPortfolioTransactions includes: simplePortfolioAccountDeposit).
+	self assert: (composedPortfolioTransactions includes: composedPortfolioAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:24'!
+test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce
+
+	| account portfolio |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio with: account.
+	
+	self 
+		should: [ portfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: portfolio accountsSize.
+			self assert: (portfolio accountsIncludes: account) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:28'!
+test11PortfolioCanNotIncludeAccountOfItsPortfolios
+
+	| account simplePortfolio composedPortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio with: account.
+	composedPortfolio := Portfolio with: simplePortfolio.
+	
+	self 
+		should: [ composedPortfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: composedPortfolio accountsSize.
+			self assert: (composedPortfolio accountsIncludes: simplePortfolio) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:32'!
+test12PortfolioCanNotIncludeItself
+
+	| account simplePortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio with: account.
+	
+	self 
+		should: [ simplePortfolio add: simplePortfolio ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: simplePortfolio accountsSize.
+			self assert: (simplePortfolio accountsIncludes: account) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 12:01:51'!
+test13ComposedPortfolioCanNotHaveParentPortfolioAccount
+
+	| account simplePortfolio composedPortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio new.
+	composedPortfolio := Portfolio with: simplePortfolio.
+	composedPortfolio add: account.
+	
+	self 
+		should: [ simplePortfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: simplePortfolio accountsIsEmpty ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 12:12:16'!
+test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively
+
+	| account leftParentPortfolio leftRootParentPortfolio portfolio rightParentPortfolio rightRootParentPortfolio |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	leftParentPortfolio := Portfolio with: portfolio .
+	leftRootParentPortfolio := Portfolio with: leftParentPortfolio.
+	leftRootParentPortfolio add: account.
+	
+	rightParentPortfolio := Portfolio with: portfolio .
+	rightRootParentPortfolio := Portfolio with: rightParentPortfolio.
+	rightRootParentPortfolio add: account.
+
+	self 
+		should: [ portfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: portfolio accountsIsEmpty ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/29/2019 16:31:18'!
+test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
+
+	| portfolioToAdd portfolioToModify rootPortfolio sharedAccount |
+	
+	sharedAccount := ReceptiveAccount new.
+	portfolioToModify := Portfolio new.
+	rootPortfolio := Portfolio with: sharedAccount with: portfolioToModify.
+	portfolioToAdd := Portfolio with: sharedAccount.
+	
+	self 
+		should: [ portfolioToModify add: portfolioToAdd ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: portfolioToModify accountsIsEmpty ]! !
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:19'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:19'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:48'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:54'!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:02'!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/9/2020 06:00:12'!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 100.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/9/2020 06:02:30'!
+test07AccountKnowsItsTransactions 
+
+	| account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 100 on: account.
+		
+	self assert: 1 equals: account transactions size .
+	self assert: (account transactions includes: deposit).
+! !
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:20'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:20'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:23:47'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:24:25'!
+isComposedBy: anAccount
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'balance' stamp: 'HAW 5/25/2019 12:23:40'!
+balance
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:27'!
+addTransactionsTo: aCollectionOfTransactions
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
+transactions
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:24:04'!
+addedTo: aPortfolio
+
+	self subclassResponsibility ! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:20'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:20'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:20'!
+accountsIncludes: anAccount
+
+	^accounts includes: anAccount ! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:05:04'!
+accountsIsEmpty
+	
+	^accounts isEmpty ! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:06'!
+accountsSize
+	
+	^accounts size! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:19:20'!
+add: accountToAdd
+
+	self assertCanAdd: accountToAdd.
+		
+	accounts add: accountToAdd.
+	accountToAdd addedTo: self 
+	! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:17:31'!
+rootParents
+	
+	| rootParents |
+	
+	rootParents := Set new.
+	self addRootParentsTo: rootParents.
+	
+	^ rootParents! !
+!Portfolio methodsFor: 'initialization' stamp: 'HAW 5/25/2019 12:03:18' overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36' overrides: 50870278!
+balance
+	
+	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:42:55' overrides: 50870282!
+addTransactionsTo: aCollectionOfTransactions
+
+	accounts do: [ :anAccount | anAccount addTransactionsTo: aCollectionOfTransactions ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:32' overrides: 50870287!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	accounts do: [ :anAccount | anAccount addTransactionsTo: transactions ].
+	
+	^transactions ! !
+!Portfolio methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:02:59' overrides: 50870291!
+addedTo: aPortfolio 
+	
+	parents add: aPortfolio ! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:20:56'!
+anyRootParentIsComposedBy: accountToAdd
+
+	^self rootParents anySatisfy: [ :aParent | aParent isComposedBy: accountToAdd]! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 11:28:29' overrides: 50870270!
+hasRegistered: aTransaction
+
+	^accounts anySatisfy: [ :anAccount | anAccount hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/29/2019 16:24:54' overrides: 50870274!
+isComposedBy: anAccount
+
+	^ self = anAccount or: [ accounts anySatisfy: [ :composedAccount | (composedAccount isComposedBy: anAccount) or: [ anAccount isComposedBy: composedAccount ]]]! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:17:31'!
+addRootParentsTo: rootParents
+
+	parents 
+		ifEmpty: [ rootParents add: self ] 
+		ifNotEmpty: [ parents do: [ :aParent | aParent addRootParentsTo: rootParents ]]! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:20:36'!
+assertCanAdd: accountToAdd
+
+	(self anyRootParentIsComposedBy: accountToAdd) ifTrue: [ self signalCanNotAddAccount ].
+! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 11:48:34'!
+signalCanNotAddAccount
+	
+	self error: self class canNotAddAccountErrorMessage! !
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Portfolio class
+	instanceVariableNames: ''!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'NR 11/9/2020 06:01:26'!
+canNotAddAccountErrorMessage
+	
+	^'Can not add repeated account to a portfolio!!'! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+with: anAccount
+
+	^self new 
+		add: anAccount;
+		yourself! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+with: anAccount with: anotherAccount
+
+	^self new 
+		add: anAccount;
+		add: anotherAccount;
+		yourself! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:35' overrides: 16896425!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'NR 11/9/2020 05:56:36' overrides: 50870282!
+addTransactionsTo: aCollectionOfTransactions
+
+	aCollectionOfTransactions addAll: transactions copy! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' overrides: 50870287!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:24:46' overrides: 50870278!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/21/2019 18:55:56' overrides: 50870270!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'HAW 5/25/2019 11:54:51' overrides: 50870274!
+isComposedBy: anAccount
+
+	^self = anAccount ! !
+!ReceptiveAccount methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:03:32' overrides: 50870291!
+addedTo: aPortfolio 
+	
+	! !
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' overrides: 16881508!
+value 
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' overrides: 50870519!
+value
+
+	^ value! !
+!Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02' overrides: 50870523!
+affectBalance: aBalance
+
+	^aBalance + value ! !
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:21'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:22'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' overrides: 50870519!
+value
+
+	^ value! !
+!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15' overrides: 50870523!
+affectBalance: aBalance
+
+	^aBalance - value! !
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:22'!
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:22'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'AM 11/9/2020 21:00:22'!
+Object subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:30:58'!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.	
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:33:54' prior: 50870637!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:30' prior: 50870647!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:35' prior: 50870658!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!Transfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 19:35:04'!
+from: aReceptiveAccount to: aReceptiveAccount2 for: aSmallInteger 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFrom: aReceptiveAccount to: aReceptiveAccount2 for: aSmallInteger ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 19:36:00' prior: 50870680!
+from: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+	
+	^self new initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue ! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:22'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:22'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount receivingReceptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:23'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sendingReceptiveAccount receivingReceptiveAccount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:36:30'!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+	self shouldBeImplemented.
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:36:35' prior: 50870722!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 19:39:22' prior: 50870733!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sendingReceptiveAccount := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:39:44'!
+registerTransfer: aTransfer 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:39:57' prior: 50870756!
+registerTransfer: aTransfer 
+	
+	| transfer |
+	transfer := aTransfer! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:40:32' prior: 50870761!
+registerTransfer: aTransfer 
+	
+	| transfesr |
+	transfesr := aTransfer! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:23'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:40:44' prior: 50870766!
+registerTransfer: aTransfer 
+	
+	transfer := aTransfer! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:41:41' prior: 50870481 overrides: 50870278!
+balance
+
+	^(transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]) - transfer value! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:42:06' prior: 50870785 overrides: 50870278!
+balance
+
+	^(transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]) - (transfer value)! !
+!Transfer methodsFor: 'nil' stamp: 'AM 11/9/2020 19:42:55' overrides: 16881508!
+value
+	^ value! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:44:44' prior: 50870793 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ result := result - transfer value].! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:44:50' prior: 50870805 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ result := result - transfer value].
+	^result! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:45:58' prior: 50870669!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:34:35' prior: 50870825!
+test08
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: -100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:46:18'!
+test09
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:47:45' prior: 50870815 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ 
+		transfer sender = self 
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			]
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:48:07' prior: 50870859 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer ifNotNil: [ 
+		transfer sender = self 
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			].
+		
+	^result! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 19:48:25'!
+sender
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 19:49:18' prior: 50870885!
+sender
+	^ sendingReceptiveAccount ! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:50:23'!
+test10
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	Transfer from: aReceivingAccount to: aSendingAccount for: 100.
+	
+	self assert: aReceivingAccount 	balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 19:50:35' prior: 50870893!
+test10
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	Transfer from: aReceivingAccount to: aSendingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: 0.
+! !
+!ReceptiveAccount methodsFor: 'xxxx' stamp: 'AM 11/9/2020 19:51:51' prior: 50870779!
+registerTransfer: aTransfer 
+	
+	transfer add: aTransfer! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'AM 11/9/2020 19:52:18' prior: 50870458 overrides: 16896425!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.
+	transfer := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:53:40' prior: 50870873 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - transfer value]
+			ifFalse: [result := result + transfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:54:10' prior: 50870932 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:24'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receivingReceptiveAccount value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:56:49' prior: 50870889!
+sender
+	^ sender ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:56:49' prior: 50870743!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receivingReceptiveAccount := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:24'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 19:57:08' prior: 50870971!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: self. 
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:59:15' prior: 50870946 overrides: 50870278!
+balance
+
+	| result |
+	result := (transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]).
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 19:59:19' prior: 50871004 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	transfer do: [:aTransfer |
+		aTransfer sender = self
+			ifTrue: [result := result - aTransfer value]
+			ifFalse: [result := result + aTransfer value]
+			].
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:41' prior: 50871018 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:48' prior: 50871032 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		])
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:00:51' prior: 50871045 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result = result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]).
+		
+	^result! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:01:32' prior: 50871058 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result := result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance for: self.
+		]).
+		
+	^result! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:01:51'!
+affectBalance: aSmallInteger for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:00' prior: 50871083!
+affectBalance: aBalance for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:38' prior: 50871088!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:47' prior: 50871093!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:02:57' prior: 50871099!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].
+	^aBalance! !
+!Transfer methodsFor: 'nnn' stamp: 'AM 11/9/2020 20:03:01' prior: 50871107!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:25'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:25'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutcomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:25'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutcomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:25'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'nil' stamp: 'AM 11/9/2020 20:06:27'!
+affectBalance: aBalance
+	^ aBalance + self value! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:25'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'outgoing'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:07:37' prior: 50871152!
+affectBalance: aBalance
+	^ aBalance + outgoing value! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:11:11' prior: 50870991!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (IncomingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: self. 
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:11:26' prior: 50871170!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (IncomingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: (OutgoingTransfer in: self). 
+	value := aValue.! !
+
+!methodRemoval: Transfer #affectBalance:for: stamp: 'AM 11/9/2020 21:00:25'!
+affectBalance: aBalance for: aReceptiveAccount 
+	aReceptiveAccount = sender ifTrue: [ ^aBalance - value ].
+	aReceptiveAccount = receiver ifTrue: [ ^aBalance + value ].!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AM 11/9/2020 20:11:58' prior: 50871071 overrides: 50870278!
+balance
+
+	| result |
+	result := transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ].
+	
+	result := result + (transfer inject: 0 into: [:currentBalance :aTransfer |
+		aTransfer affectBalance: currentBalance.
+		]).
+		
+	^result! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:26'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'outgoing transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:12:22' prior: 50871165!
+affectBalance: aBalance
+
+	^ aBalance + transfer value! !
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:26'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 20:12:31'!
+affectBalance: aBalance
+	^ aBalance - transfer value! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:26'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:26'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:13:14'!
+in: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIn: aTransfer ! !
+!IncomingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:13:25' prior: 50871257!
+in: aTransfer 
+
+	^self new initializeIn: aTransfer ! !
+!IncomingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:13:40'!
+initializeIn: aTransfer 
+	self shouldBeImplemented.
+	transfer := aTransfer.! !
+!IncomingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:13:43' prior: 50871270!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:14:17'!
+in: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeIn: aTransfer ! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:14:22' prior: 50871281!
+in: aTransfer 
+	
+	^self new initializeIn: aTransfer ! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:15:10'!
+initializeIn: aTransfer 
+	self shouldBeImplemented.
+	transfer := aTransfer.! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:15:14' prior: 50871294!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:16:13' prior: 50871183!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	sender := aSendingReceptiveAccount.
+	aSendingReceptiveAccount registerTransfer: (OutgoingTransfer in: self).
+	receiver := aReceivingReceptiveAccount.
+	aReceivingReceptiveAccount registerTransfer: (IncomingTransfer in: self). 
+	value := aValue.! !
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 20:19:36' prior: 50871305!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	OutgoingTransfer for: aSendingReceptiveAccount transfer: self.
+	IncomingTransfer for: aReceivingReceptiveAccount transfer: self. 
+	value := aValue.! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:20:34'!
+for: aReceptiveAccount transfer: aTransfer 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+!OutgoingTransfer class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:20:40' prior: 50871330!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Object subclass: #OutgoingTransfer
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:21:04'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	self shouldBeImplemented.
+	receptiveAccount := aReceptiveAccount.
+	transfer := aTransfer.! !
+!OutgoingTransfer methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:21:52' prior: 50871354!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.! !
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Object subclass: #Pata
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Object subclass: #Pata
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:27'!
+Pata subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Pata category: 'Portfolio' stamp: 'AM 11/9/2020 21:00:28'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Pata methodsFor: 'initializing' stamp: 'AM 11/9/2020 20:24:38'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.! !
+
+!methodRemoval: OutgoingTransfer #initializeFor:transfer: stamp: 'AM 11/9/2020 21:00:28'!
+initializeFor: aReceptiveAccount transfer: aTransfer 
+	
+	receptiveAccount := aReceptiveAccount.
+	receptiveAccount registerTransfer: self.
+	transfer := aTransfer.!
+
+!methodRemoval: OutgoingTransfer #initializeIn: stamp: 'AM 11/9/2020 21:00:28'!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.!
+
+!methodRemoval: IncomingTransfer #initializeIn: stamp: 'AM 11/9/2020 21:00:28'!
+initializeIn: aTransfer 
+	
+	transfer := aTransfer.!
+!Pata class methodsFor: 'instance creation' stamp: 'AM 11/9/2020 20:27:26'!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer ! !
+
+!methodRemoval: OutgoingTransfer class #for:transfer: stamp: 'AM 11/9/2020 21:00:28'!
+for: aReceptiveAccount transfer: aTransfer 
+	
+	^self new initializeFor: aReceptiveAccount transfer: aTransfer !
+
+!methodRemoval: OutgoingTransfer class #in: stamp: 'AM 11/9/2020 21:00:28'!
+in: aTransfer 
+	
+	^self new initializeIn: aTransfer !
+
+!methodRemoval: IncomingTransfer class #in: stamp: 'AM 11/9/2020 21:00:28'!
+in: aTransfer 
+
+	^self new initializeIn: aTransfer !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 21:01:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 21:01:14'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 21:01:14'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 21:01:18'!
+ERROR!
+
+IncomingTransfer class superclass!
+
+IncomingTransfer superclass !
+
+IncomingTransfer class class !
+
+IncomingTransfer class class !
+
+Pata class !
+
+Pata class class !
+
+Pata superclass !
+
+Pata class super !
+
+Pata subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:03:54'!
+Pata subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!IncomingTransfer methodsFor: 'nil' stamp: 'AM 11/9/2020 21:04:05' prior: 50871225!
+affectBalance: aBalance
+
+	^  transfer value + aBalance! !
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AM 11/9/2020 21:04:31' prior: 50871237!
+affectBalance: aBalance
+	^ aBalance - (transfer value)! !
+
+!classRemoval: #OutcomingTransfer stamp: 'AM 11/9/2020 21:04:50'!
+Transfer subclass: #OutcomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 21:04:53'!
+PASSED!
+
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:07'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:13'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Account category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:18'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:24'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Deposit category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:29'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Withdraw category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:34'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Portfolio category: 'Portfolio' stamp: 'AM 11/9/2020 21:05:40'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 21:05:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 21:05:49'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 21:09:48'!
+test11
+	
+	| aReceivingAccount aSendingAccount transfer |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	transfer := Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: (aSendingAccount 	hasRegistered: transfer withdrawal).
+	self assert: (aReceivingAccount 	hasRegistered: transfer deposit).
+! !
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AM 11/9/2020 21:10:00'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 21:10:13'!
+withdrawal
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 21:10:26' prior: 50871751!
+withdrawal! !
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:11:51'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value outgoing'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Transfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:11:53'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value outgoing incoming'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Transfer methodsFor: 'initialize' stamp: 'AM 11/9/2020 21:11:49' prior: 50871319!
+initializeFrom: aSendingReceptiveAccount to: aReceivingReceptiveAccount for: aValue 
+
+	outgoing := OutgoingTransfer for: aSendingReceptiveAccount transfer: self.
+	incoming := IncomingTransfer for: aReceivingReceptiveAccount transfer: self. 
+	value := aValue.! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 21:13:41' prior: 50871755!
+withdrawal
+	^ outgoing! !
+!Transfer methodsFor: 'accessing' stamp: 'AM 11/9/2020 21:13:50'!
+deposit
+	^ incoming! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 21:15:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 21:15:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 21:15:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 21:15:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AM 11/9/2020 21:15:10'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 21:15:14'!
+ERROR!
+
+Transfer subclass: #IncomingTransferBien
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransferBien category: 'Portfolio' stamp: 'AM 11/9/2020 21:16:57'!
+Transfer subclass: #IncomingTransferBien
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+IncomingTransferBien class
+	instanceVariableNames: ''!
+
+!classDefinition: 'IncomingTransferBien class' category: 'Portfolio' stamp: 'AM 11/9/2020 21:16:57'!
+IncomingTransferBien class
+	instanceVariableNames: ''!
+!IncomingTransferBien methodsFor: 'balance' stamp: 'AM 11/9/2020 21:16:57'!
+affectBalance: aBalance
+
+	^  transfer value + aBalance! !
+
+!classRemoval: #IncomingTransferBien stamp: 'AM 11/9/2020 21:17:06'!
+Transfer subclass: #IncomingTransferBien
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #Hola category: 'Portfolio' stamp: 'AM 11/9/2020 21:17:53'!
+Transfer subclass: #Hola
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio' stamp: 'AM 11/9/2020 21:17:54'!
+Hola subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #OutgoingTransfer stamp: 'AM 11/9/2020 21:18:15'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #IncomingTransfer stamp: 'AM 11/9/2020 21:18:17'!
+Hola subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Hola stamp: 'AM 11/9/2020 21:18:19'!
+Transfer subclass: #Hola
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Transfer stamp: 'AM 11/9/2020 21:18:21'!
+Object subclass: #Transfer
+	instanceVariableNames: 'sender receiver value outgoing incoming'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Pata stamp: 'AM 11/9/2020 21:18:23'!
+Object subclass: #Pata
+	instanceVariableNames: 'transfer receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: 'AnObsoleteOutgoingTransfer' stamp: 'AM 11/9/2020 21:18:25'!
+AnObsoleteTransfer subclass: 'AnObsoleteOutgoingTransfer'
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'nil'!
+
+!classRemoval: #Withdraw stamp: 'AM 11/9/2020 21:18:27'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Deposit stamp: 'AM 11/9/2020 21:18:28'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #AccountTransaction stamp: 'AM 11/9/2020 21:18:30'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #ReceptiveAccount stamp: 'AM 11/9/2020 21:18:32'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Portfolio stamp: 'AM 11/9/2020 21:18:34'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #Account stamp: 'AM 11/9/2020 21:18:36'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'AM 11/9/2020 21:18:38'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classRemoval: #PortfolioTest stamp: 'AM 11/9/2020 21:18:40'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+----End fileIn of /home/agustin/Escritorio/Uba/Materias/Compu/ISW1/portfolio2/Portfolio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AM 11/9/2020 21:18:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AM 11/9/2020 21:18:59'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 21:19:26'!
+test11
+	
+	| aReceivingAccount aSendingAccount |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: aSendingAccount 	balance equals: 0.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 21:19:59' prior: 50872965!
+test11
+	
+	| aReceivingAccount aSendingAccount transfer |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	transfer := Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: (aSendingAccount 	hasRegistered: transfer deposit).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 21:20:09' prior: 50872976!
+test11
+	
+	| aReceivingAccount aSendingAccount transfer |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	transfer := Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: (aSendingAccount 	hasRegistered: transfer deposit).
+	self assert: (aSendingAccount 	hasRegistered: transfer withdrawal).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AM 11/9/2020 21:20:17' prior: 50872988!
+test11
+	
+	| aReceivingAccount aSendingAccount transfer |
+	
+	aSendingAccount := ReceptiveAccount new.
+	aReceivingAccount := ReceptiveAccount new.
+	
+	transfer := Transfer from: aSendingAccount to: aReceivingAccount for: 100.
+	
+	self assert: (aReceivingAccount 	hasRegistered: transfer deposit).
+	self assert: (aSendingAccount 	hasRegistered: transfer withdrawal).! !
+
+----QUIT----(9 November 2020 21:21:31) CuisUniversity-4384.image priorSource: 17155564!

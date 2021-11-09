@@ -9,10 +9,10 @@ def printCorrectEx(exercise):
 
     MAX_STATE_TIME=60
         
-    aDataFrame = pd.read_csv("F:\\data\\Tesis\\data\\Analisis\\python\\1C2021\\1C2021EjerciciosTDD.csv")
+    aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\1C2021EjerciciosTDD.csv")
     #aDataFrame = aDataFrame[aDataFrame["Exercise"]==exercise]
     aDataFrame = aDataFrame[aDataFrame["Time"] > 0]
-    aDataFrame = aDataFrame[aDataFrame["Time"] < MAX_STATE_TIME]    
+    aDataFrame = aDataFrame[aDataFrame["Time"] < MAX_STATE_TIME]
         
     grCorrect = aDataFrame.groupby(["Repository"])["IsCorrect"].sum().fillna(0)
     grAll = aDataFrame.groupby(["Repository"])["IsCorrect"].count().fillna(0)
@@ -22,7 +22,7 @@ def printCorrectEx(exercise):
    
     GROUP_CANT = 25
     
-    print(exercise + "Correctos ")
+    print(exercise + " Correctos ")
     for groupNumber in range(1,GROUP_CANT+1):        
         if groupNumber in grPorc:
             print(grPorc[groupNumber])

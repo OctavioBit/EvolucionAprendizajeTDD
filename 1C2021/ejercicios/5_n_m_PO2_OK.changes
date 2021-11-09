@@ -1,1634 +1,3 @@
-
-
-----SNAPSHOT----(27 May 2021 20:39:17) Portfolio2.image priorSource: 17414976!
-
-----STARTUP---- (27 May 2021 20:43:19) as /Users/juan.ferrino/CuisUniversity/Portfolio2.image!
-
-
-----End fileIn of /Users/juan.ferrino/Downloads/2021-1c-main 4/17-Portfolio 1/Portfolio-Solucion.st----!
-
-!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JPF 5/27/2021 20:43:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JPF 5/27/2021 20:43:46'!
-PASSED!
-
-TestCase subclass: #TransferTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferTest category: 'Portfolio-Solucion' stamp: 'JPF 5/27/2021 20:46:12'!
-TestCase subclass: #TransferTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/27/2021 20:54:08'!
-test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount
-	
-	| sourceAccount targetAccount |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).! !
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/27/2021 20:54:30' prior: 50878022!
-test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount
-	
-	| sourceAccount targetAccount |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.! !
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/27/2021 20:55:57' prior: 50878032!
-test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount
-	
-	| sourceAccount targetAccount |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	sourceAccount transfer: 50 to: targetAccount.
-	
-	self assert: 50 equals: sourceAccount balance.
-	self assert: 50 equals: targetAccount balance.! !
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/27/2021 20:56:14' prior: 50878043!
-test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount
-	
-	| sourceAccount targetAccount |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	sourceAccount transfer: 50 to: targetAccount.
-	
-	self assert: 50 equals: sourceAccount balance.
-	self assert: 50 equals: targetAccount balance.! !
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/27/2021 20:56:19' prior: 50878059!
-test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount
-	
-	| sourceAccount targetAccount |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	sourceAccount transfer: 50 to: targetAccount.
-	
-	self assert: 50 equals: sourceAccount balance.
-	self assert: 50 equals: targetAccount balance! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/27/2021 20:56:26'!
-ERROR!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/27/2021 20:56:26'!
-ERROR!
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/27/2021 20:57:52'!
-transfer: aSmallInteger to: aReceptiveAccount 
-	self shouldBeImplemented.! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/27/2021 21:03:19' prior: 50878100!
-transfer: anAmount to: aReceptiveAccount 
-	
-	self register: (Withdraw for: anAmount).
-	aReceptiveAccount register: (Deposit for: anAmount).
-	! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/27/2021 21:03:32' prior: 50878106!
-transfer: anAmount to: targetReceptiveAccount 
-	
-	self register: (Withdraw for: anAmount).
-	targetReceptiveAccount register: (Deposit for: anAmount).
-	! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/27/2021 21:03:41' prior: 50878114!
-transfer: anAmount to: targetReceptiveAccount 
-	
-	self register: (Withdraw for: anAmount).
-	targetReceptiveAccount register: (Deposit for: anAmount)
-	! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/27/2021 21:03:43'!
-PASSED!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/27/2021 21:03:47'!
-PASSED!
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/27/2021 21:07:25'!
-test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount
-	
-	| sourceAccount targetAccount |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	sourceAccount transfer: 50 to: targetAccount.
-	
-	self deny: (sourceAccount transactions anySatisfy: [ :transaction | transaction isKindOf: Withdraw ]).
-	self deny: (targetAccount transactions anySatisfy: [ :transaction | transaction isKindOf: Deposit ]).! !
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/27/2021 21:07:29'!
-FAILURE!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/27/2021 21:07:29'!
-FAILURE!
-
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/27/2021 21:08:31'!
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:09:42' overrides: 50877827!
-affectBalance: aBalance ! !
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/27/2021 21:11:28'!
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'value' stamp: 'JPF 5/27/2021 21:11:25' overrides: 50877823!
-value
-
-	^ value! !
-
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value sourceReceptiveAccount targetReceptiveAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/27/2021 21:12:21'!
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value sourceReceptiveAccount targetReceptiveAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer class methodsFor: 'instance creation' stamp: 'JPF 5/27/2021 21:14:22'!
-for: anAmount from: sourceReceptiveAccount to: targetReceptiveAccount
-	
-	^ self new initializeFor: anAmount from: sourceReceptiveAccount to: targetReceptiveAccount! !
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/27/2021 21:17:03'!
-initializeFor: anAmount from: ddsourceReceptiveAccount  to: sstargetReceptiveAccount
-	
-	value _ anAmount.
-	"source _ sourceReceptiveAccount.
-	target _ targetReceptiveAccount"! !
-
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value source target'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/27/2021 21:17:14'!
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value source target'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/27/2021 21:17:36' prior: 50878217!
-initializeFor: anAmount from: sourceReceptiveAccount  to: targetReceptiveAccount
-	
-	value _ anAmount.
-	source _ sourceReceptiveAccount.
-	target _ targetReceptiveAccount! !
-!Transfer methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:23:19' prior: 50878178 overrides: 50877827!
-affectBalance: aBalance
-! !
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/27/2021 21:23:57' prior: 50878239!
-initializeFor: aValue from: sourceReceptiveAccount  to: targetReceptiveAccount
-	
-	value _ aValue.
-	source _ sourceReceptiveAccount.
-	target _ targetReceptiveAccount! !
-!Transfer class methodsFor: 'instance creation' stamp: 'JPF 5/27/2021 21:24:11' prior: 50878209!
-for: aValue from: sourceReceptiveAccount to: targetReceptiveAccount
-	
-	^ self new initializeFor: aValue from: sourceReceptiveAccount to: targetReceptiveAccount! !
-
-!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JPF 5/27/2021 21:27:36'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JPF 5/27/2021 21:27:38'!
-PASSED!
-!Deposit methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance for: anAccount 
-
-	^aBalance + value ! !
-!Transfer methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance for: anAccount 
-! !
-!Withdraw methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance for: anAccount 
-
-	^aBalance - value! !
-!AccountTransaction methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance for: anAccount 
-
-	self subclassResponsibility ! !
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JPF 5/27/2021 21:31:45' prior: 50877788 overrides: 50877593!
-balance
-
-	^transactions 
-		inject: 0
-		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance for: self ]! !
-
-!methodRemoval: Deposit #affectBalance: stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance
-
-	^aBalance + value !
-
-!methodRemoval: Transfer #affectBalance: stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance
-!
-
-!methodRemoval: Withdraw #affectBalance: stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance
-
-	^aBalance - value!
-
-!methodRemoval: AccountTransaction #affectBalance: stamp: 'JPF 5/27/2021 21:31:45'!
-affectBalance: aBalance
-
-	self subclassResponsibility !
-!Transfer methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:33:11' prior: 50878358 overrides: 50878367!
-affectBalance: aBalance for: anAccount
-
-	source = anAccount ifTrue: [ ^ aBalance - value ].
-! !
-!Transfer methodsFor: 'balance' stamp: 'JPF 5/27/2021 21:33:35' prior: 50878397 overrides: 50878367!
-affectBalance: aBalance for: anAccount
-
-	source = anAccount ifTrue: [ ^ aBalance - value ].
-	target = anAccount ifTrue: [ ^ aBalance + value ].
-! !
-
-!classRemoval: #Transfer stamp: 'JPF 5/27/2021 22:03:23'!
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value source target'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!AccountTransaction methodsFor: 'balance' stamp: 'JPF 5/27/2021 22:04:24'!
-affectBalance: aBalance  
-
-	self subclassResponsibility ! !
-!Deposit methodsFor: 'balance' stamp: 'JPF 5/27/2021 22:04:24' overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance + value ! !
-!Withdraw methodsFor: 'balance' stamp: 'JPF 5/27/2021 22:04:24' overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance - value! !
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JPF 5/27/2021 22:04:24' prior: 50878374 overrides: 50877593!
-balance
-
-	^transactions 
-		inject: 0
-		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
-
-!methodRemoval: AccountTransaction #affectBalance:for: stamp: 'JPF 5/27/2021 22:04:24'!
-affectBalance: aBalance for: anAccount 
-
-	self subclassResponsibility !
-
-!methodRemoval: Deposit #affectBalance:for: stamp: 'JPF 5/27/2021 22:04:24'!
-affectBalance: aBalance for: anAccount 
-
-	^aBalance + value !
-
-!methodRemoval: Withdraw #affectBalance:for: stamp: 'JPF 5/27/2021 22:04:24'!
-affectBalance: aBalance for: anAccount 
-
-	^aBalance - value!
-
-!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JPF 5/27/2021 22:04:30'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JPF 5/27/2021 22:04:31'!
-PASSED!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/27/2021 22:04:32'!
-PASSED!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/27/2021 22:04:32'!
-FAILURE!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/27/2021 22:04:32'!
-FAILURE!
-
-----QUIT----(28 May 2021 08:01:44) Portfolio2.image priorSource: 17457628!
-
-----STARTUP---- (30 May 2021 09:56:28) as /Users/juan.ferrino/CuisUniversity/Portfolio2.image!
-
-
-AccountTransaction subclass: #TransferEntry
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferEntry category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:26:42'!
-AccountTransaction subclass: #TransferEntry
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-AccountTransaction subclass: #TransferOutput
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferOutput category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:27:28'!
-AccountTransaction subclass: #TransferOutput
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/30/2021 10:28:20' prior: 50878122!
-transfer: anAmount to: targetReceptiveAccount 
-	
-	self register: (TransferOutput for: anAmount).
-	targetReceptiveAccount register: (TransferEntry for: anAmount)
-	! !
-!TransferOutput class methodsFor: 'instance creation' stamp: 'JPF 5/30/2021 10:29:34'!
-for: aValue
-
-	^ self new initializeFor: aValue! !
-!TransferEntry class methodsFor: 'instance creation' stamp: 'JPF 5/30/2021 10:29:50'!
-for: aValue
-
-	^ self new initializeFor: aValue! !
-!TransferOutput methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:30:13'!
-initializeFor: aValue
-
-	value := aValue ! !
-!TransferEntry methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:30:22'!
-initializeFor: aValue
-
-	value := aValue ! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:31:29'!
-ERROR!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 10:31:29'!
-PASSED!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:31:29'!
-ERROR!
-!TransferEntry methodsFor: 'balance' stamp: 'JPF 5/30/2021 10:32:00' overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance + value ! !
-!TransferOutput methodsFor: 'balance' stamp: 'JPF 5/30/2021 10:32:18' overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance - value! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:32:22'!
-PASSED!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 10:32:22'!
-PASSED!
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 10:36:49'!
-test03TransferEntryAndTransferOutputShouldBelongToTheSameTransfer
-	
-	| sourceAccount targetAccount transferEntry transferOutput |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	sourceAccount transfer: 50 to: targetAccount.
-	
-	self deny: (sourceAccount transactions anySatisfy: [ :transaction | transaction isKindOf: Withdraw ]).
-	self deny: (targetAccount transactions anySatisfy: [ :transaction | transaction isKindOf: Deposit ]).! !
-!TransferTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 10:41:30'!
-test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry
-	
-	| sourceAccount targetAccount transfer |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	transfer _ sourceAccount transfer: 50 to: targetAccount.
-	
-	self assert: (sourceAccount transactions anySatisfy: [ :transaction | transaction = transfer output ]).
-	self assert: (targetAccount transactions anySatisfy: [ :transaction | transaction = transfer entry ]).! !
-
-!methodRemoval: TransferTest #test03TransferEntryAndTransferOutputShouldBelongToTheSameTransfer stamp: 'JPF 5/30/2021 10:42:07'!
-test03TransferEntryAndTransferOutputShouldBelongToTheSameTransfer
-	
-	| sourceAccount targetAccount transferEntry transferOutput |
-	
-	sourceAccount _ ReceptiveAccount new.
-	sourceAccount register: (Deposit for: 100).
-	
-	targetAccount _ ReceptiveAccount new.
-	
-	sourceAccount transfer: 50 to: targetAccount.
-	
-	self deny: (sourceAccount transactions anySatisfy: [ :transaction | transaction isKindOf: Withdraw ]).
-	self deny: (targetAccount transactions anySatisfy: [ :transaction | transaction isKindOf: Deposit ]).!
-
-Object subclass: #Transfer
-	instanceVariableNames: 'value entry output'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:43:04'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value entry output'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:43:07'!
-PASSED!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 10:43:07'!
-PASSED!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:43:07'!
-ERROR!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:43:07'!
-ERROR!
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/30/2021 10:45:13' prior: 50878583!
-transfer: anAmount to: targetReceptiveAccount 
-	
-	| transfer |
-	
-	transfer _ Transfer for: anAmount.
-	self register: transfer output.
-	targetReceptiveAccount register: transfer entry
-	! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/30/2021 10:45:26' prior: 50878728!
-transfer: anAmount to: targetReceptiveAccount 
-	
-	| transfer |
-	
-	transfer _ Transfer for: anAmount.
-	self register: transfer output.
-	targetReceptiveAccount register: transfer entry.
-	
-	^ transfer
-	! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/30/2021 10:45:40' prior: 50878737!
-transfer: aValue to: targetReceptiveAccount 
-	
-	| transfer |
-	
-	transfer _ Transfer for: aValue.
-	self register: transfer output.
-	targetReceptiveAccount register: transfer entry.
-	
-	^ transfer
-	! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/30/2021 10:48:07' prior: 50878747!
-transfer: aValue to: targetReceptiveAccount 
-	
-	| transfer |
-	
-	transfer _ Transfer for: aValue from: self to: targetReceptiveAccount.
-	"self register: transfer output.
-	targetReceptiveAccount register: transfer entry."
-	
-	^ transfer
-	! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:48:28'!
-ERROR!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 10:48:28'!
-ERROR!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:48:28'!
-ERROR!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:48:32'!
-ERROR!
-!Transfer class methodsFor: 'instance creation' stamp: 'JPF 5/30/2021 10:48:49'!
-for: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeFor: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 ! !
-!Transfer class methodsFor: 'instance creation' stamp: 'JPF 5/30/2021 10:49:55' prior: 50878785!
-for: aValue from: aSourceReceptiveAccount to: aTargetReceptiveAccount
- 
-	^ self new initializeFor: aValue from: aSourceReceptiveAccount to: aTargetReceptiveAccount! !
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:50:11'!
-ERROR!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:50:33'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value entry output sourceReceptiveAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:50:33'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value entry output sourceReceptiveAccount targetReceptiveAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:50:33'!
-initializeFor: aValue from: aSourceReceptiveAccount to: aTargetReceptiveAccount 
-	self shouldBeImplemented.
-	value := aValue.
-	sourceReceptiveAccount := aSourceReceptiveAccount.
-	targetReceptiveAccount := aTargetReceptiveAccount.! !
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:50:52' prior: 50878826!
-initializeFor: aValue from: aSourceReceptiveAccount to: aTargetReceptiveAccount
-
-	value := aValue.
-	sourceReceptiveAccount := aSourceReceptiveAccount.
-	targetReceptiveAccount := aTargetReceptiveAccount.! !
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:53:27' prior: 50878837!
-initializeFor: aValue from: aSourceReceptiveAccount to: aTargetReceptiveAccount
-
-	value := aValue.
-	output := TransferOutput for: self.
-	entry := TransferEntry for: self.
-	
-	! !
-!ReceptiveAccount methodsFor: 'transfer' stamp: 'JPF 5/30/2021 10:53:53' prior: 50878757!
-transfer: aValue to: targetReceptiveAccount 
-	
-	| transfer |
-	
-	transfer _ Transfer for: aValue from: self to: targetReceptiveAccount.
-	
-	^ transfer
-	! !
-!Transfer methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:54:47' prior: 50878847!
-initializeFor: aValue from: aSourceReceptiveAccount to: aTargetReceptiveAccount
-
-	value := aValue.
-	output := TransferOutput for: self.
-	entry := TransferEntry for: self.
-	
-	aSourceReceptiveAccount register: output.
-	aTargetReceptiveAccount register: entry.
-	
-	! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:55:54'!
-ERROR!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 10:55:54'!
-PASSED!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:55:54'!
-ERROR!
-!TransferEntry class methodsFor: 'instance creation' stamp: 'JPF 5/30/2021 10:56:30' prior: 50878596!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer! !
-!TransferOutput class methodsFor: 'instance creation' stamp: 'JPF 5/30/2021 10:56:49' prior: 50878591!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer! !
-
-!classDefinition: #TransferOutput category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:57:14'!
-AccountTransaction subclass: #TransferOutput
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TransferOutput methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 10:57:14' prior: 50878627 overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance - transfer! !
-!TransferOutput methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 10:57:14' prior: 50878600!
-initializeFor: aValue
-
-	transfer := aValue ! !
-!TransferOutput methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:57:21' prior: 50878913!
-initializeFor: aTransfer
-
-	transfer := aTransfer ! !
-!TransferEntry methodsFor: 'initialization' stamp: 'JPF 5/30/2021 10:57:33' prior: 50878604!
-initializeFor: aTransfer
-
-	value := aTransfer ! !
-
-!classDefinition: #TransferEntry category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 10:57:39'!
-AccountTransaction subclass: #TransferEntry
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TransferEntry methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 10:57:39' prior: 50878622 overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance + transfer ! !
-!TransferEntry methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 10:57:39' prior: 50878923!
-initializeFor: aTransfer
-
-	transfer := aTransfer ! !
-!TransferEntry methodsFor: 'value' stamp: 'JPF 5/30/2021 10:58:13' overrides: 50877823!
-value
-	
-	^ transfer value! !
-!TransferOutput methodsFor: 'value' stamp: 'JPF 5/30/2021 10:58:43' overrides: 50877823!
-value
-	
-	^ transfer value! !
-!TransferOutput methodsFor: 'balance' stamp: 'JPF 5/30/2021 10:59:11' prior: 50878908 overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance - self value! !
-!TransferEntry methodsFor: 'balance' stamp: 'JPF 5/30/2021 10:59:18' prior: 50878937 overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance + self value! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:59:25'!
-ERROR!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 10:59:25'!
-PASSED!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 10:59:25'!
-ERROR!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 10:59:32'!
-ERROR!
-
-Object subclass: #Transfer
-	instanceVariableNames: 'value entry output'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 11:00:12'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value entry output'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 11:00:23'!
-ERROR!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 11:00:23'!
-PASSED!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 11:00:23'!
-ERROR!
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 11:00:26'!
-ERROR!
-!Transfer methodsFor: 'value' stamp: 'JPF 5/30/2021 11:01:17' overrides: 16881508!
-value
-
-	^ value! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 11:01:19'!
-PASSED!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 11:01:19'!
-PASSED!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 11:01:19'!
-ERROR!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 11:01:19'!
-ERROR!
-!Transfer methodsFor: 'entry output' stamp: 'JPF 5/30/2021 11:02:09'!
-entry
-	
-	^ entry! !
-!Transfer methodsFor: 'entry output' stamp: 'JPF 5/30/2021 11:02:21'!
-output
-	
-	^ output! !
-
-!testRun: #TransferTest #test01ShouldIncreaseTargetAccountBalanceAndDecreaseSourceAccountBalanceInTheSameAmount stamp: 'JPF 5/30/2021 11:02:25'!
-PASSED!
-
-!testRun: #TransferTest #test02ShouldNotAddDepositsToTargetAccountOrWithdrawToSourceAccount stamp: 'JPF 5/30/2021 11:02:25'!
-PASSED!
-
-!testRun: #TransferTest #test03ShouldReturnATransferWithTheTransferOutputAndTheTransferEntry stamp: 'JPF 5/30/2021 11:02:25'!
-PASSED!
-
-TestCase subclass: #AccountSummaryTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #AccountSummaryTest category: 'Portfolio-Solucion' stamp: 'JPF 5/30/2021 11:13:01'!
-TestCase subclass: #AccountSummaryTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:14:58'!
-test01ShouldInformBalance0ForAnAccountWithoutTransactions
-	
-	| account |
-	
-	account _ ReceptiveAccount new.! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:17:47' prior: 50879067!
-test01ShouldInformBalance0ForAnAccountWithoutTransactions
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	
-	self assert: (OrderedCollection with: 'Balance = 0') equals: account summary! !
-
-!testRun: #AccountSummaryTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 11:17:52'!
-ERROR!
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 11:18:06'!
-summary
-	self shouldBeImplemented.! !
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 11:18:41' prior: 50879087!
-summary
-	
-		
-	^ OrderedCollection with: 'Balance = 0'! !
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JPF 5/30/2021 11:18:46' prior: 50879092!
-summary
-	
-	^ OrderedCollection with: 'Balance = 0'! !
-
-!testRun: #AccountSummaryTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 11:19:33'!
-PASSED!
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:21:39'!
-test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	
-	self assert: (OrderedCollection with: 'Depósito por 100.' with: 'Balance = 50') equals: account summary! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:21:46' prior: 50879106!
-test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	
-	self assert: (OrderedCollection with: 'Depósito por 50.' with: 'Balance = 50') equals: account summary! !
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:21:57'!
-FAILURE!
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:22:08'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:35:43' prior: 50879097!
-summary
-
-	| balance summary |
-	
-	balance _ 0.
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | 'Depósito por ', transaction value ].
-	
-	^ OrderedCollection with: 'Balance = 0'! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:37:10' prior: 50879137!
-summary
-
-	| balance summary |
-	
-	balance _ 0.
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ', transaction value ].
-	
-	summary add: 'Balance = ', balance.
-	
-	^ OrderedCollection with: 'Balance = 0'! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:37:17' prior: 50879147!
-summary
-
-	| balance summary |
-	
-	balance _ 0.
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ', transaction value ].
-	
-	summary add: 'Balance = ', balance.
-	
-	^ summary! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:37:33' prior: 50879158!
-summary
-
-	| balance summary |
-	
-	balance _ 0.
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ', transaction value, '.' ].
-	
-	summary add: 'Balance = ', balance.
-	
-	^ summary! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:38:41' prior: 50879168!
-summary
-
-	| balance summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ', transaction value, '.'].
-	
-	summary add: 'Balance = ', self balance.
-	
-	^ summary! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:38:59' prior: 50879178!
-summary
-
-	| summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ', transaction value, '.'].
-	
-	summary add: 'Balance = ', self balance.
-	
-	^ summary! !
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:39:12'!
-ERROR!
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:39:24'!
-ERROR!
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:39:49' prior: 50879188!
-summary
-
-	| summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ' , transaction value asString , '.'].
-	
-	summary add: 'Balance = ', self balance.
-	
-	^ summary! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:40:02' prior: 50879206!
-summary
-
-	| summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | summary add: 'Depósito por ' , transaction value asString , '.'].
-	
-	summary add: 'Balance = ', self balance asString.
-	
-	^ summary! !
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:40:05'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 11:40:05'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:40:05'!
-PASSED!
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:42:39'!
-test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountA50DepositAnd50Withdraw
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:43:26'!
-test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-
-!methodRemoval: AccountSummaryTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 11:43:26'!
-test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountA50DepositAnd50Withdraw
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary!
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:43:41'!
-test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	
-	self assert: (OrderedCollection with: 'Depósito por 50.' with: 'Balance = 50') equals: account summary! !
-
-!methodRemoval: AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit stamp: 'JPF 5/30/2021 11:43:41'!
-test02ShouldInformBalance50AndA50DepositForAnAccountA50Deposit
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	
-	self assert: (OrderedCollection with: 'Depósito por 50.' with: 'Balance = 50') equals: account summary!
-
-!testRun: #AccountSummaryTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 11:44:12'!
-FAILURE!
-
-!testRun: #AccountSummaryTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 11:44:12'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:45:19' prior: 50879216!
-summary
-
-	| summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | 
-		(transaction isKindOf: Deposit) ifTrue: [ summary add: 'Depósito por ' , transaction value asString , '.' ].
-		].
-	
-	summary add: 'Balance = ', self balance asString.
-	
-	^ summary! !
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:45:54' prior: 50879317!
-summary
-
-	| summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | 
-		(transaction isKindOf: Deposit) ifTrue: [ summary add: 'Depósito por ' , transaction value asString , '.' ].
-		(transaction isKindOf: Withdraw ) ifTrue: [ summary add: 'Extracción por ' , transaction value asString , '.' ].
-		].
-	
-	summary add: 'Balance = ', self balance asString.
-	
-	^ summary! !
-
-!testRun: #AccountSummaryTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 11:46:02'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 11:46:02'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 11:46:02'!
-PASSED!
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:48:25'!
-test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:48:33' prior: 50879358!
-test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:49:09' prior: 50879374!
-test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:50:17' prior: 50879390!
-test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	account2 transfer: 50 to: account.
-	account transfer: 50 to: account2.
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-!AccountSummaryTest methodsFor: 'tests' stamp: 'JPF 5/30/2021 11:51:04' prior: 50879407!
-test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	account register: (Deposit for: 50).
-	account register: (Withdraw for: 50).
-	
-	account2 transfer: 50 to: account.
-	account transfer: 50 to: account2.
-	
-	self 
-		assert:
-		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
-			with: 'Entrada por transferencia de 50.'
-			with: 'Salida por transferencia de 50.'
-			with: 'Balance = 0')
-		equals: account summary! !
-
-!testRun: #AccountSummaryTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 11:51:10'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'summary' stamp: 'JPF 5/30/2021 11:53:13' prior: 50879329!
-summary
-
-	| summary |
-	
-	summary _ OrderedCollection new.
-	
-	transactions do: [ :transaction | 
-		(transaction isKindOf: Deposit) ifTrue: [ summary add: 'Depósito por ' , transaction value asString , '.' ].
-		(transaction isKindOf: Withdraw ) ifTrue: [ summary add: 'Extracción por ' , transaction value asString , '.' ].
-		(transaction isKindOf: TransferEntry ) ifTrue: [ summary add: 'Entrada por transferencia de ' , transaction value asString , '.' ].
-		(transaction isKindOf: TransferOutput ) ifTrue: [ summary add: 'Salida por transferencia de ' , transaction value asString , '.' ].
-		].
-	
-	summary add: 'Balance = ', self balance asString.
-	
-	^ summary! !
-
-!testRun: #AccountSummaryTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 11:53:39'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 11:53:39'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 11:53:39'!
-PASSED!
-
-!testRun: #AccountSummaryTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 11:53:39'!
-PASSED!
-
-----SNAPSHOT----(30 May 2021 11:54:12) Portfolio2.image priorSource: 17500835!
-
-!classRenamed: #AccountSummaryTest as: #ReportTest stamp: 'JPF 5/30/2021 11:54:52'!
-Smalltalk renameClassNamed: #AccountSummaryTest as: #ReportTest!
-!ReportTest methodsFor: 'net transfer value tests' stamp: 'JPF 5/30/2021 11:57:35'!
-test01ShouldInform0ForAnAccountWithoutTransfers
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	
-	self assert: (OrderedCollection with: 'Balance = 0') equals: account summary! !
-!ReportTest methodsFor: 'net transfer value tests' stamp: 'JPF 5/30/2021 11:58:55' prior: 50879504!
-test01ShouldInform0ForAnAccountWithoutTransfers
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	account register: (Deposit for: 50).
-	
-	self assert: 0 equals: account netTransferValue! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 11:58:59'!
-ERROR!
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 11:59:20'!
-netTransferValue
-	self shouldBeImplemented.! !
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 11:59:28' prior: 50879526!
-netTransferValue
-	
-	^ 0! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 11:59:38'!
-PASSED!
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:00:22'!
-PASSED!
-
-!testRun: #ReportTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 12:00:22'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 12:00:22'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 12:00:22'!
-PASSED!
-
-!testRun: #ReportTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 12:00:22'!
-PASSED!
-!ReportTest methodsFor: 'net transfer value tests' stamp: 'JPF 5/30/2021 12:02:31'!
-test02ShouldInform50ForAnAccountWithA50TransferEntry
-	
-	| account |
-	
-	account _ ReceptiveAccount new.
-	
-	self assert: 50 equals: account netTransferValue! !
-!ReportTest methodsFor: 'net transfer value tests' stamp: 'JPF 5/30/2021 12:03:15' prior: 50879560!
-test02ShouldInform50ForAnAccountWithA50TransferEntry
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account2 _ ReceptiveAccount new.
-	
-	account2 transfer: 50 to: account.
-	
-	self assert: 50 equals: account netTransferValue! !
-!ReportTest methodsFor: 'net transfer value tests' stamp: 'JPF 5/30/2021 12:03:44' prior: 50879569!
-test02ShouldInform50ForAnAccountWithA50TransferEntry
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account register: (Withdraw for: 50).
-	
-	account2 _ ReceptiveAccount new.
-	
-	account2 transfer: 50 to: account.
-	
-	self assert: 50 equals: account netTransferValue! !
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:03:55'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:06:57' prior: 50879531!
-netTransferValue
-
-	| net |
-	
-	net _ 0.
-	
-	transactions do: [ :transaction | 	
-		(transaction isKindOf: TransferEntry ) ifTrue: [ transaction affectBalance: net ].
-		].! !
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:07:31' prior: 50879596!
-netTransferValue
-
-	| net |
-	
-	net _ 0.
-	
-	transactions do: [ :transaction | 	
-		(transaction isKindOf: TransferEntry ) ifTrue: [ transaction affectBalance: net ].
-		].
-	
-	^ net! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:08:02'!
-PASSED!
-
-!testRun: #ReportTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 12:08:02'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:08:02'!
-FAILURE!
-
-!testRun: #ReportTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 12:08:02'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 12:08:02'!
-PASSED!
-
-!testRun: #ReportTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 12:08:02'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:08:02'!
-FAILURE!
-
-self value!
-!TransferEntry methodsFor: 'balance' stamp: 'JPF 5/30/2021 12:11:41' prior: 50878961 overrides: 50878418!
-affectBalance: aBalance  
-
-	^aBalance + self value! !
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:13:23' prior: 50879605!
-netTransferValue
-
-	^ transactions inject: 0 into: [ :currentNet :transaction | 	
-		(transaction isKindOf: TransferEntry ) ifTrue: [ transaction affectBalance: currentNet ].
-		].! !
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:13:29'!
-ERROR!
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:13:47'!
-FAILURE!
-
-!testRun: #ReportTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 12:13:47'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:13:47'!
-ERROR!
-
-!testRun: #ReportTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 12:13:47'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 12:13:47'!
-PASSED!
-
-!testRun: #ReportTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 12:13:47'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:13:49'!
-ERROR!
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:14:35' prior: 50879649!
-netTransferValue
-
-	^ transactions inject: 0 into: [ :currentNet :transaction | 	
-		(transaction isKindOf: TransferEntry ) ifTrue: [ transaction affectBalance: currentNet. currentNet. ].
-		].! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:14:43'!
-FAILURE!
-
-!testRun: #ReportTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 12:14:43'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:14:43'!
-ERROR!
-
-!testRun: #ReportTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 12:14:43'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 12:14:43'!
-PASSED!
-
-!testRun: #ReportTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 12:14:43'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:14:45'!
-ERROR!
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:15:57' prior: 50879691!
-netTransferValue
-
-	^ transactions inject: 0 into: [ :currentNet :transaction | 	
-		(transaction isKindOf: TransferEntry ) ifTrue: [ transaction affectBalance: currentNet].
-		currentNet.
-		].! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:16:17'!
-PASSED!
-
-!testRun: #ReportTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 12:16:17'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:16:17'!
-FAILURE!
-
-!testRun: #ReportTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 12:16:17'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 12:16:17'!
-PASSED!
-
-!testRun: #ReportTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 12:16:17'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:16:17'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:17:48' prior: 50879729!
-netTransferValue
-
-	| net |
-	
-	net _ 0.
-
-	transactions do: [  :transaction | 	
-		(transaction isKindOf: TransferEntry ) ifTrue: [ net _ transaction affectBalance: net].
-		].
-	
-	^ net! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:18:00'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:18:00'!
-PASSED!
-!ReportTest methodsFor: 'net transfer value tests' stamp: 'JPF 5/30/2021 12:18:58'!
-test03ShouldInform10ForAnAccountWithA50TransferEntryAnd40TransferOutput
-	
-	| account account2 |
-	
-	account _ ReceptiveAccount new.
-	account register: (Withdraw for: 50).
-	
-	account2 _ ReceptiveAccount new.
-	
-	account2 transfer: 50 to: account.
-	account transfer: 40 to: account2.
-	
-	self assert: 10 equals: account netTransferValue! !
-
-!testRun: #ReportTest #test03ShouldInform10ForAnAccountWithA50TransferEntryAnd40TransferOutput stamp: 'JPF 5/30/2021 12:19:01'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'report' stamp: 'JPF 5/30/2021 12:19:38' prior: 50879768!
-netTransferValue
-
-	| net |
-	
-	net _ 0.
-
-	transactions do: [  :transaction | 	
-		(transaction isKindOf: TransferEntry) ifTrue: [ net _ transaction affectBalance: net].
-		(transaction isKindOf: TransferOutput) ifTrue: [ net _ transaction affectBalance: net].
-		].
-	
-	^ net! !
-
-!testRun: #ReportTest #test01ShouldInform0ForAnAccountWithoutTransfers stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-!testRun: #ReportTest #test01ShouldInformBalance0ForAnAccountWithoutTransactions stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInform50ForAnAccountWithA50TransferEntry stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-!testRun: #ReportTest #test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInform10ForAnAccountWithA50TransferEntryAnd40TransferOutput stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-!testRun: #ReportTest #test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-!testRun: #ReportTest #test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutputForAnAccountWithThoseTransactions stamp: 'JPF 5/30/2021 12:20:05'!
-PASSED!
-
-----SNAPSHOT----(30 May 2021 12:21:42) Portfolio2.image priorSource: 17531073!
-
-----QUIT----(31 May 2021 08:06:49) Portfolio2.image priorSource: 17542155!
-
 ----STARTUP---- (31 May 2021 20:01:47) as /Users/juan.ferrino/CuisUniversity/Portfolio2.image!
 
 !TransferTest methodsFor: 'tests' stamp: 'JPF 5/31/2021 21:43:39'!
@@ -1740,8 +109,8 @@ summary
 	summary _ OrderedCollection new.
 	
 	transactions do: [ :transaction | 
-		"(transaction isKindOf: Deposit) ifTrue: [ summary add: 'Depósito por ' , transaction value asString , '.' ].
-		(transaction isKindOf: Withdraw ) ifTrue: [ summary add: 'Extracción por ' , transaction value asString , '.' ].
+		"(transaction isKindOf: Deposit) ifTrue: [ summary add: 'Depï¿½sito por ' , transaction value asString , '.' ].
+		(transaction isKindOf: Withdraw ) ifTrue: [ summary add: 'Extracciï¿½n por ' , transaction value asString , '.' ].
 		(transaction isKindOf: TransferEntry ) ifTrue: [ summary add: 'Entrada por transferencia de ' , transaction value asString , '.' ].
 		(transaction isKindOf: TransferOutput ) ifTrue: [ summary add: 'Salida por transferencia de ' , transaction value asString , '.' ]."
 		summary add: transaction lineForSummary
@@ -1753,11 +122,11 @@ summary
 !Deposit methodsFor: 'nil' stamp: 'JPF 5/31/2021 21:51:00'!
 lineForSummary
 	
-	^ 'Depósito por ' , value asString , '.'! !
+	^ 'Depï¿½sito por ' , value asString , '.'! !
 !Withdraw methodsFor: 'nil' stamp: 'JPF 5/31/2021 21:51:56'!
 lineForSummary
 	
-	^ 'Extracción por ' , value asString , '.'! !
+	^ 'Extracciï¿½n por ' , value asString , '.'! !
 !TransferOutput methodsFor: 'nil' stamp: 'JPF 5/31/2021 21:52:43'!
 lineForSummary
 	
@@ -2442,23 +811,23 @@ visitADeposit: aDeposit
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:05:57' prior: 50880788!
 visitADeposit: aDeposit
 	
-	^ 'Depósito por ' , aDeposit value asString , '.'! !
+	^ 'Depï¿½sito por ' , aDeposit value asString , '.'! !
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:06:31'!
 visitAWithdraw: aWithdraw
 	
-	^ 'Depósito por ' , aWithdraw value asString , '.'! !
+	^ 'Depï¿½sito por ' , aWithdraw value asString , '.'! !
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:06:47' prior: 50880799!
 visitAWithdraw: aWithdraw
 	
-	^ 'Extracción por ' , aWithdraw value asString , '.'! !
+	^ 'Extracciï¿½n por ' , aWithdraw value asString , '.'! !
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:07:02'!
 visitATransferOutput: aWithdraw
 	
-	^ 'Extracción por ' , aWithdraw value asString , '.'! !
+	^ 'Extracciï¿½n por ' , aWithdraw value asString , '.'! !
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:07:13' prior: 50880811!
 visitATransferOutput: aTransferOutput
 	
-	^ 'Extracción por ' , aTransferOutput value asString , '.'! !
+	^ 'Extracciï¿½n por ' , aTransferOutput value asString , '.'! !
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:07:36' prior: 50880817!
 visitATransferOutput: aTransferOutput
 	
@@ -2478,7 +847,7 @@ visitATransferEntry: aTransferEntry
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:08:32' prior: 50880793!
 visitADeposit: aDeposit
 	
-	summary add: 'Depósito por ' , aDeposit value asString , '.'! !
+	summary add: 'Depï¿½sito por ' , aDeposit value asString , '.'! !
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:08:43' prior: 50880845!
 visitATransferEntry: aTransferEntry
 	
@@ -2490,7 +859,7 @@ visitATransferOutput: aTransferOutput
 !SummaryVisitor methodsFor: 'as yet unclassified' stamp: 'JPF 6/1/2021 19:08:54' prior: 50880805!
 visitAWithdraw: aWithdraw
 	
-	summary add: 'Extracción por ' , aWithdraw value asString , '.'! !
+	summary add: 'Extracciï¿½n por ' , aWithdraw value asString , '.'! !
 !ReceptiveAccount methodsFor: 'report' stamp: 'JPF 6/1/2021 19:17:20' prior: 50880119!
 summary
 
@@ -3423,8 +1792,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -3448,8 +1817,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -3473,8 +1842,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -3499,8 +1868,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -3524,8 +1893,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -3549,8 +1918,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -3574,8 +1943,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 50')
@@ -3599,8 +1968,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 100.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 100.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 50')
@@ -3660,8 +2029,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 		assert:
 		(OrderedCollection
 			with: 'Entrada por transferencia de 50.'
-			with: 'Depósito por 100.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 100.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 50')
 		equals: portfolio summary! !
@@ -4193,7 +2562,7 @@ ERROR!
 !SummaryVisitor methodsFor: 'visit transaction - private' stamp: 'JPF 6/2/2021 19:07:26'!
 visitDeposit: aDeposit
 	
-	summary add: 'Depósito por ' , aDeposit value asString , '.'! !
+	summary add: 'Depï¿½sito por ' , aDeposit value asString , '.'! !
 !Deposit methodsFor: 'as yet unclassified' stamp: 'JPF 6/2/2021 19:07:26' prior: 50880769 overrides: 50880764!
 accept: aVisitor
 	
@@ -4202,11 +2571,11 @@ accept: aVisitor
 !methodRemoval: SummaryVisitor #visitADeposit: stamp: 'JPF 6/2/2021 19:07:26'!
 visitADeposit: aDeposit
 	
-	summary add: 'Depósito por ' , aDeposit value asString , '.'!
+	summary add: 'Depï¿½sito por ' , aDeposit value asString , '.'!
 !SummaryVisitor methodsFor: 'visit transaction - private' stamp: 'JPF 6/2/2021 19:07:49'!
 visitWithdraw: aWithdraw
 	
-	summary add: 'Extracción por ' , aWithdraw value asString , '.'! !
+	summary add: 'Extracciï¿½n por ' , aWithdraw value asString , '.'! !
 !Withdraw methodsFor: 'as yet unclassified' stamp: 'JPF 6/2/2021 19:07:49' prior: 50880784 overrides: 50880764!
 accept: aVisitor
 	
@@ -4215,7 +2584,7 @@ accept: aVisitor
 !methodRemoval: SummaryVisitor #visitAWithdraw: stamp: 'JPF 6/2/2021 19:07:49'!
 visitAWithdraw: aWithdraw
 	
-	summary add: 'Extracción por ' , aWithdraw value asString , '.'!
+	summary add: 'Extracciï¿½n por ' , aWithdraw value asString , '.'!
 !SummaryVisitor methodsFor: 'visit transaction - private' stamp: 'JPF 6/2/2021 19:08:05'!
 visitTransferOutput: aTransferOutput
 	
@@ -4322,8 +2691,8 @@ test05ShouldInformCorrectValueForAPortfolioWithAReceptiveAccountAndAnotherPortfo
 		assert:
 		(OrderedCollection
 			with: 'Entrada por transferencia de 50.'
-			with: 'Depósito por 100.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 100.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 50')
 		equals: portfolio summary! !
@@ -4350,8 +2719,8 @@ test05ShouldInformCorrectValueForAPortfolioWithAReceptiveAccountAndAnotherPortfo
 		assert:
 		(OrderedCollection
 			with: 'Entrada por transferencia de 50.'
-			with: 'Depósito por 100.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 100.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 50')
 		equals: portfolio netTransferValue ! !
@@ -5525,7 +3894,7 @@ visitDeposit: aDeposit
 		declaredAt: (27 to: 33)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{40 to: 54}) ,
 			([
 			([
@@ -5597,7 +3966,7 @@ visitWithdraw: aWithdraw
 		declaredAt: (29 to: 35)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{42 to: 58}) ,
 			([
 			([
@@ -6348,7 +4717,7 @@ visitDeposit: aDeposit
 		declaredAt: (27 to: 33)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{40 to: 54}) ,
 			([
 			([
@@ -6430,7 +4799,7 @@ visitWithdraw: aWithdraw
 		declaredAt: (29 to: 35)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{42 to: 58}) ,
 			([
 			([
@@ -7846,7 +6215,7 @@ PASSED!
 !methodRemoval: Deposit #lineForSummary stamp: 'JPF 6/2/2021 19:34:24'!
 lineForSummary
 	
-	^ 'Depósito por ' , value asString , '.'!
+	^ 'Depï¿½sito por ' , value asString , '.'!
 
 !methodRemoval: TransferEntry #lineForSummary stamp: 'JPF 6/2/2021 19:34:31'!
 lineForSummary
@@ -7861,7 +6230,7 @@ lineForSummary
 !methodRemoval: Withdraw #lineForSummary stamp: 'JPF 6/2/2021 19:34:41'!
 lineForSummary
 	
-	^ 'Extracción por ' , value asString , '.'!
+	^ 'Extracciï¿½n por ' , value asString , '.'!
 
 !testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JPF 6/2/2021 19:34:46'!
 PASSED!
@@ -10018,7 +8387,7 @@ visitDeposit: aDeposit
 		declaredAt: (27 to: 33)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{40 to: 54}) ,
 			([
 			([
@@ -10083,7 +8452,7 @@ visitWithdraw: aWithdraw
 		declaredAt: (29 to: 35)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{42 to: 58}) ,
 			([
 			([
@@ -11358,7 +9727,7 @@ visitDeposit: aDeposit
 		declaredAt: (27 to: 33)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{40 to: 54}) ,
 			([
 			([
@@ -11423,7 +9792,7 @@ visitWithdraw: aWithdraw
 		declaredAt: (29 to: 35)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{42 to: 58}) ,
 			([
 			([
@@ -12567,7 +10936,7 @@ visitDeposit: aDeposit
 		declaredAt: (27 to: 33)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{40 to: 54}) ,
 			([
 			([
@@ -12632,7 +11001,7 @@ visitWithdraw: aWithdraw
 		declaredAt: (29 to: 35)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{42 to: 58}) ,
 			([
 			([
@@ -13844,7 +12213,7 @@ visitDeposit: aDeposit
 		declaredAt: (27 to: 33)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{40 to: 54}) ,
 			([
 			([
@@ -13909,7 +12278,7 @@ visitWithdraw: aWithdraw
 		declaredAt: (29 to: 35)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{42 to: 58}) ,
 			([
 			([
@@ -14160,7 +12529,7 @@ test02ShouldInformBalance50AndA50DepositForAnAccountWithA50Deposit
 	account register: (Deposit for: 50).
 	
 	self
-		assert: (OrderedCollection with: 'Depósito por 50.' with: 'Balance = 50')
+		assert: (OrderedCollection with: 'Depï¿½sito por 50.' with: 'Balance = 50')
 		equals: (self accountSummaryFor: account)! !
 !ReportTest methodsFor: 'account summary tests' stamp: 'JPF 6/3/2021 07:28:36' prior: 50879253!
 test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Withdraw
@@ -14174,8 +12543,8 @@ test03ShouldInformBalance0A50DepositA50WithdrawForAnAccountWithA50DepositAnd50Wi
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Balance = 0')
 		equals: (self accountSummaryFor: account)! !
 !ReportTest methodsFor: 'account summary tests' stamp: 'JPF 6/3/2021 07:28:44' prior: 50879426!
@@ -14195,8 +12564,8 @@ test04ShouldInformBalance0A50DepositA50WithdrawA50TransferEntryA50TransferOutput
 	self 
 		assert:
 		(OrderedCollection
-			with: 'Depósito por 50.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 50.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Entrada por transferencia de 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 0')
@@ -14221,8 +12590,8 @@ test05ShouldInformCorrectBalanceForAPortfolioWithAReceptiveAccountAndAnotherPort
 		assert:
 		(OrderedCollection
 			with: 'Entrada por transferencia de 50.'
-			with: 'Depósito por 100.'
-			with: 'Extracción por 50.'
+			with: 'Depï¿½sito por 100.'
+			with: 'Extracciï¿½n por 50.'
 			with: 'Salida por transferencia de 50.'
 			with: 'Balance = 50')
 		equals: (self accountSummaryFor: portfolio)! !

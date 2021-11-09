@@ -1,669 +1,3 @@
-
-
-----STARTUP---- (29 May 2021 20:11:43) as /Users/edgardo.mosqueira/Desktop/ISW/CuisUniversity/CuisUniversity-4532.image!
-
-
-!classRemoval: #ReceptiveAccount stamp: 'ERMC 5/29/2021 20:12:16'!
-BankAccount subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions parents'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #Portfolio stamp: 'ERMC 5/29/2021 20:12:17'!
-BankAccount subclass: #Portfolio
-	instanceVariableNames: 'accounts parents'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #BankAccount stamp: 'ERMC 5/29/2021 20:12:17'!
-Object subclass: #BankAccount
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #Withdraw stamp: 'ERMC 5/29/2021 20:12:17'!
-AccountTransaction subclass: #Withdraw
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #Deposit stamp: 'ERMC 5/29/2021 20:12:18'!
-AccountTransaction subclass: #Deposit
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #AccountTransaction stamp: 'ERMC 5/29/2021 20:12:18'!
-Object subclass: #AccountTransaction
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #ReceptiveAccountTest stamp: 'ERMC 5/29/2021 20:12:18'!
-TestCase subclass: #ReceptiveAccountTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-!classRemoval: #PortfolioTest stamp: 'ERMC 5/29/2021 20:12:19'!
-TestCase subclass: #PortfolioTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Ejercicio'!
-
-----End fileIn of /Users/edgardo.mosqueira/Downloads/Portfolio-Solucion.st----!
-
-!testRun: #ReceptiveAccountTest #test08UnaTransferenciaConMontoCeroEsInvalida stamp: 'ERMC 5/29/2021 20:12:37'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test09UnaTransferenciaConMontoNegativoEsInvalida stamp: 'ERMC 5/29/2021 20:12:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 20:12:40'!
-FAILURE!
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 20:12:40'!
-FAILURE!
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:12:59' prior: 50888869!
-test08UnaTransferenciaConMontoCeroEsInvalida
-	| account1 account2|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-	
-	self 
-		should: [ account1 transfer: 0 to:account2 ]
-		raise: Error 
-		withMessageText: ReceptiveAccount canNotTrasferirMontoMenorOIgualaACero.
-		
-	
-! !
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:13:31' prior: 50888893!
-test10
-	| account1 account2 deposit1 |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-
-	deposit1 := Deposit register: 100 on: account1.
-	
-	account1 transfer: 50 to: account2.
-	
-	self assert: 50 equals: account1 balance .
-	self assert: 50 equals: account2 balance .
-
-	
-! !
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:13:37' prior: 50889310!
-test10
-	| account1 account2 |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-
-	Deposit register: 100 on: account1.
-	
-	account1 transfer: 50 to: account2.
-	
-	self assert: 50 equals: account1 balance .
-	self assert: 50 equals: account2 balance .
-
-	
-! !
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 20:13:42'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:16:41' prior: 50889148!
-transfer: anAmount to: aDstAccount
-	
-	self assertCanTrasfer: anAmount.
-	Deposit register: anAmount on: aDstAccount.
-	Withdraw register: anAmount on: self. 
-	
-	! !
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test08UnaTransferenciaConMontoCeroEsInvalida stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test09UnaTransferenciaConMontoNegativoEsInvalida stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 20:16:43'!
-PASSED!
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:18:08'!
-test11SePuedeHacerTransferenciaEnDescubierto
-	| account1 account2 |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-	
-	account1 transfer: 50 to: account2.
-	
-	self assert: 50 equals: account1 balance .
-	self assert: 50 equals: account2 balance .
-
-	
-! !
-
-!testRun: #ReceptiveAccountTest #test11SePuedeHacerTransferenciaEnDescubierto stamp: 'ERMC 5/29/2021 20:18:10'!
-FAILURE!
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:18:17' prior: 50889386!
-test11SePuedeHacerTransferenciaEnDescubierto
-	| account1 account2 |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-	
-	account1 transfer: 50 to: account2.
-	
-	self assert: -50 equals: account1 balance .
-	self assert: 50 equals: account2 balance .
-
-	
-! !
-
-!testRun: #ReceptiveAccountTest #test11SePuedeHacerTransferenciaEnDescubierto stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test08UnaTransferenciaConMontoCeroEsInvalida stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test09UnaTransferenciaConMontoNegativoEsInvalida stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test11SePuedeHacerTransferenciaEnDescubierto stamp: 'ERMC 5/29/2021 20:18:18'!
-PASSED!
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:19:21'!
-test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas
-	| account1 account2 |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-	
-	account1 transfer: 50 to: account2.
-	
-	self assert: -50 equals: account1 balance .
-	self assert: 50 equals: account2 balance .
-
-	
-! !
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:21:44'!
-Object subclass: #Transfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:21:34' prior: 50889458!
-test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas
-	| account1 account2 transfer |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-	
-	transfer _ Transfer register: 50 from: account1 to: account2.
-	
-	self assert: (account1 hasRegistered: transfer withdrawLeg).
-	self assert: (account2 hasRegistered: transfer depositLeg).
-
-	
-! !
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:21:49'!
-ERROR!
-!Transfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:21:56'!
-register: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 
-	self shouldBeImplemented.! !
-!Transfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:23:54' prior: 50889497!
-register: anAmountToTransfer from: anOriginAccount to: aDstAccount
-
-	^self new initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount.
-	
-	! !
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:24:19'!
-ERROR!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:24:24'!
-Object subclass: #Transfer
-	instanceVariableNames: 'amountToTransfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:24:24'!
-Object subclass: #Transfer
-	instanceVariableNames: 'amountToTransfer originAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:24:24'!
-Object subclass: #Transfer
-	instanceVariableNames: 'amountToTransfer originAccount dstAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:24:24'!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	self shouldBeImplemented.
-	amountToTransfer := anAmountToTransfer.
-	originAccount := anOriginAccount.
-	dstAccount := aDstAccount.! !
-!Transfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:24:41' prior: 50889540!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	amountToTransfer := anAmountToTransfer.
-	originAccount := anOriginAccount.
-	dstAccount := aDstAccount.! !
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:24:44'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value originAccount dstAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:24:44' prior: 50889550!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value := anAmountToTransfer.
-	originAccount := anOriginAccount.
-	dstAccount := aDstAccount.! !
-!Transfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:25:14' prior: 50889567!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value := anAmountToTransfer.
-	originAccount := anOriginAccount.
-	dstAccount := aDstAccount.! !
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:25:22'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value withdrawLeg dstAccount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:25:22' prior: 50889576!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value := anAmountToTransfer.
-	withdrawLeg := anOriginAccount.
-	dstAccount := aDstAccount.! !
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:25:32'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value withdrawLeg depositLeg'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:25:32' prior: 50889593!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value := anAmountToTransfer.
-	withdrawLeg := anOriginAccount.
-	depositLeg := aDstAccount.! !
-!Transfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:26:39' prior: 50889610!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value _ anAmountToTransfer.
-	withdrawLeg _ Withdraw register: anAmountToTransfer on: anOriginAccount.
-	depositLeg _ Deposit register: anAmountToTransfer on: aDstAccount.! !
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:26:42'!
-ERROR!
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:27:11'!
-withdrawLeg
-	self shouldBeImplemented.
-	^withdrawLeg! !
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:27:14' prior: 50889634!
-withdrawLeg
-
-	^withdrawLeg! !
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:27:24'!
-ERROR!
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:27:24'!
-ERROR!
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:27:29'!
-depositLeg
-	self shouldBeImplemented.
-	^depositLeg! !
-!Transfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:27:33' prior: 50889651!
-depositLeg
-
-	^depositLeg! !
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:27:38'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:27:41'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:27:44'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 20:27:59'!
-PASSED!
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ERMC 5/29/2021 20:33:04'!
-test13EnUnaTransferenciaAmbasCuentasConocenSusPatas
-	| account1 account2 transfer |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.	
-	
-	transfer _ Transfer register: 50 from: account1 to: account2.
-	
-	self assert: (transfer withdrawLeg transferLeg) equals: (transfer depositLeg).
-	self assert: (transfer depositLeg transferLeg) equals: (transfer withdrawLeg).! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:33:12'!
-ERROR!
-
-Object subclass: #TransferWithdraw
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:33:37'!
-Object subclass: #TransferWithdraw
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-AccountTransaction subclass: #TransferWithdraw
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:33:51'!
-AccountTransaction subclass: #TransferWithdraw
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-AccountTransaction subclass: #DepositTransfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #DepositTransfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:34:25'!
-AccountTransaction subclass: #DepositTransfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-AccountTransaction subclass: #WithdrawTransfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #WithdrawTransfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:34:39'!
-AccountTransaction subclass: #WithdrawTransfer
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classRemoval: #TransferWithdraw stamp: 'ERMC 5/29/2021 20:35:12'!
-AccountTransaction subclass: #TransferWithdraw
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:46:46'!
-ERROR!
-!Transfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:48:06' prior: 50889619!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value _ anAmountToTransfer.
-	withdrawLeg _ WithdrawTransfer register: anAmountToTransfer on: anOriginAccount.
-	depositLeg _ DepositTransfer register: anAmountToTransfer on: aDstAccount.! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:48:23'!
-ERROR!
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:48:23'!
-ERROR!
-!WithdrawTransfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:48:36'!
-for: aSmallInteger 
-	self shouldBeImplemented.! !
-!WithdrawTransfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:49:25' prior: 50889777!
-for: anAmount 
-	
-		^ self new initializeFor: anAmount! !
-!WithdrawTransfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:49:30' prior: 50889782!
-for: anAmount 
-
-	^ self new initializeFor: anAmount! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:49:31'!
-ERROR!
-
-!classDefinition: #WithdrawTransfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:49:35'!
-AccountTransaction subclass: #WithdrawTransfer
-	instanceVariableNames: 'amount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!WithdrawTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:49:35'!
-initializeFor: anAmount 
-	self shouldBeImplemented.
-	amount := anAmount.! !
-!WithdrawTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:49:45' prior: 50889805!
-initializeFor: anAmount 
-
-	amount _ anAmount.! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:49:46'!
-ERROR!
-!DepositTransfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:49:54'!
-for: aSmallInteger 
-	self shouldBeImplemented.! !
-!DepositTransfer class methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:50:09' prior: 50889820!
-for: anAmount 
-	
-	^ self new initializeFor: anAmount ! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:50:11'!
-ERROR!
-
-!classDefinition: #DepositTransfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 20:50:15'!
-AccountTransaction subclass: #DepositTransfer
-	instanceVariableNames: 'amount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!DepositTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:50:15'!
-initializeFor: anAmount 
-	self shouldBeImplemented.
-	amount := anAmount.! !
-!DepositTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:50:19' prior: 50889842!
-initializeFor: anAmount 
-
-	amount := anAmount.! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:50:20'!
-ERROR!
-!WithdrawTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:50:25'!
-transferLeg
-	self shouldBeImplemented.! !
-!WithdrawTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 20:50:30' prior: 50889857!
-transferLeg
-! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:50:36'!
-FAILURE!
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:50:42'!
-FAILURE!
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 20:50:42'!
-FAILURE!
-!DepositTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 20:51:03'!
-transferLeg
-! !
-
-!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test08UnaTransferenciaConMontoCeroEsInvalida stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test09UnaTransferenciaConMontoNegativoEsInvalida stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test10 stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test11SePuedeHacerTransferenciaEnDescubierto stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test12LaTransferenciaEntreCuentasQuedaRegistradaEnAmbasCuentas stamp: 'ERMC 5/29/2021 21:39:28'!
-PASSED!
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 21:39:28'!
-FAILURE!
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 21:39:28'!
-FAILURE!
-!Transfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 21:50:12' prior: 50889757!
-initializeWithAmount: anAmountToTransfer from: anOriginAccount to: aDstAccount 
-	
-	value _ anAmountToTransfer.
-	withdrawLeg _ WithdrawTransfer register: self on: anOriginAccount.
-	depositLeg _ DepositTransfer register: self on: aDstAccount.! !
-!DepositTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 21:50:26' prior: 50889848!
-initializeFor: anAmount 
-
-	amount := anAmount.! !
-
-!classDefinition: #DepositTransfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 21:50:29'!
-AccountTransaction subclass: #DepositTransfer
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!DepositTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 21:50:29' prior: 50889946!
-initializeFor: anAmount 
-
-	transfer := anAmount.! !
-!DepositTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 21:50:48' prior: 50889959!
-initializeFor: aTransfer 
-
-	transfer := aTransfer.! !
-!WithdrawTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 21:50:59' prior: 50889811!
-initializeFor: aTransfer 
-
-	amount _ aTransfer.! !
-
-!classDefinition: #WithdrawTransfer category: 'Portfolio-Solucion' stamp: 'ERMC 5/29/2021 21:51:04'!
-AccountTransaction subclass: #WithdrawTransfer
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!WithdrawTransfer methodsFor: 'as yet unclassified' stamp: 'ERMC 5/29/2021 21:51:04' prior: 50889969!
-initializeFor: aTransfer 
-
-	transfer _ aTransfer.! !
-!DepositTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 21:53:54' prior: 50889878!
-transferLeg
-
-	^ transfer withdrawLeg
-! !
-!WithdrawTransfer methodsFor: 'initialization' stamp: 'ERMC 5/29/2021 21:54:10' prior: 50889862!
-transferLeg
-	
-	^transfer depositLeg ! !
-
-!testRun: #ReceptiveAccountTest #test13EnUnaTransferenciaAmbasCuentasConocenSusPatas stamp: 'ERMC 5/29/2021 21:54:16'!
-PASSED!
-
-----STARTUP---- (1 June 2021 21:13:14) as C:\Users\sabri\OneDrive\Desktop\SegundaParte\windows64\CuisUniversity-4532.image!
-
-
 ----End fileIn of C:\Users\sabri\Downloads\isw1-ejercicios-main (9)\isw1-ejercicios-main\18-Portfolio 2\Portfolio-Solucion.st----!
 !ReceptiveAccountTest methodsFor: 'tests' stamp: 'sgs 6/1/2021 21:17:06'!
 test14
@@ -861,7 +195,7 @@ test02UnaCuentaConUnDeposito
 	
 	Deposit register: 100 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100' with: 'Balance = 0'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100' with: 'Balance = 0'.
 
 	self assert: account accountSummary equals: expectiveReport.
 ! !
@@ -872,7 +206,7 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por', transaction value asString, '.']
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por', transaction value asString, '.']
 		].
 	summary add: 'Balance =', self balance asString, '.'.! !
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'sgs 6/1/2021 21:35:36' prior: 50885174!
@@ -882,7 +216,7 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por', transaction value asString, '.']
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por', transaction value asString, '.']
 		].
 	summary add: 'Balance =', self balance asString.
 	
@@ -896,7 +230,7 @@ test02UnaCuentaConUnDeposito
 	
 	Deposit register: 100 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 0'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Balance = 0'.
 
 	self assert: account accountSummary equals: expectiveReport.
 ! !
@@ -1003,7 +337,7 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por', transaction value asString, '.']
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por', transaction value asString, '.']
 		].
 	summary add: 'Balance = ', self balance asString.
 	
@@ -1111,7 +445,7 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.']
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.']
 		].
 	summary add: 'Balance = ', self balance asString.
 	
@@ -1223,7 +557,7 @@ test02UnaCuentaConUnDeposito
 	
 	Deposit register: 100 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Balance = 100'.
 
 	self assert: account accountSummary equals: expectiveReport.
 ! !
@@ -1329,7 +663,7 @@ test02UnaCuentaConUnaExtraccion
 	
 	Deposit register: 100 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Balance = 100'.
 
 	self assert: account accountSummary equals: expectiveReport.
 ! !
@@ -1343,7 +677,7 @@ test02UnaCuentaConUnaExtraccion
 	Deposit register: 100 on: account.
 	Withdraw  register: 50 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Balance = 50' .
 
 	self assert: account accountSummary equals: expectiveReport.
 ! !
@@ -1357,7 +691,7 @@ test03UnaCuentaConUnaExtraccion
 	Deposit register: 100 on: account.
 	Withdraw  register: 50 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Balance = 50' .
 
 	self assert: account accountSummary equals: expectiveReport.
 ! !
@@ -1372,7 +706,7 @@ test02UnaCuentaConUnaExtraccion
 	Deposit register: 100 on: account.
 	Withdraw  register: 50 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Balance = 50' .
 
 	self assert: account accountSummary equals: expectiveReport.
 !
@@ -1383,8 +717,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		].
 	summary add: 'Balance = ', self balance asString.
 	
@@ -1497,7 +831,7 @@ test04
 	
 	account2 := ReceptiveAccount new.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Balance = 50' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -1515,7 +849,7 @@ test04
 	Transfer register: 20 from: account1 to: account2.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 50' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -1526,8 +860,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -1647,8 +981,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -2206,7 +1540,7 @@ test04
 	Transfer register: 20 from: account1 to: account2.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -2321,8 +1655,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -2434,8 +1768,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -2455,7 +1789,7 @@ test04
 	Transfer register: 30 from: account1 to: account2.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -2473,7 +1807,7 @@ test04
 	Transfer register: 20 from: account1 to: account2.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -2586,8 +1920,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -2707,7 +2041,7 @@ test05
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 30' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 30' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -2726,7 +2060,7 @@ test05
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -2875,7 +2209,7 @@ test07
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	self assert: account1 accountSummary equals: expectiveReport.
 ! !
@@ -2897,7 +2231,7 @@ test07
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	self assert: portfolio accountSummary equals: expectiveReport.
 ! !
@@ -2908,8 +2242,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	accounts do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -3033,8 +2367,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	accounts do: [:anAccounts |
-		(anAccounts isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', anAccounts value asString, '.'].
-		(anAccounts isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', anAccounts value asString, '.'].
+		(anAccounts isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', anAccounts value asString, '.'].
+		(anAccounts isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', anAccounts value asString, '.'].
 		(anAccounts isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', anAccounts transfer value asString, '.'].
 		(anAccounts isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', anAccounts transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -3047,8 +2381,8 @@ accountSummary
 	
 	summary _ OrderedCollection new.
 	accounts do: [:anAccount |
-		(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', anAccount value asString, '.'].
-		(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', anAccount value asString, '.'].
+		(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', anAccount value asString, '.'].
+		(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', anAccount value asString, '.'].
 		(anAccount isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', anAccount transfer value asString, '.'].
 		(anAccount isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', anAccount transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -3062,8 +2396,8 @@ accountSummary
 	summary _ OrderedCollection new.
 	accounts do: [:anAccount |
 		(anAccount isKindOf: ReceptiveAccount) ifTrue: [
-		(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', anAccount value asString, '.'].
-		(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', anAccount value asString, '.'].
+		(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', anAccount value asString, '.'].
+		(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', anAccount value asString, '.'].
 		(anAccount isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', anAccount transfer value asString, '.'].
 		(anAccount isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', anAccount transfer value asString, '.'].	
 			]
@@ -3190,8 +2524,8 @@ accountSummary
 	summary _ OrderedCollection new.
 	accounts do: [:anAccount |
 		(anAccount isKindOf: ReceptiveAccount) ifTrue: [
-			(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', anAccount value asString, '.'].
-			(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', anAccount value asString, '.'].
+			(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', anAccount value asString, '.'].
+			(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', anAccount value asString, '.'].
 			(anAccount isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', anAccount transfer value asString, '.'].
 			(anAccount isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', anAccount transfer value asString, '.'].	
 			]
@@ -3240,7 +2574,7 @@ test07PortfolioConUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	self assert: portfolio accountSummary equals: expectiveReport.
 ! !
@@ -3263,7 +2597,7 @@ test07
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	self assert: portfolio accountSummary equals: expectiveReport.
 !
@@ -3522,8 +2856,8 @@ accountSummary
 	summary _ OrderedCollection new.
 	accounts do: [:anAccount |
 		(anAccount isKindOf: ReceptiveAccount) ifTrue: [
-			(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', anAccount value asString, '.'].
-			(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', anAccount value asString, '.'].
+			(anAccount isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', anAccount value asString, '.'].
+			(anAccount isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', anAccount value asString, '.'].
 			(anAccount isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', anAccount transfer value asString, '.'].
 			(anAccount isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', anAccount transfer value asString, '.'].	
 			]
@@ -3540,8 +2874,8 @@ accountSummary
 	
 	transactions do:[:aTransaction |aTransaction addToAccountSummary: summary].
 	transactions do: [:transaction |
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].		].
 	summary add: 'Balance = ', self balance asString.
@@ -3563,8 +2897,8 @@ accountSummary
 	
 	
 	"
-		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depósito por ', transaction value asString, '.'].
-		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracción por ', transaction value asString, '.'].
+		(transaction isKindOf: Deposit) ifTrue: [summary add: 'Depï¿½sito por ', transaction value asString, '.'].
+		(transaction isKindOf: Withdraw ) ifTrue: [summary add: 'Extracciï¿½n por ', transaction value asString, '.'].
 		(transaction isKindOf: WithdrawTransfer ) ifTrue: [summary add: 'Salida por transferencia de ', transaction transfer value asString, '.'].
 		(transaction isKindOf: DepositTransfer ) ifTrue: [summary add: 'Entrada por transferencia de ', transaction transfer value asString, '.'].	"! !
 !AccountTransaction methodsFor: 'nil' stamp: 'sgs 6/1/2021 22:27:29'!
@@ -3574,15 +2908,15 @@ addToAccountSummary: aReportSummary
 !Deposit methodsFor: 'nil' stamp: 'sgs 6/1/2021 22:28:28' overrides: 50888419!
 addToAccountSummary: aReportSummary
 	
-	^aReportSummary add: 'Depósito por ', value asString, '.'! !
+	^aReportSummary add: 'Depï¿½sito por ', value asString, '.'! !
 !Deposit methodsFor: 'as yet unclassified' stamp: 'sgs 6/1/2021 22:28:51' prior: 50888424 overrides: 50888419!
 addToAccountSummary: aReportSummary
 	
-	^aReportSummary add: 'Depósito por ', value asString, '.'! !
+	^aReportSummary add: 'Depï¿½sito por ', value asString, '.'! !
 !Withdraw methodsFor: 'nil' stamp: 'sgs 6/1/2021 22:29:14' overrides: 50888419!
 addToAccountSummary: aReportSummary
 	
-	^aReportSummary add: 'Extracción por ', value asString, '.'! !
+	^aReportSummary add: 'Extracciï¿½n por ', value asString, '.'! !
 !DepositTransfer methodsFor: 'nil' stamp: 'sgs 6/1/2021 22:29:51' overrides: 50888419!
 addToAccountSummary: aReportSummary
 	
@@ -3779,7 +3113,7 @@ test02UnaCuentaConUnDeposito
 	
 	Deposit register: 100 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Balance = 100'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Balance = 100'.
 
 	accountSummary _ AccountSummary from: account.
 
@@ -3795,7 +3129,7 @@ test03UnaCuentaConUnaExtraccion
 	Deposit register: 100 on: account.
 	Withdraw  register: 50 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Balance = 50' .
 	accountSummary _ AccountSummary from: account.
 
 	self assert: accountSummary report  equals: expectiveReport.
@@ -3811,7 +3145,7 @@ test03UnaCuentaConUnaExtraccion
 	Deposit register: 100 on: account.
 	Withdraw  register: 50 on: account.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Balance = 50' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Balance = 50' .
 	
 	accountSummary _ AccountSummary from: account.
 
@@ -3831,7 +3165,7 @@ test04
 	
 	Transfer register: 20 from: account1 to: account2.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
 	accountSummary _ AccountSummary from: account.
 
 	self assert: accountSummary report  equals: expectiveReport.
@@ -3850,7 +3184,7 @@ test04
 	
 	Transfer register: 20 from: account1 to: account2.
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Balance = 30' .
 	
 	accountSummary _ AccountSummary from: account1.
 
@@ -3872,7 +3206,7 @@ test05
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	accountSummary _ AccountSummary from: account1.
 
@@ -3908,7 +3242,7 @@ test07PortfolioConUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	accountSummary _ AccountSummary from: portfolio .
 
@@ -4885,7 +4219,7 @@ test07PortfolioConUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	accountSummary _ AccountSummary from: portfolio .
 
@@ -5152,7 +4486,7 @@ test07PortfolioConUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	accountSummary _ AccountSummary from: portfolio .
 	self assert: accountSummary report  equals: expectiveReport.
@@ -5173,7 +4507,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	accountSummary _ AccountSummary from: portfolio .
 	self assert: accountSummary report  equals: expectiveReport.
@@ -5194,7 +4528,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	portfolio add: account2.
 	accountSummary _ AccountSummary from: portfolio .
@@ -5216,7 +4550,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	portfolio add: account2.
 	
@@ -5239,7 +4573,7 @@ test09PortfolioConPorfoliosYCuentas
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	portfolio add: account2.
 	
@@ -5262,7 +4596,7 @@ test09PortfolioConPorfoliosYCuentas
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	portfolio add: portfolio2.
 	
@@ -5286,7 +4620,7 @@ test09PortfolioConPorfoliosYCuentas
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.' with: 'Balance = 60' .
 
 	portfolio add: portfolio2.
 	
@@ -5310,7 +4644,7 @@ test09PortfolioConPorfoliosYCuentas
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'  with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'  with: 'Balance = 60' .
 
 	portfolio add: portfolio2.
 	
@@ -5464,7 +4798,7 @@ test09PortfolioConPorfoliosYCuentas
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'  with: 'Balance = 60' .
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'  with: 'Balance = 60' .
 
 	portfolio add: portfolio2.
 	
@@ -5487,7 +4821,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
 	expectiveReport add: 'Salida por transferencia de 20.'.
 	expectiveReport  add: 'Entrada por transferencia de 30.'.
 	expectiveReport  add: 'Balance = 60' .
@@ -5632,7 +4966,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Salida por transferencia de 30.'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Salida por transferencia de 30.'.
 	expectiveReport add: 'Entrada por transferencia de 20.'.
 	expectiveReport  add: 'Entrada por transferencia de 30.'.
 	expectiveReport  add: 'Balance = 60' .
@@ -5661,7 +4995,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
 	expectiveReport add: 'Entrada por transferencia de 20.'.
 	expectiveReport  add: 'Salida por transferencia de 30.'.
 	expectiveReport  add: 'Balance = 60' .
@@ -5690,7 +5024,7 @@ test08PortfolioConMasDeUnaCuenta
 	Transfer register: 30 from: account2 to: account1.
 	
 
-	expectiveReport _ OrderedCollection with: 'Depósito por 100.' with: 'Extracción por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
+	expectiveReport _ OrderedCollection with: 'Depï¿½sito por 100.' with: 'Extracciï¿½n por 50.' with: 'Salida por transferencia de 20.' with: 'Entrada por transferencia de 30.'.
 	expectiveReport add: 'Entrada por transferencia de 20.'.
 	expectiveReport  add: 'Salida por transferencia de 30.'.
 	expectiveReport  add: 'Balance = 50' .
