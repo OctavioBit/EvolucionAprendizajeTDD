@@ -9,7 +9,8 @@ def printCorrectEx(exercise):
 
     MAX_STATE_TIME=60
         
-    aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\1C2021EjerciciosTDD.csv")
+    #aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\1C2021EjerciciosTDD.csv")
+    aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\2C2020\\2C2020EjerciciosTDD.csv")
     #aDataFrame = aDataFrame[aDataFrame["Exercise"]==exercise]
     aDataFrame = aDataFrame[aDataFrame["Time"] > 0]
     aDataFrame = aDataFrame[aDataFrame["Time"] < MAX_STATE_TIME]
@@ -43,6 +44,7 @@ printCorrectEx("MR")
 #printCorrectEx("PO1")
 #printCorrectEx("PO2")
 #printCorrectEx("MRR")
+#printCorrectEx("TEL")
 #printCorrectEx("TL1")
 #printCorrectEx("TL2")
 #printCorrectEx("TL3")
