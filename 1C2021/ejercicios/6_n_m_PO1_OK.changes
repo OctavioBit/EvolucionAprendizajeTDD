@@ -1,3 +1,2054 @@
+----STARTUP---- (17 May 2021 20:11:44) as /home/lbiglieri/Downloads/build/CuisUniversity/imagen1/CuisUniversity-4532.image!
+
+
+----End fileIn of /home/lbiglieri/Downloads/build/CuisUniversity/imagen1/Portfolio-Ejercicio.st----!
+
+----SNAPSHOT----(17 May 2021 20:13:44) CuisUniversity-4532.image priorSource: 16885915!
+
+----SNAPSHOT----(17 May 2021 20:13:46) CuisUniversity-4532.image priorSource: 16893358!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LB 5/17/2021 20:22:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 20:26:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 20:26:24'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 20:26:24'!
+FAILURE!
+!Withdraw methodsFor: 'initialization' stamp: 'LB 5/17/2021 20:26:46' prior: 50859506!
+initializeFor: aValue
+
+	value := aValue * (-1)! !
+!Withdraw methodsFor: 'initialization' stamp: 'LB 5/17/2021 20:26:51' prior: 50859590!
+initializeFor: aValue
+
+	value := aValue * -1! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 20:26:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 20:27:00'!
+PASSED!
+!Withdraw methodsFor: 'initialization' stamp: 'LB 5/17/2021 20:27:49' prior: 50859595!
+initializeFor: aValue
+
+	value := aValue! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 20:35:21' prior: 50859555!
+balance
+	|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 20:35:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LB 5/17/2021 20:35:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LB 5/17/2021 20:36:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LB 5/17/2021 20:37:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LB 5/17/2021 20:37:55'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 20:42:56'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'LB 5/17/2021 20:44:32'!
+test01
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 20:47:34'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 20:47:10' prior: 50859657!
+test01
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 0 equals: portfolio receptiveAccounts size.
+	self assert: 0 equals: portfolio portfolios size.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 20:48:23' prior: 50859668!
+test01
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 0 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:48:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:48:32'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:48:43'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:49:01'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:49:07' prior: 50859693!
+balance
+	^0! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:49:13'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:49:26'!
+totalAccounts
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:49:30' prior: 50859702!
+totalAccounts
+	^0! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:49:32'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:49:41'!
+totalPortfolios
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:49:50' prior: 50859711!
+totalPortfolios
+	^0! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:49:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:49:58'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 20:50:53'!
+test02
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:50:57'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:51:07'!
+addAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 20:53:10'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'totalAccounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:53:09' prior: 50859736!
+addAccount: aReceptiveAccount 
+	totalAccounts := 1.! !
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:53:53'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:53:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:54:04'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:54:29'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:54:33'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 20:55:09' prior: 50859706!
+totalAccounts
+	^totalAccounts! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:55:17'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:55:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:55:17'!
+FAILURE!
+!Portfolio methodsFor: 'nil' stamp: 'LB 5/17/2021 20:55:41' overrides: 16896425!
+initialize
+	totalAccounts := 0! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 20:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 20:55:46'!
+PASSED!
+
+self!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 20:59:32'!
+test03
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	
+	self should: [portfolio addAccount: account] raise: Error - MessageNotUnderstood withMessageText: Portfolio errorAccountAlreadyAddedMessage.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 20:59:36'!
+ERROR!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 20:59:36'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 20:59:56'!
+errorAccountAlreadyAddedMessage
+	self shouldBeImplemented.! !
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:00:56'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:01:12' prior: 50859805!
+errorAccountAlreadyAddedMessage
+	^'Error account already added to this portfolio.'! !
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:01:13'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 21:02:27' prior: 50859748!
+addAccount: aReceptiveAccount 
+	totalAccounts = 1 ifTrue: [^self error: self class errorAccountAlreadyAddedMessage].
+	totalAccounts := 1 ! !
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:02:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:02:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:02:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 21:02:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:02:30'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:04:33'!
+test04
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio addAccount: account.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:04:34'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:04:47'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:04:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:05:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:05:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 21:05:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:05:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:05:01'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:05:01'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:05:23'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:05:35'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 21:07:36'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'totalAccounts balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 21:07:35' prior: 50859821!
+addAccount: aReceptiveAccount 
+	balance := aReceptiveAccount balance.
+	totalAccounts = 1 ifTrue: [^self error: self class errorAccountAlreadyAddedMessage].
+	totalAccounts := 1 ! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 21:07:44' prior: 50859697!
+balance
+	^balance ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:08:04' prior: 50859775 overrides: 16896425!
+initialize
+	totalAccounts := 0.
+	balance := 0! !
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:08:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:08:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 21:08:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:08:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:08:13'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:08:51'!
+test05
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 21:08:53'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 21:09:03'!
+FAILURE!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 21:09:36'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'totalAccounts balance account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 21:09:35' prior: 50859886!
+addAccount: aReceptiveAccount 
+	account := aReceptiveAccount.
+	totalAccounts = 1 ifTrue: [^self error: self class errorAccountAlreadyAddedMessage].
+	totalAccounts := 1 ! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 21:09:46' prior: 50859895!
+balance
+	^account balance. ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:10:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 21:10:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:10:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:10:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 21:10:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:10:30'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:10:53' prior: 50859900 overrides: 16896425!
+initialize
+	totalAccounts := 0.
+	balance := 0.
+	account := ReceptiveAccount new.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:10:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 21:10:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:10:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:10:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 21:10:56'!
+PASSED!
+
+----End fileIn of /home/lbiglieri/Downloads/build/CuisUniversity/imagen1/Packages/TerseGuide.pck.st----!
+
+OrderedCollection!
+!AccountTransaction methodsFor: 'nil' stamp: 'LB 5/17/2021 21:43:35'!
++ anAccountTransaction! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:44:44' prior: 50862912!
++ anAccountTransaction
+	self subclassResponsibility ! !
+
+OrderedCollection!
+!Deposit methodsFor: 'nil' stamp: 'LB 5/17/2021 21:48:50' overrides: 50862916!
++ aTransactionValue
+	^ aTransactionValue + value.! !
+!Withdraw methodsFor: 'value' stamp: 'LB 5/17/2021 21:49:11' overrides: 50862916!
++ aTransactionValue
+	^ aTransactionValue - value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:50:11' prior: 50859612!
+balance
+	"|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])"
+	
+	^ transactions sum: [ :aTransaction | aTransaction ] ifEmpty: [ 0 ].! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LB 5/17/2021 21:50:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:50:15'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:50:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LB 5/17/2021 21:50:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LB 5/17/2021 21:50:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LB 5/17/2021 21:50:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LB 5/17/2021 21:50:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:50:15'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:52:12' prior: 50862931!
+balance
+	"|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])"
+	|sum|
+	sum := 0.
+	^transactions do: [:aTransaction | sum _ aTransaction + sum].	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LB 5/17/2021 21:52:17'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:52:17'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:52:17'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LB 5/17/2021 21:52:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LB 5/17/2021 21:52:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LB 5/17/2021 21:52:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LB 5/17/2021 21:52:17'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:52:58' prior: 50862978!
+balance
+	"|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])"
+	|sum|
+	sum := 0.
+	^transactions do: [:aTransaction | sum _ aTransaction + sum].	
+	"^transactions inject"! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:53:19'!
+addTo: aBalanceValue
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransaction #+ stamp: 'LB 5/17/2021 21:53:25'!
++ anAccountTransaction
+	self subclassResponsibility !
+
+!methodRemoval: Deposit #+ stamp: 'LB 5/17/2021 21:53:37'!
++ aTransactionValue
+	^ aTransactionValue + value.!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:53:54' overrides: 50863040!
+addTo: aBalanceValue
+	^aBalanceValue + value! !
+!Withdraw methodsFor: 'value' stamp: 'LB 5/17/2021 21:54:04' overrides: 50863040!
+addTo: aBalanceValue
+	^aBalanceValue - value! !
+
+!methodRemoval: Withdraw #+ stamp: 'LB 5/17/2021 21:54:09'!
++ aTransactionValue
+	^ aTransactionValue - value.!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:54:58' prior: 50863022!
+balance
+	"|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])"
+
+	^transactions inject: 0 into: [:balance :transaction | transaction addTo: balance ].! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LB 5/17/2021 21:54:59'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:55:59' prior: 50863066!
+balance
+	"|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])"
+	|sum|
+	sum := 0.
+	^transactions do:  [ :aTransaction | sum := aTransaction addTo: sum ]
+	"^transactions inject: 0 into: [:balance :transaction | transaction addTo: balance ]."! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LB 5/17/2021 21:56:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:56:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:56:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LB 5/17/2021 21:56:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LB 5/17/2021 21:56:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LB 5/17/2021 21:56:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LB 5/17/2021 21:56:00'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:56:15' prior: 50863110!
+balance
+	"|deposits withdraws total|
+	deposits := transactions  select: 	[:aTransaction | aTransaction class = Deposit].
+	withdraws := transactions  select: 	[:aTransaction | aTransaction class = Withdraw].
+	total := deposits sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ].
+	^ total - (withdraws sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ])"
+	|sum|
+	sum := 0.
+	transactions do:  [ :aTransaction | sum := aTransaction addTo: sum ].
+	^sum.
+	"^transactions inject: 0 into: [:balance :transaction | transaction addTo: balance ]."! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'LB 5/17/2021 21:56:18'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LB 5/17/2021 21:57:15' prior: 50863157!
+balance
+	^transactions inject: 0 into: [:balance :transaction | transaction addTo: balance ].! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 21:57:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 21:57:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 21:57:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 21:57:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 21:57:58'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 21:59:02'!
+test06
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 21:59:06'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 22:00:47'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'totalAccounts balance account accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 22:00:45' prior: 50859941!
+addAccount: aReceptiveAccount 
+	(accounts includes: aReceptiveAccount) ifTrue: [^self error: self class errorAccountAlreadyAddedMessage].
+	accounts add: aReceptiveAccount.
+	totalAccounts := totalAccounts + 1.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/17/2021 22:01:06' prior: 50859968 overrides: 16896425!
+initialize
+	totalAccounts := 0.
+	balance := 0.
+	accounts := OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:01:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:01:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 22:01:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 22:01:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 22:01:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 22:01:13'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 22:03:52' prior: 50859949!
+balance
+	^accounts sum: [:anAccount | account balance] . ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:03:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:03:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 22:03:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 22:03:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 22:03:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 22:03:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:04:05'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:04:05'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 22:04:35' prior: 50863279!
+balance
+	^accounts sum: [:anAccount | account balance] ifEmpty: [^0]. ! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 22:04:38' prior: 50863302!
+balance
+	^accounts sum: [:anAccount | account balance] ifEmpty: [0]. ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:04:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:04:40'!
+ERROR!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 22:04:40'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 22:04:40'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 22:04:40'!
+ERROR!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 22:04:40'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:04:45'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:04:45'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:05:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:05:40'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:05:40'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 22:05:57' prior: 50863307!
+balance
+	^accounts sum: [:anAccount | account balance] ifEmpty: [^0]. ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:05:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:05:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 22:05:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 22:05:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 22:05:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 22:05:59'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/17/2021 22:06:16' prior: 50863337!
+balance
+	^accounts sum: [:anAccount | anAccount balance] ifEmpty: [0]. ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:06:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:06:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 22:06:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 22:06:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 22:06:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 22:06:18'!
+PASSED!
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'totalAccounts balance accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/17/2021 22:07:25'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'totalAccounts balance accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/17/2021 22:07:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/17/2021 22:07:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/17/2021 22:07:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/17/2021 22:07:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/17/2021 22:07:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/17/2021 22:07:30'!
+PASSED!
+
+----QUIT----(17 May 2021 22:13:16) CuisUniversity-4532.image priorSource: 16893447!
+
+----STARTUP---- (18 May 2021 17:48:29) as /home/lbiglieri/Downloads/build/CuisUniversity/imagen1/CuisUniversity-4532.image!
+
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:01:52' prior: 50859764!
+totalAccounts
+	^accounts size! !
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/18/2021 18:01:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/18/2021 18:01:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/18/2021 18:01:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/18/2021 18:01:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/18/2021 18:01:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/18/2021 18:01:54'!
+PASSED!
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/18/2021 18:02:01'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:02:08' prior: 50863249!
+addAccount: aReceptiveAccount 
+	(accounts includes: aReceptiveAccount) ifTrue: [^self error: self class errorAccountAlreadyAddedMessage].
+	accounts add: aReceptiveAccount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:02:22' prior: 50863260 overrides: 16896425!
+initialize
+	accounts := OrderedCollection new.! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'LB 5/18/2021 18:02:39'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/18/2021 18:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/18/2021 18:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/18/2021 18:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/18/2021 18:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/18/2021 18:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/18/2021 18:02:47'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:08:37'!
+test07
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: portfolio includes: account.
+	self assert: portfolio includes: account2.! !
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:08:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:08:54'!
+ERROR!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:09:06'!
+ERROR!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:09:22'!
+ERROR!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:09:24'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:09:34'!
+includes: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:09:56' prior: 50863508!
+includes: aReceptiveAccount 
+	^true! !
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:09:58'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:11:18' prior: 50863478!
+test07
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: (portfolio includes: account).
+	self assert: (portfolio includes: account2).! !
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:11:20'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:11:40'!
+test08
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: (portfolio includes: account).
+	self deny: (portfolio includes: account2).! !
+
+!testRun: #PortfolioTest #test08 stamp: 'LB 5/18/2021 18:11:41'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:12:30' prior: 50863513!
+includes: aReceptiveAccount 
+	^accounts includes: aReceptiveAccount ! !
+
+!testRun: #PortfolioTest #test08 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LB 5/18/2021 18:12:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'LB 5/18/2021 18:12:33'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:14:44'!
+test01NewPortfolioShouldBeEmptyAndHaveZeroBalance
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 0 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!methodRemoval: PortfolioTest #test01 stamp: 'LB 5/18/2021 18:14:44'!
+test01
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 0 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:16:17'!
+test02AddEmptyAccountShouldRegisterAccountWithNoBalance
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!methodRemoval: PortfolioTest #test02 stamp: 'LB 5/18/2021 18:16:17'!
+test02
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:17:54'!
+test03PortfolioCantAddSameAccountMoreThanOnce
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	
+	self should: [portfolio addAccount: account] raise: Error - MessageNotUnderstood withMessageText: Portfolio errorAccountAlreadyAddedMessage.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!methodRemoval: PortfolioTest #test03 stamp: 'LB 5/18/2021 18:17:54'!
+test03
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	
+	self should: [portfolio addAccount: account] raise: Error - MessageNotUnderstood withMessageText: Portfolio errorAccountAlreadyAddedMessage.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:20:26'!
+test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio addAccount: account.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!methodRemoval: PortfolioTest #test04 stamp: 'LB 5/18/2021 18:20:26'!
+test04
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio addAccount: account.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:21:01'!
+test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!methodRemoval: PortfolioTest #test05 stamp: 'LB 5/18/2021 18:21:01'!
+test05
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:22:03'!
+test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!methodRemoval: PortfolioTest #test06 stamp: 'LB 5/18/2021 18:22:03'!
+test06
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:22:37'!
+test07PortfolioShouldKnowItsAccounts
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: (portfolio includes: account).
+	self assert: (portfolio includes: account2).! !
+
+!methodRemoval: PortfolioTest #test07 stamp: 'LB 5/18/2021 18:22:37'!
+test07
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	Deposit register: 50 on: account2.
+
+	self assert: 150 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: (portfolio includes: account).
+	self assert: (portfolio includes: account2).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:23:07'!
+test08PortfolioShouldKnowOnlyItsAccounts
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: (portfolio includes: account).
+	self deny: (portfolio includes: account2).! !
+
+!methodRemoval: PortfolioTest #test08 stamp: 'LB 5/18/2021 18:23:07'!
+test08
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+
+	self assert: 100 equals: portfolio balance.
+	self assert: 1 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.
+	self assert: (portfolio includes: account).
+	self deny: (portfolio includes: account2).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:28:55'!
+test09
+	| portfolio account account2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	Withdraw register: 50 on: account2.
+	portfolio addAccount: account2.
+
+	self assert: 50 equals: portfolio balance.
+	self assert: 2 equals: portfolio totalAccounts.
+	self assert: 0 equals: portfolio totalPortfolios.! !
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:29:04'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:34:11' prior: 50863861!
+test09
+	| portfolio account aTransaction|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	aTransaction := Deposit register: 100 on: account.
+	
+	self assert: (portfolio hasRegistered: aTransaction).! !
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:34:12'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:34:20'!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:34:34' prior: 50863925!
+hasRegistered: aDeposit 
+	^true! !
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:34:40'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:34:56'!
+test10
+	| portfolio account aTransaction|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	aTransaction := Deposit register: 100 on: account.
+	
+	self deny: (portfolio hasRegistered: aTransaction).! !
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:34:58'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:35:40' prior: 50863930!
+hasRegistered: aTransaction
+	^(accounts at: 1) hasRegistered: aTransaction.! !
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:35:41'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:36:58' prior: 50863982!
+hasRegistered: aTransaction
+	accounts size = 0 ifTrue: [^false].
+	^(accounts at: 1) hasRegistered: aTransaction.! !
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:36:58'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:38:31'!
+test11
+	| portfolio account aTransaction account2 aTransaction2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	aTransaction := Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	aTransaction2 := Withdraw register: 100 on: account.
+	
+	self assert: (portfolio hasRegistered: aTransaction).
+	self assert: (portfolio hasRegistered: aTransaction2).! !
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:38:33'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:38:55' prior: 50864033!
+test11
+	| portfolio account aTransaction account2 aTransaction2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	aTransaction := Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	aTransaction2 := Withdraw register: 100 on: account2.
+	
+	self assert: (portfolio hasRegistered: aTransaction).
+	self assert: (portfolio hasRegistered: aTransaction2).! !
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:38:56'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:41:38' prior: 50863990!
+hasRegistered: aTransaction
+	accounts size = 0 ifTrue: [^false].
+	accounts detect: [:anAccount | anAccount includes: aTransaction] ifNone: [^false].
+	^true! !
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:41:39'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:42:01' prior: 50864110!
+hasRegistered: aTransaction
+	accounts size = 0 ifTrue: [^false].
+	accounts detect: [:anAccount | anAccount hasRegistered: aTransaction] ifNone: [^false].
+	^true! !
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:42:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:42:06'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:42:14' prior: 50864121!
+hasRegistered: aTransaction
+	accounts detect: [:anAccount | anAccount hasRegistered: aTransaction] ifNone: [^false].
+	^true! !
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:42:45'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:44:13'!
+test12
+	| portfolio account aTransaction|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	aTransaction := Deposit register: 100 on: account.
+	
+	self assert: (portfolio transactions includes: aTransaction).! !
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 18:44:14'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:45:19'!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:46:29' prior: 50864265!
+transactions
+	^#((accounts at:1) transactions at: 1)! !
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 18:46:30'!
+FAILURE!
+
+portfolio transactions!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:47:26' prior: 50864269!
+transactions
+	^(accounts at:1) transactions! !
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:47:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 18:47:29'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:48:05'!
+test13
+	| portfolio account aTransaction|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	aTransaction := Deposit register: 100 on: account.
+	
+	self deny: (portfolio transactions includes: aTransaction).! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 18:48:09'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 18:48:25'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 18:48:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 18:48:35'!
+ERROR!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:49:45' prior: 50864277!
+transactions
+	accounts size = 0 ifTrue: [^OrderedCollection new].
+	^(accounts at:1) transactions! !
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 18:49:46'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'LB 5/18/2021 18:50:07'!
+test14
+	| portfolio account aTransaction account2 aTransaction2|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	portfolio addAccount: account.
+	aTransaction := Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount new.
+	portfolio addAccount: account2.
+	aTransaction2 := Withdraw register: 100 on: account2.
+	
+	self assert: (portfolio transactions includes: aTransaction).
+	self assert: (portfolio transactions includes: aTransaction2).! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 18:50:08'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:54:26' prior: 50864342!
+transactions
+	^accounts inject: OrderedCollection new into: [:totalTransactions :account | totalTransactions addAll: (account transactions)].! !
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:54:38' prior: 50864412!
+transactions
+	^accounts inject: OrderedCollection new into: [:transactions :account | transactions addAll: (account transactions)].! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 18:54:39'!
+FAILURE!
+
+portfolio transactions!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:56:08' prior: 50864419!
+transactions
+	^accounts inject: OrderedCollection new into: [:transactions :account | transactions addAllLast: (account transactions)].! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 18:56:09'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:57:08' prior: 50864429!
+transactions
+	^accounts inject: (OrderedCollection new) into: [:totalTransactions :account | totalTransactions addAllLast: (account transactions)].! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 18:57:11'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 18:57:24' prior: 50864439!
+transactions
+	^accounts inject: OrderedCollection new into: [:totalTransactions :account | totalTransactions addAllLast: (account transactions)].! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 18:59:22'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 19:01:42' prior: 50864449!
+transactions
+	^accounts inject: OrderedCollection new into: [:totalTransactions :account | 
+		account transactions do: [:aTransaction | totalTransactions add: aTransaction]].
+	
+	"totalTransactions addAllLast: (account transactions)]."! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 19:01:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:01:43'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:01:43'!
+FAILURE!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 19:03:04' prior: 50864459!
+transactions
+	"^accounts inject: OrderedCollection new into: [:totalTransactions :account | 
+		account transactions do: [:aTransaction | totalTransactions add: aTransaction]]."
+	| totalTransactions |
+	totalTransactions := OrderedCollection new.
+	^accounts do: [:account | totalTransactions addAllLast: (account transactions)].! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:03:06'!
+FAILURE!
+
+portfolio transactions!
+
+portfolio transactions!
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:05:03'!
+FAILURE!
+
+|lista1 lista2|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 addAll: lista1.
+lista2
+!
+
+|lista1 lista2 lista3 lista4|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista3 := OrderedCollection new.
+lista4 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 add: 4.
+lista2 add: 5.
+lista2 add: 6.
+lista3 add: lista1.
+lista3 add: lista2.
+lista4 addAll: lista3.
+lista4!
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:10:13'!
+FAILURE!
+
+|lista1 lista2 lista3 lista4|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista3 := OrderedCollection new.
+lista4 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 add: 4.
+lista2 add: 5.
+lista2 add: 6.
+lista3 add: lista1.
+lista3 add: lista2.
+lista3 do: [:l | lista4 addAll: l].
+lista4!
+
+|lista1 lista2 lista3 lista4|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista3 := OrderedCollection new.
+lista4 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 add: 4.
+lista2 add: 5.
+lista2 add: 6.
+lista3 add: lista1.
+lista3 add: lista2.
+lista3 do: [:l | lista4 addAllLast: l].
+lista4
+!
+
+|lista1 lista2 lista3 lista4|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista3 := OrderedCollection new.
+lista4 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 add: 4.
+lista2 add: 5.
+lista2 add: 6.
+lista3 add: lista1.
+lista3 add: lista2.
+lista3 do: [:l | lista4 addAllLast: l].!
+
+|lista1 lista2 lista3 lista4|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista3 := OrderedCollection new.
+lista4 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 add: 4.
+lista2 add: 5.
+lista2 add: 6.
+lista3 add: lista1.
+lista3 add: lista2.
+lista3 do: [:l | lista4 addAllLast: l].
+lista4!
+
+|lista1 lista2 lista3 lista4|
+lista1 := OrderedCollection new.
+lista2 := OrderedCollection new.
+lista3 := OrderedCollection new.
+lista4 := OrderedCollection new.
+lista1 add: 1.
+lista1 add: 2.
+lista1 add: 3.
+lista2 add: 4.
+lista2 add: 5.
+lista2 add: 6.
+lista3 add: lista1.
+lista3 add: lista2.
+lista3 do: [:l | lista4 addAllLast: l].!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 19:19:17' prior: 50864518!
+transactions
+	"^accounts inject: OrderedCollection new into: [:totalTransactions :account | 
+		account transactions do: [:aTransaction | totalTransactions add: aTransaction]]."
+	| totalTransactions |
+	totalTransactions := OrderedCollection new.
+	accounts do: [:account | totalTransactions addAll: (account transactions)].
+	^totalTransactions! !
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioShouldBeEmptyAndHaveZeroBalance stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddEmptyAccountShouldRegisterAccountWithNoBalance stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCantAddSameAccountMoreThanOnce stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioShouldBeAbleToAddAnAccountWithANonZeroBalance stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioShouldRecognizeTransactionInAnAlreadyExistingAccount stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioBalanceShouldBeTheSumOfItsAccountsBalances stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioShouldKnowItsAccounts stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioShouldKnowOnlyItsAccounts stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'LB 5/18/2021 19:19:18'!
+PASSED!
+!Portfolio methodsFor: 'xxx' stamp: 'LB 5/18/2021 19:20:24' prior: 50864608!
+transactions
+	| totalTransactions |
+	totalTransactions := OrderedCollection new.
+	accounts do: [:account | totalTransactions addAll: (account transactions)].
+	^totalTransactions! !
+
+----QUIT----(18 May 2021 19:22:05) CuisUniversity-4532.image priorSource: 17016043!
+
 ----STARTUP---- (20 May 2021 20:13:22) as /home/lbiglieri/Downloads/build/CuisUniversity/imagen1/CuisUniversity-4532.image!
 
 

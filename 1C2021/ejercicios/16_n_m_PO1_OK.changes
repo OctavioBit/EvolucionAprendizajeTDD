@@ -1,3 +1,978 @@
+----STARTUP---- (19 May 2021 15:47:24) as C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\windows64\CuisUniversity-4532.image!
+
+
+----End fileIn of C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\RepoDocenetes\2021-1c\17-Portfolio 1\Portfolio-Ejercicio.st----!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:16' prior: 50907419!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:19' prior: 50907427!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:23' prior: 50907436!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:26' prior: 50907446!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:28' prior: 50907456!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:30' prior: 50907469!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 200.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 15:56:34' prior: 50907481!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'Ciro 5/19/2021 15:56:38' prior: 50907622!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'Ciro 5/19/2021 15:56:44' prior: 50907628!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'Ciro 5/19/2021 15:56:50' prior: 50907613!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'Ciro 5/19/2021 15:56:54' prior: 50907618!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'Ciro 5/19/2021 15:56:58' prior: 50907608 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.! !
+!Withdraw methodsFor: 'initialization' stamp: 'Ciro 5/19/2021 15:57:02' prior: 50907573!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'Ciro 5/19/2021 15:57:08' prior: 50907578 overrides: 50907506!
+value
+
+	^ value! !
+!Deposit methodsFor: 'value' stamp: 'Ciro 5/19/2021 15:57:14' prior: 50907544 overrides: 50907506!
+value
+
+	^ value! !
+!Deposit methodsFor: 'initialization' stamp: 'Ciro 5/19/2021 15:57:17' prior: 50907539!
+initializeFor: aValue
+
+	value := aValue ! !
+!AccountTransaction methodsFor: 'value' stamp: 'Ciro 5/19/2021 15:57:22' prior: 50907506 overrides: 16881508!
+value 
+
+	self subclassResponsibility ! !
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'Ciro 5/19/2021 15:57:25' prior: 50907519!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+!Deposit class methodsFor: 'instance creation' stamp: 'Ciro 5/19/2021 15:57:30' prior: 50907556!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+!Withdraw class methodsFor: 'instance creation' stamp: 'Ciro 5/19/2021 15:57:33' prior: 50907590!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:08:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:08:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:08:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ciro 5/19/2021 16:08:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:08:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ciro 5/19/2021 16:08:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ciro 5/19/2021 16:08:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:08:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:08:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:08:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ciro 5/19/2021 16:09:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:09:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:10:12'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ciro 5/19/2021 16:10:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:10:12'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ciro 5/19/2021 16:10:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ciro 5/19/2021 16:10:34'!
+PASSED!
+
+----End fileIn of C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\windows64\Packages\TerseGuide.pck.st----!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'Ciro 5/19/2021 16:23:21' prior: 50907712!
+balance
+
+	^transactions
+		inject: 0
+		into: [:actualBalance :transaction | transaction modifyBalance: actualBalance]! !
+!AccountTransaction methodsFor: 'value' stamp: 'Ciro 5/19/2021 16:23:51'!
+modifyBalance: aBalance
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'value' stamp: 'Ciro 5/19/2021 16:24:13' prior: 50910801!
+modifyBalance: actualBalance
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'Ciro 5/19/2021 16:24:52' overrides: 50910806!
+modifyBalance: actualBalance
+
+	^ actualBalance + value! !
+!Withdraw methodsFor: 'value' stamp: 'Ciro 5/19/2021 16:25:02' overrides: 50910806!
+modifyBalance: actualBalance
+
+	^ actualBalance - value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ciro 5/19/2021 16:25:14'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'Ciro 5/19/2021 16:27:16'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'Ciro 5/19/2021 16:29:06'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'nil' stamp: 'Ciro 5/19/2021 16:28:48'!
+test01PortfolioHaveZeroAsBalanceWhenCreated 
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:29:09'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:29:24'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:29:32' prior: 50910877!
+balance
+	
+	^0! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:29:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:29:37'!
+PASSED!
+
+!methodRemoval: PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:29:55'!
+test01PortfolioHaveZeroAsBalanceWhenCreated 
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+!
+!PortfolioTest methodsFor: 'no messages' stamp: 'Ciro 5/19/2021 16:30:29'!
+test01PortfolioHaveZeroAsBalanceWhenCreated 
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:30:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:30:30'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:38:02'!
+test02AddNewReceptiveAccount
+
+	| portfolio receptiveAccount |
+	
+	portfolio _ Portfolio new.
+	receptiveAccount _ ReceptiveAccount new.
+	portfolio addAccount: receptiveAccount.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: (portfolio hasAccount: receptiveAccount).! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:39:41' prior: 50910914!
+test02AddNewReceptiveAccount
+
+	| portfolio receptiveAccount |
+	
+	portfolio _ Portfolio new.
+	receptiveAccount _ ReceptiveAccount new.
+	portfolio addAccount: receptiveAccount.
+
+	self assert: 0 equals: portfolio balance.
+	self assert: (portfolio hasAccount: receptiveAccount).
+	self assert: 1 equals: portfolio accounts size.! !
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:39:47'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:39:57'!
+addAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'Ciro 5/19/2021 16:40:28'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:40:21' prior: 50910942!
+addAccount: aReceptiveAccount 
+
+	^ accounts add: aReceptiveAccount! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:40:36' prior: 50910955!
+addAccount: aReceptiveAccount 
+
+	accounts add: aReceptiveAccount! !
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:40:38'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:41:21' overrides: 16896425!
+initialize
+
+	accounts _ OrderedCollection new.! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:41:37' prior: 50910900!
+test01PortfolioHaveZeroAsBalanceWhenCreated 
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:41:45'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:41:52'!
+hasAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:42:15' prior: 50910985!
+hasAccount: aReceptiveAccount 
+	
+	^ accounts includes: aReceptiveAccount! !
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:42:18'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:42:26'!
+accounts
+	self shouldBeImplemented.
+	^accounts! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:42:32' prior: 50910998!
+accounts
+	
+	^ accounts copy! !
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:42:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:42:34'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:43:51'!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:44:04' prior: 50911016!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+! !
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:44:23'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:45:17' prior: 50910882!
+balance
+	
+	^ accounts sum:[ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:45:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:45:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:45:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:45:44'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:46:43' prior: 50911027!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasAccount: account).
+	self assert: 1 equals: portfolio accounts size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:47:45' prior: 50911062!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasAccount: account).
+	self assert: 1 equals: portfolio accounts size.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:47:52'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:47:58'!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:48:16' prior: 50911096!
+hasRegistered: aTransaction
+
+	^ true! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:48:25' prior: 50911101!
+hasRegistered: anAccountTransaction
+
+	^ true! !
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:48:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:48:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:48:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:48:35'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:49:19' prior: 50911076!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:49:38' prior: 50911125!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasAccount: account).
+	self assert: 1 equals: portfolio accounts size.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:49:40' prior: 50911138!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:52:15' prior: 50911154!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:52:24' prior: 50911167!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:52:29' prior: 50911182!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:52:34' prior: 50911197!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+! !
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:52:36'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 16:54:46' prior: 50911106!
+hasRegistered: anAccountTransaction
+
+	^ accounts anySatisfy: [ :anAccount | anAccount hasRegistered: anAccountTransaction ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:55:00'!
+test04DepositIncreasesBalanceOnTransactionValue
+
+	| portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:49:38' prior: 50911210!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasAccount: account).
+	self assert: 1 equals: portfolio accounts size.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:55:19' prior: 50911247!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:55:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:55:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:55:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:55:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test04DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:55:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test04DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:55:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:55:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:55:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:55:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:55:23'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:56:06'!
+test03PortfolioKnowsRegisteredTransactions 
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:56:16'!
+test04PortfolioNotKnowsRegisteredTransactions 
+
+	| portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 16:56:28'!
+test04PortfolioDoNotKnowsRegisteredTransactions 
+
+	| portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+! !
+
+!methodRemoval: PortfolioTest #test04PortfolioNotKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:56:31'!
+test04PortfolioNotKnowsRegisteredTransactions 
+
+	| portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+!
+
+!methodRemoval: PortfolioTest #test04DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:56:36'!
+test04DepositIncreasesBalanceOnTransactionValue
+
+	| portfolio deposit withdraw|
+	
+	portfolio _ Portfolio new.
+	deposit _ Deposit for:100.
+	withdraw _ Withdraw for: 50.
+		
+	self assert: 0 equals: portfolio balance.
+	self deny: (portfolio hasRegistered: deposit).
+	self deny: (portfolio hasRegistered: withdraw).
+!
+
+!methodRemoval: PortfolioTest #test03DepositIncreasesBalanceOnTransactionValue stamp: 'Ciro 5/19/2021 16:56:39'!
+test03DepositIncreasesBalanceOnTransactionValue
+
+	| account portfolio deposit |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount  new.
+	portfolio addAccount: account.
+	deposit _ Deposit register: 100 on: account.
+		
+	self assert: 100 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit).
+!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 16:56:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 16:56:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:56:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 16:56:42'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 17:00:32'!
+test05Prueba
+
+	| account1 account2 portfolio deposit1 deposit2 withdraw |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount  new.
+	account2 _ ReceptiveAccount  new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+	deposit1 _ Deposit register: 100 on: account1.
+	deposit2 _ Deposit register: 200 on: account2.
+	withdraw _ Withdraw register: 50 on: account2.
+		
+	self assert: 250 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit1).
+	self assert: (portfolio hasRegistered: deposit2).
+	self assert: (portfolio hasRegistered: withdraw).
+! !
+
+!testRun: #PortfolioTest #test05Prueba stamp: 'Ciro 5/19/2021 17:00:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 17:00:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 17:00:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 17:00:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 17:00:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05Prueba stamp: 'Ciro 5/19/2021 17:00:33'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 17:04:38'!
+test05AddMultipleTransactions
+
+	| portfolio account1 account2 deposit1 deposit2 withdraw |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	deposit1 _ Deposit register: 100 on: account1. 
+	deposit2 _ Deposit register: 200 on: account2.
+	withdraw _ Withdraw register: 50 on: account2.! !
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 17:06:07' prior: 50911442!
+test05AddMultipleTransactions
+
+	| portfolio account1 account2 deposit1 deposit2 withdraw |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	deposit1 _ Deposit register: 100 on: account1. 
+	deposit2 _ Deposit register: 200 on: account2.
+	withdraw _ Withdraw register: 50 on: account2.
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: withdraw).! !
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:06:10'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 17:06:17'!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 17:09:32' prior: 50911480!
+transactions
+
+	| transactions |
+	
+	transactions _ OrderedCollection new.
+
+	^ accounts
+		inject: transactions
+		into: [ :actualTransactions :anAccount | transactions addAll: anAccount transactions ]! !
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:09:34'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:10:08'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/19/2021 17:10:53' prior: 50911456!
+test05AddMultipleTransactions
+
+	| portfolio account1 account2 deposit1 deposit2 withdraw |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+	deposit1 _ Deposit register: 100 on: account1. 
+	deposit2 _ Deposit register: 200 on: account2.
+	withdraw _ Withdraw register: 50 on: account2.
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: withdraw).! !
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:10:54'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test05Prueba stamp: 'Ciro 5/19/2021 17:11:33'!
+test05Prueba
+
+	| account1 account2 portfolio deposit1 deposit2 withdraw |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount  new.
+	account2 _ ReceptiveAccount  new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+	deposit1 _ Deposit register: 100 on: account1.
+	deposit2 _ Deposit register: 200 on: account2.
+	withdraw _ Withdraw register: 50 on: account2.
+		
+	self assert: 250 equals: portfolio balance.
+	self assert: (portfolio hasRegistered: deposit1).
+	self assert: (portfolio hasRegistered: deposit2).
+	self assert: (portfolio hasRegistered: withdraw).
+!
+
+portfolio transactions!
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:15:21'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 17:15:47' prior: 50911485!
+transactions
+
+	| transactions |
+	
+	transactions _ OrderedCollection new.
+
+	accounts
+		inject: transactions
+		into: [ :actualTransactions :anAccount | ^ transactions addAll: anAccount transactions ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 17:15:51' prior: 50911552!
+transactions
+
+	| transactions |
+	
+	transactions _ OrderedCollection new.
+
+	^ accounts
+		inject: transactions
+		into: [ :actualTransactions :anAccount | ^ transactions addAll: anAccount transactions ]! !
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:15:55'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 17:16:03' prior: 50911562!
+transactions
+
+	| transactions |
+	
+	transactions _ OrderedCollection new.
+
+	^ accounts
+		inject: transactions
+		into: [ :actualTransactions :anAccount | transactions addAll: anAccount transactions ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Ciro 5/19/2021 17:16:40' prior: 50911575!
+transactions
+
+	| transactions |
+	
+	transactions _ OrderedCollection new.
+
+	accounts
+		inject: transactions
+		into: [ :actualTransactions :anAccount | transactions addAll: anAccount transactions ].
+		
+	^ transactions! !
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:16:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'Ciro 5/19/2021 17:16:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddNewReceptiveAccount stamp: 'Ciro 5/19/2021 17:16:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 17:16:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowsRegisteredTransactions stamp: 'Ciro 5/19/2021 17:16:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AddMultipleTransactions stamp: 'Ciro 5/19/2021 17:16:45'!
+PASSED!
+
+----QUIT----(19 May 2021 17:17:04) CuisUniversity-4532.image priorSource: 18423938!
+
 ----STARTUP---- (20 May 2021 20:11:35) as C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\windows64\CuisUniversity-4532.image!
 
 !PortfolioTest methodsFor: 'tests' stamp: 'Ciro 5/20/2021 20:16:18'!

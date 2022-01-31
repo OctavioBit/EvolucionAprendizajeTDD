@@ -9,7 +9,9 @@ def printCorrectEx():
 
     MAX_STATE_TIME=60
         
-    aDataFrame = pd.read_csv("F:\\data\\Tesis\\data\\Analisis\\python\\1C2021\\1C2021ParcialesTDD.csv")
+    aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\2C2020\\Parcial2TDDGuru.csv")
+    #aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\Parcial2TDDGuru.csv")
+
     aDataFrame = aDataFrame[aDataFrame["Time"] > 0]
     aDataFrame = aDataFrame[aDataFrame["Time"] < MAX_STATE_TIME]    
         
@@ -42,7 +44,7 @@ def printCorrectEx():
     countCorrect = aDataFrame[aDataFrame["IsCorrect"]==1].size    
     countAll = aDataFrame.size
     porc = (countCorrect/countAll) * 100
-
+    
     print(" PORC OK " + str(porc) )
 
 printCorrectEx()

@@ -1,3 +1,631 @@
+----STARTUP---- (17 May 2021 16:39:53) as C:\Users\sergi\OneDrive\Escritorio\JULIA\Materias\Inge1\windows64\CuisUniversity-4532.image!
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:40:50'!
+test01MarsRoverShouldNotMoveIfCommandIsEmpty
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: North)! !
+
+!methodRemoval: MarsRoverTest #test01 stamp: 'JR 5/17/2021 16:40:50'!
+test01
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: North)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:41:21'!
+test02ShouldMoveForwardWithCommandF
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'f'.
+	
+	self assert: (marsRover isAt: 1@0 heading: North)! !
+
+!methodRemoval: MarsRoverTest #test02 stamp: 'JR 5/17/2021 16:41:21'!
+test02
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'f'.
+	
+	self assert: (marsRover isAt: 1@0 heading: North)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:41:35'!
+test01ShouldNotMoveIfCommandIsEmpty
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: North)! !
+
+!methodRemoval: MarsRoverTest #test01MarsRoverShouldNotMoveIfCommandIsEmpty stamp: 'JR 5/17/2021 16:41:35'!
+test01MarsRoverShouldNotMoveIfCommandIsEmpty
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: North)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:41:55'!
+test03ShouldMoveBackwardsWithCommandB
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'b'.
+	
+	self assert: (marsRover isAt: -1@0 heading: North)! !
+
+!methodRemoval: MarsRoverTest #test03 stamp: 'JR 5/17/2021 16:41:55'!
+test03
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'b'.
+	
+	self assert: (marsRover isAt: -1@0 heading: North)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:42:08'!
+test04ShouldRotateLeftWithCommandL
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heading: West)! !
+
+!methodRemoval: MarsRoverTest #test04 stamp: 'JR 5/17/2021 16:42:09'!
+test04
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heading: West)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:42:23'!
+test05ShouldRotateRightWithCommandR
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heading: East)! !
+
+!methodRemoval: MarsRoverTest #test05 stamp: 'JR 5/17/2021 16:42:23'!
+test05
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heading: East)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:42:47'!
+test06ShouldProcessMultipleCommands
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'rflb'.
+	
+	self assert: (marsRover isAt: -1@1 heading: North)! !
+
+!methodRemoval: MarsRoverTest #test06 stamp: 'JR 5/17/2021 16:42:47'!
+test06
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	marsRover processCommand: 'rflb'.
+	
+	self assert: (marsRover isAt: -1@1 heading: North)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 16:43:05'!
+test07ShouldStopProcessingAfterInvalidCommand
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	self 
+		should: [ marsRover processCommand: 'rlffxbb'.]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: MarsRover invalidCommandError equals: anError messageText.
+			self assert: (marsRover isAt: 2@0 heading: North) ]! !
+
+!methodRemoval: MarsRoverTest #test07 stamp: 'JR 5/17/2021 16:43:05'!
+test07
+
+	|marsRover|
+	
+	marsRover := MarsRover at: 0@0 heading: North.
+	
+	self 
+		should: [ marsRover processCommand: 'rlffxbb'.]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anError |
+			self assert: MarsRover invalidCommandError equals: anError messageText.
+			self assert: (marsRover isAt: 2@0 heading: North) ]!
+
+----QUIT----(17 May 2021 16:43:16) CuisUniversity-4532.image priorSource: 17170017!
+
+----STARTUP---- (17 May 2021 20:04:03) as C:\Users\sergi\OneDrive\Escritorio\JULIA\Materias\Inge1\windows64\CuisUniversity-4532.image!
+
+
+----End fileIn of C:\Users\sergi\OneDrive\Escritorio\JULIA\Materias\Inge1\2021-1c-main\17-Portfolio 1\Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:08:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:08:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:08:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:08:34'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:08:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JR 5/17/2021 20:08:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JR 5/17/2021 20:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JR 5/17/2021 20:08:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:11:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:17:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:17:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:17:45'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:17:45'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:24:04' prior: 50868581!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value].
+								(aTransaction isKindOf: Withdraw) ifTrue: [^(aTransaction value) * (-1)].] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:24:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:24:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:24:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:24:14'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:24:37' prior: 50868645!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [aTransaction value].
+								(aTransaction isKindOf: Withdraw) ifTrue: [(aTransaction value) * (-1)].] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:24:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:24:43'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:24:43'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:25:16' prior: 50868670!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] ifFalse: 
+		[(aTransaction value) * (-1)].] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:25:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:25:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:25:24'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:25:24'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:25:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JR 5/17/2021 20:25:34'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:25:49' prior: 50868691!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] ifFalse: 
+		[^(aTransaction value) * (-1)].] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:25:51'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:25:52'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:26:14' prior: 50868722!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] ifFalse: 
+		[^((aTransaction value) * (-1))].] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:26:18'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:26:18'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:28:58' prior: 50868738!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value] ifEmpty: [ 0 ]
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] ifFalse: 
+		[^((aTransaction value) * (-1))]."! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:29:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:29:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:29:07'!
+PASSED!
+!Withdraw methodsFor: 'value' stamp: 'JR 5/17/2021 20:29:13' prior: 50868537 overrides: 50868466!
+value
+
+	^ value * (-1)! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:29:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:29:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:29:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:29:16'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JR 5/17/2021 20:29:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JR 5/17/2021 20:29:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JR 5/17/2021 20:29:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:29:16'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:29:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:29:22'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:29:22'!
+FAILURE!
+!Withdraw methodsFor: 'value' stamp: 'JR 5/17/2021 20:29:46' prior: 50868775 overrides: 50868466!
+value
+
+	^ value ! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:30:32' prior: 50868754!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value].] ifEmpty: [ 0 ]
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] ifFalse: 
+		[^((aTransaction value) * (-1))]."! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:30:37'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:31:10' prior: 50868824!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] 
+		ifFalse: [(aTransaction value) * (-1)]] ifEmpty: [ 0 ]
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:31:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:31:14'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:31:38' prior: 50868839!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [^aTransaction value] 
+		ifFalse: [^ (-1) * (aTransaction value)]] ifEmpty: [ 0 ]
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:31:42'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:31:42'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:32:41' prior: 50868855!
+balance
+
+	^transactions sum: [ :aTransaction | (aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]] ifEmpty: [ 0 ]
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:32:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:32:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 20:32:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 20:32:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 20:32:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JR 5/17/2021 20:32:51'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:34:40' prior: 50868872!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction valueForBalance] ifEmpty: [ 0 ]
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]"! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 20:55:26' prior: 50868903!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction valueForBalance] ifEmpty: [ 0 ]
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]"! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 21:46:58' prior: 50868913!
+balance
+	
+	|currentBalance|
+	
+	currentBalance _ 0.
+	
+	^transactions do: [:aTransaction | currentBalance _ aTransaction ]
+	
+	"sum: [ :aTransaction | aTransaction value] ifEmpty: [ 0 ]"
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]"! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 21:49:32' prior: 50868923!
+balance
+	
+	|currentBalance|
+	
+	currentBalance _ 0.
+	
+	^transactions do: [:aTransaction | currentBalance _ aTransaction xxx: currentBalance]
+	
+	"sum: [ :aTransaction | aTransaction value] ifEmpty: [ 0 ]"
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]"! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 21:52:02' prior: 50868935!
+balance
+	
+	|currentBalance|
+	
+	currentBalance _ 0.
+	
+	^transactions do: [:aTransaction | currentBalance _ aTransaction weighIn: currentBalance]
+	
+	"sum: [ :aTransaction | aTransaction value] ifEmpty: [ 0 ]"
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]"! !
+!AccountTransaction methodsFor: 'balance' stamp: 'JR 5/17/2021 21:52:39'!
+weighIn: aBalance
+
+	self subclassResponsibility ! !
+!Withdraw methodsFor: 'balance' stamp: 'JR 5/17/2021 21:52:56' overrides: 50868961!
+weighIn: aBalance! !
+!Deposit methodsFor: 'balance' stamp: 'JR 5/17/2021 21:53:01' overrides: 50868961!
+weighIn: aBalance! !
+!Withdraw methodsFor: 'balance' stamp: 'JR 5/17/2021 21:53:23' prior: 50868966 overrides: 50868961!
+weighIn: aBalance
+
+	^aBalance - value! !
+!Deposit methodsFor: 'balance' stamp: 'JR 5/17/2021 21:53:34' prior: 50868970 overrides: 50868961!
+weighIn: aBalance
+
+	^aBalance + value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 21:53:45'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 21:53:45'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 21:54:19' prior: 50868948!
+balance
+	
+	|currentBalance|
+	
+	currentBalance _ 0.
+	
+	transactions do: [:aTransaction | currentBalance _ aTransaction weighIn: currentBalance].
+	
+	^currentBalance 
+	
+	"sum: [ :aTransaction | aTransaction value] ifEmpty: [ 0 ]"
+	
+	"(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] 
+		ifFalse: [(-1) * (aTransaction value)]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 21:54:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 21:54:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 21:54:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 21:54:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JR 5/17/2021 21:54:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JR 5/17/2021 21:54:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JR 5/17/2021 21:54:30'!
+PASSED!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'JR 5/17/2021 21:54:50'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JR 5/17/2021 21:54:59'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'JR 5/17/2021 21:56:01'!
+test01
+
+	|aPortfolio|
+	
+	aPortfolio := Portfolio new.
+	
+	self assert: aPortfolio balance equals: 0! !
+
+!testRun: #PortfolioTest #test01 stamp: 'JR 5/17/2021 21:56:03'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'JR 5/17/2021 21:56:03'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'JR 5/17/2021 21:56:18'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'balance' stamp: 'JR 5/17/2021 21:56:25' prior: 50869064!
+balance
+	
+	^0! !
+
+!testRun: #PortfolioTest #test01 stamp: 'JR 5/17/2021 21:56:28'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JR 5/17/2021 21:58:19'!
+test02
+
+	|aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	aPortfolio := Portfolio new.
+	
+	aPortfolio addAccount: anAccount.
+	
+	self assert: aPortfolio balance equals: anAccount balance! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JR 5/17/2021 21:58:43'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JR 5/17/2021 21:59:16' prior: 50868991!
+balance
+	
+	|currentBalance|
+	
+	currentBalance _ 0.
+	
+	transactions do: [:aTransaction | currentBalance _ aTransaction weighIn: currentBalance].
+	
+	^currentBalance ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'JR 5/17/2021 22:01:12'!
+PASSED!
+
+----QUIT----(17 May 2021 22:06:13) CuisUniversity-4532.image priorSource: 17174757!
+
 ----STARTUP---- (20 May 2021 19:55:52) as C:\Users\sergi\OneDrive\Escritorio\JULIA\Materias\Inge1\windows64\CuisUniversity-4532.image!
 
 

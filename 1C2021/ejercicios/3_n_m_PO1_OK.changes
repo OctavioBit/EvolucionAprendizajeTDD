@@ -1,3 +1,593 @@
+----End fileIn of C:\Users\Lukee\Desktop\Facultad\Ingeniería 1\Git Ejercicios\2021-1c\17-Portfolio 1\Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'lmalvarez 5/17/2021 20:23:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:23:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:23:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:23:54'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:23:54'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lmalvarez 5/17/2021 20:24:30' prior: 50887955!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance.
+! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 20:26:59' prior: 50888142!
+balance
+	^ transactions
+		sum: [ :aTransaction |
+			(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value].
+			(aTransaction isKindOf: Withdraw ) ifTrue: [aTransaction value negated].
+			 ]
+		ifEmpty: [ 0 ].! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:27:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:27:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:27:17'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:27:48'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:28:37'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:29:57'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 20:31:26' prior: 50888188!
+balance
+	^ transactions
+		sum: [ :aTransaction |
+			(aTransaction isKindOf: Deposit) ifTrue: [aTransaction value] ifFalse: [aTransaction value negated].
+			 ]
+		ifEmpty: [ 0 ].! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:31:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:31:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'lmalvarez 5/17/2021 20:32:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:33:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:33:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'lmalvarez 5/17/2021 20:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'lmalvarez 5/17/2021 20:33:51'!
+PASSED!
+!AccountTransaction methodsFor: 'value' stamp: 'lmalvarez 5/17/2021 20:39:59'!
+affectsBalance: aBalance
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'lmalvarez 5/17/2021 20:40:51' overrides: 50888286!
+affectsBalance: aBalance
+
+	^ aBalance + value! !
+!Withdraw methodsFor: 'value' stamp: 'lmalvarez 5/17/2021 20:41:00' overrides: 50888286!
+affectsBalance: aBalance
+	^ aBalance - value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 20:42:18' prior: 50888222!
+balance
+	| balance |
+	balance _ 0.
+
+	transactions do: [ :aTransaction | aTransaction affectsBalance: balance ].
+		
+	^balance! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'lmalvarez 5/17/2021 20:42:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:42:31'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:42:31'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'lmalvarez 5/17/2021 20:42:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:42:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:42:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'lmalvarez 5/17/2021 20:42:31'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lmalvarez 5/17/2021 20:42:42' prior: 50887946!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:42:51'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 20:43:18' prior: 50888301!
+balance
+	| balance |
+	balance _ 0.
+
+	transactions do: [ :aTransaction | balance := aTransaction affectsBalance: balance ].
+		
+	^balance! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:43:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'lmalvarez 5/17/2021 20:43:23'!
+PASSED!
+!Withdraw methodsFor: 'value' stamp: 'lmalvarez 5/17/2021 20:44:42' prior: 50888296 overrides: 50888286!
+affectsBalance: aBalanceValue
+	^ aBalanceValue - value.! !
+!Deposit methodsFor: 'value' stamp: 'lmalvarez 5/17/2021 20:44:48' prior: 50888291 overrides: 50888286!
+affectsBalance: aBalanceValue
+	^ aBalanceValue + value.! !
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'lmalvarez 5/17/2021 20:46:11'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'lmalvarez 5/17/2021 20:46:21'!
+test01
+	
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:47:15' prior: 50888412!
+test01
+
+	| portfolio |
+	
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'lmalvarez 5/17/2021 20:49:03'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:48:43' prior: 50888416!
+test01
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 20:49:08'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 20:49:08'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 20:49:21'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 20:49:33'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 20:49:52'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 20:50:07' prior: 50888444!
+balance
+	^0.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 20:50:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 20:50:11'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:52:42'!
+test02
+	| portfolio account1 |
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	portfolio register: account1.
+	
+	self assert: (portfolio hasRegistered: account1)	.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:53:37' prior: 50888457!
+test02
+	| portfolio account1 |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	portfolio register: account1.
+	
+	self assert: (portfolio hasRegistered: account1).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:53:53'!
+xxxx
+	| portfolio account1 |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	portfolio register: account1.
+	
+	self assert: (portfolio hasRegistered: account1).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:54:19' prior: 50888466!
+test02
+	| portfolio account1 |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	
+	
+	portfolio register: account1.
+	
+	self assert: (portfolio hasRegistered: account1).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:54:59' prior: 50888484!
+test02
+	| portfolio account1 |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1. 
+	
+	portfolio register: account1.
+	
+	self assert: portfolio balance equals: 100 .! !
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 20:55:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 20:55:12'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:55:36'!
+register: aReceptiveAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'lmalvarez 5/17/2021 20:59:01'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 20:58:57' prior: 50888509!
+register: anAccount
+
+	accounts add: anAccount. 
+	! !
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 20:59:05'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:00:38' overrides: 16896425!
+initialize
+	
+	accounts := Set new.! !
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:00:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:00:41'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:02:19' prior: 50888448!
+balance
+	^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [0].! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:02:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:02:26'!
+PASSED!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:06:40' prior: 50888530 overrides: 16896425!
+initialize
+	
+	accounts := ReceptiveAccount new.! !
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:06:52' prior: 50888551 overrides: 16896425!
+initialize
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:07:05' prior: 50888522!
+register: anAccount
+
+	accounts := anAccount. 
+	! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:07:07'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:07:07'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:07:32' prior: 50888540!
+balance
+	^ accounts balance.
+
+	"^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [0]."! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:07:34'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:07:34'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:08:25' prior: 50888570!
+balance
+	^ accounts isNil ifTrue: [0] ifFalse: [accounts balance].
+
+	"^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [0]."! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:08:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:08:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:08:31'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:09:01'!
+test03
+	| portfolio account1 account2 |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1. 
+	
+	Deposit register: 300 on: account2. 
+	
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self assert: portfolio balance equals: 400 .! !
+
+!testRun: #PortfolioTest #test03 stamp: 'lmalvarez 5/17/2021 21:09:02'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03 stamp: 'lmalvarez 5/17/2021 21:09:11'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03 stamp: 'lmalvarez 5/17/2021 21:09:14'!
+PASSED!
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:09:56' prior: 50888581!
+balance
+	^ accounts sum: [:anAccount | anAccount balance] ifEmpty: [0].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:10:03' prior: 50888560!
+register: anAccount
+
+	accounts add: anAccount. 
+	! !
+!Portfolio methodsFor: 'initialization' stamp: 'lmalvarez 5/17/2021 21:10:25' prior: 50888556 overrides: 16896425!
+initialize
+	
+	accounts := Set new.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:10:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:10:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'lmalvarez 5/17/2021 21:10:27'!
+PASSED!
+
+!methodRemoval: PortfolioTest #xxxx stamp: 'lmalvarez 5/17/2021 21:10:50'!
+xxxx
+	| portfolio account1 |
+	
+	portfolio _ Portfolio new.
+	account1 _ ReceptiveAccount new.
+	
+	portfolio register: account1.
+	
+	self assert: (portfolio hasRegistered: account1).!
+
+----SNAPSHOT----(17 May 2021 21:10:53) CuisUniversity-4532.image priorSource: 17776747!
+
+----SNAPSHOT----(17 May 2021 21:42:57) CuisUniversity-4532.image priorSource: 17824024!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:47:09'!
+test04
+	| portfolio portfolioChild |
+	
+	portfolio _ Portfolio new.
+	portfolioChild _ Portfolio new.
+	
+	portfolio register: portfolioChild.
+	
+	self assert: portfolio balance equals: 0 .! !
+
+!testRun: #PortfolioTest #test04 stamp: 'lmalvarez 5/17/2021 21:47:14'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'lmalvarez 5/17/2021 21:48:01'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'lmalvarez 5/17/2021 21:48:00' prior: 50888632 overrides: 16896425!
+initialize
+	
+	accounts := Set new.
+	portfolios := Set new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:49:10' prior: 50888626!
+register: anAccount
+
+	(anAccount isKindOf: ReceptiveAccount ) ifTrue: [	accounts add: anAccount].
+	(anAccount isKindOf: Portfolio) ifTrue: [portfolios add: anAccount]. 
+	! !
+!Portfolio methodsFor: 'balance' stamp: 'lmalvarez 5/17/2021 21:50:38' prior: 50888620!
+balance
+
+	^ (accounts sum: [:anAccount | anAccount balance] ifEmpty: [0] )
+		+ (portfolios sum: [:anAccount | anAccount balance] ifEmpty: [0]).! !
+
+!testRun: #PortfolioTest #test04 stamp: 'lmalvarez 5/17/2021 21:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:51:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:51:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'lmalvarez 5/17/2021 21:51:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'lmalvarez 5/17/2021 21:51:04'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:51:59'!
+test05
+	| portfolio portfolioChild1 portfolioChild2 |
+	
+	portfolio _ Portfolio new.
+	portfolioChild1 _ Portfolio new.
+	portfolioChild2 _ Portfolio new.
+	
+	portfolio register: portfolioChild1.
+	portfolio register: portfolioChild2.
+	
+	self assert: portfolio balance equals: 0 .! !
+
+!testRun: #PortfolioTest #test05 stamp: 'lmalvarez 5/17/2021 21:52:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'lmalvarez 5/17/2021 21:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'lmalvarez 5/17/2021 21:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'lmalvarez 5/17/2021 21:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'lmalvarez 5/17/2021 21:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'lmalvarez 5/17/2021 21:52:04'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:54:19' prior: 50888713!
+test05
+	| portfolio portfolioChild account |
+	
+	portfolio _ Portfolio new.
+	portfolioChild _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account .
+	portfolioChild register: account.
+	
+	portfolio register: portfolioChild.
+	
+	self assert: portfolio balance equals: 100 .! !
+
+!testRun: #PortfolioTest #test05 stamp: 'lmalvarez 5/17/2021 21:54:22'!
+PASSED!
+
+----SNAPSHOT----(17 May 2021 21:55:04) CuisUniversity-4532.image priorSource: 17824113!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:55:21' prior: 50888741!
+test05
+	| portfolio portfolioChild account |
+	
+	portfolio _ Portfolio new.
+	portfolioChild _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolioChild register: account.
+	
+	portfolio register: portfolioChild.
+	
+	self assert: portfolio balance equals: 100 .! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'lmalvarez 5/17/2021 21:55:43' prior: 50888760!
+test05
+	| portfolio portfolioChild account |
+	
+	portfolio _ Portfolio new.
+	portfolioChild _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolioChild register: account.
+	
+	portfolio register: portfolioChild.
+	
+	self assert: portfolio balance equals: 100.! !
+
+----SNAPSHOT----(17 May 2021 21:56:28) CuisUniversity-4532.image priorSource: 17827361!
+
+----SNAPSHOT----(17 May 2021 22:10:32) CuisUniversity-4532.image priorSource: 17828302!
+
 ----STARTUP---- (20 May 2021 19:55:50) as C:\Users\Lukee\Desktop\Facultad\Ingeniería 1\CuisUniversity\CuisToTrain\CuisUniversity-4532.image!
 
 

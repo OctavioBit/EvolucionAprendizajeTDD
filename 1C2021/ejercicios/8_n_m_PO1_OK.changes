@@ -1,3 +1,556 @@
+----End fileIn of /home/igna/Desktop/17-Portfolio 1/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ijgt 5/17/2021 20:19:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:19:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:19:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ijgt 5/17/2021 20:19:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ijgt 5/17/2021 20:19:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ijgt 5/17/2021 20:19:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ijgt 5/17/2021 20:19:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:19:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ijgt 5/17/2021 20:19:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:19:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ijgt 5/17/2021 20:23:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:23:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:23:27'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ijgt 5/17/2021 20:33:46' prior: 50865886!
+balance
+
+	^ self depositsBalance - (self withdrawalsBalance)! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ijgt 5/17/2021 20:37:16'!
+depositsBalance
+
+	^ transactions inject: 0 into: [:aTransaction | aTransaction isDeposit]! !
+!AccountTransaction methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:37:39'!
+isDeposit
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:38:17'!
+isWithdraw
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:38:38' overrides: 50865960!
+isDeposit
+
+	^ true! !
+!Deposit methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:38:48' overrides: 50865964!
+isWithdraw
+
+	^ false! !
+!Withdraw methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:39:03' overrides: 50865960!
+isDeposit
+
+	^false! !
+!Withdraw methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:39:14' overrides: 50865964!
+isWithdraw
+
+	^true! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ijgt 5/17/2021 20:40:43' prior: 50865954!
+depositsBalance
+
+	^ (transactions select: [:aTransaction | aTransaction isDeposit]) sum: [:aTransaction | aTransaction value] ifEmpty: [0]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ijgt 5/17/2021 20:41:16'!
+withdrawalsBalance
+
+	^ (transactions select: [:aTransaction | aTransaction isWithdraw]) sum: [:aTransaction | aTransaction value] ifEmpty: [0]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:42:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ijgt 5/17/2021 20:42:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ijgt 5/17/2021 20:42:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ijgt 5/17/2021 20:42:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ijgt 5/17/2021 20:42:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ijgt 5/17/2021 20:42:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ijgt 5/17/2021 20:42:46'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 20:46:01' prior: 50865746!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 20:46:45'!
+test08
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 20:48:27' prior: 50866061!
+test08
+
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08 stamp: 'ijgt 5/17/2021 20:48:35'!
+test08
+
+	!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'ijgt 5/17/2021 20:49:00'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'ijgt 5/17/2021 20:49:22'!
+test01! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 20:49:36' prior: 50866086!
+test01
+
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'ijgt 5/17/2021 20:51:44'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 20:51:22' prior: 50866089!
+test01
+
+	|aPortfolio|
+	aPortfolio := Portfolio new
+	self assert: (aPortfolio accounts)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 20:52:24' prior: 50866100!
+test01
+
+	|aPortfolio|
+	aPortfolio := Portfolio new.
+	self assert: (aPortfolio accounts isEmpty)! !
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:52:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:52:30'!
+ERROR!
+!Portfolio class methodsFor: 'no messages' stamp: 'ijgt 5/17/2021 20:54:30' overrides: 16783533!
+new
+
+	self initialize! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'ijgt 5/17/2021 20:54:40' prior: 50866117 overrides: 16783533!
+new
+
+	^self initialize! !
+!Portfolio methodsFor: 'no messages' stamp: 'ijgt 5/17/2021 20:55:30' overrides: 16896425!
+initialize
+
+	accounts := OrderedCollection new! !
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:55:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:55:43'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:55:52'!
+ERROR!
+!Portfolio methodsFor: 'testing' stamp: 'ijgt 5/17/2021 20:56:23'!
+accounts
+
+	^ accounts ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:56:28'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:56:28'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:57:05'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:57:05'!
+ERROR!
+!Portfolio class methodsFor: 'creation' stamp: 'ijgt 5/17/2021 20:57:50' prior: 50866122 overrides: 16783533!
+new
+
+	self initialize! !
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:57:57'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:57:57'!
+ERROR!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 20:58:35'!
+ERROR!
+!Portfolio class methodsFor: 'algo' stamp: 'ijgt 5/17/2021 20:59:17'!
+accounts
+	self shouldBeImplemented.! !
+!Portfolio class methodsFor: 'algo' stamp: 'ijgt 5/17/2021 20:59:32' prior: 50866161!
+accounts
+	! !
+
+!methodRemoval: Portfolio class #accounts stamp: 'ijgt 5/17/2021 20:59:45'!
+accounts
+	!
+!Portfolio class methodsFor: 'creation' stamp: 'ijgt 5/17/2021 21:00:38' prior: 50866151 overrides: 16783533!
+new
+
+	^ self new initialize! !
+!Portfolio class methodsFor: 'creation' stamp: 'ijgt 5/17/2021 21:01:05'!
+create
+
+	^ self new initialize! !
+!Portfolio class methodsFor: 'creation' stamp: 'ijgt 5/17/2021 21:01:16' prior: 50866172 overrides: 16783533!
+new
+
+	^ self initialize! !
+!Portfolio class methodsFor: 'creation' stamp: 'ijgt 5/17/2021 21:01:21' prior: 50866181 overrides: 16783533!
+new
+
+	self initialize! !
+!Portfolio class methodsFor: 'creation' stamp: 'ijgt 5/17/2021 21:01:30' prior: 50866186 overrides: 16783533!
+new
+
+	^ self initialize! !
+
+!methodRemoval: Portfolio class #new stamp: 'ijgt 5/17/2021 21:01:49'!
+new
+
+	^ self initialize!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:01:59' prior: 50866106!
+test01
+
+	|aPortfolio|
+	aPortfolio := Portfolio create.
+	self assert: (aPortfolio accounts isEmpty)! !
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 21:02:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 21:02:04'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:04:54'!
+test02
+
+	|aPortfolio anAccount|
+	aPortfolio := Portfolio create.
+	aPortfolio addAccount: anAccount.
+	self assert: (aPortfolio accounts isEmpty)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:06:05' prior: 50866209!
+test02
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio accounts isEmpty)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:06:44' prior: 50866217!
+test02
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio accounts isEmpty)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:08:22' prior: 50866228!
+test02
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio accounts includes: account) .! !
+
+!testRun: #PortfolioTest #test02 stamp: 'ijgt 5/17/2021 21:08:27'!
+ERROR!
+!Portfolio methodsFor: 'add' stamp: 'ijgt 5/17/2021 21:08:43'!
+addAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'add' stamp: 'ijgt 5/17/2021 21:09:12' prior: 50866250!
+addAccount: aReceptiveAccount 
+	accounts add: aReceptiveAccount! !
+!Portfolio methodsFor: 'add' stamp: 'ijgt 5/17/2021 21:09:17' prior: 50866255!
+addAccount: aReceptiveAccount
+
+	accounts add: aReceptiveAccount! !
+
+!testRun: #PortfolioTest #test02 stamp: 'ijgt 5/17/2021 21:10:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 21:10:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'ijgt 5/17/2021 21:10:32'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:10:50'!
+test03
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+	
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio accounts includes: account) .! !
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:10:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 21:10:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'ijgt 5/17/2021 21:10:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:10:52'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ijgt 5/17/2021 21:43:26' prior: 50865992!
+withdrawalsBalance
+
+	^ (transactions select: [:aTransaction | aTransaction isKindOf: Withdraw]) sum: [:aTransaction | aTransaction value] ifEmpty: [0]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ijgt 5/17/2021 21:43:37' prior: 50865985!
+depositsBalance
+
+	^ (transactions select: [:aTransaction | aTransaction isKindOf: Deposit ]) sum: [:aTransaction | aTransaction value] ifEmpty: [0]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ijgt 5/17/2021 21:43:41'!
+PASSED!
+
+!methodRemoval: AccountTransaction #isDeposit stamp: 'ijgt 5/17/2021 21:43:52'!
+isDeposit
+
+	self subclassResponsibility !
+
+!methodRemoval: AccountTransaction #isWithdraw stamp: 'ijgt 5/17/2021 21:43:56'!
+isWithdraw
+
+	self subclassResponsibility !
+
+!methodRemoval: Withdraw #isDeposit stamp: 'ijgt 5/17/2021 21:44:08'!
+isDeposit
+
+	^false!
+
+!methodRemoval: Withdraw #isWithdraw stamp: 'ijgt 5/17/2021 21:44:12'!
+isWithdraw
+
+	^true!
+
+!methodRemoval: Deposit #isDeposit stamp: 'ijgt 5/17/2021 21:44:19'!
+isDeposit
+
+	^ true!
+
+!methodRemoval: Deposit #isWithdraw stamp: 'ijgt 5/17/2021 21:44:23'!
+isWithdraw
+
+	^ false!
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:46:06'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:48:29' prior: 50866272!
+test03
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio balance) equals: 100! !
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:48:32'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'ijgt 5/17/2021 21:48:49'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'balance' stamp: 'ijgt 5/17/2021 21:49:30' prior: 50866369!
+balance
+	
+	^ accounts sum! !
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:49:33'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:49:45'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'ijgt 5/17/2021 21:52:13' prior: 50866373!
+balance
+	
+	^ 100! !
+
+!testRun: #PortfolioTest #test01 stamp: 'ijgt 5/17/2021 21:52:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'ijgt 5/17/2021 21:52:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'ijgt 5/17/2021 21:52:18'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:52:32'!
+test04
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 101 on: account.
+	
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio balance) equals: 101! !
+
+!testRun: #PortfolioTest #test04 stamp: 'ijgt 5/17/2021 21:52:37'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:53:56' prior: 50866392!
+test04
+
+	|aPortfolio account|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 100 on: account.
+	
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio balance) equals: 200! !
+
+!testRun: #PortfolioTest #test04 stamp: 'ijgt 5/17/2021 21:53:57'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:55:19' prior: 50866404!
+test04
+
+	|aPortfolio account secondAccount|
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	secondAccount := ReceptiveAccount new.
+	Deposit register: 100 on: secondAccount .	
+	
+	aPortfolio addAccount: account.
+	aPortfolio addAccount: secondAccount.
+	self assert: (aPortfolio balance) equals: 200! !
+
+!testRun: #PortfolioTest #test04 stamp: 'ijgt 5/17/2021 21:55:51'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04 stamp: 'ijgt 5/17/2021 21:55:51'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'ijgt 5/17/2021 21:56:39' prior: 50866382!
+balance
+	
+	^ accounts sum: [:account | account balance]! !
+
+!testRun: #PortfolioTest #test04 stamp: 'ijgt 5/17/2021 21:56:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'ijgt 5/17/2021 21:56:50'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 21:59:59' prior: 50866417!
+test04
+
+	|aPortfolio account |
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio addAccount: account.
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio balance) equals: 200! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ijgt 5/17/2021 22:00:33'!
+test05
+
+	|aPortfolio account |
+	aPortfolio := Portfolio create.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio addAccount: account.
+	aPortfolio addAccount: account.
+	self assert: (aPortfolio balance) equals: 200! !
+
+----QUIT----(17 May 2021 22:15:18) CuisUniversity-4532.image priorSource: 17088489!
+
 ----STARTUP---- (20 May 2021 16:14:14) as /home/igna/Desktop/CuisNuevo/CuisUniversity-4532.image!
 
 

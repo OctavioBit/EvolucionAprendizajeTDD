@@ -1,3 +1,928 @@
+
+
+----STARTUP---- (17 May 2021 20:23:36) as /home/awolfsdorf/Dropbox/CSCOM/IngeSoft1/Inge1-ejercicios/17-Portfolio 1/Porfolio.image!
+
+
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:44'!
+                              test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48'!
+  test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52'!
+                            test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+                        test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+                             test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53'!
+                         test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 200.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
+                         test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+! !
+
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' overrides: 16881508!
+           value 
+
+	self subclassResponsibility ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/17/2019 03:22:00'!
+        register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
+                               initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' overrides: 50331753!
+                         value
+
+	^ value! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+ for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
+                initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' overrides: 50331753!
+                        value
+
+	^ value! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
+                             for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:23:59'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56' overrides: 16896425!
+               initialize
+
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+                  register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+            transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32'!
+                balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
+ hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+
+----End fileIn of /home/awolfsdorf/Dropbox/CSCOM/IngeSoft1/Inge1-ejercicios/17-Portfolio 1/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:24:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:24:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:24:15'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 20:24:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 20:24:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 20:24:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 20:24:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:24:15'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:25:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:25:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:25:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:25:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:25:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:25:14'!
+FAILURE!
+
+self at: 0!
+
+self at: 1!
+
+(self at: 1)!
+
+(self at: 1)!
+
+aTransaction value!
+!AccountTransaction methodsFor: 'value' stamp: 'AW 5/17/2021 20:34:53'!
+    applyOnBalance: aBalance
+
+	self subclassResponsibility.! !
+!Deposit methodsFor: 'value' stamp: 'AW 5/17/2021 20:35:25' overrides: 50331941!
+                    applyOnBalance: aBalance
+
+	^aBalance + value.! !
+!Deposit methodsFor: 'value' stamp: 'AW 5/17/2021 20:35:53' prior: 50331946 overrides: 50331941!
+              applyOnBalance: aBalance
+
+	^aBalance + self value.! !
+!Withdraw methodsFor: 'value' stamp: 'AW 5/17/2021 20:36:06' overrides: 50331941!
+                        applyOnBalance: aBalance
+
+	^aBalance - self value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'AW 5/17/2021 20:37:02' prior: 50331868!
+                  balance
+
+	^transactions inject: 0 into: [ :currentBalance :aTransaction | aTransaction applyOnBalance: currentBalance  ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 20:37:08'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:43:22'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 20:43:18'!
+            test08
+	
+	| portfolio |
+	
+	portfolio _ Portfolio new.
+	
+	self assert: portfolio balance equals: 0.
+! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 20:43:28'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:43:34'!
+                            balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:43:53' prior: 50332010!
+                             balance
+	
+	^0.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 20:43:55'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 20:45:50'!
+                         test09
+	
+	| portfolio anAccount |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	self assert: portfolio balance equals: 0.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 20:47:02' prior: 50332050!
+                test09
+	
+	| portfolio anAccount |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	
+	portfolio register: anAccount.
+	
+	self assert: portfolio balance equals: 0.
+! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:47:04'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 20:47:22' prior: 50332058!
+                      test09
+	
+	| portfolio anAccount |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	
+	portfolio register: anAccount.
+	
+	self assert: portfolio balance equals: 100.
+! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:47:24'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:47:30'!
+ register: aReceptiveAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'AW 5/17/2021 20:51:21'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'financialAssets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:51:18' prior: 50332083!
+                    register: afinancialAsset 
+	
+	financialAssets add: afinancialAsset.! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:51:29'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:52:13' overrides: 16896425!
+        initialize
+
+	financialAssets := OrderedCollection new.! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:52:15'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:52:33'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:53:04'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:54:35' prior: 50332015!
+                   balance
+	
+	^100 * (financialAssets size) .! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:54:42'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 20:56:13'!
+            test10
+	
+	| portfolio anAccount anotherAccount |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	anotherAccount _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Deposit register: 50 on: anAccount.
+	
+	portfolio register: anAccount.
+	portfolio register: anotherAccount .
+	
+	self assert: portfolio balance equals: 150.
+! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 20:56:29'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:57:44' prior: 50332117!
+             balance
+	
+	^ financialAssets sum: [ :financialAsset | financialAsset value ] ifEmpty: [ 0 ].! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 20:58:18'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 20:58:49' prior: 50332172!
+                   balance
+	
+	^ financialAssets sum: [ :financialAsset | financialAsset balance ] ifEmpty: [ 0 ].! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 20:58:50'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 21:06:34'!
+       test11
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	portfolio register: anAccount.
+	
+	self assert: (portfolio hasRegister: aTransaction).
+! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:06:46' prior: 50332155!
+                  test10
+	
+	| portfolio anAccount anotherAccount |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	anotherAccount _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Deposit register: 50 on: anAccount.
+	
+	portfolio registerAsset: anAccount.
+	portfolio registerAsset: anotherAccount .
+	
+	self assert: portfolio balance equals: 150.
+! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:06:46' prior: 50332071!
+          test09
+	
+	| portfolio anAccount |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	
+	portfolio registerAsset: anAccount.
+	
+	self assert: portfolio balance equals: 100.
+! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:06:46' prior: 50332223!
+                 test11
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	portfolio registerAsset: anAccount.
+	
+	self assert: (portfolio hasRegister: aTransaction).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 21:06:55' prior: 50332261!
+                           test11
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	portfolio registerAsset: anAccount.
+	
+	self assert: (portfolio hasRegister: aTransaction).
+! !
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:06:57'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 21:07:11' prior: 50332273!
+           test11
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	portfolio register: anAccount.
+	
+	self assert: (portfolio hasRegister: aTransaction).
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'AW 5/17/2021 21:07:20'!
+             registerAsset: aTransaction
+
+	transactions add: aTransaction 
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:07:20'!
+                 registerAsset: afinancialAsset 
+	
+	financialAssets add: afinancialAsset.! !
+!AccountTransaction class methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:07:20' prior: 50331766!
+        register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account registerAsset: transaction.
+		
+	^ transaction! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:07:20' prior: 50332287!
+           test11
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	portfolio registerAsset: anAccount.
+	
+	self assert: (portfolio hasRegister: aTransaction).
+! !
+
+!methodRemoval: ReceptiveAccount #register: stamp: 'AW 5/17/2021 21:07:20'!
+register: aTransaction
+
+	transactions add: aTransaction 
+!
+
+!methodRemoval: Portfolio #register: stamp: 'AW 5/17/2021 21:07:20'!
+register: afinancialAsset 
+	
+	financialAssets add: afinancialAsset.!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:07:29'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:07:38'!
+     hasRegister: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:07:54' prior: 50332339!
+              hasRegister: aTransaction 
+	
+	
+	^true.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:08:07'!
+         hasRegistered: aTransaction 
+	
+	
+	^true.! !
+
+!methodRemoval: Portfolio #hasRegister: stamp: 'AW 5/17/2021 21:08:08'!
+hasRegister: aTransaction 
+	
+	
+	^true.!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 21:08:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:08:18'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:08:18'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 21:08:41' prior: 50332317!
+                            test11
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	portfolio registerAsset: anAccount.
+	
+	self assert: (portfolio hasRegistered: aTransaction).
+! !
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:08:41'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 21:09:37'!
+           test12
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	self assert: (portfolio hasRegistered: aTransaction).
+! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'AW 5/17/2021 21:09:39'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'AW 5/17/2021 21:10:01' prior: 50332448!
+                 test12
+	
+	| portfolio anAccount aTransaction |
+	
+	portfolio _ Portfolio new.
+	
+	anAccount _ ReceptiveAccount new.
+	
+	aTransaction _ Deposit register: 500 on: anAccount.
+	
+	self deny: (portfolio hasRegistered: aTransaction).
+! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'AW 5/17/2021 21:10:02'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AW 5/17/2021 21:10:47' prior: 50332348!
+             hasRegistered: aTransaction 
+	
+	
+	^financialAssets size = 1.! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'AW 5/17/2021 21:10:50'!
+PASSED!
+
+----QUIT----(17 May 2021 21:48:57) Porfolio.image priorSource: 3042!
+
 ----STARTUP---- (20 May 2021 20:17:15) as /home/nikita/r/f/ingsoft1/Inge1-ejercicios/17-Portfolio 1/Porfolio.image!
 
 !ReceptiveAccountTest methodsFor: 'tests' stamp: 'nz 5/20/2021 20:27:24'!
