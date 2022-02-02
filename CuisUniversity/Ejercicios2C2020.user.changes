@@ -1,0 +1,115 @@
+
+
+----STARTUP---- (9 November 2021 00:22:37) as F:\data\Tesis\CuisUniversity\Ejercicios1C2021.image!
+
+
+----SNAPSHOT----(9 November 2021 00:23:34) Ejercicios2C2020.image priorSource: 19971652!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 11/9/2021 00:23:45' prior: 50955564!
+filterByExerciseDates: events
+
+	| MRDateFrom PO1DateFrom PO2DateFrom MRRDateFrom TL1DateFrom TL2DateFrom TL3DateFrom 
+	  exercise filteredEvents indexFrom |
+		
+	MRDateFrom   := self buildGregorianFrom: (Date year:2021 month:5 day:13).	
+	MRRDateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:17).
+	PO1DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:20).
+	PO2DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:31).	
+	TL1DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:7).
+	TL2DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:10).
+	TL3DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:17).
+	
+	filteredEvents := OrderedCollection newFrom: events.					
+	exercise  := self currentExercise.	
+	exercise = 'MR' ifTrue: [ indexFrom := self firstIndexFrom: MRDateFrom inEvents:events].	
+	exercise = 'PO1' ifTrue:[ indexFrom := self firstIndexFrom: PO1DateFrom inEvents:events].
+	exercise = 'PO2' ifTrue:[ indexFrom := self firstIndexFrom: PO2DateFrom inEvents:events].
+	exercise = 'TEL' ifTrue:[ indexFrom := self firstIndexFrom: MRRDateFrom inEvents:events].
+	exercise = 'TL1' ifTrue:[ indexFrom := self firstIndexFrom: TL1DateFrom inEvents:events].
+	exercise = 'TL2' ifTrue:[ indexFrom := self firstIndexFrom: TL2DateFrom inEvents:events].
+	exercise = 'TL3' ifTrue:[ indexFrom := self firstIndexFrom: TL3DateFrom inEvents:events].
+
+	filteredEvents removeFirst: indexFrom.
+
+	^filteredEvents.! !
+
+----SNAPSHOT----(9 November 2021 00:23:48) Ejercicios2C2020.image priorSource: 19971843!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 11/9/2021 00:27:19' prior: 50955775!
+filterByExerciseDates: events
+
+	| MRDateFrom PO1DateFrom PO2DateFrom TELDateFrom TL1DateFrom TL2DateFrom TL3DateFrom 
+	  exercise filteredEvents indexFrom |
+		
+	MRDateFrom   := self buildGregorianFrom: (Date year:2020 month:10 day:22).	
+	TELDateFrom := self buildGregorianFrom: (Date year:2020 month:10 day:29).
+	PO1DateFrom := self buildGregorianFrom: (Date year:2020 month:11 day:2).
+	PO2DateFrom := self buildGregorianFrom: (Date year:2020 month:11 day:9).	
+	TL1DateFrom  := self buildGregorianFrom: (Date year:2020 month:11 day:16).
+	TL2DateFrom  := self buildGregorianFrom: (Date year:2020 month:11 day:19).
+	TL3DateFrom  := self buildGregorianFrom: (Date year:2020 month:11 day:26).
+	
+	filteredEvents := OrderedCollection newFrom: events.					
+	exercise  := self currentExercise.	
+	exercise = 'MR' ifTrue: [ indexFrom := self firstIndexFrom: MRDateFrom inEvents:events].	
+	exercise = 'PO1' ifTrue:[ indexFrom := self firstIndexFrom: PO1DateFrom inEvents:events].
+	exercise = 'PO2' ifTrue:[ indexFrom := self firstIndexFrom: PO2DateFrom inEvents:events].
+	exercise = 'TEL' ifTrue:[ indexFrom := self firstIndexFrom: TELDateFrom inEvents:events].
+	exercise = 'TL1' ifTrue:[ indexFrom := self firstIndexFrom: TL1DateFrom inEvents:events].
+	exercise = 'TL2' ifTrue:[ indexFrom := self firstIndexFrom: TL2DateFrom inEvents:events].
+	exercise = 'TL3' ifTrue:[ indexFrom := self firstIndexFrom: TL3DateFrom inEvents:events].
+
+	filteredEvents removeFirst: indexFrom.
+
+	^filteredEvents.! !
+
+----SNAPSHOT----(9 November 2021 00:27:24) Ejercicios2C2020.image priorSource: 19973544!
+
+----SNAPSHOT----(9 November 2021 00:27:52) Ejercicios2C2020.image priorSource: 19975246!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 11/9/2021 00:28:26' prior: 50955126!
+exportDirectory
+
+ | fileName |
+
+ fileName := '\TDDGuruExport\TDDGuruExport.csv'.
+
+'F:\data\Tesis\data\Analisis\2C2020\ejercicios\' asDirectoryEntry allFilesDo: [ :file | AnalysisResultWindow exportChanges: file asString 
+                                                                                                                                               toFile: fileName].
+
+self inform: ('File 'append: (fileName append:' was succesfully exported!!')).! !
+
+----SNAPSHOT----(9 November 2021 00:29:15) Ejercicios2C2020.image priorSource: 19975336!
+!AnalysisResultWindow class methodsFor: '*Gerardo-Tesis' stamp: 'GF 11/9/2021 00:29:19' prior: 50955707!
+exportDirectory
+
+   | exercisesPath fileExport fileTo |
+
+   "exercisesPath := 'F:\data\Tesis\data\Analisis\recuperatorios\'."
+   "exercisesPath := 'F:\data\Tesis\data\Analisis\parciales\'."
+   "excercises"
+   exercisesPath := 'F:\data\Tesis\EvolucionAprendizajeTDD\2C2020\ejercicios'.
+   fileExport := 'TDDGuruExport.csv'.
+  
+   fileTo := fileExport asFileEntry.
+
+   "File headers"
+   "exercises"
+   fileTo appendContents:'Exercise,Repository,Student,State,IsCorrect,Time,TestCount'.	 
+   "Exams"
+   "fileTo appendContents:'Student,State,IsCorrect,Time,TestCount'."
+   fileTo appendContents:String newLineString.
+
+   exercisesPath asDirectoryEntry allFilesDo: [ :file | [AnalysisResultWindow exportChanges: file asString 
+                                                                                                      toFile:fileExport] on:Error do:[ Transcript show:file asString ] ].! !
+
+----SNAPSHOT----(9 November 2021 00:29:22) Ejercicios2C2020.image priorSource: 19976017!
+
+----SNAPSHOT----(9 November 2021 01:28:31) Ejercicios2C2020.image priorSource: 19977118!
+
+----STARTUP---- (10 November 2021 00:34:50) as F:\data\Tesis\CuisUniversity\Ejercicios2C2020.image!
+
+
+AnalysisResultWindow exportDirectory!
+
+----STARTUP---- (10 November 2021 00:37:18) as F:\data\Tesis\CuisUniversity\Ejercicios2C2020.image!
+
+
+AnalysisResultWindow exportDirectory!

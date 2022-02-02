@@ -1,0 +1,683 @@
+
+
+----SNAPSHOT----(4 September 2021 18:06:22) Parciales1C2021.image priorSource: 19947612!
+
+----STARTUP---- (5 September 2021 14:56:46) as F:\data\Tesis\CuisUniversity\Parciales1C2021.image!
+
+
+AnalysisResultWindow exportDirectory  !
+
+AnalysisResultWindow exportDirectory!
+
+AnalysisResultWindow exportDirectory!
+
+AnalysisResultWindow exportDirectory!
+
+AnalysisResultWindow exportDirectory!
+
+AnalysisResultWindow exportDirectory!
+
+----SNAPSHOT----(5 September 2021 16:00:56) Parciales1C2021.image priorSource: 19950754!
+
+----STARTUP---- (5 September 2021 16:09:08) as F:\data\Tesis\CuisUniversity\Parciales1C2021.image!
+
+
+AnalysisResultWindow exportDirectory !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:11:03' prior: 50954445!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+self halt.
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory   !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:11:33' prior: 50955133!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:11:37' prior: 50955180!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+self halt.
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:12:04' prior: 50955225!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:19:17' prior: 50955272!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+self halt.
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:20:03' prior: 50955317!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:20:15' prior: 50955364!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+self halt.
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:22:04' prior: 50955409!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+self halt.
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:23:43' prior: 50955456!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+self halt.
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+self halt.
+	^ exportLines.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:24:03' prior: 50955503!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:26:15' prior: 50955549!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]. self halt.
+			]
+	].
+
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory  !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:26:40' prior: 50955594!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[						
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:27:04' prior: 50943040!
+isProbablyNotDoingTDD: anEvent
+
+   | change | 
+self halt.
+   anEvent type = #change ifTrue: [ change := anEvent change.
+							(tddGuru analysisResult hasError: change) ifTrue: [ ^(tddGuru analysisResult errorIn: change) 
+								                                                                                endsWith: 'Probably not doing TDD.' ]
+							                                                             ifFalse:[^false]
+						      ]
+					   ifFalse:[ ^false ].
+! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:27:11' prior: 50955686!
+isProbablyNotDoingTDD: anEvent
+
+   | change | 
+self halt.
+   anEvent type = #change ifTrue: [ change := anEvent change.
+							(tddGuru analysisResult hasError: change) ifTrue: [ ^(tddGuru analysisResult errorIn: change) 
+								                                                                                endsWith: 'Probably not doing TDD.' ]
+							                                                             ifFalse:[^false]
+						      ]
+					   ifFalse:[ ^false ].
+! !
+
+AnalysisResultWindow exportDirectory   !
+
+tddGuru analysisResult hasError: change!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 16:30:49' prior: 50955705!
+isProbablyNotDoingTDD: anEvent
+
+   | change | 
+
+   anEvent type = #change ifTrue: [ change := anEvent change.
+							(tddGuru analysisResult hasError: change) ifTrue: [ ^(tddGuru analysisResult errorIn: change) 
+								                                                                                endsWith: 'Probably not doing TDD.' ]
+							                                                             ifFalse:[^false]
+						      ]
+					   ifFalse:[ ^false ].
+! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 18:48:47' prior: 50955641!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[		self halt.				
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 19:05:32' prior: 50954639!
+buildDataFromFileName
+
+	| parts data changesFileName indexRepository indexStudent indexExercise |
+
+	indexRepository :=1.
+	indexStudent := 2.	
+	indexExercise :=4.
+		
+	parts := OrderedCollection new.
+	data :=''.
+	
+	changesFileName := (FileSystemEntry withPathName: tddGuru changesFile) name.
+	
+	"Split string by character '_' "
+	changesFileName do: [ :c |
+		c = $_ ifTrue:[ parts add: data. data := ''. ] 
+		          ifFalse:[ data := data,(c asString). ].	
+	].
+
+"exam"
+	^parts at:indexStudent.
+
+"exercises"
+	"^ (parts at:indexExercise )	,',',
+	   (parts at:indexRepository),',',
+	   (parts at:indexStudent)."
+	
+
+	
+	! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/5/2021 19:06:09' prior: 50955744!
+buildExportLinesFromEvents: events
+
+	| currentTime currentState currentStatus exportLines eventsFiltered testCount |
+				
+	currentTime := '0'.
+       currentState := ''.
+       currentStatus := ''.
+	testCount := 0.
+	exportLines := OrderedCollection new.
+	exportLines add:''.
+	eventsFiltered := events.
+	"eventsFiltered := (self filterByExerciseDates:events). exercises"
+
+	eventsFiltered do:[ :event | 
+		"Skips events with message 'Probably not doing TDD' "		
+		(self isProbablyNotDoingTDD: event) ifFalse: 
+			[		
+	                event type = #change ifTrue: [ currentTime := event secondsWithPreviousChange.  
+		                                                      event change class = NewTest ifTrue:[ testCount := testCount +1. ]].
+
+	                event type = #stateTransition ifTrue: [ event stateTo isCorrect ifTrue:[ currentStatus := '1' ] 
+		                                                                                                      ifFalse:[ currentStatus := '0' ].
+											   currentState := self exportStateCode: event stateTo.
+											    exportLines removeLast.].		
+			 currentState = '' ifFalse:[
+			 exportLines add: (self buildDataFromFileName,',',currentState,',',currentStatus,',',currentTime,',',testCount asString,
+												String newLineString).		]
+			]
+	].
+
+	^ exportLines.! !
+
+AnalysisResultWindow exportDirectory!
+
+----SNAPSHOT----(5 September 2021 19:10:56) Parciales1C2021.image priorSource: 19951181!
+
+----SNAPSHOT----(5 September 2021 19:19:00) Parciales1C2021.image priorSource: 19974674!
+
+----SNAPSHOT----(5 September 2021 20:48:46) Parciales1C2021.image priorSource: 19974764!
+
+----STARTUP---- (15 September 2021 00:38:09) as F:\data\Tesis\CuisUniversity\Parciales1C2021.image!
+
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/15/2021 00:47:16' prior: 50954775!
+filterByExerciseDates: events
+
+	| MRDateFrom PO1DateFrom PO2DateFrom MRRDateFrom TL1DateFrom TL2DateFrom TL3DateFrom 
+	  exercise filteredEvents indexFrom |
+	
+	MRDateFrom   := self buildGregorianFrom: (Date year:2021 month:5 day:13).	
+	MRRDateFrom  := self buildGregorianFrom: (Date year:2021 month:5 day:17).
+	PO1DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:20).
+	PO2DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:31).	
+	TL1DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:7).
+	TL2DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:17).
+	TL3DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:24).
+	
+	filteredEvents := OrderedCollection newFrom: events.					
+	exercise  := self currentExercise.	
+	exercise = 'MR' ifTrue: [ indexFrom := self firstIndexFrom: MRDateFrom inEvents:events].	
+	exercise = 'PO1' ifTrue:[ indexFrom := self firstIndexFrom: PO1DateFrom inEvents:events].
+	exercise = 'PO2' ifTrue:[ indexFrom := self firstIndexFrom: PO2DateFrom inEvents:events].
+	exercise = 'MRR' ifTrue:[ indexFrom := self firstIndexFrom: MRRDateFrom inEvents:events].
+	exercise = 'TL1' ifTrue:[ indexFrom := self firstIndexFrom: TL1DateFrom inEvents:events].
+	exercise = 'TL2' ifTrue:[ indexFrom := self firstIndexFrom: TL2DateFrom inEvents:events].
+	exercise = 'TL3' ifTrue:[ indexFrom := self firstIndexFrom: TL3DateFrom inEvents:events].
+
+	filteredEvents removeFirst: indexFrom.
+
+	^filteredEvents.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/15/2021 00:47:56' prior: 50955872!
+filterByExerciseDates: events
+
+	| MRDateFrom PO1DateFrom PO2DateFrom MRRDateFrom TL1DateFrom TL2DateFrom TL3DateFrom 
+	  exercise filteredEvents indexFrom |
+	
+	MRDateFrom   := self buildGregorianFrom: (Date year:2021 month:5 day:13).	
+	MRRDateFrom  := self buildGregorianFrom: (Date year:2021 month:5 day:17).
+	PO1DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:20).
+	PO2DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:31).	
+	TL1DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:7).
+	TL2DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:10).
+	TL3DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:17).
+	
+	filteredEvents := OrderedCollection newFrom: events.					
+	exercise  := self currentExercise.	
+	exercise = 'MR' ifTrue: [ indexFrom := self firstIndexFrom: MRDateFrom inEvents:events].	
+	exercise = 'PO1' ifTrue:[ indexFrom := self firstIndexFrom: PO1DateFrom inEvents:events].
+	exercise = 'PO2' ifTrue:[ indexFrom := self firstIndexFrom: PO2DateFrom inEvents:events].
+	exercise = 'MRR' ifTrue:[ indexFrom := self firstIndexFrom: MRRDateFrom inEvents:events].
+	exercise = 'TL1' ifTrue:[ indexFrom := self firstIndexFrom: TL1DateFrom inEvents:events].
+	exercise = 'TL2' ifTrue:[ indexFrom := self firstIndexFrom: TL2DateFrom inEvents:events].
+	exercise = 'TL3' ifTrue:[ indexFrom := self firstIndexFrom: TL3DateFrom inEvents:events].
+
+	filteredEvents removeFirst: indexFrom.
+
+	^filteredEvents.! !
+
+----SNAPSHOT----(15 September 2021 00:48:01) Parciales1C2021.image priorSource: 19974854!
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/15/2021 00:48:16' prior: 50955922!
+filterByExerciseDates: events
+
+	| MRDateFrom PO1DateFrom PO2DateFrom MRRDateFrom TL1DateFrom TL2DateFrom TL3DateFrom 
+	  exercise filteredEvents indexFrom |
+	
+	MRDateFrom   := self buildGregorianFrom: (Date year:2021 month:5 day:13).	
+	MRRDateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:17).
+	PO1DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:20).
+	PO2DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:31).	
+	TL1DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:7).
+	TL2DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:10).
+	TL3DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:17).
+
+	filteredEvents := OrderedCollection newFrom: events.					
+	exercise  := self currentExercise.	
+	exercise = 'MR' ifTrue: [ indexFrom := self firstIndexFrom: MRDateFrom inEvents:events].	
+	exercise = 'PO1' ifTrue:[ indexFrom := self firstIndexFrom: PO1DateFrom inEvents:events].
+	exercise = 'PO2' ifTrue:[ indexFrom := self firstIndexFrom: PO2DateFrom inEvents:events].
+	exercise = 'MRR' ifTrue:[ indexFrom := self firstIndexFrom: MRRDateFrom inEvents:events].
+	exercise = 'TL1' ifTrue:[ indexFrom := self firstIndexFrom: TL1DateFrom inEvents:events].
+	exercise = 'TL2' ifTrue:[ indexFrom := self firstIndexFrom: TL2DateFrom inEvents:events].
+	exercise = 'TL3' ifTrue:[ indexFrom := self firstIndexFrom: TL3DateFrom inEvents:events].
+
+	filteredEvents removeFirst: indexFrom.
+
+	^filteredEvents.! !
+!AnalysisResultWindow methodsFor: '*Gerardo-Tesis' stamp: 'GF 9/15/2021 00:48:19' prior: 50955975!
+filterByExerciseDates: events
+
+	| MRDateFrom PO1DateFrom PO2DateFrom MRRDateFrom TL1DateFrom TL2DateFrom TL3DateFrom 
+	  exercise filteredEvents indexFrom |
+
+	MRDateFrom   := self buildGregorianFrom: (Date year:2021 month:5 day:13).	
+	MRRDateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:17).
+	PO1DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:20).
+	PO2DateFrom := self buildGregorianFrom: (Date year:2021 month:5 day:31).	
+	TL1DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:7).
+	TL2DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:10).
+	TL3DateFrom  := self buildGregorianFrom: (Date year:2021 month:6 day:17).
+
+	filteredEvents := OrderedCollection newFrom: events.					
+	exercise  := self currentExercise.	
+	exercise = 'MR' ifTrue: [ indexFrom := self firstIndexFrom: MRDateFrom inEvents:events].	
+	exercise = 'PO1' ifTrue:[ indexFrom := self firstIndexFrom: PO1DateFrom inEvents:events].
+	exercise = 'PO2' ifTrue:[ indexFrom := self firstIndexFrom: PO2DateFrom inEvents:events].
+	exercise = 'MRR' ifTrue:[ indexFrom := self firstIndexFrom: MRRDateFrom inEvents:events].
+	exercise = 'TL1' ifTrue:[ indexFrom := self firstIndexFrom: TL1DateFrom inEvents:events].
+	exercise = 'TL2' ifTrue:[ indexFrom := self firstIndexFrom: TL2DateFrom inEvents:events].
+	exercise = 'TL3' ifTrue:[ indexFrom := self firstIndexFrom: TL3DateFrom inEvents:events].
+
+	filteredEvents removeFirst: indexFrom.
+
+	^filteredEvents.! !
+
+AnalysisResultWindow exportDirectory!
+
+----SNAPSHOT----(15 September 2021 01:09:21) Parciales1C2021.image priorSource: 19978248!
