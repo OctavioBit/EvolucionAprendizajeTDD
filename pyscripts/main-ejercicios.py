@@ -1,6 +1,7 @@
 # https://python.plainenglish.io/making-plots-with-the-pandas-groupby-ac492941af28
 
 from itertools import cycle
+from math import fabs
 from os import sep
 import numpy as np
 import pandas as pd
@@ -47,17 +48,14 @@ def printCorrectEx(exercise):
     
 def extractTDDCycles():
 
-    WRITING_FAILING_TEST = "WR"
-    RED = "RE"    
-    REFACTOR = "RF"
-    GREEN = "GR"   
-    MAX_STATE_TIME=60 
+    WRITING_FAILING_TEST = "WR"    
+    MAX_STATE_TIME=60 * 10
 
-    aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\2C2020\\2C2020EjerciciosTDD.csv")
-    csvFile = open('cyclesFile2C2020.csv', 'w', encoding='UTF8', newline='')
+    #aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\2C2020\\2C2020EjerciciosTDD.csv")
+    #csvFile = open('cyclesFile2C2020.csv', 'w', encoding='UTF8', newline='')
 
-    #aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\1C2021EjerciciosTDD.csv")
-    #csvFile = open('cyclesFile1C2021.csv', 'w', encoding='UTF8', newline='')
+    aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\1C2021EjerciciosTDD.csv")
+    csvFile = open('cyclesFile1C2021.csv', 'w', encoding='UTF8', newline='')
 
     #aDataFrame = pd.read_csv("F:\\data\\Tesis\\EvolucionAprendizajeTDD\\pyscripts\\1C2021\\test.csv")
     #csvFile = open('cyclesTest.csv', 'w', encoding='UTF8', newline='')
@@ -66,69 +64,65 @@ def extractTDDCycles():
     aDataFrame = aDataFrame[aDataFrame["Time"] < MAX_STATE_TIME]
 
     csvWriter = csv.writer(csvFile)
-    headers = ["Group","Time","Exercise","Cycle Number"]
+    headers = ["Group","Time","Exercise","Cycle Number","Cycle is correct"]
     csvWriter.writerow(headers)
-
-    firstRow = aDataFrame.head(1)
-
-    exercise = firstRow["Exercise"][2]
-    group = firstRow["Repository"][2]
-    state = firstRow["State"][2]
+    
     cycleNumber = 1
     acumTime = 0
+    cicleIsCorrect = True
 
+    aDataFrame.reset_index()
+
+    exercise = ""
+    group = ""
+    state = ""
+    prevExercise = ""
+    prevGroup = ""
+    prevState = ""
+    
     for i, row in aDataFrame.iterrows():
 
+        acumTime += row["Time"]
+
+        #The first row already was readed
         if i == 0:
+            prevExercise = row["Exercise"]
+            prevGroup = row["Repository"]
+            prevState = row["State"]
+
+            exercise = row["Exercise"]
+            group = row["Repository"]
+            state = row["State"]
+
             continue
-
-        nextExercise = row["Exercise"]
-        nextGroup = row["Repository"]
-        nextState = row["State"]
-
-        if exercise != nextExercise or group != nextGroup:
-            cycleNumber = 1
-            acumTime = 0            
-
-        if state == WRITING_FAILING_TEST:
-
-            if nextState == RED or nextState == WRITING_FAILING_TEST:
-                acumTime += row["Time"]                
-            else:                
-                acumTime = 0
-                        
-        if state == RED:
-
-            if nextState == RED or nextState == GREEN:
-                acumTime += row["Time"]                
-            else:                
-                acumTime = 0                
-
-        if state == GREEN:
-
-            if nextState == WRITING_FAILING_TEST:
                 
-                if acumTime > 0:
-                    line = [group,acumTime,exercise,cycleNumber]
-                    csvWriter.writerow(line)
-                    acumTime = 0
-                    cycleNumber += 1
+        prevExercise = exercise
+        prevGroup = group
+        prevState = state
 
-            elif nextState == REFACTOR or nextState == GREEN:
-                acumTime += row["Time"]
-            else:                
-                acumTime = 0                
+        exercise = row["Exercise"]
+        group = row["Repository"]
+        state = row["State"]
 
-        if state == REFACTOR:
+        if row["IsCorrect"] == 0:
+            cicleIsCorrect = False
 
-            if nextState == GREEN or nextState == REFACTOR:
-                acumTime += row["Time"]
-            else:                
+        if exercise != prevExercise or group != prevGroup:
+            cycleNumber = 1
+            acumTime = 0
+            cicleIsCorrect = True
+            continue
+                
+        if state == WRITING_FAILING_TEST and prevState != WRITING_FAILING_TEST:
+            
+            if acumTime > 0:
+                line = [group,acumTime,exercise,cycleNumber, "1" if cicleIsCorrect else "0"]
+                csvWriter.writerow(line)
                 acumTime = 0
+                cycleNumber += 1
+                cicleIsCorrect = True
 
-        exercise = nextExercise 
-        group = nextGroup
-        state = nextState
+            continue
 
     csvFile.close()
 
